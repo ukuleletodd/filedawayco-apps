@@ -700,6 +700,7 @@ var Engine = (function () {
 
   function normHdr(s) { return String(s == null ? '' : s).replace(/^\uFEFF/, '').trim().toLowerCase().replace(/\s+/g, ' '); }
   function normTxt(s) { return String(s == null ? '' : s).trim().toLowerCase().replace(/\s+/g, ' '); }
+  function canonProdName(s) { return String(s == null ? '' : s).trim().slice(0, 120); }
 
   /* Locale-aware money parser for CSV cells: handles $17.00, 12,50, 1.250,50, 1,250.50, -$8.50, ($8.50), $-8.50, "--", "". */
   function parseMoney(x) {
@@ -880,7 +881,7 @@ var Engine = (function () {
             qty: findCol(h, ['Quantity']), ship: findCol(h, ['Shipping ($)']), tax: findCol(h, ['Taxes ($)']),
             orderId: findCol(h, ['Purchase ID', 'Order Number']), refunded: findCol(h, ['Refunded?']),
             fullRef: findCol(h, ['Fully Refunded?']), refundAmt: findCol(h, ['Partial Refund ($)']),
-            discover: findCol(h, ['Discover?']), freeTrial: findCol(h, ['Free trial purchase?']),
+            discover: findCol(h, ['Discover?']), referrer: findCol(h, ['Referrer']), freeTrial: findCol(h, ['Free trial purchase?']),
             preOrder: findCol(h, ['Pre-Order Authorization?']), buyerCur: findCol(h, ['Buyer Currency']), currency: -1 };
     } else if (fmt === 'payhip') {
       M = { date: findCol(h, ['Date', 'Order Date']), product: findCol(h, ['Items in Cart', 'Product', 'Item']),
@@ -1203,7 +1204,9 @@ var Engine = (function () {
         var unitPrice = round2(itemTotal / qty);
         if (!(unitPrice > 0)) { skipRow(idx, '$0 free order'); return; }
 
-        var isDisc = colMap.discover >= 0 && /^(1|yes|true)$/i.test(cell(r, colMap.discover));
+        var discVal = colMap.discover >= 0 ? cell(r, colMap.discover) : '';
+        var refVal = colMap.referrer >= 0 ? cell(r, colMap.referrer) : '';
+        var isDisc = /^(1|yes|true)$/i.test(discVal) || (!discVal && /recommended by gumroad|gumroad discover/i.test(refVal));
         var rowPid = opts.pid ? opts.pid : (isDisc ? 'GUMROAD_DISCOVER' : 'GUMROAD_DIRECT');
 
         var fullRef = colMap.fullRef >= 0 && /^(1|yes|true)$/i.test(cell(r, colMap.fullRef));
@@ -1316,14 +1319,16 @@ var Engine = (function () {
         o.lines.forEach(function (ln) { sumLineRaw += ln.price * ln.qty; if (ln.lineDisc > 0) hasLineDisc = true; });
         // Distribute order-level discount across lines when Lineitem discount wasn't already provided
         var orderDiscToSpread = (!hasLineDisc && o.discount > 0 && sumLineRaw > 0) ? Math.min(o.discount, sumLineRaw) : 0;
-        var orderGrossNoTax = 0;
+        var orderGrossNoTax = 0, shipAssigned = false;
         var computed = o.lines.map(function (ln, li) {
           var lineNet = ln.price * ln.qty - ln.lineDisc;
           if (orderDiscToSpread > 0) lineNet -= orderDiscToSpread * ((ln.price * ln.qty) / sumLineRaw);
           lineNet = Math.max(0, round2(lineNet));
           var uPrice = round2(lineNet / ln.qty);
-          var ship = li === 0 ? o.ship : 0;
-          var tax = li === 0 ? o.tax : 0;
+          var takeOrderCharges = uPrice > 0 && !shipAssigned;
+          if (takeOrderCharges) shipAssigned = true;
+          var ship = takeOrderCharges ? o.ship : 0;
+          var tax = takeOrderCharges ? o.tax : 0;
           var g = round2(uPrice * ln.qty + ship);
           orderGrossNoTax += g;
           return { ln: ln, li: li, unitPrice: uPrice, ship: ship, tax: tax, gross: g };
@@ -1459,7 +1464,7 @@ var Engine = (function () {
     var existingSales = opts.existingSales || [];
     var existingProducts = opts.existingProducts || [];
     var prodNameById = {}, existingProdNames = {};
-    existingProducts.forEach(function (p) { prodNameById[p.id] = p.name; existingProdNames[normTxt(p.name)] = p; });
+    existingProducts.forEach(function (p) { var cn = canonProdName(p.name); prodNameById[p.id] = cn; existingProdNames[normTxt(cn)] = p; });
 
     var existingKeys = {}, manualSigs = {};
     existingSales.forEach(function (s) {
@@ -1473,7 +1478,8 @@ var Engine = (function () {
     var ready = [], duplicates = [], batchKeys = {}, newProdSet = {};
     var totGrossC = 0, totFeesC = 0, totKeptC = 0;
     rawSales.forEach(function (item) {
-      var sig = manualSig(item.date, item.pid, item.productName, item.qty, item.price, item.ship, item.refunded, item.refundAmt);
+      var prodKey = normTxt(canonProdName(item.productName));
+      var sig = manualSig(item.date, item.pid, canonProdName(item.productName), item.qty, item.price, item.ship, item.refunded, item.refundAmt);
       if (existingKeys[item.importKey] || batchKeys[item.importKey]) {
         duplicates.push(item); return;
       }
@@ -1483,9 +1489,9 @@ var Engine = (function () {
       }
       batchKeys[item.importKey] = true;
       var pObj = byId(L, item.pid) || byId(L, defaultPid);
-      var exProd = existingProdNames[normTxt(item.productName)];
+      var exProd = existingProdNames[prodKey];
       var uCost = exProd ? num(exProd.cost) : 0;
-      if (!exProd) newProdSet[normTxt(item.productName)] = item.productName;
+      if (!exProd) newProdSet[prodKey] = canonProdName(item.productName);
       var res = orderFees(pObj, {
         gross: saleGross(item), tax: pObj.tb ? item.tax : 0, ad: item.ad && pObj.ads > 0,
         qty: item.qty, refunded: item.refunded, refundAmt: item.refundAmt, cost: uCost
@@ -2249,6 +2255,12 @@ function importPreviewSheet() {
   h += '</div>';
 
   if (data.sample) h += '<div class="note-box">You are viewing the sample shop. Importing adds these sales alongside it — tap <b>Start fresh</b> on Home first if you want only your real sales.</div>';
+  var planPids = {};
+  res.rows.forEach(function (r) { var pObj = E.byId(L, r.pid); if (pObj && pObj.plan > 0) planPids[pObj.id] = pObj; });
+  Object.keys(planPids).forEach(function (id) {
+    var pObj = planPids[id];
+    h += '<p class="cap" data-impplan="1" style="margin:0 0 8px">Per-sale fees shown here. ' + esc(possessive(pObj.name)) + ' ' + esc(money(pObj.plan)) + '/mo plan is counted once per month on Home.</p>';
+  });
   res.warnings.forEach(function (w) { h += '<div class="note-box" data-impwarn="1">' + esc(w) + '</div>'; });
   res.notes.forEach(function (n) { h += '<p class="cap" style="margin:0 0 8px">' + esc(n) + '</p>'; });
 
@@ -2306,14 +2318,23 @@ function importPreviewSheet() {
 function commitImport() {
   var st = ui.imp, res = st && st.result;
   if (!res || !res.ok || !res.rows.length) return;
-  var prodByKey = {}, addedProdIds = [], addedSaleIds = [], newestMonth = '';
-  data.products.forEach(function (p) { prodByKey[p.name.trim().toLowerCase().replace(/\s+/g, ' ')] = p; });
+  var L = plist(), pe_ = data.settings.planEvery || {};
+  var prodByKey = {}, addedProdIds = [], addedSaleIds = [], newestMonth = '', newlyCountedPlans = {};
+  data.products.forEach(function (p) { prodByKey[p.name.trim().slice(0, 120).toLowerCase().replace(/\s+/g, ' ')] = p; });
   res.rows.forEach(function (r) {
-    var pk = r.productName.trim().toLowerCase().replace(/\s+/g, ' ');
+    var cleanName = r.productName.trim().slice(0, 120);
+    var pk = cleanName.toLowerCase().replace(/\s+/g, ' ');
     var pr = prodByKey[pk];
     if (!pr) {
-      pr = { id: 'p' + uid(), name: r.productName.trim().slice(0, 60), cost: 0 };
+      pr = { id: 'p' + uid(), name: cleanName, cost: 0 };
       data.products.push(pr); prodByKey[pk] = pr; addedProdIds.push(pr.id);
+    }
+    var ym = r.date.slice(0, 7);
+    var pf_ = E.byId(L, r.pid);
+    if (pf_ && pf_.plan > 0 && !(pe_[r.pid] && pe_[r.pid] <= ym) && !data.sales.some(function (x) { return x.pid === r.pid && x.date.slice(0, 7) === ym; })) {
+      if (!newlyCountedPlans[ym] || newlyCountedPlans[ym].indexOf(pf_) < 0) {
+        (newlyCountedPlans[ym] = newlyCountedPlans[ym] || []).push(pf_);
+      }
     }
     var sale = {
       id: 's' + uid(), date: r.date, product: pr.id, pid: r.pid,
@@ -2322,9 +2343,10 @@ function commitImport() {
       note: (r.note || '').slice(0, 80), importKey: r.importKey
     };
     data.sales.push(sale); addedSaleIds.push(sale.id);
-    var ym = r.date.slice(0, 7); if (ym > newestMonth) newestMonth = ym;
+    if (ym > newestMonth) newestMonth = ym;
   });
   var prevMonth = ui.month, prevTab = ui.tab, keptC = res.summary.keptC, cnt = addedSaleIds.length;
+  var newPlansHere = newestMonth ? (newlyCountedPlans[newestMonth] || []) : [];
   data.onboarded = true;
   save();
   ui.imp = null; ui.add = null;
@@ -2332,11 +2354,19 @@ function commitImport() {
   ui.tab = 'home';
   closeSheet();
   render();
-  toast('Imported ' + plural(cnt, 'sale') + ' \u00B7 kept ' + cm(keptC), function () {
+  var msg, isLong = false;
+  if (newPlansHere.length === 1) {
+    var np = newPlansHere[0];
+    msg = 'Imported ' + plural(cnt, 'sale') + ' \u00B7 kept ' + cm(keptC) + ' on these sales. ' + possessive(np.short) + ' ' + money(np.plan) + ' plan is now counted ' + (newestMonth === todayStr().slice(0, 7) ? 'this month' : 'in ' + monthName(newestMonth)) + '.';
+    isLong = true;
+  } else {
+    msg = 'Imported ' + plural(cnt, 'sale') + ' \u00B7 kept ' + cm(keptC);
+  }
+  toast(msg, function () {
     data.sales = data.sales.filter(function (x) { return addedSaleIds.indexOf(x.id) < 0; });
     data.products = data.products.filter(function (p) { return addedProdIds.indexOf(p.id) < 0; });
     save(); ui.month = prevMonth; ui.tab = prevTab; render(); toast('Import undone');
-  });
+  }, isLong);
 }
 
 /* ---------- export / import ---------- */
