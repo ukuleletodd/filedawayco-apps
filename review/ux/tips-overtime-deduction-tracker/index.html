@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en" data-temp="ledger">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tips &amp; Overtime Companion · FiledAwayCo</title>
+<style>
+:root,[data-temp="ledger"]{
+  --brand:#1B2A40; --brand-ink:#FFFFFF; --accent:#1F5C45; --accent-ink:#FFFFFF;
+  --mint-on-dark:#7FB89E;
+  --paper:#FBF8F2; --card:#FFFFFF; --cream:#E8E0D2;
+  --ink:#1B2430; --muted:#4A5563; --line:#D9D1C3; --hairline:#EDE6DA;
+  --input-bg:#FFF4D6; --input-border:#D9C79A; --input-ink:#1A1A1A;
+  --auto-bg:#F1F3F5; --auto-ink:#1B2430;
+  --good-ink:#16533C; --good-bg:#E6F3EC;
+  --warn-ink:#7A4700; --warn-bg:#FFF4D6;
+  --alert-ink:#962324; --alert-bg:#FBEAEA;
+  --radius:14px; --radius-sm:10px;
+  --font-display:Georgia,"Times New Roman",serif;
+  --font-body:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--cream);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.45;-webkit-text-size-adjust:100%}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+.h-num{font-family:var(--font-body);font-variant-numeric:tabular-nums}
+.shell{max-width:860px;margin:0 auto;min-height:100vh;background:var(--paper);padding:14px 14px 44px}
+@media(min-width:768px){.shell{margin:18px auto;border-radius:18px;border:1px solid var(--line);padding:22px 26px 48px;box-shadow:0 6px 24px rgba(27,42,64,.09)}}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--hairline);margin-bottom:12px}
+.wm{display:flex;align-items:center;gap:10px;min-width:0}
+.mark{width:34px;height:34px;border-radius:8px;background:var(--brand);color:#fff;font-weight:800;font-size:14px;display:grid;place-items:center;position:relative;flex:none}
+.mark::after{content:"";position:absolute;top:0;right:0;width:10px;height:10px;background:var(--accent);border-bottom-left-radius:4px;border-top-right-radius:8px}
+.wm-t b{display:block;font-size:15px;color:var(--brand);line-height:1.15}
+.wm-t span{display:block;font-size:12px;color:var(--muted)}
+.banner{background:var(--warn-bg);border:1px solid var(--input-border);color:var(--warn-ink);border-radius:var(--radius-sm);padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;font-size:14px}
+.banner button{min-height:44px;padding:0 14px;border-radius:8px;border:1px solid var(--warn-ink);background:#fff;color:var(--warn-ink);font-weight:700;font-size:13.5px;cursor:pointer;white-space:nowrap;flex:none}
+.tabbar{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:var(--cream);padding:5px;border-radius:12px;margin-bottom:16px}
+.tabbar button{min-height:46px;border:0;border-radius:9px;background:transparent;color:var(--brand);font:inherit;font-size:13.5px;font-weight:700;cursor:pointer;padding:6px 4px;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.2}
+.tabbar button[aria-current="page"]{background:var(--brand);color:#fff}
+h1{font-family:var(--font-display);font-size:24px;line-height:1.2;color:var(--brand);margin:0 0 6px}
+h2{font-family:var(--font-display);font-size:18px;line-height:1.25;color:var(--brand);margin:0 0 10px}
+.cap{font-size:13px;color:var(--muted);line-height:1.45}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:14px}
+.empty-cta{background:var(--paper);border:1.5px dashed var(--input-border);border-radius:var(--radius);padding:16px;margin-bottom:14px;display:flex;flex-direction:column;gap:10px}
+.hero{background:var(--brand);color:#fff;border-color:var(--brand)}
+.hero .lbl{font-size:12.5px;color:#DCE6F2;font-weight:600}
+.hero .big{font-size:32px;font-weight:800;line-height:1.1;margin:4px 0}
+.hero .sub{font-size:13.5px;color:var(--mint-on-dark);font-weight:600}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}
+@media(min-width:540px){.hero-grid{grid-template-columns:1fr 1fr}}
+.hbox{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:12px}
+.bar-t{height:10px;background:rgba(255,255,255,.18);border-radius:999px;overflow:hidden;margin-top:6px}
+.bar-f{height:100%;background:var(--mint-on-dark);border-radius:999px}
+.grid2{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:560px){.grid2{grid-template-columns:1fr 1fr}}
+.field{display:block;margin-bottom:10px}
+.field:last-child{margin-bottom:0}
+.field .l{display:block;font-size:13.5px;font-weight:700;color:var(--brand);margin-bottom:4px}
+.inp-wrap{display:flex;align-items:center;background:var(--input-bg);border:1.5px solid var(--input-border);border-radius:var(--radius-sm);padding:0 12px;min-height:46px}
+.inp-wrap.low{border-color:#B45309;box-shadow:0 0 0 2px rgba(180,83,9,.18)}
+.inp-wrap:focus-within{border-color:var(--accent);box-shadow:0 0 0 2px rgba(31,92,69,.18)}
+.inp-wrap .pre{font-weight:700;color:var(--muted);margin-right:6px}
+.inp-wrap input,.inp-wrap select{width:100%;border:0;background:transparent;font:inherit;color:var(--input-ink);outline:none;padding:10px 0;min-height:44px}
+textarea.stub-in{width:100%;min-height:110px;background:var(--input-bg);border:1.5px solid var(--input-border);border-radius:var(--radius-sm);padding:12px;font:inherit;font-size:16px;color:var(--input-ink);resize:vertical}
+.hint{font-size:12px;color:var(--warn-ink);font-weight:700;margin-top:3px}
+.warn-box{background:var(--alert-bg);border:1px solid #E5B4B4;color:var(--alert-ink);border-radius:10px;padding:10px 12px;font-size:13.5px;margin-top:10px;font-weight:600}
+.note-box{background:var(--paper);border-left:4px solid var(--accent);padding:10px 12px;border-radius:0 10px 10px 0;font-size:13.5px;margin-top:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 16px;border-radius:var(--radius-sm);border:1.5px solid var(--accent);background:var(--accent);color:#fff;font:inherit;font-weight:700;font-size:14.5px;cursor:pointer;text-decoration:none}
+.btn.sec{background:#fff;color:var(--brand);border-color:var(--line)}
+.btn.full{width:100%}
+.btn-row{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}
+@media(min-width:520px){.btn-row{grid-template-columns:1fr 1fr}}
+.tag{display:inline-block;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:700;background:var(--auto-bg);color:var(--brand);white-space:nowrap}
+.tag.good{background:var(--good-bg);color:var(--good-ink)}
+.tag.warn{background:var(--warn-bg);color:var(--warn-ink)}
+.tag.alert{background:var(--alert-bg);color:var(--alert-ink)}
+.row-card{padding:12px 0;border-bottom:1px solid var(--hairline)}
+.row-card:last-child{border-bottom:0}
+img.stub-thumb{width:100%;max-height:240px;object-fit:contain;border-radius:10px;border:1px solid var(--line);margin-top:8px;background:#fff}
+.badread{display:inline-flex;align-items:center;min-height:44px;color:var(--accent);font-weight:700;font-size:14px}
+.shell-foot{margin-top:16px;padding-top:12px;border-top:1px solid var(--hairline);font-size:12.5px;color:var(--muted);line-height:1.45}
+.pane{display:none}
+.pane.active{display:block}
+.toast{position:fixed;left:12px;right:12px;bottom:20px;max-width:520px;margin:0 auto;transform:translateY(90px);opacity:0;visibility:hidden;pointer-events:none;background:var(--brand);color:#fff;padding:10px 14px;border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 8px 24px rgba(0,0,0,.22);transition:transform .2s ease,opacity .2s ease;z-index:60;font-size:14px}
+.toast.on{transform:translateY(0);opacity:1;visibility:visible;pointer-events:auto}
+.toast button{min-height:44px;padding:0 14px;border-radius:8px;border:0;background:var(--mint-on-dark);color:var(--brand);font-weight:800;cursor:pointer;align-items:center;justify-content:center}
+.print-only{display:none}
+@media print{
+  body{background:#fff;color:#111;font-size:10.5pt}
+  .shell{max-width:100%;margin:0;padding:0;border:0;box-shadow:none;background:#fff}
+  .no-print,.topbar,.tabbar,.banner,.toast,.pane{display:none!important}
+  #taxProPrint{display:block!important}
+  #taxProPrint h1{font-size:18pt;margin:0 0 6px;color:#1B2A40}
+  #taxProPrint table{width:100%;border-collapse:collapse;font-size:9.5pt;margin-top:8px}
+  #taxProPrint th,#taxProPrint td{border-bottom:1px solid #ccc;padding:5px 4px;text-align:left}
+  #taxProPrint td.r,#taxProPrint th.r{text-align:right}
+}
+</style>
+<style id="fa-name-title">.wm-t b,.wm-text b{font-size:19px;font-weight:800;line-height:1.12;letter-spacing:-.2px;white-space:normal}</style>
+<!-- FiledAwayCo UX layer v1 2026-11-27 -->
+<style id="faux-css">/* FiledAwayCo UX layer v1 (2026-11-27): welcome, import, paste, auto-fill. Added on top of the app; app logic unchanged. */
+.faux-ov{position:fixed;inset:0;z-index:2147483000;background:rgba(27,36,48,.55);display:flex;align-items:center;justify-content:center;padding:12px;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:#1B2430}
+.faux-ov[hidden]{display:none}
+.faux-card{background:#FBF8F2;border-radius:18px;max-width:460px;width:100%;max-height:calc(100dvh - 24px);overflow:auto;padding:18px 18px 14px;box-shadow:0 12px 40px rgba(0,0,0,.25)}
+.faux-hd{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.faux-mk{width:34px;height:34px;border-radius:8px;background:#1B2A40;color:#fff;font-weight:800;font-size:14px;display:grid;place-items:center;flex:none}
+.faux-nm{font-weight:800;font-size:15px;color:#1B2A40;line-height:1.15}
+.faux-x{margin-left:auto;min-width:44px;min-height:44px;border:0;background:transparent;font-size:22px;color:#4A5563;cursor:pointer;border-radius:10px}
+.faux-one{font-family:Georgia,"Times New Roman",serif;font-size:21px;line-height:1.2;color:#1B2A40;margin:2px 0 10px;font-weight:700}
+.faux-steps{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:7px}
+.faux-steps li{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;line-height:1.3}
+.faux-steps b.n{flex:none;width:24px;height:24px;border-radius:50%;background:#1F5C45;color:#fff;font-size:13px;display:grid;place-items:center;margin-top:-1px}
+.faux-btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:48px;border-radius:12px;border:0;background:#1F5C45;color:#fff;font:inherit;font-weight:700;font-size:15.5px;cursor:pointer;padding:0 14px;text-align:center}
+.faux-btn.sec{background:#fff;color:#1B2A40;border:1.5px solid #1B2A40}
+.faux-btn.ghost{background:transparent;color:#1B2A40;border:0;text-decoration:underline;min-height:44px}
+.faux-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.faux-trust{font-size:12.5px;color:#4A5563;margin:10px 0 0;display:flex;gap:6px;align-items:flex-start;line-height:1.35}
+.faux-help{min-width:44px;min-height:44px;border-radius:10px;border:1.5px solid #1B2A40;background:#fff;color:#1B2A40;font-weight:800;font-size:17px;cursor:pointer;flex:none;padding:0}
+.faux-fab{position:fixed;right:12px;bottom:12px;z-index:2147482000;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+.faux-h2{font-size:17px;font-weight:800;color:#1B2A40;margin:0 0 4px}
+.faux-sub{font-size:13.5px;color:#4A5563;margin:0 0 10px;line-height:1.35}
+.faux-opt{background:#fff;border:1px solid #D9D1C3;border-radius:12px;padding:10px 12px;margin:0 0 8px}
+.faux-opt b{display:block;font-size:14.5px;color:#1B2A40}
+.faux-opt small{display:block;font-size:12.5px;color:#4A5563;margin:2px 0 8px;line-height:1.35}
+.faux-opt .faux-row{margin-top:0}
+.faux-ta{width:100%;min-height:120px;border:1.5px solid #D9C79A;background:#FFF4D6;border-radius:10px;padding:8px 10px;font:13px/1.4 ui-monospace,Menlo,Consolas,monospace;color:#1A1A1A;box-sizing:border-box}
+.faux-tbl{width:100%;border-collapse:collapse;font-size:12.5px;margin:6px 0 8px}
+.faux-tbl th,.faux-tbl td{border-bottom:1px solid #EDE6DA;padding:5px 4px;text-align:left;vertical-align:top;word-break:break-word}
+.faux-tbl th{color:#4A5563;font-weight:700}
+.faux-tblw{max-height:46dvh;overflow:auto;border:1px solid #EDE6DA;border-radius:8px;background:#fff}
+.faux-err{background:#FBEAEA;color:#962324;border-radius:10px;padding:8px 10px;font-size:13.5px;margin:6px 0}
+.faux-ok{background:#E6F3EC;color:#16533C;border-radius:10px;padding:8px 10px;font-size:13.5px;margin:6px 0}
+.faux-drop{position:fixed;inset:0;z-index:2147483100;background:rgba(31,92,69,.82);color:#fff;display:flex;align-items:center;justify-content:center;font:800 22px/1.3 system-ui,sans-serif;text-align:center;padding:20px}
+.faux-drop[hidden]{display:none}
+.faux-auto{background:#E6F3EC;border:1px solid #9CC9B3;border-radius:12px;padding:10px 12px;margin:0 0 12px;color:#16533C;font-size:14px}
+.faux-auto b{color:#16533C}
+.faux-auto .faux-src{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap;border-top:1px solid #CFE6DA;padding-top:8px;margin-top:8px}
+.faux-auto .faux-btn{width:auto;min-height:44px;font-size:14px}
+.faux-toast{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;z-index:2147483200;background:#1B2A40;color:#fff;border-radius:12px;padding:10px 14px;font:600 14px/1.3 system-ui,sans-serif;display:flex;gap:12px;align-items:center;max-width:calc(100vw - 24px);box-shadow:0 6px 20px rgba(0,0,0,.25)}
+.faux-toast button{min-height:40px;border-radius:8px;border:1px solid #fff;background:transparent;color:#fff;font-weight:700;padding:0 12px;cursor:pointer}
+html.faux-quiet #toast,html.faux-quiet #toast-bar{visibility:hidden!important}
+.faux-sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+@media (max-height:700px){.faux-card{padding:14px 14px 10px}.faux-one{font-size:19px;margin-bottom:8px}.faux-steps{gap:5px;margin-bottom:10px}.faux-steps li{font-size:14px}.faux-btn{min-height:46px}}
+@media print{.faux-ov,.faux-fab,.faux-help,.faux-drop,.faux-toast,.faux-auto{display:none!important}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="topbar no-print">
+    <div class="wm">
+      <div class="mark" aria-hidden="true">fa</div>
+      <div class="wm-t"><b>Tips &amp; Overtime Deduction Tracker</b><span>OBBBA 2025–2028 · Schedule 1-A Estimate</span></div>
+    </div>
+    <button type="button" class="btn sec" id="topSampleBtn" style="min-height:44px;padding:0 14px;font-size:13.5px;flex:none;white-space:nowrap">Try sample</button>
+  </div>
+
+  <div class="banner no-print" id="sampleBanner" data-sample-banner="1" style="display:none">
+    <span><b>Sample records</b> — Riley's example from the workbook, not your pay stubs</span>
+    <button type="button" id="clearSampleBtn">Clear sample</button>
+  </div>
+
+  <nav class="tabbar no-print" aria-label="Main navigation">
+    <button type="button" data-tab="capture" aria-current="page"><span>Estimate &amp; Log</span></button>
+    <button type="button" data-tab="flsa"><span>FLSA OT Check</span></button>
+    <button type="button" data-tab="records"><span>Records &amp; Export</span></button>
+  </nav>
+
+  <!-- TAB 1: ESTIMATE & CAPTURE -->
+  <section class="pane active" id="pane-capture" aria-label="OBBBA Deduction Estimate and Capture">
+    <h1><span class="h-num">2026</span> Tips &amp; Overtime Estimate</h1>
+    <p class="cap" style="margin:0 0 12px">Track qualified tips and FLSA half-time overtime premium on your device — zero cloud uploads, zero API keys. Rules verified Nov 24, 2026 (26 U.S.C. §224 &amp; §225, IRS Notice 2025-69, Schedule 1-A).</p>
+
+    <div class="empty-cta" id="emptyHeroCta" style="display:none">
+      <div><b>See how it works in one tap:</b> load Riley's sample Harbor Table shifts &amp; overtime stub, or paste your own pay-stub text / log a shift below.</div>
+      <button type="button" class="btn full" id="primarySampleBtn">Try Riley's sample</button>
+    </div>
+
+    <div class="card hero">
+      <div class="lbl">Estimated total OBBBA deduction (Schedule 1-A)</div>
+      <div class="big num" id="outTotalDed">$0.00</div>
+      <div class="sub num" id="outStatusNote">Single / HoH · Caps: $25,000 tips · $12,500 OT premium</div>
+      <div class="hero-grid">
+        <div class="hbox">
+          <div class="lbl">Qualified tips deduction</div>
+          <div style="font-size:22px;font-weight:800" class="num" id="outTipsDed">$0.00</div>
+          <div class="cap num" style="color:#DCE6F2" id="outTipsSub">$0.00 logged · $25,000 cap</div>
+          <div class="bar-t"><div class="bar-f" id="bTips" style="width:0%"></div></div>
+        </div>
+        <div class="hbox">
+          <div class="lbl">Qualified OT premium deduction</div>
+          <div style="font-size:22px;font-weight:800" class="num" id="outOtDed">$0.00</div>
+          <div class="cap num" style="color:#DCE6F2" id="outOtSub">$0.00 logged · $12,500 cap</div>
+          <div class="bar-t"><div class="bar-f" id="bOt" style="width:0%"></div></div>
+        </div>
+      </div>
+      <div id="mfsWarnBox"></div>
+    </div>
+
+    <div class="card">
+      <h2>Filing status &amp; MAGI phase-out check</h2>
+      <div class="grid2">
+        <label class="field"><span class="l">Filing status</span><span class="inp-wrap"><select id="fStatus">
+          <option value="single">Single / Head of Household</option>
+          <option value="mfj">Married Filing Jointly</option>
+          <option value="mfs">Married Filing Separately (ineligible)</option>
+        </select></span></label>
+        <label class="field"><span class="l">Estimated Modified AGI ($, optional)</span><span class="inp-wrap" id="fMagiWrap"><span class="pre">$</span><input id="fMagi" inputmode="decimal" placeholder="0 (under $150k Single / $300k MFJ)"></span></label>
+      </div>
+      <p class="cap num" id="phaseOutLine" style="margin:6px 0 0"></p>
+    </div>
+
+    <div class="card">
+      <h2><span class="h-num">1.</span> Capture a pay stub or shift (<span class="h-num">100%</span> offline)</h2>
+      <p class="cap" style="margin:0 0 8px">Copy-paste text from ADP, Gusto, Workday, Toast, or Square right here — parsed instantly on your phone with zero internet. Or tap manual entry / attach a photo.</p>
+      <textarea class="stub-in" id="stubText" aria-label="Paste pay stub text" placeholder="Paste pay-stub text here (e.g. Pay Date: 01/15/2026 | Regular Hours: 35 | Card Tips: $671.00 | Overtime Hours: 3.5 | OT Premium: $21.88 | Gross Pay: $812.40)"></textarea>
+      <div class="btn-row">
+        <button type="button" class="btn" id="parseTextBtn">Draft from pasted text</button>
+        <button type="button" class="btn sec" id="manualBtn">Type entry manually</button>
+      </div>
+      <div class="btn-row">
+        <label class="btn sec" for="photoPick" style="cursor:pointer">Attach stub photo (offline downscale)</label>
+        <button type="button" class="btn sec" id="loadOcrBtn">Optional: load photo OCR (~4 MB)</button>
+      </div>
+      <input type="file" id="photoPick" accept="image/*" style="display:none">
+      <p class="cap" id="ocrStatus" style="margin:8px 0 0">Photo OCR (Tesseract.js, Apache-2.0) is never loaded unless you tap the opt-in button above. Everything else works 100% offline.</p>
+    </div>
+
+    <div class="card" id="draftCard" style="display:none">
+      <h2><span class="h-num">2.</span> Confirm draft before saving</h2>
+      <p class="cap" id="draftHint" style="margin:0 0 8px">Check every number against your pay stub. Highlighted boxes were not found in the text — type them or leave blank if $0. Nothing saves until you tap Confirm.</p>
+      <img id="draftPhotoImg" class="stub-thumb" style="display:none" alt="Attached pay stub preview">
+      <form id="draftForm" style="margin-top:10px">
+        <div class="grid2">
+          <label class="field"><span class="l">Pay / shift date</span><span class="inp-wrap"><input type="date" id="dDate" required></span></label>
+          <label class="field"><span class="l">Employer / job</span><span class="inp-wrap"><input id="dEmp" placeholder="e.g. Harbor Table"></span></label>
+          <label class="field"><span class="l">Total hours worked</span><span class="inp-wrap"><input id="dHours" inputmode="decimal" placeholder="0"></span></label>
+          <label class="field"><span class="l">Cash tips ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="dCash" inputmode="decimal" placeholder="0"></span></label>
+          <label class="field"><span class="l">Card / reported tips ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="dCard" inputmode="decimal" placeholder="0"></span></label>
+          <label class="field"><span class="l">Tip-out paid ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="dOut" inputmode="decimal" placeholder="0"></span></label>
+          <label class="field"><span class="l">Overtime hours</span><span class="inp-wrap"><input id="dOtH" inputmode="decimal" placeholder="0"></span></label>
+          <label class="field"><span class="l">FLSA OT premium $ (half-time ONLY)</span><span class="inp-wrap"><span class="pre">$</span><input id="dOtP" inputmode="decimal" placeholder="0"></span></label>
+          <label class="field"><span class="l">Gross pay ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="dGross" inputmode="decimal" placeholder="0"></span></label>
+        </div>
+        <div class="btn-row">
+          <button type="submit" class="btn">Confirm &amp; save record</button>
+          <button type="button" class="btn sec" id="cancelDraftBtn">Discard draft</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- TAB 2: FLSA OVERTIME HALF-TIME VERIFIER -->
+  <section class="pane" id="pane-flsa" aria-label="FLSA Overtime Half-Time Verifier">
+    <h1>FLSA Half-Time Premium Verifier</h1>
+    <p class="cap" style="margin:0 0 12px">Under IRS Notice 2025-69, ONLY the FLSA half-time premium (the extra 0.5×) counts — NOT your full 1.5× or 2.0× overtime gross. Use this helper to pull the exact qualifying dollar figure from any pay stub.</p>
+
+    <div class="card">
+      <label class="field"><span class="l">How does your pay stub show overtime?</span><span class="inp-wrap"><select id="flsaMode">
+        <option value="hrs">OT hours + base rate (× 0.5)</option>
+        <option value="gross15">1.5× overtime gross (÷ 3)</option>
+        <option value="gross20">2.0× double-time gross (÷ 4)</option>
+        <option value="prem20">1.0× double-time prem (÷ 2)</option>
+      </select></span></label>
+      <div class="grid2" id="flsaHrsRow">
+        <label class="field"><span class="l">Overtime hours</span><span class="inp-wrap"><input id="flsaHrs" inputmode="decimal" value="3.5"></span></label>
+        <label class="field"><span class="l">Regular hourly base rate ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="flsaBase" inputmode="decimal" value="12.50"></span></label>
+      </div>
+      <div id="flsaAmtRow" style="display:none">
+        <label class="field"><span class="l">Dollar amount printed on your pay stub ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="flsaAmt" inputmode="decimal" value="300.00"></span></label>
+      </div>
+      <div class="note-box num">
+        <div>Qualifying FLSA half-time premium: <b id="flsaOut" style="font-size:20px;color:var(--brand)">$21.88</b></div>
+        <div class="cap" id="flsaExplain" style="margin-top:4px"></div>
+      </div>
+      <button type="button" class="btn full" id="sendFlsaToDraftBtn" style="margin-top:10px">Copy into new pay-stub draft</button>
+    </div>
+  </section>
+
+  <!-- TAB 3: RECORDS & EXPORT -->
+  <section class="pane" id="pane-records" aria-label="Saved Records and Export">
+    <h1>Your Records &amp; Tax-Pro Export</h1>
+    <p class="cap" style="margin:0 0 12px">Export formula-safe CSV straight into Tabs 1–3 of your workbook, import shifts from our free True Hourly tool, or print a clean 1-page Schedule 1-A worksheet for your tax preparer.</p>
+
+    <div class="card">
+      <h2>Saved pay-stub &amp; shift records</h2>
+      <div id="recList"></div>
+    </div>
+
+    <div class="card">
+      <h2>Export, import &amp; print</h2>
+      <div class="btn-row">
+        <button type="button" class="btn" id="exportCsvBtn">Export workbook CSV (formula-safe)</button>
+        <button type="button" class="btn sec" id="printProBtn">Print 1-page Tax-Pro summary</button>
+      </div>
+      <div class="btn-row">
+        <label class="btn sec" for="thBridgeFile" style="cursor:pointer">Import shifts from True Hourly (.json)</label>
+        <button type="button" class="btn sec" id="backupBtn">Backup records (.json)</button>
+      </div>
+      <input type="file" id="thBridgeFile" accept=".json,application/json" style="display:none">
+      <div id="thBridgeDraft" style="display:none;margin-top:10px"></div>
+      <label class="btn sec full" for="restoreFile" style="margin-top:10px;cursor:pointer">Restore from backup (.json)</label>
+      <input type="file" id="restoreFile" accept=".json,application/json" style="display:none">
+      <p class="cap" style="margin:10px 0 0">Sample records are excluded automatically from CSV exports. Everything stays on this device.</p>
+    </div>
+  </section>
+
+  <footer class="shell-foot no-print">Record-keeping &amp; planning tool only — not tax, legal, or accounting advice. Verify eligibility with a qualified tax professional. Rules checked Nov 24, 2026 (26 U.S.C. §224/§225, IRS Notice 2025-69, Schedule 1-A). Support: filedawayco@gmail.com</footer>
+
+  <!-- 1-PAGE PRINTABLE TAX-PRO SUMMARY -->
+  <section id="taxProPrint" class="print-only"></section>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><span id="toastMsg"></span><button type="button" id="toastUndo" style="display:none">Undo</button></div>
+
+<script>
+(function(){
+"use strict";
+var STORE_KEY = "fac_tips_overtime_v2";
+var pendingPhoto = null, pendingBridge = null, ocrLoaded = false;
+var undoFn = null, toastT = null;
+
+function clone(o){ return JSON.parse(JSON.stringify(o)); }
+function esc(s){ return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+function localISO(d){ return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
+function todayISO(){ return localISO(new Date()); }
+function fmt$(n){ var v = Math.round((Number(n) || 0) * 100) / 100; return (v < 0 ? "−" : "") + "$" + Math.abs(v).toLocaleString("en-US", { minimumFractionDigits:2, maximumFractionDigits:2 }); }
+function csvCell(v){ v = String(v == null ? "" : v); return /[",\n\r]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }
+function csvText(v){ v = String(v == null ? "" : v); if (/^\s*[=+\-@]/.test(v) || /^[\t\r]/.test(v)) v = "'" + v; return csvCell(v); }
+function parseNumStrict(raw){
+  if (raw == null) return null;
+  var s = String(raw).trim().replace(/^\$/, "").trim();
+  if (!s) return null;
+  if (!/^(?:(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d{1,4})?|\.\d{1,4})$/.test(s)) return null;
+  var v = parseFloat(s.replace(/,/g, ""));
+  if (!isFinite(v) || v > 1e9) return null;
+  return v;
+}
+function parsePos(raw){ var v = parseNumStrict(raw); return (v == null || v < 0) ? 0 : v; }
+function safePhotoUrl(u){ return (typeof u === "string" && /^data:image\/(png|jpe?g|webp|gif);base64,[A-Za-z0-9+/=\s]+$/i.test(u)) ? u : null; }
+
+/* ---------- Exact 26 U.S.C. §224 & §225 + IRS Schedule 1-A Math Engine ---------- */
+function computeOBBBA(netTips, otPrem, status, magi){
+  var rawTips = Math.max(0, Math.round((Number(netTips) || 0) * 100) / 100);
+  var rawOt = Math.max(0, Math.round((Number(otPrem) || 0) * 100) / 100);
+  var m = Math.max(0, Number(magi) || 0);
+  if (status === "mfs") {
+    return { status:"mfs", tipsCap:0, otCap:0, threshold:0, reduction:0, tipsDed:0, otDed:0, totalDed:0, rawTips:rawTips, rawOt:rawOt, ineligible:true };
+  }
+  var isMfj = status === "mfj";
+  // §224: $25,000 PER RETURN (even MFJ is $25,000!). §225: $12,500 Single/HoH, $25,000 MFJ.
+  var tipsCap = 25000;
+  var otCap = isMfj ? 25000 : 12500;
+  var threshold = isMfj ? 300000 : 150000;
+  // Statutory ROUND-DOWN phase-out: $100 per FULL $1,000 over threshold (Math.floor, NOT ceil!)
+  var excess = Math.max(0, m - threshold);
+  var reduction = Math.floor(excess / 1000) * 100;
+  // Reduction subtracts from CAPPED ALLOWABLE DEDUCTION, not just from the cap!
+  var tipsDed = Math.round(Math.max(0, Math.min(rawTips, tipsCap) - reduction) * 100) / 100;
+  var otDed = Math.round(Math.max(0, Math.min(rawOt, otCap) - reduction) * 100) / 100;
+  var totalDed = Math.round((tipsDed + otDed) * 100) / 100;
+  return { status:status, tipsCap:tipsCap, otCap:otCap, threshold:threshold, reduction:reduction, tipsDed:tipsDed, otDed:otDed, totalDed:totalDed, rawTips:rawTips, rawOt:rawOt, ineligible:false };
+}
+
+/* ---------- Exact FLSA Half-Time Premium Verifier (IRS Notice 2025-69) ---------- */
+function computeFLSA(mode, hrs, base, amt){
+  var h = Math.max(0, Number(hrs) || 0), b = Math.max(0, Number(base) || 0), a = Math.max(0, Number(amt) || 0);
+  if (mode === "hrs") return { prem:Math.round(h * b * 0.5 * 100) / 100, note:h + " OT hrs × $" + b.toFixed(2) + " × 0.5 (FLSA half-time premium)" };
+  if (mode === "gross15") return { prem:Math.round((a / 3) * 100) / 100, note:"$" + a.toFixed(2) + " combined 1.5× gross ÷ 3 = 0.5× FLSA premium" };
+  if (mode === "gross20") return { prem:Math.round((a / 4) * 100) / 100, note:"$" + a.toFixed(2) + " combined 2.0× double-time gross ÷ 4 = 0.5× FLSA premium" };
+  return { prem:Math.round((a / 2) * 100) / 100, note:"$" + a.toFixed(2) + " isolated 1.0× double-time premium ÷ 2 = 0.5× FLSA premium" };
+}
+
+/* ---------- 100% Offline Deterministic Pay-Stub Text Parser (ADP/Gusto/Workday/Toast) ---------- */
+function pickLabelNum(text, rules){
+  var lines = String(text || "").split(/[\r\n|]+/);
+  // Outer loop = rules (most specific first) so specific labels ALWAYS win across the whole stub!
+  for (var j = 0; j < rules.length; j++){
+    var rule = typeof rules[j] === "string" ? { k:rules[j], ex:[] } : rules[j];
+    var key = rule.k, ex = rule.ex || [];
+    for (var i = 0; i < lines.length; i++){
+      var low = lines[i].toLowerCase();
+      var blocked = false;
+      for (var e = 0; e < ex.length; e++){ if (low.indexOf(ex[e]) >= 0) { blocked = true; break; } }
+      if (blocked) continue;
+      var idx = low.indexOf(key);
+      if (idx >= 0){
+        var after = lines[i].slice(idx + key.length);
+        var m = after.match(/^(?:\s*\([^)]*\))?[:\s\-=]*\$?\s*(\d{1,3}(?:,\d{3})+(?:\.\d{1,4})?|\d+(?:\.\d{1,4})?|\.\d{1,4})(?!\d)/);
+        if (m) return parseFloat(m[1].replace(/,/g, ""));
+      }
+    }
+  }
+  return null;
+}
+function pickStubDate(text){
+  var s = String(text || "");
+  var mIso = s.match(/\b(20\d{2})-(\d{2})-(\d{2})\b/);
+  if (mIso) return mIso[1] + "-" + mIso[2] + "-" + mIso[3];
+  var mUs = s.match(/\b(\d{1,2})[\/\-](\d{1,2})[\/\-](20\d{2})\b/);
+  if (mUs) return mUs[3] + "-" + String(mUs[1]).padStart(2, "0") + "-" + String(mUs[2]).padStart(2, "0");
+  return null;
+}
+function parsePayStubText(text){
+  var otPrem = pickLabelNum(text, ["overtime premium","ot premium","flsa premium","half-time premium"]);
+  var otGross15 = pickLabelNum(text, ["overtime pay","ot pay","overtime earnings","1.5x overtime","overtime gross"]);
+  if (otPrem == null && otGross15 != null) otPrem = Math.round((otGross15 / 3) * 100) / 100;
+  return {
+    date: pickStubDate(text),
+    hours: pickLabelNum(text, ["regular hours","total hours","hours worked","hrs worked",{ k:"hours", ex:["overtime","ot ","ot:","ot-"] }]),
+    cash: pickLabelNum(text, ["cash tips"]),
+    card: pickLabelNum(text, ["card tips","charged tips","credit card tips","reported tips","tips reported",{ k:"tips", ex:["cash","tip-out","tip out","tipout"] }]),
+    out: pickLabelNum(text, ["tip-out","tip out","tipout"]),
+    otH: pickLabelNum(text, ["overtime hours","ot hours","ot hrs"]),
+    otP: otPrem,
+    gross: pickLabelNum(text, ["gross pay","gross earnings","total gross",{ k:"gross", ex:["overtime","ot ","ot:","ot-"] }])
+  };
+}
+
+function defaultState(){ return { sample:false, status:"single", magi:0, prevSettings:null, entries:[] }; }
+function sampleState(){
+  // Matches Riley's Harbor Table workbook EXAMPLE totals: $280 cash + $671 card - $53 tip-out = $898.00 net tips; $34.38 OT prem ($932.38 total)!
+  return {
+    sample:true, status:"single", magi:48000, prevSettings:null,
+    entries:[
+      { id:"s1", date:"2026-01-10", emp:"Harbor Table (server — Wk 1)", hours:35, cash:125, card:336, out:26, otH:3.5, otP:21.88, gross:812.40, photo:null, sample:true },
+      { id:"s2", date:"2026-01-17", emp:"Harbor Table (server — Wk 2)", hours:37, cash:155, card:335, out:27, otH:2.0, otP:12.50, gross:860.00, photo:null, sample:true }
+    ]
+  };
+}
+function sanitizeEntry(en, idx){
+  var num = function(v){ var n = Number(v); return (isFinite(n) && n > 0 && n <= 1e9) ? n : 0; };
+  return {
+    id: String((en && en.id) || ("r-" + Date.now() + "-" + idx)),
+    date: String((en && en.date) || ""),
+    emp: String((en && en.emp) || ""),
+    hours: num(en && en.hours),
+    cash: num(en && en.cash),
+    card: num(en && en.card),
+    out: num(en && en.out),
+    otH: num(en && en.otH),
+    otP: num(en && en.otP),
+    gross: num(en && en.gross),
+    photo: safePhotoUrl(en && en.photo),
+    sample: Boolean(en && en.sample)
+  };
+}
+function sanitizeState(raw){
+  var st = defaultState();
+  if (!raw || typeof raw !== "object") return st;
+  var okStatus = (raw.status === "single" || raw.status === "mfj" || raw.status === "mfs") ? raw.status : "single";
+  var m = Number(raw.magi);
+  st.sample = Boolean(raw.sample);
+  st.status = okStatus;
+  st.magi = (isFinite(m) && m > 0 && m <= 1e9) ? m : 0;
+  st.prevSettings = (raw.prevSettings && typeof raw.prevSettings === "object")
+    ? { status:(raw.prevSettings.status === "mfj" || raw.prevSettings.status === "mfs") ? raw.prevSettings.status : "single", magi:Math.max(0, Number(raw.prevSettings.magi) || 0) }
+    : null;
+  st.entries = Array.isArray(raw.entries) ? raw.entries.map(sanitizeEntry) : [];
+  return st;
+}
+function loadState(){
+  try {
+    var raw = localStorage.getItem(STORE_KEY);
+    if (raw) { var o = JSON.parse(raw); if (o && Array.isArray(o.entries)) return sanitizeState(o); }
+  } catch(e){}
+  return defaultState();
+}
+var state = loadState();
+function persist(){
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); return true; }
+  catch(e){
+    // QuotaExceededError safe fallback: drop oldest photo blobs before losing records!
+    var stripped = clone(state);
+    stripped.entries.forEach(function(en){ en.photo = null; });
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(stripped)); showToast("Storage full — saved record numbers without image copy."); return true; }
+    catch(e2){ showToast("Browser storage full — export CSV / JSON backup now."); return false; }
+  }
+}
+
+function download(name, text, mime){
+  var b = new Blob([text], { type:mime }), u = URL.createObjectURL(b), a = document.createElement("a");
+  a.href = u; a.download = name; document.body.appendChild(a); a.click();
+  setTimeout(function(){ URL.revokeObjectURL(u); a.remove(); }, 500);
+}
+function showToast(msg, fn){
+  var el = document.getElementById("toast");
+  document.getElementById("toastMsg").textContent = msg;
+  var ub = document.getElementById("toastUndo");
+  undoFn = fn || null;
+  ub.style.display = fn ? "inline-flex" : "none";
+  el.classList.add("on");
+  clearTimeout(toastT);
+  toastT = setTimeout(function(){ el.classList.remove("on"); undoFn = null; }, fn ? 7000 : 2800);
+}
+
+/* ---------- Renders ---------- */
+function renderBanner(){
+  var hasS = state.sample || state.entries.some(function(e){ return e.sample; });
+  document.getElementById("sampleBanner").style.display = hasS ? "flex" : "none";
+  document.getElementById("topSampleBtn").style.display = hasS ? "none" : "inline-flex";
+  document.getElementById("emptyHeroCta").style.display = !state.entries.length ? "flex" : "none";
+}
+
+function renderSummary(){
+  var netTips = 0, otPrem = 0;
+  state.entries.forEach(function(e){
+    netTips += Math.max(0, (Number(e.cash) || 0) + (Number(e.card) || 0) - (Number(e.out) || 0));
+    otPrem += Math.max(0, Number(e.otP) || 0);
+  });
+  var res = computeOBBBA(netTips, otPrem, state.status, state.magi);
+  document.getElementById("outTotalDed").textContent = fmt$(res.totalDed);
+  document.getElementById("outTipsDed").textContent = fmt$(res.tipsDed);
+  document.getElementById("outOtDed").textContent = fmt$(res.otDed);
+  document.getElementById("outTipsSub").textContent = fmt$(res.rawTips) + " net tips logged · " + (res.ineligible ? "MFS ineligible" : "$25,000 per-return cap");
+  document.getElementById("outOtSub").textContent = fmt$(res.rawOt) + " OT premium logged · " + (res.ineligible ? "MFS ineligible" : ("$" + res.otCap.toLocaleString("en-US") + " cap"));
+  document.getElementById("bTips").style.width = res.tipsCap > 0 ? Math.min(100, (res.tipsDed / res.tipsCap) * 100).toFixed(1) + "%" : "0%";
+  document.getElementById("bOt").style.width = res.otCap > 0 ? Math.min(100, (res.otDed / res.otCap) * 100).toFixed(1) + "%" : "0%";
+
+  var statusLbl = state.status === "mfj" ? "Married Filing Jointly · Caps: $25,000 tips · $25,000 OT" : (state.status === "mfs" ? "Married Filing Separately — Not eligible under §224/§225" : "Single / HoH · Caps: $25,000 tips · $12,500 OT");
+  document.getElementById("outStatusNote").textContent = statusLbl;
+  document.getElementById("mfsWarnBox").innerHTML = res.ineligible
+    ? '<div class="warn-box">Married Filing Separately returns are NOT eligible for the 2025–2028 tips or overtime deductions (26 U.S.C. §224 &amp; §225).</div>' : '';
+  document.getElementById("phaseOutLine").textContent = res.ineligible
+    ? "Married Filing Separately: $0 allowable deduction."
+    : (res.reduction > 0
+      ? ("MAGI phase-out active: $" + Math.round(state.magi).toLocaleString("en-US") + " exceeds $" + res.threshold.toLocaleString("en-US") + " → −" + fmt$(res.reduction) + " applied to each capped deduction (round-down $100 per full $1,000).")
+      : ("MAGI at or under $" + res.threshold.toLocaleString("en-US") + " threshold → $0 phase-out reduction."));
+
+  // Records list & Print summary
+  var box = document.getElementById("recList");
+  if (!state.entries.length) {
+    box.innerHTML = '<p class="cap" style="margin:0">No records saved yet. Paste a pay stub, log a shift, or tap Try sample on Tab 1.</p>';
+  } else {
+    box.innerHTML = state.entries.slice().reverse().map(function(e){
+      var idx = state.entries.indexOf(e);
+      var nt = Math.max(0, (Number(e.cash) || 0) + (Number(e.card) || 0) - (Number(e.out) || 0));
+      var repHref = "mailto:filedawayco@gmail.com?subject=" + encodeURIComponent("Tips Companion — bad read report") + "&body=" + encodeURIComponent("Date: " + (e.date || "") + "\nWhat stub said vs drafted: ");
+      return '<div class="row-card"><div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;flex-wrap:wrap">' +
+        '<div><b class="num">' + esc(e.date || "No date") + '</b> · ' + esc(e.emp || "Shift / Stub") + (e.sample ? ' <span class="tag warn">SAMPLE</span>' : '') +
+        '<div class="cap num">Net tips <b>' + fmt$(nt) + '</b> (cash ' + fmt$(e.cash || 0) + ' + card ' + fmt$(e.card || 0) + ' − tip-out ' + fmt$(e.out || 0) + ') · OT prem <b>' + fmt$(e.otP || 0) + '</b> (' + (Number(e.otH) || 0) + 'h) · Hrs ' + (Number(e.hours) || 0) + '</div></div>' +
+        '<div style="display:flex;gap:8px;align-items:center"><button type="button" class="btn sec" data-delrec="' + idx + '" style="min-height:44px;padding:0 12px;font-size:13.5px">Delete</button>' +
+        '<a class="badread" href="' + repHref + '">Bad read?</a></div></div>' +
+        (safePhotoUrl(e.photo) ? '<img class="stub-thumb" src="' + esc(safePhotoUrl(e.photo)) + '" alt="Attached stub">' : '') + '</div>';
+    }).join("");
+  }
+
+  var realE = state.entries.filter(function(e){ return !e.sample; });
+  var isSPr = !realE.length && state.entries.length > 0;
+  var pList = isSPr ? state.entries : realE;
+  var pTips = 0, pOt = 0;
+  pList.forEach(function(e){ pTips += Math.max(0, (Number(e.cash) || 0) + (Number(e.card) || 0) - (Number(e.out) || 0)); pOt += Math.max(0, Number(e.otP) || 0); });
+  var pr = computeOBBBA(pTips, pOt, state.status, state.magi);
+  document.getElementById("taxProPrint").innerHTML =
+    (isSPr ? '<div style="padding:8px 12px;border:1.5px solid #D9C79A;background:#FFF4D6;margin-bottom:10px;font-weight:700">SAMPLE DATA — Riley example, not your pay stubs</div>' : '') +
+    '<h1>Tips &amp; Overtime Schedule <span class="h-num">1</span>-A Worksheet (<span class="h-num">' + todayISO() + '</span>)</h1>' +
+    '<p class="num">Filing Status: <b>' + esc(state.status.toUpperCase()) + '</b> · Est. MAGI: <b>' + fmt$(state.magi) + '</b> · Phase-out Reduction: <b>' + fmt$(pr.reduction) + '</b></p>' +
+    '<p class="num">Qualified Tips Deductible: <b>' + fmt$(pr.tipsDed) + '</b> · Qualified OT Premium Deductible: <b>' + fmt$(pr.otDed) + '</b> · Total Est. Deduction: <b>' + fmt$(pr.totalDed) + '</b></p>' +
+    '<table><thead><tr><th>Date</th><th>Employer</th><th class="r">Hours</th><th class="r">Net Tips</th><th class="r">OT Hrs</th><th class="r">FLSA OT Prem</th><th class="r">Gross</th></tr></thead><tbody>' +
+    pList.map(function(e){
+      var nt = Math.max(0, (Number(e.cash) || 0) + (Number(e.card) || 0) - (Number(e.out) || 0));
+      return '<tr><td class="num">' + esc(e.date || "") + '</td><td>' + esc(e.emp || "") + '</td><td class="r num">' + (Number(e.hours) || 0) + '</td><td class="r num">' + fmt$(nt) + '</td><td class="r num">' + (Number(e.otH) || 0) + '</td><td class="r num">' + fmt$(e.otP || 0) + '</td><td class="r num">' + fmt$(e.gross || 0) + '</td></tr>';
+    }).join("") + '</tbody></table>' +
+    '<p style="margin-top:12px;font-size:9pt">Estimate only — not tax advice. Keep original pay stubs and W-2/1099 forms. Rules verified Nov 24, 2026 (26 U.S.C. §224/§225, IRS Notice 2025-69).</p>';
+}
+
+function renderFLSA(){
+  var mode = document.getElementById("flsaMode").value;
+  document.getElementById("flsaHrsRow").style.display = mode === "hrs" ? "grid" : "none";
+  document.getElementById("flsaAmtRow").style.display = mode === "hrs" ? "none" : "block";
+  var checkId = function(id){
+    var el = document.getElementById(id), wrap = el.closest(".inp-wrap"), raw = el.value.trim();
+    if (!raw) { if (wrap) wrap.classList.remove("low"); return { ok:true, v:0 }; }
+    var p = parseNumStrict(raw);
+    if (wrap) wrap.classList.toggle("low", p === null);
+    return { ok:p !== null, v:p || 0 };
+  };
+  var rH = mode === "hrs" ? checkId("flsaHrs") : { ok:true, v:0 };
+  var rB = mode === "hrs" ? checkId("flsaBase") : { ok:true, v:0 };
+  var rA = mode !== "hrs" ? checkId("flsaAmt") : { ok:true, v:0 };
+  if (!rH.ok || !rB.ok || !rA.ok) {
+    document.getElementById("flsaOut").textContent = "—";
+    document.getElementById("flsaExplain").textContent = "Enter plain positive numbers (e.g. 3.5 or 300.00) — letters or spaces cannot be calculated.";
+    return;
+  }
+  var res = computeFLSA(mode, rH.v, rB.v, rA.v);
+  document.getElementById("flsaOut").textContent = fmt$(res.prem);
+  document.getElementById("flsaExplain").textContent = res.note;
+}
+
+function openDraft(vals, photo, highlightMissing){
+  var hl = highlightMissing === true;
+  pendingPhoto = safePhotoUrl(photo);
+  var img = document.getElementById("draftPhotoImg");
+  if (pendingPhoto) { img.src = pendingPhoto; img.style.display = "block"; } else { img.removeAttribute("src"); img.style.display = "none"; }
+  var hint = document.getElementById("draftHint");
+  if (hint) {
+    hint.textContent = hl
+      ? "Check every number against your pay stub. Highlighted boxes were not found in the text — type them or leave blank if $0. Nothing saves until you tap Confirm."
+      : "Enter the figures from your pay stub or shift, then tap Confirm & save record.";
+  }
+  // Clean reset of ALL fields including dEmp & old hints!
+  document.getElementById("dEmp").value = vals.emp || "";
+  var map = { dDate:vals.date || todayISO(), dHours:vals.hours, dCash:vals.cash, dCard:vals.card, dOut:vals.out, dOtH:vals.otH, dOtP:vals.otP, dGross:vals.gross };
+  Object.keys(map).forEach(function(id){
+    var el = document.getElementById(id), wrap = el.closest(".inp-wrap");
+    var v = map[id];
+    el.value = (v === null || v === undefined) ? "" : String(v);
+    var missing = (id === "dDate") ? !vals.date : (v === null || v === undefined);
+    if (wrap) wrap.classList.toggle("low", hl && missing);
+  });
+  var card = document.getElementById("draftCard");
+  card.style.display = "block";
+  card.scrollIntoView({ behavior:"smooth", block:"nearest" });
+}
+
+function downscalePhoto(file, cb){
+  var rd = new FileReader();
+  rd.onload = function(){
+    var img = new Image();
+    img.onload = function(){
+      var maxW = 900, w = img.width, h = img.height;
+      if (w > maxW) { h = Math.round(h * (maxW / w)); w = maxW; }
+      var c = document.createElement("canvas"); c.width = w; c.height = h;
+      c.getContext("2d").drawImage(img, 0, 0, w, h);
+      cb(c.toDataURL("image/jpeg", 0.65));
+    };
+    img.onerror = function(){ cb(null); };
+    img.src = rd.result;
+  };
+  rd.readAsDataURL(file);
+}
+
+function syncInputs(){
+  document.getElementById("fStatus").value = state.status || "single";
+  document.getElementById("fMagi").value = state.magi ? String(state.magi) : "";
+  var w = document.getElementById("fMagiWrap");
+  if (w) w.classList.remove("low");
+}
+function renderAll(){ renderBanner(); syncInputs(); renderSummary(); renderFLSA(); }
+function switchTab(t){
+  document.querySelectorAll(".pane").forEach(function(p){ p.classList.toggle("active", p.id === "pane-" + t); });
+  document.querySelectorAll(".tabbar button").forEach(function(b){ b.setAttribute("aria-current", b.dataset.tab === t ? "page" : "false"); });
+}
+
+/* ---------- Events ---------- */
+document.getElementById("fStatus").addEventListener("change", function(e){ state.status = e.target.value; persist(); renderSummary(); });
+document.getElementById("fMagi").addEventListener("input", function(e){
+  var raw = e.target.value.trim();
+  var wrap = document.getElementById("fMagiWrap");
+  if (!raw) {
+    if (wrap) wrap.classList.remove("low");
+    state.magi = 0; persist(); renderSummary(); return;
+  }
+  var parsed = parseNumStrict(raw);
+  if (parsed === null) {
+    if (wrap) wrap.classList.add("low");
+    document.getElementById("phaseOutLine").textContent = "Enter a plain dollar number for MAGI (e.g. 165000) — letters, spaces, or negatives cannot be calculated.";
+    return;
+  }
+  if (wrap) wrap.classList.remove("low");
+  state.magi = parsed; persist(); renderSummary();
+});
+["flsaMode","flsaHrs","flsaBase","flsaAmt"].forEach(function(id){
+  var el = document.getElementById(id); el.addEventListener("input", renderFLSA); el.addEventListener("change", renderFLSA);
+});
+
+document.getElementById("photoPick").addEventListener("change", function(ev){
+  var f = ev.target.files && ev.target.files[0]; if (!f) return;
+  downscalePhoto(f, function(dataUrl){
+    if (window.Tesseract && dataUrl) {
+      document.getElementById("ocrStatus").textContent = "Reading photo locally with Tesseract.js...";
+      window.Tesseract.recognize(dataUrl, "eng").then(function(r){
+        document.getElementById("ocrStatus").textContent = "Photo read complete — verify every number in step 2.";
+        openDraft(parsePayStubText(r.data.text || ""), dataUrl, true);
+      }).catch(function(){
+        document.getElementById("ocrStatus").textContent = "Could not read photo text — photo attached; enter numbers manually.";
+        openDraft({}, dataUrl, false);
+      });
+    } else {
+      openDraft({}, dataUrl, false);
+      showToast("Stub photo compressed & attached offline.");
+    }
+  });
+  ev.target.value = "";
+});
+
+document.getElementById("draftForm").addEventListener("submit", function(ev){
+  ev.preventDefault();
+  var numIds = ["dHours","dCash","dCard","dOut","dOtH","dOtP","dGross"];
+  var vals = {}, bad = 0;
+  numIds.forEach(function(id){
+    var el = document.getElementById(id), wrap = el.closest(".inp-wrap"), raw = el.value.trim();
+    if (!raw) { vals[id] = 0; if (wrap) wrap.classList.remove("low"); return; }
+    var p = parseNumStrict(raw);
+    if (p === null) { bad++; if (wrap) wrap.classList.add("low"); }
+    else { vals[id] = p; if (wrap) wrap.classList.remove("low"); }
+  });
+  if (bad > 0) { showToast("Check highlighted number(s) — enter plain figures like 125.50."); return; }
+  var rec = {
+    id:"r-" + Date.now(), date:document.getElementById("dDate").value || todayISO(),
+    emp:document.getElementById("dEmp").value.trim(),
+    hours:vals.dHours, cash:vals.dCash, card:vals.dCard, out:vals.dOut,
+    otH:vals.dOtH, otP:vals.dOtP, gross:vals.dGross,
+    photo:pendingPhoto, sample:false
+  };
+  state.entries.push(rec);
+  pendingPhoto = null;
+  document.getElementById("draftCard").style.display = "none";
+  persist(); renderAll(); showToast("Record saved.");
+});
+
+document.addEventListener("click", function(e){
+  var t = e.target.closest("button");
+  if (!t) return;
+  if (t.dataset.tab) { switchTab(t.dataset.tab); }
+  else if (t.id === "topSampleBtn" || t.id === "primarySampleBtn") {
+    var s = sampleState();
+    var userE = state.entries.filter(function(x){ return !x.sample; });
+    if (!state.sample) state.prevSettings = { status:state.status, magi:state.magi };
+    state.sample = true; state.status = s.status; state.magi = s.magi; state.entries = s.entries.concat(userE);
+    persist(); renderAll();
+  } else if (t.id === "clearSampleBtn") {
+    var snap = clone(state);
+    state.sample = false;
+    state.entries = state.entries.filter(function(x){ return !x.sample; });
+    if (state.prevSettings) {
+      state.status = state.prevSettings.status || "single";
+      state.magi = Number(state.prevSettings.magi) || 0;
+      state.prevSettings = null;
+    } else if (!state.entries.length) {
+      state.magi = 0;
+    }
+    persist(); renderAll();
+    showToast("Sample records cleared.", function(){ state = snap; persist(); renderAll(); showToast("Sample restored."); });
+  } else if (t.id === "toastUndo") {
+    if (undoFn) { var f = undoFn; undoFn = null; document.getElementById("toast").classList.remove("on"); f(); }
+  } else if (t.id === "parseTextBtn") {
+    var txt = document.getElementById("stubText").value;
+    if (!txt.trim()) { showToast("Paste pay-stub text first, or tap Type entry manually."); return; }
+    openDraft(parsePayStubText(txt), null, true);
+  } else if (t.id === "manualBtn") {
+    openDraft({}, null, false);
+  } else if (t.id === "cancelDraftBtn") {
+    pendingPhoto = null; document.getElementById("draftCard").style.display = "none";
+  } else if (t.id === "loadOcrBtn") {
+    if (ocrLoaded || window.Tesseract) { showToast("On-device photo reader is already ready."); return; }
+    document.getElementById("ocrStatus").textContent = "Loading optional Tesseract.js (Apache-2.0) on demand...";
+    var sc = document.createElement("script");
+    sc.src = "https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js";
+    sc.onload = function(){ ocrLoaded = true; document.getElementById("ocrStatus").textContent = "On-device photo reader ready. Now choose a stub photo."; showToast("Photo OCR ready."); };
+    sc.onerror = function(){ document.getElementById("ocrStatus").textContent = "Offline — photo OCR needs a one-time connection. Paste text or manual entry still works 100% offline."; };
+    document.head.appendChild(sc);
+  } else if (t.id === "sendFlsaToDraftBtn") {
+    var mode = document.getElementById("flsaMode").value;
+    var hrs = mode === "hrs" ? parsePos(document.getElementById("flsaHrs").value) : null;
+    var res = computeFLSA(mode, parsePos(document.getElementById("flsaHrs").value), parsePos(document.getElementById("flsaBase").value), parsePos(document.getElementById("flsaAmt").value));
+    switchTab("capture");
+    openDraft({ date:todayISO(), otH:hrs, otP:res.prem }, null, false);
+    showToast("FLSA half-time premium (" + fmt$(res.prem) + ") loaded into draft.");
+  } else if (t.dataset.delrec != null) {
+    var di = +t.dataset.delrec, snapR = clone(state);
+    state.entries.splice(di, 1);
+    if (state.sample && !state.entries.some(function(x){ return x.sample; })) {
+      state.sample = false;
+      if (state.prevSettings) {
+        state.status = state.prevSettings.status || "single";
+        state.magi = Number(state.prevSettings.magi) || 0;
+        state.prevSettings = null;
+      } else if (!state.entries.length) { state.magi = 0; }
+    }
+    persist(); renderAll();
+    showToast("Record deleted.", function(){ state = snapR; persist(); renderAll(); });
+  } else if (t.id === "exportCsvBtn") {
+    var realR = state.entries.filter(function(x){ return !x.sample; });
+    if (!realR.length) { showToast("Save your own records first — sample rows are excluded from exports."); return; }
+    var head = ["Date","Employer / job","Hours worked","Cash tips $","Card tips $","Tip-out paid $","Net tips $","Overtime hours","FLSA OT premium $","Gross pay $","Stub photo attached"];
+    var lines = [head.join(",")].concat(realR.map(function(e){
+      var nt = Math.max(0, (Number(e.cash) || 0) + (Number(e.card) || 0) - (Number(e.out) || 0));
+      return [csvText(e.date || ""), csvText(e.emp || ""), (Number(e.hours) || 0), (Number(e.cash) || 0).toFixed(2), (Number(e.card) || 0).toFixed(2), (Number(e.out) || 0).toFixed(2), nt.toFixed(2), (Number(e.otH) || 0), (Number(e.otP) || 0).toFixed(2), (Number(e.gross) || 0).toFixed(2), safePhotoUrl(e.photo) ? "YES" : "NO"].join(",");
+    }));
+    download("tips-overtime-records-" + todayISO() + ".csv", lines.join("\r\n") + "\r\n", "text/csv;charset=utf-8");
+    showToast("Formula-safe CSV downloaded.");
+  } else if (t.id === "printProBtn") { window.print(); }
+  else if (t.id === "backupBtn") {
+    download("tips-overtime-backup-" + todayISO() + ".json", JSON.stringify({ app:"fac-tips-overtime", exported:todayISO(), state:state }, null, 2), "application/json");
+    showToast("Backup JSON saved.");
+  } else if (t.id === "confirmThBtn") {
+    if (!pendingBridge || !Array.isArray(pendingBridge.shifts)) return;
+    var snapB = clone(state.entries);
+    pendingBridge.shifts.forEach(function(sh, idx){
+      state.entries.push({
+        id:"th-" + Date.now() + "-" + idx, date:sh.date || todayISO(), emp:sh.emp || "True Hourly shift",
+        hours:Number(sh.hours) || 0, cash:Number(sh.cash) || 0, card:Number(sh.card) || 0,
+        out:Number(sh.tipOut) || 0, otH:0, otP:0, gross:Number(sh.total) || 0, photo:null, sample:false
+      });
+    });
+    var cnt = pendingBridge.shifts.length;
+    pendingBridge = null; document.getElementById("thBridgeDraft").style.display = "none";
+    persist(); renderAll();
+    showToast("Imported " + cnt + " shift(s) from True Hourly.", function(){ state.entries = snapB; persist(); renderAll(); });
+  } else if (t.id === "discardThBtn") {
+    pendingBridge = null; document.getElementById("thBridgeDraft").style.display = "none";
+  }
+});
+
+document.getElementById("thBridgeFile").addEventListener("change", function(ev){
+  var f = ev.target.files && ev.target.files[0]; if (!f) return;
+  var rd = new FileReader();
+  rd.onload = function(){
+    try {
+      var o = JSON.parse(String(rd.result || ""));
+      if (!o || o.bridge !== "fac-bridge-v1" || !Array.isArray(o.shifts)) throw new Error("Invalid");
+      pendingBridge = o;
+      var box = document.getElementById("thBridgeDraft");
+      var totShTips = o.shifts.reduce(function(a, sh){ return a + Math.max(0, (Number(sh.cash) || 0) + (Number(sh.card) || 0) - (Number(sh.tipOut) || 0)); }, 0);
+      var dates = o.shifts.map(function(sh){ return String(sh.date || ""); }).filter(Boolean).sort();
+      var rngLbl = dates.length ? (" (" + esc(dates[0]) + (dates.length > 1 ? (" → " + esc(dates[dates.length - 1])) : "") + ")") : "";
+      box.innerHTML = '<div class="note-box num"><b>Draft True Hourly import (' + o.shifts.length + ' shift(s)' + rngLbl + ' · ' + fmt$(totShTips) + ' net tips):</b> Review before saving to your tax records.' +
+        '<div class="btn-row"><button type="button" class="btn" id="confirmThBtn">Confirm &amp; import shifts</button><button type="button" class="btn sec" id="discardThBtn">Discard</button></div></div>';
+      box.style.display = "block";
+    } catch(e){ showToast("That file is not a valid True Hourly fac-bridge-v1 export."); }
+  };
+  rd.readAsText(f); ev.target.value = "";
+});
+
+document.getElementById("restoreFile").addEventListener("change", function(ev){
+  var f = ev.target.files && ev.target.files[0]; if (!f) return;
+  var rd = new FileReader();
+  rd.onload = function(){
+    try {
+      var o = JSON.parse(String(rd.result || ""));
+      var s = o && o.state ? o.state : o;
+      if (!s || !Array.isArray(s.entries)) throw new Error("Invalid");
+      var snapRestore = clone(state);
+      state = sanitizeState(s); persist(); renderAll();
+      showToast("Backup restored.", function(){ state = snapRestore; persist(); renderAll(); showToast("Restore undone."); });
+    } catch(e){ showToast("That file is not a valid Tips & Overtime backup."); }
+  };
+  rd.readAsText(f); ev.target.value = "";
+});
+
+window.__TIPS = { computeOBBBA:computeOBBBA, computeFLSA:computeFLSA, parsePayStubText:parsePayStubText, parseNumStrict:parseNumStrict, safePhotoUrl:safePhotoUrl, sanitizeState:sanitizeState, csvText:csvText };
+renderAll();
+})();
+</script>
+<script id="faux-cfg">window.FAUX_CFG={"slug": "tips-overtime-deduction-tracker", "name": "Tips & Overtime Deduction Tracker", "key": "fac_tips_overtime_v2", "blank": {"sample": false, "status": "single", "magi": 0, "prevSettings": null, "entries": []}, "oneLine": "Estimate your federal deduction for tips and overtime (Schedule 1-A) one shift at a time.", "steps": ["Pick your <b>filing status<\/b> and enter your yearly income.", "<b>Log shifts<\/b>, or import them from a file or from True Hourly.", "See your <b>deduction estimate<\/b> and print the worksheet."], "sample": "#primarySampleBtn", "helpIn": ".topbar", "imports": [{"label": "Shifts file or pasted rows", "kind": "adapter", "adapter": "shifts", "tab": "records", "drop": true, "formats": "A CSV or pasted rows with Date, Hours, Cash tips, Card tips and Tip-out columns (Overtime hours and Overtime premium optional). Common scheduling-app column names such as \"Declared cash tips\" and \"Non-cash tips\" are matched; check the preview.", "pastePlaceholder": "Date, Employer, Hours, Cash tips, Card tips, Tip-out\n2026-01-10, Harbor Table, 35, 125, 336, 26"}], "cannot": "your W-2 until your employer issues it. Pay stubs can be read with the photo button (that reader needs internet).", "consume": {"sources": ["true-hourly"], "input": "#thBridgeFile", "tab": "records", "draft": "#thBridgeDraft", "before": "#pane-capture .card", "hint": "Shifts you saved in the free True Hourly tool on this device. You confirm before they are added."}};</script>
+<script id="faux-js">/* FiledAwayCo UX layer v1 (2026-11-27). Runs on top of the product app; it never edits the app's calculations.
+   Adds: first-open welcome (one line, 3 steps, sample / import / blank), a help button, an "Import or paste" sheet,
+   drag-and-drop, platform pre-formatters (PayPal, Stripe, Wells Fargo), list importers, and on-device auto-fill
+   between FiledAwayCo tools. Everything runs in this browser; nothing is uploaded. */
+(function(){
+'use strict';
+var C = window.FAUX_CFG || {}; var D = document;
+var SLUG = C.slug || 'app';
+var inSuite = false; try { inSuite = window.parent !== window && !!window.parent.__FAUX_SUITE; } catch(e){}
+var AUTO_KEY = 'fac_bridge_auto_v1';
+function $(s, r){ return (r || D).querySelector(s); }
+function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function lsGet(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
+function lsSet(k, v){ try { localStorage.setItem(k, v); return true; } catch(e){ return false; } }
+function fmt$(n){ n = Number(n) || 0; return (n < 0 ? '-$' : '$') + Math.abs(n).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2}); }
+
+/* ---------- CSV / paste parsing ---------- */
+function parseCSV(text){
+  text = String(text || '').replace(/^\uFEFF/, '');
+  var first = (text.split(/\r?\n/).filter(function(l){ return l.trim(); })[0]) || '';
+  var cnt = function(ch){ var n = 0, q = false; for (var i = 0; i < first.length; i++){ var c = first[i]; if (c === '"') q = !q; else if (!q && c === ch) n++; } return n; };
+  var dl = ',', t = cnt('\t'), c = cnt(','), s = cnt(';');
+  if (t > 0 && t >= c) dl = '\t'; else if (s > c) dl = ';';
+  var rows = [], row = [], f = '', q = false;
+  for (var i = 0; i < text.length; i++){
+    var ch = text[i];
+    if (q){ if (ch === '"'){ if (text[i+1] === '"'){ f += '"'; i++; } else q = false; } else f += ch; continue; }
+    if (ch === '"' && f === '') { q = true; continue; }
+    if (ch === dl){ row.push(f); f = ''; continue; }
+    if (ch === '\r') continue;
+    if (ch === '\n'){ row.push(f); rows.push(row); row = []; f = ''; continue; }
+    f += ch;
+  }
+  if (f !== '' || row.length) { row.push(f); rows.push(row); }
+  return rows.map(function(r){ return r.map(function(x){ return String(x).trim(); }); }).filter(function(r){ return r.some(function(x){ return x !== ''; }); });
+}
+function csvCell(v){ v = String(v == null ? '' : v); return /[",\n\r]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }
+function toCSV(rows){ return rows.map(function(r){ return r.map(csvCell).join(','); }).join('\r\n') + '\r\n'; }
+function money(v){
+  if (v == null) return NaN; var s = String(v).trim(); if (!s || s === '--') return NaN;
+  var neg = false;
+  if (/^\(.*\)$/.test(s)){ neg = true; s = s.slice(1, -1); }
+  if (/-$/.test(s)){ neg = true; s = s.slice(0, -1); }
+  if (/^-/.test(s)){ neg = !neg; s = s.slice(1); }
+  s = s.replace(/^-/, '').replace(/[$£€\s,]|USD/gi, '');
+  if (s.charAt(0) === '-'){ neg = !neg; s = s.slice(1); }
+  if (!/^\d*\.?\d+$/.test(s)) return NaN;
+  var n = parseFloat(s); return neg ? -n : n;
+}
+var MON = {jan:1,feb:2,mar:3,apr:4,may:5,jun:6,jul:7,aug:8,sep:9,sept:9,oct:10,nov:11,dec:12};
+function pad(n){ return (n < 10 ? '0' : '') + n; }
+function isoDate(v){
+  var s = String(v || '').trim(); var m;
+  if ((m = s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/))) return m[1] + '-' + pad(+m[2]) + '-' + pad(+m[3]);
+  if ((m = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})/))) { var y = +m[3]; if (y < 100) y += 2000; return y + '-' + pad(+m[1]) + '-' + pad(+m[2]); }
+  if ((m = s.match(/^([A-Za-z]{3,9})\.? (\d{1,2}),? (\d{4})/)) && MON[m[1].slice(0,3).toLowerCase()]) return m[3] + '-' + pad(MON[m[1].slice(0,3).toLowerCase()]) + '-' + pad(+m[2]);
+  if ((m = s.match(/^(\d{1,2}) ([A-Za-z]{3,9}) (\d{4})/)) && MON[m[2].slice(0,3).toLowerCase()]) return m[3] + '-' + pad(MON[m[2].slice(0,3).toLowerCase()]) + '-' + pad(+m[1]);
+  return '';
+}
+function norm(h){ return String(h || '').toLowerCase().replace(/[_]/g, ' ').replace(/\s+/g, ' ').trim(); }
+function findCol(H, aliases){
+  var h = H.map(norm), i, j;
+  for (j = 0; j < aliases.length; j++){ i = h.indexOf(aliases[j]); if (i >= 0) return i; }
+  for (j = 0; j < aliases.length; j++){ for (i = 0; i < h.length; i++) if (h[i].indexOf(aliases[j]) >= 0) return i; }
+  return -1;
+}
+function looksHeader(r){ return r.some(function(x){ return /[A-Za-z]{3,}/.test(x) && isNaN(money(x)) && !isoDate(x); }); }
+
+/* ---------- Platform pre-formatters: turn real exports into Date,Description,Amount rows ---------- */
+var NORMALIZERS = {
+  paypal: function(rows){ // PayPal Activity Download (developer.paypal.com/reports/activity-download): Date, Time, TimeZone, Name, Type, Status, Currency, Gross, Fee, Net ...
+    var H = rows[0].map(norm); if (!(H.indexOf('gross') >= 0 && H.indexOf('fee') >= 0 && H.indexOf('net') >= 0 && H.indexOf('status') >= 0)) return null;
+    var c = function(n){ return H.indexOf(n); }, out = [['Date','Description','Amount']], skip = 0, fx = 0;
+    var bankMoves = /withdrawal|bank deposit|transfer to bank|transfer from bank|general card deposit|hold|reversal of general account hold|currency conversion/i;
+    rows.slice(1).forEach(function(r){
+      var st = r[c('status')] || '', ty = r[c('type')] || '', cur = (r[c('currency')] || 'USD').toUpperCase();
+      if (!/^completed$/i.test(st) || bankMoves.test(ty)) { skip++; return; }
+      if (cur !== 'USD') { fx++; return; }
+      var d = isoDate(r[c('date')]), g = money(r[c('gross')]), f = money(r[c('fee')]);
+      if (!d || isNaN(g)) { skip++; return; }
+      out.push([d, 'PAYPAL ' + (r[c('name')] || '') + ' (' + ty + ')', g.toFixed(2)]);
+      if (!isNaN(f) && f !== 0) out.push([d, 'PAYPAL FEE ' + (r[c('name')] || ''), (f > 0 ? -f : f).toFixed(2)]);
+    });
+    return { rows: out, note: 'PayPal Activity file: used Gross as income and added each PayPal fee as its own expense line. Skipped ' + skip + ' row(s) that were pending, transfers to or from your bank, or holds' + (fx ? ', and ' + fx + ' non-USD row(s)' : '') + '.' };
+  },
+  stripe: function(rows){ // Stripe "All activity" / balance transactions: id, Type, Source, Amount, Fee, Net, Currency, Created (UTC) ...; itemized report: created_utc, gross, fee, net, reporting_category
+    var H = rows[0].map(norm), c = function(a){ return findCol(rows[0], a); };
+    var isBal = H.indexOf('type') >= 0 && H.indexOf('amount') >= 0 && H.indexOf('fee') >= 0 && H.indexOf('net') >= 0;
+    var isItem = H.indexOf('reporting category') >= 0 && H.indexOf('gross') >= 0;
+    var isPay = !isBal && (H.indexOf('created date (utc)') >= 0 || (H.indexOf('created (utc)') >= 0 && H.indexOf('status') >= 0)) && H.indexOf('amount') >= 0;
+    if (!isBal && !isItem && !isPay) return null;
+    var di = c(['created (utc)','created date (utc)','created utc','created']), ty = isItem ? c(['reporting category']) : c(['type']),
+        am = isItem ? c(['gross']) : c(['amount']), fe = c(['fee']), de = c(['description']), ce = c(['customer email','customer description']), sti = c(['status']), cu = c(['currency']);
+    var out = [['Date','Description','Amount']], skip = 0;
+    rows.slice(1).forEach(function(r){
+      var t = (ty >= 0 ? r[ty] : 'charge').toLowerCase(), d = isoDate(r[di]), a = money(r[am]), f = fe >= 0 ? money(r[fe]) : 0;
+      if (cu >= 0 && r[cu] && r[cu].toLowerCase() !== 'usd') { skip++; return; }
+      if (isPay && sti >= 0 && !/paid|succeeded/i.test(r[sti])) { skip++; return; }
+      if (/payout|transfer/.test(t) || !d || isNaN(a) || a === 0) { skip++; return; }
+      var desc = 'STRIPE ' + (/refund/.test(t) ? 'REFUND ' : (/fee/.test(t) ? 'FEE ' : '')) + ((de >= 0 && r[de]) || (ce >= 0 && r[ce]) || t);
+      out.push([d, desc, a.toFixed(2)]);
+      if (!isNaN(f) && f !== 0 && !/fee/.test(t)) out.push([d, 'STRIPE FEE ' + ((de >= 0 && r[de]) || ''), (-f).toFixed(2)]);
+    });
+    return { rows: out, note: 'Stripe export: used the gross Amount as income and added Stripe fees as separate expense lines. Skipped ' + skip + ' payout, failed or non-USD row(s), because payouts already show up in your bank file.' };
+  },
+  wellsfargo: function(rows){ // Wells Fargo CSV has no header row: "date","amount","*","","description"
+    var r = rows[0]; if (!(r.length === 5 && isoDate(r[0]) && !isNaN(money(r[1])) && r[2] === '*')) return null;
+    var out = [['Date','Description','Amount']];
+    rows.forEach(function(x){ var d = isoDate(x[0]), a = money(x[1]); if (d && !isNaN(a)) out.push([d, x[4] || x[3] || '', a.toFixed(2)]); });
+    return { rows: out, note: 'Wells Fargo file (it has no header row): read as Date, Amount, Description.' };
+  }
+};
+function normalizeText(text, list){
+  var rows = parseCSV(text); if (!rows.length) return { error: 'That file or paste looks empty.' };
+  var names = list || [];
+  for (var i = 0; i < names.length; i++){ var fn = NORMALIZERS[names[i]]; if (!fn) continue; var res = fn(rows); if (res) { if (res.rows.length < 2) return { error: res.note + ' No usable rows were left.' }; return { csv: toCSV(res.rows), note: res.note, n: res.rows.length - 1 }; } }
+  return { csv: toCSV(rows), note: '', n: rows.length - 1 };
+}
+
+/* ---------- Overlay + toast ---------- */
+var ov = null, lastFocus = null;
+function closeOv(){ if (!ov) return; ov.hidden = true; ov.innerHTML = ''; if (lastFocus && lastFocus.focus) try { lastFocus.focus(); } catch(e){} }
+function openOv(html, label){
+  if (!ov){ ov = D.createElement('div'); ov.className = 'faux-ov'; ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-modal', 'true'); D.body.appendChild(ov);
+    ov.addEventListener('click', function(e){ if (e.target === ov) { markSeen(); closeOv(); } });
+    D.addEventListener('keydown', function(e){ if (e.key === 'Escape' && ov && !ov.hidden) { markSeen(); closeOv(); } }); }
+  lastFocus = D.activeElement; ov.setAttribute('aria-label', label || C.name || 'Help');
+  ov.innerHTML = '<div class="faux-card">' + html + '</div>'; ov.hidden = false;
+  var b = ov.querySelector('button.faux-btn, button'); if (b) try { b.focus({preventScroll:true}); } catch(e){}
+  return ov;
+}
+function head(){ return '<div class="faux-hd"><div class="faux-mk" aria-hidden="true">fa</div><div class="faux-nm">' + esc(C.name) + '</div><button type="button" class="faux-x" data-faux="close" aria-label="Close">×</button></div>'; }
+var tEl = null, tT = null;
+function toast(msg, undo){
+  if (!tEl){ tEl = D.createElement('div'); tEl.className = 'faux-toast'; tEl.setAttribute('role', 'status'); D.body.appendChild(tEl); }
+  tEl.innerHTML = '<span>' + esc(msg) + '</span>' + (undo ? '<button type="button">Undo</button>' : ''); tEl.hidden = false;
+  if (undo) tEl.querySelector('button').onclick = function(){ tEl.hidden = true; undo(); };
+  clearTimeout(tT); tT = setTimeout(function(){ tEl.hidden = true; }, undo ? 9000 : 4000);
+}
+function markSeen(){ lsSet('faux_seen_' + SLUG, '1'); }
+function clickSel(sel){ var e = sel && $(sel); if (e) { e.click(); return true; } return false; }
+function goTab(tab){
+  if (!tab) return;
+  if (tab.charAt(0) === '#' || tab.charAt(0) === '[' || tab.charAt(0) === '.') { clickSel(tab); return; }
+  var b = $('.tabbar button[data-tab="' + tab + '"]') || $('[data-tab="' + tab + '"]'); if (b) b.click();
+}
+
+/* ---------- Welcome ---------- */
+function welcome(){
+  var steps = (C.steps || []).map(function(s, i){ return '<li><b class="n">' + (i + 1) + '</b><span>' + s + '</span></li>'; }).join('');
+  var hasImp = (C.imports || []).length > 0;
+  openOv(head() +
+    '<p class="faux-one">' + esc(C.oneLine) + '</p><ol class="faux-steps">' + steps + '</ol>' +
+    (C.sample ? '<button type="button" class="faux-btn" data-faux="sample">' + esc(C.sampleLabel || 'Try it with sample data') + '</button>' : '') +
+    '<div class="faux-row">' + (hasImp ? '<button type="button" class="faux-btn sec" data-faux="import">' + esc(C.importLabel || 'Import my data') + '</button>' : '') +
+    '<button type="button" class="faux-btn sec" data-faux="blank"' + (hasImp ? '' : ' style="grid-column:1/-1"') + '>' + esc(C.blankLabel || 'Start with my own') + '</button></div>' +
+    '<p class="faux-trust"><span aria-hidden="true">🔒</span><span>' + esc(C.trust || 'Private by design: it works offline and your data stays in this browser on this device. No account, no upload.') + '</span></p>', C.name + ': how it works');
+  bind();
+}
+function bind(){
+  ov.querySelectorAll('[data-faux]').forEach(function(b){ b.addEventListener('click', function(){
+    var a = b.getAttribute('data-faux');
+    if (a === 'close') { markSeen(); closeOv(); }
+    else if (a === 'sample') { markSeen(); closeOv(); if (C.sampleTab) goTab(C.sampleTab); clickSel(C.sample); }
+    else if (a === 'blank') { markSeen(); closeOv(); if (C.blankTab) goTab(C.blankTab); var f = $(C.blankFocus || '.pane.active input:not([type=file]):not([type=checkbox]):not([type=radio]), .pane.active select, main input:not([type=file])'); if (f) { try { f.scrollIntoView({block:'center'}); f.focus({preventScroll:true}); } catch(e){} } }
+    else if (a === 'import') { markSeen(); importSheet(); }
+    else if (a === 'help') welcome();
+  }); });
+}
+
+/* ---------- Import sheet ---------- */
+function importSheet(){
+  var opts = (C.imports || []).map(function(o, i){
+    return '<div class="faux-opt"><b>' + esc(o.label) + '</b><small>' + o.formats + '</small><div class="faux-row">' +
+      '<button type="button" class="faux-btn" data-imp="' + i + '" data-how="file">Choose file</button>' +
+      '<button type="button" class="faux-btn sec" data-imp="' + i + '" data-how="paste">Paste rows</button></div></div>';
+  }).join('');
+  openOv(head() + '<p class="faux-h2">Bring your data in</p><p class="faux-sub">Pick what you have. You will see a preview before anything is saved. Tip: you can also drag a file onto this page.</p>' + opts +
+    (C.cannot ? '<p class="faux-sub" style="margin-top:6px"><b>Not possible to auto-import:</b> ' + C.cannot + '</p>' : '') +
+    '<button type="button" class="faux-btn ghost" data-faux="help">← Back</button>', 'Import data');
+  bind();
+  ov.querySelectorAll('[data-imp]').forEach(function(b){ b.addEventListener('click', function(){
+    var o = C.imports[+b.getAttribute('data-imp')];
+    if (b.getAttribute('data-how') === 'file') pickFile(o); else pasteSheet(o);
+  }); });
+}
+function pickFile(o){
+  var inp = D.createElement('input'); inp.type = 'file'; inp.accept = o.accept || '.csv,.tsv,.txt,text/csv,text/plain'; inp.className = 'faux-sr';
+  D.body.appendChild(inp);
+  inp.addEventListener('change', function(){ var f = inp.files && inp.files[0]; inp.remove(); if (f) readFile(f, o); });
+  inp.click();
+}
+function readFile(f, o){ var rd = new FileReader(); rd.onload = function(){ handleText(String(rd.result || ''), o, f.name); }; rd.onerror = function(){ errSheet('Could not read that file. Try choosing it again. Nothing was changed.'); }; rd.readAsText(f); }
+function pasteSheet(o){
+  openOv(head() + '<p class="faux-h2">' + esc(o.label) + ': paste rows</p><p class="faux-sub">' + esc(o.pasteHint || 'Copy the rows from Excel, Google Sheets or a CSV (include the header row if there is one) and paste here.') + '</p>' +
+    '<textarea class="faux-ta" id="fauxPaste" aria-label="Paste rows here" placeholder="' + esc(o.pastePlaceholder || '') + '"></textarea>' +
+    '<div class="faux-row"><button type="button" class="faux-btn" id="fauxPasteGo">Preview</button><button type="button" class="faux-btn sec" data-faux="import">Back</button></div>', 'Paste rows');
+  bind();
+  $('#fauxPaste').focus();
+  $('#fauxPasteGo').addEventListener('click', function(){ var t = $('#fauxPaste').value; if (!t.trim()) { $('#fauxPaste').focus(); return; } handleText(t, o, 'pasted-rows.csv'); });
+}
+function errSheet(msg){ openOv(head() + '<div class="faux-err">' + esc(msg) + '</div><button type="button" class="faux-btn sec" data-faux="import">Back</button>', 'Problem'); bind(); }
+function handleText(text, o, name){
+  if (o.kind === 'feed') {
+    var res = o.raw ? { csv: text, note: '' } : normalizeText(text, o.normalize);
+    if (res.error) return errSheet(res.error);
+    closeOv(); if (o.tab) goTab(o.tab); if (o.open) { var od = $(o.open); if (od && 'open' in od) od.open = true; }
+    var inp = $(o.target); if (!inp) return errSheet('This app has no import box here.');
+    setTimeout(function(){
+      feed(inp, o.raw ? (name || 'import.json').replace(/\.csv$/i, '.json') : (name || 'import').replace(/\.(tsv|txt)$/i, '.csv'), res.csv, o.raw ? 'application/json' : 'text/csv');
+      if (res.note) toast(res.note);
+      var card = inp.closest('.card, section'); if (card && card.scrollIntoView) try { card.scrollIntoView({block:'start', behavior:'smooth'}); } catch(e){}
+    }, 60);
+    return;
+  }
+  if (o.kind === 'adapter') { var A = ADAPTERS[o.adapter]; if (A) preview(A, text, o); }
+}
+function feed(inp, name, text, type){
+  try { var dt = new DataTransfer(); dt.items.add(new File([text], name, { type: type })); inp.files = dt.files; }
+  catch(e){ errSheet('This browser blocked the hand-off. Use the app\u2019s own Choose file button instead.'); return; }
+  inp.dispatchEvent(new Event('change', { bubbles: true }));
+}
+
+/* ---------- List importers (preview, then save to this device) ---------- */
+var ADAPTERS = {
+  debts: { what: 'debts', cols: ['Debt','Balance','APR %','Minimum'],
+    parse: function(rows){
+      var H = rows[0], hdr = looksHeader(H), body = hdr ? rows.slice(1) : rows;
+      var ni = hdr ? findCol(H, ['name','debt','account','creditor','card','loan','lender']) : 0,
+          bi = hdr ? findCol(H, ['balance','current balance','amount owed','owed','principal','payoff amount','amount']) : 1,
+          ai = hdr ? findCol(H, ['apr','interest rate','rate','interest']) : 2,
+          mi = hdr ? findCol(H, ['minimum payment','min payment','minimum','min','monthly payment','payment']) : 3;
+      if (bi < 0) return { error: 'Could not find a Balance column. Use columns like: Name, Balance, APR, Minimum.' };
+      return { rows: body.map(function(r, i){ var b = money(r[bi]); return { name: (ni >= 0 && r[ni]) || ('Debt ' + (i + 1)), bal: b, apr: ai >= 0 ? Math.abs(money(String(r[ai]).replace('%',''))) || 0 : 0, min: mi >= 0 ? Math.abs(money(r[mi])) || 0 : 0 }; })
+        .filter(function(d){ return !isNaN(d.bal) && Math.abs(d.bal) > 0; }).map(function(d){ d.bal = Math.abs(d.bal); return d; }) };
+    },
+    show: function(d){ return [d.name, fmt$(d.bal), d.apr.toFixed(2) + '%', fmt$(d.min)]; },
+    commit: function(st, rows){ st.debts = (st.debts || []).filter(function(x){ return !x.sample; }); st.sample = false;
+      rows.forEach(function(d, i){ st.debts.push({ id: 'd-imp-' + Date.now() + '-' + i, name: String(d.name).slice(0, 80), bal: Math.round(d.bal * 100) / 100, apr: Math.min(99.99, d.apr), min: Math.round(d.min * 100) / 100, sample: false }); }); }
+  },
+  deposits: { what: 'deposits', cols: ['Date','Amount','Note'],
+    parse: function(rows){ var b = bankRows(rows); if (b.error) return b; return { rows: b.rows.filter(function(r){ return r.amt > 0; }).map(function(r){ return { date: r.date, amount: r.amt, note: r.desc }; }), note: 'Only money coming in is listed. Untick anything that is not savings.' }; },
+    show: function(d){ return [d.date, fmt$(d.amount), d.note]; },
+    commit: function(st, rows){ st.deps = (st.deps || []).filter(function(x){ return !x.sample; }); st.sample = false;
+      rows.forEach(function(d, i){ st.deps.push({ id: 'd-imp-' + Date.now() + '-' + i, date: d.date, amount: Math.round(d.amount * 100) / 100, note: String(d.note || 'Imported').slice(0, 60), sample: false }); }); }
+  },
+  shifts: { what: 'shifts', cols: ['Date','Where','Hours','Cash','Card','Tip-out'],
+    parse: function(rows){
+      var H = rows[0]; if (!looksHeader(H)) return { error: 'Add a header row, e.g. Date, Employer, Hours, Cash tips, Card tips, Tip-out.' };
+      var c = function(a){ return findCol(H, a); };
+      var di = c(['date','shift date','business date','work date']), ei = c(['employer','restaurant','location','job','role','venue']), hi = c(['total hours','hours worked','regular hours','hours']),
+          ca = c(['declared cash tips','cash tips','cash']), cd = c(['non-cash tips','credit card tips','card tips','charged tips','cc tips','card']), to = c(['tip-out','tip out','tipout','tips paid out','tip share']),
+          oh = c(['overtime hours','ot hours']), op = c(['overtime premium','ot premium']), gr = c(['gross pay','gross wages','gross']);
+      if (di < 0 || (ca < 0 && cd < 0)) return { error: 'Need at least a Date column and a Cash tips or Card tips column.' };
+      var g = function(r, i){ var v = i >= 0 ? money(r[i]) : 0; return isNaN(v) ? 0 : Math.abs(v); };
+      return { rows: rows.slice(1).map(function(r){ return { date: isoDate(r[di]), emp: ei >= 0 ? r[ei] : '', hours: g(r, hi), cash: g(r, ca), card: g(r, cd), out: g(r, to), otH: g(r, oh), otP: g(r, op), gross: g(r, gr) }; }).filter(function(x){ return x.date && (x.cash || x.card || x.hours); }) };
+    },
+    show: function(d){ return [d.date, d.emp, d.hours, fmt$(d.cash), fmt$(d.card), fmt$(d.out)]; },
+    commit: function(st, rows){ st.entries = (st.entries || []).filter(function(x){ return !x.sample; }); st.sample = false;
+      rows.forEach(function(d, i){ d.id = 'r-imp-' + Date.now() + '-' + i; d.photo = null; d.sample = false; st.entries.push(d); }); }
+  },
+  cues: { what: 'cues', cols: ['Cue','Minutes'],
+    parse: function(rows, text){
+      var out = []; String(text).split(/\r?\n/).forEach(function(l){ l = l.trim(); if (!l) return;
+        var m = l.match(/^(.*?)[\s,\t\-–—:]*(\d{1,3}):(\d{2})\s*$/), mm = l.match(/^(.*?)[\s,\t\-–—]*(\d{1,3}(?:\.\d+)?)\s*(m|min|mins|minutes)?\s*$/i);
+        if (m && m[1]) out.push({ label: m[1].replace(/[,\t\-–—:\s]+$/, ''), min: Math.round((+m[2] + (+m[3]) / 60) * 100) / 100 });
+        else if (mm && mm[1]) out.push({ label: mm[1].replace(/[,\t\-–—:\s]+$/, ''), min: +mm[2] });
+      });
+      out = out.filter(function(c){ return c.label && c.min > 0 && !/^(cue|segment|item|label)$/i.test(c.label); });
+      return out.length ? { rows: out } : { error: 'Put one cue per line with its length, e.g. "Keynote, 25" or "Q&A 10:00".' };
+    },
+    show: function(d){ return [d.label, d.min]; },
+    commit: function(st, rows){ st.cues = (st.cues || []).filter(function(x){ return !x.sample; }); st.sample = false;
+      rows.forEach(function(d, i){ st.cues.push({ id: 'c-imp-' + Date.now() + '-' + i, label: String(d.label).slice(0, 60), min: d.min, sample: false }); }); }
+  },
+  guests: { what: 'guest list', cols: ['Guests counted','Kids','Declined (not counted)'], summary: true,
+    parse: function(rows){
+      var H = rows[0], hdr = looksHeader(H); if (!hdr) return { error: 'Include the header row from your guest list (for example Name, Party Size, RSVP).' };
+      var ps = findCol(H, ['party size','number of guests','# guests','guest count','headcount','total guests','guests','size']),
+          po = findCol(H, ['plus one','plus-one','+1']), rs = findCol(H, ['rsvp','attending','status','response']), kd = findCol(H, ['child','kid','age group','age']);
+      var tot = 0, kids = 0, dec = 0, n = 0;
+      rows.slice(1).forEach(function(r){
+        if (rs >= 0 && /^(no|declined|not attending|regrets|won.?t attend|can.?t attend)/i.test(r[rs] || '')) { dec++; return; }
+        var k = 1; if (ps >= 0) { var v = money(r[ps]); k = isNaN(v) ? 1 : Math.max(0, Math.round(v)); }
+        if (po >= 0 && /^(yes|y|true|1|x)$/i.test(r[po] || '')) k += 1;
+        tot += k; n++;
+        if (kd >= 0) { var kv = String(r[kd] || ''); var age = money(kv); if (/child|kid|yes|true|minor/i.test(kv) || (!isNaN(age) && age < 13)) kids += 1; }
+      });
+      if (!n) return { error: 'No guests found in those rows.' };
+      return { rows: [{ total: tot, kids: kids, dec: dec }], note: 'Counted ' + n + ' row(s)' + (ps >= 0 ? ' using the party-size column' : ' as one guest each') + (po >= 0 ? ', plus one for each "yes" plus-one' : '') + '.' };
+    },
+    show: function(d){ return [d.total, d.kids, d.dec]; },
+    commit: function(st, rows){ st.guests = st.guests || {}; st.guests.planned = String(rows[0].total); if (rows[0].kids) st.guests.mKid = String(rows[0].kids); }
+  },
+  timeline: { what: 'timeline items', cols: ['Time','What','Who'],
+    parse: function(rows, text){
+      var out = []; String(text).split(/\r?\n/).forEach(function(l){ l = l.trim(); if (!l) return;
+        var p = parseCSV(l)[0] || []; var m;
+        if (p.length >= 2 && /\d/.test(p[0])) out.push({ time: p[0], item: p[1], owner: p[2] || '' });
+        else if ((m = l.match(/^(\d{1,2}(?::\d{2})?\s*(?:am|pm|a\.m\.|p\.m\.)?)\s*[-–—:,]?\s*(.+)$/i))) out.push({ time: m[1].toUpperCase().replace(/\s+/, ' '), item: m[2], owner: '' });
+      });
+      return out.length ? { rows: out } : { error: 'Put one item per line, e.g. "4:30 PM, Ceremony begins, Officiant".' };
+    },
+    show: function(d){ return [d.time, d.item, d.owner]; },
+    commit: function(st, rows){ st.dayOf = st.dayOf || { title:'', date:'', timeline:[], contacts:[] }; st.dayOf.timeline = (st.dayOf.timeline || []).filter(function(x){ return !x.sample; });
+      rows.forEach(function(d){ st.dayOf.timeline.push({ time: String(d.time).slice(0, 20), item: String(d.item).slice(0, 120), owner: String(d.owner || '').slice(0, 60), sample: false }); }); }
+  },
+  contacts: { what: 'vendor contacts', cols: ['Role','Name','Phone'],
+    parse: function(rows){
+      var H = rows[0], hdr = looksHeader(H) && findCol(H, ['phone','role','name','vendor']) >= 0, body = hdr ? rows.slice(1) : rows;
+      var ri = hdr ? findCol(H, ['role','category','type','service']) : 0, ni = hdr ? findCol(H, ['vendor','business','company','name','contact']) : 1, pi = hdr ? findCol(H, ['phone','mobile','cell','tel']) : 2;
+      var out = body.map(function(r){ return { role: ri >= 0 ? r[ri] : '', name: ni >= 0 ? r[ni] : '', phone: pi >= 0 ? r[pi] : '' }; }).filter(function(x){ return x.name || x.phone; });
+      return out.length ? { rows: out } : { error: 'Use columns Role, Name, Phone.' };
+    },
+    show: function(d){ return [d.role, d.name, d.phone]; },
+    commit: function(st, rows){ st.dayOf = st.dayOf || { title:'', date:'', timeline:[], contacts:[] }; st.dayOf.contacts = (st.dayOf.contacts || []).filter(function(x){ return !x.sample; });
+      rows.forEach(function(d){ st.dayOf.contacts.push({ role: String(d.role).slice(0, 60), name: String(d.name).slice(0, 80), phone: String(d.phone).slice(0, 30), sample: false }); }); }
+  },
+  payments: { what: 'payments', cols: ['Vendor','Due','Amount'],
+    parse: function(rows){
+      var H = rows[0], hdr = looksHeader(H) && (findCol(H, ['amount','due','vendor']) >= 0), body = hdr ? rows.slice(1) : rows;
+      var vi = hdr ? findCol(H, ['vendor','payee','what','description','name']) : 0, di = hdr ? findCol(H, ['due date','due','date']) : 1, ai = hdr ? findCol(H, ['amount','payment','balance','cost']) : 2;
+      var out = body.map(function(r){ return { vendor: vi >= 0 ? r[vi] : '', date: isoDate(r[di]), amount: Math.abs(money(r[ai])) }; }).filter(function(x){ return x.vendor && x.date && x.amount > 0; });
+      return out.length ? { rows: out } : { error: 'Use columns Vendor, Due date, Amount (dates like 2027-03-18 or 3/18/2027).' };
+    },
+    show: function(d){ return [d.vendor, d.date, fmt$(d.amount)]; },
+    commit: function(st, rows){ st.payments = (st.payments || []).filter(function(x){ return !x.sample; });
+      rows.forEach(function(d, i){ st.payments.push({ id: 'p-imp-' + Date.now() + '-' + i, vendor: String(d.vendor).slice(0, 100), date: d.date, amount: Math.round(d.amount * 100) / 100, sample: false }); }); }
+  }
+};
+function bankRows(rows){
+  var r0 = rows[0];
+  if (r0.length === 5 && isoDate(r0[0]) && r0[2] === '*') { rows = [['Date','Amount','x','y','Description']].concat(rows); }
+  var H = rows[0]; if (!looksHeader(H)) return { error: 'Include the header row from your bank file (Date, Description, Amount).' };
+  var di = findCol(H, ['posting date','transaction date','date','posted']), de = findCol(H, ['description','details','memo','payee','name']),
+      am = findCol(H, ['amount','net']), cr = findCol(H, ['credit','deposit','deposits','inflow','money in']), db = findCol(H, ['debit','withdrawal','withdrawals','outflow','money out']);
+  if (di < 0 || (am < 0 && cr < 0)) return { error: 'Could not find Date and Amount (or Credit) columns in that file.' };
+  var out = rows.slice(1).map(function(r){
+    var a = am >= 0 ? money(r[am]) : NaN;
+    if (isNaN(a) && cr >= 0) { var c = money(r[cr]), d = db >= 0 ? money(r[db]) : NaN; a = !isNaN(c) && c !== 0 ? Math.abs(c) : (!isNaN(d) ? -Math.abs(d) : NaN); }
+    return { date: isoDate(r[di]), desc: de >= 0 ? r[de] : '', amt: a };
+  }).filter(function(x){ return x.date && !isNaN(x.amt); });
+  return { rows: out };
+}
+var pend = null;
+function preview(A, text, o){
+  var rows = parseCSV(text); var res = rows.length ? A.parse(rows, text) : { error: 'That looks empty.' };
+  if (res.error || !res.rows || !res.rows.length) return errSheet(res.error || 'No usable rows found. Nothing was changed.');
+  pend = { A: A, rows: res.rows, o: o };
+  var tb = '<div class="faux-tblw"><table class="faux-tbl"><thead><tr>' + (A.summary ? '' : '<th scope="col"><span class="faux-sr">Keep</span></th>') + A.cols.map(function(c){ return '<th scope="col">' + esc(c) + '</th>'; }).join('') + '</tr></thead><tbody>' +
+    res.rows.map(function(r, i){ return '<tr>' + (A.summary ? '' : '<td><input type="checkbox" checked data-keep="' + i + '" aria-label="Keep row ' + (i + 1) + '"></td>') + A.show(r).map(function(v){ return '<td>' + esc(v) + '</td>'; }).join('') + '</tr>'; }).join('') + '</tbody></table></div>';
+  openOv(head() + '<p class="faux-h2">Check before saving</p><p class="faux-sub">' + esc(res.note || ('Found ' + res.rows.length + ' ' + A.what + '. Untick any you don\u2019t want.')) + '</p>' + tb +
+    '<div class="faux-row"><button type="button" class="faux-btn" id="fauxCommit">' + (A.summary ? 'Use these numbers' : 'Add ' + A.what) + '</button><button type="button" class="faux-btn sec" data-faux="import">Cancel</button></div>' +
+    '<p class="faux-trust">Saved only in this browser. You can undo right after.</p>', 'Preview import');
+  bind();
+  $('#fauxCommit').addEventListener('click', commit);
+}
+function commit(){
+  if (!pend) return; var keep = [];
+  if (pend.A.summary) keep = pend.rows; else ov.querySelectorAll('[data-keep]').forEach(function(cb){ if (cb.checked) keep.push(pend.rows[+cb.getAttribute('data-keep')]); });
+  if (!keep.length) return;
+  var before = lsGet(C.key), st; try { st = JSON.parse(before || 'null'); } catch(e){ st = null; }
+  if (!st || typeof st !== 'object') st = JSON.parse(JSON.stringify(C.blank || {}));
+  pend.A.commit(st, keep);
+  if (!lsSet(C.key, JSON.stringify(st))) return errSheet('This browser\u2019s storage is full or blocked, so nothing was saved.');
+  try { sessionStorage.setItem('faux_done_' + SLUG, JSON.stringify({ before: before, msg: (pend.A.summary ? 'Guest count updated from your list.' : 'Added ' + keep.length + ' ' + pend.A.what + '.'), tab: pend.o.tab || '' })); } catch(e){}
+  location.reload();
+}
+function afterReload(){
+  var s; try { s = JSON.parse(sessionStorage.getItem('faux_done_' + SLUG) || 'null'); sessionStorage.removeItem('faux_done_' + SLUG); } catch(e){ s = null; }
+  if (!s) return; markSeen(); if (s.tab) goTab(s.tab);
+  toast(s.msg, function(){ if (s.before == null) { try { localStorage.removeItem(C.key); } catch(e){} } else lsSet(C.key, s.before); location.reload(); });
+}
+
+/* ---------- Drag and drop anywhere ---------- */
+function dnd(){
+  var tgt = (C.imports || []).filter(function(o){ return o.drop; })[0]; if (!tgt) return;
+  var veil = D.createElement('div'); veil.className = 'faux-drop'; veil.hidden = true; veil.textContent = 'Drop your file to import: ' + tgt.label; D.body.appendChild(veil);
+  var n = 0, isFile = function(e){ return e.dataTransfer && Array.prototype.indexOf.call(e.dataTransfer.types || [], 'Files') >= 0; };
+  D.addEventListener('dragenter', function(e){ if (!isFile(e)) return; n++; veil.hidden = false; });
+  D.addEventListener('dragleave', function(e){ if (!isFile(e)) return; n = Math.max(0, n - 1); if (!n) veil.hidden = true; });
+  D.addEventListener('dragover', function(e){ if (isFile(e)) e.preventDefault(); });
+  D.addEventListener('drop', function(e){ if (!isFile(e)) return; e.preventDefault(); n = 0; veil.hidden = true; var f = e.dataTransfer.files[0]; if (!f) return;
+    if (/\.json$/i.test(f.name) && C.jsonDrop) { var rd = new FileReader(); rd.onload = function(){ goTab(C.jsonTab); feed($(C.jsonDrop), f.name, String(rd.result), 'application/json'); }; rd.readAsText(f); return; }
+    readFile(f, tgt); });
+}
+
+/* ---------- On-device auto-fill between FiledAwayCo tools ---------- */
+function readAuto(){ try { return JSON.parse(lsGet(AUTO_KEY) || '{}') || {}; } catch(e){ return {}; } }
+function capture(fn){
+  return new Promise(function(res){
+    var got = null, last = null, oc = URL.createObjectURL, ac = HTMLAnchorElement.prototype.click;
+    var tEls = D.querySelectorAll(C.toastSel || '#toast'), snap = Array.prototype.map.call(tEls, function(t){ return [t, t.className, t.innerHTML, t.style.cssText]; });
+    D.documentElement.classList.add('faux-quiet');
+    URL.createObjectURL = function(b){ last = b; return oc.call(URL, b); };
+    HTMLAnchorElement.prototype.click = function(){ if (this.download && last) { got = last; return; } return ac.call(this); };
+    try { fn(); } catch(e){} finally { URL.createObjectURL = oc; HTMLAnchorElement.prototype.click = ac; snap.forEach(function(s){ s[0].className = s[1]; s[0].innerHTML = s[2]; s[0].style.cssText = s[3]; }); }
+    setTimeout(function(){ D.documentElement.classList.remove('faux-quiet'); }, 0);
+    if (got && got.text) got.text().then(res, function(){ res(null); }); else res(null);
+  });
+}
+var lastPub = null, pubT = null;
+function publish(){
+  var P = C.publish; if (!P) return; var cur = lsGet(C.key) || ''; if (cur === lastPub) return; lastPub = cur;
+  capture(function(){
+    if (P.click) { var b = $(P.click); if (b) b.click(); }
+    else if (P.act) { var t = D.createElement('button'); t.type = 'button'; t.setAttribute('data-act', P.act); t.style.display = 'none'; (P.host ? $(P.host) : D.body).appendChild(t); t.click(); t.remove(); }
+  }).then(function(txt){
+    var all = readAuto(), o = null; try { o = txt ? JSON.parse(txt) : null; } catch(e){}
+    var empty = o && ((o.salesCount === 0) || (o.trueNet === 0 && !o.grossSales && !(o.shifts && o.shifts.length) && !(o.deals && o.deals.length)));
+    if (o && o.bridge === 'fac-bridge-v1' && !o.sample && !empty) all[P.source] = { name: C.name, at: new Date().toISOString(), payload: txt };
+    else delete all[P.source];
+    lsSet(AUTO_KEY, JSON.stringify(all));
+  });
+}
+function schedulePub(){ clearTimeout(pubT); pubT = setTimeout(publish, 1200); }
+function summary(o){
+  if (typeof o.trueNet === 'number') return 'Net profit ' + fmt$(o.trueNet) + (o.taxYear ? ' (' + o.taxYear + ')' : '');
+  if (typeof o.freedMonthly === 'number') return 'Freed monthly ' + fmt$(o.freedMonthly);
+  if (Array.isArray(o.shifts)) return o.shifts.length + ' shift(s)';
+  if (Array.isArray(o.deals)) return o.deals.length + ' deal(s)';
+  return 'Summary ready';
+}
+function consume(){
+  var K = C.consume; if (!K) return; var host = K.into ? $(K.into) : null, bef = K.before ? $(K.before) : null; if (!host && !bef) return;
+  var all = readAuto(), keys = Object.keys(all).filter(function(k){ return K.sources.indexOf(k) >= 0; });
+  var box = $('#fauxAuto'); if (box) box.remove();
+  if (!keys.length) return;
+  box = D.createElement('div'); box.id = 'fauxAuto'; box.className = 'faux-auto no-print';
+  box.innerHTML = '<b>Auto-fill from your other FiledAwayCo tools on this device</b><div>' + esc(K.hint || 'Tap Use to load the numbers. You will confirm before anything changes.') + '</div>' +
+    keys.map(function(k){ var e = all[k], o = {}; try { o = JSON.parse(e.payload); } catch(x){}
+      return '<div class="faux-src"><span><b>' + esc(e.name || k) + '</b> · ' + esc(summary(o)) + ' · updated ' + esc(String(e.at || '').slice(0, 10)) + '</span><button type="button" class="faux-btn" data-auto="' + esc(k) + '">Use</button></div>'; }).join('');
+  if (bef) bef.parentNode.insertBefore(box, bef); else host.insertBefore(box, host.firstChild);
+  box.querySelectorAll('[data-auto]').forEach(function(b){ b.addEventListener('click', function(){
+    var e = readAuto()[b.getAttribute('data-auto')]; if (!e) return;
+    if (K.tab) goTab(K.tab); if (K.open) { var d = $(K.open); if (d && 'open' in d) d.open = true; }
+    feed($(K.input), 'fac-bridge-' + b.getAttribute('data-auto') + '.json', e.payload, 'application/json');
+    var dr = K.draft && $(K.draft); setTimeout(function(){ var t = dr || $(K.input).closest('.card, details, section'); if (t) try { t.scrollIntoView({ block: 'center', behavior: 'smooth' }); } catch(x){} }, 120);
+  }); });
+}
+
+/* ---------- Help button ---------- */
+function helpBtn(){
+  if (C.help === false) return;
+  var b = D.createElement('button'); b.type = 'button'; b.className = 'faux-help no-print'; b.textContent = '?'; b.title = 'How it works and import'; b.setAttribute('aria-label', 'How ' + (C.name || 'this tool') + ' works, and import options');
+  b.addEventListener('click', welcome);
+  var host = C.helpIn && $(C.helpIn);
+  if (host) { var last = host.lastElementChild; if (last && last.tagName === 'BUTTON') { var w = D.createElement('div'); w.style.cssText = 'display:flex;gap:8px;align-items:center;flex:none'; host.insertBefore(w, last); w.appendChild(b); w.appendChild(last); } else host.appendChild(b); }
+  else { b.classList.add('faux-fab'); D.body.appendChild(b); }
+}
+/* Seller Dashboard style apps: add "Paste rows" next to the app's own Choose file button when its import sheet opens */
+function pasteHook(){
+  var H = C.pasteHook; if (!H) return; var o = (C.imports || [])[0]; if (!o) return;
+  new MutationObserver(function(){ var b = $(H.after); if (b && !$('#fauxPasteHook')) { var p = D.createElement('button'); p.type = 'button'; p.id = 'fauxPasteHook'; p.className = H.cls || b.className; p.textContent = 'Paste rows from a spreadsheet instead'; p.style.marginTop = '8px'; p.addEventListener('click', function(){ pasteSheet(o); }); b.parentNode.insertBefore(p, b.nextSibling); } })
+    .observe(D.body, { childList: true, subtree: true });
+}
+
+function init(){
+  if (!inSuite) helpBtn(); else if (C.help !== false) helpBtn();
+  dnd(); pasteHook(); afterReload();
+  consume(); D.addEventListener('visibilitychange', function(){ if (!D.hidden) consume(); }); window.addEventListener('focus', consume);
+  if (C.publish) { ['click','change','submit','input'].forEach(function(ev){ D.addEventListener(ev, function(e){ if (e.isTrusted) schedulePub(); }, true); }); setTimeout(publish, 1500); }
+  var seen = lsGet('faux_seen_' + SLUG);
+  if (!seen && !inSuite && !window.__FA_UX_NO_WELCOME && C.welcome !== false && !sessionStorage.getItem('faux_done_' + SLUG)) welcome();
+}
+window.FAUX = { parseCSV: parseCSV, money: money, isoDate: isoDate, normalizeText: normalizeText, adapters: ADAPTERS, bankRows: bankRows, welcome: welcome, importSheet: importSheet, publish: publish, consume: consume, readAuto: readAuto };
+if (D.readyState === 'loading') D.addEventListener('DOMContentLoaded', init); else init();
+})();
+</script>
+</body>
+</html>

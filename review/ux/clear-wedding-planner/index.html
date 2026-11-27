@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="en" data-temp="editorial">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Clear Wedding Companion · FiledAwayCo</title>
+<style>
+:root,[data-temp="editorial"]{
+  --brand:#355245; --brand-ink:#FFFFFF; --accent:#1F5C45; --accent-ink:#FFFFFF;
+  --mint-on-dark:#B8DEC9;
+  --paper:#FBF8F2; --card:#FFFFFF; --cream:#E8E0D2;
+  --ink:#1F2A24; --muted:#4E5B54; --line:#D9D1C5; --hairline:#EDE7DC;
+  --input-bg:#FFF4D6; --input-border:#D9C79A; --input-ink:#1A1A1A;
+  --auto-bg:#F1F3F5; --auto-ink:#1F2A24;
+  --good-ink:#16533C; --good-bg:#E6F3EC;
+  --warn-ink:#7A4700; --warn-bg:#FFF4D6;
+  --alert-ink:#962324; --alert-bg:#FBEAEA;
+  --radius:14px; --radius-sm:10px;
+  --font-display:Georgia,"Times New Roman",serif;
+  --font-body:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--cream);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.45;-webkit-text-size-adjust:100%}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+.shell{max-width:860px;margin:0 auto;min-height:100vh;background:var(--paper);padding:14px 14px 44px}
+@media(min-width:768px){.shell{margin:18px auto;border-radius:18px;border:1px solid var(--line);padding:22px 26px 48px;box-shadow:0 6px 24px rgba(53,82,69,.09)}}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--hairline);margin-bottom:12px}
+.wm{display:flex;align-items:center;gap:10px}
+.mark{width:34px;height:34px;border-radius:9px;background:var(--brand);color:#fff;display:grid;place-items:center;font-weight:800;font-size:15px;letter-spacing:-.02em;position:relative;flex:none}
+.mark::after{content:"";position:absolute;right:4px;top:4px;width:8px;height:8px;border-radius:2px;background:var(--mint-on-dark)}
+.wm-t b{display:block;font-size:15px;color:var(--brand);line-height:1.15}
+.wm-t span{display:block;font-size:12.5px;color:var(--muted)}
+h1{font-family:var(--font-display);font-size:24px;font-weight:700;margin:0 0 4px;color:var(--brand);line-height:1.2}
+h2{font-family:var(--font-display);font-size:18px;font-weight:700;margin:0 0 8px;color:var(--brand)}
+h3{font-size:15px;font-weight:700;margin:0 0 8px;color:var(--brand)}
+.cap{font-size:13.5px;color:var(--muted);line-height:1.45}
+.banner{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--warn-bg);border:1px solid var(--input-border);border-radius:var(--radius-sm);padding:8px 10px 8px 12px;margin-bottom:12px;color:var(--warn-ink);font-size:14px}
+.banner button{min-height:44px;flex:none;white-space:nowrap;padding:0 14px;border-radius:8px;border:1px solid var(--input-border);background:#fff;color:var(--brand);font-weight:700;font-size:13.5px;cursor:pointer}
+.tabbar{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:var(--auto-bg);padding:4px;border-radius:var(--radius-sm);margin-bottom:14px}
+.tabbar button{min-height:46px;border:0;border-radius:8px;background:transparent;color:var(--muted);font:inherit;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;padding:0 6px;text-align:center}
+.tabbar button[aria-current="page"]{color:var(--brand);background:#fff;box-shadow:0 1px 3px rgba(53,82,69,.14)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:14px}
+.empty-cta{background:var(--paper);border:1.5px dashed var(--input-border);border-radius:var(--radius);padding:16px;margin-bottom:14px;display:flex;flex-direction:column;gap:10px}
+.hero{background:var(--brand);color:#fff;border-color:var(--brand)}
+.hero .ey{font-size:13px;font-weight:700;color:var(--mint-on-dark);margin-bottom:6px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:center}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:540px){.hero-grid{grid-template-columns:1fr 1fr}}
+.hbox{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:12px 14px}
+.hbox .lbl{font-size:12.5px;color:#E2EFE8}
+.hbox .big{font-size:30px;font-weight:800;line-height:1.15;color:#fff;margin-top:2px}
+.hbox .sub{font-size:12.5px;color:#E2EFE8;margin-top:3px}
+.grid2{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:560px){.grid2{grid-template-columns:1fr 1fr}}
+.grid3{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:560px){.grid3{grid-template-columns:repeat(3,1fr)}}
+.field{display:block;margin-bottom:10px}
+.field:last-child{margin-bottom:0}
+.field .l{display:block;font-size:13.5px;font-weight:700;color:var(--brand);margin-bottom:4px}
+.field .h{display:block;font-size:12.5px;color:var(--muted);margin-top:3px}
+.inp-wrap{display:flex;align-items:center;background:var(--input-bg);border:1.5px solid var(--input-border);border-radius:var(--radius-sm);padding:0 12px;min-height:46px}
+.inp-wrap:focus-within{border-color:var(--accent);box-shadow:0 0 0 2px rgba(31,92,69,.18)}
+.inp-wrap .pre{font-weight:700;color:var(--muted);margin-right:6px}
+.inp-wrap .suf{font-weight:700;color:var(--muted);margin-left:6px}
+.inp-wrap input,.inp-wrap select{width:100%;border:0;background:transparent;font:inherit;color:var(--input-ink);outline:none;padding:10px 0;min-height:44px}
+textarea.quote-in{width:100%;min-height:105px;background:var(--input-bg);border:1.5px solid var(--input-border);border-radius:var(--radius-sm);padding:12px;font:inherit;font-size:14.5px;color:var(--input-ink);resize:vertical}
+.seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:4px;background:var(--auto-bg);padding:4px;border-radius:var(--radius-sm)}
+.seg button{min-height:44px;border:0;border-radius:8px;background:transparent;color:var(--brand);font-weight:700;font-size:13.5px;cursor:pointer;padding:0 8px}
+.seg button[aria-pressed="true"]{background:#fff;box-shadow:0 1px 3px rgba(53,82,69,.14)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip-btn{min-height:44px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--brand);font:inherit;font-size:13.5px;font-weight:700;cursor:pointer}
+.chip-btn[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.tag{display:inline-block;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:700;background:var(--auto-bg);color:var(--brand);white-space:nowrap}
+.tag.good{background:var(--good-bg);color:var(--good-ink)}
+.tag.warn{background:var(--warn-bg);color:var(--warn-ink)}
+.tag.alert{background:var(--alert-bg);color:var(--alert-ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 16px;border-radius:var(--radius-sm);border:1.5px solid var(--accent);background:var(--accent);color:#fff;font:inherit;font-weight:700;font-size:14.5px;cursor:pointer;text-decoration:none}
+.btn.sec{background:#fff;color:var(--brand);border-color:var(--line)}
+.btn.full{width:100%}
+.btn-row{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}
+@media(min-width:520px){.btn-row{grid-template-columns:1fr 1fr}}
+.stepper{display:flex;align-items:center;gap:10px;margin-top:6px}
+.stepper button{min-height:46px;min-width:52px;border-radius:10px;border:1.5px solid var(--line);background:#fff;color:var(--brand);font-size:20px;font-weight:800;cursor:pointer}
+.stepper .val{flex:1;text-align:center;font-size:20px;font-weight:800;background:var(--auto-bg);padding:10px;border-radius:10px}
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table.grid{width:100%;border-collapse:collapse;font-size:13.5px}
+table.grid th,table.grid td{padding:8px 6px;border-bottom:1px solid var(--hairline);text-align:left;vertical-align:top}
+table.grid th{background:var(--auto-bg);color:var(--muted);font-size:12px;font-weight:700}
+table.grid td.r,table.grid th.r{text-align:right;white-space:nowrap}
+table.grid tr.best{background:var(--good-bg)}
+.row-card{padding:11px 0;border-bottom:1px solid var(--hairline)}
+.row-card:last-child{border-bottom:0}
+details.drawer{border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--paper);margin-top:10px}
+details.drawer summary{list-style:none;cursor:pointer;padding:12px 14px;font-weight:700;color:var(--brand);min-height:46px;display:flex;justify-content:space-between;align-items:center}
+details.drawer summary::-webkit-details-marker{display:none}
+details.drawer summary::after{content:"Show";color:var(--accent);font-size:13px}
+details.drawer[open] summary::after{content:"Hide"}
+details.drawer .inner{padding:0 14px 14px}
+.tel-link{display:inline-flex;align-items:center;min-height:44px;color:var(--accent);font-weight:700;text-decoration:none}
+.pane{display:none}
+.pane.active{display:block}
+.toast{position:fixed;left:12px;right:12px;bottom:20px;max-width:520px;margin:0 auto;transform:translateY(90px);opacity:0;visibility:hidden;pointer-events:none;background:var(--brand);color:#fff;padding:10px 14px;border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 8px 24px rgba(0,0,0,.22);transition:transform .2s ease,opacity .2s ease;z-index:60;font-size:14px}
+.toast.on{transform:translateY(0);opacity:1;visibility:visible;pointer-events:auto}
+.toast button{min-height:44px;padding:0 14px;border-radius:8px;border:0;background:var(--mint-on-dark);color:var(--brand);font-weight:800;cursor:pointer;align-items:center;justify-content:center}
+.print-only{display:none}
+/* Day-Of Print Sheet: STRICTLY ZERO FiledAwayCo branding/chrome/sample banner (CLAUDE.md:14 Surfaces rule)! */
+@media print{
+  body{background:#fff;font-size:11pt;color:#111}
+  .shell{max-width:100%;margin:0;padding:0;border:0;box-shadow:none;background:#fff}
+  .no-print,.topbar,.tabbar,.banner,.toast,.pane{display:none!important}
+  #dayOfPrintSheet{display:block!important}
+  #dayOfPrintSheet h1{font-size:20pt;margin:0 0 4px;color:#1F2A24}
+  #dayOfPrintSheet h2{font-size:13pt;margin:14px 0 6px;border-bottom:1.5px solid #355245;padding-bottom:3px;color:#355245}
+}
+</style>
+<style id="fa-name-title">.wm-t b,.wm-text b{font-size:19px;font-weight:800;line-height:1.12;letter-spacing:-.2px;white-space:normal}</style>
+<!-- FiledAwayCo UX layer v1 2026-11-27 -->
+<style id="faux-css">/* FiledAwayCo UX layer v1 (2026-11-27): welcome, import, paste, auto-fill. Added on top of the app; app logic unchanged. */
+.faux-ov{position:fixed;inset:0;z-index:2147483000;background:rgba(27,36,48,.55);display:flex;align-items:center;justify-content:center;padding:12px;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:#1B2430}
+.faux-ov[hidden]{display:none}
+.faux-card{background:#FBF8F2;border-radius:18px;max-width:460px;width:100%;max-height:calc(100dvh - 24px);overflow:auto;padding:18px 18px 14px;box-shadow:0 12px 40px rgba(0,0,0,.25)}
+.faux-hd{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.faux-mk{width:34px;height:34px;border-radius:8px;background:#1B2A40;color:#fff;font-weight:800;font-size:14px;display:grid;place-items:center;flex:none}
+.faux-nm{font-weight:800;font-size:15px;color:#1B2A40;line-height:1.15}
+.faux-x{margin-left:auto;min-width:44px;min-height:44px;border:0;background:transparent;font-size:22px;color:#4A5563;cursor:pointer;border-radius:10px}
+.faux-one{font-family:Georgia,"Times New Roman",serif;font-size:21px;line-height:1.2;color:#1B2A40;margin:2px 0 10px;font-weight:700}
+.faux-steps{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:7px}
+.faux-steps li{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;line-height:1.3}
+.faux-steps b.n{flex:none;width:24px;height:24px;border-radius:50%;background:#1F5C45;color:#fff;font-size:13px;display:grid;place-items:center;margin-top:-1px}
+.faux-btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:48px;border-radius:12px;border:0;background:#1F5C45;color:#fff;font:inherit;font-weight:700;font-size:15.5px;cursor:pointer;padding:0 14px;text-align:center}
+.faux-btn.sec{background:#fff;color:#1B2A40;border:1.5px solid #1B2A40}
+.faux-btn.ghost{background:transparent;color:#1B2A40;border:0;text-decoration:underline;min-height:44px}
+.faux-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.faux-trust{font-size:12.5px;color:#4A5563;margin:10px 0 0;display:flex;gap:6px;align-items:flex-start;line-height:1.35}
+.faux-help{min-width:44px;min-height:44px;border-radius:10px;border:1.5px solid #1B2A40;background:#fff;color:#1B2A40;font-weight:800;font-size:17px;cursor:pointer;flex:none;padding:0}
+.faux-fab{position:fixed;right:12px;bottom:12px;z-index:2147482000;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+.faux-h2{font-size:17px;font-weight:800;color:#1B2A40;margin:0 0 4px}
+.faux-sub{font-size:13.5px;color:#4A5563;margin:0 0 10px;line-height:1.35}
+.faux-opt{background:#fff;border:1px solid #D9D1C3;border-radius:12px;padding:10px 12px;margin:0 0 8px}
+.faux-opt b{display:block;font-size:14.5px;color:#1B2A40}
+.faux-opt small{display:block;font-size:12.5px;color:#4A5563;margin:2px 0 8px;line-height:1.35}
+.faux-opt .faux-row{margin-top:0}
+.faux-ta{width:100%;min-height:120px;border:1.5px solid #D9C79A;background:#FFF4D6;border-radius:10px;padding:8px 10px;font:13px/1.4 ui-monospace,Menlo,Consolas,monospace;color:#1A1A1A;box-sizing:border-box}
+.faux-tbl{width:100%;border-collapse:collapse;font-size:12.5px;margin:6px 0 8px}
+.faux-tbl th,.faux-tbl td{border-bottom:1px solid #EDE6DA;padding:5px 4px;text-align:left;vertical-align:top;word-break:break-word}
+.faux-tbl th{color:#4A5563;font-weight:700}
+.faux-tblw{max-height:46dvh;overflow:auto;border:1px solid #EDE6DA;border-radius:8px;background:#fff}
+.faux-err{background:#FBEAEA;color:#962324;border-radius:10px;padding:8px 10px;font-size:13.5px;margin:6px 0}
+.faux-ok{background:#E6F3EC;color:#16533C;border-radius:10px;padding:8px 10px;font-size:13.5px;margin:6px 0}
+.faux-drop{position:fixed;inset:0;z-index:2147483100;background:rgba(31,92,69,.82);color:#fff;display:flex;align-items:center;justify-content:center;font:800 22px/1.3 system-ui,sans-serif;text-align:center;padding:20px}
+.faux-drop[hidden]{display:none}
+.faux-auto{background:#E6F3EC;border:1px solid #9CC9B3;border-radius:12px;padding:10px 12px;margin:0 0 12px;color:#16533C;font-size:14px}
+.faux-auto b{color:#16533C}
+.faux-auto .faux-src{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap;border-top:1px solid #CFE6DA;padding-top:8px;margin-top:8px}
+.faux-auto .faux-btn{width:auto;min-height:44px;font-size:14px}
+.faux-toast{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;z-index:2147483200;background:#1B2A40;color:#fff;border-radius:12px;padding:10px 14px;font:600 14px/1.3 system-ui,sans-serif;display:flex;gap:12px;align-items:center;max-width:calc(100vw - 24px);box-shadow:0 6px 20px rgba(0,0,0,.25)}
+.faux-toast button{min-height:40px;border-radius:8px;border:1px solid #fff;background:transparent;color:#fff;font-weight:700;padding:0 12px;cursor:pointer}
+html.faux-quiet #toast,html.faux-quiet #toast-bar{visibility:hidden!important}
+.faux-sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+@media (max-height:700px){.faux-card{padding:14px 14px 10px}.faux-one{font-size:19px;margin-bottom:8px}.faux-steps{gap:5px;margin-bottom:10px}.faux-steps li{font-size:14px}.faux-btn{min-height:46px}}
+@media print{.faux-ov,.faux-fab,.faux-help,.faux-drop,.faux-toast,.faux-auto{display:none!important}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="topbar no-print">
+    <div class="wm">
+      <div class="mark" aria-hidden="true">fa</div>
+      <div class="wm-t"><b>Clear Wedding Planner</b><span>Venue Quote · Guest Cost · Payments &amp; Day-Of</span></div>
+    </div>
+    <button type="button" class="btn sec" id="topSampleBtn" style="min-height:44px;padding:0 14px;font-size:13.5px;flex:none;white-space:nowrap">Try sample</button>
+  </div>
+
+  <div class="banner no-print" id="sampleBanner" data-sample-banner="1" style="display:none">
+    <span><b>Sample wedding</b> — Maya &amp; Jordan example, not your numbers</span>
+    <button type="button" id="clearSampleBtn">Clear sample</button>
+  </div>
+
+  <nav class="tabbar no-print" aria-label="Main navigation">
+    <button type="button" data-tab="quote" aria-current="page"><span>Venue Quote</span></button>
+    <button type="button" data-tab="guests"><span>Guest Cost</span></button>
+    <button type="button" data-tab="dayof"><span>Payments &amp; Day-Of</span></button>
+  </nav>
+
+  <!-- TAB 1: VENUE & QUOTE CHECK (+ HIDDEN-FEE ADD-ONS + DETERMINISTIC QUOTE PASTE CHECK) -->
+  <section class="pane active" id="pane-quote" aria-label="Venue and Quote Check">
+    <h1>Venue &amp; Quote Check</h1>
+    <p class="cap" style="margin:0 0 12px">Standing at a venue tour or tasting? See the real all-in total after service charges, compounding sales tax, and hidden add-ons.</p>
+
+    <div class="empty-cta" id="emptyHeroCta" style="display:none">
+      <div><b>See the math in one tap:</b> load Maya &amp; Jordan's sample wedding ($45,000 budget, 110 guests, 3 venue quotes, payment calendar, and day-of timeline) or type your first quote below.</div>
+      <button type="button" class="btn full" id="primarySampleBtn">Load sample wedding (Maya &amp; Jordan)</button>
+    </div>
+
+    <div class="card hero">
+      <div class="ey">
+        <span>True all-in quote total</span>
+        <span class="tag good" id="qDeltaBadge">+$0 over base</span>
+      </div>
+      <div class="hero-grid">
+        <div class="hbox">
+          <div class="lbl">All-in total (with service, tax &amp; add-ons)</div>
+          <div class="big num" id="outAllIn">$0.00</div>
+          <div class="sub num" id="outBreakdownSub">Base $0 · Service $0 · Tax $0 · Add-ons $0</div>
+        </div>
+        <div class="hbox">
+          <div class="lbl">Tax-on-service compounding difference</div>
+          <div class="big num" id="outTaxDelta">$0.00</div>
+          <div class="sub num" id="outTaxCompare">Compounded vs non-compounded</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Quote details</h2>
+      <div class="grid2">
+        <label class="field"><span class="l">Vendor / venue name</span><span class="inp-wrap"><input id="vName" placeholder="e.g. Willow Creek Barn" autocomplete="off"></span></label>
+        <label class="field"><span class="l">Base quote ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="vBase" inputmode="decimal" placeholder="9000"></span></label>
+        <label class="field"><span class="l">Service charge % (typical 20–25%)</span><span class="inp-wrap"><input id="vSvc" inputmode="decimal" placeholder="20"><span class="suf">%</span></span></label>
+        <label class="field"><span class="l">Sales tax %</span><span class="inp-wrap"><input id="vTax" inputmode="decimal" placeholder="8"><span class="suf">%</span></span></label>
+      </div>
+      <div class="field" style="margin-top:4px">
+        <span class="l">Does sales tax apply on top of the service charge?</span>
+        <div class="seg" role="group" aria-label="Tax on service charge">
+          <button type="button" data-tos="yes" aria-pressed="true">Yes (most states — compounds)</button>
+          <button type="button" data-tos="no" aria-pressed="false">No (base only)</button>
+        </div>
+      </div>
+
+      <div class="field" style="margin-top:10px">
+        <span class="l">Quick-tap hidden-fee add-ons (optional)</span>
+        <div class="chips" id="addonChips">
+          <button type="button" class="chip-btn" data-addon="cake" aria-pressed="false">Cake cutting ($250)</button>
+          <button type="button" class="chip-btn" data-addon="corkage" aria-pressed="false">Corkage ($400)</button>
+          <button type="button" class="chip-btn" data-addon="overtime" aria-pressed="false">Overtime 1 hr ($600)</button>
+          <button type="button" class="chip-btn" data-addon="setup" aria-pressed="false">Setup / security ($500)</button>
+        </div>
+      </div>
+
+      <div class="grid2" style="margin-top:10px">
+        <label class="field"><span class="l">Custom extra / attrition fees ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="vExtra" inputmode="decimal" placeholder="0"></span></label>
+        <div class="field" style="display:flex;align-items:flex-end">
+          <button type="button" class="btn full" id="saveQuoteBtn">Save to 3-quote comparison</button>
+        </div>
+      </div>
+
+      <details class="drawer" id="quotePasteDrawer">
+        <summary>Paste quote text to check for hidden fees (offline, optional)</summary>
+        <div class="inner">
+          <p class="cap" style="margin:0 0 8px">Runs 100% locally on your device — never uploaded. Scans for service charges, cake-cutting, corkage, overtime, setup/security, and headcount minimums while skipping negated phrases (&ldquo;no corkage&rdquo;). <b>Planning calculator only — not legal advice.</b></p>
+          <textarea class="quote-in" id="quotePasteText" aria-label="Paste venue quote text" placeholder="Paste venue or caterer email/quote snippet here..."></textarea>
+          <div class="btn-row">
+            <button type="button" class="btn" id="scanQuoteBtn">Check text for hidden fees</button>
+            <button type="button" class="btn sec" id="sampleQuoteTextBtn">Try sample quote text</button>
+          </div>
+          <div id="quoteFindingsBox" style="margin-top:10px"></div>
+        </div>
+      </details>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px">
+        <h2 style="margin:0">Compare up to 3 saved quotes</h2>
+        <button type="button" class="btn sec" id="copyVendorRowBtn" style="min-height:44px;padding:0 12px;font-size:13.5px">Copy current quote line</button>
+      </div>
+      <div id="compareBox"></div>
+      <p class="cap" style="margin:8px 0 0">Venue/caterer service charges typically run 20–25% of food &amp; drink (The Knot, checked Nov 24, 2026; ask your venue whether service charge is taxable and separate from gratuity).</p>
+    </div>
+  </section>
+
+  <!-- TAB 2: GUEST-COST TRIMMER + COMPACT CATERING MEAL TALLY -->
+  <section class="pane" id="pane-guests" aria-label="Guest Cost Trimmer and Meal Tally">
+    <h1>Guest-Cost Trimmer</h1>
+    <p class="cap" style="margin:0 0 12px">See what each additional guest really costs — and how much trimming your guest list saves against your budget.</p>
+
+    <div class="card hero">
+      <div class="ey">
+        <span>True marginal cost per guest</span>
+        <span class="tag good num" id="gMaxTag">Max guests: 0</span>
+      </div>
+      <div class="hero-grid">
+        <div class="hbox">
+          <div class="lbl">Each extra guest adds</div>
+          <div class="big num" id="outPerGuest">$0</div>
+          <div class="sub num" id="outPer10">Every 10 guests ≈ $0</div>
+        </div>
+        <div class="hbox">
+          <div class="lbl">Cutting <span id="outCutCnt">0</span> guests saves</div>
+          <div class="big num" id="outCutSave">$0</div>
+          <div class="sub num" id="outNewTotal">New projected total: $0</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Budget &amp; guest numbers</h2>
+      <div class="grid2">
+        <label class="field"><span class="l">Total wedding budget ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="gBudget" inputmode="decimal" placeholder="45000"></span></label>
+        <label class="field"><span class="l">Planned guest count</span><span class="inp-wrap"><input id="gPlanned" inputmode="numeric" placeholder="110"></span></label>
+        <label class="field"><span class="l">Fixed costs (venue, photo, attire — $)</span><span class="inp-wrap"><span class="pre">$</span><input id="gFixed" inputmode="decimal" placeholder="35084"></span></label>
+        <label class="field"><span class="l">Guest-based costs (food, bar, rentals — $)</span><span class="inp-wrap"><span class="pre">$</span><input id="gVar" inputmode="decimal" placeholder="15698"></span></label>
+      </div>
+      <div class="field" style="margin-top:8px">
+        <span class="l">Try trimming guests (step by 5)</span>
+        <div class="stepper">
+          <button type="button" id="cutMinusBtn" aria-label="Trim 5 fewer guests">−5</button>
+          <div class="val num" id="cutDisplay">0 fewer guests</div>
+          <button type="button" id="cutPlusBtn" aria-label="Trim 5 more guests">+5</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Tier scenarios (85% expected Yes rate)</h2>
+      <div class="grid3" style="margin-bottom:10px">
+        <label class="field"><span class="l">Tier A invited</span><span class="inp-wrap"><input id="gTierA" inputmode="numeric" placeholder="60"></span></label>
+        <label class="field"><span class="l">Tier B invited</span><span class="inp-wrap"><input id="gTierB" inputmode="numeric" placeholder="35"></span></label>
+        <label class="field"><span class="l">Tier C invited</span><span class="inp-wrap"><input id="gTierC" inputmode="numeric" placeholder="25"></span></label>
+      </div>
+      <div class="tbl-wrap"><table class="grid" id="tierTable"></table></div>
+    </div>
+
+    <div class="card">
+      <h2>Compact catering meal tally</h2>
+      <p class="cap" style="margin:0 0 8px">Quick headcount summary to text your caterer (full 250-row household list stays in your workbook).</p>
+      <div class="grid3">
+        <label class="field"><span class="l">Entrée 1 (e.g. Short rib)</span><span class="inp-wrap"><input id="m1" inputmode="numeric" placeholder="0"></span></label>
+        <label class="field"><span class="l">Entrée 2 (e.g. Salmon)</span><span class="inp-wrap"><input id="m2" inputmode="numeric" placeholder="0"></span></label>
+        <label class="field"><span class="l">Entrée 3 (e.g. Risotto)</span><span class="inp-wrap"><input id="m3" inputmode="numeric" placeholder="0"></span></label>
+        <label class="field"><span class="l">Kids' meals</span><span class="inp-wrap"><input id="mKid" inputmode="numeric" placeholder="0"></span></label>
+        <label class="field"><span class="l">Vendor meals</span><span class="inp-wrap"><input id="mVen" inputmode="numeric" placeholder="0"></span></label>
+        <div class="field" style="display:flex;align-items:flex-end"><div class="tag good num" id="mTotalPill" style="padding:10px 14px;font-size:14px">Total: 0 meals</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 3: PAYMENT .ICS REMINDERS & LOGO-FREE PRINTABLE DAY-OF SHEET -->
+  <section class="pane" id="pane-dayof" aria-label="Vendor Payments and Day-Of Sheet">
+    <h1>Payments Calendar &amp; Day-Of Sheet</h1>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px">
+        <h2 style="margin:0">Upcoming vendor payments</h2>
+        <button type="button" class="btn" id="icsPayBtn" style="min-height:44px;padding:0 12px;font-size:13.5px">Download reminders (.ics)</button>
+      </div>
+      <p class="cap" style="margin:0 0 10px">Calendar file includes 14-day and 3-day alerts before every deposit or balance due date.</p>
+      <div id="payList"></div>
+      <form id="payForm" style="margin-top:12px;padding-top:12px;border-top:1px solid var(--hairline)">
+        <div class="grid3">
+          <label class="field"><span class="l">Vendor &amp; milestone</span><span class="inp-wrap"><input id="pVendor" required placeholder="e.g. Florist final balance"></span></label>
+          <label class="field"><span class="l">Due date</span><span class="inp-wrap"><input type="date" id="pDate" required></span></label>
+          <label class="field"><span class="l">Amount ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="pAmt" inputmode="decimal" required placeholder="1500"></span></label>
+        </div>
+        <button type="submit" class="btn sec full" style="margin-top:10px">Add payment reminder</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px">
+        <h2 style="margin:0">Day-Of timeline &amp; vendor contacts</h2>
+        <button type="button" class="btn" id="printDayOfBtn" style="min-height:44px;padding:0 14px;font-size:13.5px">Print Day-Of Sheet (logo-free)</button>
+      </div>
+      <p class="cap" style="margin:0 0 10px">Tap any phone number to call directly on wedding morning. The printed sheet carries <b>zero shop branding</b> — clean to hand to your coordinator, bridal party, and vendors.</p>
+      <div class="grid2" style="margin-bottom:10px">
+        <label class="field"><span class="l">Couple / event title (for print sheet)</span><span class="inp-wrap"><input id="dTitle" placeholder="e.g. Maya & Jordan"></span></label>
+        <label class="field"><span class="l">Wedding date</span><span class="inp-wrap"><input type="date" id="dDate"></span></label>
+      </div>
+      <h3>Timeline</h3>
+      <div id="timelineBox"></div>
+      <form id="tlForm" style="margin-top:10px;padding-top:10px;border-top:1px solid var(--hairline)">
+        <div class="grid3">
+          <label class="field"><span class="l">Time</span><span class="inp-wrap"><input id="tlTime" required placeholder="e.g. 2:30 PM"></span></label>
+          <label class="field"><span class="l">Event</span><span class="inp-wrap"><input id="tlItem" required placeholder="e.g. First look photos"></span></label>
+          <label class="field"><span class="l">Lead / owner</span><span class="inp-wrap"><input id="tlOwner" placeholder="e.g. Photographer"></span></label>
+        </div>
+        <button type="submit" class="btn sec full" style="margin-top:8px">Add timeline item</button>
+      </form>
+      <h3 style="margin-top:16px">Key vendor contacts</h3>
+      <div id="contactsBox"></div>
+      <form id="ctForm" style="margin-top:10px;padding-top:10px;border-top:1px solid var(--hairline)">
+        <div class="grid3">
+          <label class="field"><span class="l">Role</span><span class="inp-wrap"><input id="ctRole" required placeholder="e.g. Florist"></span></label>
+          <label class="field"><span class="l">Contact name</span><span class="inp-wrap"><input id="ctName" required placeholder="e.g. Elena (Bloom Co)"></span></label>
+          <label class="field"><span class="l">Phone</span><span class="inp-wrap"><input id="ctPhone" type="tel" required placeholder="555-201-4400"></span></label>
+        </div>
+        <button type="submit" class="btn sec full" style="margin-top:8px">Add vendor contact</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h2>Backup &amp; about</h2>
+      <div class="btn-row">
+        <button type="button" class="btn sec" id="backupBtn">Backup companion data (.json)</button>
+        <label class="btn sec" for="restoreFile" style="cursor:pointer">Restore from JSON backup</label>
+        <input type="file" id="restoreFile" accept="application/json,.json" style="display:none">
+      </div>
+      <p class="cap" style="margin:10px 0 0">Clear Wedding Companion · FiledAwayCo · Planning tool only — not legal or financial advice. Verify all terms against your signed vendor contracts.</p>
+    </div>
+  </section>
+
+  <!-- STRICTLY ZERO-BRANDING DAY-OF PRINT SHEET (CLAUDE.md:14) -->
+  <section id="dayOfPrintSheet" class="print-only" aria-label="Printable Day-Of Timeline and Contact Sheet"></section>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><span id="toastMsg"></span><button type="button" id="toastUndo" style="display:none">Undo</button></div>
+
+<script>
+(function(){
+"use strict";
+var STORE_KEY = "fac_clear_wedding_v1";
+var ADDON_VALS = { cake:250, corkage:400, overtime:600, setup:500 };
+var NEG_RE = /\b(no|not|without|waived|free|0|zero|included\s+at\s+no)\b(?:\s+[a-z0-9\-]+){0,3}[\s\-]*$/i;
+var FEE_RULES = [
+  { id:"cake", title:"Cake-cutting fee", addon:"cake", re:/\b(cake[\-\s]?cutting|plating\s+fee)\b/gi },
+  { id:"corkage", title:"Corkage / outside alcohol fee", addon:"corkage", re:/\b(corkage|outside\s+alcohol\s+fee)\b/gi },
+  { id:"overtime", title:"Overtime / extended-hours charge", addon:"overtime", re:/\b(overtime|additional\s+hour|extra\s+hour\s+fee)\b/gi },
+  { id:"setup", title:"Setup / teardown / security fee", addon:"setup", re:/\b(setup\s+fee|tear[\-\s]?down\s+fee|security\s+(fee|officer|guard)|load[\-\s]?in\s+fee)\b/gi },
+  { id:"service", title:"Service charge / mandatory gratuity", addon:null, note:"Verify % & taxability", re:/\b(service\s+charge|mandatory\s+gratuity|auto[\-\s]?gratuity)\b/gi },
+  { id:"attrition", title:"Food & beverage / guest count minimum", addon:null, note:"Verify minimum in contract", re:/\b(guest\s+minimum|headcount\s+minimum|f&b\s+minimum|food\s+and\s+beverage\s+minimum|attrition)\b/gi }
+];
+var SAMPLE_QUOTE_TEXT = "Venue rental is $9,000 plus a 20% service charge and 8% state tax. No corkage fee for champagne. Cake-cutting fee is $250, security fee applies for bar service, and overtime is billed per hour past 10pm. Note our 100-guest food and beverage minimum.";
+
+function defaultState(){
+  return {
+    sample:false,
+    quote:{ name:"", base:"", svc:"20", tax:"8", tos:true, addons:[], extra:"" },
+    savedQuotes:[],
+    guests:{ budget:"", planned:"", fixed:"", varCost:"", cut:0, tierA:"", tierB:"", tierC:"", m1:"", m2:"", m3:"", mKid:"", mVen:"" },
+    payments:[],
+    dayOf:{ title:"", date:"", timeline:[], contacts:[] }
+  };
+}
+function sampleState(){
+  return {
+    sample:true,
+    quote:{ name:"Willow Creek Barn", base:"9000", svc:"20", tax:"8", tos:true, addons:[], extra:"" },
+    savedQuotes:[
+      { name:"Willow Creek Barn", base:9000, svc:20, tax:8, tos:true, addonsTotal:0, allIn:11664, sample:true },
+      { name:"Lakeside Pavilion", base:9800, svc:22, tax:8, tos:true, addonsTotal:500, allIn:13412.48, sample:true },
+      { name:"The Grand Atrium", base:11250, svc:20, tax:8, tos:true, addonsTotal:250, allIn:14830, sample:true }
+    ],
+    guests:{ budget:"45000", planned:"110", fixed:"35084", varCost:"15698", cut:15, tierA:"62", tierB:"36", tierC:"22", m1:"44", m2:"36", m3:"18", mKid:"6", mVen:"5" },
+    payments:[
+      { id:"p-s1", vendor:"Willow Creek Barn — 2nd installment", date:"2027-03-18", amount:3500, sample:true },
+      { id:"p-s2", vendor:"Cedar & Light Catering — menu deposit", date:"2027-06-18", amount:4800, sample:true },
+      { id:"p-s3", vendor:"Oak Photo Studio — final balance", date:"2027-08-18", amount:2400, sample:true }
+    ],
+    dayOf:{
+      title:"Maya & Jordan", date:"2027-09-18",
+      timeline:[
+        { time:"1:00 PM", item:"Venue opens · floral & rentals load-in", owner:"Coordinator", sample:true },
+        { time:"2:30 PM", item:"First look & wedding party portraits", owner:"Photographer", sample:true },
+        { time:"4:30 PM", item:"Ceremony begins on the lawn", owner:"Officiant", sample:true },
+        { time:"5:15 PM", item:"Cocktail hour & family photos", owner:"Caterer / DJ", sample:true },
+        { time:"6:30 PM", item:"Dinner service & toasts", owner:"Caterer", sample:true },
+        { time:"10:30 PM", item:"Last song & vendor pack-out", owner:"Coordinator", sample:true }
+      ],
+      contacts:[
+        { role:"Venue Manager", name:"Willow Creek Barn (Hannah)", phone:"555-201-3344", sample:true },
+        { role:"Caterer", name:"Cedar & Light Catering", phone:"555-319-8820", sample:true },
+        { role:"Photographer", name:"Oak Photo Studio", phone:"555-442-1190", sample:true }
+      ]
+    }
+  };
+}
+
+var state = loadState();
+var quoteFindings = [];
+var undoFn = null, toastT = null;
+
+function clone(o){ return JSON.parse(JSON.stringify(o)); }
+function esc(s){ return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+function parseNum(raw){ if (raw == null) return 0; var s = String(raw).trim().replace(/[$,%\s]/g, ""); if (!/^\d+(\.\d+)?$/.test(s)) return 0; var v = parseFloat(s); return (isNaN(v) || v < 0) ? 0 : v; }
+function fmt$(n){ var v = Number(n) || 0; return (v < 0 ? "−" : "") + "$" + Math.round(Math.abs(v)).toLocaleString("en-US"); }
+function fmt$2(n){ var v = Number(n) || 0; return (v < 0 ? "−" : "") + "$" + Math.abs(v).toLocaleString("en-US", { minimumFractionDigits:2, maximumFractionDigits:2 }); }
+function localISO(d){ return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
+function todayISO(){ return localISO(new Date()); }
+
+function loadState(){
+  try {
+    var raw = localStorage.getItem(STORE_KEY);
+    if (raw) {
+      var o = JSON.parse(raw);
+      if (o && o.quote && o.guests) return Object.assign(defaultState(), o);
+    }
+  } catch(e){}
+  return defaultState();
+}
+function persist(){ try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch(e){} }
+
+/* ---------- Exact Workbook-Parity Quote & Guest-Cost Math ---------- */
+function computeQuote(q){
+  var base = parseNum(q.base);
+  var svcPct = parseNum(q.svc) / 100;
+  var taxPct = parseNum(q.tax) / 100;
+  var svcAmt = Math.round(base * svcPct * 100) / 100;
+  var compounded = Math.round(base * (1 + svcPct) * (1 + taxPct) * 100) / 100;
+  var simple = Math.round(base * (1 + svcPct + taxPct) * 100) / 100;
+  var taxAmt = q.tos ? Math.round((compounded - base - svcAmt) * 100) / 100 : Math.round((simple - base - svcAmt) * 100) / 100;
+  var addonsTotal = (q.addons || []).reduce(function(s, k){ return s + (ADDON_VALS[k] || 0); }, 0) + parseNum(q.extra);
+  var allIn = Math.round(((q.tos ? compounded : simple) + addonsTotal) * 100) / 100;
+  var deltaOverBase = Math.round((allIn - base) * 100) / 100;
+  var taxCompDelta = Math.round((compounded - simple) * 100) / 100;
+  return { base:base, svcAmt:svcAmt, taxAmt:taxAmt, addonsTotal:addonsTotal, allIn:allIn, compounded:compounded, simple:simple, deltaOverBase:deltaOverBase, taxCompDelta:taxCompDelta };
+}
+
+function computeGuestMath(g){
+  var budget = parseNum(g.budget);
+  var planned = Math.floor(parseNum(g.planned));
+  var fixed = parseNum(g.fixed);
+  var varCost = parseNum(g.varCost);
+  var perGuest = planned > 0 ? (varCost / planned) : 0;
+  var cut = Math.max(0, Math.min(planned, Math.floor(Number(g.cut) || 0)));
+  var cutSave = Math.round(cut * perGuest);
+  var newTotal = Math.round(fixed + Math.max(0, planned - cut) * perGuest);
+  var maxGuests = (budget > 0 && perGuest > 0) ? Math.max(0, Math.floor((budget - fixed) / perGuest)) : 0;
+  var a = Math.floor(parseNum(g.tierA)), b = Math.floor(parseNum(g.tierB)), c = Math.floor(parseNum(g.tierC));
+  var tiers = [
+    { name:"Tier A only (must invite)", invited:a },
+    { name:"Tiers A + B", invited:a + b },
+    { name:"Everyone (A + B + C)", invited:a + b + c }
+  ].map(function(t){
+    var exp = Math.round(t.invited * 0.85);
+    var tot = Math.round(fixed + exp * perGuest);
+    return { name:t.name, invited:t.invited, exp:exp, tot:tot, diff:budget > 0 ? (budget - tot) : null };
+  });
+  return { budget:budget, planned:planned, fixed:fixed, varCost:varCost, perGuest:perGuest, perGuestRounded:Math.round(perGuest), cut:cut, cutSave:cutSave, newTotal:newTotal, maxGuests:maxGuests, tiers:tiers };
+}
+
+function scanQuoteText(text){
+  var src = String(text || "");
+  if (!src.trim()) return [];
+  var out = [];
+  FEE_RULES.forEach(function(r){
+    r.re.lastIndex = 0;
+    var m;
+    while ((m = r.re.exec(src)) !== null) {
+      var pre = src.slice(Math.max(0, m.index - 36), m.index).split(/[.,;:\n!?]/).pop() || "";
+      if (NEG_RE.test(pre)) continue;
+      out.push({ id:r.id, title:r.title, addon:r.addon, note:r.note || "", match:m[0], added:false });
+      break;
+    }
+  });
+  return out;
+}
+
+function icsEsc(s){ return String(s || "").replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r?\n/g, " "); }
+function buildPaymentsICS(payments, weddingDate, title){
+  var stamp = new Date().toISOString().replace(/[-:]/g, "").slice(0, 15) + "Z";
+  var lines = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//FiledAwayCo//Clear Wedding Companion//EN","CALSCALE:GREGORIAN"];
+  payments.forEach(function(p){
+    if (!p || !p.date) return;
+    var d = String(p.date).replace(/-/g, "");
+    lines.push("BEGIN:VEVENT","UID:fac-wed-pay-" + icsEsc(p.id || d) + "@filedawayco.local","DTSTAMP:" + stamp,"DTSTART;VALUE=DATE:" + d);
+    lines.push("SUMMARY:Wedding Payment: " + icsEsc(p.vendor) + " (" + icsEsc(fmt$(p.amount)) + ")");
+    lines.push("DESCRIPTION:" + icsEsc("Scheduled vendor payment of " + fmt$2(p.amount) + ". Verify due date against your signed vendor contract."));
+    lines.push("BEGIN:VALARM","TRIGGER:-P14D","ACTION:DISPLAY","DESCRIPTION:Wedding payment due in 14 days","END:VALARM");
+    lines.push("BEGIN:VALARM","TRIGGER:-P3D","ACTION:DISPLAY","DESCRIPTION:Wedding payment due in 3 days","END:VALARM");
+    lines.push("END:VEVENT");
+  });
+  if (weddingDate && /^\d{4}-\d{2}-\d{2}$/.test(weddingDate)) {
+    var wd = weddingDate.replace(/-/g, "");
+    lines.push("BEGIN:VEVENT","UID:fac-wed-day@filedawayco.local","DTSTAMP:" + stamp,"DTSTART;VALUE=DATE:" + wd);
+    lines.push("SUMMARY:" + icsEsc((title || "Wedding") + " — Wedding Day"));
+    lines.push("END:VEVENT");
+  }
+  lines.push("END:VCALENDAR");
+  return lines.join("\r\n") + "\r\n";
+}
+
+function download(name, text, mime){
+  var b = new Blob([text], { type:mime }), u = URL.createObjectURL(b), a = document.createElement("a");
+  a.href = u; a.download = name; document.body.appendChild(a); a.click();
+  setTimeout(function(){ URL.revokeObjectURL(u); a.remove(); }, 500);
+}
+function showToast(msg, fn){
+  var el = document.getElementById("toast");
+  document.getElementById("toastMsg").textContent = msg;
+  var ub = document.getElementById("toastUndo");
+  undoFn = fn || null;
+  ub.style.display = fn ? "inline-flex" : "none";
+  el.classList.add("on");
+  clearTimeout(toastT);
+  toastT = setTimeout(function(){ el.classList.remove("on"); undoFn = null; }, fn ? 7000 : 2800);
+}
+
+/* ---------- Sync & Render ---------- */
+function syncInputs(){
+  var q = state.quote, g = state.guests, d = state.dayOf;
+  document.getElementById("vName").value = q.name || "";
+  document.getElementById("vBase").value = q.base || "";
+  document.getElementById("vSvc").value = q.svc || "";
+  document.getElementById("vTax").value = q.tax || "";
+  document.getElementById("vExtra").value = q.extra || "";
+  document.querySelectorAll("[data-tos]").forEach(function(b){ b.setAttribute("aria-pressed", String((b.dataset.tos === "yes") === !!q.tos)); });
+  document.querySelectorAll("[data-addon]").forEach(function(b){ b.setAttribute("aria-pressed", String((q.addons || []).indexOf(b.dataset.addon) >= 0)); });
+  document.getElementById("gBudget").value = g.budget || "";
+  document.getElementById("gPlanned").value = g.planned || "";
+  document.getElementById("gFixed").value = g.fixed || "";
+  document.getElementById("gVar").value = g.varCost || "";
+  document.getElementById("gTierA").value = g.tierA || "";
+  document.getElementById("gTierB").value = g.tierB || "";
+  document.getElementById("gTierC").value = g.tierC || "";
+  ["m1","m2","m3","mKid","mVen"].forEach(function(k){ document.getElementById(k).value = g[k] || ""; });
+  document.getElementById("dTitle").value = d.title || "";
+  document.getElementById("dDate").value = d.date || "";
+}
+
+function renderBanner(){
+  var tl = state.dayOf.timeline || [], cs = state.dayOf.contacts || [];
+  var hasS = state.sample || state.savedQuotes.some(function(x){return x.sample;}) || state.payments.some(function(x){return x.sample;}) || tl.some(function(x){return x.sample;}) || cs.some(function(x){return x.sample;});
+  document.getElementById("sampleBanner").style.display = hasS ? "flex" : "none";
+  document.getElementById("topSampleBtn").style.display = hasS ? "none" : "inline-flex";
+  var isEmpty = !state.quote.base && !state.savedQuotes.length && !state.guests.budget && !state.payments.length && !tl.length && !cs.length;
+  document.getElementById("emptyHeroCta").style.display = isEmpty ? "flex" : "none";
+}
+
+function renderQuote(){
+  var r = computeQuote(state.quote);
+  document.getElementById("outAllIn").textContent = fmt$2(r.allIn);
+  document.getElementById("outBreakdownSub").textContent = "Base " + fmt$(r.base) + " · Service " + fmt$2(r.svcAmt) + " · Tax " + fmt$2(r.taxAmt) + " · Add-ons " + fmt$(r.addonsTotal);
+  document.getElementById("qDeltaBadge").textContent = "+" + fmt$(r.deltaOverBase) + " over base";
+  document.getElementById("outTaxDelta").textContent = fmt$2(r.taxCompDelta);
+  document.getElementById("outTaxCompare").textContent = "Compounded " + fmt$2(r.compounded) + " vs simple " + fmt$2(r.simple);
+
+  var cb = document.getElementById("compareBox");
+  if (!state.savedQuotes.length) {
+    cb.innerHTML = '<p class="cap" style="margin:0">No quotes saved yet. Enter a quote above and tap <b>Save to 3-quote comparison</b>.</p>';
+  } else {
+    var minVal = Math.min.apply(null, state.savedQuotes.map(function(x){ return x.allIn; }));
+    // Responsive unclipped cards (0px horizontal clipping on 375px phones AND clean single-row on tablet/desktop!)
+    cb.innerHTML = state.savedQuotes.map(function(x, i){
+      var isLow = state.savedQuotes.length > 1 && Math.abs(x.allIn - minVal) < 0.01;
+      return '<div class="row-card"' + (isLow ? ' style="background:var(--good-bg);margin:0 -8px;padding:11px 8px;border-radius:10px"' : '') + '>' +
+        '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">' +
+        '<div><div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px"><b>' + esc(x.name) + '</b>' +
+        (isLow ? '<span class="tag good">Lowest</span>' : '') + (x.sample ? '<span class="tag warn">SAMPLE</span>' : '') + '</div>' +
+        '<div class="cap num">Base ' + fmt$(x.base) + ' · ' + x.svc + '% svc / ' + x.tax + '% tax → <b style="color:var(--brand)">All-in ' + fmt$2(x.allIn) + '</b></div></div>' +
+        '<button type="button" class="btn sec" data-rmq="' + i + '" style="min-height:44px;padding:0 12px;font-size:13px">Remove</button></div></div>';
+    }).join("");
+  }
+}
+
+function renderGuests(){
+  var r = computeGuestMath(state.guests);
+  document.getElementById("outPerGuest").textContent = fmt$(r.perGuestRounded);
+  document.getElementById("outPer10").textContent = "Every 10 guests ≈ " + fmt$(r.perGuest * 10);
+  document.getElementById("gMaxTag").textContent = "Max guests at budget: " + r.maxGuests;
+  document.getElementById("outCutCnt").textContent = String(r.cut);
+  document.getElementById("outCutSave").textContent = fmt$(r.cutSave);
+  document.getElementById("outNewTotal").textContent = "New projected total: " + fmt$(r.newTotal);
+  document.getElementById("cutDisplay").textContent = r.cut + " fewer guests";
+
+  // Responsive unclipped tier list (zero horizontal clipping on 375px phones!)
+  document.getElementById("tierTable").innerHTML = '<tbody>' +
+    r.tiers.map(function(t){
+      var dTxt = t.diff == null ? "—" : (t.diff >= 0 ? ('<span class="tag good">Under ' + fmt$(t.diff) + '</span>') : ('<span class="tag alert">Over ' + fmt$(-t.diff) + '</span>'));
+      return '<tr><td><b>' + esc(t.name) + '</b><div class="cap num">' + t.invited + ' invited · ~' + t.exp + ' est. Yes</div></td>' +
+        '<td class="r"><div class="num"><b>' + fmt$(t.tot) + '</b></div><div style="margin-top:4px">' + dTxt + '</div></td></tr>';
+    }).join("") + '</tbody>';
+
+  var g = state.guests;
+  var mTot = Math.floor(parseNum(g.m1)) + Math.floor(parseNum(g.m2)) + Math.floor(parseNum(g.m3)) + Math.floor(parseNum(g.mKid)) + Math.floor(parseNum(g.mVen));
+  document.getElementById("mTotalPill").textContent = "Total: " + mTot + " meals";
+}
+
+function renderDayOf(){
+  var pb = document.getElementById("payList");
+  if (!state.payments.length) {
+    pb.innerHTML = '<p class="cap" style="margin:0">No payments added yet. Add vendor deposits &amp; balances below to export your calendar reminders.</p>';
+  } else {
+    pb.innerHTML = state.payments.map(function(p, i){
+      return '<div class="row-card"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">' +
+        '<div><b>' + esc(p.vendor) + '</b>' + (p.sample ? ' <span class="tag warn">SAMPLE</span>' : '') + '<div class="cap num">Due ' + esc(p.date) + ' · <b>' + fmt$2(p.amount) + '</b></div></div>' +
+        '<button type="button" class="btn sec" data-rmpay="' + i + '" style="min-height:44px;padding:0 12px;font-size:13px">Remove</button></div></div>';
+    }).join("");
+  }
+
+  var tl = state.dayOf.timeline || [];
+  document.getElementById("timelineBox").innerHTML = tl.length
+    ? tl.map(function(x, i){
+        return '<div class="row-card"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">' +
+          '<div><b class="num">' + esc(x.time) + '</b> · ' + esc(x.item) + (x.owner ? ' <span class="tag">' + esc(x.owner) + '</span>' : '') + (x.sample ? ' <span class="tag warn">SAMPLE</span>' : '') + '</div>' +
+          '<button type="button" class="btn sec" data-rmtl="' + i + '" style="min-height:44px;padding:0 12px;font-size:13px">Remove</button></div></div>';
+      }).join("")
+    : '<p class="cap" style="margin:0">No timeline items yet — add your wedding-day moments below.</p>';
+
+  var cs = state.dayOf.contacts || [];
+  document.getElementById("contactsBox").innerHTML = cs.length
+    ? cs.map(function(c, i){
+        var tel = String(c.phone || "").replace(/[^0-9+]/g, "");
+        return '<div class="row-card"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">' +
+          '<div><b>' + esc(c.role) + '</b> · ' + esc(c.name) + (c.sample ? ' <span class="tag warn">SAMPLE</span>' : '') +
+          (tel ? '<div><a class="tel-link num" href="tel:' + esc(tel) + '">' + esc(c.phone) + '</a></div>' : '') + '</div>' +
+          '<button type="button" class="btn sec" data-rmct="' + i + '" style="min-height:44px;padding:0 12px;font-size:13px">Remove</button></div></div>';
+      }).join("")
+    : '<p class="cap" style="margin:0">No vendor contacts yet — add your venue, caterer, photo, and coordinator below.</p>';
+
+  // Build STRICTLY LOGO-FREE Day-Of Print Sheet (ZERO FiledAwayCo name, logo, email, or sample banner — CLAUDE.md:14!)
+  document.getElementById("dayOfPrintSheet").innerHTML =
+    '<h1>' + esc(state.dayOf.title.trim() || "Wedding Day-Of Sheet") + '</h1>' +
+    (state.dayOf.date ? '<p style="margin:0 0 12px;color:#4E5B54"><b>Date:</b> <span class="h-num">' + esc(state.dayOf.date) + '</span></p>' : '') +
+    '<h2>Day-Of Schedule</h2>' +
+    '<table class="grid"><thead><tr><th>Time</th><th>Event</th><th>Lead</th></tr></thead><tbody>' +
+    tl.map(function(x){ return '<tr><td class="num"><b>' + esc(x.time) + '</b></td><td>' + esc(x.item) + '</td><td>' + esc(x.owner || "") + '</td></tr>'; }).join("") +
+    '</tbody></table>' +
+    '<h2>Vendor Contacts</h2>' +
+    '<table class="grid"><thead><tr><th>Role</th><th>Contact</th><th>Phone</th></tr></thead><tbody>' +
+    cs.map(function(c){ return '<tr><td><b>' + esc(c.role) + '</b></td><td>' + esc(c.name) + '</td><td class="num">' + esc(c.phone) + '</td></tr>'; }).join("") +
+    '</tbody></table>';
+}
+
+function renderAll(){ renderBanner(); syncInputs(); renderQuote(); renderGuests(); renderDayOf(); }
+function switchTab(t){
+  document.querySelectorAll(".pane").forEach(function(p){ p.classList.toggle("active", p.id === "pane-" + t); });
+  document.querySelectorAll(".tabbar button").forEach(function(b){ b.setAttribute("aria-current", b.dataset.tab === t ? "page" : "false"); });
+}
+
+/* ---------- Events ---------- */
+[["vName","quote","name"],["vBase","quote","base"],["vSvc","quote","svc"],["vTax","quote","tax"],["vExtra","quote","extra"],
+ ["gBudget","guests","budget"],["gPlanned","guests","planned"],["gFixed","guests","fixed"],["gVar","guests","varCost"],
+ ["gTierA","guests","tierA"],["gTierB","guests","tierB"],["gTierC","guests","tierC"],
+ ["m1","guests","m1"],["m2","guests","m2"],["m3","guests","m3"],["mKid","guests","mKid"],["mVen","guests","mVen"],
+ ["dTitle","dayOf","title"],["dDate","dayOf","date"]].forEach(function(spec){
+  var el = document.getElementById(spec[0]);
+  var h = function(e){
+    if (state.sample) state.sample = false;
+    state[spec[1]][spec[2]] = e.target.value;
+    persist(); renderBanner(); renderQuote(); renderGuests(); renderDayOf();
+  };
+  el.addEventListener("input", h); el.addEventListener("change", h);
+});
+
+document.addEventListener("click", function(e){
+  var t = e.target.closest("button");
+  if (!t) return;
+  if (t.dataset.tab) { switchTab(t.dataset.tab); }
+  else if (t.id === "topSampleBtn" || t.id === "primarySampleBtn") {
+    var s = sampleState();
+    var uq = state.savedQuotes.filter(function(x){return !x.sample;});
+    var up = state.payments.filter(function(x){return !x.sample;});
+    var utl = (state.dayOf.timeline || []).filter(function(x){return !x.sample;});
+    var uct = (state.dayOf.contacts || []).filter(function(x){return !x.sample;});
+    state = s; state.savedQuotes = s.savedQuotes.concat(uq).slice(0, 3); state.payments = s.payments.concat(up);
+    state.dayOf.timeline = s.dayOf.timeline.concat(utl); state.dayOf.contacts = s.dayOf.contacts.concat(uct);
+    persist(); renderAll();
+  } else if (t.id === "clearSampleBtn") {
+    var snap = clone(state);
+    var utl2 = (snap.dayOf.timeline || []).filter(function(x){return !x.sample;});
+    var uct2 = (snap.dayOf.contacts || []).filter(function(x){return !x.sample;});
+    state = defaultState();
+    state.savedQuotes = snap.savedQuotes.filter(function(x){return !x.sample;});
+    state.payments = snap.payments.filter(function(x){return !x.sample;});
+    state.dayOf.timeline = utl2; state.dayOf.contacts = uct2;
+    if (snap.dayOf.title && snap.dayOf.title !== "Maya & Jordan") state.dayOf.title = snap.dayOf.title;
+    if (snap.dayOf.date && snap.dayOf.date !== "2027-09-18") state.dayOf.date = snap.dayOf.date;
+    persist(); renderAll();
+    showToast("Sample wedding cleared.", function(){ state = snap; persist(); renderAll(); showToast("Sample restored."); });
+  } else if (t.id === "toastUndo") {
+    if (undoFn) { var f = undoFn; undoFn = null; document.getElementById("toast").classList.remove("on"); f(); }
+  } else if (t.dataset.tos) {
+    state.quote.tos = t.dataset.tos === "yes"; persist(); syncInputs(); renderQuote();
+  } else if (t.dataset.addon) {
+    var k = t.dataset.addon, idx = state.quote.addons.indexOf(k);
+    if (idx >= 0) state.quote.addons.splice(idx, 1); else state.quote.addons.push(k);
+    persist(); syncInputs(); renderQuote();
+  } else if (t.id === "saveQuoteBtn") {
+    var r = computeQuote(state.quote);
+    if (r.base <= 0) { showToast("Enter a base quote above $0 first."); return; }
+    if (state.savedQuotes.length >= 3) state.savedQuotes.pop();
+    state.savedQuotes.unshift({ name:state.quote.name.trim() || "Quote", base:r.base, svc:parseNum(state.quote.svc), tax:parseNum(state.quote.tax), tos:!!state.quote.tos, addonsTotal:r.addonsTotal, allIn:r.allIn, sample:false });
+    persist(); renderQuote(); showToast("Quote saved to comparison.");
+  } else if (t.dataset.rmq != null) {
+    state.savedQuotes.splice(+t.dataset.rmq, 1); persist(); renderQuote();
+  } else if (t.id === "copyVendorRowBtn") {
+    var rq = computeQuote(state.quote);
+    var line = (state.quote.name.trim() || "Vendor") + " — Base " + fmt$(rq.base) + ", Service " + parseNum(state.quote.svc) + "%, Tax " + parseNum(state.quote.tax) + "% (" + (state.quote.tos ? "tax on service" : "base only") + "), Add-ons " + fmt$(rq.addonsTotal) + " => All-in " + fmt$2(rq.allIn);
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(line).then(function(){ showToast("Quote line copied."); }, function(){ fallbackCopy(line); });
+    } else fallbackCopy(line);
+  } else if (t.id === "sampleQuoteTextBtn") {
+    document.getElementById("quotePasteText").value = SAMPLE_QUOTE_TEXT;
+    runQuoteScan();
+  } else if (t.id === "scanQuoteBtn") {
+    runQuoteScan();
+  } else if (t.dataset.applyfee != null) {
+    var fi = quoteFindings[+t.dataset.applyfee];
+    if (fi && fi.addon && state.quote.addons.indexOf(fi.addon) < 0) {
+      state.quote.addons.push(fi.addon); fi.added = true;
+      persist(); syncInputs(); renderQuote(); renderQuoteFindings();
+      showToast("Added " + fi.title + " to quote.");
+    }
+  } else if (t.id === "cutMinusBtn") {
+    state.guests.cut = Math.max(0, (Number(state.guests.cut) || 0) - 5); persist(); renderGuests();
+  } else if (t.id === "cutPlusBtn") {
+    var maxC = Math.floor(parseNum(state.guests.planned)) || 100;
+    state.guests.cut = Math.min(maxC, (Number(state.guests.cut) || 0) + 5); persist(); renderGuests();
+  } else if (t.dataset.rmpay != null) {
+    var pi = +t.dataset.rmpay, snapP = clone(state.payments);
+    state.payments.splice(pi, 1); persist(); renderDayOf();
+    showToast("Payment removed.", function(){ state.payments = snapP; persist(); renderDayOf(); });
+  } else if (t.dataset.rmtl != null) {
+    var ti = +t.dataset.rmtl, snapT = clone(state.dayOf.timeline);
+    state.dayOf.timeline.splice(ti, 1); persist(); renderDayOf();
+    showToast("Timeline item removed.", function(){ state.dayOf.timeline = snapT; persist(); renderDayOf(); });
+  } else if (t.dataset.rmct != null) {
+    var ci = +t.dataset.rmct, snapC = clone(state.dayOf.contacts);
+    state.dayOf.contacts.splice(ci, 1); persist(); renderDayOf();
+    showToast("Vendor contact removed.", function(){ state.dayOf.contacts = snapC; persist(); renderDayOf(); });
+  } else if (t.id === "icsPayBtn") {
+    var realPays = state.payments.filter(function(p){ return !p.sample; });
+    if (!realPays.length) { showToast("Sample payments aren't exported — add your own vendor payments first."); return; }
+    var isSampleDay = state.dayOf.title === "Maya & Jordan" && state.dayOf.date === "2027-09-18";
+    download("wedding-payments-" + todayISO() + ".ics", buildPaymentsICS(realPays, isSampleDay ? "" : state.dayOf.date, isSampleDay ? "" : state.dayOf.title), "text/calendar;charset=utf-8");
+    showToast("Payment calendar (.ics) downloaded.");
+  } else if (t.id === "printDayOfBtn") {
+    window.print();
+  } else if (t.id === "backupBtn") {
+    download("clear-wedding-backup-" + todayISO() + ".json", JSON.stringify({ app:"fac-clear-wedding", exported:todayISO(), state:state }, null, 2), "application/json");
+    showToast("Backup JSON saved.");
+  }
+});
+
+function fallbackCopy(text){
+  try {
+    var ta = document.createElement("textarea");
+    ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.left = "-9999px";
+    document.body.appendChild(ta); ta.select();
+    var ok = document.execCommand("copy");
+    ta.remove();
+    showToast(ok ? "Quote line copied." : text);
+  } catch(e){ showToast(text); }
+}
+
+function runQuoteScan(){
+  quoteFindings = scanQuoteText(document.getElementById("quotePasteText").value);
+  renderQuoteFindings();
+}
+function renderQuoteFindings(){
+  var box = document.getElementById("quoteFindingsBox");
+  if (!quoteFindings.length) {
+    box.innerHTML = '<p class="cap" style="margin:0;color:var(--good-ink);font-weight:700">No common hidden-fee keywords detected (negated lines like &ldquo;no corkage&rdquo; are skipped). Always read the full contract.</p>';
+    return;
+  }
+  box.innerHTML = quoteFindings.map(function(f, i){
+    return '<div class="row-card" style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">' +
+      '<div><b>' + esc(f.title) + '</b> <span class="cap">(matched &ldquo;' + esc(f.match) + '&rdquo;)</span></div>' +
+      (f.addon ? '<button type="button" class="btn' + (f.added ? ' sec' : '') + '" data-applyfee="' + i + '" style="min-height:44px;padding:0 12px;font-size:13px">' + (f.added ? 'Added' : 'Add to quote') + '</button>' : '<span class="tag warn">' + esc(f.note || 'Verify in contract') + '</span>') +
+      '</div>';
+  }).join("");
+}
+
+document.getElementById("payForm").addEventListener("submit", function(ev){
+  ev.preventDefault();
+  state.payments.push({ id:"p-"+Date.now(), vendor:document.getElementById("pVendor").value.trim(), date:document.getElementById("pDate").value, amount:parseNum(document.getElementById("pAmt").value), sample:false });
+  ev.target.reset(); persist(); renderDayOf(); showToast("Payment reminder added.");
+});
+document.getElementById("tlForm").addEventListener("submit", function(ev){
+  ev.preventDefault();
+  state.dayOf.timeline.push({ time:document.getElementById("tlTime").value.trim(), item:document.getElementById("tlItem").value.trim(), owner:document.getElementById("tlOwner").value.trim(), sample:false });
+  ev.target.reset(); persist(); renderDayOf(); showToast("Timeline item added.");
+});
+document.getElementById("ctForm").addEventListener("submit", function(ev){
+  ev.preventDefault();
+  state.dayOf.contacts.push({ role:document.getElementById("ctRole").value.trim(), name:document.getElementById("ctName").value.trim(), phone:document.getElementById("ctPhone").value.trim(), sample:false });
+  ev.target.reset(); persist(); renderDayOf(); showToast("Vendor contact added.");
+});
+
+document.getElementById("restoreFile").addEventListener("change", function(ev){
+  var f = ev.target.files && ev.target.files[0]; if (!f) return;
+  var rd = new FileReader();
+  rd.onload = function(){
+    try {
+      var o = JSON.parse(String(rd.result || ""));
+      var s = o && o.state ? o.state : o;
+      if (!s || !s.quote || !s.guests) throw new Error("Invalid");
+      state = Object.assign(defaultState(), s); persist(); renderAll(); showToast("Backup restored.");
+    } catch(e){ showToast("That file is not a valid Clear Wedding backup."); }
+  };
+  rd.readAsText(f); ev.target.value = "";
+});
+
+window.__WED = { computeQuote:computeQuote, computeGuestMath:computeGuestMath, scanQuoteText:scanQuoteText, buildPaymentsICS:buildPaymentsICS };
+renderAll();
+})();
+</script>
+<script id="faux-cfg">window.FAUX_CFG={"slug": "clear-wedding-planner", "name": "Clear Wedding Planner", "key": "fac_clear_wedding_v1", "blank": {"sample": false, "quote": {"name": "", "base": "", "svc": "20", "tax": "8", "tos": true, "addons": [], "extra": ""}, "savedQuotes": [], "guests": {"budget": "", "planned": "", "fixed": "", "varCost": "", "cut": 0, "tierA": "", "tierB": "", "tierC": "", "m1": "", "m2": "", "m3": "", "mKid": "", "mVen": ""}, "payments": [], "dayOf": {"title": "", "date": "", "timeline": [], "contacts": []}}, "oneLine": "Compare venue quotes at their true all-in price, see what each guest costs, and run the day from one page.", "steps": ["Enter a <b>venue quote<\/b> to see the real total with service and tax.", "<b>Import your guest list<\/b> to see the cost per guest.", "Add <b>payments and the day-of timeline<\/b>; print it for your coordinator."], "sample": "#primarySampleBtn", "helpIn": ".topbar", "imports": [{"label": "Guest list (counts your guests)", "kind": "adapter", "adapter": "guests", "tab": "guests", "drop": true, "formats": "A guest list CSV or pasted rows from Zola, The Knot, Joy, Google Forms or your own sheet. Each row counts as one guest, or uses a Party size column; plus-ones marked yes count once more; RSVP \"No\" rows are left out.", "pastePlaceholder": "Name, Party size, RSVP\nAva Chen, 2, Yes\nSam Ortiz, 1, No"}, {"label": "Vendor payments due", "kind": "adapter", "adapter": "payments", "tab": "dayof", "formats": "Rows of Vendor, Due date, Amount.", "pastePlaceholder": "Vendor, Due date, Amount\nCatering deposit, 2027-06-18, 4800"}, {"label": "Day-of timeline", "kind": "adapter", "adapter": "timeline", "tab": "dayof", "formats": "One line per item: time, what happens, who runs it.", "pastePlaceholder": "4:30 PM, Ceremony begins, Officiant\n5:15 PM, Cocktail hour, Caterer"}, {"label": "Vendor contacts", "kind": "adapter", "adapter": "contacts", "tab": "dayof", "formats": "Rows of Role, Name, Phone.", "pastePlaceholder": "Role, Name, Phone\nPhotographer, Oak Photo Studio, 555-442-1190"}], "cannot": "venue quotes, which come as PDFs or emails in every format. Type the base price, service % and tax % once per venue."};</script>
+<script id="faux-js">/* FiledAwayCo UX layer v1 (2026-11-27). Runs on top of the product app; it never edits the app's calculations.
+   Adds: first-open welcome (one line, 3 steps, sample / import / blank), a help button, an "Import or paste" sheet,
+   drag-and-drop, platform pre-formatters (PayPal, Stripe, Wells Fargo), list importers, and on-device auto-fill
+   between FiledAwayCo tools. Everything runs in this browser; nothing is uploaded. */
+(function(){
+'use strict';
+var C = window.FAUX_CFG || {}; var D = document;
+var SLUG = C.slug || 'app';
+var inSuite = false; try { inSuite = window.parent !== window && !!window.parent.__FAUX_SUITE; } catch(e){}
+var AUTO_KEY = 'fac_bridge_auto_v1';
+function $(s, r){ return (r || D).querySelector(s); }
+function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function lsGet(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
+function lsSet(k, v){ try { localStorage.setItem(k, v); return true; } catch(e){ return false; } }
+function fmt$(n){ n = Number(n) || 0; return (n < 0 ? '-$' : '$') + Math.abs(n).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2}); }
+
+/* ---------- CSV / paste parsing ---------- */
+function parseCSV(text){
+  text = String(text || '').replace(/^\uFEFF/, '');
+  var first = (text.split(/\r?\n/).filter(function(l){ return l.trim(); })[0]) || '';
+  var cnt = function(ch){ var n = 0, q = false; for (var i = 0; i < first.length; i++){ var c = first[i]; if (c === '"') q = !q; else if (!q && c === ch) n++; } return n; };
+  var dl = ',', t = cnt('\t'), c = cnt(','), s = cnt(';');
+  if (t > 0 && t >= c) dl = '\t'; else if (s > c) dl = ';';
+  var rows = [], row = [], f = '', q = false;
+  for (var i = 0; i < text.length; i++){
+    var ch = text[i];
+    if (q){ if (ch === '"'){ if (text[i+1] === '"'){ f += '"'; i++; } else q = false; } else f += ch; continue; }
+    if (ch === '"' && f === '') { q = true; continue; }
+    if (ch === dl){ row.push(f); f = ''; continue; }
+    if (ch === '\r') continue;
+    if (ch === '\n'){ row.push(f); rows.push(row); row = []; f = ''; continue; }
+    f += ch;
+  }
+  if (f !== '' || row.length) { row.push(f); rows.push(row); }
+  return rows.map(function(r){ return r.map(function(x){ return String(x).trim(); }); }).filter(function(r){ return r.some(function(x){ return x !== ''; }); });
+}
+function csvCell(v){ v = String(v == null ? '' : v); return /[",\n\r]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }
+function toCSV(rows){ return rows.map(function(r){ return r.map(csvCell).join(','); }).join('\r\n') + '\r\n'; }
+function money(v){
+  if (v == null) return NaN; var s = String(v).trim(); if (!s || s === '--') return NaN;
+  var neg = false;
+  if (/^\(.*\)$/.test(s)){ neg = true; s = s.slice(1, -1); }
+  if (/-$/.test(s)){ neg = true; s = s.slice(0, -1); }
+  if (/^-/.test(s)){ neg = !neg; s = s.slice(1); }
+  s = s.replace(/^-/, '').replace(/[$£€\s,]|USD/gi, '');
+  if (s.charAt(0) === '-'){ neg = !neg; s = s.slice(1); }
+  if (!/^\d*\.?\d+$/.test(s)) return NaN;
+  var n = parseFloat(s); return neg ? -n : n;
+}
+var MON = {jan:1,feb:2,mar:3,apr:4,may:5,jun:6,jul:7,aug:8,sep:9,sept:9,oct:10,nov:11,dec:12};
+function pad(n){ return (n < 10 ? '0' : '') + n; }
+function isoDate(v){
+  var s = String(v || '').trim(); var m;
+  if ((m = s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/))) return m[1] + '-' + pad(+m[2]) + '-' + pad(+m[3]);
+  if ((m = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})/))) { var y = +m[3]; if (y < 100) y += 2000; return y + '-' + pad(+m[1]) + '-' + pad(+m[2]); }
+  if ((m = s.match(/^([A-Za-z]{3,9})\.? (\d{1,2}),? (\d{4})/)) && MON[m[1].slice(0,3).toLowerCase()]) return m[3] + '-' + pad(MON[m[1].slice(0,3).toLowerCase()]) + '-' + pad(+m[2]);
+  if ((m = s.match(/^(\d{1,2}) ([A-Za-z]{3,9}) (\d{4})/)) && MON[m[2].slice(0,3).toLowerCase()]) return m[3] + '-' + pad(MON[m[2].slice(0,3).toLowerCase()]) + '-' + pad(+m[1]);
+  return '';
+}
+function norm(h){ return String(h || '').toLowerCase().replace(/[_]/g, ' ').replace(/\s+/g, ' ').trim(); }
+function findCol(H, aliases){
+  var h = H.map(norm), i, j;
+  for (j = 0; j < aliases.length; j++){ i = h.indexOf(aliases[j]); if (i >= 0) return i; }
+  for (j = 0; j < aliases.length; j++){ for (i = 0; i < h.length; i++) if (h[i].indexOf(aliases[j]) >= 0) return i; }
+  return -1;
+}
+function looksHeader(r){ return r.some(function(x){ return /[A-Za-z]{3,}/.test(x) && isNaN(money(x)) && !isoDate(x); }); }
+
+/* ---------- Platform pre-formatters: turn real exports into Date,Description,Amount rows ---------- */
+var NORMALIZERS = {
+  paypal: function(rows){ // PayPal Activity Download (developer.paypal.com/reports/activity-download): Date, Time, TimeZone, Name, Type, Status, Currency, Gross, Fee, Net ...
+    var H = rows[0].map(norm); if (!(H.indexOf('gross') >= 0 && H.indexOf('fee') >= 0 && H.indexOf('net') >= 0 && H.indexOf('status') >= 0)) return null;
+    var c = function(n){ return H.indexOf(n); }, out = [['Date','Description','Amount']], skip = 0, fx = 0;
+    var bankMoves = /withdrawal|bank deposit|transfer to bank|transfer from bank|general card deposit|hold|reversal of general account hold|currency conversion/i;
+    rows.slice(1).forEach(function(r){
+      var st = r[c('status')] || '', ty = r[c('type')] || '', cur = (r[c('currency')] || 'USD').toUpperCase();
+      if (!/^completed$/i.test(st) || bankMoves.test(ty)) { skip++; return; }
+      if (cur !== 'USD') { fx++; return; }
+      var d = isoDate(r[c('date')]), g = money(r[c('gross')]), f = money(r[c('fee')]);
+      if (!d || isNaN(g)) { skip++; return; }
+      out.push([d, 'PAYPAL ' + (r[c('name')] || '') + ' (' + ty + ')', g.toFixed(2)]);
+      if (!isNaN(f) && f !== 0) out.push([d, 'PAYPAL FEE ' + (r[c('name')] || ''), (f > 0 ? -f : f).toFixed(2)]);
+    });
+    return { rows: out, note: 'PayPal Activity file: used Gross as income and added each PayPal fee as its own expense line. Skipped ' + skip + ' row(s) that were pending, transfers to or from your bank, or holds' + (fx ? ', and ' + fx + ' non-USD row(s)' : '') + '.' };
+  },
+  stripe: function(rows){ // Stripe "All activity" / balance transactions: id, Type, Source, Amount, Fee, Net, Currency, Created (UTC) ...; itemized report: created_utc, gross, fee, net, reporting_category
+    var H = rows[0].map(norm), c = function(a){ return findCol(rows[0], a); };
+    var isBal = H.indexOf('type') >= 0 && H.indexOf('amount') >= 0 && H.indexOf('fee') >= 0 && H.indexOf('net') >= 0;
+    var isItem = H.indexOf('reporting category') >= 0 && H.indexOf('gross') >= 0;
+    var isPay = !isBal && (H.indexOf('created date (utc)') >= 0 || (H.indexOf('created (utc)') >= 0 && H.indexOf('status') >= 0)) && H.indexOf('amount') >= 0;
+    if (!isBal && !isItem && !isPay) return null;
+    var di = c(['created (utc)','created date (utc)','created utc','created']), ty = isItem ? c(['reporting category']) : c(['type']),
+        am = isItem ? c(['gross']) : c(['amount']), fe = c(['fee']), de = c(['description']), ce = c(['customer email','customer description']), sti = c(['status']), cu = c(['currency']);
+    var out = [['Date','Description','Amount']], skip = 0;
+    rows.slice(1).forEach(function(r){
+      var t = (ty >= 0 ? r[ty] : 'charge').toLowerCase(), d = isoDate(r[di]), a = money(r[am]), f = fe >= 0 ? money(r[fe]) : 0;
+      if (cu >= 0 && r[cu] && r[cu].toLowerCase() !== 'usd') { skip++; return; }
+      if (isPay && sti >= 0 && !/paid|succeeded/i.test(r[sti])) { skip++; return; }
+      if (/payout|transfer/.test(t) || !d || isNaN(a) || a === 0) { skip++; return; }
+      var desc = 'STRIPE ' + (/refund/.test(t) ? 'REFUND ' : (/fee/.test(t) ? 'FEE ' : '')) + ((de >= 0 && r[de]) || (ce >= 0 && r[ce]) || t);
+      out.push([d, desc, a.toFixed(2)]);
+      if (!isNaN(f) && f !== 0 && !/fee/.test(t)) out.push([d, 'STRIPE FEE ' + ((de >= 0 && r[de]) || ''), (-f).toFixed(2)]);
+    });
+    return { rows: out, note: 'Stripe export: used the gross Amount as income and added Stripe fees as separate expense lines. Skipped ' + skip + ' payout, failed or non-USD row(s), because payouts already show up in your bank file.' };
+  },
+  wellsfargo: function(rows){ // Wells Fargo CSV has no header row: "date","amount","*","","description"
+    var r = rows[0]; if (!(r.length === 5 && isoDate(r[0]) && !isNaN(money(r[1])) && r[2] === '*')) return null;
+    var out = [['Date','Description','Amount']];
+    rows.forEach(function(x){ var d = isoDate(x[0]), a = money(x[1]); if (d && !isNaN(a)) out.push([d, x[4] || x[3] || '', a.toFixed(2)]); });
+    return { rows: out, note: 'Wells Fargo file (it has no header row): read as Date, Amount, Description.' };
+  }
+};
+function normalizeText(text, list){
+  var rows = parseCSV(text); if (!rows.length) return { error: 'That file or paste looks empty.' };
+  var names = list || [];
+  for (var i = 0; i < names.length; i++){ var fn = NORMALIZERS[names[i]]; if (!fn) continue; var res = fn(rows); if (res) { if (res.rows.length < 2) return { error: res.note + ' No usable rows were left.' }; return { csv: toCSV(res.rows), note: res.note, n: res.rows.length - 1 }; } }
+  return { csv: toCSV(rows), note: '', n: rows.length - 1 };
+}
+
+/* ---------- Overlay + toast ---------- */
+var ov = null, lastFocus = null;
+function closeOv(){ if (!ov) return; ov.hidden = true; ov.innerHTML = ''; if (lastFocus && lastFocus.focus) try { lastFocus.focus(); } catch(e){} }
+function openOv(html, label){
+  if (!ov){ ov = D.createElement('div'); ov.className = 'faux-ov'; ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-modal', 'true'); D.body.appendChild(ov);
+    ov.addEventListener('click', function(e){ if (e.target === ov) { markSeen(); closeOv(); } });
+    D.addEventListener('keydown', function(e){ if (e.key === 'Escape' && ov && !ov.hidden) { markSeen(); closeOv(); } }); }
+  lastFocus = D.activeElement; ov.setAttribute('aria-label', label || C.name || 'Help');
+  ov.innerHTML = '<div class="faux-card">' + html + '</div>'; ov.hidden = false;
+  var b = ov.querySelector('button.faux-btn, button'); if (b) try { b.focus({preventScroll:true}); } catch(e){}
+  return ov;
+}
+function head(){ return '<div class="faux-hd"><div class="faux-mk" aria-hidden="true">fa</div><div class="faux-nm">' + esc(C.name) + '</div><button type="button" class="faux-x" data-faux="close" aria-label="Close">×</button></div>'; }
+var tEl = null, tT = null;
+function toast(msg, undo){
+  if (!tEl){ tEl = D.createElement('div'); tEl.className = 'faux-toast'; tEl.setAttribute('role', 'status'); D.body.appendChild(tEl); }
+  tEl.innerHTML = '<span>' + esc(msg) + '</span>' + (undo ? '<button type="button">Undo</button>' : ''); tEl.hidden = false;
+  if (undo) tEl.querySelector('button').onclick = function(){ tEl.hidden = true; undo(); };
+  clearTimeout(tT); tT = setTimeout(function(){ tEl.hidden = true; }, undo ? 9000 : 4000);
+}
+function markSeen(){ lsSet('faux_seen_' + SLUG, '1'); }
+function clickSel(sel){ var e = sel && $(sel); if (e) { e.click(); return true; } return false; }
+function goTab(tab){
+  if (!tab) return;
+  if (tab.charAt(0) === '#' || tab.charAt(0) === '[' || tab.charAt(0) === '.') { clickSel(tab); return; }
+  var b = $('.tabbar button[data-tab="' + tab + '"]') || $('[data-tab="' + tab + '"]'); if (b) b.click();
+}
+
+/* ---------- Welcome ---------- */
+function welcome(){
+  var steps = (C.steps || []).map(function(s, i){ return '<li><b class="n">' + (i + 1) + '</b><span>' + s + '</span></li>'; }).join('');
+  var hasImp = (C.imports || []).length > 0;
+  openOv(head() +
+    '<p class="faux-one">' + esc(C.oneLine) + '</p><ol class="faux-steps">' + steps + '</ol>' +
+    (C.sample ? '<button type="button" class="faux-btn" data-faux="sample">' + esc(C.sampleLabel || 'Try it with sample data') + '</button>' : '') +
+    '<div class="faux-row">' + (hasImp ? '<button type="button" class="faux-btn sec" data-faux="import">' + esc(C.importLabel || 'Import my data') + '</button>' : '') +
+    '<button type="button" class="faux-btn sec" data-faux="blank"' + (hasImp ? '' : ' style="grid-column:1/-1"') + '>' + esc(C.blankLabel || 'Start with my own') + '</button></div>' +
+    '<p class="faux-trust"><span aria-hidden="true">🔒</span><span>' + esc(C.trust || 'Private by design: it works offline and your data stays in this browser on this device. No account, no upload.') + '</span></p>', C.name + ': how it works');
+  bind();
+}
+function bind(){
+  ov.querySelectorAll('[data-faux]').forEach(function(b){ b.addEventListener('click', function(){
+    var a = b.getAttribute('data-faux');
+    if (a === 'close') { markSeen(); closeOv(); }
+    else if (a === 'sample') { markSeen(); closeOv(); if (C.sampleTab) goTab(C.sampleTab); clickSel(C.sample); }
+    else if (a === 'blank') { markSeen(); closeOv(); if (C.blankTab) goTab(C.blankTab); var f = $(C.blankFocus || '.pane.active input:not([type=file]):not([type=checkbox]):not([type=radio]), .pane.active select, main input:not([type=file])'); if (f) { try { f.scrollIntoView({block:'center'}); f.focus({preventScroll:true}); } catch(e){} } }
+    else if (a === 'import') { markSeen(); importSheet(); }
+    else if (a === 'help') welcome();
+  }); });
+}
+
+/* ---------- Import sheet ---------- */
+function importSheet(){
+  var opts = (C.imports || []).map(function(o, i){
+    return '<div class="faux-opt"><b>' + esc(o.label) + '</b><small>' + o.formats + '</small><div class="faux-row">' +
+      '<button type="button" class="faux-btn" data-imp="' + i + '" data-how="file">Choose file</button>' +
+      '<button type="button" class="faux-btn sec" data-imp="' + i + '" data-how="paste">Paste rows</button></div></div>';
+  }).join('');
+  openOv(head() + '<p class="faux-h2">Bring your data in</p><p class="faux-sub">Pick what you have. You will see a preview before anything is saved. Tip: you can also drag a file onto this page.</p>' + opts +
+    (C.cannot ? '<p class="faux-sub" style="margin-top:6px"><b>Not possible to auto-import:</b> ' + C.cannot + '</p>' : '') +
+    '<button type="button" class="faux-btn ghost" data-faux="help">← Back</button>', 'Import data');
+  bind();
+  ov.querySelectorAll('[data-imp]').forEach(function(b){ b.addEventListener('click', function(){
+    var o = C.imports[+b.getAttribute('data-imp')];
+    if (b.getAttribute('data-how') === 'file') pickFile(o); else pasteSheet(o);
+  }); });
+}
+function pickFile(o){
+  var inp = D.createElement('input'); inp.type = 'file'; inp.accept = o.accept || '.csv,.tsv,.txt,text/csv,text/plain'; inp.className = 'faux-sr';
+  D.body.appendChild(inp);
+  inp.addEventListener('change', function(){ var f = inp.files && inp.files[0]; inp.remove(); if (f) readFile(f, o); });
+  inp.click();
+}
+function readFile(f, o){ var rd = new FileReader(); rd.onload = function(){ handleText(String(rd.result || ''), o, f.name); }; rd.onerror = function(){ errSheet('Could not read that file. Try choosing it again. Nothing was changed.'); }; rd.readAsText(f); }
+function pasteSheet(o){
+  openOv(head() + '<p class="faux-h2">' + esc(o.label) + ': paste rows</p><p class="faux-sub">' + esc(o.pasteHint || 'Copy the rows from Excel, Google Sheets or a CSV (include the header row if there is one) and paste here.') + '</p>' +
+    '<textarea class="faux-ta" id="fauxPaste" aria-label="Paste rows here" placeholder="' + esc(o.pastePlaceholder || '') + '"></textarea>' +
+    '<div class="faux-row"><button type="button" class="faux-btn" id="fauxPasteGo">Preview</button><button type="button" class="faux-btn sec" data-faux="import">Back</button></div>', 'Paste rows');
+  bind();
+  $('#fauxPaste').focus();
+  $('#fauxPasteGo').addEventListener('click', function(){ var t = $('#fauxPaste').value; if (!t.trim()) { $('#fauxPaste').focus(); return; } handleText(t, o, 'pasted-rows.csv'); });
+}
+function errSheet(msg){ openOv(head() + '<div class="faux-err">' + esc(msg) + '</div><button type="button" class="faux-btn sec" data-faux="import">Back</button>', 'Problem'); bind(); }
+function handleText(text, o, name){
+  if (o.kind === 'feed') {
+    var res = o.raw ? { csv: text, note: '' } : normalizeText(text, o.normalize);
+    if (res.error) return errSheet(res.error);
+    closeOv(); if (o.tab) goTab(o.tab); if (o.open) { var od = $(o.open); if (od && 'open' in od) od.open = true; }
+    var inp = $(o.target); if (!inp) return errSheet('This app has no import box here.');
+    setTimeout(function(){
+      feed(inp, o.raw ? (name || 'import.json').replace(/\.csv$/i, '.json') : (name || 'import').replace(/\.(tsv|txt)$/i, '.csv'), res.csv, o.raw ? 'application/json' : 'text/csv');
+      if (res.note) toast(res.note);
+      var card = inp.closest('.card, section'); if (card && card.scrollIntoView) try { card.scrollIntoView({block:'start', behavior:'smooth'}); } catch(e){}
+    }, 60);
+    return;
+  }
+  if (o.kind === 'adapter') { var A = ADAPTERS[o.adapter]; if (A) preview(A, text, o); }
+}
+function feed(inp, name, text, type){
+  try { var dt = new DataTransfer(); dt.items.add(new File([text], name, { type: type })); inp.files = dt.files; }
+  catch(e){ errSheet('This browser blocked the hand-off. Use the app\u2019s own Choose file button instead.'); return; }
+  inp.dispatchEvent(new Event('change', { bubbles: true }));
+}
+
+/* ---------- List importers (preview, then save to this device) ---------- */
+var ADAPTERS = {
+  debts: { what: 'debts', cols: ['Debt','Balance','APR %','Minimum'],
+    parse: function(rows){
+      var H = rows[0], hdr = looksHeader(H), body = hdr ? rows.slice(1) : rows;
+      var ni = hdr ? findCol(H, ['name','debt','account','creditor','card','loan','lender']) : 0,
+          bi = hdr ? findCol(H, ['balance','current balance','amount owed','owed','principal','payoff amount','amount']) : 1,
+          ai = hdr ? findCol(H, ['apr','interest rate','rate','interest']) : 2,
+          mi = hdr ? findCol(H, ['minimum payment','min payment','minimum','min','monthly payment','payment']) : 3;
+      if (bi < 0) return { error: 'Could not find a Balance column. Use columns like: Name, Balance, APR, Minimum.' };
+      return { rows: body.map(function(r, i){ var b = money(r[bi]); return { name: (ni >= 0 && r[ni]) || ('Debt ' + (i + 1)), bal: b, apr: ai >= 0 ? Math.abs(money(String(r[ai]).replace('%',''))) || 0 : 0, min: mi >= 0 ? Math.abs(money(r[mi])) || 0 : 0 }; })
+        .filter(function(d){ return !isNaN(d.bal) && Math.abs(d.bal) > 0; }).map(function(d){ d.bal = Math.abs(d.bal); return d; }) };
+    },
+    show: function(d){ return [d.name, fmt$(d.bal), d.apr.toFixed(2) + '%', fmt$(d.min)]; },
+    commit: function(st, rows){ st.debts = (st.debts || []).filter(function(x){ return !x.sample; }); st.sample = false;
+      rows.forEach(function(d, i){ st.debts.push({ id: 'd-imp-' + Date.now() + '-' + i, name: String(d.name).slice(0, 80), bal: Math.round(d.bal * 100) / 100, apr: Math.min(99.99, d.apr), min: Math.round(d.min * 100) / 100, sample: false }); }); }
+  },
+  deposits: { what: 'deposits', cols: ['Date','Amount','Note'],
+    parse: function(rows){ var b = bankRows(rows); if (b.error) return b; return { rows: b.rows.filter(function(r){ return r.amt > 0; }).map(function(r){ return { date: r.date, amount: r.amt, note: r.desc }; }), note: 'Only money coming in is listed. Untick anything that is not savings.' }; },
+    show: function(d){ return [d.date, fmt$(d.amount), d.note]; },
+    commit: function(st, rows){ st.deps = (st.deps || []).filter(function(x){ return !x.sample; }); st.sample = false;
+      rows.forEach(function(d, i){ st.deps.push({ id: 'd-imp-' + Date.now() + '-' + i, date: d.date, amount: Math.round(d.amount * 100) / 100, note: String(d.note || 'Imported').slice(0, 60), sample: false }); }); }
+  },
+  shifts: { what: 'shifts', cols: ['Date','Where','Hours','Cash','Card','Tip-out'],
+    parse: function(rows){
+      var H = rows[0]; if (!looksHeader(H)) return { error: 'Add a header row, e.g. Date, Employer, Hours, Cash tips, Card tips, Tip-out.' };
+      var c = function(a){ return findCol(H, a); };
+      var di = c(['date','shift date','business date','work date']), ei = c(['employer','restaurant','location','job','role','venue']), hi = c(['total hours','hours worked','regular hours','hours']),
+          ca = c(['declared cash tips','cash tips','cash']), cd = c(['non-cash tips','credit card tips','card tips','charged tips','cc tips','card']), to = c(['tip-out','tip out','tipout','tips paid out','tip share']),
+          oh = c(['overtime hours','ot hours']), op = c(['overtime premium','ot premium']), gr = c(['gross pay','gross wages','gross']);
+      if (di < 0 || (ca < 0 && cd < 0)) return { error: 'Need at least a Date column and a Cash tips or Card tips column.' };
+      var g = function(r, i){ var v = i >= 0 ? money(r[i]) : 0; return isNaN(v) ? 0 : Math.abs(v); };
+      return { rows: rows.slice(1).map(function(r){ return { date: isoDate(r[di]), emp: ei >= 0 ? r[ei] : '', hours: g(r, hi), cash: g(r, ca), card: g(r, cd), out: g(r, to), otH: g(r, oh), otP: g(r, op), gross: g(r, gr) }; }).filter(function(x){ return x.date && (x.cash || x.card || x.hours); }) };
+    },
+    show: function(d){ return [d.date, d.emp, d.hours, fmt$(d.cash), fmt$(d.card), fmt$(d.out)]; },
+    commit: function(st, rows){ st.entries = (st.entries || []).filter(function(x){ return !x.sample; }); st.sample = false;
+      rows.forEach(function(d, i){ d.id = 'r-imp-' + Date.now() + '-' + i; d.photo = null; d.sample = false; st.entries.push(d); }); }
+  },
+  cues: { what: 'cues', cols: ['Cue','Minutes'],
+    parse: function(rows, text){
+      var out = []; String(text).split(/\r?\n/).forEach(function(l){ l = l.trim(); if (!l) return;
+        var m = l.match(/^(.*?)[\s,\t\-–—:]*(\d{1,3}):(\d{2})\s*$/), mm = l.match(/^(.*?)[\s,\t\-–—]*(\d{1,3}(?:\.\d+)?)\s*(m|min|mins|minutes)?\s*$/i);
+        if (m && m[1]) out.push({ label: m[1].replace(/[,\t\-–—:\s]+$/, ''), min: Math.round((+m[2] + (+m[3]) / 60) * 100) / 100 });
+        else if (mm && mm[1]) out.push({ label: mm[1].replace(/[,\t\-–—:\s]+$/, ''), min: +mm[2] });
+      });
+      out = out.filter(function(c){ return c.label && c.min > 0 && !/^(cue|segment|item|label)$/i.test(c.label); });
+      return out.length ? { rows: out } : { error: 'Put one cue per line with its length, e.g. "Keynote, 25" or "Q&A 10:00".' };
+    },
+    show: function(d){ return [d.label, d.min]; },
+    commit: function(st, rows){ st.cues = (st.cues || []).filter(function(x){ return !x.sample; }); st.sample = false;
+      rows.forEach(function(d, i){ st.cues.push({ id: 'c-imp-' + Date.now() + '-' + i, label: String(d.label).slice(0, 60), min: d.min, sample: false }); }); }
+  },
+  guests: { what: 'guest list', cols: ['Guests counted','Kids','Declined (not counted)'], summary: true,
+    parse: function(rows){
+      var H = rows[0], hdr = looksHeader(H); if (!hdr) return { error: 'Include the header row from your guest list (for example Name, Party Size, RSVP).' };
+      var ps = findCol(H, ['party size','number of guests','# guests','guest count','headcount','total guests','guests','size']),
+          po = findCol(H, ['plus one','plus-one','+1']), rs = findCol(H, ['rsvp','attending','status','response']), kd = findCol(H, ['child','kid','age group','age']);
+      var tot = 0, kids = 0, dec = 0, n = 0;
+      rows.slice(1).forEach(function(r){
+        if (rs >= 0 && /^(no|declined|not attending|regrets|won.?t attend|can.?t attend)/i.test(r[rs] || '')) { dec++; return; }
+        var k = 1; if (ps >= 0) { var v = money(r[ps]); k = isNaN(v) ? 1 : Math.max(0, Math.round(v)); }
+        if (po >= 0 && /^(yes|y|true|1|x)$/i.test(r[po] || '')) k += 1;
+        tot += k; n++;
+        if (kd >= 0) { var kv = String(r[kd] || ''); var age = money(kv); if (/child|kid|yes|true|minor/i.test(kv) || (!isNaN(age) && age < 13)) kids += 1; }
+      });
+      if (!n) return { error: 'No guests found in those rows.' };
+      return { rows: [{ total: tot, kids: kids, dec: dec }], note: 'Counted ' + n + ' row(s)' + (ps >= 0 ? ' using the party-size column' : ' as one guest each') + (po >= 0 ? ', plus one for each "yes" plus-one' : '') + '.' };
+    },
+    show: function(d){ return [d.total, d.kids, d.dec]; },
+    commit: function(st, rows){ st.guests = st.guests || {}; st.guests.planned = String(rows[0].total); if (rows[0].kids) st.guests.mKid = String(rows[0].kids); }
+  },
+  timeline: { what: 'timeline items', cols: ['Time','What','Who'],
+    parse: function(rows, text){
+      var out = []; String(text).split(/\r?\n/).forEach(function(l){ l = l.trim(); if (!l) return;
+        var p = parseCSV(l)[0] || []; var m;
+        if (p.length >= 2 && /\d/.test(p[0])) out.push({ time: p[0], item: p[1], owner: p[2] || '' });
+        else if ((m = l.match(/^(\d{1,2}(?::\d{2})?\s*(?:am|pm|a\.m\.|p\.m\.)?)\s*[-–—:,]?\s*(.+)$/i))) out.push({ time: m[1].toUpperCase().replace(/\s+/, ' '), item: m[2], owner: '' });
+      });
+      return out.length ? { rows: out } : { error: 'Put one item per line, e.g. "4:30 PM, Ceremony begins, Officiant".' };
+    },
+    show: function(d){ return [d.time, d.item, d.owner]; },
+    commit: function(st, rows){ st.dayOf = st.dayOf || { title:'', date:'', timeline:[], contacts:[] }; st.dayOf.timeline = (st.dayOf.timeline || []).filter(function(x){ return !x.sample; });
+      rows.forEach(function(d){ st.dayOf.timeline.push({ time: String(d.time).slice(0, 20), item: String(d.item).slice(0, 120), owner: String(d.owner || '').slice(0, 60), sample: false }); }); }
+  },
+  contacts: { what: 'vendor contacts', cols: ['Role','Name','Phone'],
+    parse: function(rows){
+      var H = rows[0], hdr = looksHeader(H) && findCol(H, ['phone','role','name','vendor']) >= 0, body = hdr ? rows.slice(1) : rows;
+      var ri = hdr ? findCol(H, ['role','category','type','service']) : 0, ni = hdr ? findCol(H, ['vendor','business','company','name','contact']) : 1, pi = hdr ? findCol(H, ['phone','mobile','cell','tel']) : 2;
+      var out = body.map(function(r){ return { role: ri >= 0 ? r[ri] : '', name: ni >= 0 ? r[ni] : '', phone: pi >= 0 ? r[pi] : '' }; }).filter(function(x){ return x.name || x.phone; });
+      return out.length ? { rows: out } : { error: 'Use columns Role, Name, Phone.' };
+    },
+    show: function(d){ return [d.role, d.name, d.phone]; },
+    commit: function(st, rows){ st.dayOf = st.dayOf || { title:'', date:'', timeline:[], contacts:[] }; st.dayOf.contacts = (st.dayOf.contacts || []).filter(function(x){ return !x.sample; });
+      rows.forEach(function(d){ st.dayOf.contacts.push({ role: String(d.role).slice(0, 60), name: String(d.name).slice(0, 80), phone: String(d.phone).slice(0, 30), sample: false }); }); }
+  },
+  payments: { what: 'payments', cols: ['Vendor','Due','Amount'],
+    parse: function(rows){
+      var H = rows[0], hdr = looksHeader(H) && (findCol(H, ['amount','due','vendor']) >= 0), body = hdr ? rows.slice(1) : rows;
+      var vi = hdr ? findCol(H, ['vendor','payee','what','description','name']) : 0, di = hdr ? findCol(H, ['due date','due','date']) : 1, ai = hdr ? findCol(H, ['amount','payment','balance','cost']) : 2;
+      var out = body.map(function(r){ return { vendor: vi >= 0 ? r[vi] : '', date: isoDate(r[di]), amount: Math.abs(money(r[ai])) }; }).filter(function(x){ return x.vendor && x.date && x.amount > 0; });
+      return out.length ? { rows: out } : { error: 'Use columns Vendor, Due date, Amount (dates like 2027-03-18 or 3/18/2027).' };
+    },
+    show: function(d){ return [d.vendor, d.date, fmt$(d.amount)]; },
+    commit: function(st, rows){ st.payments = (st.payments || []).filter(function(x){ return !x.sample; });
+      rows.forEach(function(d, i){ st.payments.push({ id: 'p-imp-' + Date.now() + '-' + i, vendor: String(d.vendor).slice(0, 100), date: d.date, amount: Math.round(d.amount * 100) / 100, sample: false }); }); }
+  }
+};
+function bankRows(rows){
+  var r0 = rows[0];
+  if (r0.length === 5 && isoDate(r0[0]) && r0[2] === '*') { rows = [['Date','Amount','x','y','Description']].concat(rows); }
+  var H = rows[0]; if (!looksHeader(H)) return { error: 'Include the header row from your bank file (Date, Description, Amount).' };
+  var di = findCol(H, ['posting date','transaction date','date','posted']), de = findCol(H, ['description','details','memo','payee','name']),
+      am = findCol(H, ['amount','net']), cr = findCol(H, ['credit','deposit','deposits','inflow','money in']), db = findCol(H, ['debit','withdrawal','withdrawals','outflow','money out']);
+  if (di < 0 || (am < 0 && cr < 0)) return { error: 'Could not find Date and Amount (or Credit) columns in that file.' };
+  var out = rows.slice(1).map(function(r){
+    var a = am >= 0 ? money(r[am]) : NaN;
+    if (isNaN(a) && cr >= 0) { var c = money(r[cr]), d = db >= 0 ? money(r[db]) : NaN; a = !isNaN(c) && c !== 0 ? Math.abs(c) : (!isNaN(d) ? -Math.abs(d) : NaN); }
+    return { date: isoDate(r[di]), desc: de >= 0 ? r[de] : '', amt: a };
+  }).filter(function(x){ return x.date && !isNaN(x.amt); });
+  return { rows: out };
+}
+var pend = null;
+function preview(A, text, o){
+  var rows = parseCSV(text); var res = rows.length ? A.parse(rows, text) : { error: 'That looks empty.' };
+  if (res.error || !res.rows || !res.rows.length) return errSheet(res.error || 'No usable rows found. Nothing was changed.');
+  pend = { A: A, rows: res.rows, o: o };
+  var tb = '<div class="faux-tblw"><table class="faux-tbl"><thead><tr>' + (A.summary ? '' : '<th scope="col"><span class="faux-sr">Keep</span></th>') + A.cols.map(function(c){ return '<th scope="col">' + esc(c) + '</th>'; }).join('') + '</tr></thead><tbody>' +
+    res.rows.map(function(r, i){ return '<tr>' + (A.summary ? '' : '<td><input type="checkbox" checked data-keep="' + i + '" aria-label="Keep row ' + (i + 1) + '"></td>') + A.show(r).map(function(v){ return '<td>' + esc(v) + '</td>'; }).join('') + '</tr>'; }).join('') + '</tbody></table></div>';
+  openOv(head() + '<p class="faux-h2">Check before saving</p><p class="faux-sub">' + esc(res.note || ('Found ' + res.rows.length + ' ' + A.what + '. Untick any you don\u2019t want.')) + '</p>' + tb +
+    '<div class="faux-row"><button type="button" class="faux-btn" id="fauxCommit">' + (A.summary ? 'Use these numbers' : 'Add ' + A.what) + '</button><button type="button" class="faux-btn sec" data-faux="import">Cancel</button></div>' +
+    '<p class="faux-trust">Saved only in this browser. You can undo right after.</p>', 'Preview import');
+  bind();
+  $('#fauxCommit').addEventListener('click', commit);
+}
+function commit(){
+  if (!pend) return; var keep = [];
+  if (pend.A.summary) keep = pend.rows; else ov.querySelectorAll('[data-keep]').forEach(function(cb){ if (cb.checked) keep.push(pend.rows[+cb.getAttribute('data-keep')]); });
+  if (!keep.length) return;
+  var before = lsGet(C.key), st; try { st = JSON.parse(before || 'null'); } catch(e){ st = null; }
+  if (!st || typeof st !== 'object') st = JSON.parse(JSON.stringify(C.blank || {}));
+  pend.A.commit(st, keep);
+  if (!lsSet(C.key, JSON.stringify(st))) return errSheet('This browser\u2019s storage is full or blocked, so nothing was saved.');
+  try { sessionStorage.setItem('faux_done_' + SLUG, JSON.stringify({ before: before, msg: (pend.A.summary ? 'Guest count updated from your list.' : 'Added ' + keep.length + ' ' + pend.A.what + '.'), tab: pend.o.tab || '' })); } catch(e){}
+  location.reload();
+}
+function afterReload(){
+  var s; try { s = JSON.parse(sessionStorage.getItem('faux_done_' + SLUG) || 'null'); sessionStorage.removeItem('faux_done_' + SLUG); } catch(e){ s = null; }
+  if (!s) return; markSeen(); if (s.tab) goTab(s.tab);
+  toast(s.msg, function(){ if (s.before == null) { try { localStorage.removeItem(C.key); } catch(e){} } else lsSet(C.key, s.before); location.reload(); });
+}
+
+/* ---------- Drag and drop anywhere ---------- */
+function dnd(){
+  var tgt = (C.imports || []).filter(function(o){ return o.drop; })[0]; if (!tgt) return;
+  var veil = D.createElement('div'); veil.className = 'faux-drop'; veil.hidden = true; veil.textContent = 'Drop your file to import: ' + tgt.label; D.body.appendChild(veil);
+  var n = 0, isFile = function(e){ return e.dataTransfer && Array.prototype.indexOf.call(e.dataTransfer.types || [], 'Files') >= 0; };
+  D.addEventListener('dragenter', function(e){ if (!isFile(e)) return; n++; veil.hidden = false; });
+  D.addEventListener('dragleave', function(e){ if (!isFile(e)) return; n = Math.max(0, n - 1); if (!n) veil.hidden = true; });
+  D.addEventListener('dragover', function(e){ if (isFile(e)) e.preventDefault(); });
+  D.addEventListener('drop', function(e){ if (!isFile(e)) return; e.preventDefault(); n = 0; veil.hidden = true; var f = e.dataTransfer.files[0]; if (!f) return;
+    if (/\.json$/i.test(f.name) && C.jsonDrop) { var rd = new FileReader(); rd.onload = function(){ goTab(C.jsonTab); feed($(C.jsonDrop), f.name, String(rd.result), 'application/json'); }; rd.readAsText(f); return; }
+    readFile(f, tgt); });
+}
+
+/* ---------- On-device auto-fill between FiledAwayCo tools ---------- */
+function readAuto(){ try { return JSON.parse(lsGet(AUTO_KEY) || '{}') || {}; } catch(e){ return {}; } }
+function capture(fn){
+  return new Promise(function(res){
+    var got = null, last = null, oc = URL.createObjectURL, ac = HTMLAnchorElement.prototype.click;
+    var tEls = D.querySelectorAll(C.toastSel || '#toast'), snap = Array.prototype.map.call(tEls, function(t){ return [t, t.className, t.innerHTML, t.style.cssText]; });
+    D.documentElement.classList.add('faux-quiet');
+    URL.createObjectURL = function(b){ last = b; return oc.call(URL, b); };
+    HTMLAnchorElement.prototype.click = function(){ if (this.download && last) { got = last; return; } return ac.call(this); };
+    try { fn(); } catch(e){} finally { URL.createObjectURL = oc; HTMLAnchorElement.prototype.click = ac; snap.forEach(function(s){ s[0].className = s[1]; s[0].innerHTML = s[2]; s[0].style.cssText = s[3]; }); }
+    setTimeout(function(){ D.documentElement.classList.remove('faux-quiet'); }, 0);
+    if (got && got.text) got.text().then(res, function(){ res(null); }); else res(null);
+  });
+}
+var lastPub = null, pubT = null;
+function publish(){
+  var P = C.publish; if (!P) return; var cur = lsGet(C.key) || ''; if (cur === lastPub) return; lastPub = cur;
+  capture(function(){
+    if (P.click) { var b = $(P.click); if (b) b.click(); }
+    else if (P.act) { var t = D.createElement('button'); t.type = 'button'; t.setAttribute('data-act', P.act); t.style.display = 'none'; (P.host ? $(P.host) : D.body).appendChild(t); t.click(); t.remove(); }
+  }).then(function(txt){
+    var all = readAuto(), o = null; try { o = txt ? JSON.parse(txt) : null; } catch(e){}
+    var empty = o && ((o.salesCount === 0) || (o.trueNet === 0 && !o.grossSales && !(o.shifts && o.shifts.length) && !(o.deals && o.deals.length)));
+    if (o && o.bridge === 'fac-bridge-v1' && !o.sample && !empty) all[P.source] = { name: C.name, at: new Date().toISOString(), payload: txt };
+    else delete all[P.source];
+    lsSet(AUTO_KEY, JSON.stringify(all));
+  });
+}
+function schedulePub(){ clearTimeout(pubT); pubT = setTimeout(publish, 1200); }
+function summary(o){
+  if (typeof o.trueNet === 'number') return 'Net profit ' + fmt$(o.trueNet) + (o.taxYear ? ' (' + o.taxYear + ')' : '');
+  if (typeof o.freedMonthly === 'number') return 'Freed monthly ' + fmt$(o.freedMonthly);
+  if (Array.isArray(o.shifts)) return o.shifts.length + ' shift(s)';
+  if (Array.isArray(o.deals)) return o.deals.length + ' deal(s)';
+  return 'Summary ready';
+}
+function consume(){
+  var K = C.consume; if (!K) return; var host = K.into ? $(K.into) : null, bef = K.before ? $(K.before) : null; if (!host && !bef) return;
+  var all = readAuto(), keys = Object.keys(all).filter(function(k){ return K.sources.indexOf(k) >= 0; });
+  var box = $('#fauxAuto'); if (box) box.remove();
+  if (!keys.length) return;
+  box = D.createElement('div'); box.id = 'fauxAuto'; box.className = 'faux-auto no-print';
+  box.innerHTML = '<b>Auto-fill from your other FiledAwayCo tools on this device</b><div>' + esc(K.hint || 'Tap Use to load the numbers. You will confirm before anything changes.') + '</div>' +
+    keys.map(function(k){ var e = all[k], o = {}; try { o = JSON.parse(e.payload); } catch(x){}
+      return '<div class="faux-src"><span><b>' + esc(e.name || k) + '</b> · ' + esc(summary(o)) + ' · updated ' + esc(String(e.at || '').slice(0, 10)) + '</span><button type="button" class="faux-btn" data-auto="' + esc(k) + '">Use</button></div>'; }).join('');
+  if (bef) bef.parentNode.insertBefore(box, bef); else host.insertBefore(box, host.firstChild);
+  box.querySelectorAll('[data-auto]').forEach(function(b){ b.addEventListener('click', function(){
+    var e = readAuto()[b.getAttribute('data-auto')]; if (!e) return;
+    if (K.tab) goTab(K.tab); if (K.open) { var d = $(K.open); if (d && 'open' in d) d.open = true; }
+    feed($(K.input), 'fac-bridge-' + b.getAttribute('data-auto') + '.json', e.payload, 'application/json');
+    var dr = K.draft && $(K.draft); setTimeout(function(){ var t = dr || $(K.input).closest('.card, details, section'); if (t) try { t.scrollIntoView({ block: 'center', behavior: 'smooth' }); } catch(x){} }, 120);
+  }); });
+}
+
+/* ---------- Help button ---------- */
+function helpBtn(){
+  if (C.help === false) return;
+  var b = D.createElement('button'); b.type = 'button'; b.className = 'faux-help no-print'; b.textContent = '?'; b.title = 'How it works and import'; b.setAttribute('aria-label', 'How ' + (C.name || 'this tool') + ' works, and import options');
+  b.addEventListener('click', welcome);
+  var host = C.helpIn && $(C.helpIn);
+  if (host) { var last = host.lastElementChild; if (last && last.tagName === 'BUTTON') { var w = D.createElement('div'); w.style.cssText = 'display:flex;gap:8px;align-items:center;flex:none'; host.insertBefore(w, last); w.appendChild(b); w.appendChild(last); } else host.appendChild(b); }
+  else { b.classList.add('faux-fab'); D.body.appendChild(b); }
+}
+/* Seller Dashboard style apps: add "Paste rows" next to the app's own Choose file button when its import sheet opens */
+function pasteHook(){
+  var H = C.pasteHook; if (!H) return; var o = (C.imports || [])[0]; if (!o) return;
+  new MutationObserver(function(){ var b = $(H.after); if (b && !$('#fauxPasteHook')) { var p = D.createElement('button'); p.type = 'button'; p.id = 'fauxPasteHook'; p.className = H.cls || b.className; p.textContent = 'Paste rows from a spreadsheet instead'; p.style.marginTop = '8px'; p.addEventListener('click', function(){ pasteSheet(o); }); b.parentNode.insertBefore(p, b.nextSibling); } })
+    .observe(D.body, { childList: true, subtree: true });
+}
+
+function init(){
+  if (!inSuite) helpBtn(); else if (C.help !== false) helpBtn();
+  dnd(); pasteHook(); afterReload();
+  consume(); D.addEventListener('visibilitychange', function(){ if (!D.hidden) consume(); }); window.addEventListener('focus', consume);
+  if (C.publish) { ['click','change','submit','input'].forEach(function(ev){ D.addEventListener(ev, function(e){ if (e.isTrusted) schedulePub(); }, true); }); setTimeout(publish, 1500); }
+  var seen = lsGet('faux_seen_' + SLUG);
+  if (!seen && !inSuite && !window.__FA_UX_NO_WELCOME && C.welcome !== false && !sessionStorage.getItem('faux_done_' + SLUG)) welcome();
+}
+window.FAUX = { parseCSV: parseCSV, money: money, isoDate: isoDate, normalizeText: normalizeText, adapters: ADAPTERS, bankRows: bankRows, welcome: welcome, importSheet: importSheet, publish: publish, consume: consume, readAuto: readAuto };
+if (D.readyState === 'loading') D.addEventListener('DOMContentLoaded', init); else init();
+})();
+</script>
+</body>
+</html>
