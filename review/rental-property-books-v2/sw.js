@@ -1,5 +1,5 @@
-/* Rental Property Books offline cache (8dcca6fdfa). Page: network first, cache fallback. Files: cache first. Nothing is sent anywhere. */
-var C='frb2-8dcca6fdfa', F=["./", "index.html", "manifest.webmanifest", "icon-192.png", "icon-512.png", "icon-maskable-192.png", "icon-maskable-512.png", "apple-touch-icon.png", "favicon-32.png"];
+/* Rental Property Books offline cache (c4cf1ef8bd). Page: network first, cache fallback. Files: cache first. Nothing is sent anywhere. */
+var C='frb2-c4cf1ef8bd', F=["./", "index.html", "manifest.webmanifest", "icon-192.png", "icon-512.png", "icon-maskable-192.png", "icon-maskable-512.png", "apple-touch-icon.png", "favicon-32.png"];
 self.addEventListener('install',function(e){e.waitUntil(caches.open(C).then(function(c){return c.addAll(F);}).then(function(){return self.skipWaiting();}));});
 self.addEventListener('activate',function(e){e.waitUntil(caches.keys().then(function(k){return Promise.all(k.filter(function(x){return x.indexOf('frb2-')===0&&x!==C;}).map(function(x){return caches.delete(x);}));}).then(function(){return self.clients.claim();}));});
 self.addEventListener('fetch',function(e){var r=e.request;if(r.method!=='GET'||new URL(r.url).origin!==location.origin)return;
