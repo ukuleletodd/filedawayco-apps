@@ -300,6 +300,9 @@ details.src summary{min-height:44px;display:flex;align-items:center;font-weight:
 .homebrand{display:flex;align-items:center;gap:8px;min-height:30px;margin:0 0 6px;font-weight:700;font-size:15px;letter-spacing:-.1px}
 .homebrand svg{width:24px;height:24px;flex:none}
 .homebrand b{color:var(--green)}
+.pname{font-size:19px;font-weight:800;letter-spacing:-.2px;line-height:1.1;color:var(--ink,#1B2A40)}
+.pby{font-size:12px;font-weight:600;color:#5d6470;margin-left:2px;white-space:nowrap}
+.pby b{color:var(--green)}
 .strip{display:flex;align-items:center;justify-content:space-between;gap:4px;background:#fff;border:1px solid var(--line);border-radius:10px;min-height:36px;padding:0 0 0 12px;font-size:13px;margin-bottom:10px}
 .strip .tx{flex:1;min-width:0;padding:6px 0;line-height:1.3}
 .strip .lk{border:0;background:none;color:var(--green);font-weight:700;font-size:13px;padding:0;text-decoration:underline;cursor:pointer;min-height:0}
@@ -1743,6 +1746,7 @@ var E = Engine;
 /* ---------- brand: one constant to swap when the owner picks a logo ---------- */
 var LOGO_SVG = '<svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#1B2A40"/><rect x="8" y="7" width="4" height="18" rx="1.5" fill="#FBF8F2"/><rect x="12" y="7" width="12" height="4" rx="1.5" fill="#FBF8F2"/><rect x="12" y="14" width="8" height="4" rx="1.5" fill="#FBF8F2"/><rect x="18" y="20" width="6" height="6" rx="1.5" fill="#E39A2D"/></svg>';
 var WORDMARK = 'FiledAway<b>Co</b>';
+var NAMEMARK = '<span class="pname">Seller Dashboard</span><small class="pby">by FiledAway<b>Co</b></small>';
 
 var ICON = {
   home: '<svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v8.5a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/></svg>',
@@ -1954,7 +1958,7 @@ function line(l, v, cls) { return '<div class="line ' + (cls || '') + '"><span>'
 var WIDE = window.matchMedia ? window.matchMedia('(min-width:1024px)') : { matches: false };
 
 /* R2-10: the wordmark on phone Home (the wide layout has it in the side rail) */
-function homeBrand() { return WIDE.matches ? '' : '<div class="homebrand" aria-label="FiledAwayCo Seller Dashboard">' + LOGO_SVG + '<span>' + WORDMARK + '</span></div>'; }
+function homeBrand() { return WIDE.matches ? '' : '<div class="homebrand" aria-label="Seller Dashboard by FiledAwayCo">' + LOGO_SVG + NAMEMARK + '</div>'; }
 
 /* R2-4: Home strips. Only one at a time; the backup reminder wins over the Home Screen tip. Never on the sample shop. */
 function backupDue() {
@@ -2320,7 +2324,7 @@ function settingsView() {
   /* Card 3: About & fee sources behind progressive disclosure, with concise trust footer always visible */
   h += '<section class="card set-card"><button class="set-row" data-act="setabout" aria-expanded="' + !!ui.setAbout + '"><span class="smain"><span class="st">About &amp; fee sources</span><span class="sm">v2.5 · Checked ' + E.CHECKED + ' · Welcome tour</span></span>' + ICON.chev + '</button>';
   if (ui.setAbout) {
-    h += '<div class="set-panel"><div class="wm" style="margin:0 0 10px">' + LOGO_SVG + '<span>' + WORDMARK + '</span></div><p style="margin:0 0 8px"><b>Seller Dashboard</b> · v2.5</p>' +
+    h += '<div class="set-panel"><div class="wm" style="margin:0 0 10px">' + LOGO_SVG + '<span>' + WORDMARK + '</span></div><p style="margin:0 0 8px"><b>Seller Dashboard</b> · v2.5.1</p>' +
       '<p class="cap" style="margin:0 0 8px">Fee rates checked ' + E.CHECKED + '. Check your platform\'s current fees before you rely on a number here.</p>' +
       '<p class="cap" style="margin:0 0 8px">Your sales stay on this device. Nothing is sent anywhere. Back up from this page when you want a copy.</p>' +
       '<p class="cap" style="margin:0 0 8px">Rates are not official statements from any platform, and this is not tax advice.</p>' +
@@ -2435,12 +2439,12 @@ function fillPrintSheet() { var ps = document.getElementById('printsheet'); if (
 /* ---------- welcome ---------- */
 function welcomeView() {
   if (ui.welcome === 0) {
-    return '<div class="welcome"><div class="wm">' + LOGO_SVG + '<span>' + WORDMARK + '</span></div><h1>See what you actually keep.</h1><p class="sub" style="font-size:17px">Log a sale once. See what is left after each platform\'s fees.</p>' +
+    return '<div class="welcome"><div class="wm">' + LOGO_SVG + NAMEMARK + '</div><h1>See what you actually keep.</h1><p class="sub" style="font-size:17px">Log a sale once. See what is left after each platform\'s fees.</p>' +
       '<ol class="steps"><li><span class="n">1</span><div><b>Pick where you sell</b><span>Etsy, Gumroad, Payhip and more.</span></div></li><li><span class="n">2</span><div><b>Add a sale</b><span>Product, price, done.</span></div></li><li><span class="n">3</span><div><b>See what you kept</b><span>This month, by platform, to the cent.</span></div></li></ol><div class="grow"></div>' +
       '<button class="btn" data-act="trysample">Try with a sample shop</button><button class="btn sec" data-act="startfresh">Start fresh</button><p class="cap" style="text-align:center;margin:14px 0 0">Your data stays on this device.</p></div>';
   }
   var pick = ui.pick || [];
-  return '<div class="welcome"><div class="wm">' + LOGO_SVG + '<span>' + WORDMARK + '</span></div><h1>Where do you sell?</h1><p class="sub" style="font-size:17px">Pick any that apply. You can change this later in Settings.</p><div class="chips">' +
+  return '<div class="welcome"><div class="wm">' + LOGO_SVG + NAMEMARK + '</div><h1>Where do you sell?</h1><p class="sub" style="font-size:17px">Pick any that apply. You can change this later in Settings.</p><div class="chips">' +
     E.PROFILES.map(function (p) { return '<button class="chip" data-act="wpick" data-id="' + p.id + '" aria-pressed="' + (pick.indexOf(p.id) >= 0) + '">' + esc(p.short) + '</button>'; }).join('') + '</div><p class="cap" style="margin:14px 0 0;min-height:20px">' + (pick.length ? '' : 'Pick at least one to continue.') + '</p><div class="grow" style="min-height:24px"></div>' +
     '<button class="btn" data-act="wdone"' + (pick.length ? '' : ' disabled') + '>Continue</button><button class="btn ghost" data-act="wback">Back</button></div>';
 }
