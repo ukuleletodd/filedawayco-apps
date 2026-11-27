@@ -48,7 +48,7 @@ button{cursor:pointer}
 
 /* tab bar */
 #tabs{height:var(--tab-h);padding-bottom:env(safe-area-inset-bottom);flex:none;display:flex;background:#fff;border-top:1px solid var(--line);align-items:stretch}
-#tabs button{flex:1;border:0;background:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:var(--slate);font-size:11px;font-weight:600;min-height:52px}
+#tabs button{flex:1;border:0;background:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:var(--slate);font-size:12px;font-weight:600;min-height:52px}
 #tabs button svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 #tabs button[aria-current=page]{color:var(--green)}
 #tabs button.add span.fab{width:46px;height:46px;border-radius:23px;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;margin-top:-14px;box-shadow:0 6px 16px rgba(31,92,69,.35);border:3px solid #fff}
@@ -533,6 +533,21 @@ details.src summary{min-height:44px;display:flex;align-items:center;font-weight:
 }
 
 </style>
+<style id="firstpaint-css">
+.fp{padding:22px 20px 28px}.fp .fp-brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:15px;color:var(--navy)}
+.fp h1{font-size:30px;line-height:1.15;margin:16px 0 8px;font-weight:700;color:var(--navy)}.fp .fp-sub{font-size:16px;color:var(--slate);margin:0 0 18px}
+.fp .fp-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin:0 0 14px}
+.fp .fp-tag{display:inline-block;background:var(--mint-bg);color:var(--green);font-weight:700;font-size:12px;letter-spacing:.06em;padding:3px 9px;border-radius:999px;margin-bottom:9px}
+.fp .fp-big{font-size:19px;font-weight:700;color:var(--navy);margin:0 0 4px}.fp .fp-card p{margin:0;color:var(--slate);font-size:14.5px}
+.fp .fp-step{background:var(--navy);color:#FBF8F2;border-radius:16px;padding:16px;margin:0 0 14px}.fp .fp-step b{color:#fff}.fp .fp-step p{margin:0;font-size:15px;line-height:1.45}
+.fp .fp-foot{color:var(--slate);font-size:13px;margin:0}
+.fp-tabsline{flex:1;display:flex;align-items:center;justify-content:center;color:var(--slate);font-size:12.5px;letter-spacing:.02em}
+#printsheet{display:none}
+#phone.welcome-on #toast-bar{position:absolute;left:0;right:0;bottom:0;z-index:20;background:none;border:0}
+@media print{html.printing-tax #page,html.printing-tax #toast-bar{display:none!important}html.printing-tax #printsheet{display:block;color:#000;font:12pt/1.4 Arial,sans-serif;padding:0 8mm}
+#printsheet h1{font:bold 18pt Georgia,serif;margin:0 0 4pt}#printsheet h2{font:bold 13pt Georgia,serif;margin:14pt 0 4pt}#printsheet table{width:100%;border-collapse:collapse}
+#printsheet td,#printsheet th{border-bottom:1px solid #999;padding:4pt 2pt;text-align:left}#printsheet td+td,#printsheet th+th{text-align:right}#printsheet tr.tot td{font-weight:bold;border-top:2px solid #000}}
+</style>
 </head>
 <body>
 <div id="page">
@@ -543,14 +558,15 @@ details.src summary{min-height:44px;display:flex;align-items:center;font-weight:
     <p>Your sales stay on this device. Nothing is sent anywhere.</p>
   </aside>
   <div id="phone">
-    <main id="main" aria-live="off"></main>
+    <main id="main" aria-live="off"><div class="fp" id="firstpaint"><div class="fp-brand"><svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#1B2A40"/><rect x="8" y="7" width="4" height="18" rx="1.5" fill="#FBF8F2"/><rect x="12" y="7" width="12" height="4" rx="1.5" fill="#FBF8F2"/><rect x="12" y="14" width="8" height="4" rx="1.5" fill="#FBF8F2"/><rect x="18" y="20" width="6" height="6" rx="1.5" fill="#E39A2D"/></svg> FiledAwayCo</div><h1>Seller Dashboard</h1><p class="fp-sub">See what you actually keep from every sale, after each platform's fees: Etsy, eBay, Gumroad, Shopify and more.</p><div class="fp-card"><span class="fp-tag">MADE-UP EXAMPLE</span><p class="fp-big">A $17.00 Etsy sale: you keep $14.94</p><p>Fees take $2.06 of it. The app works this out for every sale, on every platform, and opens with a sample shop you can explore, then clear in one tap.</p></div><div class="fp-step"><p><b>If you can read this,</b> the app has not started yet. Open this page in Chrome or Safari on your phone. It runs right there, with no account and nothing to install, and your sales never leave your device.</p></div><p class="fp-foot">Questions? filedawayco@gmail.com</p></div></main>
     <div id="toast-bar"><div id="toast" role="status" aria-live="polite"></div></div>
-    <nav id="tabs" aria-label="Main"></nav>
+    <nav id="tabs" aria-label="Main"><div class="fp-tabsline">Home &nbsp;·&nbsp; Sales &nbsp;·&nbsp; Add &nbsp;·&nbsp; Check &nbsp;·&nbsp; Settings</div></nav>
     <div id="welcome-root" style="display:none"></div>
     <div id="scrim"></div>
     <input type="file" id="importfile" accept=".csv,text/csv,text/plain,application/vnd.ms-excel" class="sr" tabindex="-1" aria-hidden="true">
   </div>
 </div>
+<div id="printsheet" aria-hidden="true"></div>
 <noscript>This app needs JavaScript turned on.</noscript>
 <script id="engine">
 /* Fee engine: pure functions, no DOM, no storage. Reproduces the v1.1 spreadsheet math exactly.
@@ -560,9 +576,12 @@ details.src summary{min-height:44px;display:flex;align-items:center;font-weight:
 var Engine = (function () {
   'use strict';
   var CHECKED = '2026-11-23';
+  // v2.5 merge (2026-11-26): ported from the 2026-11-24 v-next build: eBay's % fee is tiered (13.6% on the first $7,500 of the
+  // total amount of the sale, sales tax included, 2.35% above it) and Etsy caps the Offsite Ads fee at $100 per order.
   // id, name, short, c = platform fee %, lo/hi = fixed fee at/below and above thr, thr, pp/pf = processing % and fixed,
   // lst = listing fee per item, ads = ads % (Etsy: replaced by settings), plan = monthly plan fee,
-  // rp / rpr / rad = platform fee / processing / Offsite Ads fee returned on refund, tb = sales tax in processing base, gum = Gumroad processing switch
+  // rp / rpr / rad = platform fee / processing / Offsite Ads fee returned on refund, tb = sales tax in processing base, gum = Gumroad processing switch,
+  // fb = sales tax in the platform-fee base, cap/c2 = the % drops to c2 on the part of that base above cap (eBay's $7,500 tier)
   var PROFILES = [
     { id: 'ETSY', name: 'Etsy', short: 'Etsy', c: 0.065, lo: 0, hi: 0, thr: 0, pp: 0.03, pf: 0.25, lst: 0.20, ads: 0.15, plan: 0, rp: true, rpr: true, rad: true, tb: true, gum: false },
     { id: 'WHOP_CARD', name: 'Whop (card)', short: 'Whop (card)', c: 0, lo: 0, hi: 0, thr: 0, pp: 0.027, pf: 0.30, lst: 0, ads: 0, plan: 0, rp: false, rpr: false, tb: false, gum: false },
@@ -573,7 +592,7 @@ var Engine = (function () {
     { id: 'PAYHIP_PRO', name: 'Payhip Pro', short: 'Payhip Pro', c: 0, lo: 0, hi: 0, thr: 0, pp: 0.029, pf: 0.30, lst: 0, ads: 0, plan: 99, rp: false, rpr: false, tb: false, gum: false },
     { id: 'SHOPIFY_BASIC', name: 'Shopify Basic', short: 'Shopify Basic', c: 0, lo: 0, hi: 0, thr: 0, pp: 0.029, pf: 0.30, lst: 0, ads: 0, plan: 29, rp: false, rpr: false, tb: false, gum: false },
     { id: 'STRIPE_DIRECT', name: 'Stripe direct', short: 'Stripe direct', c: 0, lo: 0, hi: 0, thr: 0, pp: 0.029, pf: 0.30, lst: 0, ads: 0, plan: 0, rp: false, rpr: false, tb: false, gum: false },
-    { id: 'EBAY', name: 'eBay', short: 'eBay', c: 0.136, lo: 0.30, hi: 0.40, thr: 10, pp: 0, pf: 0, lst: 0, ads: 0, plan: 0, rp: false, rpr: false, tb: false, gum: false },
+    { id: 'EBAY', name: 'eBay', short: 'eBay', c: 0.136, lo: 0.30, hi: 0.40, thr: 10, pp: 0, pf: 0, lst: 0, ads: 0, plan: 0, rp: false, rpr: false, tb: false, gum: false, cap: 7500, c2: 0.0235, fb: true },
     // R2: PayPal goods & services, US: 3.49% + $0.49, no platform fee, no plan. Per PayPal's US merchant fees page; the buyer should check their own rate.
     { id: 'PAYPAL', name: 'PayPal', short: 'PayPal', c: 0, lo: 0, hi: 0, thr: 0, pp: 0.0349, pf: 0.49, lst: 0, ads: 0, plan: 0, rp: false, rpr: false, tb: false, gum: false }
   ];
@@ -620,14 +639,17 @@ var Engine = (function () {
 
   /* One order.  o = {gross (item price total + shipping, no tax), tax, ad, qty, refunded, refundAmt (null = full), cost (per item)}
      S = settings (only gumProc is read here). Returns every part unrounded. */
+  var ADS_CAP = 100;   // Etsy: the Offsite Ads fee is capped at $100 per order
+  function adsFee(p, g) { return Math.min(p.ads * g, ADS_CAP); }
+  function platPct(p, base) { return p.cap ? Math.min(base, p.cap) * p.c + Math.max(0, base - p.cap) * (p.c2 != null ? p.c2 : p.c) : base * p.c; }
   function orderFees(p, o, S) {
     var g = num(o.gross), tax = num(o.tax), qty = Math.max(1, num(o.qty) || 1);
     var sw = (S && S.gumProc === false) ? 0 : 1;
     var m = (p.gum && !sw) ? 0 : 1;
-    var plat = g * p.c + (g > p.thr ? p.hi : p.lo);
+    var plat = platPct(p, g + (p.fb ? tax : 0)) + (g > p.thr ? p.hi : p.lo);
     var proc = m * (p.pp * (g + (p.tb ? tax : 0)) + p.pf);
     var listing = p.lst * qty;
-    var ads = o.ad ? p.ads * g : 0;
+    var ads = o.ad ? adsFee(p, g) : 0;
     var full = plat + proc + listing + ads;
     var share = 0;
     if (o.refunded) {
@@ -635,7 +657,8 @@ var Engine = (function () {
       else share = g > 0 ? clamp01(num(o.refundAmt) / g) : 1;
     }
     // R2-9: Etsy recalculates "other applicable fees" (the Offsite Ads fee) on the adjusted price for refunds the seller issues, and returns the difference
-    var platBack = p.rp ? share * plat : 0, procBack = p.rpr ? share * proc : 0, adsBack = p.rad ? share * ads : 0;
+    // v2.5: with the $100 cap the Offsite Ads fee is recalculated on the adjusted price (same as share * ads whenever the cap is not reached)
+    var platBack = p.rp ? share * plat : 0, procBack = p.rpr ? share * proc : 0, adsBack = p.rad ? ads - (o.ad ? adsFee(p, g * (1 - share)) : 0) : 0;
     var kept = full - platBack - procBack - adsBack;
     var grossCounted = g * (1 - share);
     var net = grossCounted - kept;
@@ -703,14 +726,16 @@ var Engine = (function () {
   function etsyProfit(p, i) {
     var price = num(i.price), ship = num(i.ship), tax = num(i.tax), cost = num(i.cost), qty = Math.max(1, num(i.qty) || 1), target = num(i.target);
     var gross = price + ship, tb = p.tb ? tax : 0;
-    var listing = p.lst * qty, trans = p.c * gross, proc = p.pp * (gross + tb) + p.pf, ads = i.ad ? p.ads * gross : 0;
+    var listing = p.lst * qty, trans = p.c * gross, proc = p.pp * (gross + tb) + p.pf, ads = i.ad ? adsFee(p, gross) : 0;
     var total = listing + trans + proc + ads, keep = gross - total, profit = keep - cost;
     var den = 1 - p.c - p.pp - (i.ad ? p.ads : 0);
     var need = den <= 0 ? null : (target + cost + p.lst * qty + p.pf + p.pp * tb) / den - ship;
+    // v2.5: above the Offsite Ads cap the ads fee is a flat $100, so solve that straight line instead
+    if (i.ad && need != null && p.ads * (need + ship) > ADS_CAP) { var den2 = 1 - p.c - p.pp; need = den2 <= 0 ? null : (target + cost + p.lst * qty + p.pf + p.pp * tb + ADS_CAP) / den2 - ship; }
     var atNeed = null;
     if (need != null) {
       var g2 = need + ship;
-      atNeed = g2 - (listing + p.c * g2 + (p.pp * (g2 + tb) + p.pf) + (i.ad ? p.ads * g2 : 0)) - cost;
+      atNeed = g2 - (listing + p.c * g2 + (p.pp * (g2 + tb) + p.pf) + (i.ad ? adsFee(p, g2) : 0)) - cost;
     }
     return { gross: gross, listing: listing, trans: trans, proc: proc, ads: ads, total: total, keep: keep, profit: profit,
              margin: gross > 0 ? profit / gross : null, need: need, profitAtNeed: atNeed };
@@ -830,6 +855,15 @@ var Engine = (function () {
       if (!(gL > p.thr)) cand.push(gL);
       if (gH > p.thr) cand.push(gH);
       needG = cand.length ? Math.min.apply(null, cand) : p.thr + 0.01;
+    }
+    // v2.5: the straight-line solve above is exact unless the Offsite Ads cap, eBay's $7,500 tier or tax in eBay's fee base applies at the answer.
+    // Then the fee is still a straight line on that stretch, so a few secant steps land on it exactly.
+    function bent(g) { return (ad && p.ads * g > ADS_CAP) || (p.cap && g + (p.fb ? tax : 0) > p.cap) || (p.fb && tax > 0); }
+    if (needG != null && bent(needG)) {
+      var pr = function (g) { return g - orderFees(p, { gross: g, tax: tax, ad: ad, qty: qty, refunded: false, cost: 0 }, S).full - cost - share - target; };
+      var g0 = needG, it = 0;
+      while (it++ < 30) { var e0 = pr(g0); if (Math.abs(e0) < 1e-9) break; var h = 1e-3, sl = (pr(g0 + h) - e0) / h; if (!(sl > 1e-9)) break; g0 = g0 - e0 / sl; }
+      if (g0 > p.thr || !(needG > p.thr)) needG = g0;
     }
     var atNeed = null;
     if (needG != null) { var f2 = orderFees(p, { gross: needG, tax: tax, ad: ad, qty: qty, refunded: false, cost: 0 }, S); atNeed = needG - f2.full - cost - share; }
@@ -1779,7 +1813,7 @@ function dayHead(s) { var a = s.split('-'), d = new Date(+a[0], +a[1] - 1, +a[2]
 function blank() {
   return { app: 'fac-seller-dashboard', v: 2, sample: false, onboarded: false,
     settings: { currency: '$', gumProc: true, shopifyBilling: 'yearly', etsyAds: 0.15, platforms: ['ETSY', 'GUMROAD_DIRECT', 'PAYHIP_FREE', 'WHOP_CARD'], overrides: {}, custom: null, target: 10,
-      custom2: null, archived: [], planEvery: {}, lastBackup: null, nudgeDismissed: null, tipDismissed: false },
+      custom2: null, archived: [], planEvery: {}, lastBackup: null, nudgeDismissed: null, tipDismissed: false, taxPct: 27 },
     products: [], sales: [] };
 }
 var memStore = null, canStore = true;
@@ -1797,6 +1831,7 @@ function normalize(d) {
   if (!st.planEvery || typeof st.planEvery !== 'object' || Array.isArray(st.planEvery)) st.planEvery = {};
   Object.keys(st.planEvery).forEach(function (id) { if (!ym.test(String(st.planEvery[id]))) delete st.planEvery[id]; });
   if (!iso.test(String(st.lastBackup || ''))) st.lastBackup = null;
+  st.taxPct = isFinite(Number(st.taxPct)) ? Math.min(60, Math.max(0, Number(st.taxPct))) : 27;
   if (!iso.test(String(st.nudgeDismissed || ''))) st.nudgeDismissed = null;
   st.tipDismissed = !!st.tipDismissed;
   if (st.custom && !st.custom.name) st.custom = null; if (st.custom2 && !st.custom2.name) st.custom2 = null;
@@ -1874,7 +1909,8 @@ function loadSample() {
 /* ---------- ui state ---------- */
 var ui = { tab: 'home', month: todayStr().slice(0, 7), salesMode: 'sales', checkMode: 'price', where: false, homePlats: false, salesAll: false, prodsAll: false, welcome: 0, pick: null,
   add: null, chk: { price: '17', qty: 1, ship: '', cost: '', tax: '', ad: false, adj: false, more: false, where: false, pid: null }, cmp: { price: '17', n: '', ship: '', cost: '', ad: false, more: false, all: false },
-  adv: false, setPlats: false, setAbout: false, src: false, sheet: null, allpl: false, alsoAdd: false, imp: null };
+  adv: false, setPlats: false, setAbout: false, src: false, sheet: null, allpl: false, alsoAdd: false, imp: null,
+  taxYear: new Date().getFullYear() };
 function resetDisclosures() {
   ui.where = false; ui.homePlats = false; ui.salesAll = false; ui.prodsAll = false;
   ui.chk.adj = false; ui.chk.more = false; ui.chk.where = false;
@@ -2085,7 +2121,9 @@ function addSheet() {
 }
 
 function salesView() {
-  var h = '<div class="hdr-row"><h1>Sales</h1><button class="imp-btn" data-act="openimport">' + ICON.upload + 'Import CSV</button></div>' + '<div class="seg" role="group" aria-label="View" style="margin:0 0 8px"><button data-act="smode" data-v="sales" aria-pressed="' + (ui.salesMode === 'sales') + '">Sales</button><button data-act="smode" data-v="products" aria-pressed="' + (ui.salesMode === 'products') + '">Products</button></div>' + monthBar();
+  var h = '<div class="hdr-row"><h1>Sales</h1><button class="imp-btn" data-act="openimport">' + ICON.upload + 'Import CSV</button></div>' + '<div class="seg" role="group" aria-label="View" style="margin:0 0 8px"><button data-act="smode" data-v="sales" aria-pressed="' + (ui.salesMode === 'sales') + '">Sales</button><button data-act="smode" data-v="products" aria-pressed="' + (ui.salesMode === 'products') + '">Products</button><button data-act="smode" data-v="tax" aria-pressed="' + (ui.salesMode === 'tax') + '">Tax</button></div>';
+  if (ui.salesMode === 'tax') return h + taxView();
+  h += monthBar();
   var L = plist(), ms = monthSales(ui.month), sm = E.summarize(L, ms, costOf, data.settings, ui.month), mv = E.monthView(sm);
   if (ui.salesMode === 'sales') {
     if (!ms.length) return h + '<div class="empty">' + EMPTY_SVG + '<h3>No sales in ' + esc(MON[+ui.month.split('-')[1] - 1]) + '</h3><p>Sales you add or import show up here, newest first.</p><button class="btn" data-act="gotoadd">Add a sale</button><button class="btn sec" data-act="openimport">Import sales (CSV)</button></div>';
@@ -2206,7 +2244,7 @@ function targetRes() {
 }
 var NOTES = { GUMROAD_DISCOVER: 'Gumroad (Discover): sales that come from Gumroad\'s own marketplace, not your link.', WHOP_CARD: 'Whop (card): the buyer pays by card on Whop.', PAYPAL: 'PayPal: goods and services in the US. Fee per PayPal\'s US merchant fees page; check yours.' };
 /* R2-6: caveats that belong on the row itself */
-var ROW_NOTE = { WHOP_CARD: 'Platform fee 0% per Whop\'s page; not verified on a real payout.', PAYPAL: 'Fee per PayPal\'s US merchant fees page; check yours.' };
+var ROW_NOTE = { WHOP_CARD: 'Platform fee 0% per Whop\'s page; not verified on a real payout.', PAYPAL: 'US goods and services rate; check yours.' };
 function cmpResult() {
   var m = ui.cmp, L = plist();
   if (!(P(m.price) > 0)) return '<section class="card"><p class="cap" style="margin:0">Type a price to compare platforms.</p></section>';
@@ -2257,7 +2295,7 @@ function settingsView() {
   h += '<div class="set-row"><span class="smain"><span class="st" id="l-cur">Currency</span><span class="sm">Label only · USD rates</span></span><div class="seg set-cur-seg" role="group" aria-labelledby="l-cur">' + ['$', '€', '£'].map(function (c) { return '<button data-act="cur" data-v="' + c + '" aria-pressed="' + (s.currency === c) + '">' + c + '</button>'; }).join('') + '</div></div>';
   h += '<button class="set-row" data-act="adv" aria-expanded="' + !!ui.adv + '"><span class="smain"><span class="st">Advanced fee settings</span><span class="sm">Ads rate, overrides &amp; custom platforms</span></span>' + ICON.chev + '</button>';
   if (ui.adv) {
-    h += '<div class="set-panel"><div class="field"><span class="l" id="l-ads">Etsy Offsite Ads rate</span><div class="seg" role="group" aria-labelledby="l-ads"><button data-act="ads" data-v="0.15" aria-pressed="' + (s.etsyAds === 0.15) + '">15%</button><button data-act="ads" data-v="0.12" aria-pressed="' + (s.etsyAds === 0.12) + '">12%</button></div><p class="cap" style="margin:6px 0 0">12% applies once a shop passes ' + esc(cur()) + '10,000 in 365 days. The ' + esc(cur()) + '100 per order cap is not modeled.</p></div>' +
+    h += '<div class="set-panel"><div class="field"><span class="l" id="l-ads">Etsy Offsite Ads rate</span><div class="seg" role="group" aria-labelledby="l-ads"><button data-act="ads" data-v="0.15" aria-pressed="' + (s.etsyAds === 0.15) + '">15%</button><button data-act="ads" data-v="0.12" aria-pressed="' + (s.etsyAds === 0.12) + '">12%</button></div><p class="cap" style="margin:6px 0 0">12% applies once a shop passes ' + esc(cur()) + '10,000 in 365 days. Etsy caps the Offsite Ads fee at ' + esc(cur()) + '100 per order; the app applies the cap.</p></div>' +
       '<div class="field"><span class="l" id="l-gp">Gumroad (direct): card processing</span><div class="seg" role="group" aria-labelledby="l-gp"><button data-act="gum" data-v="1" aria-pressed="' + (s.gumProc !== false) + '">Added on top</button><button data-act="gum" data-v="0" aria-pressed="' + (s.gumProc === false) + '">Not added</button></div><p class="cap" style="margin:6px 0 0">Gumroad\'s help page says 2.9% + ' + esc(cur()) + '0.30 is extra; its pricing page does not say.</p></div>' +
       '<div class="field"><span class="l" id="l-sb">Shopify billing</span><div class="seg" role="group" aria-labelledby="l-sb"><button data-act="shop" data-v="yearly" aria-pressed="' + (s.shopifyBilling !== 'monthly') + '">Yearly ' + esc(cur()) + '29</button><button data-act="shop" data-v="monthly" aria-pressed="' + (s.shopifyBilling === 'monthly') + '">Monthly ' + esc(cur()) + '39</button></div></div>' +
       '<span class="l cap" style="display:block;font-weight:600;margin-bottom:2px">Fee rates by platform</span><ul class="list">' + L.filter(function (p) { return !p.custom; }).map(function (p) {
@@ -2280,13 +2318,13 @@ function settingsView() {
     '<button class="set-act err" data-act="clear">Clear all data</button></div></section>' +
     '<input type="file" id="restorefile" accept="application/json,.json" class="sr" tabindex="-1" aria-hidden="true">';
   /* Card 3: About & fee sources behind progressive disclosure, with concise trust footer always visible */
-  h += '<section class="card set-card"><button class="set-row" data-act="setabout" aria-expanded="' + !!ui.setAbout + '"><span class="smain"><span class="st">About &amp; fee sources</span><span class="sm">v2.4 · Checked ' + E.CHECKED + ' · Welcome tour</span></span>' + ICON.chev + '</button>';
+  h += '<section class="card set-card"><button class="set-row" data-act="setabout" aria-expanded="' + !!ui.setAbout + '"><span class="smain"><span class="st">About &amp; fee sources</span><span class="sm">v2.5 · Checked ' + E.CHECKED + ' · Welcome tour</span></span>' + ICON.chev + '</button>';
   if (ui.setAbout) {
-    h += '<div class="set-panel"><div class="wm" style="margin:0 0 10px">' + LOGO_SVG + '<span>' + WORDMARK + '</span></div><p style="margin:0 0 8px"><b>Seller Dashboard</b> · v2.4</p>' +
+    h += '<div class="set-panel"><div class="wm" style="margin:0 0 10px">' + LOGO_SVG + '<span>' + WORDMARK + '</span></div><p style="margin:0 0 8px"><b>Seller Dashboard</b> · v2.5</p>' +
       '<p class="cap" style="margin:0 0 8px">Fee rates checked ' + E.CHECKED + '. Check your platform\'s current fees before you rely on a number here.</p>' +
       '<p class="cap" style="margin:0 0 8px">Your sales stay on this device. Nothing is sent anywhere. Back up from this page when you want a copy.</p>' +
       '<p class="cap" style="margin:0 0 8px">Rates are not official statements from any platform, and this is not tax advice.</p>' +
-      '<details class="src"><summary>Where the rates come from</summary><p class="srcl">Etsy: help.etsy.com (Fee Basics, payment processing, refunds) and the Etsy Payments Policy, section 9 (etsy.com/legal/etsy-payments): for refunds you issue, the processing fee and other applicable fees, including the Offsite Ads fee, are recalculated on the adjusted sale price and returned; refunds Etsy covers itself (such as Purchase Protection) keep the Offsite Ads fee, which this app does not model. Whop: docs.whop.com fees page; its platform fee is not listed there, so it is set to 0%. Gumroad: gumroad.com/pricing and help article 66. Payhip: payhip.com/pricing plus Stripe\'s card rate. Stripe and Shopify Payments: their pricing pages. PayPal: its US merchant fees page, goods and services (3.49% + $0.49); check your own rate. eBay: selling fees page, most categories; digital-goods categories not verified. Refund treatment is checked for Etsy, Gumroad (direct) and Stripe only; other platforms keep all fees on a refund. Etsy refunds also return the Offsite Ads fee in proportion.</p></details>' +
+      '<details class="src"><summary>Where the rates come from</summary><p class="srcl">Etsy: help.etsy.com (Fee Basics, payment processing, refunds) and the Etsy Payments Policy, section 9 (etsy.com/legal/etsy-payments): for refunds you issue, the processing fee and other applicable fees, including the Offsite Ads fee, are recalculated on the adjusted sale price and returned; refunds Etsy covers itself (such as Purchase Protection) keep the Offsite Ads fee, which this app does not model. Whop: docs.whop.com fees page; its platform fee is not listed there, so it is set to 0%. Gumroad: gumroad.com/pricing and help article 66. Payhip: payhip.com/pricing plus Stripe\'s card rate. Stripe and Shopify Payments: their pricing pages. PayPal: its US merchant fees page, goods and services (3.49% + $0.49); check your own rate. eBay: selling fees page, most categories (13.6% of the total amount of the sale including sales tax, up to $7,500, then 2.35% on the part above, plus $0.30 per order, $0.40 over $10); digital-goods categories not verified. Etsy Offsite Ads fee: capped at $100 per order. Refund treatment is checked for Etsy, Gumroad (direct) and Stripe only; other platforms keep all fees on a refund. Etsy refunds also return the Offsite Ads fee in proportion.</p></details>' +
       '<button class="btn ghost" data-act="replay" style="margin-top:4px">Show the welcome again</button></div>';
   }
   h += '</section><p class="set-foot">Stays on this device · Tool only, not tax or financial advice.</p>';
@@ -2303,6 +2341,96 @@ function feeSummary(p) {
   if (p.plan) a.push('plan ' + c_ + p.plan + '/mo');
   return esc(a.join(' · ') || 'No fees');
 }
+
+
+/* ---------- v2.5: Tax set-aside, 1099-K check, calendar, print + exports (ported from the 2026-11-24 v-next build, fitted to one screen) ---------- */
+function csvSafe(v) { v = String(v == null ? '' : v); if (/^\s*[=+\-@]/.test(v) || /^[\t\r]/.test(v)) v = "'" + v; return csvCell(v); }   // formula-safe CSV text (from v-next)
+function taxPctV() { var v = Number(data.settings.taxPct); return isFinite(v) ? v : 27; }
+function taxTotals(year) {
+  var L = plist(), ys = data.sales.filter(function (s) { return s.date.slice(0, 4) === String(year); });
+  var sm = E.summarize(L, ys, costOf, data.settings), t = sm.total;
+  return { gross: t.gross, fees: t.fees, net: t.net, costs: t.costs, profit: t.profit, rows: sm.rows, count: ys.length };
+}
+function taxDues(y) {
+  var q4iso = (y === 2027 ? '2028-01-18' : (y + 1) + '-01-15'), q4lbl = (y === 2027 ? 'Jan 18, 2028' : 'Jan 15, ' + (y + 1));
+  return [[y + '-04-15', 'Apr 15, ' + y, 'Q1'], [y + '-06-15', 'Jun 15, ' + y, 'Q2'], [y + '-09-15', 'Sep 15, ' + y, 'Q3'], [q4iso, q4lbl, 'Q4']];
+}
+function k1099Rows(year) {
+  // IRS Form 1099-K counts unadjusted gross payments: partial refunds still count; a fully refunded sale is skipped
+  var ys = data.sales.filter(function (s) { return s.date.slice(0, 4) === String(year) && !(s.refunded && (s.refundAmt == null || s.refundAmt === '')); });
+  var L = plist(), byP = {};
+  ys.forEach(function (s) { var pr = E.byId(L, s.pid), k = pr ? pr.name : s.pid; if (!byP[k]) byP[k] = { name: k, gross: 0, count: 0 }; byP[k].gross += E.saleGross(s); byP[k].count += 1; });
+  return Object.keys(byP).map(function (k) { var x = byP[k]; x.pct = Math.min(x.gross / 20000, x.count / 200); x.hit = x.gross > 20000 && x.count > 200; return x; }).sort(function (a, b) { return b.pct - a.pct; });
+}
+function taxView() {
+  var y = ui.taxYear, tt = taxTotals(y), pv = taxPctV(), base = Math.max(0, tt.profit), setAside = base * pv / 100, perQ = setAside / 4, td = todayStr();
+  var dues = taxDues(y), nx = null; dues.forEach(function (d) { if (!nx && d[0] >= td) nx = d; });
+  var h = '<div class="month"><button data-act="taxprev" aria-label="Previous year">' + ICON.left + '</button><button class="lbl" data-act="taxnow" aria-label="' + y + ' tax year, tap for this year">' + y + ' tax year</button><button data-act="taxnext" aria-label="Next year">' + ICON.right + '</button></div>';
+  h += '<section class="card hero tax-hero" aria-label="Tax set-aside"><div class="eyebrow">Set aside for ' + y + ' taxes</div><span class="big num" data-fit>' + money(setAside) + '</span>' +
+    '<p class="lede">' + money(perQ) + ' a quarter · ' + pv + '% of ' + money(tt.profit) + ' profit after fees and costs</p></section>';
+  var kr = k1099Rows(y), top = kr[0];
+  h += '<section class="card set-card">' +
+    '<div class="set-row" style="cursor:default"><span class="smain"><span class="st">Next due: ' + (nx ? nx[1] + (y > 2026 ? ' (estimated)' : '') : 'none left in ' + y) + '</span><span class="sm">Estimated tax, Form 1040-ES</span></span><b class="num">' + (nx ? money(perQ) : '') + '</b></div>' +
+    '<button class="set-row" data-act="taxpctopen"><span class="smain"><span class="st">Your set-aside: ' + pv + '%</span><span class="sm">Tap to change · 25 to 30% is common</span></span>' + ICON.chev.replace('class="chev"', 'class="chev" style="transform:rotate(-90deg)"') + '</button>' +
+    '<button class="set-row" data-act="taxk"><span class="smain"><span class="st">1099-K check</span><span class="sm">' + (top ? esc(top.name) + ': ' + money(top.gross) + ' of $20,000 · ' + top.count + ' of 200 sales' : 'No ' + y + ' sales yet') + '</span></span>' + ICON.chev.replace('class="chev"', 'class="chev" style="transform:rotate(-90deg)"') + '</button>' +
+    '</section>';
+  h += '<div class="set-grid"><button class="set-act pri" data-act="taxics">Add dates (.ics)</button><button class="set-act" data-act="taxprint">Print summary</button></div>' +
+    '<div class="set-grid"><button class="set-act" data-act="bridge1099">For 1099 planner</button><button class="set-act" data-act="bridgebk">Bookkeeping CSV</button></div>' +
+    '<p class="cap" style="margin:8px 2px 0">' + plural(tt.count, 'sale') + ' in ' + y + '. Estimate only, not tax advice.</p>';
+  return h;
+}
+function taxKSheet() {
+  var y = ui.taxYear, kr = k1099Rows(y); ui.sheet = { taxk: true };
+  openSheet('<h3>1099-K check, ' + y + '</h3>' + (kr.length ? kr.map(function (x) { return line(esc(x.name) + (x.hit ? ' · over the line' : ''), money(x.gross) + ' · ' + plural(x.count, 'sale')); }).join('') : '<p class="cap">No ' + y + ' sales logged yet.</p>') +
+    '<p class="cap" style="margin:10px 0 12px">Platforms send a federal Form 1099-K once you pass $20,000 and more than 200 sales with them in a year (IRS, checked Nov 24, 2026). Partial refunds still count; fully refunded sales do not. Some states use lower lines. All business profit is taxable either way.</p>' +
+    '<button class="btn" data-act="closesheet">Close</button>');
+}
+function taxPctSheet() {
+  var pv = taxPctV(); ui.sheet = { taxpct: true };
+  openSheet('<h3>Your set-aside</h3><div class="chips fit4" role="group" aria-label="Set-aside percent">' + [25, 27, 30].map(function (v) { return '<button class="chip" data-act="taxchip" data-v="' + v + '" aria-pressed="' + (pv === v) + '">' + v + '%</button>'; }).join('') + '</div>' +
+    '<label class="field" style="margin:10px 0 0"><span class="l">Or type your own</span><span class="inp"><input data-bind="taxpct" inputmode="decimal" aria-label="Set-aside percent" value="' + esc(pv) + '"><span class="pre" style="margin:0 0 0 6px">%</span></span></label>' +
+    '<p class="cap" style="margin:8px 0 12px">Self-employment tax is 15.3% on 92.35% of profit (about 14.1%). Add a 12% income-tax planning rate and you get about 26%. Your own bracket decides the real figure.</p>' +
+    '<button class="btn" data-act="taxpctdone">Done</button>');
+}
+function buildTaxICS(y) {
+  var stamp = new Date().toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z';
+  var note = y === 2026 ? 'Checked 2026-11-24 against IRS 2026 Form 1040-ES. Estimate only, not tax advice.' : 'Estimated date: check IRS Form 1040-ES once it is published. Not tax advice.';
+  var L = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//FiledAwayCo//Seller Dashboard v2.5//EN', 'CALSCALE:GREGORIAN'];
+  taxDues(y).forEach(function (d, i) {
+    L.push('BEGIN:VEVENT', 'UID:fac-seller-tax-' + y + '-q' + (i + 1) + '@filedawayco.local', 'DTSTAMP:' + stamp, 'DTSTART;VALUE=DATE:' + d[0].replace(/-/g, ''),
+      'SUMMARY:' + d[2] + ' ' + y + ' estimated tax due (IRS Form 1040-ES)', 'DESCRIPTION:' + note, 'BEGIN:VALARM', 'TRIGGER:-P7D', 'ACTION:DISPLAY', 'DESCRIPTION:Quarterly estimated tax due in 7 days', 'END:VALARM', 'END:VEVENT');
+  });
+  L.push('END:VCALENDAR');
+  return L.join('\r\n') + '\r\n';
+}
+function buildBridge1099(y) {
+  var tt = taxTotals(y);
+  return JSON.stringify({ bridge: 'fac-bridge-v1', source: 'seller-dashboard-v2.5', exported: todayStr(), taxYear: y, sample: !!data.sample,
+    grossSales: +tt.gross.toFixed(2), platformFees: +tt.fees.toFixed(2), netBeforeCosts: +tt.net.toFixed(2), productCosts: +tt.costs.toFixed(2), trueNet: +tt.profit.toFixed(2), salesCount: tt.count,
+    platforms: tt.rows.map(function (r) { return { platform: r.name, gross: +r.gross.toFixed(2), fees: +r.fees.toFixed(2), net: +r.net.toFixed(2) }; }),
+    disclaimer: 'Planning record from Seller Dashboard (trueNet = profit after fees, refunds and logged product costs). Check the totals before filing. Not tax advice.' }, null, 2);
+}
+function buildBookkeepingCSV(y) {
+  var L = plist(), ys = data.sales.filter(function (s) { return s.date.slice(0, 4) === String(y); }).sort(function (a, b) { return a.date < b.date ? -1 : 1; });
+  var rows = ys.map(function (s) {
+    var r = E.saleResult(L, s, costOf(s.product), data.settings), pr = prod(s.product); if (!r) return null;
+    var sp = E.splitOrder(r), prof = E.byId(L, s.pid), isExp = sp.kept < 0;
+    return [csvCell(s.date), csvSafe((prof ? prof.name : s.pid) + ' - ' + (pr ? pr.name : 'Sale')), csvSafe(isExp ? 'Platform Fees & Refunds' : 'Sales Income'), csvCell((Math.abs(sp.kept) / 100).toFixed(2)), csvSafe(isExp ? 'Expense' : 'Income')].join(',');
+  }).filter(Boolean);
+  return ['Date,Description,Category,Amount,Type'].concat(rows).join('\r\n') + '\r\n';
+}
+function printSheetHTML() {
+  var y = ui.taxYear, tt = taxTotals(y), pv = taxPctV(), setAside = Math.max(0, tt.profit) * pv / 100, perQ = setAside / 4;
+  var rows = tt.rows.map(function (a) { return '<tr><td>' + esc(a.name) + '</td><td>' + money(a.gross) + '</td><td>' + money(a.net) + '</td></tr>'; }).join('');
+  return '<h1>Seller Dashboard: ' + y + ' tax summary</h1><p>FiledAwayCo · prepared ' + esc(longDate(todayStr())) + (data.sample ? ' · MADE-UP SAMPLE SHOP, not real sales' : '') + '</p>' +
+    '<table><tr><th></th><th>Amount</th></tr><tr><td>Gross sales</td><td>' + money(tt.gross) + '</td></tr><tr><td>Fees kept by platforms</td><td>\u2212' + money(tt.fees) + '</td></tr>' +
+    '<tr><td>Kept after fees and refunds</td><td>' + money(tt.net) + '</td></tr>' + (tt.costs > 0 ? '<tr><td>Your product costs</td><td>\u2212' + money(tt.costs) + '</td></tr>' : '') +
+    '<tr class="tot"><td>Profit after costs (tax base)</td><td>' + money(tt.profit) + '</td></tr><tr><td>Set aside at ' + pv + '%</td><td>' + money(setAside) + '</td></tr><tr><td>Per quarter</td><td>' + money(perQ) + '</td></tr></table>' +
+    (rows ? '<h2>By platform</h2><table><tr><th>Platform</th><th>Gross</th><th>Kept</th></tr>' + rows + '</table>' : '') +
+    '<p>Quarterly estimated-tax due dates for ' + y + (y > 2026 ? ' (estimated)' : '') + ': ' + taxDues(y).map(function (d) { return d[1]; }).join(' · ') + '.</p>' +
+    '<p>' + plural(tt.count, 'sale') + ' logged. Monthly plan fees are not taken off here. Estimate only, not tax advice.<br>Support: filedawayco@gmail.com</p>';
+}
+function fillPrintSheet() { var ps = document.getElementById('printsheet'); if (ps) ps.innerHTML = printSheetHTML(); document.documentElement.classList.add('printing-tax'); }
 
 /* ---------- welcome ---------- */
 function welcomeView() {
@@ -2329,6 +2457,7 @@ function render(keepScroll) {
     return '<button class="' + (t[0] === 'add' ? 'add' : '') + '" data-act="tab" data-v="' + t[0] + '"' + (ui.tab === t[0] ? ' aria-current="page"' : '') + '>' + (t[0] === 'add' ? '<span class="fab">' + ICON[t[2]] + '</span>' : ICON[t[2]]) + '<span>' + t[1] + '</span></button>';
   }).join('');
   var w = $('#welcome-root'); if (!data.onboarded) { w.innerHTML = welcomeView(); w.style.display = 'block'; } else { w.innerHTML = ''; w.style.display = 'none'; }
+  var ph = document.getElementById('phone'); if (ph) ph.classList.toggle('welcome-on', !data.onboarded);   // v2.5: keeps the Undo toast tappable above the welcome screen
   var strips = main.querySelectorAll('.chips.scroll');
   for (var si = 0; si < strips.length; si++) {
     var par = strips[si], sel = par.querySelector('.chip[aria-pressed=true]');
@@ -2618,7 +2747,7 @@ function toCSV() {
 }
 
 /* ---------- actions ---------- */
-function setPath(path, v) { var a = path.split('.'); if (a.length === 2) ui[a[0]][a[1]] = v; else if (path === 'target') data.settings.target = P(v); else ui.add[path] = v; }
+function setPath(path, v) { var a = path.split('.'); if (a.length === 2) ui[a[0]][a[1]] = v; else if (path === 'target') data.settings.target = P(v); else if (path === 'taxpct') { data.settings.taxPct = Math.min(60, Math.max(0, P(v))); save(); } else ui.add[path] = v; }
 var A = {
   tab: function (el) { go(el.dataset.v); },
   mprev: function () { ui.month = shiftMonth(ui.month, -1); ui.homePlats = false; ui.salesAll = false; ui.prodsAll = false; render(); },
@@ -2635,7 +2764,11 @@ var A = {
   wback: function () { ui.welcome = 0; render(); },
   wdone: function () { if (!(ui.pick && ui.pick.length)) return; data = blank(); data.onboarded = true; data.settings.platforms = ui.pick.slice(); save(); ui.tab = 'home'; ui.add = null; render(); },
   /* R2-10: Start fresh from the sample banner goes through "Where do you sell?" like a first run */
-  clearsample: function () { data = blank(); data.onboarded = false; save(); ui.add = null; ui.welcome = 1; ui.pick = null; ui.tab = 'home'; render(); },
+  clearsample: function () {
+    var snap = JSON.stringify(data);   // v2.5 (from v-next): one-tap Undo brings the sample shop back
+    data = blank(); data.onboarded = false; save(); ui.add = null; ui.welcome = 1; ui.pick = null; ui.tab = 'home'; render();
+    toast('Sample shop cleared', function () { data = normalize(JSON.parse(snap)); save(); ui.welcome = 0; ui.tab = 'home'; render(); });
+  },
   pickprod: function (el) {
     ui.add.product = el.dataset.id;
     var fill = !ui.add.id && prefillFromProduct(ui.add, el.dataset.id, true);   // a new sale only: editing never changes the price
@@ -2706,6 +2839,17 @@ var A = {
   impmap: function () { if (!ui.imp) return; ui.imp.showMap = !ui.imp.showMap; importPreviewSheet(); },
   commitimport: function () { commitImport(); },
   smode: function (el) { ui.salesMode = el.dataset.v; ui.salesAll = false; ui.prodsAll = false; render(); },
+  taxprev: function () { ui.taxYear--; render(true); },
+  taxnext: function () { ui.taxYear++; render(true); },
+  taxnow: function () { ui.taxYear = new Date().getFullYear(); render(true); },
+  taxpctopen: function () { taxPctSheet(); },
+  taxpctdone: function () { closeSheet(); render(true); },
+  taxk: function () { taxKSheet(); },
+  taxchip: function (el) { data.settings.taxPct = Number(el.dataset.v); save(); render(true); taxPctSheet(); },
+  taxics: function () { download('seller-dashboard-tax-dates-' + ui.taxYear + '.ics', buildTaxICS(ui.taxYear), 'text/calendar'); toast('Calendar file saved. Open it to add the 4 dates.'); },
+  taxprint: function () { fillPrintSheet(); window.print(); },
+  bridge1099: function () { download('seller-dashboard-for-1099-planner-' + ui.taxYear + '.json', buildBridge1099(ui.taxYear), 'application/json'); toast('Saved. Import it in the 1099 Quarterly Tax Planner.'); },
+  bridgebk: function () { download('seller-dashboard-bookkeeping-' + ui.taxYear + '.csv', buildBookkeepingCSV(ui.taxYear), 'text/csv'); toast('Bookkeeping CSV saved.'); },
   cmode: function (el) { ui.checkMode = el.dataset.v; ui.chk.adj = false; ui.chk.more = false; ui.chk.where = false; ui.cmp.more = false; ui.cmp.all = false; render(); },
   chkadj: function () { ui.chk.adj = !ui.chk.adj; render(true); },
   cmpall: function () { ui.cmp.all = !ui.cmp.all; render(true); },
@@ -2810,7 +2954,7 @@ function boot() {
   });
   document.addEventListener('input', function (e) {
     var t = e.target;
-    if (t.dataset.bind) { setPath(t.dataset.bind, t.value); if (t.dataset.bind === 'target') save(); if (t.tagName === 'SELECT') render(true); else upd(); }
+    if (t.dataset.bind) { setPath(t.dataset.bind, t.value); if (t.dataset.bind === 'target') save(); if (t.dataset.bind === 'taxpct') { var tv = taxView, big = main.querySelector('.tax-hero'); if (big) { var tmp = document.createElement('div'); tmp.innerHTML = tv(); var nb = tmp.querySelector('.tax-hero'); if (nb) big.innerHTML = nb.innerHTML; fit(); } return; } if (t.tagName === 'SELECT') render(true); else upd(); }
   });
   /* R2-7: when a money field loses focus it shows the number it was understood as ("12,50" -> 12.50) */
   document.addEventListener('focusout', function (e) {
@@ -2862,6 +3006,9 @@ function boot() {
   });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && scrim.classList.contains('on')) closeSheet(); });
   window.addEventListener('resize', fit);
+  /* v2.5: printing from the browser menu while on Sales > Tax prints the one-page tax summary; anywhere else prints the screen as before */
+  window.addEventListener('beforeprint', function () { if (ui.tab === 'sales' && ui.salesMode === 'tax' && !document.documentElement.classList.contains('printing-tax')) fillPrintSheet(); });
+  window.addEventListener('afterprint', function () { document.documentElement.classList.remove('printing-tax'); });
   var wasWide = WIDE.matches; window.addEventListener('resize', function () { if (WIDE.matches !== wasWide) { wasWide = WIDE.matches; render(true); } });
   if (!canStore) setTimeout(function () { toast('This browser is not saving data. Use Back up in Settings.'); }, 600);
   try { if (navigator.storage && navigator.storage.persist) { var pr = navigator.storage.persist(); if (pr && pr.catch) pr.catch(function () {}); } } catch (e) {}   // R2-4: ask the browser not to evict our data (ignored if refused)
