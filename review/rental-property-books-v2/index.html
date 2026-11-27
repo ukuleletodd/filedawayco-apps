@@ -1,0 +1,1246 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Rental Property Books by FiledAwayCo</title>
+<meta name="description" content="Log rent and rental costs on your phone. Every entry lands on its IRS Schedule E line, per property, ready for tax time.">
+<meta name="theme-color" content="#1B2A40">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Rental Books">
+<style>:root{--navy:#1B2A40;--green:#1F5C45;--green2:#2E7A5D;--paper:#FBF8F2;--line:#E6DECF;--slate:#4A5563;--tan:#C9A46A;--red:#8A2A20;--amber:#FFF3D6;--ui:system-ui,-apple-system,"Segoe UI",Roboto,Inter,Arial,sans-serif}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--navy);font:16px/1.45 var(--ui);-webkit-tap-highlight-color:transparent}
+[hidden]{display:none!important}
+.wrap{max-width:560px;margin:0 auto;padding:14px 16px calc(110px + env(safe-area-inset-bottom))}
+header.top{display:flex;align-items:center;gap:12px;margin:4px 0 6px}
+header.top .logo{width:44px;height:44px;flex:none}header.top .logo svg{width:44px;height:44px;display:block}
+header.top h1{margin:0;font-size:22px;line-height:1.15;letter-spacing:-.3px}
+header.top .by{font-size:13px;font-weight:700;color:var(--slate)}header.top .by b{color:var(--green)}
+.lede{margin:2px 0 12px;color:var(--slate);font-size:15.5px}
+.banner{display:flex;align-items:center;gap:10px;justify-content:space-between;background:var(--amber);border:1.5px solid #EBD39A;border-radius:14px;padding:10px 14px;margin:0 0 12px;font-size:15px}
+.banner button{flex:none}
+.hero{background:var(--navy);color:#fff;border-radius:22px;padding:18px 20px 0;margin:0 0 12px;overflow:hidden}
+.hero .kick{font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#9FD3B9;font-weight:800}
+.hero .big{font-size:52px;font-weight:900;letter-spacing:-1.5px;line-height:1.05;margin:6px 0 4px;word-break:break-word}
+.hero .sub{color:#DCE3EC;font-size:15px;margin:0 0 14px}
+.hero .stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(255,255,255,.16);margin:0 -20px}
+.hero .stats div{padding:12px 12px 14px;border-left:1px solid rgba(255,255,255,.16)}.hero .stats div:first-child{border-left:0;padding-left:20px}
+.hero .stats b{display:block;font-size:19px}.hero .stats span{font-size:13px;color:#C9D3DF}
+.hero .go{display:block;width:100%;background:none;border:0;border-top:1px solid rgba(255,255,255,.16);color:#fff;font:800 16px var(--ui);padding:14px;margin:0 -20px;width:calc(100% + 40px);cursor:pointer;min-height:48px}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:54px;padding:0 16px;border-radius:16px;border:0;background:var(--green);color:#fff;font:800 17px var(--ui);cursor:pointer;margin:8px 0 0;text-decoration:none}
+.btn.sec{background:#fff;color:var(--green);border:2px solid var(--green)}
+.btn.ghost{background:transparent;color:var(--slate);border:1.5px solid var(--line);font-weight:700}
+.btn.red{background:#fff;color:var(--red);border:1.5px solid #E2C3BE}
+.btn.sm{min-height:44px;font-size:15px;border-radius:12px;width:auto;padding:0 14px;margin:0}
+.lnk{background:none;border:0;color:var(--green);font:800 15px var(--ui);text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:10px 4px;min-height:44px}
+.card{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;margin:0 0 12px}
+.card h2{margin:0 0 4px;font-size:18px}.card p{margin:0 0 8px;color:var(--slate);font-size:15px}
+h2.sec{font-size:13px;letter-spacing:.9px;text-transform:uppercase;color:var(--green);margin:18px 2px 8px}
+.nudge{border-color:#EBD39A;background:#FFFBF0}
+.nudge ul{margin:6px 0 0;padding:0;list-style:none}.nudge li{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:8px 0;border-top:1px solid #F1E6C8;font-size:15px}.nudge li:first-child{border-top:0}
+.props{display:grid;gap:10px}
+.prop{display:flex;justify-content:space-between;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:12px 14px;width:100%;text-align:left;font:inherit;color:inherit;cursor:pointer;min-height:64px}
+.prop b{font-size:16px}.prop small{display:block;color:var(--slate);font-size:13.5px}.prop .amt{font-weight:900;font-size:18px;white-space:nowrap}
+.neg{color:var(--red)}.pos{color:var(--green)}
+.list{display:grid;gap:0;background:#fff;border:1.5px solid var(--line);border-radius:16px;overflow:hidden}
+.row{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:12px 14px;border-top:1px solid var(--line);width:100%;background:#fff;border-left:0;border-right:0;border-bottom:0;text-align:left;font:inherit;color:inherit;cursor:pointer;min-height:58px}
+.row:first-child{border-top:0}.row .l{min-width:0}.row b{display:block;font-size:15.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.row small{color:var(--slate);font-size:13.5px}.row .r{font-weight:800;white-space:nowrap}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 4px}
+.chip{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:0 14px;min-height:44px;font:700 15px var(--ui);color:var(--navy);cursor:pointer}
+.chip[aria-pressed=true],.chip[aria-checked=true]{background:var(--green);border-color:var(--green);color:#fff}
+.chip small{font-weight:600;opacity:.75;margin-left:4px}
+.f{display:block;font-weight:800;font-size:14.5px;margin:14px 0 6px}
+input.in,select.in,textarea.in{width:100%;min-height:50px;border:1.5px solid #D6CCBA;border-radius:12px;padding:10px 12px;font:17px var(--ui);color:var(--navy);background:#fff}
+input.money{font-size:30px;font-weight:900;min-height:64px}
+.hint{color:var(--slate);font-size:13.5px;margin:4px 0 0}
+.err{color:var(--red);font-weight:700;font-size:14.5px;margin:6px 0 0}
+.three{display:grid;gap:10px}
+.three button{display:flex;align-items:center;gap:14px;text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;min-height:72px;font:inherit;color:inherit;cursor:pointer}
+.three button i{font-style:normal;font-size:26px;width:44px;height:44px;border-radius:12px;background:#EEF5F0;display:grid;place-items:center;flex:none}
+.three b{display:block;font-size:17px}.three small{color:var(--slate);font-size:14px}
+nav.bar{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:6px 4px calc(6px + env(safe-area-inset-bottom));z-index:50}
+nav.bar button{flex:1;max-width:120px;background:none;border:0;display:flex;flex-direction:column;align-items:center;gap:2px;font:700 13px var(--ui);color:var(--slate);min-height:52px;cursor:pointer}
+nav.bar button[aria-current=page]{color:var(--green)}
+nav.bar svg{width:24px;height:24px}
+nav.bar .add{transform:translateY(-14px)}nav.bar .add span.c{width:58px;height:58px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;box-shadow:0 6px 16px rgba(31,92,69,.35)}
+.sheet{position:fixed;inset:0;z-index:100;display:flex;align-items:flex-end;justify-content:center;background:rgba(17,26,40,.45)}
+.pan{width:100%;max-width:560px;max-height:94vh;max-height:94dvh;overflow:auto;background:var(--paper);border-radius:22px 22px 0 0;padding:12px 18px calc(20px + env(safe-area-inset-bottom));box-shadow:0 -8px 30px rgba(0,0,0,.2)}
+.pan .grab{width:40px;height:5px;border-radius:3px;background:#D8D0C1;margin:0 auto 10px}
+.pan h2{margin:4px 0 6px;font-size:22px}
+.pan .x{float:right;margin:-4px -6px 0 0}
+.toast{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--navy);color:#fff;padding:12px 16px;border-radius:14px;font-weight:700;font-size:15px;z-index:200;max-width:92vw;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.toast button{color:#9FD3B9;background:none;border:0;font:800 15px var(--ui);margin-left:10px;cursor:pointer;text-decoration:underline;min-height:32px}
+table.se{width:100%;border-collapse:collapse;font-size:14.5px;background:#fff}
+table.se th,table.se td{padding:8px 8px;border-bottom:1px solid var(--line);text-align:right;vertical-align:top}
+table.se th:first-child,table.se td:first-child{text-align:left}
+table.se td.ln{color:var(--slate);width:34px;text-align:left;font-weight:700}
+table.se tr.tot td{font-weight:900;border-top:2px solid var(--navy)}
+.tblwrap{overflow-x:auto;border:1.5px solid var(--line);border-radius:14px}
+.trust{text-align:center;color:var(--slate);font-size:14px;margin:18px 0 0}
+.note{font-size:13.5px;color:var(--slate);background:#F3EFE6;border-radius:12px;padding:10px 12px;margin:10px 0}
+.thumb{max-width:100%;max-height:220px;border-radius:12px;border:1.5px solid var(--line);display:block;margin:8px 0}
+.prev{max-height:46vh;overflow:auto;border:1.5px solid var(--line);border-radius:12px;background:#fff}
+.prev .pr{display:grid;grid-template-columns:36px minmax(0,1fr) auto;gap:4px 8px;align-items:center;padding:8px 10px;border-top:1px solid var(--line);font-size:14px}
+.prev .pr:first-child{border-top:0}.prev .pr label{overflow-wrap:anywhere}.prev .pr .am{text-align:right;white-space:nowrap}.prev .pr select{grid-column:2/4;width:100%;font-size:13.5px;min-height:40px;border-radius:8px;border:1px solid #D6CCBA;max-width:100%}
+.prev input[type=checkbox]{width:24px;height:24px}
+.drop{border:2px dashed #CFC4AE;border-radius:16px;padding:18px;text-align:center;color:var(--slate);background:#fff}
+.drop.on{border-color:var(--green);background:#EEF5F0}
+:focus-visible{outline:3px solid #E0A526;outline-offset:2px}
+@media (min-width:900px){.wrap{max-width:720px}.hero .big{font-size:60px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+#print{display:none}
+@media print{body{background:#fff}body>*:not(#print){display:none!important}#print{display:block!important;color:#000;font:10.5pt/1.35 "Helvetica Neue",Arial,sans-serif}#print th.l{text-align:left}
+#print h1{font-size:18pt;margin:0 0 4pt}#print h2{font-size:13pt;margin:14pt 0 4pt;page-break-after:avoid}#print table{width:100%;border-collapse:collapse;font-size:9.5pt;page-break-inside:auto}#print th,#print td{border-bottom:.5pt solid #999;padding:3pt 4pt;text-align:right}#print th:first-child,#print td:first-child,#print td.l{text-align:left}#print .sm{font-size:9pt;color:#333}#print .pb{page-break-before:always}#print tr.tot td{font-weight:bold;border-top:1pt solid #000}}
+
+details.mon{padding:0}details.mon summary{cursor:pointer;font-weight:700;padding:14px 16px;min-height:48px;list-style-position:inside}details.mon .tblwrap{border:0;border-radius:0;margin:0}details.mon .hint{padding:0 16px 12px;margin:0}
+/* ---------- v2 ---------- */
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+input.srch{margin:0 0 10px;min-height:48px}
+.filt{display:grid;grid-template-columns:minmax(0,1fr);gap:0;margin:10px 0 0}.filt select.in{margin:0 0 10px;min-height:48px}
+@media (min-width:600px){.filt{grid-template-columns:2fr 1fr;gap:10px}}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rtabs{flex-wrap:nowrap;overflow-x:auto;padding:2px 2px 8px;margin:0 -2px 6px;scrollbar-width:thin;-webkit-overflow-scrolling:touch}.rtabs .chip{flex:none}
+.chip[aria-selected=true]{background:var(--green);border-color:var(--green);color:#fff}
+.stats3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;text-align:center;padding:12px 8px}
+.stats3 b{display:block;font-size:19px;font-weight:900;overflow-wrap:anywhere}.stats3 span{font-size:12.5px;color:var(--slate)}
+.kv{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-top:1px solid var(--line);font-size:15px}.kv:first-of-type{border-top:0}.kv span{color:var(--slate)}.kv b{text-align:right;white-space:nowrap}
+h3.ch{margin:0 0 6px;font-size:16px}h3.sec{font-size:13px;letter-spacing:.9px;text-transform:uppercase;color:var(--green);margin:18px 2px 8px}
+.brow{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) auto;gap:10px;align-items:center;padding:6px 0;font-size:14.5px}.brow span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.brow b{white-space:nowrap}
+.barw{display:block;height:10px;border-radius:6px;background:#EFE9DD;overflow:hidden}.barf{display:block;height:100%;background:var(--green2);border-radius:6px}.barf.neg{background:#C0574A}
+.chart{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:4px;align-items:end;height:170px;padding:12px 10px 8px}
+.chart .col{display:grid;grid-template-columns:1fr 1fr;gap:2px;align-items:end;height:100%;position:relative;padding-bottom:18px}
+.chart .col small{position:absolute;bottom:0;left:0;right:0;text-align:center;font-size:11px;color:var(--slate)}
+.cb{display:block;border-radius:3px 3px 0 0;min-height:1px}.cb.in,.key.in{background:var(--green2)}.cb.out,.key.out{background:var(--tan)}
+.key{display:inline-block;width:11px;height:11px;border-radius:3px;vertical-align:-1px;margin:0 3px 0 8px}
+.tbal{text-align:center;padding:14px}.tbal b{display:block;font-size:26px;font-weight:900}.tbal span{color:var(--slate);font-size:13.5px}
+.mgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:0 0 6px}
+.mcell{display:flex;flex-direction:column;align-items:center;border-radius:10px;padding:6px 2px;font-weight:900;font-size:16px;border:1.5px solid var(--line);background:#fff}
+.mcell b{font-size:12px;color:var(--slate)}.mcell small{font-size:10.5px;font-weight:700;color:var(--slate);text-align:center;line-height:1.15}
+.st-paid{color:#1F5C45}.mcell.st-paid{background:#E9F4EE;border-color:#BFDCCB}
+.st-late{color:#8A5A00}.mcell.st-late{background:#FFF3D6;border-color:#EBD39A}
+.st-part{color:#8A5A00}.mcell.st-part{background:#FFF3D6;border-color:#EBD39A}
+.st-unpaid{color:var(--red)}.mcell.st-unpaid{background:#FBE9E6;border-color:#E2C3BE}
+.st-due{color:var(--slate)}
+.dots{display:flex;gap:3px;margin-top:4px}.dots i{font-style:normal;font-size:11px;font-weight:900;width:18px;height:18px;border-radius:5px;display:grid;place-items:center;background:#F3EFE6}
+ul.ck{list-style:none;margin:0;padding:0}ul.ck li{display:flex;gap:10px;padding:7px 0;border-top:1px solid var(--line);font-size:14.5px}ul.ck li:first-child{border-top:0}
+ul.ck li>span:first-child{flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:13px}
+ul.ck li.ok>span:first-child{background:#E9F4EE;color:#1F5C45}ul.ck li.no>span:first-child{background:#FFF3D6;color:#8A5A00}
+ul.ck small{display:block;color:var(--slate);font-size:13px}
+.tgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tbtn{min-height:52px;border-radius:14px;border:1.5px solid var(--line);background:#fff;font:800 15px var(--ui);color:var(--navy);cursor:pointer;padding:6px 10px}
+.tencard{display:flex;width:100%;justify-content:space-between;align-items:center;text-align:left;font:inherit;color:inherit;cursor:pointer;min-height:60px}
+.tencard b{display:block;font-size:16px}.tencard small{color:var(--slate);font-size:14px}.tencard>span:last-child{font-size:24px;color:var(--slate)}
+/* dark mode: html.dark (auto follows the phone, or pick it in More) */
+html.dark{color-scheme:dark;--navy:#E8EDF3;--green:#6FD3A6;--green2:#3E9C76;--paper:#10161F;--line:#2B3646;--slate:#AEB9C7;--tan:#C9A46A;--red:#FF9B8C;--amber:#3A3020}
+html.dark body{background:var(--paper)}
+html.dark .card,html.dark .prop,html.dark .list,html.dark .row,html.dark .chip,html.dark input.in,html.dark select.in,html.dark textarea.in,html.dark nav.bar,html.dark table.se,html.dark .three button,html.dark .prev,html.dark .drop,html.dark .tbtn,html.dark .mcell,html.dark .btn.sec,html.dark .btn.red{background:#18212D;color:var(--navy)}
+html.dark input.in,html.dark select.in{border-color:#3A475A}
+html.dark .btn{background:#1F6E50;color:#fff}html.dark .btn.sec{color:var(--green);border-color:#3E9C76}html.dark .btn.ghost{background:transparent;color:var(--slate)}html.dark .btn.red{color:var(--red);border-color:#6B3A34}
+html.dark .chip[aria-pressed=true],html.dark .chip[aria-checked=true],html.dark .chip[aria-selected=true]{background:#1F6E50;border-color:#1F6E50;color:#fff}
+html.dark .hero{background:#1B2A40}html.dark .toast{background:#2A3A52}html.dark .pan{background:var(--paper)}html.dark .note{background:#1E2733}html.dark .banner{border-color:#6B5A2E}
+html.dark nav.bar .add span.c{background:#1F6E50}html.dark .three button i{background:#1E3329}html.dark .barw{background:#2B3646}html.dark .dots i{background:#1E2733}
+html.dark .st-paid{color:#6FD3A6}html.dark .mcell.st-paid{background:#173327;border-color:#2C5A45}html.dark .st-late,html.dark .st-part{color:#F2C46B}html.dark .mcell.st-late,html.dark .mcell.st-part{background:#3A3020;border-color:#6B5A2E}html.dark .mcell.st-unpaid{background:#3A1F1C;border-color:#6B3A34}
+html.dark ul.ck li.ok>span:first-child{background:#173327;color:#6FD3A6}html.dark ul.ck li.no>span:first-child{background:#3A3020;color:#F2C46B}
+nav.bar button{font-size:12.5px;min-width:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><span class="logo" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="44" height="44" role="img" aria-label="FiledAwayCo logo"><rect x="6" y="6" width="228" height="228" rx="48" fill="#16283C"/><g transform="translate(63,40) scale(1.14)"><rect x="0" y="0" width="28" height="140" rx="3.2" fill="#F5F0E4"/><rect x="0" y="0" width="100" height="26" rx="3.2" fill="#F5F0E4"/><rect x="0" y="54" width="72" height="24" rx="3.2" fill="#F5F0E4"/></g><rect x="148" y="148" width="74" height="74" rx="16" fill="#E79A28" stroke="#F5F0E4" stroke-width="5"/><path d="M167.24,186.48 L180.56,199.80 L204.24,170.20" fill="none" stroke="#16283C" stroke-width="13.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><h1>Rental Property Books</h1><div class="by">by FiledAway<b>Co</b></div></div></header>
+<p class="lede">Your rental income and costs, sorted onto IRS Schedule E lines for each property, ready for tax time.</p>
+<div class="banner" id="sampleBar" hidden><span>These are made-up sample numbers. Anything you add now goes away when you clear it.</span><button type="button" class="lnk" data-act="clearsample">Clear sample</button></div>
+<main id="main" tabindex="-1"></main>
+</div>
+<nav class="bar" aria-label="Main">
+<button type="button" data-v="home" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>Home</button>
+<button type="button" data-v="log"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></svg>Log</button>
+<button type="button" data-v="add" class="add" aria-label="Add rent, a cost or a trip"><span class="c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span>Add</button>
+<button type="button" data-v="ten"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 4.5a3 3 0 0 1 0 6M18 14c2 .8 3 2.8 3 6"/></svg>Tenants</button>
+<button type="button" data-v="tax"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Reports</button>
+<button type="button" data-v="more"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg>More</button>
+</nav>
+<div class="sheet" id="sheet" hidden></div>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<div id="print"></div>
+<script>/* Rental Property Books by FiledAwayCo, v2 (2026-11-27, breadth version). Everything stays on this device. Nothing is uploaded.
+   Record-keeping only: not tax advice. Schedule E line numbers checked against the IRS 2025 form and the 2026 early-release draft. */
+(function(){
+'use strict';
+var D = document, W = window, LS = W.localStorage;
+var KEY = 'frb_state_v1', REAL = 'frb_real_v1', UNDO = 'frb_undo_v1', LASTBK = 'frb_lastbk_v1', APP = 'rental-property-books', NAME = 'Rental Property Books';
+var NOW = W.__FRB_NOW ? new Date(W.__FRB_NOW) : new Date();
+var TY = NOW.getFullYear();
+/* ---------- Schedule E (Form 1040) Part I lines ---------- */
+var CATS = [
+ { id:'RENT', ln:'3', name:'Rent received', kind:'in', hint:'Rent, late fees, pet rent, cleaning fees guests paid, deposits you kept' },
+ { id:'L5', ln:'5', name:'Advertising', hint:'Listing sites, signs, ads' },
+ { id:'L6', ln:'6', name:'Auto & travel', hint:'Parking, tolls, travel to the rental. Miles go in Trips' },
+ { id:'L7', ln:'7', name:'Cleaning & maintenance', hint:'Cleaners, lawn care, pest control, turnovers' },
+ { id:'L8', ln:'8', name:'Commissions', hint:'Leasing agent or booking-site host fees' },
+ { id:'L9', ln:'9', name:'Insurance', hint:'Landlord or rental insurance' },
+ { id:'L10', ln:'10', name:'Legal & professional', hint:'Lawyer, accountant, tax prep for the rental' },
+ { id:'L11', ln:'11', name:'Management fees', hint:'Property manager' },
+ { id:'L12', ln:'12', name:'Mortgage interest', hint:'Interest only, from your Form 1098 (not the whole payment)' },
+ { id:'L13a', ln:'13a', name:'Vehicle loan interest', hint:'New 2026 line (IRS draft). Ask your preparer if it applies' },
+ { id:'L13b', ln:'13b', name:'Other interest', hint:'Other loans used for the rental' },
+ { id:'L14', ln:'14', name:'Repairs', hint:'Fixing what is there: plumber, paint, appliance repair' },
+ { id:'L15', ln:'15', name:'Supplies', hint:'Light bulbs, smoke alarms, cleaning supplies, linens' },
+ { id:'L16', ln:'16', name:'Taxes', hint:'Property tax, rental licence fees' },
+ { id:'L17', ln:'17', name:'Utilities', hint:'Water, power, gas, trash, internet you pay' },
+ { id:'L19', ln:'19', name:'Other', hint:'HOA dues, bank or payment fees, anything else (add a note)' },
+ { id:'IMP', ln:'', name:'Improvement (for your preparer)', hint:'New roof, new appliance, remodel. Not an expense this year: your preparer depreciates it' },
+ { id:'PRIN', ln:'', name:'Mortgage principal (kept off)', hint:'Not deductible. Kept so your records match your bank' },
+ { id:'OWN', ln:'', name:'Owner draw / personal (kept off)', hint:'Money you took out for yourself or personal spending. Not a rental expense, kept off Schedule E' },
+ { id:'DEP', ln:'', name:'Deposit held (kept off)', kind:'in', hint:'Refundable security deposit. Not income unless you keep it' }
+];
+var CAT = {}; CATS.forEach(function(c){ CAT[c.id] = c; });
+var SE_EXP = ['L5','L6','L7','L8','L9','L10','L11','L12','L13a','L13b','L14','L15','L16','L17','L19'];
+var PTYPES = [['1','Single family'],['2','Multi-family'],['3','Short-term / vacation'],['4','Commercial'],['5','Land'],['7','Self-rental'],['8','Other']];
+/* business cents per mile; 2026: Jan 1-Jun 30 = 72.5, Jul 1-Dec 31 = 76 (irs.gov standard mileage rates) */
+var RATES = { 2024:[67,67], 2025:[70,70], 2026:[72.5,76] };
+function rateFor(date){ var y = +String(date).slice(0,4), r = RATES[y]; if (!r) { var o = (S.rates || {})[y]; return o ? +o : null; } return String(date).slice(5) < '07-01' ? r[0] : r[1]; }
+/* ---------- helpers ---------- */
+function $(s, r){ return (r || D).querySelector(s); }
+function $$(s, r){ return Array.prototype.slice.call((r || D).querySelectorAll(s)); }
+function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function J(x, d){ try { var v = JSON.parse(x); return v == null ? d : v; } catch(e){ return d; } }
+function g(k){ try { return LS.getItem(k); } catch(e){ return null; } }
+function s(k, v){ try { LS.setItem(k, v); return true; } catch(e){ toast('This device is out of storage space. Save a backup file, then delete old receipt photos.'); return false; } }
+function rm(k){ try { LS.removeItem(k); } catch(e){} }
+function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
+function ymd(d){ d = d || NOW; return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
+function today(){ return ymd(new Date(W.__FRB_NOW || Date.now())); }
+var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function dshow(iso){ var m = String(iso || '').match(/(\d{4})-(\d{2})-(\d{2})/); return m ? MON[+m[2]-1] + ' ' + (+m[3]) + ', ' + m[1] : ''; }
+function cents(x){ var n = parseFloat(String(x == null ? '' : x).replace(/[$,\s]/g, '').replace(/^\((.*)\)$/, '-$1')); return isFinite(n) ? Math.round(n * 100) : NaN; }
+function money(c, whole){ var neg = c < 0; c = Math.abs(Math.round(c)); if (whole) c = Math.round(c / 100) * 100; if (!c) neg = false; var d = Math.floor(c / 100), r = c % 100;
+  var t = '$' + d.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + (whole ? '' : '.' + ('0' + r).slice(-2)); return neg ? '-' + t : t; }
+function plural(n, a, b){ return n + ' ' + (n === 1 ? a : (b || a + 's')); }
+/* ---------- state ---------- */
+function blank(){ return norm({ v:1, year:TY, props:[], tx:[], trips:[], imports:[], rates:{}, sample:false }); }
+var S = norm(J(g(KEY), null) || blank());
+if (!S.v) S = blank();
+['props','tx','trips','imports'].forEach(function(k){ if (!Array.isArray(S[k])) S[k] = []; });
+if (!S.rates) S.rates = {};
+function save(){ return s(KEY, JSON.stringify(S)); }
+function hasReal(st){ return !!(st && (st.props.length || st.tx.length || st.trips.length)); }
+/* ---------- receipts (IndexedDB, this device only) ---------- */
+var idb = null;
+function db(){ if (idb) return idb; idb = new Promise(function(ok, no){ try { var r = indexedDB.open('frb_receipts', 1); r.onupgradeneeded = function(){ r.result.createObjectStore('r', { keyPath:'id' }); }; r.onsuccess = function(){ ok(r.result); }; r.onerror = function(){ no(r.error); }; } catch(e){ no(e); } }); return idb; }
+function rput(o){ return db().then(function(d){ return new Promise(function(ok, no){ var t = d.transaction('r', 'readwrite'); t.objectStore('r').put(o); t.oncomplete = function(){ ok(); }; t.onerror = function(){ no(t.error); }; }); }); }
+function rget(id){ return db().then(function(d){ return new Promise(function(ok){ var q = d.transaction('r').objectStore('r').get(id); q.onsuccess = function(){ ok(q.result || null); }; q.onerror = function(){ ok(null); }; }); }).catch(function(){ return null; }); }
+function rall(){ return db().then(function(d){ return new Promise(function(ok){ var q = d.transaction('r').objectStore('r').getAll(); q.onsuccess = function(){ ok(q.result || []); }; q.onerror = function(){ ok([]); }; }); }).catch(function(){ return []; }); }
+function rdel(id){ return db().then(function(d){ return new Promise(function(ok){ var t = d.transaction('r', 'readwrite'); t.objectStore('r').delete(id); t.oncomplete = function(){ ok(); }; t.onerror = function(){ ok(); }; }); }).catch(function(){}); }
+function rclear(){ return db().then(function(d){ return new Promise(function(ok){ var t = d.transaction('r', 'readwrite'); t.objectStore('r').clear(); t.oncomplete = function(){ ok(); }; t.onerror = function(){ ok(); }; }); }).catch(function(){}); }
+/* photos are shrunk to about 1600px so a year of receipts fits on a phone */
+function shrink(file){
+  return new Promise(function(ok, no){
+    var url = URL.createObjectURL(file), im = new Image();
+    im.onload = function(){ var k = Math.min(1, 1600 / Math.max(im.width, im.height)), c = D.createElement('canvas'); c.width = Math.round(im.width * k); c.height = Math.round(im.height * k);
+      c.getContext('2d').drawImage(im, 0, 0, c.width, c.height); URL.revokeObjectURL(url);
+      c.toBlob(function(b){ if (!b) return no(new Error('shrink')); var fr = new FileReader(); fr.onload = function(){ ok({ data: fr.result, bytes: b.size, orig: file.size }); }; fr.readAsDataURL(b); }, 'image/jpeg', 0.72); };
+    im.onerror = function(){ URL.revokeObjectURL(url); no(new Error('not an image')); };
+    im.src = url; });
+}
+/* ---------- maths ---------- */
+function inYear(d, y){ return String(d).slice(0,4) === String(y); }
+/* pid: property id, '' for all, '_none' for entries with no property */
+function totals(y, pid){
+  var t = { RENT:0, DEP:0, IMP:0, PRIN:0, OWN:0, miles:0, mileC:0, n:0, noRate:0 }; SE_EXP.forEach(function(k){ t[k] = 0; });
+  var mine = function(x){ return pid === '_none' ? !x.prop : (!pid || x.prop === pid); };
+  S.tx.forEach(function(x){ if (!inYear(x.date, y) || !mine(x) || t[x.cat] == null) return; t[x.cat] += x.amt; t.n++; });
+  S.trips.forEach(function(x){ if (!inYear(x.date, y) || !mine(x)) return; var r = rateFor(x.date); t.miles += +x.miles || 0; if (r == null) { t.noRate++; return; } t.mileC += Math.round((+x.miles || 0) * r); });
+  t.L6all = t.L6 + t.mileC;
+  t.exp = 0; SE_EXP.forEach(function(k){ t.exp += (k === 'L6' ? t.L6all : t[k]); });
+  t.L13 = t.L13a + t.L13b; t.net = t.RENT - t.exp; return t; }
+/* ---------- UI shell ---------- */
+var view = 'home', logFilter = 'all', taxProp = '', toastT = null;
+function toast(msg, undo){ var o = $('#toast'); o.innerHTML = esc(msg) + (undo ? ' <button type="button">Undo</button>' : ''); o.hidden = false;
+  if (undo) $('button', o).onclick = function(){ o.hidden = true; undo(); };
+  clearTimeout(toastT); toastT = setTimeout(function(){ o.hidden = true; }, undo ? 9000 : 5000); }
+var lastFocus = null;
+function sheet(html, onOpen){ var sh = $('#sheet'); if (sh.hidden) lastFocus = D.activeElement;
+  sh.innerHTML = '<div class="pan" role="dialog" aria-modal="true" aria-labelledby="shT"><div class="grab"></div><button type="button" class="lnk x" data-close>Close</button>' + html + '</div>'; sh.hidden = false;
+  sh.onclick = function(e){ if (e.target === sh || e.target.closest('[data-close]')) closeSheet(); };
+  var f = $('h2', sh); if (f) { f.id = 'shT'; f.tabIndex = -1; f.focus(); }
+  if (onOpen) onOpen(sh); }
+function closeSheet(){ var sh = $('#sheet'); sh.hidden = true; sh.innerHTML = ''; if (lastFocus && lastFocus.focus && D.body.contains(lastFocus)) lastFocus.focus(); }
+D.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !$('#sheet').hidden) closeSheet(); });
+function go(v){ view = v; $$('nav.bar [data-v]').forEach(function(b){ if (b.getAttribute('data-v') === v) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); }); render(); W.scrollTo(0, 0); }
+function propName(id){ var p = S.props.filter(function(x){ return x.id === id; })[0]; return p ? p.name : 'No property picked'; }
+var deferred = null;
+function render(){
+  $('#sampleBar').hidden = !S.sample;
+  var m = $('#main');
+  if (view === 'home') m.innerHTML = homeHTML();
+  else if (view === 'log') m.innerHTML = logHTML();
+  else if (view === 'tax') m.innerHTML = taxHTML();
+  else { m.innerHTML = moreHTML(); var el = $('#inst');
+    if (el) el.innerHTML = W.matchMedia('(display-mode: standalone)').matches ? '<p class="hint">✓ Installed on this device.</p>' : (deferred ? '<button type="button" class="btn sec" data-act="install">Install on this phone</button>' : '<p class="hint">To install: on iPhone tap Share, then <b>Add to Home Screen</b>. On Android tap ⋮, then <b>Install app</b>.</p>');
+    storageNote(); }
+}
+/* ---------- HOME ---------- */
+/* months (1-12) with no rent logged, for a rental that has a usual monthly rent */
+function monthsDue(p, y){
+  if (!p.rent) return []; var last = (y < TY) ? 12 : (y > TY ? 0 : NOW.getMonth() + 1), first = 1;
+  if (p.since && inYear(p.since, y)) first = +p.since.slice(5,7); else if (p.since && p.since.slice(0,4) > String(y)) return [];
+  var have = {}; S.tx.forEach(function(x){ if (x.prop === p.id && x.cat === 'RENT' && inYear(x.date, y)) have[+x.date.slice(5,7)] = 1; });
+  var out = []; for (var i = first; i <= last; i++) if (!have[i]) out.push(i); return out; }
+/* line 2 days are per tax year: p.dy = { '2026': ['365','0'] }; older saves keep p.days/p.pdays for the year they were entered */
+function dz(p, y){ y = String(y || S.year); if (p.dy && p.dy[y]) return { d: p.dy[y][0] || '', pd: p.dy[y][1] || '' }; if (p.dy && Object.keys(p.dy).length) return { d: '', pd: '' }; return { d: p.days || '', pd: p.pdays || '' }; }
+function noRcpt(x){ var c = CAT[x.cat] || {}; return c.kind !== 'in' && x.amt >= 7500 && !x.rcpt && ['PRIN','L12','L8'].indexOf(x.cat) < 0; }
+function leftToLog(){
+  var y = S.year, items = [];
+  S.props.forEach(function(p){
+    var due = monthsDue(p, y);
+    if (due.length) { var ml = due[due.length - 1];
+      items.push({ t: 'No rent logged for ' + due.map(function(i){ return MON[i-1]; }).join(', ') + ' at ' + p.name, a: 'Log ' + money(p.rent, true) + ' for ' + MON[ml-1], act: 'quickrent', id: p.id, m: ml }); }
+    var yearly = [['L9','insurance'],['L16','property tax']]; if (p.mortgage) yearly.push(['L12','mortgage interest']);
+    var miss = yearly.filter(function(c){ return !S.tx.some(function(x){ return x.prop === p.id && x.cat === c[0] && inYear(x.date, y); }); }).map(function(c){ return c[1]; });
+    if (miss.length) items.push({ t: p.name + ': no ' + miss.join(' or ') + ' logged for ' + y + ' yet', a: 'Add it', act: 'add', id: p.id });
+    if (p.lease && y === TY) { var dl = Math.round((new Date(p.lease + 'T12:00:00') - new Date(today() + 'T12:00:00')) / 864e5); if (dl <= 60 && dl >= -30) items.push({ t: p.name + ': lease ' + (dl < 0 ? 'ended ' + dshow(p.lease) : 'ends ' + dshow(p.lease) + (dl === 0 ? ' (today)' : ' (in ' + plural(dl, 'day') + ')')), a: 'Update', act: 'prop', id: p.id }); }
+    if (!dz(p, y).d && (y < TY || NOW.getMonth() >= 9)) items.push({ t: p.name + ': add days rented and days you used it (Schedule E line 2)', a: 'Add days', act: 'prop', id: p.id });
+  });
+  var noProp = S.tx.filter(function(x){ return !x.prop && inYear(x.date, y); }).length + S.trips.filter(function(x){ return !x.prop && inYear(x.date, y); }).length;
+  if (noProp && S.props.length) items.push({ t: plural(noProp, 'entry has', 'entries have') + ' no rental picked', a: 'Fix', act: 'filter', f: 'noprop' });
+  var nr = S.tx.filter(function(x){ return inYear(x.date, y) && noRcpt(x); }).length;
+  if (nr) items.push({ t: plural(nr, 'expense') + ' of $75 or more without a receipt photo', a: 'Show', act: 'filter', f: 'norcpt' });
+  var other = S.tx.filter(function(x){ return inYear(x.date, y) && x.cat === 'L19' && !x.note; }).length;
+  if (other) items.push({ t: plural(other, '"Other" expense') + ' without a note (your preparer will ask what it was)', a: 'Show', act: 'filter', f: 'other' });
+  var lb = +g(LASTBK) || 0;
+  if (!S.sample && hasReal(S) && Date.now() - lb > 30 * 864e5) items.push({ t: lb ? 'Your last backup file is over 30 days old' : 'You have not saved a backup file yet', a: 'Save backup', act: 'backup' });
+  return items; }
+function homeHTML(){
+  if (!hasReal(S)) return '<div class="card"><h2>Know what your rentals really made, and have tax time done already.</h2>' +
+    '<p>Log rent and costs on your phone as they happen. Every entry lands on its IRS Schedule E line, per rental, so at tax time you hand your preparer one page.</p>' +
+    '<ol style="margin:6px 0 4px;padding-left:22px;color:var(--slate)"><li>Add your rental</li><li>Log rent and costs, or bring in your bank file</li><li>Tap <b>Tax summary</b> at tax time</li></ol>' +
+    '<button type="button" class="btn" data-act="newprop">Add my first rental</button><button type="button" class="btn sec" data-act="sample">Try it with sample numbers</button>' +
+    '<button type="button" class="btn ghost" data-act="restore">I have a backup file</button></div>' +
+    '<p class="trust">🔒 Saved only on this device. No account, no bank login.</p>';
+  var y = S.year, t = totals(y, ''), past = y < TY;
+  var h = '<section class="hero" aria-label="This year at a glance"><div class="kick">' + (t.net < 0 ? 'Net rental loss' : 'Net rental income') + ' · ' + y + (past ? '' : ' so far') + '</div>' +
+    '<div class="big" data-k="big">' + money(t.net, true) + '</div><p class="sub">Rent in minus Schedule E expenses' + (t.mileC ? ', including ' + money(t.mileC, true) + ' of mileage' : '') + '. Before depreciation, which your preparer works out.</p>' + (function(){ var lt = totals(y - 1, ''); return lt.n || lt.miles ? '<p class="sub" data-k="ly">' + (y - 1) + ' full year: ' + money(lt.net, true) + '</p>' : ''; })() +
+    '<div class="stats"><div><b>' + money(t.RENT, true) + '</b><span>Rent in</span></div><div><b>' + money(t.exp, true) + '</b><span>Expenses</span></div><div><b>' + Math.round(t.miles).toLocaleString('en-US') + '</b><span>Rental miles</span></div></div>' +
+    '<button type="button" class="go" data-go="tax">See my Schedule E summary ›</button></section>';
+  h += '<button type="button" class="btn" data-act="add">+ Log rent, a cost or a trip</button>';
+  var L = leftToLog();
+  h += '<h2 class="sec">What\'s left to log</h2>';
+  if (!L.length) h += '<div class="card"><p style="margin:0">✓ Nothing left to log for ' + y + '. Nice work.</p></div>';
+  else h += '<div class="card nudge"><ul>' + L.slice(0, 6).map(function(x, i){ return '<li><span>' + esc(x.t) + '</span><button type="button" class="btn sm sec" data-nudge="' + i + '">' + esc(x.a) + '</button></li>'; }).join('') + '</ul>' + (L.length > 6 ? '<p class="hint">' + (L.length - 6) + ' more after these.</p>' : '') + '</div>';
+  h += '<h2 class="sec">Your rentals</h2><div class="props">' + S.props.map(function(p){ var u = totals(y, p.id);
+    return '<button type="button" class="prop" data-prop="' + p.id + '"><span><b>' + esc(p.name) + '</b><small>' + money(u.RENT, true) + ' in · ' + money(u.exp, true) + ' out</small></span><span class="amt ' + (u.net < 0 ? 'neg' : 'pos') + '">' + money(u.net, true) + '</span></button>'; }).join('') +
+    (S.props.length < MAXP ? '<button type="button" class="btn ghost" data-act="newprop">+ Add a rental</button>' : '') + '</div>';
+  h += '<p class="trust">🔒 Saved only on this device.<br><button type="button" class="lnk" data-act="backup">Save a backup file</button> · <button type="button" class="lnk" data-act="restore">Restore</button></p>';
+  return h; }
+/* ---------- LOG ---------- */
+function entries(){ var y = S.year, a = [];
+  S.tx.forEach(function(x){ if (inYear(x.date, y)) a.push({ k:'tx', x:x, d:x.date }); });
+  S.trips.forEach(function(x){ if (inYear(x.date, y)) a.push({ k:'trip', x:x, d:x.date }); });
+  a.sort(function(p, q){ return p.d < q.d ? 1 : p.d > q.d ? -1 : 0; }); return a; }
+function logHTML(){
+  var F = [['all','All'],['rent','Rent'],['exp','Expenses'],['trips','Trips'],['norcpt','No receipt'],['noprop','No rental picked'],['other','"Other" without note']];
+  var a = entries().filter(function(e){ var x = e.x, c = CAT[x.cat] || {}; if (!logMatch(e)) return false;
+    if (logFilter === 'rent') return e.k === 'tx' && c.kind === 'in';
+    if (logFilter === 'exp') return e.k === 'tx' && c.kind !== 'in';
+    if (logFilter === 'trips') return e.k === 'trip';
+    if (logFilter === 'norcpt') return e.k === 'tx' && noRcpt(x);
+    if (logFilter === 'noprop') return !x.prop;
+    if (logFilter === 'other') return e.k === 'tx' && x.cat === 'L19' && !x.note;
+    return true; });
+  var h = '<h2 class="sec" style="margin-top:4px">Everything logged in ' + S.year + '</h2><div class="chips" role="group" aria-label="Show">' + F.map(function(f){ return '<button type="button" class="chip" data-filter="' + f[0] + '" aria-pressed="' + (logFilter === f[0]) + '">' + f[1] + '</button>'; }).join('') + '</div>' + logTools();
+  if (!a.length) return h + '<div class="card"><p>' + (logFilter === 'all' ? 'Nothing logged for ' + S.year + ' yet. Tap + to log rent or a cost, or bring in a bank file.' : 'Nothing here. That is good news.') + '</p><button type="button" class="btn" data-act="add">+ Log something</button><button type="button" class="btn sec" data-act="import">Bring in a bank or booking file</button></div>';
+  h += '<div class="list">' + a.slice(0, 400).map(function(e){ var x = e.x;
+    if (e.k === 'trip') { var r = rateFor(x.date); return '<button type="button" class="row" data-trip="' + x.id + '"><span class="l"><b>🚗 ' + esc(x.why || 'Trip') + '</b><small>' + dshow(x.date) + ' · ' + esc(propName(x.prop)) + ' · ' + x.miles + ' mi</small></span><span class="r">' + (r == null ? 'rate?' : money(Math.round(x.miles * r))) + '</span></button>'; }
+    var c = CAT[x.cat] || { name: x.cat };
+    return '<button type="button" class="row" data-tx="' + x.id + '"><span class="l"><b>' + (x.rcpt ? '📎 ' : '') + esc(x.note || c.name) + '</b><small>' + dshow(x.date) + ' · ' + esc(propName(x.prop)) + ' · ' + (c.ln ? 'Line ' + c.ln + ' ' : '') + esc(c.name) + '</small></span><span class="r ' + (c.kind === 'in' ? 'pos' : '') + '">' + (c.kind === 'in' ? '+' : '') + money(x.amt) + '</span></button>'; }).join('') + '</div>';
+  if (a.length > 400) h += '<p class="hint">Showing the newest 400. The Tax summary and spreadsheet file include everything.</p>';
+  return h; }
+/* ---------- TAX ---------- */
+function lineRows(t, y){ var r = [['3','Rents received', t.RENT]];
+  SE_EXP.forEach(function(k){ if (y <= 2025 && k === 'L13a') return; if (y <= 2025 && k === 'L13b') { r.push(['13','Other interest', t.L13]); return; }
+    if (k === 'L19') r.push(['18','Depreciation', null]);
+    var c = CAT[k]; r.push([c.ln, c.name + (k === 'L6' && t.mileC ? ' (incl. ' + money(t.mileC, true) + ' mileage est.)' : ''), k === 'L6' ? t.L6all : t[k]]); });
+  return r; }
+function byMonth(y, pid){ var m = [], i; for (i = 0; i < 12; i++) m.push({ i: 0, o: 0 });
+  var mine = function(x){ return pid === '_none' ? !x.prop : (!pid || x.prop === pid); };
+  S.tx.forEach(function(x){ if (!inYear(x.date, y) || !mine(x)) return; var k = x.cat, b = m[+x.date.slice(5,7) - 1]; if (!b) return; if (k === 'RENT') b.i += x.amt; else if (SE_EXP.indexOf(k) >= 0) b.o += x.amt; });
+  S.trips.forEach(function(x){ if (!inYear(x.date, y) || !mine(x)) return; var r = rateFor(x.date), b = m[+x.date.slice(5,7) - 1]; if (b && r != null) b.o += Math.round((+x.miles || 0) * r); });
+  return m; }
+function taxHTML(){
+  var y = S.year;
+  var h = '<h2 class="sec" style="margin-top:4px">Schedule E summary · ' + y + '</h2>';
+  if (!S.props.length) return h + '<div class="card"><p>Add a rental first. Then every entry lands on its line here.</p><button type="button" class="btn" data-act="newprop">Add my first rental</button></div>';
+  if (taxProp && !S.props.some(function(p){ return p.id === taxProp; })) taxProp = '';
+  var t = totals(y, taxProp);
+  h += S.props.length > 6 ? picker() : '<div class="chips" role="group" aria-label="Rental"><button type="button" class="chip" data-tp="" aria-pressed="' + (taxProp === '') + '">All rentals</button>' + S.props.map(function(p){ return '<button type="button" class="chip" data-tp="' + p.id + '" aria-pressed="' + (taxProp === p.id) + '">' + esc(p.name) + '</button>'; }).join('') + '</div>';
+  var p = S.props.filter(function(x){ return x.id === taxProp; })[0];
+  if (p) h += '<p class="hint">' + esc(p.addr || 'No address added') + ' · ' + (dz(p).d ? dz(p).d + ' days rented, ' + (dz(p).pd || 0) + ' personal-use days (line 2)' : 'Days rented not added yet') + ' · <button type="button" class="lnk" data-editprop="' + p.id + '">Edit rental</button></p>';
+  h += '<div class="tblwrap"><table class="se"><caption class="hint" style="text-align:left;padding:8px">Schedule E (Form 1040) Part I · ' + (p ? esc(p.name) : 'all rentals added together') + '</caption><thead><tr><th scope="col">Line</th><th scope="col" style="text-align:left">What</th><th scope="col">Amount</th></tr></thead><tbody>' +
+    lineRows(t, y).map(function(r){ return '<tr><td class="ln">' + r[0] + '</td><td style="text-align:left">' + esc(r[1]) + '</td><td>' + (r[2] == null ? '<small>Your preparer' + deprHint() + '</small>' : money(r[2])) + '</td></tr>'; }).join('') +
+    '<tr class="tot"><td class="ln">20</td><td style="text-align:left">Total expenses (before depreciation)</td><td data-k="l20">' + money(t.exp) + '</td></tr>' +
+    '<tr class="tot"><td class="ln">21</td><td style="text-align:left">Rent minus expenses</td><td data-k="l21" class="' + (t.net < 0 ? 'neg' : '') + '">' + money(t.net) + '</td></tr></tbody></table></div>';
+  var u = totals(y, '_none'); if (!p && (u.RENT || u.exp)) h += '<p class="err">' + money(u.RENT + u.exp) + ' of entries have no rental picked. They are in the totals above but not in any one rental. <button type="button" class="lnk" data-filter-go="noprop">Fix them</button></p>';
+  if (t.noRate) h += '<p class="err">' + plural(t.noRate, 'trip') + ' in a year with no mileage rate set. Add the rate in More.</p>';
+  h += '<div class="note"><b>For your preparer:</b> ' + money(t.IMP) + ' of improvements (to depreciate), ' + money(t.PRIN) + ' of mortgage principal and ' + money(t.DEP) + ' of deposits held are kept off these lines. ' +
+    (y >= 2026 ? 'Line names follow the IRS 2026 draft Schedule E (May 2026), which adds 13a Vehicle loan interest. The final form may change. ' : '') +
+    'Mileage uses the IRS standard rate for each trip date' + (y === 2026 ? ' (72.5¢ to Jun 30, 76¢ from Jul 1)' : '') + '; your preparer decides between that and actual car costs. This is a record-keeping summary, not tax advice.</div>';
+  var bm = byMonth(y, taxProp), lastM = y < TY ? 12 : (y > TY ? 0 : NOW.getMonth() + 1);
+  h += '<details class="card mon"><summary>Month by month</summary><div class="tblwrap"><table class="se"><thead><tr><th scope="col" style="text-align:left">Month</th><th scope="col">Rent in</th><th scope="col">Expenses</th><th scope="col">Net</th></tr></thead><tbody>' +
+    bm.map(function(b, i){ if (i >= lastM && !b.i && !b.o) return ''; return '<tr><td style="text-align:left">' + MON[i] + '</td><td>' + money(b.i, true) + '</td><td>' + money(b.o, true) + '</td><td class="' + (b.i - b.o < 0 ? 'neg' : '') + '">' + money(b.i - b.o, true) + '</td></tr>'; }).join('') +
+    '</tbody></table></div><p class="hint">Expenses here are Schedule E lines plus mileage, by the date you logged them.</p></details>';
+  h += '<button type="button" class="btn" data-act="print">Print or save a PDF for my preparer</button><button type="button" class="btn sec" data-act="csv">Download everything as a spreadsheet file (CSV)</button>';
+  return h; }
+/* ---------- MORE ---------- */
+function moreHTML(){
+  var h = '<h2 class="sec" style="margin-top:4px">Your rentals</h2><div class="list">' + (S.props.length ? S.props.map(function(p){ return '<button type="button" class="row" data-editprop="' + p.id + '"><span class="l"><b>' + esc(p.name) + '</b><small>' + esc(p.addr || 'No address') + (p.rent ? ' · rent ' + money(p.rent, true) + '/mo' : '') + '</small></span><span class="r">Edit ›</span></button>'; }).join('') : '<p style="padding:12px 14px;margin:0">No rentals yet.</p>') + '</div>' +
+    (S.props.length < MAXP ? '<button type="button" class="btn ghost" data-act="newprop">+ Add a rental</button>' : '<p class="hint">' + MAXP + ' rentals is the most this app holds.</p>');
+  h += '<h2 class="sec">Bring data in, take it out</h2><button type="button" class="btn sec" data-act="import">Bring in a bank, Airbnb, Vrbo, PayPal or Stripe file</button><button type="button" class="btn sec" data-act="backup">Save a backup file</button><button type="button" class="btn ghost" data-act="restore">Restore from a backup file</button>' + (g(UNDO) ? '<button type="button" class="btn ghost" data-act="undo">Undo the last restore or import</button>' : '');
+  h += '<h2 class="sec">Tax year</h2><div class="chips" role="group" aria-label="Tax year">' + [TY - 1, TY, TY + 1].map(function(y){ return '<button type="button" class="chip" data-year="' + y + '" aria-pressed="' + (S.year === y) + '">' + y + '</button>'; }).join('') + '</div>' +
+    (RATES[S.year] ? '' : '<label class="f" for="rateIn">IRS business mileage rate for ' + S.year + ' (cents per mile)</label><input class="in" id="rateIn" inputmode="decimal" value="' + esc((S.rates || {})[S.year] || '') + '" placeholder="Check irs.gov when the IRS announces it"><button type="button" class="btn sm sec" style="margin-top:8px" data-act="saverate">Save rate</button>');
+  h += '<h2 class="sec">Sample numbers</h2>' + (S.sample ? '<button type="button" class="btn red" data-act="clearsample">Clear the sample and go back to my data</button>' : '<button type="button" class="btn ghost" data-act="sample">Try it with sample numbers (your data is kept safe)</button>');
+  h += '<h2 class="sec">Phone</h2><div id="inst"></div><p class="hint" id="store">Checking storage…</p>';
+  h += '<h2 class="sec">Good to know</h2><div class="card"><p><b>Record-keeping only, not tax advice.</b> Rental Property Books sorts what you log onto Schedule E lines so your preparer (or your tax software) has clean numbers. Its depreciation and loan figures are estimates labelled for your preparer. It does not decide passive-loss limits or whether something is a repair or an improvement. Ask your preparer about those.</p>' +
+    '<p>Line numbers checked against the IRS Schedule E 2025 form and the 2026 early-release draft. Mileage rates from irs.gov (2026: 72.5¢ to Jun 30, 76¢ from Jul 1).</p><p>Everything is saved in this browser on this device. Nothing is uploaded. Save a backup file now and then, and when you switch phones.</p></div>';
+  h += '<button type="button" class="btn red" data-act="wipe">Delete everything on this device</button>';
+  return h; }
+function storageNote(){ var el = $('#store'); if (!el) return;
+  rall().then(function(a){ var b = 0; a.forEach(function(r){ b += r.bytes || 0; }); var t = plural(a.length, 'receipt photo') + ' using ' + (b / 1048576).toFixed(1) + ' MB on this device.';
+    if (navigator.storage && navigator.storage.estimate) navigator.storage.estimate().then(function(e){ var pct = e.quota ? e.usage / e.quota : 0; el.textContent = t + (pct > 0.8 ? ' Storage is nearly full: save a backup file, then remove old photos.' : ''); if (pct > 0.8) el.className = 'err'; }).catch(function(){ el.textContent = t; });
+    else el.textContent = t; }); }
+/* ---------- ADD / EDIT ---------- */
+function chooseAdd(pid){
+  sheet('<h2>What happened?</h2><div class="three">' +
+    '<button type="button" data-k="rent"><i aria-hidden="true">💵</i><span><b>Rent came in</b><small>Rent, fees, a booking payout</small></span></button>' +
+    '<button type="button" data-k="exp"><i aria-hidden="true">🧾</i><span><b>I paid for something</b><small>Repair, insurance, tax, supplies. Snap the receipt</small></span></button>' +
+    '<button type="button" data-k="trip"><i aria-hidden="true">🚗</i><span><b>I drove for a rental</b><small>Miles at the IRS rate</small></span></button>' +
+    '<button type="button" data-k="imp"><i aria-hidden="true">📄</i><span><b>Bring in a file</b><small>Bank, Airbnb, Vrbo, PayPal or Stripe CSV</small></span></button></div>', function(sh){
+    $$('.three button', sh).forEach(function(b){ b.onclick = function(){ var k = b.getAttribute('data-k'); if (k === 'trip') tripForm(null, pid); else if (k === 'imp') importSheet(); else txForm(null, k === 'rent' ? 'RENT' : '', pid); }; }); }); }
+function propChips(sel){ if (!S.props.length) return '<p class="hint">No rental added yet. You can pick one later.</p>';
+  if (S.props.length === 1 && !sel) sel = S.props[0].id;
+  return '<div class="chips" role="radiogroup" aria-labelledby="pl">' + S.props.map(function(p){ return '<button type="button" class="chip" role="radio" data-p="' + p.id + '" aria-checked="' + (sel === p.id) + '">' + esc(p.name) + '</button>'; }).join('') + '</div>'; }
+function pick(sh, attr){ var b = $('[data-' + attr + '][aria-checked=true],[data-' + attr + '][aria-pressed=true]', sh); return b ? b.getAttribute('data-' + attr) : ''; }
+function wirePick(sh, attr, after){ $$('[data-' + attr + ']', sh).forEach(function(b){ b.onclick = function(){ var A = b.getAttribute('role') === 'radio' ? 'aria-checked' : 'aria-pressed'; $$('[data-' + attr + ']', sh).forEach(function(o){ o.setAttribute(A, 'false'); }); b.setAttribute(A, 'true'); if (after) after(b.getAttribute('data-' + attr)); }; }); }
+function txForm(x, cat, pid){
+  var isNew = !x; x = x || { id: uid(), date: today(), prop: pid || (S.props.length === 1 ? S.props[0].id : ''), cat: cat || '', amt: NaN, note: '' };
+  var inc = x.cat ? (CAT[x.cat] || {}).kind === 'in' : false;
+  var p = S.props.filter(function(q){ return q.id === x.prop; })[0];
+  var quick = isNew && inc && p && p.rent ? '<button type="button" class="btn sm sec" data-quick style="margin-top:8px">Same as usual: ' + money(p.rent, true) + '</button>' : '';
+  var ORDER = ['L14','L17','L9','L16','L12','L7','L15','L11','L8','L5','L6','L10','L13b','L13a','L19','IMP','PRIN','OWN'], catList = inc ? CATS.filter(function(c){ return c.kind === 'in'; }) : ORDER.map(function(k){ return CAT[k]; });
+  sheet('<h2>' + (isNew ? (inc ? 'Rent came in' : 'I paid for something') : 'Edit entry') + '</h2>' +
+    '<label class="f" for="amt">Amount</label><input class="in money" id="amt" inputmode="decimal" autocomplete="off" placeholder="$0" value="' + (isFinite(x.amt) ? (x.amt / 100).toFixed(2) : '') + '">' + quick +
+    '<p class="f" id="pl">Which rental</p>' + propChips(x.prop) +
+    '<p class="f" id="cl">' + (inc ? 'Kind' : 'What was it for') + '</p><div class="chips" role="radiogroup" aria-labelledby="cl">' + catList.map(function(c){ var on = x.cat === c.id; return '<button type="button" class="chip" role="radio" data-c="' + c.id + '" aria-checked="' + on + '">' + esc(c.name) + (c.ln ? '<small>L' + c.ln + '</small>' : '') + '</button>'; }).join('') + '</div><p class="hint" id="chint" aria-live="polite"></p>' +
+    '<label class="f" for="dt">Date</label><input class="in" type="date" id="dt" value="' + esc(x.date) + '">' +
+    '<label class="f" for="nt">Note (optional)</label><input class="in" id="nt" maxlength="120" placeholder="' + (inc ? 'e.g. Unit 2, October' : 'e.g. Plumber, kitchen sink') + '" value="' + esc(x.note || '') + '">' +
+    txExtraHTML(x, inc) +
+    (inc ? '' : '<label class="f" for="ph">Receipt photo (optional)</label><input class="in" type="file" id="ph" accept="image/*"><p class="hint">Saved only on this device, shrunk to save space.</p><div id="rc"></div>') +
+    '<p class="err" id="er" role="alert"></p><button type="button" class="btn" id="sv">' + (isNew ? 'Save' : 'Save changes') + '</button>' + (isNew ? '' : '<button type="button" class="btn red" id="dl">Delete this entry</button>'), function(sh){
+    var photo = null;
+    var hint = function(id){ var c = CAT[id]; $('#chint', sh).textContent = c ? c.hint : ''; };
+    wirePick(sh, 'p'); wirePick(sh, 'c', hint); hint(x.cat);
+    var q = $('[data-quick]', sh); if (q) q.onclick = function(){ $('#amt', sh).value = (p.rent / 100).toFixed(2); };
+    if (x.rcpt) rget(x.rcpt).then(function(r){ if (!r) return; $('#rc', sh).innerHTML = '<img class="thumb" alt="Receipt photo" src="' + r.data + '"><button type="button" class="lnk" id="rr">Remove photo</button>'; $('#rr', sh).onclick = function(){ photo = 'remove'; $('#rc', sh).innerHTML = '<p class="hint">Photo will be removed when you save.</p>'; }; });
+    var ph = $('#ph', sh); if (ph) ph.onchange = function(){ var f = ph.files[0]; if (!f) return; $('#rc', sh).innerHTML = '<p class="hint">Shrinking photo…</p>';
+      shrink(f).then(function(r){ photo = r; $('#rc', sh).innerHTML = '<img class="thumb" alt="Receipt photo preview" src="' + r.data + '"><p class="hint">' + (r.orig > 8 * 1048576 ? 'That was a very big photo (' + Math.round(r.orig / 1048576) + ' MB). ' : '') + 'Saved size: ' + Math.max(1, Math.round(r.bytes / 1024)) + ' KB.' + (r.bytes > 1048576 ? ' Receipts this size fill a phone fast.' : '') + '</p>'; })
+        .catch(function(){ photo = null; $('#rc', sh).innerHTML = '<p class="err">That file could not be read as a photo. Try a JPG or PNG.</p>'; }); };
+    $('#sv', sh).onclick = function(){
+      var a = cents($('#amt', sh).value), c = pick(sh, 'c') || (inc ? 'RENT' : ''), pr = pick(sh, 'p'), d = $('#dt', sh).value, er = $('#er', sh);
+      if (!isFinite(a) || a <= 0) { er.textContent = 'Type the amount, like 1450 or 89.99.'; $('#amt', sh).focus(); return; }
+      if (a > 1e10) { er.textContent = 'That amount looks too big. Check it.'; return; }
+      if (!c) { er.textContent = 'Pick what it was for. Not sure? Pick Other and add a note.'; return; }
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(d)) { er.textContent = 'Pick a date.'; return; }
+      var ex = txExtraRead(sh, x); if (!pr && ex.prop) pr = ex.prop;
+      if (S.props.length && !pr) { er.textContent = 'Pick which rental this was for.'; return; }
+      x.amt = a; x.cat = c; x.prop = pr; x.date = d; x.note = $('#nt', sh).value.trim(); txExtraApply(x, ex);
+      var done = function(){ if (isNew) S.tx.push(x); save(); closeSheet(); render(); toast((isNew ? 'Saved: ' : 'Updated: ') + money(a) + ' · ' + CAT[c].name + (inYear(d, S.year) ? '' : ' (in ' + d.slice(0,4) + ')') + (c === 'L14' && a >= 250000 ? '. Big repair: ask your preparer whether it counts as an improvement.' : '')); };
+      if (photo === 'remove' && x.rcpt) { rdel(x.rcpt); delete x.rcpt; done(); return; }
+      if (photo && photo.data) { var rid = x.rcpt || uid(); rput({ id: rid, data: photo.data, bytes: photo.bytes, at: Date.now() }).then(function(){ x.rcpt = rid; done(); }).catch(function(){ done(); toast('Saved, but the photo could not be stored (the device may be out of space).'); }); return; }
+      done(); };
+    var dl = $('#dl', sh); if (dl) dl.onclick = function(){ var i = S.tx.indexOf(x); if (i < 0) return; S.tx.splice(i, 1); save(); closeSheet(); render(); toast('Entry deleted.', function(){ S.tx.splice(i, 0, x); save(); render(); }); };
+    if (isNew) setTimeout(function(){ var e = $('#amt', sh); if (e && !$('#sheet').hidden) e.focus(); }, 60);
+  }); }
+function tripForm(x, pid){
+  var isNew = !x; x = x || { id: uid(), date: today(), prop: pid || (S.props.length === 1 ? S.props[0].id : ''), miles: '', why: '' };
+  sheet('<h2>' + (isNew ? 'I drove for a rental' : 'Edit trip') + '</h2><label class="f" for="mi">Miles (round trip)</label><input class="in money" id="mi" inputmode="decimal" placeholder="0" value="' + esc(x.miles) + '"><p class="hint" id="mh" aria-live="polite"></p>' +
+    '<p class="f" id="pl">Which rental</p>' + propChips(x.prop) + '<label class="f" for="dt">Date</label><input class="in" type="date" id="dt" value="' + esc(x.date) + '">' +
+    '<label class="f" for="wy">Why (the IRS wants a purpose)</label><input class="in" id="wy" maxlength="100" placeholder="e.g. Met plumber, rent collection" value="' + esc(x.why) + '">' +
+    '<p class="err" id="er" role="alert"></p><button type="button" class="btn" id="sv">Save trip</button>' + (isNew ? '' : '<button type="button" class="btn red" id="dl">Delete this trip</button>'), function(sh){
+    wirePick(sh, 'p');
+    var upd = function(){ var m = parseFloat($('#mi', sh).value), r = rateFor($('#dt', sh).value); $('#mh', sh).textContent = isFinite(m) && m > 0 ? (r == null ? 'No IRS rate for that year yet. Add it in More.' : '≈ ' + money(Math.round(m * r)) + ' at ' + r + '¢ a mile (IRS rate for that date).') : ''; };
+    $('#mi', sh).oninput = upd; $('#dt', sh).onchange = upd; upd();
+    $('#sv', sh).onclick = function(){ var m = parseFloat($('#mi', sh).value), d = $('#dt', sh).value, pr = pick(sh, 'p'), er = $('#er', sh);
+      if (!isFinite(m) || m <= 0 || m > 2000) { er.textContent = 'Type the miles, like 12.4.'; $('#mi', sh).focus(); return; }
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(d)) { er.textContent = 'Pick a date.'; return; }
+      if (S.props.length && !pr) { er.textContent = 'Pick which rental this trip was for.'; return; }
+      x.miles = Math.round(m * 10) / 10; x.date = d; x.prop = pr; x.why = $('#wy', sh).value.trim();
+      if (isNew) S.trips.push(x); save(); closeSheet(); render(); toast('Trip saved: ' + x.miles + ' miles.'); };
+    var dl = $('#dl', sh); if (dl) dl.onclick = function(){ var i = S.trips.indexOf(x); S.trips.splice(i, 1); save(); closeSheet(); render(); toast('Trip deleted.', function(){ S.trips.splice(i, 0, x); save(); render(); }); };
+    if (isNew) setTimeout(function(){ var e = $('#mi', sh); if (e && !$('#sheet').hidden) e.focus(); }, 60);
+  }); }
+function propForm(p){
+  var isNew = !p; if (isNew && S.props.length >= MAXP) { toast(MAXP + ' rentals is the most this app holds.'); return; }
+  p = p || { id: uid(), name: '', addr: '', type: '2', rent: 0, mortgage: true, days: '', pdays: '' };
+  sheet('<h2>' + (isNew ? 'Add a rental' : 'Edit ' + esc(p.name)) + '</h2>' +
+    '<label class="f" for="pn">Nickname</label><input class="in" id="pn" maxlength="40" placeholder="e.g. Maple St duplex" value="' + esc(p.name) + '">' +
+    '<label class="f" for="pa">Address (optional, for your preparer)</label><input class="in" id="pa" maxlength="120" autocomplete="street-address" value="' + esc(p.addr) + '">' +
+    '<p class="f" id="tl">Type (Schedule E line 1b)</p><div class="chips" role="radiogroup" aria-labelledby="tl">' + PTYPES.map(function(t){ return '<button type="button" class="chip" role="radio" data-t="' + t[0] + '" aria-checked="' + (p.type === t[0]) + '">' + t[1] + '</button>'; }).join('') + '</div>' +
+    '<label class="f" for="pr">Usual monthly rent (optional)</label><input class="in" id="pr" inputmode="decimal" placeholder="e.g. 1450" value="' + (p.rent ? (p.rent / 100).toFixed(0) : '') + '"><p class="hint">Lets you log rent in one tap and reminds you about months you have not logged. Leave blank for short-term rentals.</p>' +
+    '<label class="f" for="ps">Renting it out since</label><input class="in" type="month" id="ps" value="' + esc((p.since || (S.year + '-01')).slice(0,7)) + '"><p class="hint">Rent reminders start from this month.</p>' +
+    '<label class="f" for="ple">Lease ends (optional)</label><input class="in" type="date" id="ple" value="' + esc(p.lease || '') + '"><p class="hint">You get a reminder on Home 60 days before.</p>' +
+    '<label class="f"><input type="checkbox" id="pm" ' + (p.mortgage ? 'checked' : '') + ' style="width:22px;height:22px;vertical-align:middle;margin-right:8px">It has a mortgage (remind me to log the interest)</label>' +
+    '<label class="f" for="pd">Days rented at a fair price in ' + S.year + ' (line 2)</label><input class="in" id="pd" inputmode="numeric" placeholder="e.g. 365" value="' + esc(dz(p).d) + '">' +
+    '<label class="f" for="pp">Days you or family used it (line 2)</label><input class="in" id="pp" inputmode="numeric" placeholder="0" value="' + esc(dz(p).pd) + '">' +
+    propExtraHTML(p) + '<p class="err" id="er" role="alert"></p><button type="button" class="btn" id="sv">' + (isNew ? 'Add rental' : 'Save') + '</button>' + (isNew ? '' : '<button type="button" class="btn red" id="dl">Remove this rental</button>'), function(sh){
+    wirePick(sh, 't');
+    $('#sv', sh).onclick = function(){ var n = $('#pn', sh).value.trim(), r = $('#pr', sh).value.trim() ? cents($('#pr', sh).value) : 0, d = $('#pd', sh).value.trim(), pd = $('#pp', sh).value.trim(), er = $('#er', sh);
+      if (!n) { er.textContent = 'Give it a nickname you will recognise.'; $('#pn', sh).focus(); return; }
+      if (!isFinite(r) || r < 0) { er.textContent = 'Rent should be a number, like 1450.'; return; }
+      if ((d && !/^\d{1,3}$/.test(d)) || +d > 366 || (pd && !/^\d{1,3}$/.test(pd)) || +pd > 366) { er.textContent = 'Days should be a number from 0 to 366.'; return; }
+      p.name = n; p.addr = $('#pa', sh).value.trim(); p.type = pick(sh, 't') || p.type; p.rent = r; p.mortgage = $('#pm', sh).checked; p.dy = p.dy || {}; p.dy[String(S.year)] = [d, pd]; delete p.days; delete p.pdays; p.lease = /^\d{4}-\d{2}-\d{2}$/.test($("#ple", sh).value) ? $("#ple", sh).value : ''; var sv = $('#ps', sh).value; p.since = /^\d{4}-\d{2}$/.test(sv) ? sv + '-01' : (p.since || S.year + '-01-01'); propExtraRead(sh, p);
+      if (isNew) S.props.push(p); save(); closeSheet(); render(); toast(isNew ? n + ' added. Now log rent or a cost with +.' : 'Saved.'); };
+    var dl = $('#dl', sh); if (dl) dl.onclick = function(){ var n = S.tx.filter(function(x){ return x.prop === p.id; }).length + S.trips.filter(function(x){ return x.prop === p.id; }).length;
+      if (!W.confirm('Remove ' + p.name + '?' + (n ? ' Its ' + plural(n, 'entry', 'entries') + ' stay in your log with no rental picked.' : ''))) return;
+      S.props.splice(S.props.indexOf(p), 1); S.tx.concat(S.trips).forEach(function(x){ if (x.prop === p.id) x.prop = ''; }); save(); closeSheet(); render(); toast(p.name + ' removed.'); };
+    if (isNew) setTimeout(function(){ var e = $('#pn', sh); if (e && !$('#sheet').hidden) e.focus(); }, 60);
+  }); }
+/* ---------- CSV import ---------- */
+function parseCSV(t){ t = String(t).replace(/^\uFEFF/, ''); var rows = [], row = [], f = '', q = false, i, c, sep = ',';
+  var first = t.split(/\r?\n/)[0] || ''; if ((first.match(/\t/g) || []).length > (first.match(/,/g) || []).length) sep = '\t'; else if ((first.match(/;/g) || []).length > (first.match(/,/g) || []).length) sep = ';';
+  for (i = 0; i < t.length; i++) { c = t[i];
+    if (q) { if (c === '"') { if (t[i+1] === '"') { f += '"'; i++; } else q = false; } else f += c; continue; }
+    if (c === '"') q = true; else if (c === sep) { row.push(f); f = ''; } else if (c === '\n' || c === '\r') { if (c === '\r' && t[i+1] === '\n') i++; row.push(f); f = ''; if (row.some(function(x){ return x.trim() !== ''; })) rows.push(row); row = []; } else f += c; }
+  row.push(f); if (row.some(function(x){ return x.trim() !== ''; })) rows.push(row); return rows; }
+function normDate(v){ v = String(v || '').trim(); var m;
+  if ((m = v.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/))) return m[1] + '-' + ('0' + m[2]).slice(-2) + '-' + ('0' + m[3]).slice(-2);
+  if ((m = v.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})/))) { var y = m[3].length === 2 ? '20' + m[3] : m[3]; return y + '-' + ('0' + m[1]).slice(-2) + '-' + ('0' + m[2]).slice(-2); }
+  var d = new Date(v); return isNaN(d) ? '' : ymd(d); }
+var RULES = [[/insur|state farm|allstate|geico|progressive|farmers|nationwide|travelers|liberty mutual/i,'L9'],[/property tax|county tax|tax collector|treasurer|assessor/i,'L16'],
+  [/electric|power co|energy|water|sewer|gas co|utilit|trash|waste|comcast|xfinity|spectrum|internet/i,'L17'],[/home depot|lowe'?s|ace hardware|menards|plumb|electrician|hvac|repair|handyman|roof/i,'L14'],
+  [/clean|maid|janitor|landscap|lawn|pest|exterminat/i,'L7'],[/property manag|management fee|mgmt/i,'L11'],[/zillow|apartments\.com|advertis|craigslist|facebook ads|furnished finder/i,'L5'],
+  [/attorney|law office|legal|cpa|accountant|bookkeep|tax prep|turbotax/i,'L10'],[/\bhoa\b|homeowners assoc|association dues|bank fee|service charge/i,'L19'],[/amazon|walmart|target|costco|supplies|bed bath/i,'L15'],
+  [/mortgage|home loan|loan servic|rocket mortgage|mr\.? cooper/i,'L12']];
+function guessExp(desc){ for (var i = 0; i < RULES.length; i++) if (RULES[i][0].test(desc)) return RULES[i][1]; return ''; }
+var RENTY = /rent|zelle|venmo|cash ?app|airbnb|vrbo|booking|tenant|payment from|turbotenant|avail|baselane|appfolio|buildium/i;
+function hidx(H, names){ var i, j; for (j = 0; j < names.length; j++) for (i = 0; i < H.length; i++) if (H[i] === names[j]) return i; for (j = 0; j < names.length; j++) for (i = 0; i < H.length; i++) if (H[i].indexOf(names[j]) === 0) return i; return -1; }
+/* returns { kind, label, items:[{ date, desc, amt (cents, + in / - out), cat, on, why }] } or { err } */
+function readFile(rows){
+  if (rows.length < 2) return { err: 'That file has no rows to bring in.' };
+  var H = rows[0].map(function(h){ return String(h).trim().toLowerCase().replace(/\s+/g, ' '); }), B = rows.slice(1), items = [], kind = 'bank', label = 'Bank or card file';
+  var col = function(n){ return hidx(H, n); }, v = function(r, i){ return i < 0 ? '' : String(r[i] == null ? '' : r[i]).trim(); };
+  var iConf = col(['confirmation code']), iType = col(['type']), iGross = col(['gross earnings']), iSvc = col(['service fee','host fee']), iAmt = col(['amount']), iFee = col(['fee','fees']), iNet = col(['net']);
+  var iDate = col(['date','transaction date','posting date','posted date','created date (utc)','created (utc)','created','payout date','check-in','start date']);
+  if (iDate < 0) return { err: 'No date column found. The first row of the file should have column names like Date, Description and Amount.' };
+  if (iConf >= 0 && (iGross >= 0 || iAmt >= 0)) { kind = 'airbnb'; label = 'Airbnb earnings file';
+    B.forEach(function(r){ var ty = v(r, iType).toLowerCase(); if (/payout/.test(ty)) return; var d = normDate(v(r, iDate)), who = [v(r, col(['guest'])), v(r, col(['listing']))].filter(Boolean).join(' · '), code = v(r, iConf);
+      var fee = iSvc >= 0 ? Math.abs(cents(v(r, iSvc)) || 0) : 0, gross = iGross >= 0 && v(r, iGross) ? cents(v(r, iGross)) : cents(v(r, iAmt)) + fee;
+      if (!d || !isFinite(gross) || !gross) return;
+      items.push({ date:d, desc:'Airbnb ' + (ty || 'booking') + (who ? ' · ' + who : '') + (code ? ' · ' + code : ''), amt: gross, cat: gross > 0 ? 'RENT' : 'L19', on:true });
+      if (fee) items.push({ date:d, desc:'Airbnb host service fee' + (code ? ' · ' + code : ''), amt: -fee, cat:'L8', on:true }); }); }
+  else if (col(['reservation id']) >= 0 || col(['payout amount']) >= 0 || (col(['commission']) >= 0 && col(['rental amount','gross booking amount','booking amount']) >= 0)) { kind = 'vrbo'; label = 'Vrbo or booking-site payout file';
+    var iG = col(['gross booking amount','rental amount','booking amount','gross amount','payout amount','amount']), iC = col(['commission','service fee']), iP = col(['payment processing fee','processing fee']), iR = col(['reservation id','reservation']);
+    B.forEach(function(r){ var d = normDate(v(r, iDate)), a = cents(v(r, iG)); if (!d || !isFinite(a) || !a) return; var id = v(r, iR);
+      items.push({ date:d, desc:'Booking income' + (id ? ' · ' + id : ''), amt:a, cat: a > 0 ? 'RENT' : 'L19', on:true });
+      var c = iC >= 0 ? Math.abs(cents(v(r, iC)) || 0) : 0, p = iP >= 0 ? Math.abs(cents(v(r, iP)) || 0) : 0;
+      if (c) items.push({ date:d, desc:'Booking-site commission' + (id ? ' · ' + id : ''), amt:-c, cat:'L8', on:true });
+      if (p) items.push({ date:d, desc:'Payment processing fee' + (id ? ' · ' + id : ''), amt:-p, cat:'L19', on:true }); }); }
+  else if (col(['gross']) >= 0 && iFee >= 0 && iNet >= 0) { kind = 'paypal'; label = 'PayPal activity file';
+    var iN = col(['name']), iS = col(['status']), iGr = col(['gross']), iTy = col(['type']);
+    B.forEach(function(r){ var st = v(r, iS).toLowerCase(); if (st && !/complet|cleared/.test(st)) return; var ty = v(r, iTy).toLowerCase(); if (/transfer|withdraw|bank deposit|hold|authori[sz]ation/.test(ty)) return;
+      var d = normDate(v(r, iDate)), a = cents(v(r, iGr)), f = Math.abs(cents(v(r, iFee)) || 0), who = v(r, iN); if (!d || !isFinite(a) || !a) return;
+      var gx = guessExp(who + ' ' + ty);
+      items.push({ date:d, desc:'PayPal · ' + (who || ty || 'payment'), amt:a, cat: a > 0 ? 'RENT' : (gx || 'L19'), on: a > 0 || !!gx, why: a > 0 ? '' : (gx ? '' : 'not sure: tick it if it was for a rental') });
+      if (f) items.push({ date:d, desc:'PayPal fee · ' + (who || ''), amt:-f, cat:'L19', on:true }); }); }
+  else if (iAmt >= 0 && iFee >= 0 && col(['created (utc)','created date (utc)','created']) >= 0) { kind = 'stripe'; label = 'Stripe payments file';
+    var iDs = col(['description']), iSt = col(['status']), iCu = col(['customer email','customer description','customer name']);
+    B.forEach(function(r){ var st = v(r, iSt).toLowerCase(); if (st && !/paid|succe|available|complete/.test(st)) return; var d = normDate(v(r, iDate)), a = cents(v(r, iAmt)), f = Math.abs(cents(v(r, iFee)) || 0); if (!d || !isFinite(a) || !a) return;
+      var who = v(r, iDs) || v(r, iCu) || 'payment'; items.push({ date:d, desc:'Stripe · ' + who, amt:a, cat: a > 0 ? 'RENT' : 'L19', on:true });
+      if (f) items.push({ date:d, desc:'Stripe fee · ' + who, amt:-f, cat:'L19', on:true }); }); }
+  else { var iD = col(['description','memo','payee','name','details','merchant','transaction description']), iDb = col(['debit','withdrawal','withdrawals','money out']), iCr = col(['credit','deposit','deposits','money in']);
+    if (iAmt < 0 && iDb < 0 && iCr < 0) return { err: 'No amount column found. Look for a column called Amount, or Debit and Credit.' };
+    B.forEach(function(r){ var d = normDate(v(r, iDate)); if (!d) return; var a;
+      if (iAmt >= 0 && v(r, iAmt) !== '') a = cents(v(r, iAmt)); else { var db = cents(v(r, iDb)), cr = cents(v(r, iCr)); a = (isFinite(cr) ? Math.abs(cr) : 0) - (isFinite(db) ? Math.abs(db) : 0); }
+      if (!isFinite(a) || !a) return; var desc = v(r, iD) || 'Bank entry', gx = guessExp(desc);
+      if (a > 0) items.push({ date:d, desc:desc, amt:a, cat:'RENT', on: RENTY.test(desc), why: RENTY.test(desc) ? '' : 'money in: is it rent?' });
+      else items.push({ date:d, desc:desc, amt:a, cat: gx || 'L19', on: !!gx && gx !== 'L12', why: gx === 'L12' ? 'a whole mortgage payment: log only the interest from your Form 1098' : (gx ? '' : 'not sure: tick it if it was for a rental') }); }); }
+  if (!items.length) return { err: 'Nothing in that file could be read as an entry with a date and an amount.' };
+  items.forEach(function(it){ var key = 'import:' + kind + ':' + it.desc.slice(0, 40);
+    if (S.tx.some(function(x){ return x.date === it.date && x.amt === Math.abs(it.amt) && x.src === key; })) { it.on = false; it.why = 'already brought in'; } });
+  return { kind:kind, label:label, items:items }; }
+function importSheet(){
+  sheet('<h2>Bring in a file</h2><p>Download a CSV file from your bank, Airbnb (Earnings, then Transaction history), Vrbo, PayPal or Stripe, then pick it here. You check every row before anything is saved, and you can undo.</p>' +
+    '<div class="drop" id="drop"><p style="margin:0 0 8px">Drop a CSV file here, or</p><label class="btn sm sec" style="display:inline-flex" for="cf">Choose a file</label><input type="file" id="cf" accept=".csv,.tsv,.txt,text/csv" style="position:absolute;left:-9999px"></div>' +
+    '<label class="f" for="pt">Or paste the rows (first row = column names)</label><textarea class="in" id="pt" rows="4" placeholder="Date,Description,Amount"></textarea><button type="button" class="btn sm sec" style="margin-top:8px" id="pgo">Read pasted rows</button>' +
+    '<p class="err" id="er" role="alert"></p><p class="hint">Not sure of the format? The bonus pack has ready-made CSV templates.</p>', function(sh){
+    var run = function(text){ var r = readFile(parseCSV(text)); if (r.err) { $('#er', sh).textContent = 'Nothing was brought in. ' + r.err; return; } previewImport(r); };
+    var rd = function(f){ if (!f) return; if (f.size > 15 * 1048576) { $('#er', sh).textContent = 'Nothing was brought in. That file is over 15 MB: export a shorter date range.'; return; } var fr = new FileReader(); fr.onload = function(){ run(fr.result); }; fr.readAsText(f); };
+    $('#cf', sh).onchange = function(){ rd(this.files[0]); };
+    $('#pgo', sh).onclick = function(){ run($('#pt', sh).value); };
+    var dz = $('#drop', sh); dz.ondragover = function(e){ e.preventDefault(); dz.classList.add('on'); }; dz.ondragleave = function(){ dz.classList.remove('on'); };
+    dz.ondrop = function(e){ e.preventDefault(); dz.classList.remove('on'); rd(e.dataTransfer.files[0]); }; }); }
+function previewImport(r){
+  var opts = function(sel, inc){ return CATS.filter(function(c){ return inc ? c.kind === 'in' : c.kind !== 'in'; }).map(function(c){ return '<option value="' + c.id + '"' + (c.id === sel ? ' selected' : '') + '>' + (c.ln ? 'L' + c.ln + ' ' : '') + esc(c.name) + '</option>'; }).join(''); };
+  sheet('<h2>Check before saving</h2><p><b>' + esc(r.label) + '</b>: ' + plural(r.items.length, 'row') + ' found. Ticked rows will be saved. Untick anything personal.</p>' +
+    (S.props.length ? '<label class="f" for="ip">Which rental are these for?</label><select class="in" id="ip">' + (S.props.length > 1 ? '<option value="">Pick later (shows in What\'s left to log)</option>' : '') + S.props.map(function(p){ return '<option value="' + p.id + '">' + esc(p.name) + '</option>'; }).join('') + '</select>' : '') +
+    '<div class="prev" role="list">' + r.items.map(function(it, i){ var inc = it.amt > 0;
+      return '<div class="pr" role="listitem"><input type="checkbox" id="ck' + i + '" ' + (it.on ? 'checked' : '') + '><label for="ck' + i + '"><b>' + esc(it.desc.slice(0, 60)) + '</b><br><small>' + dshow(it.date) + (it.why ? ' · ' + esc(it.why) : '') + '</small></label><b class="am ' + (inc ? 'pos' : '') + '">' + (inc ? '+' : '−') + money(Math.abs(it.amt)) + '</b><select id="cs' + i + '" aria-label="Line for row ' + (i + 1) + '">' + opts(it.cat, inc) + '</select></div>'; }).join('') + '</div>' +
+    '<button type="button" class="btn" id="go">Save ticked rows</button><button type="button" class="btn ghost" data-close>Cancel, change nothing</button>', function(sh){
+    $('#go', sh).onclick = function(){ var pid = $('#ip', sh) ? $('#ip', sh).value : '', ids = [], at = Date.now();
+      r.items.forEach(function(it, i){ if (!$('#ck' + i, sh).checked) return; var x = { id: uid(), date: it.date, prop: pid, cat: $('#cs' + i, sh).value, amt: Math.abs(it.amt), note: it.desc.slice(0, 120), src: 'import:' + r.kind + ':' + it.desc.slice(0, 40) }; S.tx.push(x); ids.push(x.id); });
+      if (!ids.length) { toast('Nothing ticked, so nothing was saved.'); return; }
+      S.imports.push({ id: uid(), at: at, kind: r.kind, n: ids.length }); s(UNDO, JSON.stringify({ kind:'import', at: at, ids: ids })); save(); closeSheet(); logFilter = 'all'; go('log');
+      toast(plural(ids.length, 'entry', 'entries') + ' brought in from your ' + r.label.toLowerCase() + '.', undoLast); }; }); }
+/* ---------- backup / restore ---------- */
+function realState(){ return S.sample ? J(g(REAL), null) : S; }
+function download(txt, name, type){ try { var a = D.createElement('a'); a.href = URL.createObjectURL(new Blob([txt], { type: type })); a.download = name; D.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 1500); } catch(e){} }
+function saveBackup(){
+  var st = realState(); if (!hasReal(st)) { toast(S.sample ? 'Nothing to back up yet: sample numbers are never saved in a backup.' : 'Nothing to back up yet. Add a rental first.'); return Promise.resolve(null); }
+  return rall().then(function(rc){
+    var used = {}; st.tx.forEach(function(x){ if (x.rcpt) used[x.rcpt] = 1; }); rc = rc.filter(function(r){ return used[r.id]; });
+    var f = { format:'filedawayco-backup', version:1, app:APP, appName:NAME, savedAt:new Date().toISOString(), howToUse:'Keep this file somewhere safe (email it to yourself or save it to your cloud drive). To bring your data back: open Rental Property Books, tap More, then Restore from a backup file.', data:{ state: st }, receipts: rc };
+    var txt = JSON.stringify(f), name = 'FiledAwayCo-rental-property-books-backup-' + today() + '.json';
+    download(txt, name, 'application/json');
+    s(LASTBK, String(Date.now())); W.__FRB_LAST = txt; render(); toast('Backup saved: ' + name + (rc.length ? ' (with ' + plural(rc.length, 'receipt photo') + ')' : '') + '. Keep it somewhere safe.'); return txt; }); }
+function checkBackup(text){
+  var f = J(text, null);
+  if (!f || typeof f !== 'object') return { err: 'Nothing was changed. That file is not a FiledAwayCo backup file (it could not be read).' };
+  if (f.format !== 'filedawayco-backup') return { err: 'Nothing was changed. That file is not a FiledAwayCo backup file.' };
+  if (f.app !== APP) return { err: 'Nothing was changed. That backup is from ' + (f.appName || f.app || 'another app') + ', not Rental Property Books. Open that app to restore it.' };
+  var st = f.data && f.data.state; if (!st || !Array.isArray(st.props) || !Array.isArray(st.tx) || !Array.isArray(st.trips)) return { err: 'Nothing was changed. That backup file is damaged or incomplete.' };
+  return { f: f, st: st }; }
+function applyRestore(c){ var before = S.sample ? J(g(REAL), blank()) : S; s(UNDO, JSON.stringify({ kind:'restore', state: before }));
+  rm(REAL); S = c.st; S.sample = false; if (!Array.isArray(S.imports)) S.imports = []; if (!S.rates) S.rates = {}; save();
+  return Promise.all((c.f.receipts || []).map(function(r){ return rput(r).catch(function(){}); })); }
+function restoreSheet(){
+  sheet('<h2>Restore from a backup file</h2><p>Pick the <b>FiledAwayCo-rental-property-books-backup</b> file you saved. You will see what is in it before anything changes.</p><label class="btn sec" for="bf">Choose backup file</label><input type="file" id="bf" accept=".json,application/json" style="position:absolute;left:-9999px"><p class="err" id="er" role="alert"></p>', function(sh){
+    $('#bf', sh).onchange = function(){ var fl = this.files[0]; if (!fl) return; var fr = new FileReader(); fr.onload = function(){ var c = checkBackup(fr.result); if (c.err) { $('#er', sh).textContent = c.err; return; }
+      var st = c.st, rc = c.f.receipts || [];
+      sheet('<h2>Restore this backup?</h2><div class="card"><p><b>Saved ' + esc(new Date(c.f.savedAt).toLocaleString('en-US')) + '</b><br>' + plural(st.props.length, 'rental') + ', ' + plural(st.tx.length, 'entry', 'entries') + ', ' + plural(st.trips.length, 'trip') + (rc.length ? ', ' + plural(rc.length, 'receipt photo') : '') + '.</p></div><p>This replaces what is on this device now. You can undo it right after.</p><button type="button" class="btn" id="ok">Replace my data with this backup</button><button type="button" class="btn ghost" data-close>Cancel, change nothing</button>', function(s2){
+        $('#ok', s2).onclick = function(){ applyRestore(c).then(function(){ closeSheet(); go('home'); toast('Backup restored.', undoLast); }); }; }); };
+      fr.readAsText(fl); }; }); }
+function undoLast(){ var u = J(g(UNDO), null); if (!u) { toast('Nothing to undo.'); return; }
+  if (u.kind === 'import') { var set = {}; u.ids.forEach(function(i){ set[i] = 1; }); var n = S.tx.length; S.tx = S.tx.filter(function(x){ return !set[x.id]; }); S.imports = S.imports.filter(function(m){ return m.at !== u.at; }); toast('Import undone: ' + plural(n - S.tx.length, 'entry', 'entries') + ' removed.'); }
+  else if (u.kind === 'restore') { S = u.state || blank(); S.sample = false; toast('Restore undone. Your earlier data is back.'); }
+  rm(UNDO); save(); render(); }
+/* ---------- sample (kept apart from your own data) ---------- */
+function dyo(y, d, pd){ var o = {}; o[String(y)] = [d, pd]; return o; }
+function sampleState(){ var y = S.year, st = blank(); st.year = y; st.sample = true; var last = y < TY ? 12 : (y > TY ? 12 : NOW.getMonth() + 1);
+  var A = { id:'sA', name:'Maple St duplex', addr:'1418 Maple St, Springfield', type:'2', rent:285000, mortgage:true, dy: dyo(y, '365', '0'), lease: y === TY ? ymd(new Date(NOW.getTime() + 45 * 864e5)) : '', since: y + '-01-01' }, B = { id:'sB', name:'Lakeside cabin', addr:'22 Shore Rd, Lake Placid', type:'3', rent:0, mortgage:false, dy: dyo(y, '142', '14'), since: y + '-01-01' };
+  st.props = [A, B]; var n = 0, T = function(d, p, c, a, note){ var x = { id: 's' + (n++), date: d, prop: p, cat: c, amt: a, note: note || '' }; if (c !== 'RENT' && !/Appliance|Hot tub/.test(note || '')) x.rcpt = 'sample'; st.tx.push(x); };
+  var air = [0, 182000, 164000, 210000, 248000, 391000, 512000, 538000, 402000, 296000, 221000, 260000, 318000];
+  for (var m = 1; m <= last; m++) { var mm = y + '-' + ('0' + m).slice(-2);
+    T(mm + '-01', 'sA', 'RENT', 285000, 'Units 1 + 2 rent');
+    T(mm + '-15', 'sB', 'RENT', air[m], 'Booking payouts'); T(mm + '-15', 'sB', 'L8', Math.round(air[m] * 0.03), 'Booking-site host fee');
+    T(mm + '-05', 'sA', 'L12', 61240, 'Mortgage interest (from statement)'); T(mm + '-05', 'sA', 'PRIN', 38760, 'Mortgage principal');
+    T(mm + '-20', 'sB', 'L17', 18400 + (m % 3) * 2100, 'Power + internet'); T(mm + '-22', 'sB', 'L7', 38000, 'Turnover cleaning');
+    if (m % 3 === 0) T(mm + '-11', 'sA', 'L17', 21400, 'Water + sewer, quarterly'); }
+  if (last >= 2) { T(y + '-02-10', 'sA', 'L9', 128400, 'Landlord insurance, year'); T(y + '-02-12', 'sB', 'L9', 98200, 'Short-term rental insurance, year'); }
+  if (last >= 4) { T(y + '-04-02', 'sA', 'L14', 41500, 'Plumber: kitchen sink leak'); T(y + '-04-18', 'sB', 'L15', 23860, 'Linens + smoke alarms'); T(y + '-04-30', 'sA', 'L16', 170500, 'Property tax, 1st half'); T(y + '-04-30', 'sB', 'L16', 118000, 'Property tax, 1st half'); }
+  if (last >= 6) { T(y + '-06-09', 'sB', 'L5', 4900, 'Listing photos'); T(y + '-06-21', 'sA', 'IMP', 640000, 'New roof'); T(y + '-06-25', 'sA', 'L10', 35000, 'Lease review, lawyer'); }
+  if (last >= 9) { T(y + '-09-14', 'sA', 'L14', 18900, 'Appliance repair'); T(y + '-09-30', 'sB', 'L19', 36000, 'HOA dues, half year'); }
+  if (last >= 10) { T(y + '-10-30', 'sA', 'L16', 170500, 'Property tax, 2nd half'); T(y + '-10-30', 'sB', 'L16', 118000, 'Property tax, 2nd half'); T(y + '-10-12', 'sB', 'L14', 12900, 'Hot tub pump repair'); }
+  [[2,'sA',14.2,'Showed unit 2'],[4,'sA',14.2,'Met plumber'],[5,'sB',86,'Spring opening'],[7,'sB',86,'Deep clean + restock'],[8,'sA',14.2,'Rent collection'],[10,'sB',86,'Winterize']].forEach(function(t){ if (t[0] <= last) st.trips.push({ id: 'st' + t[0], date: y + '-' + ('0' + t[0]).slice(-2) + '-12', prop: t[1], miles: t[2], why: t[3] }); });
+  return st; }
+function startSample(){ if (S.sample) return; if (hasReal(S)) s(REAL, JSON.stringify(S)); S = sampleState(); save(); go('home'); toast('Sample numbers loaded. Your own data is set aside and comes back when you clear the sample.'); }
+function clearSample(){ if (!S.sample) return; var r = J(g(REAL), null); rm(REAL); S = r || blank(); S.sample = false; save(); go('home'); toast(r ? 'Sample cleared. Your own data is back.' : 'Sample cleared.'); }
+/* ---------- print / CSV ---------- */
+function buildPrint(){ var y = S.year, all = S.props.map(function(p){ return [p, totals(y, p.id)]; }), tot = totals(y, ''), R = lineRows(tot, y);
+  var out = '<h1>Rental Property Books · ' + y + ' records for my tax preparer</h1><p class="sm">Made ' + dshow(today()) + ' with Rental Property Books by FiledAwayCo. Record-keeping summary sorted to Schedule E (Form 1040) Part I lines' + (y >= 2026 ? ' (IRS 2026 early-release draft, May 2026; the final form may change)' : '') + '. Not tax advice. Depreciation (line 18) is left to the preparer.' + (S.sample ? ' SAMPLE NUMBERS, NOT REAL.' : '') + '</p>';
+  out += '<table><thead><tr><th class="l">Line</th><th class="l">What</th>' + all.map(function(a){ return '<th>' + esc(a[0].name) + '</th>'; }).join('') + '<th>All rentals</th></tr></thead><tbody>';
+  out += '<tr><td class="l">1a</td><td class="l">Address</td>' + all.map(function(a){ return '<td>' + esc(a[0].addr || '') + '</td>'; }).join('') + '<td></td></tr>';
+  out += '<tr><td class="l">1b</td><td class="l">Type</td>' + all.map(function(a){ var t = PTYPES.filter(function(x){ return x[0] === a[0].type; })[0]; return '<td>' + (t ? t[0] + ' ' + t[1] : '') + '</td>'; }).join('') + '<td></td></tr>';
+  out += '<tr><td class="l">2</td><td class="l">Fair rental / personal days</td>' + all.map(function(a){ return '<td>' + esc(dz(a[0], y).d || '?') + ' / ' + esc(dz(a[0], y).pd || '0') + '</td>'; }).join('') + '<td></td></tr>';
+  R.forEach(function(r, i){ out += '<tr><td class="l">' + r[0] + '</td><td class="l">' + esc(r[1].replace(/ \(incl.*\)$/, '')) + '</td>' + all.map(function(a){ var v = lineRows(a[1], y)[i][2]; return '<td>' + (v == null ? 'preparer' : money(v)) + '</td>'; }).join('') + '<td>' + (r[2] == null ? 'preparer' : money(r[2])) + '</td></tr>'; });
+  out += '<tr class="tot"><td class="l">20</td><td class="l">Total expenses (before depreciation)</td>' + all.map(function(a){ return '<td>' + money(a[1].exp) + '</td>'; }).join('') + '<td>' + money(tot.exp) + '</td></tr>';
+  out += '<tr class="tot"><td class="l">21</td><td class="l">Rent minus expenses</td>' + all.map(function(a){ return '<td>' + money(a[1].net) + '</td>'; }).join('') + '<td>' + money(tot.net) + '</td></tr></tbody></table>';
+  var u = totals(y, '_none'); if (u.RENT || u.exp) out += '<p class="sm">"All rentals" includes ' + money(u.RENT) + ' income and ' + money(u.exp) + ' expenses with no rental picked.</p>';
+  out += '<h2>Kept off Schedule E (for the preparer)</h2><table><thead><tr><th class="l">Date</th><th class="l">Rental</th><th class="l">What</th><th>Amount</th></tr></thead><tbody>' + S.tx.filter(function(x){ return inYear(x.date, y) && (x.cat === 'IMP' || x.cat === 'DEP' || x.cat === 'OWN'); }).map(function(x){ return '<tr><td class="l">' + x.date + '</td><td class="l">' + esc(propName(x.prop)) + '</td><td class="l">' + esc(CAT[x.cat].name + (x.note ? ': ' + x.note : '')) + '</td><td>' + money(x.amt) + '</td></tr>'; }).join('') + '<tr><td class="l" colspan="3">Mortgage principal (not deductible), all rentals</td><td>' + money(tot.PRIN) + '</td></tr></tbody></table>';
+  out += '<h2>Mileage log (' + Math.round(tot.miles * 10) / 10 + ' miles, ' + money(tot.mileC) + ' at IRS standard rates)</h2><table><thead><tr><th class="l">Date</th><th class="l">Rental</th><th class="l">Purpose</th><th>Miles</th><th>Rate</th><th>Amount</th></tr></thead><tbody>' + S.trips.filter(function(x){ return inYear(x.date, y); }).sort(function(a, b){ return a.date < b.date ? -1 : 1; }).map(function(x){ var r = rateFor(x.date); return '<tr><td class="l">' + x.date + '</td><td class="l">' + esc(propName(x.prop)) + '</td><td class="l">' + esc(x.why) + '</td><td>' + x.miles + '</td><td>' + (r == null ? '?' : r + '¢') + '</td><td>' + (r == null ? '' : money(Math.round(x.miles * r))) + '</td></tr>'; }).join('') + '</tbody></table>';
+  out += '<h2 class="pb">Every entry, ' + y + '</h2><table><thead><tr><th class="l">Date</th><th class="l">Rental</th><th class="l">Line</th><th class="l">What</th><th class="l">Note</th><th class="l">Receipt</th><th>Amount</th></tr></thead><tbody>' + S.tx.filter(function(x){ return inYear(x.date, y); }).sort(function(a, b){ return a.date < b.date ? -1 : 1; }).map(function(x){ var c = CAT[x.cat] || {}; return '<tr><td class="l">' + x.date + '</td><td class="l">' + esc(propName(x.prop)) + '</td><td class="l">' + (c.ln || '-') + '</td><td class="l">' + esc(c.name) + '</td><td class="l">' + esc(x.note) + '</td><td class="l">' + (x.rcpt ? 'photo' : '') + '</td><td>' + money(x.amt) + '</td></tr>'; }).join('') + '</tbody></table>';
+  return out; }
+function doPrint(){ $('#print').innerHTML = buildPrint(); setTimeout(function(){ W.print(); }, 50); }
+function csvAll(){ var q = function(v){ v = String(v == null ? '' : v); return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; };
+  var rows = [];
+  S.tx.forEach(function(x){ var c = CAT[x.cat] || {}; rows.push([x.date, propName(x.prop), c.ln || '(kept off)', c.name, x.note, (c.kind === 'in' ? '' : '-') + (x.amt / 100).toFixed(2), '', x.rcpt ? 'yes' : '']); });
+  S.trips.forEach(function(x){ var r = rateFor(x.date); rows.push([x.date, propName(x.prop), '6', 'Mileage (IRS standard rate estimate)', x.why, r == null ? '' : '-' + (Math.round(x.miles * r) / 100).toFixed(2), x.miles, '']); });
+  rows.sort(function(a, b){ return a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0; });
+  rows.unshift(['Date','Rental','Schedule E line','Category','Note','Amount','Miles','Receipt photo']);
+  var txt = rows.map(function(r){ return r.map(q).join(','); }).join('\r\n'); W.__FRB_CSV = txt;
+  download(txt, 'rental-property-books-' + S.year + '-' + today() + '.csv', 'text/csv');
+  toast('Spreadsheet file downloaded. It opens in Excel, Google Sheets or Numbers.'); }
+/* ================= v2 modules (breadth): tenants & ledger, dashboards, tools, xlsx, dark mode ================= */
+var MAXP = 100;
+var NEC = function(y){ return y >= 2026 ? 200000 : 60000; };   /* Form 1099-NEC threshold: $600 before 2026, $2,000 for payments in 2026 (irs.gov) */
+function norm(st){ if (!st) return st; ['props','tx','trips','imports','tenants','jobs','vendors','docs','loans','capex'].forEach(function(k){ if (!Array.isArray(st[k])) st[k] = []; }); if (!st.rates) st.rates = {}; return st; }
+function byId(a, id){ for (var i = 0; i < a.length; i++) if (a[i].id === id) return a[i]; return null; }
+function num(v){ var n = parseFloat(String(v == null ? '' : v).replace(/[$,%\s]/g, '')); return isFinite(n) ? n : NaN; }
+function pct(x, d){ return isFinite(x) ? (Math.round(x * 1000) / 10).toFixed(d == null ? 1 : d) + '%' : '–'; }
+function ymdAdd(iso, days){ var d = new Date(iso + 'T12:00:00'); d.setDate(d.getDate() + days); return ymd(d); }
+function dim(y, m){ return new Date(y, m, 0).getDate(); }   /* days in month m (1-12) */
+function daysBetween(a, b){ return Math.round((new Date(b + 'T12:00:00') - new Date(a + 'T12:00:00')) / 864e5); }
+function lastMonth(y){ return y < TY ? 12 : (y > TY ? 0 : NOW.getMonth() + 1); }
+function bar(v, max, cls){ var w = max > 0 ? Math.max(0, Math.min(100, v / max * 100)) : 0; return '<span class="barw" aria-hidden="true"><span class="barf ' + (cls || '') + '" style="width:' + w.toFixed(1) + '%"></span></span>'; }
+function search(id, val, ph){ return '<label class="sr" for="' + id + '">' + esc(ph) + '</label><input class="in srch" type="search" id="' + id + '" placeholder="' + esc(ph) + '" value="' + esc(val || '') + '" autocomplete="off">'; }
+function propSel(id, sel, all){ return '<select class="in" id="' + id + '">' + (all ? '<option value="">' + esc(all) + '</option>' : '') + S.props.map(function(p){ return '<option value="' + p.id + '"' + (p.id === sel ? ' selected' : '') + '>' + esc(p.name) + '</option>'; }).join('') + '</select>'; }
+/* ---------- extra fields on rent / expense entries ---------- */
+function tenLabel(t){ return t.name + (t.unit ? ' · ' + t.unit : '') + ' · ' + propName(t.prop); }
+function txExtraHTML(x, inc){
+  if (inc) { var ts = S.tenants.filter(function(t){ return !t.end || t.end >= S.year + '-01-01' || t.id === x.ten; });
+    return (ts.length ? '<label class="f" for="tn">Tenant (optional, for the tenant ledger)</label><select class="in" id="tn"><option value="">No tenant</option>' + ts.map(function(t){ return '<option value="' + t.id + '"' + (t.id === x.ten ? ' selected' : '') + '>' + esc(tenLabel(t)) + '</option>'; }).join('') + '</select>' : '') +
+      '<label class="f" for="ng">Nights booked (short-term rentals, optional)</label><input class="in" id="ng" inputmode="numeric" placeholder="e.g. 3" value="' + esc(x.nights || '') + '">'; }
+  var names = venNames();
+  return '<label class="f" for="vn">Paid to (optional, for vendor and 1099 tracking)</label><input class="in" id="vn" list="vlist" maxlength="60" placeholder="e.g. Ace Plumbing" value="' + esc(x.ven || '') + '"><datalist id="vlist">' + names.map(function(n){ return '<option value="' + esc(n) + '">'; }).join('') + '</datalist>'; }
+function txExtraRead(sh, x){ var o = {}, tn = $('#tn', sh), ng = $('#ng', sh), vn = $('#vn', sh);
+  if (tn) { o.ten = tn.value; var t = byId(S.tenants, o.ten); if (t) o.prop = t.prop; }
+  if (ng) o.nights = /^\d{1,3}$/.test(ng.value.trim()) ? +ng.value.trim() : 0;
+  if (vn) o.ven = vn.value.trim(); return o; }
+function txExtraApply(x, o){ ['ten','nights','ven'].forEach(function(k){ if (k in o) { if (o[k]) x[k] = o[k]; else delete x[k]; } }); }
+/* ---------- tenants & ledger ---------- */
+/* tenant: { id, prop, unit, name, phone, email, start, end, rent (cents), due (day), grace (days), late (cents), prorate, dep (cents), depIn, depDays, depOut:{date, back, kept}, fees:[{id,date,amt,note}], note } */
+function tenActive(t, iso){ iso = iso || today(); return t.start <= iso && (!t.end || t.end >= iso); }
+/* monthly rent charges from lease start to the earlier of lease end and today (or Dec of a past year) */
+function charges(t, upTo){ var out = []; if (!t.start || !t.rent) return out; upTo = upTo || today();
+  var y = +t.start.slice(0,4), m = +t.start.slice(5,7), stop = t.end && t.end < upTo ? t.end : upTo;
+  while (true) { var ms = y + '-' + ('0' + m).slice(-2), due = ms + '-' + ('0' + Math.min(t.due || 1, dim(y, m))).slice(-2);
+    if (ms + '-01' > stop) break; var amt = t.rent, n = dim(y, m), note = MON[m-1] + ' ' + y + ' rent';
+    if (t.prorate) { var a = ms === t.start.slice(0,7) ? +t.start.slice(8,10) : 1, b = t.end && ms === t.end.slice(0,7) ? +t.end.slice(8,10) : n;
+      if (a > 1 || b < n) { amt = Math.round(t.rent * (b - a + 1) / n); note += ' (prorated ' + (b - a + 1) + '/' + n + ' days)'; } }
+    if (ms === t.start.slice(0,7) && +t.start.slice(8,10) > (t.due || 1)) due = t.start;
+    out.push({ date: due, month: ms, amt: amt, note: note }); m++; if (m > 12) { m = 1; y++; } if (out.length > 600) break; }
+  return out; }
+function payments(t){ return S.tx.filter(function(x){ return x.ten === t.id && x.cat === 'RENT'; }); }
+/* ledger rows (all time) with running balance; status per month */
+function ledger(t){ var rows = [];
+  charges(t).forEach(function(c){ rows.push({ date: c.date, k: 'charge', d: c.note, ch: c.amt, month: c.month }); });
+  (t.fees || []).forEach(function(f){ rows.push({ date: f.date, k: 'fee', d: f.note || 'Late fee', ch: f.amt, id: f.id }); });
+  payments(t).forEach(function(x){ rows.push({ date: x.date, k: 'pay', d: x.note || 'Payment', py: x.amt, id: x.id }); });
+  rows.sort(function(a, b){ return a.date < b.date ? -1 : a.date > b.date ? 1 : (a.k === 'pay') - (b.k === 'pay'); });
+  var bal = 0; rows.forEach(function(r){ bal += (r.ch || 0) - (r.py || 0); r.bal = bal; });
+  return { rows: rows, bal: bal }; }
+/* months whose rent was not fully paid by due date + grace (late) or is still unpaid */
+function monthStatus(t){ var q = payments(t).slice().sort(function(a, b){ return a.date < b.date ? -1 : 1; }).map(function(x){ return { date: x.date, left: x.amt }; }), qi = 0, out = [];
+  /* fees take their share of payments in date order, so a rent + fee payment does not spill into next month */
+  var due = charges(t).concat((t.fees || []).map(function(f){ return { date: f.date, amt: f.amt, fee: 1 }; })).sort(function(a, b){ return a.date < b.date ? -1 : a.date > b.date ? 1 : (a.fee || 0) - (b.fee || 0); });
+  due.forEach(function(c){ if (c.fee) { var nf = c.amt; while (nf > 0 && qi < q.length) { var tk = Math.min(nf, q[qi].left); nf -= tk; q[qi].left -= tk; if (q[qi].left <= 0) qi++; } return; } var by = ymdAdd(c.date, t.grace || 0), need = c.amt, got = 0, when = '';
+    while (got < need && qi < q.length) { var take = Math.min(need - got, q[qi].left); got += take; q[qi].left -= take; when = q[qi].date; if (q[qi].left <= 0) qi++; }
+    var st = got >= need ? (when <= by ? 'paid' : 'late') : (today() > by ? (got > 0 ? 'part' : 'unpaid') : 'due');
+    out.push({ month: c.month, due: c.date, by: by, amt: need, paid: got, st: st, when: when }); });
+  return out; }
+function lateFeeDue(t){ if (!t.late) return []; var has = {}; (t.fees || []).forEach(function(f){ if (f.month) has[f.month] = 1; });
+  return monthStatus(t).filter(function(m){ return (m.st === 'late' || m.st === 'unpaid' || m.st === 'part') && today() > m.by && !has[m.month]; }); }
+function owed(){ var o = 0, n = 0; S.tenants.forEach(function(t){ var b = ledger(t).bal; if (b > 0) { o += b; n++; } }); return { amt: o, n: n }; }
+/* ---------- Tenants view ---------- */
+var tenQ = '', tenP = '', tenPast = false;
+var STL = { paid: ['✓', 'Paid on time'], late: ['L', 'Paid late'], part: ['½', 'Part paid'], unpaid: ['✗', 'Not paid'], due: ['…', 'Not due yet'] };
+function tenantsHTML(){
+  var h = '<h2 class="sec" style="margin-top:4px">Tenants &amp; leases</h2>';
+  if (!S.props.length) return h + '<div class="card"><p>Add a rental first, then add the people renting it.</p><button type="button" class="btn" data-act="newprop">Add my first rental</button></div>';
+  var all = S.tenants, act = all.filter(function(t){ return tenActive(t); }), ow = owed(), soon = act.filter(function(t){ return t.end && daysBetween(today(), t.end) <= 60; }).length;
+  h += '<div class="stats3 card"><div><b>' + act.length + '</b><span>Active leases</span></div><div><b class="' + (ow.amt > 0 ? 'neg' : '') + '">' + money(ow.amt, true) + '</b><span>Owed to you</span></div><div><b>' + soon + '</b><span>Ending in 60 days</span></div></div>';
+  h += '<button type="button" class="btn" data-x="newten">+ Add a tenant</button>';
+  if (all.length) {
+    h += '<div class="filt">' + (all.length > 5 ? search('tq', tenQ, 'Search tenants, units or rentals') : '') + (S.props.length > 1 ? '<label class="sr" for="tp2">Rental</label>' + propSel('tp2', tenP, 'All rentals') : '') + '</div>';
+    h += '<div class="chips" role="group" aria-label="Which tenants"><button type="button" class="chip" data-x="tenpast" data-v2="0" aria-pressed="' + !tenPast + '">Current</button><button type="button" class="chip" data-x="tenpast" data-v2="1" aria-pressed="' + tenPast + '">Past too</button></div>';
+    var q = tenQ.toLowerCase(), list = all.filter(function(t){ return (tenPast || !t.end || t.end >= today()) && (!tenP || t.prop === tenP) && (!q || (t.name + ' ' + (t.unit || '') + ' ' + propName(t.prop)).toLowerCase().indexOf(q) >= 0); });
+    list.sort(function(a, b){ return ledger(b).bal - ledger(a).bal || (a.name < b.name ? -1 : 1); });
+    h += list.length ? '<div class="list">' + list.map(function(t){ var b = ledger(t).bal, ms = monthStatus(t).slice(-6);
+      return '<button type="button" class="row" data-ten="' + t.id + '"><span class="l"><b>' + esc(t.name) + '</b><small>' + esc((t.unit ? t.unit + ' · ' : '') + propName(t.prop)) + ' · ' + (t.end ? (t.end < today() ? 'ended ' : 'lease to ') + dshow(t.end) : 'month to month') + '</small><span class="dots" aria-label="Last months: ' + ms.map(function(m){ return MON[+m.month.slice(5,7)-1] + ' ' + STL[m.st][1]; }).join(', ') + '">' + ms.map(function(m){ return '<i class="st-' + m.st + '" aria-hidden="true">' + STL[m.st][0] + '</i>'; }).join('') + '</span></span><span class="r ' + (b > 0 ? 'neg' : 'pos') + '">' + (b > 0 ? money(b) + ' owed' : b < 0 ? money(-b) + ' credit' : 'Paid up') + '</span></button>'; }).join('') + '</div>' : '<div class="card"><p>No tenants match.</p></div>';
+  } else h += '<div class="card"><p>Add each tenant with their rent and lease dates. The ledger then shows what is due, what is paid and what is late, month by month, and prints a statement for them.</p></div>';
+  return h; }
+function tenantSheet(t){
+  var L = ledger(t), ms = monthStatus(t).filter(function(m){ return m.month.slice(0,4) === String(S.year); }), lf = lateFeeDue(t);
+  var depDue = t.end && t.end < today() && t.dep && !t.depOut && t.depDays ? ymdAdd(t.end, +t.depDays) : '';
+  sheet('<h2>' + esc(t.name) + '</h2><p class="hint">' + esc((t.unit ? t.unit + ' · ' : '') + propName(t.prop)) + ' · rent ' + money(t.rent) + ' due on day ' + (t.due || 1) + ' · lease ' + dshow(t.start) + ' to ' + (t.end ? dshow(t.end) : 'month to month') + (t.phone ? ' · ' + esc(t.phone) : '') + '</p>' +
+    '<div class="card tbal"><b class="' + (L.bal > 0 ? 'neg' : 'pos') + '">' + (L.bal > 0 ? money(L.bal) + ' owed' : L.bal < 0 ? money(-L.bal) + ' in credit' : 'Paid up') + '</b><span>Balance today</span></div>' +
+    (ms.length ? '<p class="f">' + S.year + ' month by month</p><div class="mgrid">' + ms.map(function(m){ return '<span class="mcell st-' + m.st + '"><b>' + MON[+m.month.slice(5,7)-1] + '</b>' + STL[m.st][0] + '<small>' + STL[m.st][1] + '</small></span>'; }).join('') + '</div>' : '') +
+    '<button type="button" class="btn" data-x="tenpay">Record a payment</button>' +
+    (lf.length ? '<button type="button" class="btn sec" data-x="tenfee">Charge a ' + money(t.late) + ' late fee for ' + MON[+lf[0].month.slice(5,7)-1] + '</button>' : '') +
+    '<button type="button" class="btn sec" data-x="tenprint">Print or save a statement for ' + esc(t.name.split(' ')[0]) + '</button>' +
+    (t.dep ? '<div class="note"><b>Deposit held:</b> ' + money(t.dep) + (t.depIn ? ' since ' + dshow(t.depIn) : '') + (t.depOut ? '. Returned ' + money(t.depOut.back) + ', kept ' + money(t.depOut.kept) + ' on ' + dshow(t.depOut.date) + '.' : depDue ? '. <b>Return or account for it by ' + dshow(depDue) + '</b> (' + t.depDays + ' days after the lease ended, the rule you entered).' : '.') + '</div>' + (!t.depOut && t.end && t.end <= today() ? '<button type="button" class="btn ghost" data-x="tendep">Record the deposit return</button>' : '') : '') +
+    '<details class="card mon"><summary>Full ledger (' + L.rows.length + ' lines)</summary><div class="tblwrap" tabindex="0" role="region" aria-label="Table (scrolls sideways)"><table class="se"><thead><tr><th scope="col" style="text-align:left">Date</th><th scope="col" style="text-align:left">What</th><th scope="col">Charge</th><th scope="col">Paid</th><th scope="col">Balance</th></tr></thead><tbody>' +
+      L.rows.slice().reverse().slice(0, 60).map(function(r){ return '<tr><td style="text-align:left">' + dshow(r.date) + '</td><td style="text-align:left">' + esc(r.d) + '</td><td>' + (r.ch ? money(r.ch) : '') + '</td><td>' + (r.py ? money(r.py) : '') + '</td><td>' + money(r.bal) + '</td></tr>'; }).join('') + '</tbody></table></div></details>' +
+    '<button type="button" class="btn ghost" data-x="tenedit">Edit tenant and lease</button>', function(sh){ sh.setAttribute('data-tid', t.id); }); }
+function tenantPay(t){ var b = ledger(t).bal; txForm(null, 'RENT', t.prop); var sh = $('#sheet');
+  var a = $('#amt', sh); if (a) a.value = ((b > 0 ? Math.min(b, t.rent || b) : t.rent) / 100).toFixed(2); var tn = $('#tn', sh); if (tn) tn.value = t.id; var nt = $('#nt', sh); if (nt) nt.value = 'Rent from ' + t.name; }
+function tenantFee(t){ var lf = lateFeeDue(t)[0]; if (!lf) return; t.fees = t.fees || []; var f = { id: uid(), date: lf.by > today() ? today() : ymdAdd(lf.by, 1), amt: t.late, month: lf.month, note: 'Late fee for ' + MON[+lf.month.slice(5,7)-1] + ' rent' };
+  t.fees.push(f); save(); tenantSheet(t); toast('Late fee added to ' + t.name + '\'s ledger. It counts as rent income only once it is paid.', function(){ t.fees.splice(t.fees.indexOf(f), 1); save(); tenantSheet(t); }); }
+function tenantDep(t){ sheet('<h2>Deposit return for ' + esc(t.name) + '</h2><p>Deposit held: ' + money(t.dep) + '.</p><label class="f" for="db">Returned to the tenant</label><input class="in" id="db" inputmode="decimal" value="' + (t.dep / 100).toFixed(2) + '"><label class="f" for="dd">Date</label><input class="in" type="date" id="dd" value="' + today() + '"><p class="hint">Anything you keep (for damage or unpaid rent) is added as rent income on Schedule E line 3. Your state sets the rules for deposits.</p><p class="err" id="er" role="alert"></p><button type="button" class="btn" id="sv">Save</button>', function(sh){
+  $('#sv', sh).onclick = function(){ var bk = cents($('#db', sh).value), d = $('#dd', sh).value; if (!isFinite(bk) || bk < 0 || bk > t.dep) { $('#er', sh).textContent = 'Type an amount from 0 to ' + money(t.dep) + '.'; return; } if (!/^\d{4}-\d{2}-\d{2}$/.test(d)) { $('#er', sh).textContent = 'Pick a date.'; return; }
+    var kept = t.dep - bk; t.depOut = { date: d, back: bk, kept: kept }; if (kept > 0) S.tx.push({ id: uid(), date: d, prop: t.prop, cat: 'RENT', amt: kept, note: 'Deposit kept: ' + t.name, ten: t.id, depKept: 1 });
+    save(); tenantSheet(t); render(); toast('Deposit return saved' + (kept > 0 ? '; ' + money(kept) + ' kept was added as rent income.' : '.')); }; }); }
+function tenantForm(t){ var isNew = !t; t = t || { id: uid(), prop: tenP || (S.props[0] || {}).id, unit: '', name: '', start: today(), end: '', rent: 0, due: 1, grace: 5, late: 0, prorate: true, dep: 0, depIn: '', depDays: '', fees: [] };
+  sheet('<h2>' + (isNew ? 'Add a tenant' : 'Edit ' + esc(t.name)) + '</h2>' +
+    '<label class="f" for="tnm">Name</label><input class="in" id="tnm" maxlength="60" value="' + esc(t.name) + '" autocomplete="off">' +
+    '<label class="f" for="tpr">Rental</label>' + propSel('tpr', t.prop) +
+    '<label class="f" for="tun">Unit or room (optional)</label><input class="in" id="tun" maxlength="30" placeholder="e.g. Unit 2, Room B" value="' + esc(t.unit || '') + '">' +
+    '<label class="f" for="trn">Monthly rent</label><input class="in" id="trn" inputmode="decimal" placeholder="e.g. 1450" value="' + (t.rent ? (t.rent / 100).toFixed(2) : '') + '">' +
+    '<div class="two"><div><label class="f" for="tst">Lease start</label><input class="in" type="date" id="tst" value="' + esc(t.start) + '"></div><div><label class="f" for="ten2">Lease end (blank = month to month)</label><input class="in" type="date" id="ten2" value="' + esc(t.end || '') + '"></div></div>' +
+    '<details class="card mon"><summary>Due day, late fee, deposit, contact</summary><div style="padding:0 16px 12px">' +
+    '<div class="two"><div><label class="f" for="tdu">Rent due on day</label><input class="in" id="tdu" inputmode="numeric" value="' + (t.due || 1) + '"></div><div><label class="f" for="tgr">Grace days</label><input class="in" id="tgr" inputmode="numeric" value="' + (t.grace || 0) + '"></div></div>' +
+    '<label class="f" for="tlf">Late fee (optional)</label><input class="in" id="tlf" inputmode="decimal" placeholder="e.g. 50" value="' + (t.late ? (t.late / 100).toFixed(2) : '') + '"><p class="hint">Check what your lease and local rules allow.</p>' +
+    '<label class="f"><input type="checkbox" id="tpo" ' + (t.prorate ? 'checked' : '') + ' style="width:22px;height:22px;vertical-align:middle;margin-right:8px">Prorate a part month at move-in or move-out (to the day)</label>' +
+    '<div class="two"><div><label class="f" for="tdp">Security deposit</label><input class="in" id="tdp" inputmode="decimal" value="' + (t.dep ? (t.dep / 100).toFixed(2) : '') + '"></div><div><label class="f" for="tdi">Received on</label><input class="in" type="date" id="tdi" value="' + esc(t.depIn || '') + '"></div></div>' +
+    '<label class="f" for="tdd">Days to return the deposit after move-out (your state\'s rule, optional)</label><input class="in" id="tdd" inputmode="numeric" placeholder="e.g. 30" value="' + esc(t.depDays || '') + '">' +
+    '<label class="f" for="tph">Phone (optional)</label><input class="in" id="tph" type="tel" maxlength="30" value="' + esc(t.phone || '') + '"><label class="f" for="tem">Email (optional)</label><input class="in" id="tem" type="email" maxlength="80" value="' + esc(t.email || '') + '"></div></details>' +
+    '<p class="err" id="er" role="alert"></p><button type="button" class="btn" id="sv">' + (isNew ? 'Add tenant' : 'Save') + '</button>' + (isNew ? '' : '<button type="button" class="btn red" id="dl">Remove this tenant</button>'), function(sh){
+    $('#sv', sh).onclick = function(){ var er = $('#er', sh), n = $('#tnm', sh).value.trim(), r = cents($('#trn', sh).value), st = $('#tst', sh).value, en = $('#ten2', sh).value, du = +$('#tdu', sh).value, gr = +$('#tgr', sh).value || 0, lf = $('#tlf', sh).value.trim() ? cents($('#tlf', sh).value) : 0, dp = $('#tdp', sh).value.trim() ? cents($('#tdp', sh).value) : 0;
+      if (!n) { er.textContent = 'Type the tenant\'s name.'; return; } if (!$('#tpr', sh).value) { er.textContent = 'Pick the rental.'; return; }
+      if (!isFinite(r) || r <= 0) { er.textContent = 'Type the monthly rent, like 1450.'; return; }
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(st)) { er.textContent = 'Pick the lease start date.'; return; } if (en && en < st) { er.textContent = 'The lease end is before the start.'; return; }
+      if (!(du >= 1 && du <= 28)) { er.textContent = 'Due day should be 1 to 28.'; return; } if (!isFinite(lf) || lf < 0 || !isFinite(dp) || dp < 0) { er.textContent = 'Late fee and deposit should be numbers.'; return; }
+      t.name = n; t.prop = $('#tpr', sh).value; t.unit = $('#tun', sh).value.trim(); t.rent = r; t.start = st; t.end = en; t.due = du; t.grace = Math.max(0, Math.min(30, gr)); t.late = lf; t.prorate = $('#tpo', sh).checked; t.dep = dp; t.depIn = $('#tdi', sh).value; t.depDays = $('#tdd', sh).value.trim(); t.phone = $('#tph', sh).value.trim(); t.email = $('#tem', sh).value.trim();
+      if (isNew) S.tenants.push(t); save(); closeSheet(); render(); toast(isNew ? n + ' added. Their ledger starts ' + dshow(st) + '.' : 'Saved.'); };
+    var dl = $('#dl', sh); if (dl) dl.onclick = function(){ if (!W.confirm('Remove ' + t.name + '? Their payments stay in your log.')) return; S.tenants.splice(S.tenants.indexOf(t), 1); S.tx.forEach(function(x){ if (x.ten === t.id) delete x.ten; }); save(); closeSheet(); render(); toast(t.name + ' removed.'); };
+  }); }
+function buildStatement(t){ var L = ledger(t), p = byId(S.props, t.prop) || {};
+  return '<h1>Tenant statement</h1><p class="sm">' + esc(t.name) + ' · ' + esc((t.unit ? t.unit + ', ' : '') + (p.addr || p.name || '')) + '<br>Lease ' + t.start + ' to ' + (t.end || 'month to month') + ' · rent ' + money(t.rent) + ' due on day ' + (t.due || 1) + '<br>Statement date ' + today() + (S.sample ? ' · SAMPLE NUMBERS, NOT REAL' : '') + '</p>' +
+    '<table><thead><tr><th class="l">Date</th><th class="l">Description</th><th>Charge</th><th>Payment</th><th>Balance</th></tr></thead><tbody>' + L.rows.map(function(r){ return '<tr><td class="l">' + r.date + '</td><td class="l">' + esc(r.d) + '</td><td>' + (r.ch ? money(r.ch) : '') + '</td><td>' + (r.py ? money(r.py) : '') + '</td><td>' + money(r.bal) + '</td></tr>'; }).join('') + '</tbody></table>' +
+    '<h2>' + (L.bal > 0 ? 'Balance due: ' + money(L.bal) : L.bal < 0 ? 'Credit: ' + money(-L.bal) : 'Balance: $0.00, paid in full') + '</h2>' + (t.dep ? '<p class="sm">Security deposit held: ' + money(t.dep) + (t.depIn ? ' (received ' + t.depIn + ')' : '') + (t.depOut ? '. Returned ' + money(t.depOut.back) + ' on ' + t.depOut.date + ', kept ' + money(t.depOut.kept) + '.' : '.') + '</p>' : '') + '<p class="sm">Made with Rental Property Books by FiledAwayCo.</p>'; }
+/* ---------- loans (estimates; Form 1098 is the record) ---------- */
+/* loan: { id, prop, lender, amt (cents), rate (% a year), years, start (YYYY-MM-DD, first payment month) } */
+function loanPay(l){ var r = l.rate / 1200, n = l.years * 12; return r ? l.amt * r / (1 - Math.pow(1 + r, -n)) : l.amt / n; }
+function loanRun(l, fn){ var r = l.rate / 1200, n = Math.round(l.years * 12), pay = loanPay(l), bal = l.amt, y = +l.start.slice(0,4), m = +l.start.slice(5,7);
+  for (var k = 0; k < n && bal > 0.5; k++) { var it = bal * r, pr = Math.min(bal, pay - it); bal -= pr; if (fn(y, m, it, pr, bal) === false) return; m++; if (m > 12) { m = 1; y++; } } }
+function loanYear(l, yr){ var o = { int: 0, prin: 0, end: l.amt, n: 0 }; loanRun(l, function(y, m, it, pr, bal){ if (y > yr) return false; if (y === yr) { o.int += it; o.prin += pr; o.n++; } o.end = bal; }); o.int = Math.round(o.int); o.prin = Math.round(o.prin); o.end = Math.round(o.end); return o; }
+function loanBalAt(l, iso){ var b = l.amt, Y = +iso.slice(0,4), M = +iso.slice(5,7); loanRun(l, function(y, m, it, pr, bal){ if (y > Y || (y === Y && m > M)) return false; b = bal; }); return Math.round(b); }
+function propLoans(pid){ return S.loans.filter(function(l){ return !pid || l.prop === pid; }); }
+/* ---------- depreciation ESTIMATE (straight line, mid-month: IRS Pub 527; 27.5 years residential, 39 nonresidential) ---------- */
+function deprLine(basis, placed, life, y){ if (!(basis > 0) || !/^\d{4}-\d{2}/.test(placed || '')) return { yr: 0, acc: 0 };
+  var py = +placed.slice(0,4), pm = +placed.slice(5,7), annual = basis / life, acc = 0, yr = 0;
+  for (var k = py; k <= y; k++) { var d = k === py ? annual * (12 - pm + 0.5) / 12 : annual; d = Math.max(0, Math.min(d, basis - acc)); acc += d; if (k === y) yr = d; }
+  return { yr: Math.round(yr), acc: Math.round(acc) }; }
+function deprYear(p, y){ var life = p.type === '4' ? 39 : 27.5, b = deprLine((p.price || 0) + (p.closing || 0) - (p.land || 0), p.placed, life, y), imp = { yr: 0, acc: 0 };
+  S.tx.forEach(function(x){ if (x.prop === p.id && x.cat === 'IMP' && x.date.slice(0,4) <= String(y)) { var d = deprLine(x.amt, x.date, life, y); imp.yr += d.yr; imp.acc += d.acc; } });
+  return { bld: b.yr, imp: imp.yr, yr: b.yr + imp.yr, acc: b.acc + imp.acc, life: life, ok: !!(p.price && p.placed) }; }
+/* ---------- money maths per rental ---------- */
+function fin(y, pid){ var t = totals(y, pid), interest = t.L12 + t.L13a + t.L13b, opex = t.exp - interest, f = y < TY ? 1 : 12 / Math.max(1, lastMonth(y));
+  var ls = propLoans(pid), est = ls.reduce(function(a, l){ var o = loanYear(l, y); a.int += o.int; a.prin += o.prin; return a; }, { int: 0, prin: 0 });
+  var prin = t.PRIN || (y > TY ? 0 : Math.round(est.prin * (y < TY ? 1 : lastMonth(y) / 12))), debt = interest + prin;
+  return { t: t, rent: t.RENT, opex: opex, interest: interest, prin: prin, debt: debt, noi: t.RENT - opex, cf: t.RENT - t.exp - prin, f: f, estPrin: !t.PRIN && prin > 0 }; }
+function propsOf(pid){ return pid ? S.props.filter(function(p){ return p.id === pid; }) : S.props; }
+function metrics(y, pid){ var F = fin(y, pid), ps = propsOf(pid), price = 0, value = 0, cash = 0, pot = 0;
+  ps.forEach(function(p){ price += p.price || 0; value += p.value || p.price || 0; cash += p.cash || 0; var tr = S.tenants.filter(function(t){ return t.prop === p.id && tenActive(t); }).reduce(function(a, t){ return a + t.rent; }, 0); pot += (tr || p.rent || 0) * 12; });
+  var bal = 0; propLoans(pid).forEach(function(l){ bal += loanBalAt(l, y < TY ? y + '-12-31' : today()); });
+  var A = function(v){ return v * F.f; }, gross = A(F.rent);
+  return { F: F, value: value, price: price, cash: cash, cap: value ? A(F.noi) / value : NaN, coc: cash ? A(F.cf) / cash : NaN, dscr: F.debt ? F.noi / F.debt : NaN, grm: gross ? value / gross : NaN,
+    one: price && pot ? pot / 12 / price : NaN, er: F.rent ? F.opex / F.rent : NaN, beo: pot ? (A(F.opex) + A(F.debt)) / pot : NaN, roi: cash ? (A(F.cf) + A(F.prin)) / cash : NaN, equity: value ? value - bal : NaN, loanBal: bal, pot: pot }; }
+/* occupancy: leases (unit-months) when tenants exist, else short-term nights / line 2 days, else months with rent logged */
+function occ(y, pid){ var lm = lastMonth(y); if (!lm) return { pct: NaN, how: 'year not started' };
+  var res = { occ: 0, cap: 0, how: [] };
+  propsOf(pid).forEach(function(p){ var ts = S.tenants.filter(function(t){ return t.prop === p.id; });
+    if (ts.length) { var units = {}; ts.forEach(function(t){ units[t.unit || '_'] = 1; }); var nu = Math.max(Object.keys(units).length, +p.unitsN || 0);
+      for (var m = 1; m <= lm; m++) { var ms = y + '-' + ('0' + m).slice(-2), md = ms + '-15'; res.cap += nu; Object.keys(units).forEach(function(u){ if (ts.some(function(t){ return (t.unit || '_') === u && t.start <= md && (!t.end || t.end >= ms + '-01'); })) res.occ++; }); } res.how.push('leases'); return; }
+    var nights = S.tx.reduce(function(a, x){ return a + (x.prop === p.id && x.cat === 'RENT' && inYear(x.date, y) ? (x.nights || 0) : 0); }, 0), days = y < TY ? (y % 4 ? 365 : 366) : Math.max(1, daysBetween(y + '-01-01', today()) + 1);
+    if (nights || p.type === '3') { var dd = nights || +dz(p, y).d || 0; res.occ += Math.min(dd, days) / days * lm; res.cap += lm; res.how.push(nights ? 'nights booked' : 'days rented'); return; }
+    var have = {}; S.tx.forEach(function(x){ if (x.prop === p.id && x.cat === 'RENT' && inYear(x.date, y)) have[x.date.slice(5,7)] = 1; }); res.occ += Object.keys(have).length; res.cap += lm; res.how.push('months with rent'); });
+  return { pct: res.cap ? res.occ / res.cap : NaN, how: res.how.filter(function(v, i, a){ return a.indexOf(v) === i; }).join(', ') }; }
+function strStats(y, pid){ var nights = 0, rent = 0; S.tx.forEach(function(x){ if ((!pid || x.prop === pid) && x.cat === 'RENT' && inYear(x.date, y) && x.nights) { nights += x.nights; rent += x.amt; } });
+  var days = y < TY ? 365 : Math.max(1, daysBetween(y + '-01-01', today()) + 1), fees = totals(y, pid).L8; return { nights: nights, adr: nights ? rent / nights : NaN, revpan: rent / days, occ: nights / days, fees: fees, rent: rent }; }
+/* ---------- Reports (dashboards behind tabs) ---------- */
+var rtab = 'tax', rFrom = '', rTo = '';
+var RTABS = [['tax','Tax summary'],['port','Portfolio'],['prop','Property'],['cash','Cash flow'],['exp','Expenses'],['occ','Occupancy'],['yoy','Years'],['cmp','Compare'],['inv','Investor'],['range','Date range']];
+function kv(a, b, cls){ return '<div class="kv"><span>' + a + '</span><b class="' + (cls || '') + '">' + b + '</b></div>'; }
+function m0(c){ return money(c, true); }
+function reportsHTML(){
+  var h = '<div class="chips rtabs" role="tablist" aria-label="Reports">' + RTABS.map(function(t){ return '<button type="button" class="chip" role="tab" data-rt="' + t[0] + '" aria-selected="' + (rtab === t[0]) + '">' + t[1] + '</button>'; }).join('') + '</div>';
+  if (rtab === 'tax') return h + taxHTML();
+  if (!S.props.length) return h + '<div class="card"><p>Add a rental and log a few entries. Your dashboards fill in from there.</p><button type="button" class="btn" data-act="newprop">Add my first rental</button></div>';
+  var y = S.year, H = { port: dPort, prop: dProp, cash: dCash, exp: dExp, occ: dOcc, yoy: dYoy, cmp: dCmp, inv: dInv, range: dRange }[rtab];
+  return h + '<div role="tabpanel" aria-label="' + esc(RTABS.filter(function(t){ return t[0] === rtab; })[0][1]) + '">' + H(y) + '</div>'; }
+function picker(){ if (taxProp && !byId(S.props, taxProp)) taxProp = ''; return '<label class="f" for="rp">Rental</label>' + propSel('rp', taxProp, S.props.length > 1 ? 'All rentals' : ''); }
+function bridge(F, est){ return '<div class="card"><h3 class="ch">Cash-flow bridge · ' + S.year + (S.year === TY ? ' so far' : '') + '</h3>' + kv('Rent in', m0(F.rent)) + kv('− Operating costs', m0(F.opex)) + kv('= Net operating income', m0(F.noi), F.noi < 0 ? 'neg' : '') + kv('− Mortgage interest', m0(F.interest)) + kv('− Principal' + (F.estPrin ? ' (loan estimate)' : ''), m0(F.prin)) + kv('= Cash flow', m0(F.cf), F.cf < 0 ? 'neg' : 'pos') + '</div>'; }
+function dPort(y){ var F = fin(y, ''), o = occ(y, ''), ow = owed(), M = metrics(y, ''), last = fin(y - 1, ''), open = S.jobs.filter(function(j){ return j.status !== 'done'; }).length;
+  var h = '<div class="stats3 card"><div><b>' + m0(F.cf) + '</b><span>Cash flow</span></div><div><b>' + pct(o.pct, 0) + '</b><span>Occupancy</span></div><div><b class="' + (ow.amt ? 'neg' : '') + '">' + m0(ow.amt) + '</b><span>Owed by tenants</span></div></div>';
+  h += '<div class="stats3 card"><div><b>' + S.props.length + '</b><span>Rentals</span></div><div><b>' + S.tenants.filter(function(t){ return tenActive(t); }).length + '</b><span>Active leases</span></div><div><b>' + open + '</b><span>Open work orders</span></div></div>';
+  h += bridge(F);
+  if (isFinite(M.equity)) h += '<div class="card">' + kv('Portfolio value (your figures)', m0(M.value)) + kv('Loan balances (estimate)', m0(M.loanBal)) + kv('Equity', m0(M.equity), 'pos') + '</div>';
+  if (last.t.n) h += '<p class="hint">' + (y - 1) + ' full year: rent ' + m0(last.rent) + ', cash flow ' + m0(last.cf) + '.</p>';
+  var rows = S.props.map(function(p){ return [p, fin(y, p.id)]; }).sort(function(a, b){ return b[1].cf - a[1].cf; }), mx = Math.max.apply(null, rows.map(function(r){ return Math.abs(r[1].cf); }).concat([1]));
+  h += '<h3 class="sec">Cash flow by rental</h3><div class="card">' + rows.slice(0, 12).map(function(r){ return '<div class="brow"><span>' + esc(r[0].name) + '</span>' + bar(Math.abs(r[1].cf), mx, r[1].cf < 0 ? 'neg' : '') + '<b class="' + (r[1].cf < 0 ? 'neg' : '') + '">' + m0(r[1].cf) + '</b></div>'; }).join('') + (rows.length > 12 ? '<p class="hint">Top 12 of ' + rows.length + '. See Compare for all.</p>' : '') + '</div>';
+  return h; }
+function dProp(y){ var h = picker(); if (!taxProp) return h + '<p class="hint">Pick a rental to see its own dashboard.</p>' + dPort(y);
+  var p = byId(S.props, taxProp), F = fin(y, p.id), o = occ(y, p.id), M = metrics(y, p.id), ts = S.tenants.filter(function(t){ return t.prop === p.id && (tenActive(t) || ledger(t).bal > 0); }), st = strStats(y, p.id), js = S.jobs.filter(function(j){ return j.prop === p.id && j.status !== 'done'; });
+  h += '<div class="stats3 card"><div><b>' + m0(F.rent) + '</b><span>Rent in</span></div><div><b>' + m0(F.t.exp) + '</b><span>Expenses</span></div><div><b class="' + (F.cf < 0 ? 'neg' : 'pos') + '">' + m0(F.cf) + '</b><span>Cash flow</span></div></div>';
+  h += '<div class="card">' + kv('Occupancy', pct(o.pct, 0) + ' <small>(' + esc(o.how) + ')</small>') + (st.nights ? kv('Nights booked', st.nights) + kv('Average nightly rate (ADR)', money(st.adr)) + kv('Revenue per available night', money(st.revpan)) + kv('Platform fees (line 8)', m0(st.fees)) : '') + (isFinite(M.cap) ? kv('Cap rate', pct(M.cap)) : '') + (isFinite(M.equity) ? kv('Equity (value − loan estimate)', m0(M.equity)) : '') + '</div>';
+  h += bridge(F);
+  if (ts.length) h += '<h3 class="sec">Units and tenants</h3><div class="list">' + ts.map(function(t){ var b = ledger(t).bal; return '<button type="button" class="row" data-ten="' + t.id + '"><span class="l"><b>' + esc(t.unit || 'Whole rental') + ' · ' + esc(t.name) + '</b><small>rent ' + money(t.rent) + (t.end ? ' · lease to ' + dshow(t.end) : ' · month to month') + '</small></span><span class="r ' + (b > 0 ? 'neg' : 'pos') + '">' + (b > 0 ? money(b) + ' owed' : 'Paid up') + '</span></button>'; }).join('') + '</div>';
+  if (js.length) h += '<h3 class="sec">Open work orders</h3><div class="list">' + js.map(jobRow).join('') + '</div>';
+  h += '<button type="button" class="btn sec" data-editprop="' + p.id + '">Edit rental details (price, value, loan, depreciation)</button>';
+  return h; }
+function dCash(y){ var h = picker(), bm = byMonth(y, taxProp), lm = lastMonth(y), pr = []; for (var i = 0; i < 12; i++) pr.push(0);
+  S.tx.forEach(function(x){ if (x.cat === 'PRIN' && inYear(x.date, y) && (!taxProp || x.prop === taxProp)) pr[+x.date.slice(5,7) - 1] += x.amt; });
+  var rows = bm.map(function(b, i){ return { m: i, i: b.i, o: b.o, p: pr[i], cf: b.i - b.o - pr[i] }; }).filter(function(r){ return r.m < lm || r.i || r.o; }), mx = Math.max.apply(null, rows.map(function(r){ return Math.max(r.i, r.o + r.p); }).concat([1]));
+  h += '<div class="card"><h3 class="ch">Monthly P&amp;L · ' + y + '</h3><div class="tblwrap" tabindex="0" role="region" aria-label="Table (scrolls sideways)"><table class="se"><thead><tr><th scope="col" style="text-align:left">Month</th><th scope="col">Rent</th><th scope="col">Costs</th><th scope="col">Principal</th><th scope="col">Cash flow</th></tr></thead><tbody>' +
+    rows.map(function(r){ return '<tr><td style="text-align:left">' + MON[r.m] + '</td><td>' + m0(r.i) + '</td><td>' + m0(r.o) + '</td><td>' + m0(r.p) + '</td><td class="' + (r.cf < 0 ? 'neg' : '') + '">' + m0(r.cf) + '</td></tr>'; }).join('') +
+    '<tr class="tot"><td style="text-align:left">Total</td><td>' + m0(rows.reduce(function(a, r){ return a + r.i; }, 0)) + '</td><td>' + m0(rows.reduce(function(a, r){ return a + r.o; }, 0)) + '</td><td>' + m0(rows.reduce(function(a, r){ return a + r.p; }, 0)) + '</td><td>' + m0(rows.reduce(function(a, r){ return a + r.cf; }, 0)) + '</td></tr></tbody></table></div></div>';
+  h += '<div class="card chart" role="img" aria-label="Rent in and money out by month">' + rows.map(function(r){ return '<div class="col"><span class="cb in" style="height:' + (r.i / mx * 100).toFixed(1) + '%"></span><span class="cb out" style="height:' + ((r.o + r.p) / mx * 100).toFixed(1) + '%"></span><small>' + MON[r.m].slice(0,1) + '</small></div>'; }).join('') + '</div><p class="hint"><span class="key in"></span> Rent in <span class="key out"></span> Costs and principal. Costs are Schedule E lines plus mileage.</p>';
+  return h; }
+function dExp(y){ var h = picker(), t = totals(y, taxProp), rows = lineRows(t, y).filter(function(r){ return r[0] !== '3' && r[2]; }).sort(function(a, b){ return b[2] - a[2]; }), mx = rows.length ? rows[0][2] : 1;
+  h += '<div class="card"><h3 class="ch">Where the money went · ' + m0(t.exp) + '</h3>' + (rows.length ? rows.map(function(r){ return '<div class="brow"><span>L' + r[0] + ' ' + esc(r[1].replace(/ \(incl.*\)$/, '')) + '</span>' + bar(r[2], mx) + '<b>' + m0(r[2]) + ' <small>' + pct(r[2] / t.exp, 0) + '</small></b></div>'; }).join('') : '<p>No expenses logged for ' + y + ' yet.</p>') + '</div>';
+  if (t.IMP || t.PRIN || t.OWN) h += '<div class="note">Kept off Schedule E: improvements ' + m0(t.IMP) + ', principal ' + m0(t.PRIN) + ', owner draws ' + m0(t.OWN) + '.</div>';
+  var ven = {}; S.tx.forEach(function(x){ if (x.ven && inYear(x.date, y) && (!taxProp || x.prop === taxProp) && (CAT[x.cat] || {}).kind !== 'in') ven[x.ven] = (ven[x.ven] || 0) + x.amt; });
+  var vs = Object.keys(ven).sort(function(a, b){ return ven[b] - ven[a]; }).slice(0, 8); if (vs.length) h += '<div class="card"><h3 class="ch">Top vendors</h3>' + vs.map(function(v){ return kv(esc(v), m0(ven[v])); }).join('') + '</div>';
+  return h; }
+function dOcc(y){ var o = occ(y, ''), h = '<div class="stats3 card"><div><b>' + pct(o.pct, 0) + '</b><span>Occupied</span></div><div><b>' + pct(1 - o.pct, 0) + '</b><span>Vacant</span></div><div><b>' + pct(metrics(y, '').beo, 0) + '</b><span>Break-even</span></div></div>';
+  var rows = S.props.map(function(p){ return [p, occ(y, p.id), metrics(y, p.id).beo]; }).sort(function(a, b){ return (a[1].pct || 0) - (b[1].pct || 0); });
+  h += '<div class="card">' + rows.map(function(r){ return '<div class="brow"><span>' + esc(r[0].name) + ' <small>' + esc(r[1].how) + '</small></span>' + bar(r[1].pct || 0, 1, r[1].pct < r[2] ? 'neg' : '') + '<b>' + pct(r[1].pct, 0) + '</b></div>'; }).join('') + '</div>';
+  h += '<p class="hint">Break-even occupancy = (operating costs + loan payments) ÷ full-year rent at today\'s rents. A red bar is below break-even. Long-term rentals count leased unit-months; short-term rentals count nights booked or the days rented you entered.</p>';
+  return h; }
+function dYoy(y){ var h = picker(), ys = []; S.tx.concat(S.trips).forEach(function(x){ var k = +String(x.date).slice(0,4); if (k && ys.indexOf(k) < 0) ys.push(k); }); if (ys.indexOf(y) < 0) ys.push(y); ys.sort(); ys = ys.slice(-6);
+  var rows = ys.map(function(k){ var F = fin(k, taxProp), M = metrics(k, taxProp); return [k, F, M]; }), mx = Math.max.apply(null, rows.map(function(r){ return Math.max(r[1].rent, 1); }));
+  h += '<div class="card"><div class="tblwrap" tabindex="0" role="region" aria-label="Table (scrolls sideways)"><table class="se"><thead><tr><th scope="col" style="text-align:left">Year</th><th scope="col">Rent</th><th scope="col">Expenses</th><th scope="col">Net (Sch E)</th><th scope="col">Cash flow</th><th scope="col">Equity</th></tr></thead><tbody>' +
+    rows.map(function(r){ return '<tr><td style="text-align:left">' + r[0] + (r[0] === TY ? '*' : '') + '</td><td>' + m0(r[1].rent) + '</td><td>' + m0(r[1].t.exp) + '</td><td>' + m0(r[1].t.net) + '</td><td>' + m0(r[1].cf) + '</td><td>' + (isFinite(r[2].equity) ? m0(r[2].equity) : '–') + '</td></tr>'; }).join('') + '</tbody></table></div></div>';
+  h += '<div class="card">' + rows.map(function(r){ return '<div class="brow"><span>' + r[0] + '</span>' + bar(r[1].rent, mx) + '<b>' + m0(r[1].rent) + '</b></div>'; }).join('') + '</div><p class="hint">* ' + TY + ' so far. Equity uses the values you entered minus the loan estimate at year end.</p>';
+  return h; }
+function dCmp(y){ var rows = S.props.map(function(p){ var F = fin(y, p.id), M = metrics(y, p.id); return { p: p, F: F, M: M, o: occ(y, p.id).pct }; }), key = cmpKey;
+  var K = { cf: function(r){ return r.F.cf; }, rent: function(r){ return r.F.rent; }, cap: function(r){ return isFinite(r.M.cap) ? r.M.cap : -1e9; }, occ: function(r){ return isFinite(r.o) ? r.o : -1; } };
+  rows.sort(function(a, b){ return K[key](b) - K[key](a); });
+  return '<div class="chips" role="group" aria-label="Rank by">' + [['cf','Cash flow'],['rent','Rent'],['cap','Cap rate'],['occ','Occupancy']].map(function(k){ return '<button type="button" class="chip" data-x="cmp" data-v2="' + k[0] + '" aria-pressed="' + (key === k[0]) + '">' + k[1] + '</button>'; }).join('') + '</div>' +
+    '<div class="card"><div class="tblwrap" tabindex="0" role="region" aria-label="Table (scrolls sideways)"><table class="se"><thead><tr><th scope="col" style="text-align:left">#</th><th scope="col" style="text-align:left">Rental</th><th scope="col">Rent</th><th scope="col">Cash flow</th><th scope="col">Cap rate</th><th scope="col">Occ.</th></tr></thead><tbody>' +
+    rows.map(function(r, i){ return '<tr><td style="text-align:left">' + (i + 1) + '</td><td style="text-align:left">' + esc(r.p.name) + '</td><td>' + m0(r.F.rent) + '</td><td class="' + (r.F.cf < 0 ? 'neg' : '') + '">' + m0(r.F.cf) + '</td><td>' + pct(r.M.cap) + '</td><td>' + pct(r.o, 0) + '</td></tr>'; }).join('') + '</tbody></table></div></div>'; }
+var cmpKey = 'cf';
+function dInv(y){ var h = picker(), M = metrics(y, taxProp), F = M.F, need = !M.value || !M.cash;
+  h += '<div class="card"><h3 class="ch">Investor numbers · ' + y + (y === TY ? ' (annualised from ' + lastMonth(y) + ' months)' : '') + '</h3>' +
+    kv('Net operating income (NOI)', m0(F.noi * F.f)) + kv('Cap rate (NOI ÷ value)', pct(M.cap)) + kv('Cash-on-cash return', pct(M.coc)) + kv('Debt service coverage (DSCR)', isFinite(M.dscr) ? M.dscr.toFixed(2) + '×' : '–') +
+    kv('Gross rent multiplier (GRM)', isFinite(M.grm) ? M.grm.toFixed(1) : '–') + kv('1% rule (monthly rent ÷ price)', isFinite(M.one) ? pct(M.one, 2) + (M.one >= 0.01 ? ' ✓' : '') : '–') + kv('Operating expense ratio', pct(M.er)) + kv('Break-even occupancy', pct(M.beo)) + kv('Total return on cash (incl. principal paid)', pct(M.roi)) + kv('Equity', isFinite(M.equity) ? m0(M.equity) : '–') + '</div>';
+  if (need) h += '<p class="hint">Add purchase price, current value and cash you put in under <b>Edit rental details</b> to fill in every number.</p>';
+  h += '<p class="hint">For your own planning. These are not tax figures and not investment advice.</p>';
+  return h; }
+function dRange(y){ var f = rFrom || y + '-01-01', t2 = rTo || (y < TY ? y + '-12-31' : today()), h = picker() + '<div class="two"><div><label class="f" for="rf">From</label><input class="in" type="date" id="rf" value="' + f + '"></div><div><label class="f" for="rtt">To</label><input class="in" type="date" id="rtt" value="' + t2 + '"></div></div>';
+  var tin = 0, tout = 0, by = {}; S.tx.forEach(function(x){ if (x.date < f || x.date > t2 || (taxProp && x.prop !== taxProp)) return; var c = CAT[x.cat] || {}; if (x.cat === 'RENT') tin += x.amt; else if (SE_EXP.indexOf(x.cat) >= 0) { tout += x.amt; by[x.cat] = (by[x.cat] || 0) + x.amt; } });
+  S.trips.forEach(function(x){ if (x.date < f || x.date > t2 || (taxProp && x.prop !== taxProp)) return; var r = rateFor(x.date); if (r != null) { var v = Math.round(x.miles * r); tout += v; by.L6 = (by.L6 || 0) + v; } });
+  h += '<div class="stats3 card"><div><b>' + m0(tin) + '</b><span>Rent in</span></div><div><b>' + m0(tout) + '</b><span>Costs</span></div><div><b class="' + (tin - tout < 0 ? 'neg' : 'pos') + '">' + m0(tin - tout) + '</b><span>Net</span></div></div>';
+  h += '<div class="card">' + Object.keys(by).sort(function(a, b){ return by[b] - by[a]; }).map(function(k){ return kv('L' + CAT[k].ln + ' ' + esc(CAT[k].name), m0(by[k])); }).join('') + '</div>';
+  return h; }
+/* ---------- Tools: maintenance, vendors & 1099s, documents, loans, reserves, depreciation estimate ---------- */
+var tool = 'jobs';
+var TOOLS = [['jobs','Maintenance'],['vendors','Vendors & 1099s'],['docs','Documents'],['loans','Loans'],['capex','Reserves'],['depr','Depreciation']];
+function toolsHTML(){ var h = '<h2 class="sec" style="margin-top:4px">Landlord tools</h2><div class="chips rtabs" role="tablist" aria-label="Tools">' + TOOLS.map(function(t){ return '<button type="button" class="chip" role="tab" data-tool="' + t[0] + '" aria-selected="' + (tool === t[0]) + '">' + t[1] + '</button>'; }).join('') + '</div>';
+  if (!S.props.length) return h + '<div class="card"><p>Add a rental first.</p><button type="button" class="btn" data-act="newprop">Add my first rental</button></div>';
+  return h + '<div role="tabpanel">' + { jobs: tJobs, vendors: tVendors, docs: tDocs, loans: tLoans, capex: tCapex, depr: tDepr }[tool]() + '</div>'; }
+var PRI = { urgent: 'Urgent', normal: 'Normal', low: 'Low' }, JST = { open: 'Open', doing: 'In progress', done: 'Done' };
+function jobRow(j){ var days = daysBetween(j.opened, j.closed || today()); return '<button type="button" class="row" data-job="' + j.id + '"><span class="l"><b>' + (j.pri === 'urgent' ? '⚠️ ' : '') + esc(j.title) + '</b><small>' + esc(propName(j.prop)) + ' · ' + JST[j.status] + ' · ' + (j.status === 'done' ? 'took ' : 'open ') + plural(days, 'day') + (j.ven ? ' · ' + esc(j.ven) : '') + '</small></span><span class="r">' + (j.cost ? money(j.cost, true) : PRI[j.pri]) + '</span></button>'; }
+var jobShowDone = false;
+function tJobs(){ var open = S.jobs.filter(function(j){ return j.status !== 'done'; }).sort(function(a, b){ return (b.pri === 'urgent') - (a.pri === 'urgent') || (a.opened < b.opened ? -1 : 1); }), done = S.jobs.filter(function(j){ return j.status === 'done'; });
+  return '<button type="button" class="btn" data-x="newjob">+ New work order</button>' + (open.length ? '<div class="list">' + open.map(jobRow).join('') + '</div>' : '<div class="card"><p>No open work orders. Add one when a tenant reports a problem; mark it done and its cost is logged as a repair.</p></div>') +
+    (done.length ? '<details class="card mon"><summary>Done (' + done.length + ')</summary><div class="list" style="border:0">' + done.slice().reverse().map(jobRow).join('') + '</div></details>' : ''); }
+function jobForm(j){ var isNew = !j; j = j || { id: uid(), prop: taxProp || (S.props[0] || {}).id, title: '', pri: 'normal', status: 'open', ven: '', opened: today(), closed: '', cost: 0, cat: 'L14' };
+  sheet('<h2>' + (isNew ? 'New work order' : 'Work order') + '</h2><label class="f" for="jt">What needs doing</label><input class="in" id="jt" maxlength="80" value="' + esc(j.title) + '" placeholder="e.g. Leaking tap, Unit 2"><label class="f" for="jp">Rental</label>' + propSel('jp', j.prop) +
+    '<p class="f" id="jpl">Priority</p><div class="chips" role="radiogroup" aria-labelledby="jpl">' + Object.keys(PRI).map(function(k){ return '<button type="button" class="chip" role="radio" data-jpr="' + k + '" aria-checked="' + (j.pri === k) + '">' + PRI[k] + '</button>'; }).join('') + '</div>' +
+    '<p class="f" id="jsl">Status</p><div class="chips" role="radiogroup" aria-labelledby="jsl">' + Object.keys(JST).map(function(k){ return '<button type="button" class="chip" role="radio" data-jst="' + k + '" aria-checked="' + (j.status === k) + '">' + JST[k] + '</button>'; }).join('') + '</div>' +
+    '<label class="f" for="jv">Vendor (optional)</label><input class="in" id="jv" list="vlist2" maxlength="60" value="' + esc(j.ven || '') + '"><datalist id="vlist2">' + venNames().map(function(n){ return '<option value="' + esc(n) + '">'; }).join('') + '</datalist>' +
+    '<div class="two"><div><label class="f" for="jo">Opened</label><input class="in" type="date" id="jo" value="' + esc(j.opened) + '"></div><div><label class="f" for="jc">Cost (when done)</label><input class="in" id="jc" inputmode="decimal" value="' + (j.cost ? (j.cost / 100).toFixed(2) : '') + '"></div></div>' +
+    (j.tx ? '<p class="hint">Its cost is in your log as a repair.</p>' : '<p class="hint">Mark it Done with a cost and it is logged as a repair (line 14) for you.</p>') +
+    '<p class="err" id="er" role="alert"></p><button type="button" class="btn" id="sv">Save</button>' + (isNew ? '' : '<button type="button" class="btn red" id="dl">Delete work order</button>'), function(sh){
+    wirePick(sh, 'jpr'); wirePick(sh, 'jst');
+    $('#sv', sh).onclick = function(){ var t = $('#jt', sh).value.trim(), c = $('#jc', sh).value.trim() ? cents($('#jc', sh).value) : 0; if (!t) { $('#er', sh).textContent = 'Say what needs doing.'; return; } if (!isFinite(c) || c < 0) { $('#er', sh).textContent = 'Cost should be a number.'; return; }
+      j.title = t; j.prop = $('#jp', sh).value; j.pri = pick(sh, 'jpr') || 'normal'; var was = j.status; j.status = pick(sh, 'jst') || 'open'; j.ven = $('#jv', sh).value.trim(); j.opened = $('#jo', sh).value || today(); j.cost = c;
+      if (j.status === 'done' && !j.closed) j.closed = today(); if (j.status !== 'done') j.closed = '';
+      var logged = false; if (j.status === 'done' && c > 0) { var x = j.tx && byId(S.tx, j.tx); if (x) { x.amt = c; x.ven = j.ven; } else { x = { id: uid(), date: j.closed, prop: j.prop, cat: j.cat || 'L14', amt: c, note: j.title, ven: j.ven || undefined }; if (!x.ven) delete x.ven; S.tx.push(x); j.tx = x.id; logged = true; } }
+      if (isNew) S.jobs.push(j); save(); closeSheet(); render(); toast(logged ? 'Done. ' + money(c) + ' logged as a repair (line 14).' : 'Work order saved.'); };
+    var dl = $('#dl', sh); if (dl) dl.onclick = function(){ S.jobs.splice(S.jobs.indexOf(j), 1); save(); closeSheet(); render(); toast('Work order deleted. Any logged cost stays in your log.'); };
+  }); }
+function venNames(){ var n = {}; S.vendors.forEach(function(v){ n[v.name] = 1; }); S.tx.forEach(function(x){ if (x.ven) n[x.ven] = 1; }); S.jobs.forEach(function(j){ if (j.ven) n[j.ven] = 1; }); return Object.keys(n).sort(function(a, b){ return a.toLowerCase() < b.toLowerCase() ? -1 : 1; }); }
+function venPaid(name, y){ return S.tx.reduce(function(a, x){ return a + (x.ven === name && inYear(x.date, y) && (CAT[x.cat] || {}).kind !== 'in' ? x.amt : 0); }, 0); }
+function venRec(name){ return S.vendors.filter(function(v){ return v.name === name; })[0]; }
+function nec1099(y){ return venNames().map(function(n){ var v = venRec(n) || {}, paid = venPaid(n, y); return { name: n, paid: paid, w9: !!v.w9, corp: !!v.corp, flag: paid >= NEC(y) && !v.corp }; }).filter(function(v){ return v.flag; }); }
+function tVendors(){ var y = S.year, ns = venNames();
+  var h = '<div class="note">Form 1099-NEC check for ' + y + ': vendors you paid <b>' + m0(NEC(y)) + ' or more</b> for services ' + (y >= 2026 ? '(the threshold rose from $600 to $2,000 for payments made in 2026)' : '') + '. Ask your preparer whether a 1099 is needed: it depends on the vendor and the kind of payment.</div>';
+  h += '<button type="button" class="btn" data-x="newven">+ Add a vendor</button>';
+  if (!ns.length) return h + '<div class="card"><p>Vendors appear here when you fill in "Paid to" on an expense or work order.</p></div>';
+  return h + '<div class="list">' + ns.map(function(n){ var v = venRec(n) || {}, paid = venPaid(n, y), fl = paid >= NEC(y) && !v.corp;
+    return '<button type="button" class="row" data-ven="' + esc(n) + '"><span class="l"><b>' + esc(n) + '</b><small>' + esc(v.trade || 'Vendor') + ' · W-9 ' + (v.w9 ? 'on file ✓' : 'not on file') + (fl ? ' · <span class="neg">1099-NEC check</span>' : '') + '</small></span><span class="r">' + m0(paid) + '</span></button>'; }).join('') + '</div>'; }
+function vendorForm(name){ var v = (name && venRec(name)) || { id: uid(), name: name || '', trade: '', phone: '', email: '', w9: false, corp: false }, isNew = !venRec(v.name);
+  sheet('<h2>' + (name ? esc(name) : 'Add a vendor') + '</h2><label class="f" for="vnm">Name</label><input class="in" id="vnm" maxlength="60" value="' + esc(v.name) + '"><label class="f" for="vtr">Trade (optional)</label><input class="in" id="vtr" maxlength="40" placeholder="e.g. Plumber" value="' + esc(v.trade || '') + '">' +
+    '<label class="f" for="vph">Phone (optional)</label><input class="in" id="vph" type="tel" value="' + esc(v.phone || '') + '"><label class="f" for="vem">Email (optional)</label><input class="in" id="vem" type="email" value="' + esc(v.email || '') + '">' +
+    '<label class="f"><input type="checkbox" id="vw9" ' + (v.w9 ? 'checked' : '') + ' style="width:22px;height:22px;vertical-align:middle;margin-right:8px">I have their W-9 on file</label><label class="f"><input type="checkbox" id="vco" ' + (v.corp ? 'checked' : '') + ' style="width:22px;height:22px;vertical-align:middle;margin-right:8px">They are a corporation (most do not get a 1099-NEC; ask your preparer)</label>' +
+    (name ? '<p class="hint">Paid in ' + S.year + ': ' + money(venPaid(v.name, S.year)) + '.</p>' : '') + '<p class="err" id="er" role="alert"></p><button type="button" class="btn" id="sv">Save</button>', function(sh){
+    $('#sv', sh).onclick = function(){ var nn = $('#vnm', sh).value.trim(); if (!nn) { $('#er', sh).textContent = 'Type the vendor name.'; return; }
+      if (nn !== v.name && v.name) S.tx.concat(S.jobs).forEach(function(x){ if (x.ven === v.name) x.ven = nn; });
+      v.name = nn; v.trade = $('#vtr', sh).value.trim(); v.phone = $('#vph', sh).value.trim(); v.email = $('#vem', sh).value.trim(); v.w9 = $('#vw9', sh).checked; v.corp = $('#vco', sh).checked; if (isNew) S.vendors.push(v); save(); closeSheet(); render(); toast('Vendor saved.'); }; }); }
+var DOCK = ['Insurance policy','Rental licence or permit','Lease','Inspection','Smoke and CO alarm check','Warranty','HOA documents','Other'];
+function docBadge(d){ if (!d.expires) return 'No expiry'; var n = daysBetween(today(), d.expires); return n < 0 ? '<span class="neg">Expired ' + dshow(d.expires) + '</span>' : n <= 30 ? '<span class="neg">Expires in ' + plural(n, 'day') + '</span>' : 'Expires ' + dshow(d.expires); }
+function tDocs(){ var ds = S.docs.slice().sort(function(a, b){ return (a.expires || '9') < (b.expires || '9') ? -1 : 1; });
+  return '<p class="hint">Keep track of what each rental needs on file and when it runs out. You get a reminder on Home 30 days before.</p><button type="button" class="btn" data-x="newdoc">+ Add a document or date</button>' + (ds.length ? '<div class="list">' + ds.map(function(d){ return '<button type="button" class="row" data-doc="' + d.id + '"><span class="l"><b>' + esc(d.kind) + '</b><small>' + esc(propName(d.prop)) + (d.note ? ' · ' + esc(d.note) : '') + '</small></span><span class="r">' + docBadge(d) + '</span></button>'; }).join('') + '</div>' : ''); }
+function docForm(d){ var isNew = !d; d = d || { id: uid(), prop: taxProp || (S.props[0] || {}).id, kind: DOCK[0], expires: '', note: '' };
+  sheet('<h2>' + (isNew ? 'Add a document' : esc(d.kind)) + '</h2><label class="f" for="dk">What it is</label><select class="in" id="dk">' + DOCK.map(function(k){ return '<option' + (k === d.kind ? ' selected' : '') + '>' + k + '</option>'; }).join('') + '</select><label class="f" for="dp">Rental</label>' + propSel('dp', d.prop) +
+    '<label class="f" for="de">Expires or renews on (optional)</label><input class="in" type="date" id="de" value="' + esc(d.expires) + '"><label class="f" for="dn">Note (policy number, where the paper copy is)</label><input class="in" id="dn" maxlength="120" value="' + esc(d.note) + '"><button type="button" class="btn" id="sv">Save</button>' + (isNew ? '' : '<button type="button" class="btn red" id="dl">Delete</button>'), function(sh){
+    $('#sv', sh).onclick = function(){ d.kind = $('#dk', sh).value; d.prop = $('#dp', sh).value; d.expires = $('#de', sh).value; d.note = $('#dn', sh).value.trim(); if (isNew) S.docs.push(d); save(); closeSheet(); render(); toast('Saved.'); };
+    var dl = $('#dl', sh); if (dl) dl.onclick = function(){ S.docs.splice(S.docs.indexOf(d), 1); save(); closeSheet(); render(); toast('Deleted.'); }; }); }
+function tLoans(){ var y = S.year;
+  return '<p class="hint">Estimates from the loan terms you enter. Your lender\'s Form 1098 is the number to log for mortgage interest.</p><button type="button" class="btn" data-x="newloan">+ Add a loan</button>' + S.loans.map(function(l){ var o = loanYear(l, y), bal = loanBalAt(l, y < TY ? y + '-12-31' : today());
+    return '<div class="card"><h3 class="ch">' + esc(propName(l.prop)) + (l.lender ? ' · ' + esc(l.lender) : '') + '</h3>' + kv('Monthly payment (principal + interest)', money(Math.round(loanPay(l)))) + kv(y + ' interest (estimate)', m0(o.int)) + kv(y + ' principal (estimate)', m0(o.prin)) + kv('Balance ' + (y < TY ? 'at end of ' + y : 'today'), m0(bal)) +
+      '<details class="mon"><summary>Amortization by year</summary><div class="tblwrap" tabindex="0" role="region" aria-label="Table (scrolls sideways)"><table class="se"><thead><tr><th scope="col" style="text-align:left">Year</th><th scope="col">Interest</th><th scope="col">Principal</th><th scope="col">Balance</th></tr></thead><tbody>' + amortRows(l) + '</tbody></table></div></details><button type="button" class="btn sm ghost" data-loan="' + l.id + '">Edit loan</button></div>'; }).join(''); }
+function amortRows(l){ var Y = {}, ord = []; loanRun(l, function(y, m, it, pr, bal){ if (!Y[y]) { Y[y] = { i: 0, p: 0, b: 0 }; ord.push(y); } Y[y].i += it; Y[y].p += pr; Y[y].b = bal; });
+  return ord.map(function(y){ return '<tr' + (y === S.year ? ' class="tot"' : '') + '><td style="text-align:left">' + y + '</td><td>' + m0(Y[y].i) + '</td><td>' + m0(Y[y].p) + '</td><td>' + m0(Y[y].b) + '</td></tr>'; }).join(''); }
+function loanForm(l){ var isNew = !l; l = l || { id: uid(), prop: taxProp || (S.props[0] || {}).id, lender: '', amt: 0, rate: 6.5, years: 30, start: today().slice(0,7) + '-01' };
+  sheet('<h2>' + (isNew ? 'Add a loan' : 'Edit loan') + '</h2><label class="f" for="lp">Rental</label>' + propSel('lnp', l.prop) + '<label class="f" for="ll">Lender (optional)</label><input class="in" id="ll" maxlength="60" value="' + esc(l.lender) + '">' +
+    '<label class="f" for="la">Amount borrowed</label><input class="in" id="la" inputmode="decimal" value="' + (l.amt ? (l.amt / 100).toFixed(2) : '') + '"><div class="two"><div><label class="f" for="lr">Rate (% a year)</label><input class="in" id="lr" inputmode="decimal" value="' + l.rate + '"></div><div><label class="f" for="ly">Years</label><input class="in" id="ly" inputmode="numeric" value="' + l.years + '"></div></div>' +
+    '<label class="f" for="ls">First payment month</label><input class="in" type="month" id="ls" value="' + l.start.slice(0,7) + '"><p class="err" id="er" role="alert"></p><button type="button" class="btn" id="sv">Save</button>' + (isNew ? '' : '<button type="button" class="btn red" id="dl">Delete loan</button>'), function(sh){
+    $('#sv', sh).onclick = function(){ var a = cents($('#la', sh).value), r = num($('#lr', sh).value), yy = num($('#ly', sh).value), s = $('#ls', sh).value;
+      if (!(a > 0) || !(r >= 0 && r < 30) || !(yy >= 1 && yy <= 40) || !/^\d{4}-\d{2}$/.test(s)) { $('#er', sh).textContent = 'Check the amount, rate (0-30), years (1-40) and month.'; return; }
+      l.prop = $('#lnp', sh).value; l.lender = $('#ll', sh).value.trim(); l.amt = a; l.rate = r; l.years = yy; l.start = s + '-01'; if (isNew) S.loans.push(l); save(); closeSheet(); render(); toast('Loan saved.'); };
+    var dl = $('#dl', sh); if (dl) dl.onclick = function(){ S.loans.splice(S.loans.indexOf(l), 1); save(); closeSheet(); render(); toast('Loan deleted.'); }; }); }
+function tCapex(){ var tot = 0, rows = S.capex.map(function(c){ var rep = c.installed + c.life, left = Math.max(1, (rep - TY) * 12), mo = Math.round(c.cost / left); tot += mo; return { c: c, rep: rep, mo: mo }; }).sort(function(a, b){ return a.rep - b.rep; });
+  return '<p class="hint">List what will wear out and roughly when. The app works out how much to set aside each month so the bill is not a surprise.</p><div class="card tbal"><b>' + money(tot, true) + ' / month</b><span>Suggested reserve, all rentals</span></div><button type="button" class="btn" data-x="newcap">+ Add an item</button>' +
+    (rows.length ? '<div class="list">' + rows.map(function(r){ return '<button type="button" class="row" data-cap="' + r.c.id + '"><span class="l"><b>' + esc(r.c.item) + '</b><small>' + esc(propName(r.c.prop)) + ' · replace about ' + r.rep + ' · ' + m0(r.c.cost) + '</small></span><span class="r">' + m0(r.mo) + '/mo</span></button>'; }).join('') + '</div>' : ''); }
+function capForm(c){ var isNew = !c; c = c || { id: uid(), prop: taxProp || (S.props[0] || {}).id, item: '', cost: 0, installed: TY, life: 15 };
+  sheet('<h2>' + (isNew ? 'Add a reserve item' : esc(c.item)) + '</h2><label class="f" for="ci">Item</label><input class="in" id="ci" maxlength="50" placeholder="e.g. Roof, water heater" value="' + esc(c.item) + '"><label class="f" for="cp">Rental</label>' + propSel('cp', c.prop) +
+    '<label class="f" for="cc">Replacement cost</label><input class="in" id="cc" inputmode="decimal" value="' + (c.cost ? (c.cost / 100).toFixed(0) : '') + '"><div class="two"><div><label class="f" for="cy">Year installed</label><input class="in" id="cy" inputmode="numeric" value="' + c.installed + '"></div><div><label class="f" for="cl2">Expected life (years)</label><input class="in" id="cl2" inputmode="numeric" value="' + c.life + '"></div></div>' +
+    '<p class="err" id="er" role="alert"></p><button type="button" class="btn" id="sv">Save</button>' + (isNew ? '' : '<button type="button" class="btn red" id="dl">Delete</button>'), function(sh){
+    $('#sv', sh).onclick = function(){ var it = $('#ci', sh).value.trim(), co = cents($('#cc', sh).value), iy = +$('#cy', sh).value, lf = +$('#cl2', sh).value; if (!it || !(co > 0) || !(iy > 1900 && iy <= TY + 1) || !(lf >= 1 && lf <= 100)) { $('#er', sh).textContent = 'Fill in the item, cost, year installed and life.'; return; }
+      c.item = it; c.prop = $('#cp', sh).value; c.cost = co; c.installed = iy; c.life = lf; if (isNew) S.capex.push(c); save(); closeSheet(); render(); toast('Saved.'); };
+    var dl = $('#dl', sh); if (dl) dl.onclick = function(){ S.capex.splice(S.capex.indexOf(c), 1); save(); closeSheet(); render(); toast('Deleted.'); }; }); }
+function tDepr(){ var y = S.year, tot = 0;
+  var h = '<div class="note"><b>Estimate for your preparer, not a tax figure.</b> Straight line with the mid-month convention: 27.5 years for residential rentals, 39 for commercial (IRS Publication 527). It leaves out land, bonus or special depreciation, earlier claims and sales. Your preparer works out the real line 18.</div>';
+  h += S.props.map(function(p){ var d = deprYear(p, y); tot += d.yr; return '<div class="card"><h3 class="ch">' + esc(p.name) + '</h3>' + (d.ok ? kv('Building basis (price + closing − land)', m0((p.price || 0) + (p.closing || 0) - (p.land || 0))) + kv('Placed in service', dshow(p.placed)) + kv(y + ' estimate (building)', m0(d.bld)) + kv(y + ' estimate (improvements)', m0(d.imp)) + kv('Accumulated to end of ' + y, m0(d.acc)) : '<p class="hint">Add the purchase price, land value and date placed in service to see an estimate.</p>') + '<button type="button" class="btn sm ghost" data-editprop="' + p.id + '">Edit rental details</button></div>'; }).join('');
+  return '<div class="card tbal"><b>' + m0(tot) + '</b><span>' + y + ' depreciation estimate, all rentals</span></div>' + h; }
+/* ---------- rental details for investor numbers and the depreciation estimate (progressive: tucked in a details box) ---------- */
+function propExtraHTML(p){ var f = function(id, lab, v, hint){ return '<label class="f" for="' + id + '">' + lab + '</label><input class="in" id="' + id + '" inputmode="decimal" value="' + (v ? (v / 100).toFixed(0) : '') + '">' + (hint ? '<p class="hint">' + hint + '</p>' : ''); };
+  return '<details class="card mon" id="pxd"><summary>Investor and depreciation details (optional)</summary>' + f('xpr', 'Purchase price', p.price) + f('xcl', 'Closing costs added to the price', p.closing) + f('xld', 'Land value (not depreciated)', p.land, 'Your property tax bill often splits land and building.') +
+    '<label class="f" for="xpl">Placed in service (first day it was ready to rent)</label><input class="in" type="date" id="xpl" value="' + esc(p.placed || '') + '">' + f('xvl', 'What it is worth now (your estimate)', p.value) + f('xcs', 'Cash you put in (down payment, closing, rehab)', p.cash) +
+    '<label class="f" for="xun">Number of units</label><input class="in" id="xun" inputmode="numeric" value="' + esc(p.unitsN || '') + '" placeholder="1"><p class="hint">Used for cap rate, cash-on-cash, the 1% rule, occupancy and the depreciation estimate. Loans go in More, Landlord tools.</p></details>'; }
+function propExtraRead(sh, p){ var c = function(id){ var e = $('#' + id, sh); if (!e) return undefined; var v = e.value.trim(); return v ? Math.max(0, cents(v) || 0) : 0; };
+  if (!$('#xpr', sh)) return; p.price = c('xpr'); p.closing = c('xcl'); p.land = c('xld'); p.value = c('xvl'); p.cash = c('xcs'); var pl = $('#xpl', sh).value; p.placed = /^\d{4}-\d{2}-\d{2}$/.test(pl) ? pl : ''; var u = parseInt($('#xun', sh).value, 10); p.unitsN = u > 0 && u < 1000 ? u : '';
+  ['price','closing','land','value','cash','placed','unitsN'].forEach(function(k){ if (!p[k]) delete p[k]; }); }
+/* line 18 hint on the Tax summary: an estimate, clearly labelled */
+function deprHint(){ var est = 0, ok = false; propsOf(taxProp).forEach(function(p){ var d = deprYear(p, S.year); if (d.ok) { ok = true; est += d.yr; } }); return ok ? '<br>estimate ' + m0(est) : ''; }
+/* ---------- the 10-point "ready for my preparer" check ---------- */
+function cpaChecks(y){ var ps = S.props, tx = S.tx.filter(function(x){ return inYear(x.date, y); }), has = function(p, c){ return tx.some(function(x){ return x.prop === p.id && x.cat === c; }); }, miss = function(f){ return ps.filter(f).map(function(p){ return p.name; }); };
+  var past = y < TY, A = [];
+  var noRent = miss(function(p){ return !tx.some(function(x){ return x.prop === p.id && x.cat === 'RENT'; }); });
+  A.push([!noRent.length, 'Rent logged for every rental', noRent.join(', ')]);
+  var behind = S.tenants.filter(function(t){ return ledger(t).bal > 0; }).map(function(t){ return t.name + ' ' + m0(ledger(t).bal); });
+  A.push([!behind.length, 'Tenant ledgers up to date (no unpaid rent)', behind.join(', ')]);
+  var mi = miss(function(p){ return (p.mortgage || propLoans(p.id).length) && !has(p, 'L12'); }); A.push([!mi.length, 'Mortgage interest (Form 1098) logged', mi.join(', ')]);
+  var tx16 = miss(function(p){ return !has(p, 'L16'); }); A.push([!tx16.length, 'Property tax logged', tx16.join(', ')]);
+  var ins = miss(function(p){ return !has(p, 'L9'); }); A.push([!ins.length, 'Insurance logged', ins.join(', ')]);
+  var dd = miss(function(p){ return !dz(p, y).d; }); A.push([!dd.length, 'Days rented and personal days (line 2)', dd.join(', ')]);
+  var nr = tx.filter(noRcpt).length; A.push([!nr, 'Receipt photo on every expense of $75 or more', nr ? plural(nr, 'missing') : '']);
+  var ot = tx.filter(function(x){ return x.cat === 'L19' && !x.note; }).length; A.push([!ot, '"Other" expenses explained', ot ? plural(ot, 'without a note', 'without a note') : '']);
+  var np = tx.filter(function(x){ return !x.prop; }).length; A.push([!np, 'Every entry has a rental picked', np ? plural(np, 'entry', 'entries') : '']);
+  var w9 = nec1099(y).filter(function(v){ return !v.w9; }).map(function(v){ return v.name; }); A.push([!w9.length, 'W-9 on file for vendors at the ' + m0(NEC(y)) + ' 1099-NEC level', w9.join(', ')]);
+  return A.map(function(a){ return { ok: a[0], t: a[1], d: a[2] }; }); }
+function checklistCard(){ var C = cpaChecks(S.year), n = C.filter(function(c){ return c.ok; }).length;
+  return '<div class="card" data-k="ready"><h3 class="ch">Ready for my preparer: ' + n + ' of 10</h3><ul class="ck">' + C.map(function(c){ return '<li class="' + (c.ok ? 'ok' : 'no') + '"><span aria-hidden="true">' + (c.ok ? '✓' : '!') + '</span><span><span class="sr">' + (c.ok ? 'Done: ' : 'To do: ') + '</span>' + esc(c.t) + (c.d ? '<small>' + esc(c.d) + '</small>' : '') + '</span></li>'; }).join('') + '</ul></div>'; }
+/* ---------- Excel workbook (.xlsx): a small stored-zip writer, no library ---------- */
+var CRC = (function(){ var t = [], c, n, k; for (n = 0; n < 256; n++) { c = n; for (k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; } return t; })();
+function crc32(u){ var c = 0xFFFFFFFF; for (var i = 0; i < u.length; i++) c = CRC[(c ^ u[i]) & 255] ^ (c >>> 8); return (c ^ 0xFFFFFFFF) >>> 0; }
+function zip(files){ var enc = new TextEncoder(), parts = [], cd = [], off = 0, cdLen = 0;
+  var le = function(n, b){ var a = []; for (var i = 0; i < b; i++) a.push((n >>> (8 * i)) & 255); return a; };
+  files.forEach(function(f){ var nm = enc.encode(f[0]), d = enc.encode(f[1]), cr = crc32(d);
+    var h = [].concat(le(0x04034b50, 4), le(20, 2), le(0x0800, 2), le(0, 2), le(0, 2), le(0x21, 2), le(cr, 4), le(d.length, 4), le(d.length, 4), le(nm.length, 2), le(0, 2));
+    parts.push(new Uint8Array(h), nm, d);
+    var c = [].concat(le(0x02014b50, 4), le(20, 2), le(20, 2), le(0x0800, 2), le(0, 2), le(0, 2), le(0x21, 2), le(cr, 4), le(d.length, 4), le(d.length, 4), le(nm.length, 2), le(0, 2), le(0, 2), le(0, 2), le(0, 2), le(0, 4), le(off, 4));
+    cd.push(new Uint8Array(c), nm); cdLen += c.length + nm.length; off += h.length + nm.length + d.length; });
+  var end = new Uint8Array([].concat(le(0x06054b50, 4), le(0, 2), le(0, 2), le(files.length, 2), le(files.length, 2), le(cdLen, 4), le(off, 4), le(0, 2)));
+  var all = parts.concat(cd, [end]), len = all.reduce(function(a, p){ return a + p.length; }, 0), out = new Uint8Array(len), o = 0; all.forEach(function(p){ out.set(p, o); o += p.length; }); return out; }
+function xe(v){ return String(v).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, ''); }
+function colL(i){ var s = ''; i++; while (i > 0) { var m = (i - 1) % 26; s = String.fromCharCode(65 + m) + s; i = Math.floor((i - 1) / 26); } return s; }
+/* cell values: string, number, { m: cents } for money, { b: text } for bold */
+function sheetXML(rows, widths){ var x = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><sheetViews><sheetView workbookViewId="0"><pane ySplit="1" topLeftCell="A2" activePane="bottomLeft" state="frozen"/></sheetView></sheetViews>';
+  if (widths) x += '<cols>' + widths.map(function(w, i){ return '<col min="' + (i + 1) + '" max="' + (i + 1) + '" width="' + w + '" customWidth="1"/>'; }).join('') + '</cols>';
+  x += '<sheetData>' + rows.map(function(r, ri){ return '<row r="' + (ri + 1) + '">' + r.map(function(v, ci){ var ref = colL(ci) + (ri + 1), bold = ri === 0 ? 1 : 0;
+    if (v == null || v === '') return ''; if (typeof v === 'object' && 'm' in v) return '<c r="' + ref + '" s="' + (v.bold ? 3 : 2) + '"><v>' + (v.m / 100) + '</v></c>';
+    if (typeof v === 'object' && 'b' in v) { v = v.b; bold = 1; }
+    if (typeof v === 'number' && isFinite(v)) return '<c r="' + ref + '"' + (bold ? ' s="1"' : '') + '><v>' + v + '</v></c>';
+    return '<c r="' + ref + '" t="inlineStr"' + (bold ? ' s="1"' : '') + '><is><t xml:space="preserve">' + xe(v) + '</t></is></c>'; }).join('') + '</row>'; }).join('') + '</sheetData></worksheet>'; return x; }
+function xlsxBytes(){ var y = S.year, all = S.props.map(function(p){ return [p, totals(y, p.id)]; }), tot = totals(y, ''), R = lineRows(tot, y), M = function(c){ return { m: c }; }, sh = [];
+  var se = [['Line', 'What'].concat(all.map(function(a){ return a[0].name; }), ['All rentals'])];
+  se.push(['1a', 'Address'].concat(all.map(function(a){ return a[0].addr || ''; }), ['']));
+  se.push(['2', 'Fair rental days / personal days'].concat(all.map(function(a){ return (dz(a[0], y).d || '?') + ' / ' + (dz(a[0], y).pd || '0'); }), ['']));
+  R.forEach(function(r, i){ se.push([r[0], r[1].replace(/ \(incl.*\)$/, '')].concat(all.map(function(a){ var v = lineRows(a[1], y)[i][2]; return v == null ? 'preparer' : M(v); }), [r[2] == null ? 'preparer' : M(r[2])])); });
+  se.push([{ b: '20' }, { b: 'Total expenses (before depreciation)' }].concat(all.map(function(a){ return { m: a[1].exp, bold: 1 }; }), [{ m: tot.exp, bold: 1 }]));
+  se.push([{ b: '21' }, { b: 'Rent minus expenses' }].concat(all.map(function(a){ return { m: a[1].net, bold: 1 }; }), [{ m: tot.net, bold: 1 }]));
+  se.push([]); se.push(['', 'Record-keeping summary for tax year ' + y + ', not tax advice. Line 18 depreciation is for your preparer.' + (S.sample ? ' SAMPLE NUMBERS.' : '')]);
+  sh.push(['Schedule E ' + y, se, [8, 40].concat(all.map(function(){ return 16; }), [16])]);
+  var bm = S.props.map(function(p){ return [p, byMonth(y, p.id)]; }), mp = [['Rental'].concat(MON, ['Year'])];
+  mp.push([{ b: 'Rent in, all rentals' }].concat(byMonth(y, '').map(function(b){ return M(b.i); }), [M(tot.RENT)]));
+  mp.push([{ b: 'Expenses, all rentals' }].concat(byMonth(y, '').map(function(b){ return M(b.o); }), [M(tot.exp)]));
+  mp.push([{ b: 'Net, all rentals' }].concat(byMonth(y, '').map(function(b){ return { m: b.i - b.o, bold: 1 }; }), [{ m: tot.net, bold: 1 }])); mp.push([]); mp.push([{ b: 'Net by rental' }]);
+  bm.forEach(function(r){ mp.push([r[0].name].concat(r[1].map(function(b){ return M(b.i - b.o); }), [M(totals(y, r[0].id).net)])); });
+  sh.push(['Monthly P&L ' + y, mp, [28].concat(MON.map(function(){ return 11; }), [13])]);
+  var en = [['Date', 'Rental', 'Schedule E line', 'Category', 'Note', 'Amount', 'Tenant', 'Paid to', 'Nights', 'Receipt photo']];
+  S.tx.slice().sort(function(a, b){ return a.date < b.date ? -1 : 1; }).forEach(function(x){ var c = CAT[x.cat] || {}, t = x.ten && byId(S.tenants, x.ten); en.push([x.date, propName(x.prop), c.ln || '(kept off)', c.name || x.cat, x.note || '', M(c.kind === 'in' ? x.amt : -x.amt), t ? t.name : '', x.ven || '', x.nights || '', x.rcpt ? 'yes' : '']); });
+  sh.push(['Entries', en, [11, 22, 10, 30, 30, 12, 18, 18, 7, 8]]);
+  var mi = [['Date', 'Rental', 'Purpose', 'Miles', 'Rate (cents)', 'Amount']]; S.trips.slice().sort(function(a, b){ return a.date < b.date ? -1 : 1; }).forEach(function(x){ var r = rateFor(x.date); mi.push([x.date, propName(x.prop), x.why || '', +x.miles || 0, r == null ? '' : r, r == null ? '' : M(Math.round(x.miles * r))]); });
+  sh.push(['Mileage', mi, [11, 22, 30, 8, 11, 12]]);
+  var tn = [['Tenant', 'Unit', 'Rental', 'Phone', 'Email', 'Lease start', 'Lease end', 'Monthly rent', 'Deposit held', 'Balance owed']], lg = [['Tenant', 'Date', 'What', 'Charge', 'Payment', 'Balance']];
+  S.tenants.forEach(function(t){ var L = ledger(t); tn.push([t.name, t.unit || '', propName(t.prop), t.phone || '', t.email || '', t.start, t.end || 'month to month', M(t.rent), t.depOut ? M(0) : M(t.dep || 0), M(L.bal)]); L.rows.forEach(function(r){ lg.push([t.name, r.date, r.d, r.ch ? M(r.ch) : '', r.py ? M(r.py) : '', M(r.bal)]); }); });
+  sh.push(['Tenants', tn, [20, 10, 22, 14, 22, 11, 14, 12, 12, 12]]); sh.push(['Tenant ledger', lg, [20, 11, 34, 12, 12, 12]]);
+  var vn = [['Vendor', 'Trade', 'W-9 on file', 'Paid in ' + y, '1099-NEC check (' + m0(NEC(y)) + '+)']]; venNames().forEach(function(n){ var v = venRec(n) || {}, p = venPaid(n, y); vn.push([n, v.trade || '', v.w9 ? 'yes' : 'no', M(p), p >= NEC(y) && !v.corp ? 'ask your preparer' : '']); });
+  sh.push(['Vendors', vn, [24, 14, 10, 12, 22]]);
+  var ln = [['Rental', 'Lender', 'Borrowed', 'Rate %', 'Years', 'Monthly P+I (est.)', y + ' interest (est.)', y + ' principal (est.)', 'Balance (est.)']]; S.loans.forEach(function(l){ var o = loanYear(l, y); ln.push([propName(l.prop), l.lender || '', M(l.amt), l.rate, l.years, M(Math.round(loanPay(l))), M(o.int), M(o.prin), M(loanBalAt(l, y < TY ? y + '-12-31' : today()))]); });
+  var dp = [['Rental', 'Basis (price + closing − land)', 'Placed in service', 'Life (years)', y + ' estimate', 'Accumulated (est.)']]; S.props.forEach(function(p){ var d = deprYear(p, y); if (d.ok) dp.push([p.name, M((p.price || 0) + (p.closing || 0) - (p.land || 0)), p.placed, d.life, M(d.yr), M(d.acc)]); });
+  dp.push([]); dp.push(['ESTIMATES for your preparer, not tax figures: straight line, mid-month, 27.5 / 39 years (IRS Pub 527). Loan figures are from the terms entered; Form 1098 is the record.']);
+  sh.push(['Loans (estimates)', ln, [22, 18, 13, 8, 7, 14, 15, 15, 14]]); sh.push(['Depreciation (estimate)', dp, [22, 22, 14, 10, 14, 16]]);
+  var F = [['[Content_Types].xml', '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>' + sh.map(function(s, i){ return '<Override PartName="/xl/worksheets/sheet' + (i + 1) + '.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>'; }).join('') + '</Types>'],
+    ['_rels/.rels', '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>'],
+    ['xl/workbook.xml', '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets>' + sh.map(function(s, i){ return '<sheet name="' + xe(s[0].slice(0, 31)) + '" sheetId="' + (i + 1) + '" r:id="rId' + (i + 1) + '"/>'; }).join('') + '</sheets></workbook>'],
+    ['xl/_rels/workbook.xml.rels', '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">' + sh.map(function(s, i){ return '<Relationship Id="rId' + (i + 1) + '" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet' + (i + 1) + '.xml"/>'; }).join('') + '<Relationship Id="rId' + (sh.length + 1) + '" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>'],
+    ['xl/styles.xml', '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><numFmts count="1"><numFmt numFmtId="164" formatCode="&quot;$&quot;#,##0.00;[Red]\\-&quot;$&quot;#,##0.00"/></numFmts><fonts count="2"><font><sz val="11"/><name val="Calibri"/></font><font><b/><sz val="11"/><name val="Calibri"/></font></fonts><fills count="2"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill></fills><borders count="1"><border><left/><right/><top/><bottom/><diagonal/></border></borders><cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs><cellXfs count="4"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/><xf numFmtId="0" fontId="1" fillId="0" borderId="0" xfId="0" applyFont="1"/><xf numFmtId="164" fontId="0" fillId="0" borderId="0" xfId="0" applyNumberFormat="1"/><xf numFmtId="164" fontId="1" fillId="0" borderId="0" xfId="0" applyNumberFormat="1" applyFont="1"/></cellXfs><cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles></styleSheet>']];
+  sh.forEach(function(s, i){ F.push(['xl/worksheets/sheet' + (i + 1) + '.xml', sheetXML(s[1], s[2])]); });
+  return { bytes: zip(F), sheets: sh.map(function(s){ return s[0]; }) }; }
+function xlsxAll(){ var r = xlsxBytes(), name = 'rental-property-books-' + S.year + '-' + today() + '.xlsx'; W.__FRB_XLSX = r.bytes; download(r.bytes, name, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'); toast('Excel workbook downloaded: ' + r.sheets.length + ' sheets. It also opens in Google Sheets and Numbers.'); }
+/* ---------- dark mode ---------- */
+var THEME = 'frb_theme_v1';
+function theme(){ return g(THEME) || 'auto'; }
+function applyTheme(){ var t = theme(), dk = t === 'dark' || (t === 'auto' && W.matchMedia && W.matchMedia('(prefers-color-scheme: dark)').matches); D.documentElement.classList.toggle('dark', !!dk); var mt = $('meta[name=theme-color]'); if (mt) mt.setAttribute('content', dk ? '#10161F' : '#1B2A40'); }
+if (W.matchMedia) try { W.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyTheme); } catch(e){}
+/* ---------- v2 wraps of v1 screens (reassigned before the first render) ---------- */
+var homeQ = '', moreQ = '', logQ = '', logP = '';
+function propMatches(q){ q = (q || '').toLowerCase().trim(); return S.props.filter(function(p){ return !q || (p.name + ' ' + (p.addr || '')).toLowerCase().indexOf(q) >= 0; }); }
+var _render = render;
+render = function(){ applyTheme(); var m = $('#main');
+  $$('nav.bar [data-v]').forEach(function(b){ var v = b.getAttribute('data-v'), on = v === view || (view === 'tools' && v === 'more'); if (on) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
+  if (view === 'ten' || view === 'tools' || view === 'tax') { $('#sampleBar').hidden = !S.sample; m.innerHTML = view === 'ten' ? tenantsHTML() : view === 'tools' ? toolsHTML() : reportsHTML(); return; }
+  _render(); };
+var _monthsDue = monthsDue;
+monthsDue = function(p, y){ if (S.tenants.some(function(t){ return t.prop === p.id; })) return []; return _monthsDue(p, y); };
+var _leftToLog = leftToLog;
+leftToLog = function(){ var y = S.year, first = [], items = _leftToLog(), now = today();
+  if (y === TY) {
+    S.tenants.forEach(function(t){ var b = ledger(t).bal; if (b > 0) first.push({ t: t.name + ' owes ' + money(b) + ' (' + (t.unit ? t.unit + ', ' : '') + propName(t.prop) + ')', a: 'Open ledger', act: 'ten', id: t.id }); });
+    S.tenants.forEach(function(t){ if (t.end && tenActive(t)) { var d = daysBetween(now, t.end); if (d <= 60) items.push({ t: t.name + '\'s lease ends ' + dshow(t.end) + ' (in ' + plural(d, 'day') + ')', a: 'Open', act: 'ten', id: t.id }); }
+      if (t.dep && !t.depOut && t.end && t.end < now && t.depDays) { var dd = ymdAdd(t.end, +t.depDays); items.push({ t: 'Deposit for ' + t.name + ': account for it by ' + dshow(dd), a: 'Open', act: 'ten', id: t.id }); } });
+    S.docs.forEach(function(d){ if (d.expires) { var n = daysBetween(now, d.expires); if (n <= 30) items.push({ t: d.kind + ' for ' + propName(d.prop) + (n < 0 ? ' expired ' : ' expires ') + dshow(d.expires), a: 'Open', act: 'tool', tool: 'docs' }); } });
+    var old = S.jobs.filter(function(j){ return j.status !== 'done' && daysBetween(j.opened, now) > 14; }); if (old.length) items.push({ t: plural(old.length, 'work order') + ' open more than 14 days', a: 'Show', act: 'tool', tool: 'jobs' });
+  }
+  var w9 = nec1099(y).filter(function(v){ return !v.w9; }); if (w9.length) items.push({ t: 'You paid ' + w9.map(function(v){ return v.name; }).join(', ') + ' ' + m0(NEC(y)) + ' or more in ' + y + ' with no W-9 on file (1099-NEC check)', a: 'Vendors', act: 'tool', tool: 'vendors' });
+  return first.concat(items); };
+var _homeHTML = homeHTML;
+homeHTML = function(){ var h = _homeHTML(); if (!hasReal(S)) return h; var y = S.year;
+  if (S.tenants.length) { var ow = owed(), act = S.tenants.filter(function(t){ return tenActive(t); }).length;
+    h = h.replace('<h2 class="sec">What\'s left to log</h2>', '<button type="button" class="card tencard" data-go="ten"><span><b>' + plural(act, 'active lease') + '</b><small>' + (ow.amt ? '<span class="neg">' + money(ow.amt) + ' owed by ' + plural(ow.n, 'tenant') + '</span>' : 'Everyone is paid up') + '</small></span><span aria-hidden="true">›</span></button>$&'); }
+  var i = h.indexOf('<h2 class="sec">Your rentals</h2>'), j = h.indexOf('<p class="trust">', i);
+  if (S.props.length > 6 && i >= 0 && j > i) { var ps = propMatches(homeQ).map(function(p){ return [p, totals(y, p.id)]; }).sort(function(a, b){ return b[1].net - a[1].net; });
+    var blk = '<h2 class="sec">Your rentals (' + S.props.length + ')</h2>' + search('hq', homeQ, 'Search ' + S.props.length + ' rentals by name or address') + '<div class="props">' + ps.slice(0, 8).map(function(a){ var u = a[1]; return '<button type="button" class="prop" data-prop="' + a[0].id + '"><span><b>' + esc(a[0].name) + '</b><small>' + money(u.RENT, true) + ' in · ' + money(u.exp, true) + ' out</small></span><span class="amt ' + (u.net < 0 ? 'neg' : 'pos') + '">' + money(u.net, true) + '</span></button>'; }).join('') +
+      (ps.length > 8 ? '<p class="hint" data-k="more">' + (ps.length - 8) + ' more. Search, or see them all in Reports, Compare.</p>' : !ps.length ? '<p class="hint">No rental matches "' + esc(homeQ) + '".</p>' : '') + (S.props.length < MAXP ? '<button type="button" class="btn ghost" data-act="newprop">+ Add a rental</button>' : '') + '</div>';
+    h = h.slice(0, i) + blk + h.slice(j); }
+  return h; };
+function logTools(){ return '<div class="filt">' + search('lq', logQ, 'Search notes, amounts, tenants, vendors') + (S.props.length > 1 ? '<label class="sr" for="lp">Rental</label>' + propSel('lp', logP, 'All rentals') : '') + '</div>'; }
+function logMatch(e){ var x = e.x; if (logP && x.prop !== logP) return false; var q = logQ.toLowerCase().trim(); if (!q) return true;
+  var c = CAT[x.cat] || {}, t = x.ten && byId(S.tenants, x.ten), hay = [x.note, x.why, c.name, propName(x.prop), x.ven, t && t.name, x.date, dshow(x.date), x.amt != null ? (x.amt / 100).toFixed(2) : '', x.miles].join(' ').toLowerCase(); return hay.indexOf(q) >= 0; }
+var _moreHTML = moreHTML;
+moreHTML = function(){ var h = _moreHTML();
+  var tools = '<h2 class="sec" style="margin-top:4px">Landlord tools</h2><div class="tgrid">' + TOOLS.map(function(t){ return '<button type="button" class="tbtn" data-toolgo="' + t[0] + '">' + t[1] + '</button>'; }).join('') + '</div>';
+  var i = h.indexOf('<h2 class="sec" style="margin-top:4px">Your rentals</h2>'), j = h.indexOf('<h2 class="sec">Bring data in');
+  if (S.props.length > 6 && i >= 0 && j > i) { var ps = propMatches(moreQ); h = h.slice(0, i) + '<h2 class="sec">Your rentals (' + S.props.length + ')</h2>' + search('mq', moreQ, 'Search rentals') + '<div class="list">' + ps.slice(0, 12).map(function(p){ return '<button type="button" class="row" data-editprop="' + p.id + '"><span class="l"><b>' + esc(p.name) + '</b><small>' + esc(p.addr || 'No address') + '</small></span><span class="r">Edit</span></button>'; }).join('') + '</div>' + (ps.length > 12 ? '<p class="hint">' + (ps.length - 12) + ' more. Search to find one.</p>' : '') + (S.props.length < MAXP ? '<button type="button" class="btn ghost" data-act="newprop">+ Add a rental</button>' : '<p class="hint">' + MAXP + ' rentals is the most this app holds.</p>') + h.slice(j); }
+  else h = h.replace('<h2 class="sec" style="margin-top:4px">Your rentals</h2>', '<h2 class="sec">Your rentals</h2>');
+  h = tools + h;
+  h = h.replace('<button type="button" class="btn sec" data-act="backup">', '<button type="button" class="btn sec" data-x="xlsx">Download an Excel workbook (.xlsx)</button><button type="button" class="btn sec" data-act="csv">Download a CSV file</button>$&');
+  var t = theme(); h = h.replace('<h2 class="sec">Good to know</h2>', '<h2 class="sec">Appearance</h2><div class="chips" role="radiogroup" aria-label="Appearance">' + [['auto','Match my phone'],['light','Light'],['dark','Dark']].map(function(o){ return '<button type="button" class="chip" role="radio" data-theme="' + o[0] + '" aria-checked="' + (t === o[0]) + '">' + o[1] + '</button>'; }).join('') + '</div>$&');
+  return h; };
+var _taxHTML = taxHTML;
+taxHTML = function(){ var h = _taxHTML(); if (!S.props.length) return h;
+  return h.replace('<button type="button" class="btn" data-act="print">', checklistCard() + '$&').replace('<button type="button" class="btn sec" data-act="csv">Download everything as a spreadsheet file (CSV)</button>', '<button type="button" class="btn sec" data-x="xlsx">Download an Excel workbook (.xlsx)</button><button type="button" class="btn ghost" data-act="csv">Download a CSV file (Google Sheets, Numbers)</button>'); };
+var _buildPrint = buildPrint;
+buildPrint = function(){ var y = S.year, out = _buildPrint(), C = cpaChecks(y), ex = '';
+  ex += '<h2>Ready-for-preparer checklist (' + C.filter(function(c){ return c.ok; }).length + ' of 10)</h2><table><tbody>' + C.map(function(c){ return '<tr><td class="l">' + (c.ok ? '✓' : 'To check') + '</td><td class="l">' + esc(c.t) + '</td><td class="l">' + esc(c.d) + '</td></tr>'; }).join('') + '</tbody></table>';
+  var dp = S.props.map(function(p){ return [p, deprYear(p, y)]; }).filter(function(a){ return a[1].ok; });
+  if (dp.length || S.loans.length) { ex += '<h2>ESTIMATES for the preparer (not tax figures)</h2><p class="sm">Depreciation: straight line, mid-month convention, ' + '27.5 years residential / 39 years nonresidential (IRS Pub 527), from the price, closing costs, land value and in-service date entered. Leaves out bonus or special depreciation and earlier claims. Loan figures come from the loan terms entered; Form 1098 is the record.</p><table><thead><tr><th class="l">Rental</th><th class="l">Item</th><th>' + y + '</th><th>To date</th></tr></thead><tbody>';
+    dp.forEach(function(a){ ex += '<tr><td class="l">' + esc(a[0].name) + '</td><td class="l">Depreciation estimate (building + improvements)</td><td>' + money(a[1].yr) + '</td><td>' + money(a[1].acc) + '</td></tr>'; });
+    S.loans.forEach(function(l){ var o = loanYear(l, y); ex += '<tr><td class="l">' + esc(propName(l.prop)) + '</td><td class="l">Loan interest / principal estimate' + (l.lender ? ' (' + esc(l.lender) + ')' : '') + '</td><td>' + money(o.int) + ' / ' + money(o.prin) + '</td><td>bal. ' + money(loanBalAt(l, y < TY ? y + '-12-31' : today())) + '</td></tr>'; });
+    ex += '</tbody></table>'; }
+  var nv = nec1099(y); if (nv.length) ex += '<h2>Vendors paid ' + m0(NEC(y)) + ' or more in ' + y + ' (1099-NEC check)</h2><table><tbody>' + nv.map(function(v){ return '<tr><td class="l">' + esc(v.name) + '</td><td>' + money(v.paid) + '</td><td class="l">W-9 ' + (v.w9 ? 'on file' : 'NOT on file') + '</td></tr>'; }).join('') + '</tbody></table>';
+  if (S.tenants.length) ex += '<h2>Rent roll</h2><table><thead><tr><th class="l">Tenant</th><th class="l">Rental</th><th class="l">Lease</th><th>Rent</th><th>Deposit held</th><th>Balance</th></tr></thead><tbody>' + S.tenants.map(function(t){ return '<tr><td class="l">' + esc(t.name) + '</td><td class="l">' + esc((t.unit ? t.unit + ', ' : '') + propName(t.prop)) + '</td><td class="l">' + t.start + ' to ' + (t.end || 'month to month') + '</td><td>' + money(t.rent) + '</td><td>' + (t.depOut ? '$0.00' : money(t.dep || 0)) + '</td><td>' + money(ledger(t).bal) + '</td></tr>'; }).join('') + '</tbody></table>';
+  var k = out.indexOf('<h2 class="pb">Every entry'); return k > 0 ? out.slice(0, k) + ex + out.slice(k) : out + ex; };
+/* bigger portfolios: rental picker becomes a dropdown past 8 */
+var _propChips = propChips;
+propChips = function(sel){ if (S.props.length <= 8) return _propChips(sel); return '<select class="in" id="psel" aria-labelledby="pl"><option value="">Pick a rental</option>' + S.props.map(function(p){ return '<option value="' + p.id + '"' + (p.id === sel ? ' selected' : '') + '>' + esc(p.name) + '</option>'; }).join('') + '</select>'; };
+var _pick = pick;
+pick = function(sh, attr){ if (attr === 'p') { var se = $('#psel', sh); if (se) return se.value; } return _pick(sh, attr); };
+/* ---------- v2 sample: tenants, a late payer, a vendor without a W-9, an open work order, a loan, reserves ---------- */
+var _sampleState = sampleState;
+sampleState = function(){ var st = _sampleState(), y = st.year, last = y < TY ? 12 : (y > TY ? 12 : NOW.getMonth() + 1), now = y === TY ? today() : y + '-12-31', A = st.props[0], B = st.props[1];
+  st.tx = st.tx.filter(function(x){ return x.note !== 'Units 1 + 2 rent'; }); A.lease = ''; var n = 0, d2 = function(m, d){ return y + '-' + ('0' + m).slice(-2) + '-' + ('0' + d).slice(-2); };
+  var P = function(d, t, a, note){ if (d > now) return; st.tx.push({ id: 'sr' + (n++), date: d, prop: 'sA', cat: 'RENT', amt: a, note: note, ten: t }); };
+  Object.assign(A, { price: 31000000, closing: 620000, land: 6200000, value: 36500000, cash: 8400000, placed: (y - 5) + '-06-15', unitsN: 2 });
+  Object.assign(B, { price: 26500000, closing: 410000, land: 5300000, value: 29000000, cash: 27000000, placed: (y - 3) + '-04-20', unitsN: 1 });
+  st.tenants = [{ id: 'tJ', prop: 'sA', unit: 'Unit 1', name: 'Jordan Lee', phone: '(555) 010-4421', email: '', start: y + '-01-01', end: y + '-12-31', rent: 140000, due: 1, grace: 5, late: 5000, prorate: true, dep: 140000, depIn: (y - 1) + '-12-20', depDays: '30', fees: [] },
+    { id: 'tS', prop: 'sA', unit: 'Unit 2', name: 'Sam Ortiz', phone: '(555) 010-7730', email: '', start: y + '-03-15', end: (y + 1) + '-03-14', rent: 145000, due: 1, grace: 5, late: 5000, prorate: true, dep: 145000, depIn: y + '-03-10', depDays: '30', fees: [] }];
+  for (var m = 1; m <= last; m++) { P(d2(m, 1), 'tJ', 140000, MON[m-1] + ' rent, Unit 1');
+    if (m === 3) P(d2(3, 15), 'tS', Math.round(145000 * 17 / 31), 'Mar rent, Unit 2 (prorated 17/31 days)');
+    else if (m > 3 && m === 9) { st.tenants[1].fees.push({ id: 'sf1', date: d2(9, 7), amt: 5000, month: d2(9, 1).slice(0,7), note: 'Late fee for Sep rent' }); P(d2(9, 12), 'tS', 150000, 'Sep rent + late fee, Unit 2'); }
+    else if (m > 3 && !(y === TY && m === last)) P(d2(m, 3), 'tS', 145000, MON[m-1] + ' rent, Unit 2'); }
+  st.tx.forEach(function(x){ if (x.prop === 'sB' && x.cat === 'RENT') x.nights = Math.max(4, Math.round(x.amt / 26500)); if (x.prop === 'sB' && x.cat === 'L7') x.ven = 'Sparkle Turnover Cleaning'; if (x.note === 'Plumber: kitchen sink leak') x.ven = 'Ace Plumbing'; });
+  st.vendors = [{ id: 'v1', name: 'Ace Plumbing', trade: 'Plumber', phone: '(555) 010-2200', w9: true }, { id: 'v2', name: 'Sparkle Turnover Cleaning', trade: 'Cleaning', phone: '', w9: false }];
+  if (y === TY) st.jobs = [{ id: 'j1', prop: 'sA', title: 'Dripping bathtub tap, Unit 2', pri: 'urgent', status: 'open', ven: 'Ace Plumbing', opened: ymdAdd(now, -18), closed: '', cost: 0 }, { id: 'j2', prop: 'sB', title: 'Replace porch light bulb', pri: 'low', status: 'open', ven: '', opened: ymdAdd(now, -3), closed: '', cost: 0 }];
+  st.docs = [{ id: 'd1', prop: 'sA', kind: 'Insurance policy', expires: ymdAdd(now, 21), note: 'Policy in the blue folder' }, { id: 'd2', prop: 'sB', kind: 'Rental licence or permit', expires: (y + 1) + '-03-31', note: 'Town short-term rental permit' }, { id: 'd3', prop: 'sA', kind: 'Smoke and CO alarm check', expires: (y + 1) + '-02-01', note: '' }];
+  st.loans = [{ id: 'l1', prop: 'sA', lender: 'Sample Bank', amt: 22800000, rate: 3.25, years: 30, start: (y - 5) + '-08-01' }];
+  st.capex = [{ id: 'c1', prop: 'sA', item: 'Water heater, Unit 1', cost: 180000, installed: y - 9, life: 12 }, { id: 'c2', prop: 'sA', item: 'Exterior paint', cost: 900000, installed: y - 6, life: 10 }, { id: 'c3', prop: 'sB', item: 'Hot tub', cost: 950000, installed: y - 3, life: 10 }];
+  return st; };
+
+/* ---------- v2 events (registered before v1's listener, so they run first) ---------- */
+function curTen(b){ var w = b.closest('[data-tid]'); return w && byId(S.tenants, w.getAttribute('data-tid')); }
+D.addEventListener('click', function(e){ var b = e.target.closest('button'); if (!b) return; var A = function(n){ return b.getAttribute(n); };
+  if (b.hasAttribute('data-rt')) { rtab = A('data-rt'); render(); var t = $('[data-rt="' + rtab + '"]'); if (t) { t.focus(); if (t.scrollIntoView) t.scrollIntoView({ block: 'nearest', inline: 'center' }); } return; }
+  if (b.hasAttribute('data-tool')) { tool = A('data-tool'); render(); var t2 = $('[data-tool="' + tool + '"]'); if (t2) t2.focus(); return; }
+  if (b.hasAttribute('data-toolgo')) { tool = A('data-toolgo'); go('tools'); return; }
+  if (b.hasAttribute('data-ten')) { var tn = byId(S.tenants, A('data-ten')); if (tn) tenantSheet(tn); return; }
+  if (b.hasAttribute('data-job')) { var jb = byId(S.jobs, A('data-job')); if (jb) jobForm(jb); return; }
+  if (b.hasAttribute('data-ven')) { vendorForm(A('data-ven')); return; }
+  if (b.hasAttribute('data-doc')) { var dc = byId(S.docs, A('data-doc')); if (dc) docForm(dc); return; }
+  if (b.hasAttribute('data-loan')) { var ln = byId(S.loans, A('data-loan')); if (ln) loanForm(ln); return; }
+  if (b.hasAttribute('data-cap')) { var cp = byId(S.capex, A('data-cap')); if (cp) capForm(cp); return; }
+  if (b.hasAttribute('data-theme')) { s(THEME, A('data-theme')); render(); var th = $('[data-theme="' + A('data-theme') + '"]'); if (th) th.focus(); return; }
+  if (b.hasAttribute('data-prop')) { rtab = 'prop'; return; }
+  if (A('data-go') === 'tax') { rtab = 'tax'; return; }   /* v1 then opens Reports for this rental */
+  if (b.hasAttribute('data-nudge')) { var n = leftToLog()[+A('data-nudge')]; if (!n) return;
+    if (n.act === 'ten') { var t3 = byId(S.tenants, n.id); if (t3) tenantSheet(t3); } else if (n.act === 'tool') { tool = n.tool; go('tools'); } return; }
+  var x = A('data-x'); if (!x) return; var T = curTen(b);
+  if (x === 'newten') tenantForm(); else if (x === 'tenpast') { tenPast = A('data-v2') === '1'; render(); }
+  else if (x === 'cmp') { cmpKey = A('data-v2'); render(); }
+  else if (x === 'newjob') jobForm(); else if (x === 'newven') vendorForm(); else if (x === 'newdoc') docForm(); else if (x === 'newloan') loanForm(); else if (x === 'newcap') capForm();
+  else if (x === 'xlsx') xlsxAll();
+  else if (T && x === 'tenpay') tenantPay(T); else if (T && x === 'tenfee') tenantFee(T); else if (T && x === 'tendep') tenantDep(T); else if (T && x === 'tenedit') tenantForm(T);
+  else if (T && x === 'tenprint') { $('#print').innerHTML = buildStatement(T); setTimeout(function(){ W.print(); }, 50); }
+});
+var QV = { tq: function(v){ tenQ = v; }, hq: function(v){ homeQ = v; }, mq: function(v){ moreQ = v; }, lq: function(v){ logQ = v; } };
+var CV = { tp2: function(v){ tenP = v; }, lp: function(v){ logP = v; }, rp: function(v){ taxProp = v; }, rf: function(v){ rFrom = v; }, rtt: function(v){ rTo = v; } };
+function rerenderKeep(id){ var el = $('#' + id), pos = el && el.selectionStart; render(); var n = $('#' + id); if (n) { n.focus(); try { if (pos != null) n.setSelectionRange(pos, pos); } catch(e){} } }
+D.addEventListener('input', function(e){ var el = e.target; if (!el.id || el.closest('#sheet') || !QV[el.id]) return; QV[el.id](el.value); rerenderKeep(el.id); });
+D.addEventListener('change', function(e){ var el = e.target; if (!el.id || el.closest('#sheet') || !CV[el.id]) return; CV[el.id](el.value); rerenderKeep(el.id); });
+function v2api(){ return { ledger: ledger, charges: charges, monthStatus: monthStatus, lateFeeDue: lateFeeDue, owed: owed, fin: fin, metrics: metrics, occ: occ, strStats: strStats, deprYear: deprYear, loanYear: loanYear, loanPay: loanPay, loanBalAt: loanBalAt,
+  xlsxBytes: xlsxBytes, buildStatement: buildStatement, cpaChecks: cpaChecks, nec1099: nec1099, venPaid: venPaid, NEC: NEC, MAXP: MAXP, sampleState: sampleState,
+  set: function(k, v){ if (k === 'rtab') rtab = v; else if (k === 'tool') tool = v; else if (k === 'homeQ') homeQ = v; else if (k === 'logQ') logQ = v; render(); } }; }
+
+/* ---------- events ---------- */
+D.addEventListener('click', function(e){ var b = e.target.closest('button'); if (!b || b.closest('#sheet') && !b.hasAttribute('data-act')) return;
+  var a = b.getAttribute('data-act');
+  if (b.hasAttribute('data-v')) { var v = b.getAttribute('data-v'); if (v === 'add') chooseAdd(); else go(v); return; }
+  if (b.hasAttribute('data-go')) { go(b.getAttribute('data-go')); return; }
+  if (b.hasAttribute('data-filter')) { logFilter = b.getAttribute('data-filter'); render(); return; }
+  if (b.hasAttribute('data-filter-go')) { logFilter = b.getAttribute('data-filter-go'); go('log'); return; }
+  if (b.hasAttribute('data-tp')) { taxProp = b.getAttribute('data-tp'); render(); return; }
+  if (b.hasAttribute('data-year')) { S.year = +b.getAttribute('data-year'); save(); render(); toast('Showing tax year ' + S.year + '.'); return; }
+  if (b.hasAttribute('data-prop')) { taxProp = b.getAttribute('data-prop'); go('tax'); return; }
+  if (b.hasAttribute('data-editprop')) { propForm(S.props.filter(function(p){ return p.id === b.getAttribute('data-editprop'); })[0]); return; }
+  if (b.hasAttribute('data-tx')) { txForm(S.tx.filter(function(x){ return x.id === b.getAttribute('data-tx'); })[0]); return; }
+  if (b.hasAttribute('data-trip')) { tripForm(S.trips.filter(function(x){ return x.id === b.getAttribute('data-trip'); })[0]); return; }
+  if (b.hasAttribute('data-nudge')) { var n = leftToLog()[+b.getAttribute('data-nudge')]; if (!n) return;
+    if (n.act === 'quickrent') { var p = S.props.filter(function(q){ return q.id === n.id; })[0], x = { id: uid(), date: S.year + '-' + ('0' + n.m).slice(-2) + '-01', prop: p.id, cat: 'RENT', amt: p.rent, note: MON[n.m - 1] + ' rent' }; S.tx.push(x); save(); render(); toast('Logged ' + money(p.rent, true) + ' rent for ' + MON[n.m - 1] + ' at ' + p.name + '.', function(){ S.tx.splice(S.tx.indexOf(x), 1); save(); render(); }); }
+    else if (n.act === 'add') txForm(null, '', n.id); else if (n.act === 'prop') propForm(S.props.filter(function(q){ return q.id === n.id; })[0]);
+    else if (n.act === 'filter') { logFilter = n.f; go('log'); } else if (n.act === 'backup') saveBackup(); return; }
+  if (!a) return;
+  if (a === 'add') chooseAdd(); else if (a === 'newprop') propForm(); else if (a === 'sample') startSample(); else if (a === 'clearsample') clearSample();
+  else if (a === 'backup') saveBackup(); else if (a === 'restore') restoreSheet(); else if (a === 'import') importSheet(); else if (a === 'undo') undoLast();
+  else if (a === 'print') doPrint(); else if (a === 'csv') csvAll();
+  else if (a === 'saverate') { var r = parseFloat($('#rateIn').value); if (!(r > 0 && r < 300)) { toast('Type the rate in cents, like 76.'); return; } S.rates[S.year] = r; save(); render(); toast('Mileage rate saved for ' + S.year + '.'); }
+  else if (a === 'install' && deferred) { deferred.prompt(); deferred = null; }
+  else if (a === 'wipe') { if (!W.confirm('Delete every rental, entry, trip and receipt photo on this device? Save a backup file first if you might want them.')) return; rm(KEY); rm(REAL); rm(UNDO); rclear(); S = blank(); save(); go('home'); toast('Everything on this device was deleted.'); }
+});
+W.addEventListener('beforeinstallprompt', function(e){ e.preventDefault(); deferred = e; });
+W.FRB = { get S(){ return S; }, totals: totals, readFile: readFile, parseCSV: parseCSV, checkBackup: checkBackup, applyRestore: applyRestore, saveBackup: saveBackup, rateFor: rateFor, leftToLog: leftToLog, byMonth: byMonth, buildPrint: buildPrint, csvAll: csvAll, startSample: startSample, clearSample: clearSample, undoLast: undoLast, go: go, render: function(){ render(); } };
+Object.assign(W.FRB, v2api());
+render();
+if ('serviceWorker' in navigator && location.protocol !== 'file:') W.addEventListener('load', function(){ navigator.serviceWorker.register('sw.js').catch(function(){}); });
+})();
+</script>
+</body>
+</html>
