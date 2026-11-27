@@ -1593,13 +1593,14 @@ function preview(txt, fname){
   if (f && typeof f === 'object' && f.format !== 'filedawayco-backup') {
     var cv = null; try { cv = H.legacy ? H.legacy(f) : null; } catch(e){}
     if (cv) f = { format: 'filedawayco-backup', app: SL, appName: C.name, savedAt: f.exported || f.savedAt || '', data: cv };
-    else if (D.getElementById('restoreFile')) return legacyPreview(txt, fname, f);
-    else if (C.suite) return showErr('This is an older backup from one part of ' + esc(C.name) + '. Open that part (Books, What you owe or Tax) and tap Restore from backup there.');
+    else if (D.getElementById('restoreFile') && ownLegacy(f)) return legacyPreview(txt, fname, f);
+    else if (C.suite && typeof f.app === 'string' && /^fac-(bookkeeping|freelancer|1099)/.test(f.app)) return showErr('This is an older backup from one part of ' + esc(C.name) + '. Nothing was changed. Open that part (Bookkeeping, Invoices or Tax) and tap Restore from backup there.');
+    else if (typeof f.app === 'string' && /^fac-/.test(f.app)) return showErr('This looks like a backup from a different FiledAwayCo app, not ' + esc(C.name) + '. Nothing was changed. Open the app that saved it and restore it there.');
   }
-  if (!f || f.format !== 'filedawayco-backup' || !f.data || typeof f.data !== 'object') return showErr('That file is not a ' + esc(C.name) + ' backup. Pick the .json file this app saved (its name starts with FiledAwayCo-).');
+  if (!f || f.format !== 'filedawayco-backup' || !f.data || typeof f.data !== 'object') return showErr('That file is not a ' + esc(C.name) + ' backup, so nothing was changed. Pick the backup file this app saved. Its name starts with FiledAwayCo-.');
   if (f.app !== SL && C.top && W.parent !== W) { try { if (W.parent.FAA2 && W.parent.FAA2.cfg.slug === f.app) return W.parent.FAA2.preview(txt, fname); } catch(e){} }
   var ok = (f.app === SL) || (C.accept || []).indexOf(f.app) >= 0;
-  if (!ok) return showErr('This backup is from ' + esc(f.appName || f.app) + ', not ' + esc(C.name) + '. Open ' + esc(f.appName || 'that app') + ' and restore it there.');
+  if (!ok) return showErr('This backup is from ' + esc(f.appName || f.app) + ', not ' + esc(C.name) + '. Nothing was changed. Open ' + esc(f.appName || 'that app') + ' and restore it there.');
   var clean = {}; Object.keys(f.data).forEach(function(k){ if (owned(k) && typeof f.data[k] === 'string') clean[k] = f.data[k]; });
   if (!PARTS.some(function(p){ return clean[p.main] != null; })) return showErr('This backup has no ' + esc(C.name) + ' data in it.');
   pending = clean; var cur = PARTS.some(function(p){ return !!realOf(p); });
@@ -1615,6 +1616,10 @@ function commit(){
   PARTS.forEach(function(p){ var o = {}; Object.keys(pending).forEach(function(k){ if (k === BR || p.keys.indexOf(k) >= 0) o[k] = pending[k]; }); if (o[p.main] == null) return; writePart(p, o); r(K.real + p.slug); });
   pending = null; reload('restored'); }
 var lpend = null;
+/* an older file counts as this app's own only when this app's code names its 'app' value (an fac- name) */
+function ownLegacy(f){ if (!f || typeof f.app !== 'string' || !/^fac-[a-z0-9-]+$/.test(f.app)) return false;
+  var q1 = "'" + f.app + "'", q2 = '"' + f.app + '"';
+  return Array.prototype.some.call(D.scripts, function(sc){ if (/^(faa|faux)/.test(sc.id || '')) return false; var t = sc.text || ''; return t.indexOf(q1) >= 0 || t.indexOf(q2) >= 0; }); }
 function legacyPreview(txt, fname, f){ lpend = { txt: txt, name: fname || 'backup.json' };
   openSheet('<h2>Restore this backup?</h2><div class="a2-card"><b>' + esc(C.name) + '</b><span>An older backup file' + (f.exported || f.savedAt ? ', saved ' + esc(String(f.exported || f.savedAt).slice(0, 10)) : '') + '</span><span>' + esc(fname || '') + ' · ' + Math.max(1, Math.round(txt.length / 1024)) + ' KB</span></div>' +
     '<p>This replaces what is in ' + esc(C.name) + ' on this device now. You can undo it right after.</p>' +
