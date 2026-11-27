@@ -1,0 +1,1952 @@
+<!DOCTYPE html>
+<html lang="en" data-temp="ledger">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Debt Payoff Simulator · FiledAwayCo</title>
+<style>
+:root,[data-temp="ledger"]{
+  --brand:#1B2A40; --brand-ink:#FFFFFF; --accent:#1F5C45; --accent-ink:#FFFFFF;
+  --mint-on-dark:#7FB89E;
+  --paper:#FBF8F2; --card:#FFFFFF; --cream:#E8E0D2;
+  --ink:#1B2430; --muted:#4A5563; --line:#D9D1C3; --hairline:#EDE6DA;
+  --input-bg:#FFF4D6; --input-border:#D9C79A; --input-ink:#1A1A1A;
+  --auto-bg:#F1F3F5; --auto-ink:#1B2430;
+  --good-ink:#16533C; --good-bg:#E6F3EC;
+  --warn-ink:#7A4700; --warn-bg:#FFF4D6;
+  --alert-ink:#962324; --alert-bg:#FBEAEA;
+  --radius:14px; --radius-sm:10px;
+  --font-display:Georgia,"Times New Roman",serif;
+  --font-body:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--cream);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.45;-webkit-text-size-adjust:100%}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+.h-num{font-family:var(--font-body);font-variant-numeric:tabular-nums}
+.shell{max-width:880px;margin:0 auto;min-height:100vh;background:var(--paper);padding:14px 14px 44px}
+@media(min-width:768px){.shell{margin:18px auto;border-radius:18px;border:1px solid var(--line);padding:22px 26px 48px;box-shadow:0 6px 24px rgba(27,42,64,.09)}}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--hairline);margin-bottom:12px}
+.wm{display:flex;align-items:center;gap:10px;min-width:0}
+.mark{width:34px;height:34px;border-radius:8px;background:var(--brand);color:#fff;font-weight:800;font-size:14px;display:grid;place-items:center;position:relative;flex:none}
+.mark::after{content:"";position:absolute;top:0;right:0;width:10px;height:10px;background:var(--accent);border-bottom-left-radius:4px;border-top-right-radius:8px}
+.wm-t{min-width:0}
+.wm-t b{display:block;font-size:15px;color:var(--brand);line-height:1.15}
+.wm-t span{display:block;font-size:12px;color:var(--muted)}
+.banner{background:var(--warn-bg);border:1px solid var(--input-border);color:var(--warn-ink);border-radius:var(--radius-sm);padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;font-size:14px}
+.banner button{min-height:44px;padding:0 14px;border-radius:8px;border:1px solid var(--warn-ink);background:#fff;color:var(--warn-ink);font-weight:700;font-size:13.5px;cursor:pointer;white-space:nowrap;flex:none}
+.tabbar{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:var(--cream);padding:5px;border-radius:12px;margin-bottom:16px}
+.tabbar button{min-height:46px;border:0;border-radius:9px;background:transparent;color:var(--brand);font:inherit;font-size:13.5px;font-weight:700;cursor:pointer;padding:6px 4px;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.2}
+.tabbar button[aria-current="page"]{background:var(--brand);color:#fff}
+h1{font-family:var(--font-display);font-size:24px;line-height:1.2;color:var(--brand);margin:0 0 6px}
+h2{font-family:var(--font-display);font-size:18px;line-height:1.25;color:var(--brand);margin:0 0 10px}
+.cap{font-size:13px;color:var(--muted);line-height:1.45}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:14px}
+.empty-cta{background:var(--paper);border:1.5px dashed var(--input-border);border-radius:var(--radius);padding:16px;margin-bottom:14px;display:flex;flex-direction:column;gap:10px}
+.hero{background:var(--brand);color:#fff;border-color:var(--brand)}
+.hero .lbl{font-size:12.5px;color:#DCE6F2;font-weight:600}
+.hero .big{font-size:32px;font-weight:800;line-height:1.1;margin:4px 0}
+.hero .sub{font-size:13.5px;color:var(--mint-on-dark);font-weight:600}
+.hero-kpis{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.hero-kpis .hkpi:last-child{grid-column:1 / -1}
+@media(min-width:560px){.hero-kpis{grid-template-columns:repeat(3,1fr)}.hero-kpis .hkpi:last-child{grid-column:auto}}
+.hkpi{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:10px}
+.hkpi .kl{font-size:12.5px;color:#DCE6F2}
+.hkpi .kv{font-size:18px;font-weight:800;color:#fff;margin-top:2px}
+.cmp-grid{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:640px){.cmp-grid{grid-template-columns:repeat(3,1fr)}}
+.cmp-card{background:var(--auto-bg);border:1.5px solid var(--hairline);border-radius:12px;padding:12px}
+.cmp-card.win{background:var(--paper);border-color:var(--accent)}
+.cmp-card .ct{font-size:13px;font-weight:800;color:var(--brand);display:flex;justify-content:space-between;align-items:center;gap:6px}
+.cmp-card .cv{font-size:21px;font-weight:800;color:var(--brand);margin:4px 0 2px}
+.cmp-card.win .cv{color:var(--good-ink)}
+.brief-box{background:var(--paper);border-left:4px solid var(--accent);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:12px 14px;font-size:14.5px;line-height:1.55}
+.brief-box p{margin:0 0 6px}
+.brief-box p:last-child{margin:0}
+.warn-box{background:var(--alert-bg);border:1px solid #E5B4B4;color:var(--alert-ink);border-radius:10px;padding:10px 12px;font-size:13.5px;margin-top:10px;font-weight:600}
+.grid2{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:560px){.grid2{grid-template-columns:1fr 1fr}}
+.grid3{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:560px){.grid3{grid-template-columns:repeat(3,1fr)}}
+.field{display:block;margin-bottom:10px}
+.field:last-child{margin-bottom:0}
+.field .l{display:block;font-size:13.5px;font-weight:700;color:var(--brand);margin-bottom:4px}
+.inp-wrap{display:flex;align-items:center;background:var(--input-bg);border:1.5px solid var(--input-border);border-radius:var(--radius-sm);padding:0 12px;min-height:46px}
+.inp-wrap:focus-within{border-color:var(--accent);box-shadow:0 0 0 2px rgba(31,92,69,.18)}
+.inp-wrap .pre,.inp-wrap .suf{font-weight:700;color:var(--muted)}
+.inp-wrap .pre{margin-right:6px}
+.inp-wrap .suf{margin-left:6px}
+.inp-wrap input,.inp-wrap select{width:100%;border:0;background:transparent;font:inherit;color:var(--input-ink);outline:none;padding:10px 0;min-height:44px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 16px;border-radius:var(--radius-sm);border:1.5px solid var(--accent);background:var(--accent);color:#fff;font:inherit;font-weight:700;font-size:14.5px;cursor:pointer;text-decoration:none}
+.btn.sec{background:#fff;color:var(--brand);border-color:var(--line)}
+.btn.full{width:100%}
+.btn-row{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}
+@media(min-width:520px){.btn-row{grid-template-columns:1fr 1fr}}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.chip-btn{min-height:44px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--brand);font:inherit;font-size:13.5px;font-weight:700;cursor:pointer}
+.chip-btn[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.tag{display:inline-block;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:700;background:var(--auto-bg);color:var(--brand);white-space:nowrap}
+.tag.good{background:var(--good-bg);color:var(--good-ink)}
+.tag.warn{background:var(--warn-bg);color:var(--warn-ink)}
+.row-card{padding:11px 0;border-bottom:1px solid var(--hairline);display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.row-card:last-child{border-bottom:0}
+.act-grp{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.icon-btn{min-width:44px;min-height:44px;padding:0 10px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--brand);font:inherit;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.sched-row{padding:10px 0;border-bottom:1px solid var(--hairline);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;align-items:center}
+.sched-row:last-child{border-bottom:0}
+.sched-meta{font-size:13px;color:var(--muted)}
+.sched-bal{grid-column:1 / -1;font-weight:700;text-align:right}
+@media(min-width:640px){
+  .sched-row{grid-template-columns:96px minmax(0,1fr) 96px 96px minmax(104px,auto)}
+  .sched-bal{grid-column:auto}
+}
+.shell-foot{margin-top:16px;padding-top:12px;border-top:1px solid var(--hairline);font-size:12.5px;color:var(--muted);line-height:1.45}
+.pane{display:none}
+.pane.active{display:block}
+.toast{position:fixed;left:12px;right:12px;bottom:20px;max-width:520px;margin:0 auto;transform:translateY(90px);opacity:0;visibility:hidden;pointer-events:none;background:var(--brand);color:#fff;padding:10px 14px;border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 8px 24px rgba(0,0,0,.22);transition:transform .2s ease,opacity .2s ease;z-index:60;font-size:14px}
+.toast.on{transform:translateY(0);opacity:1;visibility:visible;pointer-events:auto}
+.toast button{min-height:44px;padding:0 14px;border-radius:8px;border:0;background:var(--mint-on-dark);color:var(--brand);font-weight:800;cursor:pointer;align-items:center;justify-content:center}
+/* Logo-free 1-page printable Fridge Chart (CLAUDE.md:14!) */
+.print-only{display:none}
+.fridge-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #ccc;font-size:11pt}
+@media print{
+  body{background:#fff;color:#111;font-size:10.5pt}
+  .shell{max-width:100%;margin:0;padding:0;border:0;box-shadow:none;background:#fff}
+  .no-print,.topbar,.tabbar,.banner,.toast,.pane{display:none!important}
+  #fridgePrintSheet{display:block!important}
+  #fridgePrintSheet h1{font-size:18pt;margin:0 0 6px;color:#1B2A40}
+}
+</style>
+<style id="fa-name-title">.wm-t b,.wm-text b{font-size:19px;font-weight:800;line-height:1.12;letter-spacing:-.2px;white-space:normal}</style>
+<!-- FiledAwayCo UX layer v1 2026-11-27 -->
+<style id="faux-css">/* FiledAwayCo UX layer v1 (2026-11-27): welcome, import, paste, auto-fill. Added on top of the app; app logic unchanged. */
+.faux-ov{position:fixed;inset:0;z-index:2147483000;background:rgba(27,36,48,.55);display:flex;align-items:center;justify-content:center;padding:12px;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:#1B2430}
+.faux-ov[hidden]{display:none}
+.faux-card{background:#FBF8F2;border-radius:18px;max-width:460px;width:100%;max-height:calc(100dvh - 24px);overflow:auto;padding:18px 18px 14px;box-shadow:0 12px 40px rgba(0,0,0,.25)}
+.faux-hd{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.faux-mk{width:34px;height:34px;border-radius:8px;background:#1B2A40;color:#fff;font-weight:800;font-size:14px;display:grid;place-items:center;flex:none}
+.faux-nm{font-weight:800;font-size:15px;color:#1B2A40;line-height:1.15}
+.faux-x{margin-left:auto;min-width:44px;min-height:44px;border:0;background:transparent;font-size:22px;color:#4A5563;cursor:pointer;border-radius:10px}
+.faux-one{font-family:Georgia,"Times New Roman",serif;font-size:21px;line-height:1.2;color:#1B2A40;margin:2px 0 10px;font-weight:700}
+.faux-steps{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:7px}
+.faux-steps li{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;line-height:1.3}
+.faux-steps b.n{flex:none;width:24px;height:24px;border-radius:50%;background:#1F5C45;color:#fff;font-size:13px;display:grid;place-items:center;margin-top:-1px}
+.faux-btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:48px;border-radius:12px;border:0;background:#1F5C45;color:#fff;font:inherit;font-weight:700;font-size:15.5px;cursor:pointer;padding:0 14px;text-align:center}
+.faux-btn.sec{background:#fff;color:#1B2A40;border:1.5px solid #1B2A40}
+.faux-btn.ghost{background:transparent;color:#1B2A40;border:0;text-decoration:underline;min-height:44px}
+.faux-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.faux-trust{font-size:12.5px;color:#4A5563;margin:10px 0 0;display:flex;gap:6px;align-items:flex-start;line-height:1.35}
+.faux-help{min-width:44px;min-height:44px;border-radius:10px;border:1.5px solid #1B2A40;background:#fff;color:#1B2A40;font-weight:800;font-size:17px;cursor:pointer;flex:none;padding:0}
+.faux-fab{position:fixed;right:12px;bottom:12px;z-index:2147482000;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+.faux-h2{font-size:17px;font-weight:800;color:#1B2A40;margin:0 0 4px}
+.faux-sub{font-size:13.5px;color:#4A5563;margin:0 0 10px;line-height:1.35}
+.faux-opt{background:#fff;border:1px solid #D9D1C3;border-radius:12px;padding:10px 12px;margin:0 0 8px}
+.faux-opt b{display:block;font-size:14.5px;color:#1B2A40}
+.faux-opt small{display:block;font-size:12.5px;color:#4A5563;margin:2px 0 8px;line-height:1.35}
+.faux-opt .faux-row{margin-top:0}
+.faux-ta{width:100%;min-height:120px;border:1.5px solid #D9C79A;background:#FFF4D6;border-radius:10px;padding:8px 10px;font:13px/1.4 ui-monospace,Menlo,Consolas,monospace;color:#1A1A1A;box-sizing:border-box}
+.faux-tbl{width:100%;border-collapse:collapse;font-size:12.5px;margin:6px 0 8px}
+.faux-tbl th,.faux-tbl td{border-bottom:1px solid #EDE6DA;padding:5px 4px;text-align:left;vertical-align:top;word-break:break-word}
+.faux-tbl th{color:#4A5563;font-weight:700}
+.faux-tblw{max-height:46dvh;overflow:auto;border:1px solid #EDE6DA;border-radius:8px;background:#fff}
+.faux-err{background:#FBEAEA;color:#962324;border-radius:10px;padding:8px 10px;font-size:13.5px;margin:6px 0}
+.faux-ok{background:#E6F3EC;color:#16533C;border-radius:10px;padding:8px 10px;font-size:13.5px;margin:6px 0}
+.faux-drop{position:fixed;inset:0;z-index:2147483100;background:rgba(31,92,69,.82);color:#fff;display:flex;align-items:center;justify-content:center;font:800 22px/1.3 system-ui,sans-serif;text-align:center;padding:20px}
+.faux-drop[hidden]{display:none}
+.faux-auto{background:#E6F3EC;border:1px solid #9CC9B3;border-radius:12px;padding:10px 12px;margin:0 0 12px;color:#16533C;font-size:14px}
+.faux-auto b{color:#16533C}
+.faux-auto .faux-src{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap;border-top:1px solid #CFE6DA;padding-top:8px;margin-top:8px}
+.faux-auto .faux-btn{width:auto;min-height:44px;font-size:14px}
+.faux-toast{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;z-index:2147483200;background:#1B2A40;color:#fff;border-radius:12px;padding:10px 14px;font:600 14px/1.3 system-ui,sans-serif;display:flex;gap:12px;align-items:center;max-width:calc(100vw - 24px);box-shadow:0 6px 20px rgba(0,0,0,.25)}
+.faux-toast button{min-height:40px;border-radius:8px;border:1px solid #fff;background:transparent;color:#fff;font-weight:700;padding:0 12px;cursor:pointer}
+html.faux-quiet #toast,html.faux-quiet #toast-bar{visibility:hidden!important}
+.faux-sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+@media (max-height:700px){.faux-card{padding:14px 14px 10px}.faux-one{font-size:19px;margin-bottom:8px}.faux-steps{gap:5px;margin-bottom:10px}.faux-steps li{font-size:14px}.faux-btn{min-height:46px}}
+@media print{.faux-ov,.faux-fab,.faux-help,.faux-drop,.faux-toast,.faux-auto{display:none!important}}
+</style>
+<!-- FiledAwayCo app shell v1 2026-11-27 -->
+<meta name="theme-color" content="#1B2A40"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Debt Payoff"><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240"%3E%3Crect x="6" y="6" width="228" height="228" rx="48" fill="%2316283C"/%3E%3Cg transform="translate%2858,38%29 scale%281.1%29"%3E%3Crect x="0" y="0" width="28" height="140" rx="4" fill="%23F5F0E4"/%3E%3Crect x="0" y="0" width="100" height="26" rx="4" fill="%23F5F0E4"/%3E%3Crect x="0" y="54" width="72" height="24" rx="4" fill="%23F5F0E4"/%3E%3C/g%3E%3Crect x="138" y="138" width="86" height="86" rx="18" fill="%23E79A28" stroke="%23F5F0E4" stroke-width="4"/%3E%3Cpath d="M160.36,182.72 L175.84,198.20 L203.36,163.80" fill="none" stroke="%2316283C" stroke-width="16.5" stroke-linecap="round" stroke-linejoin="round"/%3E%3C/svg%3E" data-faa="1"><link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADaUlEQVR4nOxXWUhUYRT+7uKspjY102ZaWRkKFUSrbRAFUVEPifXQQhHag6BSTwVBIFEvJRWE2UNJYpkRCj70ED5oZjERlBsqbqO5jHqdGWfu6My9/Xcy6c7iMly1h76ne875/v98nH+552cRAoaE/avpCCEBCoDi3Y0D7V96g8Zk1pqDGpPGkwsR50jECAUhAr0kWVE/z95AeyUfIMCwPiWZZfGKuJIxpxDrPB6kDbVU10kW7fMlJalYhiqa++QSqGSGwUsp56QAo9dwm9RiM+YJFEVt8eXExBIYE1M44oz2Jx47tAuPcrMwWwiCgAtZd1D1+XtIjiiKIwNN1TGscc325cGSS4hdaUI4oGkaq6cZK+WUctOiRr0JCwQpN01q4QhF4EbsCGtiUURXT/9MqHZ2qmh3r1VmN7dZcOTsNSgJGguM/wKm3ANJG+Jl9oa1sWj7VBzAc4+N4VL2XXw010FRARQ9swKpVSqoNSqEg397CSw/B2T20LANhaXvg3IbmjuguIARm/yOGuRseFDwZqohoCkKOq0maEwgXYHTyc9cwGxx8dQe7EyMgS4ieNw+6kTbIPD0bS1sDpeyAjJO70Lm7iF4usuA8RAk8u89sC4OW64fx/lbJT6XIptQKvveJANJXhWSw3tIT2anINg6sUxsRfwqk3ICpDVXs2LIOOeikPoiBieeGdBHROiYMej1WuUETAWvICKnPAqdHAuDXkCMVpDFFRdQ3RaB7LJINPQxPvteZSTMlgioGRF5J22kUvJGXNFTIOFdnRofWjT4alHhZDKP4m+/S5171IZNJm8An7Xa+XrjIo1AWqSAajS2diHvr3Pf5XcxBcOVnU7UdKjA8TSem3U+3+UdThzeKD8aZMcIVoe3nkWP2YnElGbiS/SfzDrITXvx+GOjUUBB6gjSS6PJ5qOxb60bmSmj8H8DqVm2E5YaFzuh5gkJ30eYkFqwMbdz0pZKXXiGQ0WjBmlbXVIDKuMLwjhWLF3yWvr2ld3aVP2QiDAjTIy6ePzoocBExU364hYLyNjtxGJt4PEc1m9zqOG4KX3/2YReQksnpaglYhmEgccltUjIOYEoVSu0bPCr0OUex3j0ZqGzg8vKz8/3kRR/nMbHmqDXaQP8DENbo6MiKzqGvFfN5fmT60WFmmi+nue/AAAA//8/yZowAAAABklEQVQDAH3QLPbPURqYAAAAAElFTkSuQmCC" data-faa="1"><link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAI8klEQVR4nOzdDXAU5R3H8f/eXS6Xt0uiSTAmEKQaMZCWShpRCeG1UkFerDOKzjgj0rHg6zRAkFFrHaxIS6wt1hY7U61WaKVtCJYKaaFoE7BUCCWBRDIJb0nI+9sll+Tu9vqkGzMxkz8ml92925vfZ5jhCXdkb5Lv7T67e7dnSZg6mwBGYiIABuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAloUM4pc/fmbRnAyLxTAPeEQXLl/5za797/3pIBmBZIjLW4fbrKWH35EkiYyvw9Gdsfh7LreHAp4xNiuPrFoaHGUI9sjw2zPSyQiMsZaurWukINLS1kFGgAkpsBAHsBAHsBAHsBAHsBAHsBAHsBAHsBAHsBAHsBAHsBAHsIxx4q3yfA0Fi+pLdaXlVWQExn7tzFfyeDzHT1VQwLhw+cofCg6RQQR5HM6evlXrXiLwCeYcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwDLQywS9RGO+8lNkRFj1sd2ktrOfX9jx9l/2HzpGQc0Ya45Qa4gPZWjnltSU3MdXUbAzRhwTr0+gADMpaUJ4uI2CGuYcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwMI1wXy0r7C4u7uHglqwX/bJ2bs651VSW31Ta/XFOgp2wX7BOFk+duIMgU8w5wAW4gAW4gAW4gAW4gAW4gAW4gAW4gBWkB8E019sdOQdGdPTUicnJ8bHXRtjktR5L5bs9TY2t9XUNZZVnD/6WWlru4O0hzhUMylpwoa1DyxZMEuStH1zntfrLSgszvv1Hy/W1JOWsFlRx11zv1W4e/vShbdrXYYgFrH823ce3PXThVkzSUtYc6jgoXsXbdn46OCX7oYST1ul3HHR66gVT3NShSgiMslkn2iOudGSMIP+//7ht36y4dlXdu7eq9Wn+yCO8Zp1a9pL6x9Rxl630/nvbe7Ln5AWGkqUvy3JWWGZmyRLqBi/nLvmUm1D0fFS0gA2K+NyTXTUzm3rTab+H6PsqOkqXKdVGUOIRXQVfl8sTozFon+x5WkxCyYNII5x2fj4qqjIcDHwyp7uohflzkukC7Gg7qIfiYVS//5RVM5j95MGEIfvoiLC7lsyVxn3lr0tt1eTjuT2qr4z7yjjB5YvCLOFktoQh++ybvuG2dz/AxTP4L6KPaS73vIPlJWHeBhZmV8ntSEO36WlpigDuaWCZBfpT3bJrZ8PezAqQhy+i782Rhl4mv5LfuJuGthPifviwagIu7K+EzNBZeBp0epzjU/Xmd88Gn6ixnpzvHt1pjN7St+wO8jNZ5VBXKyd1IY1h+/MpoGfnlebbcqRKuuaD6KLzoc6XVJJbchT+fadx8KG3ccrD+Risaj/PEccAaqiwbzxw8ge95d+QW8UR3x6Ub+VPeIIRG1O6am99mFlKA5U6HcJQ8w5Ao7spaf32q90mke81SSpdLJmFBBHwNl+JFzMMLhbV0zvJb0gjsCyvzz0vRPh3K3fTe+Zfp2b9II4Akhlk/mFA+wptKnx7k3z9HgB2CDEESjandK6P9tdnpFfK2S3yTtWtlv1/XVhb0VbDQ5JHMjq7vvqe+bsi6p3mLlbf3ZPR3ykflNRBdYcWhG7o88fiPy4qv9kaYjZ++SdXQ/PdHIvItx2OPz4ZSv3rXLndc6cqN9UYxDWHJpwy/TYnmilDEFsLPI+jtz8tyh5pCf/RxXW359kJ6F3pfY++E399lCGQhyaePczW3nj8LXy/nLb8x8Nn2+erTfn/pU9LXJLgmvb0k7yE8ShicOVI7/05sOztueG9NHqlMTxLu6bxNjk15d3kP9gzqGJ2DCZu2nfGZtHppe/4/B66Zm9dm4SKo6E7ljZMSFK70noUIhDE8vSev9Zxb5uT2xfLGaKsspXORK6aV5XeqIfJqFDIQ5NLEjtWzatp6CMPUl2lZuEe9J67p/h/0sVYs6hlR8ucmRP8WUvQxwJfWGhrkdCOYhDKxYT5S3rHGsfYrKi/5FQDuLQkOjj5ys6546ljzx/HAnlGCOO0+VV9Y0tNHaHi0+Sv20f9fpj83zHrcl+noQOZZgJ6RPPvX7fkuyU5OtGeX/Z6y0pPbc7X6s3GY+esn35QQEdqbra+44CZBI6lGHi+M+pCvGHjEnp48l8qfj8yCdQxCRUTGApwGDOoZP++cfyjjsmj3B+VpmEhpgp0CAO/Yhf/5v3dsy/cfj8Y+vdATQJHQpx+M4jDxwjl6QxbJ1fW9aZM8cxMcZts8gzEl3vP9g6K8X3Sejgot0e9WeyOELqu5a2gbNipugUqvnX6P/jwxk94g+pwRQ9WRk0t6p/8hZx+K6xuV0ZmGK+Rn5iih1YdGNTK6kNcfju1JlKZWCOvYn8xBwzsOiTZedIbZhz+O7I0RJHl1MMTBGJluRs0p0lOcsU0X/gRzyMTz5V/53+iMN3Lrfn/fy/K+OwzA1S5PWkI7G4sMxcZfy7PQdkWf39HcQxLm/8Nr+to//glWSxRcx5xRSbSrowx6ZGZG8VCxVj8QB+9W4BacAcETeJwFe9fa7S8qoVi2dLgtVunbKYTFZP42lx+J40Ygqxpa8Oy1wvWaPFVx6P/GjOq1UXakkDUsLU2QTj89DKhVty1wx+6XV1eZpK3U2lcnM5eVWqxGQ2XXOzJS7dHDdNCokY/OfNW9/alf8P0gbiUMfd82/Le/GJUGsI6aXP5V67afuhIg1PO2Ozoo5z1TUFB4sT4mJvuiFJhwvj7yssXvvsayVllaQlrDlUpnykxrTUG5IS44z+kRqIA1jYlQUW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gDW/wAAAP//NTLMZQAAAAZJREFUAwDtKIpBZJ7kFAAAAABJRU5ErkJggg==" data-faa="1"><script>window.__FA_UX_NO_WELCOME=1;</script><style id="faa-css">/* FiledAwayCo app design system v1 (2026-11-27). Tokens follow the Seller Dashboard look. */
+:root{--faa-navy:#1B2A40;--faa-paper:#FBF8F2;--faa-cream:#E8E0D2;--faa-amber:#E39A2D;--faa-green:#1F5C45;--faa-mint:#7FB89E;--faa-mintbg:#E3F1EA;--faa-slate:#4A5563;--faa-line:#E6DECF;--faa-warn:#FFF4D6;--faa-ui:-apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;--faa-r:18px;--faa-nav:68px}
+html.faa-on.faa-home body>*:not(#faa):not(.faux-ov):not(.faux-toast):not(.faux-drop){display:none!important}
+html.faa-on.faa-home,html.faa-on.faa-home body{background:var(--faa-paper)!important;overflow-x:hidden}
+html.faa-on.faa-home body{margin:0!important;padding:0!important;min-height:0!important}
+html.faa-on.faa-det body{padding-bottom:calc(var(--faa-nav) + 14px + env(safe-area-inset-bottom))!important}
+html.faa-test #faa{display:none!important}
+html.faa-on .faux-help{display:none!important}
+#faa,#faa *{box-sizing:border-box}
+#faa [hidden]{display:none!important}
+#faa{font-family:var(--faa-ui);color:var(--faa-navy);-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+#faa button{font-family:inherit;cursor:pointer}
+#faa .faa-mk{width:34px;height:34px;flex:none;display:block}
+#faa .faa-mk svg{width:100%;height:100%;display:block}
+/* home */
+#faa .faa-homev{display:none;flex-direction:column;gap:10px;max-width:480px;margin:0 auto;min-height:100vh;min-height:100dvh;padding:10px 16px calc(var(--faa-nav) + 12px + env(safe-area-inset-bottom))}
+html.faa-home #faa .faa-homev{display:flex}
+#faa .faa-hd{display:flex;align-items:center;gap:10px}
+#faa .faa-hd .t{min-width:0;flex:1}
+#faa .faa-hd h1{margin:0;font-family:var(--faa-ui);font-size:20px;line-height:1.15;font-weight:800;letter-spacing:-.3px;color:var(--faa-navy)}
+#faa .faa-hd small{display:block;font-size:12px;color:var(--faa-slate);font-weight:600}
+#faa .faa-hd small b{color:var(--faa-green)}
+#faa .faa-one{margin:-2px 0 0;font-size:14.5px;line-height:1.35;color:var(--faa-slate)}
+#faa .faa-samp{display:flex;align-items:center;gap:8px;justify-content:space-between;background:var(--faa-warn);border:1px solid #EBD9A6;border-radius:12px;padding:6px 6px 6px 12px;font-size:14px;color:#5A4712}
+#faa .faa-samp button{min-height:40px;padding:0 12px;border:0;border-radius:10px;background:transparent;color:var(--faa-green);font-weight:800;font-size:14px}
+#faa .faa-hero{position:relative;background:var(--faa-navy);color:#fff;border-radius:var(--faa-r);padding:18px 18px 0;box-shadow:0 10px 30px rgba(27,42,64,.18);overflow:hidden;text-align:left;border:0;width:100%;display:block}
+#faa .faa-hero .k{font-size:12.5px;font-weight:800;letter-spacing:.9px;text-transform:uppercase;color:var(--faa-mint)}
+#faa .faa-hero .big{display:block;font-size:46px;line-height:1.05;font-weight:800;letter-spacing:-1.2px;margin:6px 0 4px;word-break:break-word;font-variant-numeric:tabular-nums}
+#faa .faa-hero .big.md{font-size:36px}#faa .faa-hero .big.sm{font-size:28px}
+#faa .faa-hero .sub{font-size:15px;line-height:1.4;color:#E4E9F0;margin:0 0 14px}
+#faa .faa-hero .st{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(255,255,255,.14);margin:0 -18px}
+#faa .faa-hero .st div{padding:11px 10px 12px 18px;min-width:0}
+#faa .faa-hero .st div+div{border-left:1px solid rgba(255,255,255,.14);padding-left:12px}
+#faa .faa-hero .st b{display:block;font-size:17px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#faa .faa-hero .st span{display:block;font-size:12px;color:#C8D1DC;margin-top:2px;line-height:1.25}
+#faa .faa-hero .more{display:flex;align-items:center;justify-content:center;gap:6px;min-height:46px;border-top:1px solid rgba(255,255,255,.14);margin:0 -18px;font-weight:700;font-size:15px;color:#fff;background:transparent;width:calc(100% + 36px);border-left:0;border-right:0;border-bottom:0}
+#faa .faa-hero.pulse{animation:faaPulse .5s ease}
+@keyframes faaPulse{0%{transform:scale(.97);opacity:.6}100%{transform:none;opacity:1}}
+#faa .faa-hero .vis{display:flex;justify-content:center;margin:8px 0 12px}
+#faa .faa-hero .vis img{width:150px;height:150px;border-radius:12px;background:#fff;padding:8px;image-rendering:pixelated}
+#faa .faa-hero .clock{font-size:76px;letter-spacing:-2px}
+#faa .faa-chips{display:flex;gap:8px;margin:0 0 14px;flex-wrap:wrap}
+#faa .faa-chips button{min-height:44px;padding:0 14px;border-radius:999px;border:1.5px solid rgba(255,255,255,.35);background:transparent;color:#fff;font-weight:700;font-size:14px}
+#faa .faa-chips button[aria-pressed="true"]{background:#fff;color:var(--faa-navy);border-color:#fff}
+#faa .faa-auto{display:flex;align-items:center;gap:10px;background:var(--faa-mintbg);border:1px solid #BFDCCD;border-radius:14px;padding:8px 8px 8px 12px;font-size:14px;line-height:1.3}
+#faa .faa-auto span{flex:1;min-width:0}
+#faa .faa-cta{display:grid;gap:8px}
+#faa .faa-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:54px;padding:0 16px;border-radius:14px;border:0;background:var(--faa-green);color:#fff;font-weight:800;font-size:16.5px;letter-spacing:-.1px;text-align:center;line-height:1.2;transition:transform .12s ease}
+#faa .faa-btn:active{transform:scale(.98)}
+#faa .faa-btn.sec{background:#fff;color:var(--faa-navy);border:1.5px solid var(--faa-navy)}
+#faa .faa-btn.ghost{background:transparent;color:var(--faa-navy);border:1.5px solid var(--faa-line)}
+#faa .faa-btn.sm{min-height:44px;font-size:14.5px;width:auto;flex:none;padding:0 14px;border-radius:12px}
+#faa .faa-trust{margin:auto 0 0;font-size:12.5px;color:var(--faa-slate);text-align:center;line-height:1.35}
+/* nav */
+#faa .faa-nav{position:fixed;left:0;right:0;bottom:0;z-index:2147483000;background:#fff;border-top:1px solid var(--faa-line);padding:0 8px env(safe-area-inset-bottom)}
+#faa .faa-nav .in{max-width:480px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);height:var(--faa-nav)}
+#faa .faa-nav button{border:0;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:12.5px;font-weight:700;color:var(--faa-slate);min-height:48px}
+#faa .faa-nav button svg{width:24px;height:24px}
+#faa .faa-nav button[aria-current="page"]{color:var(--faa-green)}
+#faa .faa-nav .plus span.o{width:46px;height:46px;border-radius:50%;background:var(--faa-green);color:#fff;display:grid;place-items:center;box-shadow:0 6px 16px rgba(31,92,69,.35);margin-top:-14px}
+/* details bar */
+#faa .faa-bar{display:none;position:sticky;top:0;z-index:2147482999;background:var(--faa-navy);color:#fff}
+html.faa-det #faa .faa-bar{display:block}
+#faa .faa-bar .in{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:10px;min-height:52px;padding:0 10px}
+#faa .faa-bar button{min-height:44px;border:0;background:rgba(255,255,255,.12);color:#fff;border-radius:10px;padding:0 12px;font-weight:800;font-size:14.5px}
+#faa .faa-bar b{font-size:15px;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#faa .faa-bar .faa-mk{width:28px;height:28px}
+/* sheets */
+#faa .faa-sh{position:fixed;inset:0;z-index:2147483001;display:flex;align-items:flex-end;justify-content:center;background:rgba(17,26,40,.45);animation:faaFade .18s ease}
+#faa .faa-sh[hidden]{display:none}
+#faa .faa-pan{width:100%;max-width:520px;max-height:94vh;max-height:94dvh;overflow:auto;background:var(--faa-paper);border-radius:22px 22px 0 0;padding:14px 18px calc(18px + env(safe-area-inset-bottom));animation:faaUp .26s cubic-bezier(.2,.8,.2,1)}
+@media (min-width:700px){#faa .faa-sh{align-items:center}#faa .faa-pan{border-radius:22px}}
+@keyframes faaUp{from{transform:translateY(40px);opacity:.4}to{transform:none;opacity:1}}
+@keyframes faaFade{from{opacity:0}to{opacity:1}}
+#faa .faa-pan h2{margin:4px 0 6px;font-size:22px;line-height:1.2;letter-spacing:-.3px}
+#faa .faa-pan p{margin:0 0 12px;font-size:15px;line-height:1.45;color:var(--faa-slate)}
+#faa .faa-pan .grab{width:40px;height:5px;border-radius:3px;background:#D8D0C1;margin:0 auto 10px}
+#faa .faa-list{display:grid;gap:8px;margin:0 0 12px}
+#faa .faa-item{display:flex;align-items:center;gap:12px;width:100%;min-height:60px;padding:10px 14px;border-radius:14px;border:1.5px solid var(--faa-line);background:#fff;color:var(--faa-navy);text-align:left;font-size:15.5px;font-weight:700;line-height:1.25}
+#faa .faa-item small{display:block;font-weight:500;font-size:13px;color:var(--faa-slate);margin-top:2px}
+#faa .faa-item .ic{width:38px;height:38px;border-radius:10px;background:var(--faa-mintbg);display:grid;place-items:center;flex:none;font-size:18px}
+#faa ol.faa-steps{margin:0 0 12px;padding-left:20px;font-size:15px;line-height:1.5;color:var(--faa-navy)}
+/* wizard */
+#faa .faa-wz .dots{display:flex;gap:6px;margin:2px 0 14px}
+#faa .faa-wz .dots i{height:6px;flex:1;border-radius:3px;background:#DED6C7}
+#faa .faa-wz .dots i.on{background:var(--faa-green)}
+#faa .faa-wz .qn{font-size:13px;font-weight:800;color:var(--faa-green);letter-spacing:.6px;text-transform:uppercase}
+#faa .faa-wz label.q{display:block;font-size:24px;font-weight:800;line-height:1.2;letter-spacing:-.3px;margin:6px 0 6px}
+#faa .faa-wz .help{font-size:14.5px;color:var(--faa-slate);margin:0 0 12px;line-height:1.4}
+#faa .faa-wz .fld{display:flex;align-items:center;gap:6px;border:2px solid var(--faa-navy);border-radius:14px;background:#fff;padding:0 14px;min-height:62px}
+#faa .faa-wz .fld span{font-size:24px;font-weight:800;color:var(--faa-slate)}
+#faa .faa-wz .fld input{flex:1;min-width:0;border:0;outline:0;background:transparent;font:800 26px var(--faa-ui);color:var(--faa-navy);padding:10px 0}
+#faa .faa-wz .opts{display:grid;gap:8px}
+#faa .faa-wz .opts button{min-height:56px;border-radius:14px;border:1.5px solid var(--faa-line);background:#fff;font-size:16.5px;font-weight:700;color:var(--faa-navy);text-align:left;padding:8px 16px}
+#faa .faa-wz .opts button[aria-pressed="true"]{border:2px solid var(--faa-green);background:var(--faa-mintbg)}
+#faa .faa-wz .nav2{display:grid;grid-template-columns:1fr 2fr;gap:8px;margin-top:16px}
+#faa .faa-toast{position:fixed;left:50%;bottom:calc(var(--faa-nav) + 16px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:2147483002;background:var(--faa-navy);color:#fff;border-radius:14px;padding:10px 10px 10px 16px;display:flex;gap:10px;align-items:center;font-size:14.5px;max-width:92vw;box-shadow:0 8px 24px rgba(0,0,0,.25);animation:faaUp .22s ease}
+#faa .faa-toast button{min-height:40px;border:0;border-radius:10px;background:rgba(255,255,255,.15);color:#fff;font-weight:800;padding:0 12px}
+/* in-app logo swap: the products' "fa" tile becomes the F mark used on the live Seller Dashboard */
+html.faa-on .mark,html.faa-on .faux-mk{font-size:0!important;color:transparent!important;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240' width='240' height='240'%3E%3Crect x='6' y='6' width='228' height='228' rx='48' fill='%2316283C'/%3E%3Cg transform='translate%2863,40%29 scale%281.14%29'%3E%3Crect x='0' y='0' width='28' height='140' rx='3.2' fill='%23F5F0E4'/%3E%3Crect x='0' y='0' width='100' height='26' rx='3.2' fill='%23F5F0E4'/%3E%3Crect x='0' y='54' width='72' height='24' rx='3.2' fill='%23F5F0E4'/%3E%3C/g%3E%3Crect x='148' y='148' width='74' height='74' rx='16' fill='%23E79A28' stroke='%23F5F0E4' stroke-width='5'/%3E%3Cpath d='M167.24,186.48 L180.56,199.80 L204.24,170.20' fill='none' stroke='%2316283C' stroke-width='13.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat!important;border:0!important}
+ /* Seller Dashboard keeps its own header: swap its in-app mark for the Option B tile by CSS only */
+html.faa-on .homebrand>svg,html.faa-on .wm>svg,html.faa-on .brand>svg,html.faa-on .fp-brand>svg{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240' width='240' height='240'%3E%3Crect x='6' y='6' width='228' height='228' rx='48' fill='%2316283C'/%3E%3Cg transform='translate%2863,40%29 scale%281.14%29'%3E%3Crect x='0' y='0' width='28' height='140' rx='3.2' fill='%23F5F0E4'/%3E%3Crect x='0' y='0' width='100' height='26' rx='3.2' fill='%23F5F0E4'/%3E%3Crect x='0' y='54' width='72' height='24' rx='3.2' fill='%23F5F0E4'/%3E%3C/g%3E%3Crect x='148' y='148' width='74' height='74' rx='16' fill='%23E79A28' stroke='%23F5F0E4' stroke-width='5'/%3E%3Cpath d='M167.24,186.48 L180.56,199.80 L204.24,170.20' fill='none' stroke='%2316283C' stroke-width='13.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
+html.faa-on .homebrand>svg>*,html.faa-on .wm>svg>*,html.faa-on .brand>svg>*,html.faa-on .fp-brand>svg>*{display:none}
+html.faa-on #tabs [data-v="settings"]{display:none!important}
+.faa-gear{margin-left:auto;width:44px;height:44px;border:0;border-radius:12px;background:transparent;color:var(--faa-slate);display:grid;place-items:center;cursor:pointer}.faa-gear svg{width:22px;height:22px}
+.faa-sdline{margin:-4px 0 6px;font:500 13.5px/1.35 var(--faa-ui);color:var(--faa-slate)}
+@media (prefers-reduced-motion:reduce){#faa *{animation:none!important;transition:none!important}}
+@media print{#faa{display:none!important}html.faa-on.faa-home body>*{display:revert!important}}
+@media (max-height:700px){#faa .faa-hero .big{font-size:38px}#faa .faa-btn{min-height:50px}#faa .faa-homev{gap:8px}}
+</style>
+<!-- /FiledAwayCo app shell -->
+</head>
+<body>
+<div class="shell">
+  <div class="topbar no-print">
+    <div class="wm">
+      <div class="mark" aria-hidden="true">fa</div>
+      <div class="wm-t"><b>Debt Payoff Planner</b><span>Snowball · Avalanche · Custom Order</span></div>
+    </div>
+    <button type="button" class="btn sec" id="topSampleBtn" style="min-height:44px;padding:0 14px;font-size:13.5px;flex:none;white-space:nowrap">Try sample</button>
+  </div>
+
+  <div class="banner no-print" id="sampleBanner" data-sample-banner="1" style="display:none">
+    <span><b>Sample debts</b> — Maya's worked 4-debt example, not your balances</span>
+    <button type="button" id="clearSampleBtn">Clear sample</button>
+  </div>
+
+  <nav class="tabbar no-print" aria-label="Main navigation">
+    <button type="button" data-tab="plan" aria-current="page"><span>Compare &amp; Plan</span></button>
+    <button type="button" data-tab="schedule"><span>Schedule</span></button>
+    <button type="button" data-tab="export"><span>Chart &amp; Export</span></button>
+  </nav>
+
+  <!-- TAB 1: COMPARE & PLAN -->
+  <section class="pane active" id="pane-plan" aria-label="Compare and Plan">
+    <h1>Debt Payoff Simulator</h1>
+    <p class="cap" style="margin:0 0 12px">Same monthly budget — compare Snowball, Avalanche, Custom Order, and Minimums Only on your real balances. Payoff dates are illustrative, not a prediction.</p>
+
+    <div class="empty-cta" id="emptyHeroCta" style="display:none">
+      <div><b>See Snowball vs Avalanche in one tap:</b> load Maya's 4-debt example ($13,400 total, $650/mo budget — where Avalanche saves $177 vs Snowball and $4,007 vs minimums only), or add your own debts below.</div>
+      <button type="button" class="btn full" id="primarySampleBtn">Load Maya's sample</button>
+    </div>
+
+    <div class="card hero">
+      <div class="lbl" id="heroLbl">Active payoff plan</div>
+      <div class="big num" id="heroDate">Add your debts below</div>
+      <div class="sub num" id="heroSub">Enter balances, APRs, and your monthly budget to calculate your illustrative payoff path.</div>
+      <div class="hero-kpis">
+        <div class="hkpi"><div class="kl">Total debt</div><div class="kv num" id="kDebt">$0</div></div>
+        <div class="hkpi"><div class="kl">Total interest</div><div class="kv num" id="kInt">$0</div></div>
+        <div class="hkpi"><div class="kl">Interest saved vs mins</div><div class="kv num" id="kSave">$0</div></div>
+      </div>
+      <div id="planWarnBox"></div>
+    </div>
+
+    <div class="card">
+      <h2>Strategy &amp; budget controls</h2>
+      <div class="chips" role="group" aria-label="Payoff strategy">
+        <button type="button" class="chip-btn" data-strat="avalanche" aria-pressed="true">Avalanche (highest APR)</button>
+        <button type="button" class="chip-btn" data-strat="snowball" aria-pressed="false">Snowball (smallest bal)</button>
+        <button type="button" class="chip-btn" data-strat="custom" aria-pressed="false">Custom order (↑ / ↓)</button>
+      </div>
+      <div class="grid3">
+        <label class="field"><span class="l">Monthly budget ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="inpBudget" inputmode="decimal" placeholder="0"></span></label>
+        <label class="field"><span class="l">Recurring extra ($/mo)</span><span class="inp-wrap"><span class="pre">$</span><input id="inpExtra" inputmode="decimal" placeholder="0"></span></label>
+        <label class="field"><span class="l">Plan start month</span><span class="inp-wrap"><input type="month" id="inpStart"></span></label>
+      </div>
+      <div style="margin-top:8px">
+        <span class="cap" style="display:block;font-weight:700;color:var(--brand);margin-bottom:6px">Quick extra-payment compare</span>
+        <div class="chips" style="margin-bottom:6px">
+          <button type="button" class="chip-btn num" data-epill="0" aria-pressed="true">+$0/mo</button>
+          <button type="button" class="chip-btn num" data-epill="50" aria-pressed="false">+$50/mo</button>
+          <button type="button" class="chip-btn num" data-epill="100" aria-pressed="false">+$100/mo</button>
+          <button type="button" class="chip-btn num" data-epill="250" aria-pressed="false">+$250/mo</button>
+        </div>
+      </div>
+      <div class="grid2" style="margin-top:8px">
+        <label class="field"><span class="l">One-time lump-sum windfall ($, optional)</span><span class="inp-wrap"><span class="pre">$</span><input id="inpWindAmt" inputmode="decimal" placeholder="0 (tax refund / bonus)"></span></label>
+        <label class="field"><span class="l">Apply windfall in month #</span><span class="inp-wrap"><input id="inpWindMo" inputmode="numeric" placeholder="1"></span></label>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Side-by-side comparison</h2>
+      <div class="cmp-grid" id="cmpGrid"></div>
+    </div>
+
+    <div class="card">
+      <h2>Strategy brief (on-device math)</h2>
+      <div class="brief-box" id="stratBrief"></div>
+    </div>
+
+    <div class="card">
+      <h2>Your debts (<span class="h-num" id="debtCount">0</span>)</h2>
+      <form id="debtForm">
+        <div class="grid2">
+          <label class="field"><span class="l">Debt name</span><span class="inp-wrap"><input id="dName" placeholder="e.g. Store Card" required></span></label>
+          <label class="field"><span class="l">Current balance ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="dBal" inputmode="decimal" placeholder="1800" required></span></label>
+          <label class="field"><span class="l">APR (%)</span><span class="inp-wrap"><input id="dApr" inputmode="decimal" placeholder="26.99" required><span class="suf">%</span></span></label>
+          <label class="field"><span class="l">Minimum payment ($/mo)</span><span class="inp-wrap"><span class="pre">$</span><input id="dMin" inputmode="decimal" placeholder="55" required></span></label>
+        </div>
+        <button type="submit" class="btn full" style="margin-top:10px">Add debt</button>
+      </form>
+      <div id="debtList" style="margin-top:12px"></div>
+    </div>
+  </section>
+
+  <!-- TAB 2: MONTH-BY-MONTH SCHEDULE -->
+  <section class="pane" id="pane-schedule" aria-label="Month by Month Schedule">
+    <h1>Month-by-Month Payoff Schedule</h1>
+    <p class="cap" style="margin:0 0 12px">Each month shows your exact <b>Focus Debt</b> — the one receiving every spare dollar above minimums — plus monthly interest and remaining balance.</p>
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+        <h2 style="margin:0" id="schedTitle">Schedule</h2>
+        <div class="chips" style="margin:0">
+          <button type="button" class="chip-btn" data-sview="12" aria-pressed="true">First 12 months</button>
+          <button type="button" class="chip-btn" data-sview="all" aria-pressed="false">All months</button>
+        </div>
+      </div>
+      <div id="schedList"></div>
+    </div>
+  </section>
+
+  <!-- TAB 3: FRIDGE CHART & EXPORT -->
+  <section class="pane" id="pane-export" aria-label="Fridge Chart and Export">
+    <h1>Fridge Chart, Calendar &amp; Export</h1>
+    <p class="cap" style="margin:0 0 12px">Print a clean, logo-free payoff checklist for your fridge, add payoff milestone dates to your calendar, or send freed monthly cash to our First $100K Banked Planner.</p>
+
+    <div class="card">
+      <h2>Printable <span class="h-num">1</span>-page fridge payoff chart</h2>
+      <p class="cap" style="margin:0 0 10px">Prints with <b>zero shop logo or app buttons</b> so you can check off each debt as it hits $0.</p>
+      <button type="button" class="btn full" id="printFridgeBtn">Print 1-page fridge chart</button>
+    </div>
+
+    <div class="card">
+      <h2>Calendar, workbook &amp; bridge exports</h2>
+      <div class="btn-row">
+        <button type="button" class="btn" id="exportCsvBtn">Export Debts CSV (formula-safe)</button>
+        <button type="button" class="btn sec" id="icsMilestonesBtn">Payoff Milestones (.ics)</button>
+      </div>
+      <div class="btn-row">
+        <button type="button" class="btn sec" id="bridgeOutBtn">Export freed cash to First $100K (.json)</button>
+        <button type="button" class="btn sec" id="backupBtn">Backup plan (.json)</button>
+      </div>
+      <button type="button" class="btn sec full" id="restorePickBtn" style="margin-top:10px">Restore from backup (.json)</button>
+      <input type="file" id="restoreFile" accept=".json,application/json" style="display:none">
+      <p class="cap" style="margin:10px 0 0">Sample debts are excluded automatically from CSV, calendar, and bridge exports. Your debts are saved only in this browser on this device — nothing is uploaded. Use “Backup plan (.json)” to keep a copy before you clear your browser or switch phones.</p>
+    </div>
+  </section>
+
+  <footer class="shell-foot no-print">Planning tool — not financial, legal, or credit advice. Payoff dates are illustrative, not a prediction. If minimums exceed your budget, a nonprofit NFCC credit counselor outranks any spreadsheet. Support: filedawayco@gmail.com</footer>
+
+  <!-- STRICTLY LOGO-FREE PRINTABLE FRIDGE CHART (CLAUDE.md:14) -->
+  <section id="fridgePrintSheet" class="print-only"></section>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><span id="toastMsg"></span><button type="button" id="toastUndo" style="display:none">Undo</button></div>
+
+<script>
+(function(){
+"use strict";
+var STORE_KEY = "fac_debt_payoff_v2";
+var undoFn = null, toastT = null;
+var schedView = "12";
+
+function clone(o){ return JSON.parse(JSON.stringify(o)); }
+function esc(s){ return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+function localISO(d){ return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
+function todayISO(){ return localISO(new Date()); }
+function defaultStartYM(){ var d = new Date(); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0"); }
+function fmt$(n){ var v = Math.round((Number(n) || 0) * 100) / 100; return (v < 0 ? "−" : "") + "$" + Math.abs(v).toLocaleString("en-US", { minimumFractionDigits:2, maximumFractionDigits:2 }); }
+function fmt$0(n){ var v = Number(n) || 0; return (v < 0 ? "−" : "") + "$" + Math.round(Math.abs(v)).toLocaleString("en-US"); }
+function csvCell(v){ v = String(v == null ? "" : v); return /[",\n\r]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }
+function csvText(v){ v = String(v == null ? "" : v); if (/^\s*[=+\-@]/.test(v) || /^[\t\r]/.test(v)) v = "'" + v; return csvCell(v); }
+function round2(n){ return Math.round((Number(n) + 1e-12) * 100) / 100; }
+
+function parseNumStrict(raw){
+  if (raw == null) return null;
+  var s = String(raw).trim().replace(/^\$/, "").replace(/%$/, "").replace(/,/g, "").trim();
+  if (!s) return null;
+  if (!/^(?:\d+(?:\.\d{1,4})?|\.\d{1,4})$/.test(s)) return null;
+  var v = parseFloat(s);
+  if (!isFinite(v) || v > 1e9) return null;
+  return v;
+}
+function parsePos(raw){ var v = parseNumStrict(raw); return (v == null || v < 0) ? 0 : v; }
+
+function addMonthsLabel(ym, offset){
+  var p = String(ym || "2026-12").split("-");
+  var y = parseInt(p[0], 10) || 2026, m = (parseInt(p[1], 10) || 12) - 1;
+  var d = new Date(y, m + offset, 1);
+  return d.toLocaleDateString("en-US", { month:"short", year:"numeric" });
+}
+function addMonthsISO(ym, offset){
+  var p = String(ym || "2026-12").split("-");
+  var y = parseInt(p[0], 10) || 2026, m = (parseInt(p[1], 10) || 12) - 1;
+  var d = new Date(y, m + offset, 1);
+  return d.getFullYear() + String(d.getMonth() + 1).padStart(2, "0") + "01";
+}
+
+/* ---------- Exact Workbook-Parity Payoff Engine (ROUND(bal * apr / 1200, 2)) ---------- */
+function simulatePlan(debtsIn, budget, strategy, extraMo, windAmt, windMo, startYM){
+  var active = (debtsIn || []).filter(function(d){ return Number(d.bal) > 0; }).map(function(d, idx){
+    return { idx:idx, name:String(d.name || ("Debt " + (idx + 1))), bal:round2(d.bal), apr:Math.max(0, Number(d.apr) || 0), min:Math.max(0, round2(d.min)), paidMo:null };
+  });
+  if (!active.length) {
+    return { empty:true, unpaid:false, reason:"", months:0, totalInterest:0, totalDebt:0, totalMins:0, schedule:[], milestones:[], endLabel:"" };
+  }
+  var totalDebt = round2(active.reduce(function(a, d){ return a + d.bal; }, 0));
+  var totalMins = round2(active.reduce(function(a, d){ return a + d.min; }, 0));
+  var baseBudget = strategy === "minimums" ? totalMins : Math.max(0, round2(budget) + Math.max(0, round2(extraMo)));
+  if (strategy !== "minimums" && baseBudget < totalMins - 0.005) {
+    return { empty:false, unpaid:true, reason:"budget_below_mins", months:0, totalInterest:0, totalDebt:totalDebt, totalMins:totalMins, schedule:[], milestones:[], endLabel:"" };
+  }
+  var wAmt = strategy === "minimums" ? 0 : Math.max(0, round2(windAmt));
+  var wMo = Math.max(1, parseInt(windMo, 10) || 1);
+
+  var bals = active.map(function(d){ return d.bal; });
+  var totalInterest = 0;
+  var schedule = [];
+  var MAX_MO = 600;
+  var stalled = 0;
+
+  for (var mo = 1; mo <= MAX_MO; mo++){
+    var startSum = round2(bals.reduce(function(a, b){ return a + b; }, 0));
+    if (startSum <= 0.005) break;
+
+    var ints = [], minPays = [], afterMin = [], sumMinPaid = 0, moInt = 0;
+    for (var i = 0; i < active.length; i++){
+      if (bals[i] <= 0.005) { ints.push(0); minPays.push(0); afterMin.push(0); continue; }
+      var intr = round2(bals[i] * active[i].apr / 1200);
+      var mp = round2(Math.min(active[i].min, bals[i] + intr));
+      var am = round2(bals[i] + intr - mp);
+      ints.push(intr); minPays.push(mp); afterMin.push(am);
+      sumMinPaid = round2(sumMinPaid + mp);
+      moInt = round2(moInt + intr);
+    }
+
+    var pool = strategy === "minimums" ? 0 : round2(Math.max(0, baseBudget - sumMinPaid) + (wAmt > 0 && mo === wMo ? wAmt : 0));
+    // Build target order matching workbook tie-breaking (lowest post-min bal for snowball, highest APR for avalanche, row order for custom)
+    var order = [];
+    for (var k = 0; k < active.length; k++){ if (afterMin[k] > 0.005) order.push(k); }
+    if (strategy === "snowball") {
+      order.sort(function(a, b){ return afterMin[a] !== afterMin[b] ? afterMin[a] - afterMin[b] : a - b; });
+    } else if (strategy === "avalanche") {
+      order.sort(function(a, b){ return active[b].apr !== active[a].apr ? active[b].apr - active[a].apr : a - b; });
+    }
+    var focusName = order.length ? active[order[0]].name : "—";
+    var remPool = pool;
+    var extraPays = active.map(function(){ return 0; });
+    for (var oi = 0; oi < order.length; oi++){
+      if (remPool <= 0.005) break;
+      var idx = order[oi];
+      var ep = round2(Math.min(afterMin[idx], remPool));
+      extraPays[idx] = ep;
+      remPool = round2(remPool - ep);
+    }
+
+    var endSum = 0, moPaid = 0;
+    for (var j = 0; j < active.length; j++){
+      if (bals[j] <= 0.005) continue;
+      var newBal = round2(Math.max(0, afterMin[j] - extraPays[j]));
+      var paidJ = round2(minPays[j] + extraPays[j]);
+      moPaid = round2(moPaid + paidJ);
+      if (bals[j] > 0.005 && newBal <= 0.005 && active[j].paidMo == null) active[j].paidMo = mo;
+      bals[j] = newBal;
+      endSum = round2(endSum + newBal);
+    }
+    totalInterest = round2(totalInterest + moInt);
+    schedule.push({ mo:mo, label:addMonthsLabel(startYM, mo - 1), focus:strategy === "minimums" ? "Minimums only" : focusName, interest:moInt, paid:moPaid, endBal:endSum });
+
+    // Negative amortization / non-decreasing balance guard
+    if (endSum >= startSum - 0.005 && (wAmt === 0 || mo > wMo)) {
+      stalled++;
+      if (stalled >= 3) {
+        return { empty:false, unpaid:true, reason:"negative_amortization", months:0, totalInterest:totalInterest, totalDebt:totalDebt, totalMins:totalMins, schedule:schedule, milestones:[], endLabel:"" };
+      }
+    } else {
+      stalled = 0;
+    }
+    if (endSum <= 0.005) break;
+  }
+
+  var remFinal = round2(bals.reduce(function(a, b){ return a + b; }, 0));
+  if (remFinal > 0.01) {
+    return { empty:false, unpaid:true, reason:"exceeds_horizon", months:MAX_MO, totalInterest:totalInterest, totalDebt:totalDebt, totalMins:totalMins, schedule:schedule, milestones:[], endLabel:"" };
+  }
+  var months = schedule.length;
+  var milestones = active.map(function(d){ return { name:d.name, bal:d.bal, apr:d.apr, paidMo:d.paidMo || months, label:addMonthsLabel(startYM, (d.paidMo || months) - 1) }; })
+    .sort(function(a, b){ return a.paidMo - b.paidMo; });
+  return {
+    empty:false, unpaid:false, reason:"", months:months, totalInterest:totalInterest, totalDebt:totalDebt, totalMins:totalMins,
+    schedule:schedule, milestones:milestones, endLabel:addMonthsLabel(startYM, months - 1),
+    firstWin:milestones.length ? milestones[0] : null
+  };
+}
+
+function defaultState(){
+  return { sample:false, prevSettings:null, strategy:"avalanche", budget:0, extra:0, windAmt:0, windMo:1, startYM:defaultStartYM(), debts:[] };
+}
+function sampleState(){
+  // Diverging 4-debt Maya example (100% penny parity with EXAMPLE — 1 DEBT LIST & EXAMPLE — 3 STRATEGY COMPARE!):
+  // Snowball: 24 mo, $1,857.83 | Avalanche: 24 mo, $1,681.20 (saves $176.63!) | Minimums Only: 73 mo, $5,688.49
+  return {
+    sample:true, prevSettings:null, strategy:"avalanche", budget:650, extra:0, windAmt:0, windMo:1, startYM:"2026-12",
+    debts:[
+      { id:"s1", name:"Medical Plan (0%)", bal:900,  apr:0.00,  min:50,  sample:true },
+      { id:"s2", name:"Store Card",        bal:1800, apr:26.99, min:55,  sample:true },
+      { id:"s3", name:"Credit Card",       bal:4200, apr:21.99, min:105, sample:true },
+      { id:"s4", name:"Auto Loan",         bal:6500, apr:6.90,  min:190, sample:true }
+    ]
+  };
+}
+function sanitizeDebt(d, idx){
+  var num = function(v){ var n = Number(v); return (isFinite(n) && n >= 0 && n <= 1e9) ? n : 0; };
+  return {
+    id: String((d && d.id) || ("d-" + Date.now() + "-" + idx)),
+    name: String((d && d.name) || ("Debt " + (idx + 1))),
+    bal: round2(num(d && d.bal)),
+    apr: Math.min(99.99, num(d && d.apr)),
+    min: round2(num(d && d.min)),
+    sample: Boolean(d && d.sample)
+  };
+}
+function sanitizeState(raw){
+  var st = defaultState();
+  if (!raw || typeof raw !== "object") return st;
+  var okS = (raw.strategy === "avalanche" || raw.strategy === "snowball" || raw.strategy === "custom") ? raw.strategy : "avalanche";
+  st.sample = Boolean(raw.sample);
+  st.strategy = okS;
+  st.budget = Math.max(0, round2(Number(raw.budget) || 0));
+  st.extra = Math.max(0, round2(Number(raw.extra) || 0));
+  st.windAmt = Math.max(0, round2(Number(raw.windAmt) || 0));
+  st.windMo = Math.max(1, parseInt(raw.windMo, 10) || 1);
+  st.startYM = (typeof raw.startYM === "string" && /^\d{4}-\d{2}$/.test(raw.startYM)) ? raw.startYM : defaultStartYM();
+  st.prevSettings = raw.prevSettings && typeof raw.prevSettings === "object" ? raw.prevSettings : null;
+  st.debts = Array.isArray(raw.debts) ? raw.debts.map(sanitizeDebt).filter(function(d){ return d.bal > 0; }) : [];
+  return st;
+}
+function loadState(){
+  try {
+    var raw = localStorage.getItem(STORE_KEY);
+    if (raw) {
+      var o = JSON.parse(raw);
+      if (o && Array.isArray(o.debts)) return sanitizeState(o);
+    }
+  } catch(e){}
+  return defaultState();
+}
+var state = loadState();
+function persist(){ try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch(e){} }
+
+function icsEsc(s){ return String(s || "").replace(/\\/g, "\\\\").replace(/,/g, "\\,").replace(/;/g, "\\;").replace(/\r?\n/g, "\\n"); }
+function buildMilestonesICS(plan, startYM){
+  var stamp = new Date().toISOString().replace(/[-:]/g, "").slice(0, 15) + "Z";
+  var lines = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//FiledAwayCo//Debt Payoff Simulator//EN","CALSCALE:GREGORIAN"];
+  plan.milestones.forEach(function(m, idx){
+    lines.push("BEGIN:VEVENT");
+    lines.push("UID:fac-debt-ms-" + idx + "-" + m.paidMo + "@filedawayco.local");
+    lines.push("DTSTAMP:" + stamp);
+    lines.push("DTSTART;VALUE=DATE:" + addMonthsISO(startYM, m.paidMo - 1));
+    lines.push("SUMMARY:" + icsEsc("Debt Payoff Milestone: " + m.name + " paid off"));
+    lines.push("DESCRIPTION:" + icsEsc("Illustrative milestone (Month " + m.paidMo + ") from Debt Payoff Simulator. Roll this payment into your next target debt."));
+    lines.push("END:VEVENT");
+  });
+  lines.push("END:VCALENDAR");
+  return lines.join("\r\n") + "\r\n";
+}
+
+function download(name, text, mime){
+  var b = new Blob([text], { type:mime }), u = URL.createObjectURL(b), a = document.createElement("a");
+  a.href = u; a.download = name; document.body.appendChild(a); a.click();
+  setTimeout(function(){ URL.revokeObjectURL(u); a.remove(); }, 500);
+}
+function showToast(msg, fn){
+  var el = document.getElementById("toast");
+  document.getElementById("toastMsg").textContent = msg;
+  var ub = document.getElementById("toastUndo");
+  undoFn = fn || null;
+  ub.style.display = fn ? "inline-flex" : "none";
+  el.classList.add("on");
+  clearTimeout(toastT);
+  toastT = setTimeout(function(){ el.classList.remove("on"); undoFn = null; }, fn ? 7000 : 2800);
+}
+
+/* ---------- Render ---------- */
+function renderBanner(){
+  var hasS = state.sample || state.debts.some(function(d){ return d.sample; });
+  state.sample = hasS;
+  document.getElementById("sampleBanner").style.display = hasS ? "flex" : "none";
+  document.getElementById("topSampleBtn").style.display = hasS ? "none" : "inline-flex";
+  document.getElementById("emptyHeroCta").style.display = !state.debts.length ? "flex" : "none";
+}
+
+function renderAll(){
+  renderBanner();
+  document.getElementById("debtCount").textContent = String(state.debts.length);
+  document.querySelectorAll("[data-strat]").forEach(function(b){ b.setAttribute("aria-pressed", String(b.dataset.strat === state.strategy)); });
+  document.querySelectorAll("[data-epill]").forEach(function(b){ b.setAttribute("aria-pressed", String(Number(b.dataset.epill) === Number(state.extra))); });
+
+  var av = simulatePlan(state.debts, state.budget, "avalanche", state.extra, state.windAmt, state.windMo, state.startYM);
+  var sn = simulatePlan(state.debts, state.budget, "snowball", state.extra, state.windAmt, state.windMo, state.startYM);
+  var cu = simulatePlan(state.debts, state.budget, "custom", state.extra, state.windAmt, state.windMo, state.startYM);
+  var mi = simulatePlan(state.debts, state.budget, "minimums", 0, 0, 1, state.startYM);
+  var active = state.strategy === "snowball" ? sn : (state.strategy === "custom" ? cu : av);
+  var activeName = state.strategy === "snowball" ? "Snowball" : (state.strategy === "custom" ? "Custom Order" : "Avalanche");
+
+  // Hero & Warning Box
+  var warnBox = document.getElementById("planWarnBox");
+  if (active.empty) {
+    document.getElementById("heroLbl").textContent = "Your payoff plan";
+    document.getElementById("heroDate").textContent = "Add your debts below";
+    document.getElementById("heroSub").textContent = "Enter balances, APRs, and your monthly budget — or load Maya's 4-debt sample above.";
+    document.getElementById("kDebt").textContent = "$0";
+    document.getElementById("kInt").textContent = "$0";
+    document.getElementById("kSave").textContent = "$0";
+    warnBox.innerHTML = "";
+  } else if (active.unpaid) {
+    document.getElementById("heroLbl").textContent = activeName + " plan — action needed";
+    document.getElementById("heroDate").textContent = "Not paying down yet";
+    document.getElementById("heroSub").textContent = active.reason === "budget_below_mins"
+      ? ("Monthly budget (" + fmt$0(state.budget + state.extra) + ") is below total minimums (" + fmt$0(active.totalMins) + ").")
+      : "Monthly interest is outpacing payments on one or more debts (negative amortization).";
+    document.getElementById("kDebt").textContent = fmt$0(active.totalDebt);
+    document.getElementById("kInt").textContent = "—";
+    document.getElementById("kSave").textContent = "—";
+    warnBox.innerHTML = '<div class="warn-box">Raise your monthly budget above ' + fmt$0(active.totalMins) + '/mo (and above monthly interest) to generate an illustrative payoff schedule. If minimums are unaffordable, reach out to a nonprofit NFCC credit counselor.</div>';
+  } else {
+    var savedVsMin = mi.unpaid ? null : round2(Math.max(0, mi.totalInterest - active.totalInterest));
+    document.getElementById("heroLbl").textContent = activeName + " · Illustrative debt-free date (not a prediction)";
+    document.getElementById("heroDate").textContent = active.endLabel + " (" + active.months + " mo)";
+    document.getElementById("heroSub").textContent = "Budget: " + fmt$0(state.budget + state.extra) + "/mo" + (state.windAmt > 0 ? (" + " + fmt$0(state.windAmt) + " windfall in Mo " + state.windMo) : "") +
+      (active.firstWin ? (" · First win: " + active.firstWin.name + " in Mo " + active.firstWin.paidMo) : "");
+    document.getElementById("kDebt").textContent = fmt$0(active.totalDebt);
+    document.getElementById("kInt").textContent = fmt$(active.totalInterest);
+    document.getElementById("kSave").textContent = savedVsMin != null ? fmt$(savedVsMin) : "Clears unpaid debt";
+    warnBox.innerHTML = "";
+  }
+
+  // Side-by-side comparison cards (0 table clipping on 375px!)
+  var cmpEl = document.getElementById("cmpGrid");
+  if (active.empty) {
+    cmpEl.innerHTML = '<p class="cap" style="margin:0;grid-column:1/-1">Add debts to compare Avalanche, Snowball, and Minimums Only side by side.</p>';
+  } else {
+    var cards = [
+      { key:"avalanche", title:"Avalanche (highest APR)", res:av },
+      { key:"snowball", title:"Snowball (smallest bal)", res:sn },
+      state.strategy === "custom" ? { key:"custom", title:"Custom order", res:cu } : { key:"minimums", title:"Minimums only", res:mi }
+    ];
+    cmpEl.innerHTML = cards.map(function(c){
+      var isWin = !c.res.unpaid && c.key === state.strategy;
+      var body = c.res.unpaid
+        ? '<div class="cv" style="color:var(--alert-ink)">Unpaid</div><div class="cap">Does not clear within 50 yrs or budget below minimums.</div>'
+        : '<div class="cv num">' + fmt$(c.res.totalInterest) + '</div><div class="cap num"><b>' + c.res.months + ' months</b> · ' + esc(c.res.endLabel) + ' (illustrative)<br>' +
+          (c.res.firstWin ? ('First win: ' + esc(c.res.firstWin.name) + ' (Mo ' + c.res.firstWin.paidMo + ')') : '') + '</div>';
+      return '<div class="cmp-card' + (isWin ? ' win' : '') + '"><div class="ct"><span>' + esc(c.title) + '</span>' + (isWin ? '<span class="tag good">Active</span>' : '') + '</div>' + body + '</div>';
+    }).join("");
+  }
+
+  // Deterministic 3-Sentence Strategy Brief (L6 — pure math, guarded for diverging unpaid branches!)
+  var brEl = document.getElementById("stratBrief");
+  if (active.empty) {
+    brEl.innerHTML = '<p>Add at least one debt and a monthly budget above minimums to see your plain-English Strategy Brief.</p>';
+  } else if (active.unpaid) {
+    brEl.innerHTML = '<p><b>1. Budget gap:</b> Your plan cannot pay down yet because payments do not clear minimums and monthly interest.</p><p><b>2. First move:</b> Confirm your exact minimum payments or speak with a free nonprofit credit counselor (NFCC) before committing to a payoff chart.</p>';
+  } else {
+    var s1 = "";
+    if (av.unpaid && !sn.unpaid) {
+      s1 = '<b>1. Snowball vs Avalanche:</b> Under this tight budget, Snowball clears your debts in <b>' + sn.months + ' months</b> (' + fmt$(sn.totalInterest) + ' interest), while Avalanche stalls on interest growth — raise your monthly budget or stick with Snowball.';
+    } else if (sn.unpaid && !av.unpaid) {
+      s1 = '<b>1. Snowball vs Avalanche:</b> Under this tight budget, <b>Avalanche clears your debts in ' + av.months + ' months</b> (' + fmt$(av.totalInterest) + ' interest), while Snowball stalls on high-APR interest growth — keep Avalanche active or raise your budget.';
+    } else if (av.unpaid && sn.unpaid) {
+      s1 = '<b>1. Snowball vs Avalanche:</b> Both standard methods stall under this budget — your active <b>' + esc(activeName) + '</b> order clears everything in ' + active.months + ' months.';
+    } else {
+      var diffInt = round2(sn.totalInterest - av.totalInterest);
+      var snWinTxt = sn.firstWin ? (' clears <b>' + esc(sn.firstWin.name) + '</b> first in Month ' + sn.firstWin.paidMo) : ' targets smallest balances first';
+      s1 = Math.abs(diffInt) < 0.5
+        ? ('<b>1. Snowball vs Avalanche:</b> Both methods tie on these debts (' + fmt$(av.totalInterest) + ' interest, ' + av.months + ' months) — pick the order that keeps you consistent.')
+        : (diffInt > 0
+          ? ('<b>1. Snowball vs Avalanche:</b> Avalanche saves <b>' + fmt$(diffInt) + '</b> in interest (' + fmt$(av.totalInterest) + ' vs ' + fmt$(sn.totalInterest) + '), while Snowball' + snWinTxt + '.')
+          : ('<b>1. Snowball vs Avalanche:</b> Snowball saves <b>' + fmt$(-diffInt) + '</b> in interest and' + snWinTxt + '.'));
+    }
+    var s2 = mi.unpaid
+      ? ('<b>2. vs Minimums Only:</b> Minimums alone would not pay these debts off — your ' + fmt$0(state.budget + state.extra) + '/mo plan brings them to $0 in ' + active.months + ' months.')
+      : ('<b>2. vs Minimums Only:</b> Your plan saves <b>' + fmt$(Math.max(0, mi.totalInterest - active.totalInterest)) + '</b> in interest and finishes <b>' + Math.max(0, mi.months - active.months) + ' months sooner</b> than minimums only (' + mi.months + ' mo, ' + fmt$(mi.totalInterest) + ').');
+    var plus100 = simulatePlan(state.debts, state.budget, state.strategy, state.extra + 100, state.windAmt, state.windMo, state.startYM);
+    var s3 = (!plus100.unpaid && !plus100.empty)
+      ? ('<b>3. +$100/mo lever:</b> Adding $100/mo more cuts another <b>' + Math.max(0, active.months - plus100.months) + ' month(s)</b> and saves <b>' + fmt$(Math.max(0, active.totalInterest - plus100.totalInterest)) + '</b> in interest.')
+      : '';
+    brEl.innerHTML = '<p class="num">' + s1 + '</p><p class="num">' + s2 + '</p>' + (s3 ? '<p class="num">' + s3 + '</p>' : '');
+  }
+
+  // Debt list with >=44px Up/Down reorder + Delete
+  var dl = document.getElementById("debtList");
+  if (!state.debts.length) {
+    dl.innerHTML = '<p class="cap" style="margin:0">No debts added yet.</p>';
+  } else {
+    dl.innerHTML = state.debts.map(function(d, idx){
+      return '<div class="row-card"><div><b>' + esc(d.name) + '</b>' + (d.sample ? ' <span class="tag warn">Sample</span>' : '') +
+        '<div class="cap num">Bal <b>' + fmt$(d.bal) + '</b> · APR <b>' + Number(d.apr).toFixed(2) + '%</b> · Min <b>' + fmt$(d.min) + '/mo</b></div></div>' +
+        '<div class="act-grp">' +
+        '<button type="button" class="icon-btn" data-up="' + idx + '" aria-label="Move ' + esc(d.name) + ' up"' + (idx === 0 ? ' disabled' : '') + '>↑</button>' +
+        '<button type="button" class="icon-btn" data-dn="' + idx + '" aria-label="Move ' + esc(d.name) + ' down"' + (idx === state.debts.length - 1 ? ' disabled' : '') + '>↓</button>' +
+        '<button type="button" class="btn sec" data-deld="' + idx + '" style="min-height:44px;padding:0 12px;font-size:13.5px">Delete</button></div></div>';
+    }).join("");
+  }
+
+  // Tab 2: Schedule (responsive 0-clipping rows & .h-num digits!)
+  document.getElementById("schedTitle").innerHTML = active.empty || active.unpaid
+    ? "Schedule"
+    : (esc(activeName) + ' · <span class="h-num">' + active.months + '</span> months');
+  var sl = document.getElementById("schedList");
+  if (active.empty || active.unpaid) {
+    sl.innerHTML = '<p class="cap" style="margin:0">Enter your debts and a valid budget on Tab 1 to view the month-by-month payoff schedule.</p>';
+  } else {
+    var rows = schedView === "12" ? active.schedule.slice(0, 12) : active.schedule;
+    sl.innerHTML = rows.map(function(r){
+      return '<div class="sched-row">' +
+        '<div class="num"><b>Mo ' + r.mo + '</b> · ' + esc(r.label) + '</div>' +
+        '<div>Focus: <b>' + esc(r.focus) + '</b></div>' +
+        '<div class="sched-meta num">Int ' + fmt$(r.interest) + '</div>' +
+        '<div class="sched-meta num">Paid ' + fmt$(r.paid) + '</div>' +
+        '<div class="sched-bal num">Bal ' + fmt$(r.endBal) + '</div></div>';
+    }).join("") + (schedView === "12" && active.schedule.length > 12
+      ? '<p class="cap" style="margin:10px 0 0">Showing first 12 of ' + active.schedule.length + ' months — tap <b>All months</b> above to see the full schedule.</p>' : '');
+  }
+
+  // Tab 3: Strictly logo-free 1-page Fridge Chart (CLAUDE.md:14!)
+  var realDebts = state.debts.filter(function(d){ return !d.sample; });
+  var prPlan = realDebts.length ? simulatePlan(realDebts, state.budget, state.strategy, state.extra, state.windAmt, state.windMo, state.startYM) : active;
+  var isSPr = !realDebts.length && state.debts.length > 0;
+  var fp = document.getElementById("fridgePrintSheet");
+  if (prPlan.empty || prPlan.unpaid) {
+    fp.innerHTML = '<h1>My Debt Payoff Checklist</h1><p>Add your debts and monthly budget to print your personalized payoff chart.</p>';
+  } else {
+    fp.innerHTML = (isSPr ? '<div style="padding:6px 10px;border:1px solid #999;margin-bottom:8px;font-weight:700">Sample example — not your balances</div>' : '') +
+      '<h1>My Debt Payoff Checklist (' + esc(activeName) + ')</h1>' +
+      '<p class="num" style="margin:0 0 10px">Total starting debt: <b>' + fmt$(prPlan.totalDebt) + '</b> · Monthly plan: <b>' + fmt$0(state.budget + state.extra) + '/mo</b> · Illustrative target: <b>' + esc(prPlan.endLabel) + '</b> (' + prPlan.months + ' mo)</p>' +
+      prPlan.milestones.map(function(m, idx){
+        return '<div class="fridge-row"><div>☐ <b>' + (idx + 1) + '. ' + esc(m.name) + '</b> (' + fmt$(m.bal) + ' @ ' + Number(m.apr).toFixed(2) + '%)</div><div class="num">Target: <b>' + esc(m.label) + '</b> (Mo ' + m.paidMo + ')</div></div>';
+      }).join("") +
+      '<p style="margin-top:12px;font-size:9pt">Illustrative arithmetic based on your entered balances, APRs, and budget — not a prediction or financial advice.</p>';
+  }
+}
+
+function syncInputs(){
+  document.getElementById("inpBudget").value = state.budget ? String(state.budget) : "";
+  document.getElementById("inpExtra").value = state.extra ? String(state.extra) : "";
+  document.getElementById("inpStart").value = state.startYM || defaultStartYM();
+  document.getElementById("inpWindAmt").value = state.windAmt ? String(state.windAmt) : "";
+  document.getElementById("inpWindMo").value = state.windMo > 1 ? String(state.windMo) : "";
+}
+function switchTab(t){
+  document.querySelectorAll(".pane").forEach(function(p){ p.classList.toggle("active", p.id === "pane-" + t); });
+  document.querySelectorAll(".tabbar button").forEach(function(b){ b.setAttribute("aria-current", b.dataset.tab === t ? "page" : "false"); });
+}
+
+/* ---------- Events ---------- */
+document.getElementById("inpBudget").addEventListener("input", function(e){ state.budget = parsePos(e.target.value); persist(); renderAll(); });
+document.getElementById("inpExtra").addEventListener("input", function(e){ state.extra = parsePos(e.target.value); persist(); renderAll(); });
+document.getElementById("inpStart").addEventListener("change", function(e){ if (e.target.value) { state.startYM = e.target.value; persist(); renderAll(); } });
+document.getElementById("inpWindAmt").addEventListener("input", function(e){ state.windAmt = parsePos(e.target.value); persist(); renderAll(); });
+document.getElementById("inpWindMo").addEventListener("input", function(e){ state.windMo = Math.max(1, parseInt(e.target.value, 10) || 1); persist(); renderAll(); });
+
+document.getElementById("debtForm").addEventListener("submit", function(ev){
+  ev.preventDefault();
+  var name = document.getElementById("dName").value.trim();
+  var bal = parseNumStrict(document.getElementById("dBal").value);
+  var apr = parseNumStrict(document.getElementById("dApr").value);
+  var min = parseNumStrict(document.getElementById("dMin").value);
+  if (!name) { showToast("Enter a debt name."); return; }
+  if (bal == null || bal <= 0) { showToast("Enter a valid balance above $0."); return; }
+  if (apr == null || apr < 0 || apr > 99.99) { showToast("Enter an APR between 0% and 99.99%."); return; }
+  if (min == null || min < 0) { showToast("Enter a valid monthly minimum ($0 or higher)."); return; }
+  state.debts.push({ id:"d-" + Date.now(), name:name, bal:round2(bal), apr:apr, min:round2(min), sample:false });
+  if (state.budget <= 0) {
+    var sumM = state.debts.reduce(function(a, x){ return a + x.min; }, 0);
+    state.budget = round2(sumM);
+    syncInputs();
+  }
+  document.getElementById("dName").value = ""; document.getElementById("dBal").value = ""; document.getElementById("dApr").value = ""; document.getElementById("dMin").value = "";
+  persist(); renderAll(); showToast("Debt added.");
+});
+
+document.addEventListener("click", function(e){
+  var t = e.target.closest("button");
+  if (!t) return;
+  if (t.dataset.tab) { switchTab(t.dataset.tab); }
+  else if (t.id === "topSampleBtn" || t.id === "primarySampleBtn") {
+    var s = sampleState();
+    var userDebts = state.debts.filter(function(d){ return !d.sample; });
+    if (!state.sample) state.prevSettings = { budget:state.budget, extra:state.extra, windAmt:state.windAmt, windMo:state.windMo, startYM:state.startYM, strategy:state.strategy };
+    state.sample = true; state.strategy = s.strategy; state.budget = s.budget; state.extra = 0; state.windAmt = 0; state.windMo = 1; state.startYM = s.startYM;
+    state.debts = s.debts.concat(userDebts);
+    persist(); syncInputs(); renderAll();
+  } else if (t.id === "clearSampleBtn") {
+    var snap = clone(state);
+    state.sample = false;
+    state.debts = state.debts.filter(function(d){ return !d.sample; });
+    if (state.prevSettings) {
+      state.budget = state.prevSettings.budget || 0;
+      state.extra = state.prevSettings.extra || 0;
+      state.windAmt = state.prevSettings.windAmt || 0;
+      state.windMo = state.prevSettings.windMo || 1;
+      state.startYM = state.prevSettings.startYM || defaultStartYM();
+      state.strategy = state.prevSettings.strategy || "avalanche";
+      state.prevSettings = null;
+    } else if (!state.debts.length) {
+      state.budget = 0; state.extra = 0; state.windAmt = 0; state.windMo = 1;
+    }
+    persist(); syncInputs(); renderAll();
+    showToast("Sample debts cleared.", function(){ state = snap; persist(); syncInputs(); renderAll(); showToast("Sample restored."); });
+  } else if (t.id === "toastUndo") {
+    if (undoFn) { var f = undoFn; undoFn = null; document.getElementById("toast").classList.remove("on"); f(); }
+  } else if (t.dataset.strat) {
+    state.strategy = t.dataset.strat; persist(); renderAll();
+  } else if (t.dataset.epill != null) {
+    state.extra = Number(t.dataset.epill); syncInputs(); persist(); renderAll();
+  } else if (t.dataset.sview) {
+    schedView = t.dataset.sview;
+    document.querySelectorAll("[data-sview]").forEach(function(b){ b.setAttribute("aria-pressed", String(b.dataset.sview === schedView)); });
+    renderAll();
+  } else if (t.dataset.up != null) {
+    var ui = +t.dataset.up;
+    if (ui > 0) { var tmp = state.debts[ui - 1]; state.debts[ui - 1] = state.debts[ui]; state.debts[ui] = tmp; state.strategy = "custom"; persist(); renderAll(); }
+  } else if (t.dataset.dn != null) {
+    var di = +t.dataset.dn;
+    if (di < state.debts.length - 1) { var tmp2 = state.debts[di + 1]; state.debts[di + 1] = state.debts[di]; state.debts[di] = tmp2; state.strategy = "custom"; persist(); renderAll(); }
+  } else if (t.dataset.deld != null) {
+    var ri = +t.dataset.deld, snapD = clone(state.debts);
+    state.debts.splice(ri, 1); persist(); renderAll();
+    showToast("Debt deleted.", function(){ state.debts = snapD; persist(); renderAll(); });
+  } else if (t.id === "printFridgeBtn") { window.print(); }
+  else if (t.id === "exportCsvBtn") {
+    var realD = state.debts.filter(function(d){ return !d.sample; });
+    if (!realD.length) { showToast("Add your own debts first — sample debts are excluded from exports."); return; }
+    var lines = [["Debt name","Balance $","APR %","Minimum payment $/mo"].join(",")].concat(realD.map(function(d){
+      return [csvText(d.name), d.bal.toFixed(2), Number(d.apr).toFixed(2), d.min.toFixed(2)].join(",");
+    }));
+    download("debt-payoff-list-" + todayISO() + ".csv", lines.join("\r\n") + "\r\n", "text/csv;charset=utf-8");
+    showToast("Formula-safe Debts CSV downloaded.");
+  } else if (t.id === "icsMilestonesBtn") {
+    var realI = state.debts.filter(function(d){ return !d.sample; });
+    if (!realI.length) { showToast("Add your own debts first — sample debts are excluded from calendar exports."); return; }
+    var pl = simulatePlan(realI, state.budget, state.strategy, state.extra, state.windAmt, state.windMo, state.startYM);
+    if (pl.empty || pl.unpaid) { showToast("Enter a budget above minimums first to export milestones."); return; }
+    download("debt-payoff-milestones-" + todayISO() + ".ics", buildMilestonesICS(pl, state.startYM), "text/calendar;charset=utf-8");
+    showToast("Payoff milestone calendar (.ics) downloaded.");
+  } else if (t.id === "bridgeOutBtn") {
+    var realB = state.debts.filter(function(d){ return !d.sample; });
+    if (!realB.length) { showToast("Add your own debts first — sample debts are excluded from bridge exports."); return; }
+    var plB = simulatePlan(realB, state.budget, state.strategy, state.extra, state.windAmt, state.windMo, state.startYM);
+    var totalM = round2(realB.reduce(function(a, d){ return a + d.min; }, 0));
+    var payload = JSON.stringify({
+      bridge:"fac-bridge-v1", source:"debt-payoff-planner", exported:todayISO(),
+      freedMonthly:round2(state.budget + state.extra), totalMinimums:totalM,
+      targetPayoffMonths:plB.unpaid ? null : plB.months, strategy:state.strategy,
+      disclaimer:"Illustrative debt payoff bridge — not financial advice."
+    }, null, 2);
+    download("fac-bridge-debt-freed-" + todayISO() + ".json", payload, "application/json");
+    showToast("First $100K freed-cash bridge (.json) downloaded.");
+  } else if (t.id === "backupBtn") {
+    download("debt-payoff-backup-" + todayISO() + ".json", JSON.stringify({ app:"fac-debt-payoff", exported:todayISO(), state:state }, null, 2), "application/json");
+    showToast("Backup JSON saved.");
+  } else if (t.id === "restorePickBtn") {
+    document.getElementById("restoreFile").click();
+  }
+});
+
+document.getElementById("restoreFile").addEventListener("change", function(ev){
+  var f = ev.target.files && ev.target.files[0]; if (!f) return;
+  var rd = new FileReader();
+  rd.onload = function(){
+    try {
+      var o = JSON.parse(String(rd.result || ""));
+      var s = o && o.state ? o.state : o;
+      if (!s || !Array.isArray(s.debts)) throw new Error("Invalid");
+      var snapR = clone(state);
+      state = sanitizeState(s);
+      persist(); syncInputs(); renderAll();
+      showToast("Backup restored.", function(){ state = snapR; persist(); syncInputs(); renderAll(); showToast("Restore undone."); });
+    } catch(e){ showToast("That file is not a valid Debt Payoff backup."); }
+  };
+  rd.readAsText(f); ev.target.value = "";
+});
+
+window.__DEBT = { simulatePlan:simulatePlan, parseNumStrict:parseNumStrict, buildMilestonesICS:buildMilestonesICS, csvText:csvText, sampleState:sampleState };
+syncInputs();
+renderAll();
+})();
+</script>
+<script id="faux-cfg">window.FAUX_CFG={"slug": "debt-payoff-planner", "name": "Debt Payoff Planner", "key": "fac_debt_payoff_v2", "blank": {"sample": false, "prevSettings": null, "strategy": "avalanche", "budget": 0, "extra": 0, "windAmt": 0, "windMo": 1, "debts": []}, "oneLine": "See your debt-free date and compare snowball, avalanche or your own payoff order.", "steps": ["List each <b>debt<\/b>: balance, APR and minimum (or paste them).", "Set what you can <b>pay each month<\/b>.", "Compare plans and follow the <b>month-by-month schedule<\/b>."], "sample": "#primarySampleBtn", "helpIn": ".topbar", "imports": [{"label": "Debt list", "kind": "adapter", "adapter": "debts", "tab": "plan", "drop": true, "formats": "Rows of Name, Balance, APR, Minimum payment from any spreadsheet, or this app’s own Debts CSV export.", "pastePlaceholder": "Name, Balance, APR, Minimum\nVisa, 4200, 24.99, 120\nCar loan, 9800, 6.9, 310"}], "cannot": "balances from your lenders or credit report; they don’t offer a file this tool can read. Type or paste them once and they are remembered here.", "publish": {"click": "#bridgeOutBtn", "source": "debt-payoff-planner"}};</script>
+<script id="faux-js">/* FiledAwayCo UX layer v1 (2026-11-27). Runs on top of the product app; it never edits the app's calculations.
+   Adds: first-open welcome (one line, 3 steps, sample / import / blank), a help button, an "Import or paste" sheet,
+   drag-and-drop, platform pre-formatters (PayPal, Stripe, Wells Fargo), list importers, and on-device auto-fill
+   between FiledAwayCo tools. Everything runs in this browser; nothing is uploaded. */
+(function(){
+'use strict';
+var C = window.FAUX_CFG || {}; var D = document;
+var SLUG = C.slug || 'app';
+var inSuite = false; try { inSuite = window.parent !== window && !!window.parent.__FAUX_SUITE; } catch(e){}
+var AUTO_KEY = 'fac_bridge_auto_v1';
+function $(s, r){ return (r || D).querySelector(s); }
+function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function lsGet(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
+function lsSet(k, v){ try { localStorage.setItem(k, v); return true; } catch(e){ return false; } }
+function fmt$(n){ n = Number(n) || 0; return (n < 0 ? '-$' : '$') + Math.abs(n).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2}); }
+
+/* ---------- CSV / paste parsing ---------- */
+function parseCSV(text){
+  text = String(text || '').replace(/^\uFEFF/, '');
+  var first = (text.split(/\r?\n/).filter(function(l){ return l.trim(); })[0]) || '';
+  var cnt = function(ch){ var n = 0, q = false; for (var i = 0; i < first.length; i++){ var c = first[i]; if (c === '"') q = !q; else if (!q && c === ch) n++; } return n; };
+  var dl = ',', t = cnt('\t'), c = cnt(','), s = cnt(';');
+  if (t > 0 && t >= c) dl = '\t'; else if (s > c) dl = ';';
+  var rows = [], row = [], f = '', q = false;
+  for (var i = 0; i < text.length; i++){
+    var ch = text[i];
+    if (q){ if (ch === '"'){ if (text[i+1] === '"'){ f += '"'; i++; } else q = false; } else f += ch; continue; }
+    if (ch === '"' && f === '') { q = true; continue; }
+    if (ch === dl){ row.push(f); f = ''; continue; }
+    if (ch === '\r') continue;
+    if (ch === '\n'){ row.push(f); rows.push(row); row = []; f = ''; continue; }
+    f += ch;
+  }
+  if (f !== '' || row.length) { row.push(f); rows.push(row); }
+  return rows.map(function(r){ return r.map(function(x){ return String(x).trim(); }); }).filter(function(r){ return r.some(function(x){ return x !== ''; }); });
+}
+function csvCell(v){ v = String(v == null ? '' : v); return /[",\n\r]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }
+function toCSV(rows){ return rows.map(function(r){ return r.map(csvCell).join(','); }).join('\r\n') + '\r\n'; }
+function money(v){
+  if (v == null) return NaN; var s = String(v).trim(); if (!s || s === '--') return NaN;
+  var neg = false;
+  if (/^\(.*\)$/.test(s)){ neg = true; s = s.slice(1, -1); }
+  if (/-$/.test(s)){ neg = true; s = s.slice(0, -1); }
+  if (/^-/.test(s)){ neg = !neg; s = s.slice(1); }
+  s = s.replace(/^-/, '').replace(/[$£€\s,]|USD/gi, '');
+  if (s.charAt(0) === '-'){ neg = !neg; s = s.slice(1); }
+  if (!/^\d*\.?\d+$/.test(s)) return NaN;
+  var n = parseFloat(s); return neg ? -n : n;
+}
+var MON = {jan:1,feb:2,mar:3,apr:4,may:5,jun:6,jul:7,aug:8,sep:9,sept:9,oct:10,nov:11,dec:12};
+function pad(n){ return (n < 10 ? '0' : '') + n; }
+function isoDate(v){
+  var s = String(v || '').trim(); var m;
+  if ((m = s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/))) return m[1] + '-' + pad(+m[2]) + '-' + pad(+m[3]);
+  if ((m = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})/))) { var y = +m[3]; if (y < 100) y += 2000; return y + '-' + pad(+m[1]) + '-' + pad(+m[2]); }
+  if ((m = s.match(/^([A-Za-z]{3,9})\.? (\d{1,2}),? (\d{4})/)) && MON[m[1].slice(0,3).toLowerCase()]) return m[3] + '-' + pad(MON[m[1].slice(0,3).toLowerCase()]) + '-' + pad(+m[2]);
+  if ((m = s.match(/^(\d{1,2}) ([A-Za-z]{3,9}) (\d{4})/)) && MON[m[2].slice(0,3).toLowerCase()]) return m[3] + '-' + pad(MON[m[2].slice(0,3).toLowerCase()]) + '-' + pad(+m[1]);
+  return '';
+}
+function norm(h){ return String(h || '').toLowerCase().replace(/[_]/g, ' ').replace(/\s+/g, ' ').trim(); }
+function findCol(H, aliases){
+  var h = H.map(norm), i, j;
+  for (j = 0; j < aliases.length; j++){ i = h.indexOf(aliases[j]); if (i >= 0) return i; }
+  for (j = 0; j < aliases.length; j++){ for (i = 0; i < h.length; i++) if (h[i].indexOf(aliases[j]) >= 0) return i; }
+  return -1;
+}
+function looksHeader(r){ return r.some(function(x){ return /[A-Za-z]{3,}/.test(x) && isNaN(money(x)) && !isoDate(x); }); }
+
+/* ---------- Platform pre-formatters: turn real exports into Date,Description,Amount rows ---------- */
+var NORMALIZERS = {
+  paypal: function(rows){ // PayPal Activity Download (developer.paypal.com/reports/activity-download): Date, Time, TimeZone, Name, Type, Status, Currency, Gross, Fee, Net ...
+    var H = rows[0].map(norm); if (!(H.indexOf('gross') >= 0 && H.indexOf('fee') >= 0 && H.indexOf('net') >= 0 && H.indexOf('status') >= 0)) return null;
+    var c = function(n){ return H.indexOf(n); }, out = [['Date','Description','Amount']], skip = 0, fx = 0;
+    var bankMoves = /withdrawal|bank deposit|transfer to bank|transfer from bank|general card deposit|hold|reversal of general account hold|currency conversion/i;
+    rows.slice(1).forEach(function(r){
+      var st = r[c('status')] || '', ty = r[c('type')] || '', cur = (r[c('currency')] || 'USD').toUpperCase();
+      if (!/^completed$/i.test(st) || bankMoves.test(ty)) { skip++; return; }
+      if (cur !== 'USD') { fx++; return; }
+      var d = isoDate(r[c('date')]), g = money(r[c('gross')]), f = money(r[c('fee')]);
+      if (!d || isNaN(g)) { skip++; return; }
+      out.push([d, 'PAYPAL ' + (r[c('name')] || '') + ' (' + ty + ')', g.toFixed(2)]);
+      if (!isNaN(f) && f !== 0) out.push([d, 'PAYPAL FEE ' + (r[c('name')] || ''), (f > 0 ? -f : f).toFixed(2)]);
+    });
+    return { rows: out, note: 'PayPal Activity file: used Gross as income and added each PayPal fee as its own expense line. Skipped ' + skip + ' row(s) that were pending, transfers to or from your bank, or holds' + (fx ? ', and ' + fx + ' non-USD row(s)' : '') + '.' };
+  },
+  stripe: function(rows){ // Stripe "All activity" / balance transactions: id, Type, Source, Amount, Fee, Net, Currency, Created (UTC) ...; itemized report: created_utc, gross, fee, net, reporting_category
+    var H = rows[0].map(norm), c = function(a){ return findCol(rows[0], a); };
+    var isBal = H.indexOf('type') >= 0 && H.indexOf('amount') >= 0 && H.indexOf('fee') >= 0 && H.indexOf('net') >= 0;
+    var isItem = H.indexOf('reporting category') >= 0 && H.indexOf('gross') >= 0;
+    var isPay = !isBal && (H.indexOf('created date (utc)') >= 0 || (H.indexOf('created (utc)') >= 0 && H.indexOf('status') >= 0)) && H.indexOf('amount') >= 0;
+    if (!isBal && !isItem && !isPay) return null;
+    var di = c(['created (utc)','created date (utc)','created utc','created']), ty = isItem ? c(['reporting category']) : c(['type']),
+        am = isItem ? c(['gross']) : c(['amount']), fe = c(['fee']), de = c(['description']), ce = c(['customer email','customer description']), sti = c(['status']), cu = c(['currency']);
+    var out = [['Date','Description','Amount']], skip = 0;
+    rows.slice(1).forEach(function(r){
+      var t = (ty >= 0 ? r[ty] : 'charge').toLowerCase(), d = isoDate(r[di]), a = money(r[am]), f = fe >= 0 ? money(r[fe]) : 0;
+      if (cu >= 0 && r[cu] && r[cu].toLowerCase() !== 'usd') { skip++; return; }
+      if (isPay && sti >= 0 && !/paid|succeeded/i.test(r[sti])) { skip++; return; }
+      if (/payout|transfer/.test(t) || !d || isNaN(a) || a === 0) { skip++; return; }
+      var desc = 'STRIPE ' + (/refund/.test(t) ? 'REFUND ' : (/fee/.test(t) ? 'FEE ' : '')) + ((de >= 0 && r[de]) || (ce >= 0 && r[ce]) || t);
+      out.push([d, desc, a.toFixed(2)]);
+      if (!isNaN(f) && f !== 0 && !/fee/.test(t)) out.push([d, 'STRIPE FEE ' + ((de >= 0 && r[de]) || ''), (-f).toFixed(2)]);
+    });
+    return { rows: out, note: 'Stripe export: used the gross Amount as income and added Stripe fees as separate expense lines. Skipped ' + skip + ' payout, failed or non-USD row(s), because payouts already show up in your bank file.' };
+  },
+  wellsfargo: function(rows){ // Wells Fargo CSV has no header row: "date","amount","*","","description"
+    var r = rows[0]; if (!(r.length === 5 && isoDate(r[0]) && !isNaN(money(r[1])) && r[2] === '*')) return null;
+    var out = [['Date','Description','Amount']];
+    rows.forEach(function(x){ var d = isoDate(x[0]), a = money(x[1]); if (d && !isNaN(a)) out.push([d, x[4] || x[3] || '', a.toFixed(2)]); });
+    return { rows: out, note: 'Wells Fargo file (it has no header row): read as Date, Amount, Description.' };
+  }
+};
+function normalizeText(text, list){
+  var rows = parseCSV(text); if (!rows.length) return { error: 'That file or paste looks empty.' };
+  var names = list || [];
+  for (var i = 0; i < names.length; i++){ var fn = NORMALIZERS[names[i]]; if (!fn) continue; var res = fn(rows); if (res) { if (res.rows.length < 2) return { error: res.note + ' No usable rows were left.' }; return { csv: toCSV(res.rows), note: res.note, n: res.rows.length - 1 }; } }
+  return { csv: toCSV(rows), note: '', n: rows.length - 1 };
+}
+
+/* ---------- Overlay + toast ---------- */
+var ov = null, lastFocus = null;
+function closeOv(){ if (!ov) return; ov.hidden = true; ov.innerHTML = ''; if (lastFocus && lastFocus.focus) try { lastFocus.focus(); } catch(e){} }
+function openOv(html, label){
+  if (!ov){ ov = D.createElement('div'); ov.className = 'faux-ov'; ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-modal', 'true'); D.body.appendChild(ov);
+    ov.addEventListener('click', function(e){ if (e.target === ov) { markSeen(); closeOv(); } });
+    D.addEventListener('keydown', function(e){ if (e.key === 'Escape' && ov && !ov.hidden) { markSeen(); closeOv(); } }); }
+  lastFocus = D.activeElement; ov.setAttribute('aria-label', label || C.name || 'Help');
+  ov.innerHTML = '<div class="faux-card">' + html + '</div>'; ov.hidden = false;
+  var b = ov.querySelector('button.faux-btn, button'); if (b) try { b.focus({preventScroll:true}); } catch(e){}
+  return ov;
+}
+function head(){ return '<div class="faux-hd"><div class="faux-mk" aria-hidden="true">fa</div><div class="faux-nm">' + esc(C.name) + '</div><button type="button" class="faux-x" data-faux="close" aria-label="Close">×</button></div>'; }
+var tEl = null, tT = null;
+function toast(msg, undo){
+  if (!tEl){ tEl = D.createElement('div'); tEl.className = 'faux-toast'; tEl.setAttribute('role', 'status'); D.body.appendChild(tEl); }
+  tEl.innerHTML = '<span>' + esc(msg) + '</span>' + (undo ? '<button type="button">Undo</button>' : ''); tEl.hidden = false;
+  if (undo) tEl.querySelector('button').onclick = function(){ tEl.hidden = true; undo(); };
+  clearTimeout(tT); tT = setTimeout(function(){ tEl.hidden = true; }, undo ? 9000 : 4000);
+}
+function markSeen(){ lsSet('faux_seen_' + SLUG, '1'); }
+function clickSel(sel){ var e = sel && $(sel); if (e) { e.click(); return true; } return false; }
+function goTab(tab){
+  if (!tab) return;
+  if (tab.charAt(0) === '#' || tab.charAt(0) === '[' || tab.charAt(0) === '.') { clickSel(tab); return; }
+  var b = $('.tabbar button[data-tab="' + tab + '"]') || $('[data-tab="' + tab + '"]'); if (b) b.click();
+}
+
+/* ---------- Welcome ---------- */
+function welcome(){
+  var steps = (C.steps || []).map(function(s, i){ return '<li><b class="n">' + (i + 1) + '</b><span>' + s + '</span></li>'; }).join('');
+  var hasImp = (C.imports || []).length > 0;
+  openOv(head() +
+    '<p class="faux-one">' + esc(C.oneLine) + '</p><ol class="faux-steps">' + steps + '</ol>' +
+    (C.sample ? '<button type="button" class="faux-btn" data-faux="sample">' + esc(C.sampleLabel || 'Try it with sample data') + '</button>' : '') +
+    '<div class="faux-row">' + (hasImp ? '<button type="button" class="faux-btn sec" data-faux="import">' + esc(C.importLabel || 'Import my data') + '</button>' : '') +
+    '<button type="button" class="faux-btn sec" data-faux="blank"' + (hasImp ? '' : ' style="grid-column:1/-1"') + '>' + esc(C.blankLabel || 'Start with my own') + '</button></div>' +
+    '<p class="faux-trust"><span aria-hidden="true">🔒</span><span>' + esc(C.trust || 'Private by design: it works offline and your data stays in this browser on this device. No account, no upload.') + '</span></p>', C.name + ': how it works');
+  bind();
+}
+function bind(){
+  ov.querySelectorAll('[data-faux]').forEach(function(b){ b.addEventListener('click', function(){
+    var a = b.getAttribute('data-faux');
+    if (a === 'close') { markSeen(); closeOv(); }
+    else if (a === 'sample') { markSeen(); closeOv(); if (C.sampleTab) goTab(C.sampleTab); clickSel(C.sample); }
+    else if (a === 'blank') { markSeen(); closeOv(); if (C.blankTab) goTab(C.blankTab); var f = $(C.blankFocus || '.pane.active input:not([type=file]):not([type=checkbox]):not([type=radio]), .pane.active select, main input:not([type=file])'); if (f) { try { f.scrollIntoView({block:'center'}); f.focus({preventScroll:true}); } catch(e){} } }
+    else if (a === 'import') { markSeen(); importSheet(); }
+    else if (a === 'help') welcome();
+  }); });
+}
+
+/* ---------- Import sheet ---------- */
+function importSheet(){
+  var opts = (C.imports || []).map(function(o, i){
+    return '<div class="faux-opt"><b>' + esc(o.label) + '</b><small>' + o.formats + '</small><div class="faux-row">' +
+      '<button type="button" class="faux-btn" data-imp="' + i + '" data-how="file">Choose file</button>' +
+      '<button type="button" class="faux-btn sec" data-imp="' + i + '" data-how="paste">Paste rows</button></div></div>';
+  }).join('');
+  openOv(head() + '<p class="faux-h2">Bring your data in</p><p class="faux-sub">Pick what you have. You will see a preview before anything is saved. Tip: you can also drag a file onto this page.</p>' + opts +
+    (C.cannot ? '<p class="faux-sub" style="margin-top:6px"><b>Not possible to auto-import:</b> ' + C.cannot + '</p>' : '') +
+    '<button type="button" class="faux-btn ghost" data-faux="help">← Back</button>', 'Import data');
+  bind();
+  ov.querySelectorAll('[data-imp]').forEach(function(b){ b.addEventListener('click', function(){
+    var o = C.imports[+b.getAttribute('data-imp')];
+    if (b.getAttribute('data-how') === 'file') pickFile(o); else pasteSheet(o);
+  }); });
+}
+function pickFile(o){
+  var inp = D.createElement('input'); inp.type = 'file'; inp.accept = o.accept || '.csv,.tsv,.txt,text/csv,text/plain'; inp.className = 'faux-sr';
+  D.body.appendChild(inp);
+  inp.addEventListener('change', function(){ var f = inp.files && inp.files[0]; inp.remove(); if (f) readFile(f, o); });
+  inp.click();
+}
+function readFile(f, o){ var rd = new FileReader(); rd.onload = function(){ handleText(String(rd.result || ''), o, f.name); }; rd.onerror = function(){ errSheet('Could not read that file. Try choosing it again. Nothing was changed.'); }; rd.readAsText(f); }
+function pasteSheet(o){
+  openOv(head() + '<p class="faux-h2">' + esc(o.label) + ': paste rows</p><p class="faux-sub">' + esc(o.pasteHint || 'Copy the rows from Excel, Google Sheets or a CSV (include the header row if there is one) and paste here.') + '</p>' +
+    '<textarea class="faux-ta" id="fauxPaste" aria-label="Paste rows here" placeholder="' + esc(o.pastePlaceholder || '') + '"></textarea>' +
+    '<div class="faux-row"><button type="button" class="faux-btn" id="fauxPasteGo">Preview</button><button type="button" class="faux-btn sec" data-faux="import">Back</button></div>', 'Paste rows');
+  bind();
+  $('#fauxPaste').focus();
+  $('#fauxPasteGo').addEventListener('click', function(){ var t = $('#fauxPaste').value; if (!t.trim()) { $('#fauxPaste').focus(); return; } handleText(t, o, 'pasted-rows.csv'); });
+}
+function errSheet(msg){ openOv(head() + '<div class="faux-err">' + esc(msg) + '</div><button type="button" class="faux-btn sec" data-faux="import">Back</button>', 'Problem'); bind(); }
+function handleText(text, o, name){
+  if (o.kind === 'feed') {
+    var res = o.raw ? { csv: text, note: '' } : normalizeText(text, o.normalize);
+    if (res.error) return errSheet(res.error);
+    closeOv(); if (o.tab) goTab(o.tab); if (o.open) { var od = $(o.open); if (od && 'open' in od) od.open = true; }
+    var inp = $(o.target); if (!inp) return errSheet('This app has no import box here.');
+    setTimeout(function(){
+      feed(inp, o.raw ? (name || 'import.json').replace(/\.csv$/i, '.json') : (name || 'import').replace(/\.(tsv|txt)$/i, '.csv'), res.csv, o.raw ? 'application/json' : 'text/csv');
+      if (res.note) toast(res.note);
+      var card = inp.closest('.card, section'); if (card && card.scrollIntoView) try { card.scrollIntoView({block:'start', behavior:'smooth'}); } catch(e){}
+    }, 60);
+    return;
+  }
+  if (o.kind === 'adapter') { var A = ADAPTERS[o.adapter]; if (A) preview(A, text, o); }
+}
+function feed(inp, name, text, type){
+  try { var dt = new DataTransfer(); dt.items.add(new File([text], name, { type: type })); inp.files = dt.files; }
+  catch(e){ errSheet('This browser blocked the hand-off. Use the app\u2019s own Choose file button instead.'); return; }
+  inp.dispatchEvent(new Event('change', { bubbles: true }));
+}
+
+/* ---------- List importers (preview, then save to this device) ---------- */
+var ADAPTERS = {
+  debts: { what: 'debts', cols: ['Debt','Balance','APR %','Minimum'],
+    parse: function(rows){
+      var H = rows[0], hdr = looksHeader(H), body = hdr ? rows.slice(1) : rows;
+      var ni = hdr ? findCol(H, ['name','debt','account','creditor','card','loan','lender']) : 0,
+          bi = hdr ? findCol(H, ['balance','current balance','amount owed','owed','principal','payoff amount','amount']) : 1,
+          ai = hdr ? findCol(H, ['apr','interest rate','rate','interest']) : 2,
+          mi = hdr ? findCol(H, ['minimum payment','min payment','minimum','min','monthly payment','payment']) : 3;
+      if (bi < 0) return { error: 'Could not find a Balance column. Use columns like: Name, Balance, APR, Minimum.' };
+      return { rows: body.map(function(r, i){ var b = money(r[bi]); return { name: (ni >= 0 && r[ni]) || ('Debt ' + (i + 1)), bal: b, apr: ai >= 0 ? Math.abs(money(String(r[ai]).replace('%',''))) || 0 : 0, min: mi >= 0 ? Math.abs(money(r[mi])) || 0 : 0 }; })
+        .filter(function(d){ return !isNaN(d.bal) && Math.abs(d.bal) > 0; }).map(function(d){ d.bal = Math.abs(d.bal); return d; }) };
+    },
+    show: function(d){ return [d.name, fmt$(d.bal), d.apr.toFixed(2) + '%', fmt$(d.min)]; },
+    commit: function(st, rows){ st.debts = (st.debts || []).filter(function(x){ return !x.sample; }); st.sample = false;
+      rows.forEach(function(d, i){ st.debts.push({ id: 'd-imp-' + Date.now() + '-' + i, name: String(d.name).slice(0, 80), bal: Math.round(d.bal * 100) / 100, apr: Math.min(99.99, d.apr), min: Math.round(d.min * 100) / 100, sample: false }); }); }
+  },
+  deposits: { what: 'deposits', cols: ['Date','Amount','Note'],
+    parse: function(rows){ var b = bankRows(rows); if (b.error) return b; return { rows: b.rows.filter(function(r){ return r.amt > 0; }).map(function(r){ return { date: r.date, amount: r.amt, note: r.desc }; }), note: 'Only money coming in is listed. Untick anything that is not savings.' }; },
+    show: function(d){ return [d.date, fmt$(d.amount), d.note]; },
+    commit: function(st, rows){ st.deps = (st.deps || []).filter(function(x){ return !x.sample; }); st.sample = false;
+      rows.forEach(function(d, i){ st.deps.push({ id: 'd-imp-' + Date.now() + '-' + i, date: d.date, amount: Math.round(d.amount * 100) / 100, note: String(d.note || 'Imported').slice(0, 60), sample: false }); }); }
+  },
+  shifts: { what: 'shifts', cols: ['Date','Where','Hours','Cash','Card','Tip-out'],
+    parse: function(rows){
+      var H = rows[0]; if (!looksHeader(H)) return { error: 'Add a header row, e.g. Date, Employer, Hours, Cash tips, Card tips, Tip-out.' };
+      var c = function(a){ return findCol(H, a); };
+      var di = c(['date','shift date','business date','work date']), ei = c(['employer','restaurant','location','job','role','venue']), hi = c(['total hours','hours worked','regular hours','hours']),
+          ca = c(['declared cash tips','cash tips','cash']), cd = c(['non-cash tips','credit card tips','card tips','charged tips','cc tips','card']), to = c(['tip-out','tip out','tipout','tips paid out','tip share']),
+          oh = c(['overtime hours','ot hours']), op = c(['overtime premium','ot premium']), gr = c(['gross pay','gross wages','gross']);
+      if (di < 0 || (ca < 0 && cd < 0)) return { error: 'Need at least a Date column and a Cash tips or Card tips column.' };
+      var g = function(r, i){ var v = i >= 0 ? money(r[i]) : 0; return isNaN(v) ? 0 : Math.abs(v); };
+      return { rows: rows.slice(1).map(function(r){ return { date: isoDate(r[di]), emp: ei >= 0 ? r[ei] : '', hours: g(r, hi), cash: g(r, ca), card: g(r, cd), out: g(r, to), otH: g(r, oh), otP: g(r, op), gross: g(r, gr) }; }).filter(function(x){ return x.date && (x.cash || x.card || x.hours); }) };
+    },
+    show: function(d){ return [d.date, d.emp, d.hours, fmt$(d.cash), fmt$(d.card), fmt$(d.out)]; },
+    commit: function(st, rows){ st.entries = (st.entries || []).filter(function(x){ return !x.sample; }); st.sample = false;
+      rows.forEach(function(d, i){ d.id = 'r-imp-' + Date.now() + '-' + i; d.photo = null; d.sample = false; st.entries.push(d); }); }
+  },
+  cues: { what: 'cues', cols: ['Cue','Minutes'],
+    parse: function(rows, text){
+      var out = []; String(text).split(/\r?\n/).forEach(function(l){ l = l.trim(); if (!l) return;
+        var m = l.match(/^(.*?)[\s,\t\-–—:]*(\d{1,3}):(\d{2})\s*$/), mm = l.match(/^(.*?)[\s,\t\-–—]*(\d{1,3}(?:\.\d+)?)\s*(m|min|mins|minutes)?\s*$/i);
+        if (m && m[1]) out.push({ label: m[1].replace(/[,\t\-–—:\s]+$/, ''), min: Math.round((+m[2] + (+m[3]) / 60) * 100) / 100 });
+        else if (mm && mm[1]) out.push({ label: mm[1].replace(/[,\t\-–—:\s]+$/, ''), min: +mm[2] });
+      });
+      out = out.filter(function(c){ return c.label && c.min > 0 && !/^(cue|segment|item|label)$/i.test(c.label); });
+      return out.length ? { rows: out } : { error: 'Put one cue per line with its length, e.g. "Keynote, 25" or "Q&A 10:00".' };
+    },
+    show: function(d){ return [d.label, d.min]; },
+    commit: function(st, rows){ st.cues = (st.cues || []).filter(function(x){ return !x.sample; }); st.sample = false;
+      rows.forEach(function(d, i){ st.cues.push({ id: 'c-imp-' + Date.now() + '-' + i, label: String(d.label).slice(0, 60), min: d.min, sample: false }); }); }
+  },
+  guests: { what: 'guest list', cols: ['Guests counted','Kids','Declined (not counted)'], summary: true,
+    parse: function(rows){
+      var H = rows[0], hdr = looksHeader(H); if (!hdr) return { error: 'Include the header row from your guest list (for example Name, Party Size, RSVP).' };
+      var ps = findCol(H, ['party size','number of guests','# guests','guest count','headcount','total guests','guests','size']),
+          po = findCol(H, ['plus one','plus-one','+1']), rs = findCol(H, ['rsvp','attending','status','response']), kd = findCol(H, ['child','kid','age group','age']);
+      var tot = 0, kids = 0, dec = 0, n = 0;
+      rows.slice(1).forEach(function(r){
+        if (rs >= 0 && /^(no|declined|not attending|regrets|won.?t attend|can.?t attend)/i.test(r[rs] || '')) { dec++; return; }
+        var k = 1; if (ps >= 0) { var v = money(r[ps]); k = isNaN(v) ? 1 : Math.max(0, Math.round(v)); }
+        if (po >= 0 && /^(yes|y|true|1|x)$/i.test(r[po] || '')) k += 1;
+        tot += k; n++;
+        if (kd >= 0) { var kv = String(r[kd] || ''); var age = money(kv); if (/child|kid|yes|true|minor/i.test(kv) || (!isNaN(age) && age < 13)) kids += 1; }
+      });
+      if (!n) return { error: 'No guests found in those rows.' };
+      return { rows: [{ total: tot, kids: kids, dec: dec }], note: 'Counted ' + n + ' row(s)' + (ps >= 0 ? ' using the party-size column' : ' as one guest each') + (po >= 0 ? ', plus one for each "yes" plus-one' : '') + '.' };
+    },
+    show: function(d){ return [d.total, d.kids, d.dec]; },
+    commit: function(st, rows){ st.guests = st.guests || {}; st.guests.planned = String(rows[0].total); if (rows[0].kids) st.guests.mKid = String(rows[0].kids); }
+  },
+  timeline: { what: 'timeline items', cols: ['Time','What','Who'],
+    parse: function(rows, text){
+      var out = []; String(text).split(/\r?\n/).forEach(function(l){ l = l.trim(); if (!l) return;
+        var p = parseCSV(l)[0] || []; var m;
+        if (p.length >= 2 && /\d/.test(p[0])) out.push({ time: p[0], item: p[1], owner: p[2] || '' });
+        else if ((m = l.match(/^(\d{1,2}(?::\d{2})?\s*(?:am|pm|a\.m\.|p\.m\.)?)\s*[-–—:,]?\s*(.+)$/i))) out.push({ time: m[1].toUpperCase().replace(/\s+/, ' '), item: m[2], owner: '' });
+      });
+      return out.length ? { rows: out } : { error: 'Put one item per line, e.g. "4:30 PM, Ceremony begins, Officiant".' };
+    },
+    show: function(d){ return [d.time, d.item, d.owner]; },
+    commit: function(st, rows){ st.dayOf = st.dayOf || { title:'', date:'', timeline:[], contacts:[] }; st.dayOf.timeline = (st.dayOf.timeline || []).filter(function(x){ return !x.sample; });
+      rows.forEach(function(d){ st.dayOf.timeline.push({ time: String(d.time).slice(0, 20), item: String(d.item).slice(0, 120), owner: String(d.owner || '').slice(0, 60), sample: false }); }); }
+  },
+  contacts: { what: 'vendor contacts', cols: ['Role','Name','Phone'],
+    parse: function(rows){
+      var H = rows[0], hdr = looksHeader(H) && findCol(H, ['phone','role','name','vendor']) >= 0, body = hdr ? rows.slice(1) : rows;
+      var ri = hdr ? findCol(H, ['role','category','type','service']) : 0, ni = hdr ? findCol(H, ['vendor','business','company','name','contact']) : 1, pi = hdr ? findCol(H, ['phone','mobile','cell','tel']) : 2;
+      var out = body.map(function(r){ return { role: ri >= 0 ? r[ri] : '', name: ni >= 0 ? r[ni] : '', phone: pi >= 0 ? r[pi] : '' }; }).filter(function(x){ return x.name || x.phone; });
+      return out.length ? { rows: out } : { error: 'Use columns Role, Name, Phone.' };
+    },
+    show: function(d){ return [d.role, d.name, d.phone]; },
+    commit: function(st, rows){ st.dayOf = st.dayOf || { title:'', date:'', timeline:[], contacts:[] }; st.dayOf.contacts = (st.dayOf.contacts || []).filter(function(x){ return !x.sample; });
+      rows.forEach(function(d){ st.dayOf.contacts.push({ role: String(d.role).slice(0, 60), name: String(d.name).slice(0, 80), phone: String(d.phone).slice(0, 30), sample: false }); }); }
+  },
+  payments: { what: 'payments', cols: ['Vendor','Due','Amount'],
+    parse: function(rows){
+      var H = rows[0], hdr = looksHeader(H) && (findCol(H, ['amount','due','vendor']) >= 0), body = hdr ? rows.slice(1) : rows;
+      var vi = hdr ? findCol(H, ['vendor','payee','what','description','name']) : 0, di = hdr ? findCol(H, ['due date','due','date']) : 1, ai = hdr ? findCol(H, ['amount','payment','balance','cost']) : 2;
+      var out = body.map(function(r){ return { vendor: vi >= 0 ? r[vi] : '', date: isoDate(r[di]), amount: Math.abs(money(r[ai])) }; }).filter(function(x){ return x.vendor && x.date && x.amount > 0; });
+      return out.length ? { rows: out } : { error: 'Use columns Vendor, Due date, Amount (dates like 2027-03-18 or 3/18/2027).' };
+    },
+    show: function(d){ return [d.vendor, d.date, fmt$(d.amount)]; },
+    commit: function(st, rows){ st.payments = (st.payments || []).filter(function(x){ return !x.sample; });
+      rows.forEach(function(d, i){ st.payments.push({ id: 'p-imp-' + Date.now() + '-' + i, vendor: String(d.vendor).slice(0, 100), date: d.date, amount: Math.round(d.amount * 100) / 100, sample: false }); }); }
+  }
+};
+function bankRows(rows){
+  var r0 = rows[0];
+  if (r0.length === 5 && isoDate(r0[0]) && r0[2] === '*') { rows = [['Date','Amount','x','y','Description']].concat(rows); }
+  var H = rows[0]; if (!looksHeader(H)) return { error: 'Include the header row from your bank file (Date, Description, Amount).' };
+  var di = findCol(H, ['posting date','transaction date','date','posted']), de = findCol(H, ['description','details','memo','payee','name']),
+      am = findCol(H, ['amount','net']), cr = findCol(H, ['credit','deposit','deposits','inflow','money in']), db = findCol(H, ['debit','withdrawal','withdrawals','outflow','money out']);
+  if (di < 0 || (am < 0 && cr < 0)) return { error: 'Could not find Date and Amount (or Credit) columns in that file.' };
+  var out = rows.slice(1).map(function(r){
+    var a = am >= 0 ? money(r[am]) : NaN;
+    if (isNaN(a) && cr >= 0) { var c = money(r[cr]), d = db >= 0 ? money(r[db]) : NaN; a = !isNaN(c) && c !== 0 ? Math.abs(c) : (!isNaN(d) ? -Math.abs(d) : NaN); }
+    return { date: isoDate(r[di]), desc: de >= 0 ? r[de] : '', amt: a };
+  }).filter(function(x){ return x.date && !isNaN(x.amt); });
+  return { rows: out };
+}
+var pend = null;
+function preview(A, text, o){
+  var rows = parseCSV(text); var res = rows.length ? A.parse(rows, text) : { error: 'That looks empty.' };
+  if (res.error || !res.rows || !res.rows.length) return errSheet(res.error || 'No usable rows found. Nothing was changed.');
+  pend = { A: A, rows: res.rows, o: o };
+  var tb = '<div class="faux-tblw"><table class="faux-tbl"><thead><tr>' + (A.summary ? '' : '<th scope="col"><span class="faux-sr">Keep</span></th>') + A.cols.map(function(c){ return '<th scope="col">' + esc(c) + '</th>'; }).join('') + '</tr></thead><tbody>' +
+    res.rows.map(function(r, i){ return '<tr>' + (A.summary ? '' : '<td><input type="checkbox" checked data-keep="' + i + '" aria-label="Keep row ' + (i + 1) + '"></td>') + A.show(r).map(function(v){ return '<td>' + esc(v) + '</td>'; }).join('') + '</tr>'; }).join('') + '</tbody></table></div>';
+  openOv(head() + '<p class="faux-h2">Check before saving</p><p class="faux-sub">' + esc(res.note || ('Found ' + res.rows.length + ' ' + A.what + '. Untick any you don\u2019t want.')) + '</p>' + tb +
+    '<div class="faux-row"><button type="button" class="faux-btn" id="fauxCommit">' + (A.summary ? 'Use these numbers' : 'Add ' + A.what) + '</button><button type="button" class="faux-btn sec" data-faux="import">Cancel</button></div>' +
+    '<p class="faux-trust">Saved only in this browser. You can undo right after.</p>', 'Preview import');
+  bind();
+  $('#fauxCommit').addEventListener('click', commit);
+}
+function commit(){
+  if (!pend) return; var keep = [];
+  if (pend.A.summary) keep = pend.rows; else ov.querySelectorAll('[data-keep]').forEach(function(cb){ if (cb.checked) keep.push(pend.rows[+cb.getAttribute('data-keep')]); });
+  if (!keep.length) return;
+  var before = lsGet(C.key), st; try { st = JSON.parse(before || 'null'); } catch(e){ st = null; }
+  if (!st || typeof st !== 'object') st = JSON.parse(JSON.stringify(C.blank || {}));
+  pend.A.commit(st, keep);
+  if (!lsSet(C.key, JSON.stringify(st))) return errSheet('This browser\u2019s storage is full or blocked, so nothing was saved.');
+  try { sessionStorage.setItem('faux_done_' + SLUG, JSON.stringify({ before: before, msg: (pend.A.summary ? 'Guest count updated from your list.' : 'Added ' + keep.length + ' ' + pend.A.what + '.'), tab: pend.o.tab || '' })); } catch(e){}
+  location.reload();
+}
+function afterReload(){
+  var s; try { s = JSON.parse(sessionStorage.getItem('faux_done_' + SLUG) || 'null'); sessionStorage.removeItem('faux_done_' + SLUG); } catch(e){ s = null; }
+  if (!s) return; markSeen(); if (s.tab) goTab(s.tab);
+  toast(s.msg, function(){ if (s.before == null) { try { localStorage.removeItem(C.key); } catch(e){} } else lsSet(C.key, s.before); location.reload(); });
+}
+
+/* ---------- Drag and drop anywhere ---------- */
+function dnd(){
+  var tgt = (C.imports || []).filter(function(o){ return o.drop; })[0]; if (!tgt) return;
+  var veil = D.createElement('div'); veil.className = 'faux-drop'; veil.hidden = true; veil.textContent = 'Drop your file to import: ' + tgt.label; D.body.appendChild(veil);
+  var n = 0, isFile = function(e){ return e.dataTransfer && Array.prototype.indexOf.call(e.dataTransfer.types || [], 'Files') >= 0; };
+  D.addEventListener('dragenter', function(e){ if (!isFile(e)) return; n++; veil.hidden = false; });
+  D.addEventListener('dragleave', function(e){ if (!isFile(e)) return; n = Math.max(0, n - 1); if (!n) veil.hidden = true; });
+  D.addEventListener('dragover', function(e){ if (isFile(e)) e.preventDefault(); });
+  D.addEventListener('drop', function(e){ if (!isFile(e)) return; e.preventDefault(); n = 0; veil.hidden = true; var f = e.dataTransfer.files[0]; if (!f) return;
+    if (/\.json$/i.test(f.name) && C.jsonDrop) { var rd = new FileReader(); rd.onload = function(){ goTab(C.jsonTab); feed($(C.jsonDrop), f.name, String(rd.result), 'application/json'); }; rd.readAsText(f); return; }
+    readFile(f, tgt); });
+}
+
+/* ---------- On-device auto-fill between FiledAwayCo tools ---------- */
+function readAuto(){ try { return JSON.parse(lsGet(AUTO_KEY) || '{}') || {}; } catch(e){ return {}; } }
+function capture(fn){
+  return new Promise(function(res){
+    var got = null, last = null, oc = URL.createObjectURL, ac = HTMLAnchorElement.prototype.click;
+    var tEls = D.querySelectorAll(C.toastSel || '#toast'), snap = Array.prototype.map.call(tEls, function(t){ return [t, t.className, t.innerHTML, t.style.cssText]; });
+    D.documentElement.classList.add('faux-quiet');
+    URL.createObjectURL = function(b){ last = b; return oc.call(URL, b); };
+    HTMLAnchorElement.prototype.click = function(){ if (this.download && last) { got = last; return; } return ac.call(this); };
+    try { fn(); } catch(e){} finally { URL.createObjectURL = oc; HTMLAnchorElement.prototype.click = ac; snap.forEach(function(s){ s[0].className = s[1]; s[0].innerHTML = s[2]; s[0].style.cssText = s[3]; }); }
+    setTimeout(function(){ D.documentElement.classList.remove('faux-quiet'); }, 0);
+    if (got && got.text) got.text().then(res, function(){ res(null); }); else res(null);
+  });
+}
+var lastPub = null, pubT = null;
+function publish(){
+  var P = C.publish; if (!P) return; var cur = lsGet(C.key) || ''; if (cur === lastPub) return; lastPub = cur;
+  capture(function(){
+    if (P.click) { var b = $(P.click); if (b) b.click(); }
+    else if (P.act) { var t = D.createElement('button'); t.type = 'button'; t.setAttribute('data-act', P.act); t.style.display = 'none'; (P.host ? $(P.host) : D.body).appendChild(t); t.click(); t.remove(); }
+  }).then(function(txt){
+    var all = readAuto(), o = null; try { o = txt ? JSON.parse(txt) : null; } catch(e){}
+    var empty = o && ((o.salesCount === 0) || (o.trueNet === 0 && !o.grossSales && !(o.shifts && o.shifts.length) && !(o.deals && o.deals.length)));
+    if (o && o.bridge === 'fac-bridge-v1' && !o.sample && !empty) all[P.source] = { name: C.name, at: new Date().toISOString(), payload: txt };
+    else delete all[P.source];
+    lsSet(AUTO_KEY, JSON.stringify(all));
+  });
+}
+function schedulePub(){ clearTimeout(pubT); pubT = setTimeout(publish, 1200); }
+function summary(o){
+  if (typeof o.trueNet === 'number') return 'Net profit ' + fmt$(o.trueNet) + (o.taxYear ? ' (' + o.taxYear + ')' : '');
+  if (typeof o.freedMonthly === 'number') return 'Freed monthly ' + fmt$(o.freedMonthly);
+  if (Array.isArray(o.shifts)) return o.shifts.length + ' shift(s)';
+  if (Array.isArray(o.deals)) return o.deals.length + ' deal(s)';
+  return 'Summary ready';
+}
+function consume(){
+  var K = C.consume; if (!K) return; var host = K.into ? $(K.into) : null, bef = K.before ? $(K.before) : null; if (!host && !bef) return;
+  var all = readAuto(), keys = Object.keys(all).filter(function(k){ return K.sources.indexOf(k) >= 0; });
+  var box = $('#fauxAuto'); if (box) box.remove();
+  if (!keys.length) return;
+  box = D.createElement('div'); box.id = 'fauxAuto'; box.className = 'faux-auto no-print';
+  box.innerHTML = '<b>Auto-fill from your other FiledAwayCo tools on this device</b><div>' + esc(K.hint || 'Tap Use to load the numbers. You will confirm before anything changes.') + '</div>' +
+    keys.map(function(k){ var e = all[k], o = {}; try { o = JSON.parse(e.payload); } catch(x){}
+      return '<div class="faux-src"><span><b>' + esc(e.name || k) + '</b> · ' + esc(summary(o)) + ' · updated ' + esc(String(e.at || '').slice(0, 10)) + '</span><button type="button" class="faux-btn" data-auto="' + esc(k) + '">Use</button></div>'; }).join('');
+  if (bef) bef.parentNode.insertBefore(box, bef); else host.insertBefore(box, host.firstChild);
+  box.querySelectorAll('[data-auto]').forEach(function(b){ b.addEventListener('click', function(){
+    var e = readAuto()[b.getAttribute('data-auto')]; if (!e) return;
+    if (K.tab) goTab(K.tab); if (K.open) { var d = $(K.open); if (d && 'open' in d) d.open = true; }
+    feed($(K.input), 'fac-bridge-' + b.getAttribute('data-auto') + '.json', e.payload, 'application/json');
+    var dr = K.draft && $(K.draft); setTimeout(function(){ var t = dr || $(K.input).closest('.card, details, section'); if (t) try { t.scrollIntoView({ block: 'center', behavior: 'smooth' }); } catch(x){} }, 120);
+  }); });
+}
+
+/* ---------- Help button ---------- */
+function helpBtn(){
+  if (C.help === false) return;
+  var b = D.createElement('button'); b.type = 'button'; b.className = 'faux-help no-print'; b.textContent = '?'; b.title = 'How it works and import'; b.setAttribute('aria-label', 'How ' + (C.name || 'this tool') + ' works, and import options');
+  b.addEventListener('click', welcome);
+  var host = C.helpIn && $(C.helpIn);
+  if (host) { var last = host.lastElementChild; if (last && last.tagName === 'BUTTON') { var w = D.createElement('div'); w.style.cssText = 'display:flex;gap:8px;align-items:center;flex:none'; host.insertBefore(w, last); w.appendChild(b); w.appendChild(last); } else host.appendChild(b); }
+  else { b.classList.add('faux-fab'); D.body.appendChild(b); }
+}
+/* Seller Dashboard style apps: add "Paste rows" next to the app's own Choose file button when its import sheet opens */
+function pasteHook(){
+  var H = C.pasteHook; if (!H) return; var o = (C.imports || [])[0]; if (!o) return;
+  new MutationObserver(function(){ var b = $(H.after); if (b && !$('#fauxPasteHook')) { var p = D.createElement('button'); p.type = 'button'; p.id = 'fauxPasteHook'; p.className = H.cls || b.className; p.textContent = 'Paste rows from a spreadsheet instead'; p.style.marginTop = '8px'; p.addEventListener('click', function(){ pasteSheet(o); }); b.parentNode.insertBefore(p, b.nextSibling); } })
+    .observe(D.body, { childList: true, subtree: true });
+}
+
+function init(){
+  if (!inSuite) helpBtn(); else if (C.help !== false) helpBtn();
+  dnd(); pasteHook(); afterReload();
+  consume(); D.addEventListener('visibilitychange', function(){ if (!D.hidden) consume(); }); window.addEventListener('focus', consume);
+  if (C.publish) { ['click','change','submit','input'].forEach(function(ev){ D.addEventListener(ev, function(e){ if (e.isTrusted) schedulePub(); }, true); }); setTimeout(publish, 1500); }
+  var seen = lsGet('faux_seen_' + SLUG);
+  if (!seen && !inSuite && !window.__FA_UX_NO_WELCOME && C.welcome !== false && !sessionStorage.getItem('faux_done_' + SLUG)) welcome();
+}
+window.FAUX = { parseCSV: parseCSV, money: money, isoDate: isoDate, normalizeText: normalizeText, adapters: ADAPTERS, bankRows: bankRows, welcome: welcome, importSheet: importSheet, publish: publish, consume: consume, readAuto: readAuto };
+if (D.readyState === 'loading') D.addEventListener('DOMContentLoaded', init); else init();
+})();
+</script>
+<!-- FiledAwayCo app shell v1 2026-11-27 -->
+<script id="faa-logo">window.FAA_SLUG="debt-payoff-planner";window.FAA_LOGO={"light": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 240 240\" width=\"240\" height=\"240\"><rect x=\"6\" y=\"6\" width=\"228\" height=\"228\" rx=\"48\" fill=\"#16283C\"/><g transform=\"translate(63,40) scale(1.14)\"><rect x=\"0\" y=\"0\" width=\"28\" height=\"140\" rx=\"3.2\" fill=\"#F5F0E4\"/><rect x=\"0\" y=\"0\" width=\"100\" height=\"26\" rx=\"3.2\" fill=\"#F5F0E4\"/><rect x=\"0\" y=\"54\" width=\"72\" height=\"24\" rx=\"3.2\" fill=\"#F5F0E4\"/><\/g><rect x=\"148\" y=\"148\" width=\"74\" height=\"74\" rx=\"16\" fill=\"#E79A28\" stroke=\"#F5F0E4\" stroke-width=\"5\"/><path d=\"M167.24,186.48 L180.56,199.80 L204.24,170.20\" fill=\"none\" stroke=\"#16283C\" stroke-width=\"13.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><\/svg>", "dark": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 240 240\" width=\"240\" height=\"240\"><rect x=\"6\" y=\"6\" width=\"228\" height=\"228\" rx=\"48\" fill=\"#F5F0E4\"/><g transform=\"translate(63,40) scale(1.14)\"><rect x=\"0\" y=\"0\" width=\"28\" height=\"140\" rx=\"3.2\" fill=\"#16283C\"/><rect x=\"0\" y=\"0\" width=\"100\" height=\"26\" rx=\"3.2\" fill=\"#16283C\"/><rect x=\"0\" y=\"54\" width=\"72\" height=\"24\" rx=\"3.2\" fill=\"#16283C\"/><\/g><rect x=\"148\" y=\"148\" width=\"74\" height=\"74\" rx=\"16\" fill=\"#E79A28\" stroke=\"#16283C\" stroke-width=\"5\"/><path d=\"M167.24,186.48 L180.56,199.80 L204.24,170.20\" fill=\"none\" stroke=\"#16283C\" stroke-width=\"13.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><\/svg>"};</script>
+<script id="faa-products">/* Per-product answer screens. Every number is read from the tool's own result fields, so the math is the tool's own. */
+(function(){
+var FAA_P = window.FAA_P = {};
+var IMP = function(label, note, i){ return { label: label, imp: i || 0, icon: '⬆︎', note: note }; };
+var WIZ = function(label){ return { label: label, wizard: true, icon: '✎' }; };
+FAA_P['delist-alert-reseller-tracker'] = function(){ return {
+  one: 'Know the most to pay for an item in the thrift aisle, and what to delist everywhere once it sells.',
+  kicker: function(q){ return 'Most to pay for this item'; },
+  big: function(q){ return q.t('#outMaxBuy'); },
+  sub: function(q){ var e = q.el('#sSite'), site = e && e.options[e.selectedIndex] ? e.options[e.selectedIndex].textContent : ''; var m = q.t('#outMaxBuySub').match(/Keep (\$[\d,.]+)/); return 'Sell it for $' + q.v('#sPrice') + ' on ' + site + ' and you keep ' + (m ? m[1] : '') + ' after fees and shipping. Take off your $' + q.v('#sTarget') + ' profit goal.'; },
+  isEmpty: function(q){ return !q.v('#sPrice'); },
+  stats: [['Sold items to delist', function(q){ return q.t('#qBadge') || '0'; }], ['Best site to sell it', function(q){ return q.t('#outBestSite').split('(')[0].trim(); }], ['Items in inventory', function(q){ return q.t('#invCountTag').replace(/\s*items?/, ''); }]],
+  actions: [WIZ('Check an item (3 questions)'), IMP('Import my sales report', 'eBay, Poshmark, Mercari, Depop, Whatnot, Vinted, Etsy or Facebook CSV')],
+  more: [{ label: 'See what to delist', tab: 'queue', icon: '☑' }, { label: 'Add an item to inventory', tab: 'inv', icon: '＋' }],
+  detailsGo: 'source', moreLabel: 'See the fees on every site', emptySub: 'Answer 3 quick questions about an item, or import a sales report to see what to delist.',
+  wizard: { tab: 'source', finish: 'Show my max price', remember: true, fields: [
+    { sel: '#sPrice', q: 'What will it sell for?', help: 'Your best guess at the selling price.', kind: 'money', ph: '40' },
+    { sel: '#sTarget', q: 'How much profit do you want to make on it?', kind: 'money', ph: '10' },
+    { sel: '#sSite', q: 'Where will you sell it?', kind: 'select' } ] }
+}; };
+FAA_P['1099-quarterly-tax-planner'] = function(){ return {
+  one: 'See how much federal tax to set aside each quarter as a 1099 worker, and when each payment is due.',
+  kicker: function(q){ var r = q.el('.due-row.next'); var d = r ? q.date(r.textContent) : ''; return d ? 'Pay by ' + d : '2026 estimate per quarter'; },
+  big: function(q){ var r = q.el('.due-row.next'); var m = r && r.textContent.match(/\$[\d,]+(\.\d\d)?/); return m ? m[0] : q.t('#outSafeQ'); },
+  sub: function(q){ return 'The least you can pay without an IRS underpayment penalty. Full estimate: ' + q.t('#outFullQ') + '.'; },
+  stats: [[function(q){ return 'Save from each $' + Number(q.v('#todayPay') || 0).toLocaleString('en-US') + ' you get paid'; }, function(q){ return q.t('#paycheckAmt'); }], ['Federal tax this year', function(q){ var m = q.t('#outFullMeta').match(/\$[\d,]+/); return m ? m[0] : ''; }], ['Next due', function(q){ var r = q.el('.due-row.next'); var m = r && r.textContent.match(/(\d+)d left/); return m ? m[1] + ' days' : '–'; }]],
+  actions: [WIZ('Answer 3 questions'), IMP('Fill in profit from Bookkeeping or another FiledAwayCo app', 'Their profit summary file (.json); on the same device it fills in by itself')],
+  more: [{ label: 'See all four due dates', details: true, icon: '📅' }],
+  moreLabel: 'See all four payments', emptySub: 'Answer 3 questions (filing status, profit, last year’s tax) to see what to set aside.',
+  wizard: { finish: 'Show what to set aside', fields: [
+    { sel: '#status', q: 'How do you file?', kind: 'select' },
+    { sel: '#profit', q: 'What profit do you expect this year?', help: 'Income minus business costs, before tax. A rough guess is fine.', kind: 'money', ph: '45000' },
+    { sel: '#priorTax', q: 'What was your total tax last year?', help: 'Line 24 of last year’s Form 1040. Leave blank if you don’t know.', kind: 'money', req: false, ph: 'optional' } ] }
+}; };
+FAA_P['ugc-creator-kit'] = function(){ return {
+  one: 'Price a UGC deal line by line, check a brand brief for red flags, and catch every usage-rights renewal.',
+  kicker: 'Quote this deal at',
+  big: function(q){ return q.t('#outTotal'); },
+  sub: function(q){ return q.t('#outDeposit') + '. ' + (q.t('#outTakeHome').replace(/^Est\. /, 'Estimated ')); },
+  stats: [['If they renew usage', function(q){ return q.t('#outRenewal'); }], ['Renewals coming up', function(q){ return q.t('#renewBadge') || '0'; }], ['Deals saved', function(q){ return q.t('#dealCountTag').replace(/\s*deals?/, ''); }]],
+  actions: [WIZ('Price a deal (3 questions)'), { label: 'Check a brand brief', tab: 'brief', icon: '🔎', clear: false, note: 'Paste the brief and see the red flags' }],
+  more: [{ label: 'See my deals and renewals', tab: 'deals', icon: '📅' }],
+  detailsGo: 'quote', moreLabel: 'See every line of the quote', emptySub: 'Answer 3 questions about the deal to get a quote you can send.',
+  wizard: { tab: 'quote', finish: 'Show my quote', fields: [
+    { sel: '#qVideos', q: 'How many videos does the brand want?', kind: 'num', ph: '2' },
+    { sel: '#qVideoRate', q: 'What do you charge per video?', kind: 'money', ph: '350' },
+    { sel: '#qUsageType', q: 'Will they use it in paid ads?', kind: 'select' } ] }
+}; };
+FAA_P['well-kept-host-kit'] = function(){ return {
+  one: 'See what each booking really earned after fees and cleaning, and keep permits and guest answers in one place.',
+  kicker: 'You kept from these bookings',
+  big: function(q){ return q.t('#dNet'); },
+  sub: function(q){ return 'of ' + q.t('#dGross') + ' booked, after platform fees ' + q.t('#dFees') + ' and cleaning and supplies ' + q.t('#dCosts') + '.'; },
+  stats: [['Kept per night', function(q){ return q.t('#dNight'); }], ['Nights', function(q){ return q.t('#dNights'); }], ['Permit or tax dates due', function(q){ return q.t('#dlBadge') || '0'; }]],
+  actions: [IMP('Import my Airbnb or Vrbo file', 'Earnings or transaction CSV'), WIZ('Add a booking (3 questions)')],
+  more: [{ label: 'Permits and deadlines', tab: 'permits', icon: '📅' }, { label: 'Print the Wi-Fi card for guests', tab: 'wifi', icon: '📶' }],
+  detailsGo: 'money', moreLabel: 'See every booking',
+  wizard: { tab: 'money', submit: '#bkName', finish: 'Show what I kept', again: true, againLabel: 'Add another',
+    pre: { '#bkName': function(q){ return 'Booking ' + (q.all('#pane-money tbody tr').length + 1); }, '#bkDate': function(q, d){ return d; } },
+    fields: [
+    { sel: '#bkNights', q: 'How many nights?', kind: 'num', ph: '3' },
+    { sel: '#bkGross', q: 'What was the nightly price?', help: 'The price per night the guest paid, before fees.', kind: 'money', ph: '150' },
+    { sel: '#bkCleanCost', q: 'What did the cleaning cost you?', help: 'What you paid your cleaner for this stay.', kind: 'money', ph: '75', req: false } ] }
+}; };
+FAA_P['clear-wedding-planner'] = function(){ return {
+  one: 'Compare venue quotes at their true all-in price, see what each guest costs, and run the day from one page.',
+  kicker: 'Your venue really costs',
+  big: function(q){ return q.whole(q.t('#outAllIn')); },
+  sub: function(q){ return 'Quoted $' + Number(q.v('#vBase') || 0).toLocaleString('en-US') + ', plus service charge and tax (' + q.t('#qDeltaBadge') + ').'; },
+  isEmpty: function(q){ return !q.v('#vBase'); },
+  stats: [['Each extra guest', function(q){ return q.t('#outPerGuest'); }], ['Guests your budget fits', function(q){ return q.t('#gMaxTag').replace(/^\D+/, ''); }], ['Your total budget', function(q){ var b = q.n(q.v('#gBudget')); return b ? '$' + b.toLocaleString('en-US') : '–'; }]],
+  actions: [WIZ('Check a venue quote (3 questions)'), IMP('Import my guest list', 'Zola, The Knot, Joy, Google Forms or any sheet')],
+  more: [{ label: 'Payments and day-of timeline', tab: 'dayof', icon: '📋' }, { label: 'Guest cost and cuts', tab: 'guests', icon: '👥' }],
+  detailsGo: 'quote', moreLabel: 'See the full breakdown',
+  wizard: { tab: 'quote', finish: 'Show the real price', fields: [
+    { sel: '#vBase', q: 'What is the venue’s quoted price?', help: 'The base number on the quote.', kind: 'money', ph: '9000' },
+    { sel: '#vSvc', q: 'What service charge do they add?', help: 'Usually 20–25%. It’s in the fine print.', kind: 'pct', def: 20 },
+    { sel: '#vTax', q: 'What is the sales tax?', kind: 'pct', def: 8 } ] }
+}; };
+FAA_P['first-100k-banked-planner'] = function(){ return {
+  one: 'Track every deposit toward your first $100K and see your pace.',
+  kicker: 'Banked so far',
+  big: function(q){ return q.t('#outBanked'); },
+  sub: function(q){ var nx = q.t('#nextBoxTag').replace(/^Next:\s*/, ''), m = q.t('#boxNote').match(/^(\$[\d,]+)/); return q.t('#outPct') + '.' + (nx && m ? ' Next milestone ' + nx + ': ' + m[1] + ' to go.' : ''); },
+  stats: [['This week', function(q){ return q.t('#outWeek'); }], ['This month', function(q){ return q.t('#outMonth'); }], ['Still to go', function(q){ return q.t('#outLeft'); }]],
+  actions: [IMP('Import my savings account file', 'Bank CSV: only money coming in is offered'), WIZ('Log a deposit (2 questions)')],
+  more: [{ label: 'Burn rate and runway', tab: 'burn', icon: '⏳' }, { label: 'Print the milestone chart', tab: 'export', icon: '🖨' }],
+  detailsGo: 'pace', moreLabel: 'See every deposit',
+  wizard: { tab: 'pace', submit: '#depAmt', finish: 'Save and show my total', again: true, againLabel: 'Log another',
+    pre: { '#depDate': function(q, d){ return d; } },
+    fields: [
+    { sel: '#inpTarget', q: 'What is your savings goal?', help: 'Most people start with $100,000. You can change it any time.', kind: 'money', def: 100000, once: true },
+    { sel: '#depAmt', q: 'How much did you put away?', kind: 'money', ph: '250', keep: false } ] }
+}; };
+FAA_P['small-business-bookkeeping'] = function(){ return {
+  one: 'Turn your bank, card, PayPal or Stripe file into sorted books, a profit and loss, and a 2026 mileage log.',
+  kicker: 'Your profit so far',
+  big: function(q){ return q.t('#kNet'); },
+  sub: function(q){ return 'Estimated taxable profit: money in, minus the costs you can deduct (meals count at 50%) and your mileage deduction.'; },
+  stats: [['Money in', function(q){ return q.whole(q.t('#kInc')); }], ['Costs', function(q){ return q.whole(q.t('#kExp')); }], ['Mileage deduction', function(q){ return q.t('#kMi'); }]],
+  isEmpty: function(q){ return q.n(q.t('#kInc')) === 0 && q.n(q.t('#kExp')) === 0; },
+  actions: [IMP('Import my bank or card file', 'Any bank, card, PayPal or Stripe CSV'), WIZ('Add one entry (3 questions)')],
+  more: [{ label: 'Log a business trip (mileage)', tab: 'mileage', icon: '🚗' }, { label: 'Print the tax-time P&L', tab: 'export', icon: '🖨' }],
+  detailsGo: 'ledger', moreLabel: 'See the profit and loss',
+  wizard: { tab: 'ledger', submit: '#mAmt', finish: 'Save and show my profit', again: true,
+    pre: { '#mDate': function(q, d){ return d; } },
+    fields: [
+    { sel: '#mType', q: 'Money in or money out?', kind: 'select', options: [['Income', 'Money in (a sale or payment)'], ['Expense', 'Money out (a cost)']], keep: false, def: 'Income' },
+    { sel: '#mDesc', q: 'What was it for?', kind: 'text', ph: 'Etsy payout', keep: false },
+    { sel: '#mAmt', q: 'How much?', kind: 'money', ph: '120', keep: false } ],
+    after: function(q){} }
+}; };
+FAA_P['tips-overtime-deduction-tracker'] = function(){ return {
+  one: 'Estimate your federal deduction for tips and overtime (Schedule 1-A) one shift at a time.',
+  kicker: 'Your estimated deduction',
+  big: function(q){ return q.t('#outTotalDed'); },
+  sub: function(q){ return 'Tips ' + q.t('#outTipsDed') + ' + overtime premium ' + q.t('#outOtDed') + '. An estimate for Schedule 1-A, not tax advice.'; },
+  stats: [['Tips deduction', function(q){ return q.t('#outTipsDed'); }], ['Overtime deduction', function(q){ return q.t('#outOtDed'); }], ['Filing status', function(q){ return q.t('#outStatusNote').split('·')[0].split('/')[0].trim(); }]],
+  actions: [IMP('Import my shifts', 'From a scheduling app CSV, a sheet, or True Hourly'), WIZ('Log a shift (3 questions)')],
+  more: [{ label: 'Check my overtime pay', tab: 'flsa', icon: '⏱' }, { label: 'Records and the tax-pro summary', tab: 'records', icon: '🖨' }],
+  detailsGo: 'capture', moreLabel: 'See every shift',
+  wizard: { tab: 'capture', submit: '#dHours', finish: 'Save and show my deduction', again: true, againLabel: 'Log another',
+    pre: { '#dDate': function(q, d){ return d; } },
+    fields: [
+    { sel: '#dHours', q: 'How many hours did you work?', kind: 'num', ph: '8', keep: false },
+    { sel: '#dCash', q: 'Cash tips you kept?', kind: 'money', ph: '60', keep: false, req: false },
+    { sel: '#dCard', q: 'Card tips on your pay stub?', kind: 'money', ph: '140', keep: false, req: false } ] }
+}; };
+FAA_P['debt-payoff-planner'] = function(){ return {
+  one: 'See your debt-free date and compare snowball, avalanche or your own payoff order.',
+  kicker: function(q){ var s = q.t('#schedTitle').split('·')[0].trim(); return 'Debt-free by' + (s ? ' · ' + s + ' plan' : ''); },
+  big: function(q){ return q.t('#heroDate').replace(/\s*\(.*\)\s*$/, ''); },
+  sub: function(q){ var m = q.t('#heroDate').match(/\((\d+) mo\)/); return (m ? m[1] + ' months at ' : 'At ') + (q.t('#heroSub').split('·')[0].replace(/^Budget:\s*/, '').trim()) + '. Saves ' + q.t('#kSave').replace(/\.\d\d$/, '') + ' in interest vs paying minimums. Illustrative, not a prediction.'; },
+  isEmpty: function(q){ return /Add your debts/i.test(q.t('#heroDate')) || !/\d{4}/.test(q.t('#heroDate')); },
+  stats: [['Total debt', function(q){ return q.t('#kDebt'); }], ['Interest you’ll pay', function(q){ return q.t('#kInt').replace(/\.\d\d$/, ''); }], ['Debts', function(q){ return q.t('#debtCount'); }]],
+  actions: [WIZ('Add a debt (4 questions)'), IMP('Paste or import my debt list', 'Name, balance, APR, minimum from any sheet')],
+  more: [{ label: 'Month-by-month schedule', tab: 'schedule', icon: '📅' }, { label: 'Print the fridge chart', tab: 'export', icon: '🖨' }],
+  detailsGo: 'plan', moreLabel: 'Compare snowball and avalanche',
+  wizard: { tab: 'plan', submit: '#dName', finish: 'Save and show my date', again: true, againLabel: 'Add another debt',
+    pre: { '#dName': function(q){ return 'Debt ' + (q.n(q.t('#debtCount')) + 1); } },
+    before: function(q){ var n = q.el('#dName'); if (n) n.value = ''; },
+    fields: [
+    { sel: '#dBal', q: 'How much do you owe on it?', help: 'Start with one debt. You can add the rest next.', kind: 'money', ph: '4200', keep: false },
+    { sel: '#dApr', q: 'What is the interest rate (APR)?', help: 'On your statement. Use 0 for a 0% plan.', kind: 'pct', ph: '24.99', keep: false },
+    { sel: '#dMin', q: 'What is the minimum payment?', kind: 'money', ph: '120', keep: false },
+    { sel: '#inpBudget', q: 'How much can you put toward all your debts each month?', help: 'Include the minimums. You can change it any time.', kind: 'money', ph: '650', once: true } ] }
+}; };
+FAA_P['freelancer-money-system'] = function(){ return {
+  one: 'See who owes you money, chase late invoices in one tap, and know your profit and tax set-aside.',
+  kicker: 'Clients owe you',
+  big: function(q){ return q.t('#outUnpaid'); },
+  sub: function(q){ return q.t('#outOverdueSub') + '.'; },
+  isEmpty: function(q){ return q.n(q.t('#outUnpaid')) === 0 && q.n(q.t('#tRec')) === 0; },
+  stats: [['Profit so far', function(q){ return q.whole(q.t('#tProf')); }], ['Set aside for tax', function(q){ return q.whole(q.t('#tSet')); }], ['30+ days late', function(q){ return q.t('#a30p'); }]],
+  actions: [WIZ('Add an invoice (3 questions)'), IMP('Import my bank, PayPal or Stripe file', 'Marks invoices paid and finds costs')],
+  more: [{ label: 'Profit and tax set-aside', tab: 'tax', icon: '％' }, { label: 'Export for the 1099 planner', tab: 'export', icon: '⇄' }],
+  detailsGo: 'owe', moreLabel: 'See who is late',
+  wizard: { tab: 'owe', submit: '#iClient', finish: 'Save and show who owes me', again: true, againLabel: 'Add another',
+    pre: { '#iIss': function(q, d){ return d; }, '#iNum': function(q){ return 'INV-' + String(Date.now()).slice(-5); }, '#iDesc': 'Invoice' },
+    fields: [
+    { sel: '#iClient', q: 'Who is the client?', kind: 'text', ph: 'Bright Studio', keep: false },
+    { sel: '#iAmt', q: 'How much did you bill?', kind: 'money', ph: '1500', keep: false },
+    { sel: '#iDue', q: 'When is it due?', kind: 'date', keep: false } ] }
+}; };
+FAA_P['load-in'] = function(){ return {
+  sampleText: 'This is a made-up sample call.', trust: 'Works offline. Your info stays on this device. No account.',
+  one: 'Your pocket guide for an event call: what to bring, who to ask, what to say on the radio, and the words you will hear.',
+  kicker: function(q){ return q.v('#cVenue') ? 'Your call: ' + q.v('#cVenue') : 'Your next call'; },
+  big: function(q){ var m = q.t('#chkProg').match(/(\d+)\s*\/\s*(\d+)/); return m ? m[1] + ' of ' + m[2] + ' ready' : q.t('#chkProg'); },
+  sub: function(q){ var a = []; if (q.v('#cTime')) a.push('Call ' + q.v('#cTime')); if (q.v('#cLead')) a.push('ask for ' + q.v('#cLead')); if (q.v('#cRole')) a.push('you are ' + q.v('#cRole')); return (a.length ? a.join(' · ') + '. ' : '') + 'Tick the checklist as you pack and work.'; },
+  isEmpty: function(q){ return !q.v('#cVenue') && !/[1-9]/.test(q.t('#chkProg').split('/')[0]); },
+  stats: [['Checklist', function(q){ return q.t('#chkProg'); }], ['Radio phrases', function(){ return 'Comms'; }], ['Terms', function(){ return 'Glossary'; }]],
+  actions: [WIZ('Set up my call (3 questions)'), { label: 'Open my checklist', tab: 'call', icon: '☑' }],
+  more: [{ label: 'What to say on the radio', tab: 'comms', icon: '📻' }, { label: 'Look up a word I just heard', tab: 'gloss', icon: '🔎' }],
+  detailsGo: 'call', moreLabel: 'Open the checklist', emptyKicker: 'Your next call', emptyBig: 'Ready in 3 questions', emptySub: 'Venue, call time and your lead. Then tick the checklist as you go.',
+  wizard: { tab: 'call', finish: 'Show my call card', fields: [
+    { sel: '#cVenue', q: 'Where is the call?', help: 'Venue or hotel and room.', kind: 'text', ph: 'Grand Hyatt, Ballroom B' },
+    { sel: '#cTime', q: 'When is the call?', kind: 'text', ph: 'Sat 6:00 AM' },
+    { sel: '#cLead', q: 'Who is your lead?', help: 'The person to find first.', kind: 'text', ph: 'Dana (A1)', req: false } ] }
+}; };
+FAA_P['true-hourly'] = function(){ return {
+  one: 'Work out your real hourly pay after tip-out, and keep a log of your shifts.',
+  kicker: 'You really made',
+  big: function(q){ return q.t('#outRate'); },
+  sub: function(q){ var h = q.v('#sHours'); return (h ? 'For ' + h + ' hours. ' : '') + q.t('#outBreak') + '.'; },
+  stats: [['Base wages', function(q){ return q.t('#kWage'); }], ['Tips you kept', function(q){ return q.t('#kNetTips'); }], ['Tip-out', function(q){ return q.t('#kTipOut'); }]],
+  actions: [WIZ('Work out a shift (4 questions)'), { label: 'My shift log', tab: 'log', icon: '📒' }],
+  more: [{ label: 'Split a bill', tab: 'split', icon: '÷' }, { label: 'Set my tip-out roles', tab: 'calc', icon: '⚙' }],
+  detailsGo: 'calc', moreLabel: 'See the tip-out math',
+  wizard: { tab: 'calc', finish: 'Show my real hourly', fields: [
+    { sel: '#sHours', q: 'How many hours did you work?', kind: 'num', ph: '8', keep: false },
+    { sel: '#sWage', q: 'What is your base hourly wage?', kind: 'money', ph: '6', once: false },
+    { sel: '#sCash', q: 'How much in cash tips?', kind: 'money', ph: '120', keep: false, req: false },
+    { sel: '#sCard', q: 'How much in card tips?', kind: 'money', ph: '280', keep: false, req: false } ] }
+}; };
+FAA_P['timer-suite'] = function(){ return {
+  sampleText: 'This is a sample run of show.', trust: 'Works offline. Your cues stay on this device. No account.',
+  one: 'Big, clear countdowns for a stage cue, a classroom or a workout.',
+  kicker: function(q){ var c = q.t('#dispClock').match(/Cue:\s*(.*)$/); var mode = (q.el('[data-mode][aria-current="page"]') || {}).textContent || ''; return (mode ? mode.trim() + ' timer' : 'Countdown') + (c ? ' · ' + c[1] : ''); },
+  big: function(q){ var m = q.t('#dispClock').match(/\d{1,2}:\d{2}(:\d{2})?/); return m ? m[0] : '00:00'; },
+  clock: true, tick: 250, isEmpty: function(){ return false; },
+  sub: function(q){ var r = q.t('#dispClock').match(/Remaining:\s*([\d:]+)/); return r ? 'Remaining ' + r[1] + '. Tap Start, then Full screen for the room.' : 'Tap Start, then Full screen for the room.'; },
+  chips: [{ label: 'Stage', on: function(q){ var b = q.el('[data-mode="stage"]'); return b && b.getAttribute('aria-current') === 'page'; }, run: function(q){ q.el('[data-mode="stage"]').click(); } },
+          { label: 'Classroom', on: function(q){ var b = q.el('[data-mode="class"]'); return b && b.getAttribute('aria-current') === 'page'; }, run: function(q){ q.el('[data-mode="class"]').click(); } },
+          { label: 'Workout', on: function(q){ var b = q.el('[data-mode="workout"]'); return b && b.getAttribute('aria-current') === 'page'; }, run: function(q){ q.el('[data-mode="workout"]').click(); } }],
+  actions: [{ label: function(q){ return /pause/i.test(q.t('#startBtn')) ? 'Pause' : 'Start'; }, run: function(q){ q.el('#startBtn').click(); }, icon: '▶' },
+            { label: 'Full screen', run: function(q, api){ api.show('details'); setTimeout(function(){ q.el('#fsBtn').click(); }, 50); }, icon: '⛶' }],
+  more: [{ label: 'Paste my run of show', imp: 0, icon: '⬆︎', note: 'One cue per line, e.g. "Keynote, 25"' }, { label: 'Set times and cues', details: true, icon: '⚙' }],
+  moreLabel: 'Set times and cues', stats: []
+}; };
+FAA_P['qr-generator'] = function(){ return {
+  sampleText: 'This is a sample link.', trust: 'Works offline. Codes are made on this device. No account.',
+  one: 'Make a QR code that never expires, right on your device.',
+  kicker: function(q){ return q.v('#qUrl') ? 'Your QR code opens ' + q.v('#qUrl').replace(/^https?:\/\//, '').slice(0, 32) : 'Your QR code'; },
+  visual: function(q){ var c = q.el('#qrCanvas'), i = q.el('#qrPrintSheet img.sign-qr'); if (!c || c.style.display === 'none' || !i) return ''; return '<img alt="QR code preview" src="' + i.getAttribute('src') + '">'; },
+  big: function(q){ return q.v('#qUrl') || ''; }, isEmpty: function(q){ var c = q.el('#qrCanvas'); return !c || c.style.display === 'none'; },
+  sub: function(q){ return 'Static code: it never expires and has no tracking. ' + q.t('#contrastBox').split('(')[0].trim() + '.'; },
+  emptyKicker: 'Your QR code', emptyBig: 'Type a link, get a code', emptySub: 'Links, Wi-Fi or a contact card. Download PNG or SVG.',
+  actions: [WIZ('Make my QR code'), { label: 'Download PNG', run: function(q){ q.el('#dlPngBtn').click(); }, icon: '⬇' }],
+  more: [{ label: 'Wi-Fi or contact card QR', details: true, icon: '📶' }, { label: 'Many codes at once', details: true, icon: '▦' }],
+  moreLabel: 'Colors, size and printing', stats: [],
+  wizard: { finish: 'Make my code', fields: [ { sel: '#qUrl', q: 'What should the code open?', help: 'Paste a link (https://…) or type any text.', kind: 'text', ph: 'https://', keep: false } ],
+    before: function(q){ var t = q.el('[data-qtype="url"],[data-type="url"]'); if (t) t.click(); } }
+}; };
+FAA_P['seller-dashboard'] = function(){ return {
+  one: 'See what you actually keep from every sale after platform fees.',
+  native: function(q, api){
+    /* Seller Dashboard already opens with its answer card and a bottom tab bar. Add: sample on first open, the one-line purpose, install. */
+    var D = document, LS = 'faa_started_seller-dashboard';
+    var tryS = function(){ var b = Array.prototype.filter.call(D.querySelectorAll('[data-act="trysample"]'), function(x){ return x.offsetParent; })[0]; if (b) { b.click(); return true; } return false; };
+    if (!localStorage.getItem(LS) && !localStorage.getItem('fac_seller_dashboard_v2')) { var n = 0, t = setInterval(function(){ if (tryS() || ++n > 40) clearInterval(t); }, 50); }
+    try { localStorage.setItem(LS, '1'); } catch(e){}
+    var add = function(){ var hb = D.querySelector('.homebrand'); if (hb && !(hb.nextElementSibling && hb.nextElementSibling.classList.contains('faa-sdline'))) { var p = D.createElement('p'); p.className = 'faa-sdline'; p.textContent = 'See what you actually keep from every sale after platform fees.'; hb.parentNode.insertBefore(p, hb.nextSibling); }
+      if (hb && !hb.querySelector('.faa-gear')) { var g = D.createElement('button'); g.type = 'button'; g.className = 'faa-gear'; g.setAttribute('aria-label', 'Settings: platforms, fees and costs'); g.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>';
+        g.addEventListener('click', function(){ var t = D.querySelector('#tabs [data-v="settings"]'); if (t) t.click(); }); hb.appendChild(g); } };
+    new MutationObserver(add).observe(D.body, { childList: true, subtree: true }); add();
+    window.FAA = { native: true };
+  }
+}; };
+
+})();
+</script>
+<script id="faa-js">/* FiledAwayCo app shell v1 (2026-11-27). Home = one big answer read from the app's own results (the app's calculations are unchanged).
+   Adds: answer-first home, 3-question wizard, import-first actions, bottom nav, details view (the full original tool), PWA install + offline. */
+(function(){
+'use strict';
+var D = document, H = D.documentElement, X = window.FAUX_CFG || {}, SLUG = X.slug || window.FAA_SLUG;
+var P = (window.FAA_P && window.FAA_P[SLUG]) ? window.FAA_P[SLUG]() : null;
+if (!P) return;
+var TEST = !!window.__FA_APP_TEST;
+var LOGO = window.FAA_LOGO || {}, LS = 'faa_started_' + SLUG;
+function $(s, r){ return (r || D).querySelector(s); }
+function $$(s, r){ return Array.prototype.slice.call((r || D).querySelectorAll(s)); }
+function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function lsGet(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
+function lsSet(k, v){ try { localStorage.setItem(k, v); } catch(e){} }
+/* read helpers handed to product configs */
+var Q = {
+  t: function(s){ var e = $(s); return e ? (e.textContent || '').replace(/\s+/g, ' ').trim() : ''; },
+  v: function(s){ var e = $(s); return e ? e.value : ''; },
+  n: function(x){ var m = String(x || '').replace(/,/g, '').match(/-?\d+(\.\d+)?/); return m ? parseFloat(m[0]) : 0; },
+  el: $, all: $$,
+  whole: function(x){ return String(x || '').replace(/\.00(?=\D|$)/, ''); },
+  date: function(iso){ var m = String(iso || '').match(/(\d{4})-(\d{2})-(\d{2})/); if (!m) return ''; var M = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']; return M[+m[2] - 1] + ' ' + (+m[3]) + ', ' + m[1]; }
+};
+var ICON = {
+  home: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>',
+  list: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></svg>',
+  plus: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>',
+  help: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7M12 17h.01"/></svg>'
+};
+/* ---------- sample state ---------- */
+function isSample(){
+  if (P.isSample) return !!P.isSample(Q);
+  var b = $('#sampleBanner'); if (b) return b.style.display !== 'none' && !b.hidden;
+  try { var st = JSON.parse(lsGet(X.key) || 'null'); return !!(st && st.sample); } catch(e){ return false; }
+}
+function withConfirm(fn){ var c = window.confirm; window.confirm = function(){ return true; }; try { fn(); } finally { window.confirm = c; } }
+function loadSample(){ withConfirm(function(){ var b = P.sampleSel ? $(P.sampleSel) : $(X.sample); if (P.loadSample) P.loadSample(Q); else if (b) b.click(); }); }
+function clearSample(){ if (!isSample()) return; withConfirm(function(){ if (P.clearSample) P.clearSample(Q); else { var b = $('#clearSampleBtn'); if (b) b.click(); } }); }
+function goTab(tab){ if (!tab) return; if (/^[#.\[]/.test(tab)) { var e = $(tab); if (e) e.click(); return; } var b = $('.tabbar button[data-tab="' + tab + '"]') || $('[data-tab="' + tab + '"]'); if (b) b.click(); }
+/* ---------- build DOM ---------- */
+var root, homeV, heroEl, sampEl, autoEl, ctaEl, sheet, toastT;
+function logo(kind){ return '<span class="faa-mk" aria-hidden="true">' + (kind === 'dark' ? (LOGO.dark || '') : (LOGO.light || '')) + '</span>'; }
+function build(){
+  root = D.createElement('div'); root.id = 'faa'; root.className = 'no-print';
+  root.innerHTML =
+    '<div class="faa-bar"><div class="in"><button type="button" data-a="home" aria-label="Back to my answer">‹ My answer</button>' + logo('dark') + '<b>' + esc(X.name) + '</b></div></div>' +
+    '<div class="faa-homev" role="main">' +
+      '<header class="faa-hd">' + logo('light') + '<div class="t"><h1>' + esc(X.name) + '</h1><small>by FiledAway<b>Co</b></small></div></header>' +
+      '<p class="faa-one">' + esc(P.one || X.oneLine) + '</p>' +
+      '<div class="faa-samp" hidden><span>' + esc(P.sampleText || 'These are made-up sample numbers.') + '</span><button type="button" data-a="mine">Clear and use mine</button></div>' +
+      '<div class="faa-heroW"></div>' +
+      '<div class="faa-auto" hidden></div>' +
+      '<div class="faa-cta"></div>' +
+      '<p class="faa-trust">🔒 ' + esc(P.trust || 'Works offline. Your numbers stay on this device. No account.') + '</p>' +
+    '</div>' +
+    '<nav class="faa-nav" aria-label="App"><div class="in">' +
+      '<button type="button" data-a="home" data-nav="home">' + ICON.home + '<span>Home</span></button>' +
+      '<button type="button" data-a="details" data-nav="details">' + ICON.list + '<span>' + esc(P.detailsTab || 'All features') + '</span></button>' +
+      '<button type="button" data-a="add" class="plus" aria-label="More ways to add or import"><span class="o">' + ICON.plus + '</span><span>Add</span></button>' +
+      '<button type="button" data-a="help">' + ICON.help + '<span>Help</span></button>' +
+    '</div></nav>' +
+    '<div class="faa-sh" hidden></div>';
+  D.body.insertBefore(root, D.body.firstChild);
+  homeV = $('.faa-homev', root); heroEl = $('.faa-heroW', root); sampEl = $('.faa-samp', root); autoEl = $('.faa-auto', root); ctaEl = $('.faa-cta', root); sheet = $('.faa-sh', root);
+  root.addEventListener('click', onClick);
+  sheet.addEventListener('click', function(e){ if (e.target === sheet) closeSheet(); });
+  D.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !sheet.hidden) closeSheet(); });
+}
+/* ---------- views ---------- */
+var view = 'home';
+function show(v, tab){
+  view = v; H.classList.toggle('faa-home', v === 'home'); H.classList.toggle('faa-det', v !== 'home');
+  $$('[data-nav]', root).forEach(function(b){ if (b.getAttribute('data-nav') === v) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
+  if (v === 'home') { refresh(true); try { window.scrollTo(0, 0); } catch(e){} }
+  else { if (tab) goTab(tab); try { window.scrollTo(0, 0); } catch(e){} }
+  if (P.onView) P.onView(v, Q);
+}
+/* ---------- answer ---------- */
+var lastSig = '';
+function call(f, d){ try { return typeof f === 'function' ? f(Q) : (f == null ? d : f); } catch(e){ return d; } }
+function answer(){
+  var a = { k: call(P.kicker, ''), big: call(P.big, ''), sub: call(P.sub, ''), stats: (P.stats || []).map(function(s){ return [call(s[0], ''), call(s[1], '')]; }) };
+  a.empty = P.isEmpty ? !!call(P.isEmpty, false) : (!a.big || Q.n(a.big) === 0);
+  return a;
+}
+function refresh(force){
+  if (!root) return;
+  var s = isSample(); sampEl.hidden = !s;
+  var a = answer(), vis = P.visual ? call(P.visual, '') : '';
+  var sig = JSON.stringify([a, s, vis ? vis.length : 0]);
+  if (!force && sig === lastSig) return; var changed = lastSig && sig !== lastSig; lastSig = sig;
+  var h;
+  if (a.empty && !s) {
+    h = '<div class="faa-hero" data-faa="hero"><div class="k">' + esc(P.emptyKicker || 'Your answer goes here') + '</div><span class="big sm" data-faa="big">' + esc(P.emptyBig || 'Two minutes to your number') + '</span><p class="sub" data-faa="sub">' + esc(P.emptySub || 'Import your file or answer a few quick questions. Nothing leaves this device.') + '</p></div>';
+  } else {
+    var len = String(a.big).length, cls = len > 14 ? ' sm' : (len > 9 ? ' md' : '');
+    h = '<div class="faa-hero" data-faa="hero"><div class="k" data-faa="kicker">' + esc(a.k) + '</div>' +
+      (vis ? '<div class="vis">' + vis + '</div>' : '<span class="big' + cls + (P.clock ? ' clock' : '') + '" data-faa="big">' + esc(a.big) + '</span>') +
+      (a.sub ? '<p class="sub" data-faa="sub">' + esc(a.sub) + '</p>' : '') +
+      (P.chips ? '<div class="faa-chips">' + P.chips.map(function(c, i){ return '<button type="button" data-chip="' + i + '" aria-pressed="' + (call(c.on, false) ? 'true' : 'false') + '">' + esc(c.label) + '</button>'; }).join('') + '</div>' : '') +
+      (a.stats.length ? '<div class="st">' + a.stats.map(function(x){ return '<div><b>' + esc(x[1] || '–') + '</b><span>' + esc(x[0]) + '</span></div>'; }).join('') + '</div>' : '') +
+      '<button type="button" class="more" data-a="details">' + esc(P.moreLabel || 'See how it adds up') + ' ›</button></div>';
+  }
+  heroEl.innerHTML = h;
+  if (changed) { var he = $('.faa-hero', heroEl); if (he) { he.classList.remove('pulse'); void he.offsetWidth; he.classList.add('pulse'); } }
+  renderCTA(s, a.empty); renderAuto();
+}
+function imports(){ return (X.imports || []); }
+function renderCTA(s, empty){
+  var b = [];
+  (P.actions || []).forEach(function(ac, i){ b.push('<button type="button" class="faa-btn' + (i ? ' sec' : '') + '" data-act="' + i + '" data-kind="' + (ac.wizard ? 'wizard' : (ac.imp != null ? 'imp' : 'other')) + '">' + esc(call(ac.label, '')) + '</button>'); });
+  ctaEl.innerHTML = b.join('');
+}
+function renderAuto(){
+  var K = X.consume; autoEl.hidden = true; if (!K || !window.FAUX) return;
+  var all = window.FAUX.readAuto(), keys = Object.keys(all).filter(function(k){ return K.sources.indexOf(k) >= 0; });
+  if (!keys.length) return; var k = keys[0], e = all[k];
+  autoEl.innerHTML = '<span><b>Fill in from ' + esc(e.name || k) + '</b><br>Your numbers from that tool on this device.</span><button type="button" class="faa-btn sm" data-auto="' + esc(k) + '">Use</button>';
+  autoEl.hidden = false;
+}
+/* ---------- actions ---------- */
+function act(ac){
+  if (!ac) return;
+  if (ac.sample) { loadSample(); show('home'); return; }
+  if (ac.wizard) { wizard(); return; }
+  if (ac.imp != null) { startImport(ac.imp); return; }
+  if (ac.run) { ac.run(Q, api); refresh(true); return; }
+  if (ac.tab || ac.details) { if (ac.clear) clearSample(); show('details', ac.tab); return; }
+}
+var api = { show: show, toast: toast, refresh: refresh, clearSample: clearSample, loadSample: loadSample, goTab: goTab };
+function startImport(i){
+  var o = imports()[i]; if (!o || !window.FAUX) return;
+  clearSample(); lsSet(LS, '1');
+  window.FAUX.importSheet();
+}
+/* feed-type imports land in the tool's own review screen: switch to it so the customer can confirm */
+function watchFeeds(){
+  var targets = imports().filter(function(o){ return o.kind === 'feed'; }).map(function(o){ return o.target; });
+  if (X.consume && X.consume.input) targets.push(X.consume.input);
+  if (!targets.length) return;
+  D.addEventListener('change', function(e){
+    var t = e.target; if (!t || t.type !== 'file') return;
+    if (targets.some(function(s){ try { return t.matches(s); } catch(x){ return false; } })) {
+      var o = imports().filter(function(o){ return o.target && t.matches(o.target); })[0];
+      setTimeout(function(){ show('details', o && o.tab); toast(P.reviewMsg || 'Check the rows, then tap Save. Your answer updates on Home.'); }, 60);
+    }
+  }, true);
+}
+function onClick(e){
+  var b = e.target.closest('button'); if (!b || !root.contains(b)) return;
+  var a = b.getAttribute('data-a');
+  if (a === 'home') { closeSheet(); show('home'); }
+  else if (a === 'details') { closeSheet(); show('details', P.detailsGo); }
+  else if (a === 'add') addSheet();
+  else if (a === 'help') helpSheet();
+  else if (a === 'mine') { clearSample(); lsSet(LS, '1'); refresh(true); toast('Sample cleared. Add your own numbers below.', function(){ loadSample(); refresh(true); }); }
+  else if (a === 'close') closeSheet();
+  else if (a === 'install') { if (deferred) { deferred.prompt(); deferred = null; } closeSheet(); }
+  else if (b.hasAttribute('data-act')) { closeSheet(); act((P.actions || [])[+b.getAttribute('data-act')]); }
+  else if (b.hasAttribute('data-more')) { closeSheet(); act((P.more || [])[+b.getAttribute('data-more')]); }
+  else if (b.hasAttribute('data-chip')) { var c = P.chips[+b.getAttribute('data-chip')]; if (c && c.run) c.run(Q, api); setTimeout(function(){ refresh(true); }, 80); }
+  else if (b.hasAttribute('data-auto')) {
+    var k = b.getAttribute('data-auto'); clearSample(); lsSet(LS, '1'); show('details');
+    setTimeout(function(){ if (window.FAUX) window.FAUX.consume(); var u = $('#fauxAuto [data-auto="' + k + '"]'); if (u) u.click(); }, 60);
+  }
+}
+/* ---------- sheets ---------- */
+function openSheet(html, label){ sheet.innerHTML = '<div class="faa-pan" role="dialog" aria-modal="true" aria-label="' + esc(label) + '"><div class="grab"></div>' + html + '</div>'; sheet.hidden = false; var f = $('button, input', sheet); if (f) try { f.focus({preventScroll:true}); } catch(e){} }
+function closeSheet(){ sheet.hidden = true; sheet.innerHTML = ''; }
+function addSheet(){
+  var items = [];
+  (P.actions || []).forEach(function(ac, i){ items.push('<button type="button" class="faa-item" data-act="' + i + '" data-kind="' + (ac.wizard ? 'wizard' : (ac.imp != null ? 'imp' : 'other')) + '"><span class="ic">' + (ac.icon || '＋') + '</span><span>' + esc(call(ac.label, '')) + (ac.note ? '<small>' + esc(ac.note) + '</small>' : '') + '</span></button>'); });
+  (P.more || []).forEach(function(ac, i){ items.push('<button type="button" class="faa-item" data-more="' + i + '" data-kind="' + (ac.imp != null ? 'imp' : 'other') + '"><span class="ic">' + (ac.icon || '›') + '</span><span>' + esc(ac.label) + (ac.note ? '<small>' + esc(ac.note) + '</small>' : '') + '</span></button>'); });
+  if (!isSample() && (X.sample || P.sampleSel)) items.push('<button type="button" class="faa-item" data-more="-1" id="faaSampleAgain"><span class="ic">👀</span><span>Show the sample again<small>Replaces what is on screen; your own entries are kept only if you undo.</small></span></button>');
+  openSheet('<h2>Add your info</h2><p>Every way to add your own info. Importing a file is fastest, and you see a preview before anything is saved.</p><div class="faa-list">' + items.join('') + '</div><button type="button" class="faa-btn ghost" data-a="close">Close</button>', 'Add or import');
+  var sa = $('#faaSampleAgain', sheet); if (sa) sa.addEventListener('click', function(ev){ ev.stopPropagation(); closeSheet(); var snap = lsGet(X.key); loadSample(); refresh(true); toast('Sample loaded.', function(){ if (snap == null) { try { localStorage.removeItem(X.key); } catch(e){} } else lsSet(X.key, snap); location.reload(); }); });
+}
+function helpSheet(){
+  var steps = (X.steps || []).map(function(s){ return '<li>' + s + '</li>'; }).join('');
+  var ios = /iPhone|iPad|iPod/.test(navigator.userAgent);
+  openSheet('<h2>' + esc(X.name) + '</h2><p>' + esc(P.one || X.oneLine) + '</p>' + (steps ? '<ol class="faa-steps">' + steps + '</ol>' : '') +
+    (X.cannot ? '<p><b>What it can’t pull in automatically:</b> ' + X.cannot + '</p>' : '') +
+    '<p><b>Put it on your home screen:</b> ' + (ios ? 'in Safari tap Share, then <b>Add to Home Screen</b>.' : 'in Chrome tap ⋮, then <b>Install app</b> or <b>Add to Home screen</b>. On iPhone: Safari, Share, Add to Home Screen.') + ' It then opens like an app and works offline.</p>' +
+    (deferred ? '<button type="button" class="faa-btn" data-a="install">Install this app</button>' : '') +
+    '<p>🔒 Private by design: no account, nothing uploaded. Your numbers stay in this browser on this device.</p>' +
+    '<div class="faa-list"><button type="button" class="faa-item" data-a="details"><span class="ic">☰</span><span>All features<small>Every tab, setting, print and export</small></span></button></div>' +
+    '<button type="button" class="faa-btn ghost" data-a="close">Close</button>', 'Help');
+}
+function toast(msg, undo){
+  var old = $('.faa-toast', root); if (old) old.remove(); clearTimeout(toastT);
+  var t = D.createElement('div'); t.className = 'faa-toast'; t.setAttribute('role', 'status'); t.innerHTML = '<span>' + esc(msg) + '</span>' + (undo ? '<button type="button">Undo</button>' : '');
+  root.appendChild(t); if (undo) $('button', t).addEventListener('click', function(){ t.remove(); undo(); });
+  toastT = setTimeout(function(){ t.remove(); }, undo ? 7000 : 4000);
+}
+/* ---------- wizard: plain questions, one at a time; answers go into the tool's own fields ---------- */
+function setField(f, v){
+  var el = $(f.sel); if (!el) return;
+  if (f.tab) goTab(f.tab);
+  el.value = v; el.dispatchEvent(new Event('input', {bubbles:true})); el.dispatchEvent(new Event('change', {bubbles:true}));
+}
+function today(){ var d = new Date(); return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
+function wizard(round){
+  var W = P.wizard; if (!W) return; var fs = W.fields.filter(function(f){ return !(round && f.once); });
+  var wasS = isSample(), vals = {}, i = 0;
+  fs.forEach(function(f){ var el = $(f.sel); vals[f.sel] = (!wasS && el && f.keep !== false) ? el.value : (f.def != null ? String(f.def) : ''); if (f.kind === 'select' && !vals[f.sel] && el) vals[f.sel] = el.value; });
+  function step(){
+    var f = fs[i], el = $(f.sel), dots = fs.map(function(_, j){ return '<i class="' + (j <= i ? 'on' : '') + '"></i>'; }).join(''), inner;
+    if (f.kind === 'select') {
+      var opts = f.options || (el ? Array.prototype.map.call(el.options, function(o){ return [o.value, o.textContent]; }) : []);
+      inner = '<div class="opts" role="radiogroup">' + opts.map(function(o){ return '<button type="button" role="radio" data-v="' + esc(o[0]) + '" aria-pressed="' + (String(vals[f.sel]) === String(o[0]) ? 'true' : 'false') + '">' + esc(o[1]) + '</button>'; }).join('') + '</div>';
+    } else {
+      var pre = f.kind === 'money' ? '$' : '', post = f.kind === 'pct' ? '%' : '';
+      var it = f.kind === 'date' ? 'date' : 'text', im = (f.kind === 'money' || f.kind === 'pct' || f.kind === 'num') ? ' inputmode="decimal"' : '';
+      inner = '<div class="fld">' + (pre ? '<span>' + pre + '</span>' : '') + '<input id="faaWzIn" type="' + it + '"' + im + ' autocomplete="off" value="' + esc(vals[f.sel] || '') + '" placeholder="' + esc(f.ph || '') + '" aria-labelledby="faaWzQ">' + (post ? '<span>' + post + '</span>' : '') + '</div>';
+    }
+    openSheet('<div class="faa-wz"><div class="dots">' + dots + '</div><div class="qn">Question ' + (i + 1) + ' of ' + fs.length + '</div><label class="q" id="faaWzQ" for="faaWzIn">' + esc(f.q) + '</label>' + (f.help ? '<p class="help">' + esc(f.help) + '</p>' : '') + inner +
+      '<div class="nav2"><button type="button" class="faa-btn ghost" id="faaWzBack">' + (i ? 'Back' : 'Cancel') + '</button><button type="button" class="faa-btn" id="faaWzNext">' + (i === fs.length - 1 ? esc(W.finish || 'Show my answer') : 'Next') + '</button></div></div>', 'Question ' + (i + 1));
+    var inp = $('#faaWzIn', sheet); if (inp) { try { inp.focus(); inp.select(); } catch(e){} inp.addEventListener('keydown', function(e){ if (e.key === 'Enter') { e.preventDefault(); next(); } }); }
+    $$('.opts button', sheet).forEach(function(b){ b.addEventListener('click', function(){ vals[f.sel] = b.getAttribute('data-v'); $$('.opts button', sheet).forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); }); setTimeout(next, 140); }); });
+    $('#faaWzBack', sheet).addEventListener('click', function(){ if (!i) closeSheet(); else { save(); i--; step(); } });
+    $('#faaWzNext', sheet).addEventListener('click', next);
+  }
+  function save(){ var inp = $('#faaWzIn', sheet); if (inp) vals[fs[i].sel] = inp.value.replace(/^\s*\$\s*/, '').replace(/,(?=\d{3}\b)/g, '').trim(); }
+  function next(){
+    save(); var f = fs[i];
+    if (f.req !== false && f.kind !== 'select' && !String(vals[f.sel] || '').trim()) { var fl = $('.fld', sheet); if (fl) { fl.style.borderColor = '#B23A2E'; } return; }
+    if (i < fs.length - 1) { i++; step(); return; }
+    finish();
+  }
+  function finish(){
+    closeSheet(); clearSample(); lsSet(LS, '1');
+    if (W.before) W.before(Q, vals);
+    if (W.tab) goTab(W.tab);
+    Object.keys(W.pre || {}).forEach(function(sel){ var el = $(sel); if (el && !String(el.value || '').trim()) setField({sel: sel}, typeof W.pre[sel] === 'function' ? W.pre[sel](Q, today()) : W.pre[sel]); });
+    fs.forEach(function(f){ setField(f, vals[f.sel]); });
+    if (W.submit) { var s = $(W.submit); var form = s && (s.tagName === 'FORM' ? s : s.closest('form')); if (form) { if (form.requestSubmit) form.requestSubmit(); else form.dispatchEvent(new Event('submit', {cancelable:true, bubbles:true})); } else if (s) s.click(); }
+    if (W.after) W.after(Q, vals);
+    if (W.remember) lsSet('faa_wz_' + SLUG, JSON.stringify(vals));
+    show('home');
+    setTimeout(function(){ refresh(true); if (W.again) toast(W.againMsg || 'Saved. Add another?', null); }, 120);
+    if (W.again) setTimeout(function(){ var t = $('.faa-toast', root); if (t) { var b = D.createElement('button'); b.type = 'button'; b.textContent = W.againLabel || 'Add another'; b.addEventListener('click', function(){ t.remove(); wizard(true); }); t.appendChild(b); } }, 160);
+  }
+  step();
+}
+function restoreWizard(){
+  var W = P.wizard; if (!W || !W.remember || isSample()) return; var v; try { v = JSON.parse(lsGet('faa_wz_' + SLUG) || 'null'); } catch(e){ v = null; } if (!v) return;
+  if (W.tab) goTab(W.tab); W.fields.forEach(function(f){ if (v[f.sel] != null) setField(f, v[f.sel]); });
+}
+/* ---------- PWA: manifest + service worker only on http(s); the same HTML still works as a single file ---------- */
+var deferred = null;
+function pwa(){
+  window.addEventListener('beforeinstallprompt', function(e){ e.preventDefault(); deferred = e; });
+  if (!/^https?:$/.test(location.protocol)) return;
+  var put = function(){ var l = $('link[rel="manifest"]'); if (!l) { l = D.createElement('link'); l.rel = 'manifest'; D.head.appendChild(l); } l.href = 'manifest.webmanifest'; };
+  var reg = function(){ put(); if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(function(){}); };
+  put(); if (D.readyState === 'complete') reg(); else window.addEventListener('load', reg);
+}
+/* ---------- boot ---------- */
+function boot(){
+  pwa();
+  if (TEST) { H.classList.add('faa-test'); return; }
+  H.classList.add('faa-on');
+  if (P.native) { if (P.native(Q, api) !== false) return; }
+  build(); watchFeeds();
+  if (!lsGet(LS) && !lsGet(X.key) && (X.sample || P.sampleSel || P.loadSample)) { loadSample(); lsSet(LS, '1'); }
+  else lsSet(LS, '1');
+  restoreWizard();
+  show('home');
+  var t = null; new MutationObserver(function(m){ if (view !== 'home') return; if (m.every(function(r){ return root.contains(r.target); })) return; clearTimeout(t); t = setTimeout(function(){ refresh(false); }, 120); }).observe(D.body, { subtree: true, childList: true, characterData: true, attributes: true, attributeFilter: ['style', 'class', 'value'] });
+  if (P.tick) setInterval(function(){ if (view === 'home') refresh(false); }, P.tick);
+  window.addEventListener('storage', function(){ refresh(true); });
+  window.FAA = { show: show, refresh: refresh, answer: answer, isSample: isSample, wizard: wizard, api: api };
+}
+if (D.readyState === 'loading') D.addEventListener('DOMContentLoaded', function(){ setTimeout(boot, 0); }); else setTimeout(boot, 0);
+})();
+</script>
+<!-- /FiledAwayCo app shell -->
+</body>
+</html>
