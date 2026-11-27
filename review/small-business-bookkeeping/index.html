@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en" data-temp="ledger">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Small Business Bookkeeping Companion · FiledAwayCo</title>
+<style>
+:root,[data-temp="ledger"]{
+  --brand:#1B2A40; --brand-ink:#FFFFFF; --accent:#1F5C45; --accent-ink:#FFFFFF;
+  --mint-on-dark:#7FB89E;
+  --paper:#FBF8F2; --card:#FFFFFF; --cream:#E8E0D2;
+  --ink:#1B2430; --muted:#4A5563; --line:#D9D1C3; --hairline:#EDE6DA;
+  --input-bg:#FFF4D6; --input-border:#D9C79A; --input-ink:#1A1A1A;
+  --auto-bg:#F1F3F5; --auto-ink:#1B2430;
+  --good-ink:#16533C; --good-bg:#E6F3EC;
+  --warn-ink:#7A4700; --warn-bg:#FFF4D6;
+  --alert-ink:#962324; --alert-bg:#FBEAEA;
+  --radius:14px; --radius-sm:10px;
+  --font-display:Georgia,"Times New Roman",serif;
+  --font-body:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--cream);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.45;-webkit-text-size-adjust:100%}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+.h-num{font-family:var(--font-body);font-variant-numeric:tabular-nums}
+.shell{max-width:900px;margin:0 auto;min-height:100vh;background:var(--paper);padding:14px 14px 44px}
+@media(min-width:768px){.shell{margin:18px auto;border-radius:18px;border:1px solid var(--line);padding:22px 26px 48px;box-shadow:0 6px 24px rgba(27,42,64,.09)}}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--hairline);margin-bottom:12px}
+.wm{display:flex;align-items:center;gap:10px;min-width:0}
+.mark{width:34px;height:34px;border-radius:8px;background:var(--brand);color:#fff;font-weight:800;font-size:14px;display:grid;place-items:center;position:relative;flex:none}
+.mark::after{content:"";position:absolute;top:0;right:0;width:10px;height:10px;background:var(--accent);border-bottom-left-radius:4px;border-top-right-radius:8px}
+.wm-t b{display:block;font-size:15px;color:var(--brand);line-height:1.15}
+.wm-t span{display:block;font-size:12px;color:var(--muted)}
+.banner{background:var(--warn-bg);border:1px solid var(--input-border);color:var(--warn-ink);border-radius:var(--radius-sm);padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;font-size:14px}
+.banner button{min-height:44px;padding:0 14px;border-radius:8px;border:1px solid var(--warn-ink);background:#fff;color:var(--warn-ink);font-weight:700;font-size:13.5px;cursor:pointer;white-space:nowrap;flex:none}
+.tabbar{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;background:var(--cream);padding:5px;border-radius:12px;margin-bottom:16px}
+.tabbar button{min-height:46px;border:0;border-radius:9px;background:transparent;color:var(--brand);font:inherit;font-size:13px;font-weight:700;cursor:pointer;padding:6px 4px;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.15}
+.tabbar button[aria-current="page"]{background:var(--brand);color:#fff}
+h1{font-family:var(--font-display);font-size:24px;line-height:1.2;color:var(--brand);margin:0 0 6px}
+h2{font-family:var(--font-display);font-size:18px;line-height:1.25;color:var(--brand);margin:0 0 10px}
+.cap{font-size:13px;color:var(--muted);line-height:1.45}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:14px}
+.empty-cta{background:var(--paper);border:1.5px dashed var(--input-border);border-radius:var(--radius);padding:16px;margin-bottom:14px;display:flex;flex-direction:column;gap:10px}
+.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(min-width:640px){.kpi-grid{grid-template-columns:repeat(4,1fr)}}
+.kpi{background:var(--auto-bg);border:1px solid var(--hairline);border-radius:12px;padding:12px}
+.kpi.main{background:var(--paper);border:2px solid var(--accent)}
+.kpi .lbl{font-size:12px;color:var(--muted);font-weight:600}
+.kpi .big{font-size:21px;font-weight:800;color:var(--brand);margin-top:2px}
+.kpi.main .big{color:var(--good-ink)}
+.grid2{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:560px){.grid2{grid-template-columns:1fr 1fr}}
+.grid3{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:600px){.grid3{grid-template-columns:repeat(3,1fr)}}
+.field{display:block;margin-bottom:10px}
+.field:last-child{margin-bottom:0}
+.field .l{display:block;font-size:13.5px;font-weight:700;color:var(--brand);margin-bottom:4px}
+.inp-wrap{display:flex;align-items:center;background:var(--input-bg);border:1.5px solid var(--input-border);border-radius:var(--radius-sm);padding:0 12px;min-height:46px}
+.inp-wrap:focus-within{border-color:var(--accent);box-shadow:0 0 0 2px rgba(31,92,69,.18)}
+.inp-wrap .pre{font-weight:700;color:var(--muted);margin-right:6px}
+.inp-wrap input,.inp-wrap select{width:100%;border:0;background:transparent;font:inherit;color:var(--input-ink);outline:none;padding:10px 0;min-height:44px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 16px;border-radius:var(--radius-sm);border:1.5px solid var(--accent);background:var(--accent);color:#fff;font:inherit;font-weight:700;font-size:14.5px;cursor:pointer;text-decoration:none}
+.btn.sec{background:#fff;color:var(--brand);border-color:var(--line)}
+.btn.full{width:100%}
+.btn-row{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}
+@media(min-width:520px){.btn-row{grid-template-columns:1fr 1fr}}
+.tag{display:inline-block;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:700;background:var(--auto-bg);color:var(--brand);white-space:nowrap}
+.tag.good{background:var(--good-bg);color:var(--good-ink)}
+.tag.warn{background:var(--warn-bg);color:var(--warn-ink)}
+.tag.alert{background:var(--alert-bg);color:var(--alert-ink)}
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table.grid{width:100%;border-collapse:collapse;font-size:13.5px}
+table.grid th,table.grid td{padding:8px 6px;border-bottom:1px solid var(--hairline);text-align:left;vertical-align:middle}
+table.grid th{background:var(--auto-bg);color:var(--muted);font-size:12px;font-weight:700}
+table.grid td.r,table.grid th.r{text-align:right;white-space:nowrap}
+table.grid tr.skip-row{opacity:.65;background:var(--auto-bg)}
+table.grid tr.unpicked{background:var(--warn-bg)}
+select.tbl-sel{min-height:44px;padding:6px 8px;border:1px solid var(--input-border);border-radius:8px;background:var(--input-bg);font:inherit;font-size:13.5px;color:var(--input-ink);max-width:170px}
+.draft-row{padding:10px 8px;border-bottom:1px solid var(--hairline);display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:8px;align-items:center}
+.draft-row:last-child{border-bottom:0}
+.draft-row.skip-row{background:var(--auto-bg)}
+.draft-row.skip-row .draft-amt{text-decoration:line-through;color:var(--muted)!important}
+.draft-row.unpicked{background:var(--warn-bg)}
+.draft-meta{min-width:0}
+.draft-date{white-space:nowrap;font-weight:700}
+.draft-desc{font-size:13px;color:var(--muted);line-height:1.35;overflow-wrap:anywhere}
+.draft-amt{font-weight:800;white-space:nowrap;text-align:right}
+.draft-cat-cell{grid-column:1 / -1}
+.draft-cat-cell select.tbl-sel{width:100%;max-width:none}
+@media(min-width:640px){
+  .draft-row{grid-template-columns:44px minmax(0,1fr) minmax(96px,auto) 185px}
+  .draft-cat-cell{grid-column:auto}
+}
+.shell-foot{margin-top:16px;padding-top:12px;border-top:1px solid var(--hairline);font-size:12.5px;color:var(--muted);line-height:1.45}
+.chk-lbl{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;cursor:pointer}
+.chk-lbl input{width:20px;height:20px;accent-color:var(--accent)}
+.badread{display:inline-flex;align-items:center;min-height:44px;color:var(--accent);font-weight:700;font-size:14px}
+.row-card{padding:11px 0;border-bottom:1px solid var(--hairline);display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.row-card:last-child{border-bottom:0}
+.note-box{background:var(--paper);border-left:4px solid var(--accent);padding:10px 12px;border-radius:0 10px 10px 0;font-size:13.5px;margin:10px 0}
+.pane{display:none}
+.pane.active{display:block}
+.toast{position:fixed;left:12px;right:12px;bottom:20px;max-width:520px;margin:0 auto;transform:translateY(90px);opacity:0;visibility:hidden;pointer-events:none;background:var(--brand);color:#fff;padding:10px 14px;border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 8px 24px rgba(0,0,0,.22);transition:transform .2s ease,opacity .2s ease;z-index:60;font-size:14px}
+.toast.on{transform:translateY(0);opacity:1;visibility:visible;pointer-events:auto}
+.toast button{min-height:44px;padding:0 14px;border-radius:8px;border:0;background:var(--mint-on-dark);color:var(--brand);font-weight:800;cursor:pointer;align-items:center;justify-content:center}
+.print-only{display:none}
+@media print{
+  body{background:#fff;color:#111;font-size:10.5pt}
+  .shell{max-width:100%;margin:0;padding:0;border:0;box-shadow:none;background:#fff}
+  .no-print,.topbar,.tabbar,.banner,.toast,.pane{display:none!important}
+  #taxPrintSheet{display:block!important}
+  #taxPrintSheet h1{font-size:18pt;margin:0 0 6px;color:#1B2A40}
+  #taxPrintSheet h2{font-size:13pt;margin:14px 0 6px;border-bottom:1.5px solid #1B2A40;padding-bottom:2px}
+}
+</style>
+<style id="fa-name-title">.wm-t b,.wm-text b{font-size:19px;font-weight:800;line-height:1.12;letter-spacing:-.2px;white-space:normal}</style>
+</head>
+<body>
+<div class="shell">
+  <div class="topbar no-print">
+    <div class="wm">
+      <div class="mark" aria-hidden="true">fa</div>
+      <div class="wm-t"><b>Small Business Bookkeeping</b><span>Import CSV · P&amp;L · 2026 Mileage · Export</span></div>
+    </div>
+    <button type="button" class="btn sec" id="topSampleBtn" style="min-height:44px;padding:0 14px;font-size:13.5px;flex:none;white-space:nowrap">Try sample</button>
+  </div>
+
+  <div class="banner no-print" id="sampleBanner" data-sample-banner="1" style="display:none">
+    <span><b>Sample books</b> — example transactions &amp; trips, not your bank data</span>
+    <button type="button" id="clearSampleBtn">Clear sample</button>
+  </div>
+
+  <nav class="tabbar no-print" aria-label="Main navigation">
+    <button type="button" data-tab="import" aria-current="page"><span>Import CSV</span></button>
+    <button type="button" data-tab="ledger"><span>Ledger &amp; P&amp;L</span></button>
+    <button type="button" data-tab="mileage"><span>Mileage 2026</span></button>
+    <button type="button" data-tab="export"><span>Export</span></button>
+  </nav>
+
+  <!-- TAB 1: IMPORT CSV -->
+  <section class="pane active" id="pane-import" aria-label="Import Bank CSV">
+    <h1>Import Bank or Card CSV</h1>
+    <p class="cap" style="margin:0 0 12px">Read 100% locally on this device — zero uploads, zero API keys. Supports single Amount columns, accounting parentheses <code>($48.60)</code>, trailing minus <code>48.60-</code>, and split Debit/Credit columns.</p>
+
+    <div class="empty-cta" id="emptyHeroCta" style="display:none">
+      <div><b>See the whole system in one tap:</b> load a realistic sample bank month (income, supplies, meals, utilities, and H1/H2 2026 mileage trips) or upload your own CSV below.</div>
+      <button type="button" class="btn full" id="primarySampleBtn">Try sample books</button>
+    </div>
+
+    <div class="card">
+      <h2><span class="h-num">1.</span> Choose a CSV file</h2>
+      <div class="btn-row" style="margin-top:0">
+        <label class="btn full" for="csvFile" style="cursor:pointer">Choose bank / card CSV</label>
+        <button type="button" class="btn sec full" id="loadSampleCsvBtn">Load sample CSV draft</button>
+      </div>
+      <input type="file" id="csvFile" accept=".csv,text/csv" style="display:none">
+      <div id="mapBox" style="display:none;margin-top:12px">
+        <div class="grid3">
+          <label class="field"><span class="l">Date column</span><span class="inp-wrap"><select id="mapDate"></select></span></label>
+          <label class="field"><span class="l">Description column</span><span class="inp-wrap"><select id="mapDesc"></select></span></label>
+          <label class="field"><span class="l">Amount column</span><span class="inp-wrap"><select id="mapAmt"></select></span></label>
+        </div>
+        <div class="grid2" style="margin-top:8px">
+          <label class="field"><span class="l">Optional Debit column (if split)</span><span class="inp-wrap"><select id="mapDebit"></select></span></label>
+          <label class="field"><span class="l">Optional Credit column (if split)</span><span class="inp-wrap"><select id="mapCredit"></select></span></label>
+        </div>
+        <button type="button" class="btn sec" id="reMapBtn" style="margin-top:10px">Re-read with this mapping</button>
+      </div>
+    </div>
+
+    <div class="card" id="draftCard" style="display:none">
+      <h2><span class="h-num">2.</span> Confirm draft before saving</h2>
+      <p class="cap" id="draftSummary" style="color:var(--warn-ink);font-weight:700;margin:0 0 8px"></p>
+      <div id="draftList" role="list" aria-label="Imported CSV draft rows"></div>
+      <div class="btn-row">
+        <button type="button" class="btn" id="confirmDraftBtn">Confirm &amp; save checked rows</button>
+        <button type="button" class="btn sec" id="discardDraftBtn">Discard draft</button>
+      </div>
+      <p style="margin:8px 0 0"><a class="badread" href="mailto:filedawayco@gmail.com?subject=Bookkeeping%20Companion%20%E2%80%94%20CSV%20bad%20read&body=Bank%20or%20card%3A%0AColumn%20headers%20only%20(no%20account%20numbers)%3A%0AWhat%20looked%20wrong%3A">Report a bad read</a></p>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px">
+        <h2 style="margin:0">Smart category rules (on-device)</h2>
+        <button type="button" class="btn sec" id="resetDictBtn" style="min-height:44px;padding:0 12px;font-size:13.5px">Reset rules</button>
+      </div>
+      <p class="cap" style="margin:0 0 6px">Word-boundary matching strips generic bank noise (<code>FIRST</code>, <code>NATIONAL</code>, <code>ACH</code>, <code>DEBIT</code>) so fixing one vendor never mislabels unrelated banks or words.</p>
+      <div id="dictBox" class="cap"></div>
+    </div>
+  </section>
+
+  <!-- TAB 2: LEDGER & P&L -->
+  <section class="pane" id="pane-ledger" aria-label="Ledger and Profit and Loss">
+    <h1>Ledger &amp; Schedule C P&amp;L</h1>
+    <p class="cap" style="margin:0 0 12px">Your confirmed income, expenses, 2026 mileage deduction, and Schedule C net (applying the IRS 50% limit on business meals).</p>
+
+    <div class="card">
+      <div class="kpi-grid">
+        <div class="kpi"><div class="lbl">Gross income</div><div class="big num" id="kInc">$0.00</div></div>
+        <div class="kpi"><div class="lbl">Book expenses</div><div class="big num" id="kExp">$0.00</div></div>
+        <div class="kpi"><div class="lbl">2026 mileage</div><div class="big num" id="kMi">$0.00</div></div>
+        <div class="kpi main"><div class="lbl">Est. taxable net</div><div class="big num" id="kNet">$0.00</div></div>
+      </div>
+      <div id="mealsNoteBox"></div>
+    </div>
+
+    <div class="card">
+      <h2>Category totals</h2>
+      <div class="tbl-wrap"><table class="grid" id="catTbl"></table></div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px">
+        <h2 style="margin:0">Saved transactions</h2>
+        <button type="button" class="btn sec" id="toggleAddTxBtn" style="min-height:44px;padding:0 12px;font-size:13.5px">Add entry manually</button>
+      </div>
+      <form id="manualTxForm" style="display:none;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:12px">
+        <div class="grid2">
+          <label class="field"><span class="l">Date</span><span class="inp-wrap"><input type="date" id="mDate" required></span></label>
+          <label class="field"><span class="l">Type</span><span class="inp-wrap"><select id="mType"><option value="Expense">Expense</option><option value="Income">Income</option></select></span></label>
+          <label class="field"><span class="l">Description</span><span class="inp-wrap"><input id="mDesc" required placeholder="e.g. Staples paper"></span></label>
+          <label class="field"><span class="l">Amount ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="mAmt" inputmode="decimal" required placeholder="48.60"></span></label>
+          <label class="field"><span class="l">Category</span><span class="inp-wrap"><select id="mCat"></select></span></label>
+          <div class="field" style="display:flex;align-items:flex-end"><button type="submit" class="btn full">Save entry</button></div>
+        </div>
+      </form>
+      <div id="txList"></div>
+    </div>
+  </section>
+
+  <!-- TAB 3: MILEAGE 2026 -->
+  <section class="pane" id="pane-mileage" aria-label="2026 Business Mileage Log">
+    <h1><span class="h-num">2026</span> Split Mileage Log</h1>
+    <p class="cap" style="margin:0 0 12px">Automatically applies the verified 2026 IRS business mileage split: <b>72.5¢/mile</b> Jan 1–Jun 30, 2026 (Notice 2026-10) and <b>76¢/mile</b> Jul 1–Dec 31, 2026 (Announcement 2026-11). Checked Nov 24, 2026.</p>
+
+    <div class="card">
+      <div class="kpi-grid">
+        <div class="kpi"><div class="lbl">H1 deduction (72.5¢)</div><div class="big num" id="mH1">$0.00</div></div>
+        <div class="kpi"><div class="lbl">H2 deduction (76¢)</div><div class="big num" id="mH2">$0.00</div></div>
+        <div class="kpi"><div class="lbl">Total miles</div><div class="big num" id="mTotMi">0</div></div>
+        <div class="kpi main"><div class="lbl">Mileage deduction</div><div class="big num" id="mTotAmt">$0.00</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Log a business trip</h2>
+      <form id="miForm">
+        <div class="grid2">
+          <label class="field"><span class="l">Trip date</span><span class="inp-wrap"><input type="date" id="miDate" required></span></label>
+          <label class="field"><span class="l">Business miles</span><span class="inp-wrap"><input id="miMiles" inputmode="decimal" required placeholder="18"></span></label>
+          <label class="field"><span class="l">From → To / business purpose</span><span class="inp-wrap"><input id="miPurpose" required placeholder="e.g. Post office — client parcels"></span></label>
+          <label class="field"><span class="l">Non-2026 custom rate ($/mi)</span><span class="inp-wrap"><span class="pre">$</span><input id="miCustomRate" inputmode="decimal" value="0.70"></span></label>
+        </div>
+        <button type="submit" class="btn full" style="margin-top:10px">Add trip</button>
+      </form>
+      <div id="miList" style="margin-top:12px"></div>
+    </div>
+  </section>
+
+  <!-- TAB 4: EXPORT & PRINT -->
+  <section class="pane" id="pane-export" aria-label="Export and Print">
+    <h1>Export, Bridge &amp; Print</h1>
+    <p class="cap" style="margin:0 0 12px">Export formula-safe rows into your Small Business Bookkeeping workbook, print a 1-page Tax-Time P&amp;L for your accountant, or bridge net profit into our 1099 Quarterly Tax Planner.</p>
+
+    <div class="card">
+      <h2>Workbook &amp; accountant exports</h2>
+      <div class="btn-row">
+        <button type="button" class="btn" id="exportTxCsvBtn">Export Ledger CSV (workbook order)</button>
+        <button type="button" class="btn sec" id="exportMiCsvBtn">Export Mileage CSV (Tab 7 order)</button>
+      </div>
+      <div class="btn-row">
+        <button type="button" class="btn sec" id="printTaxBtn">Print 1-page Tax-Time P&amp;L</button>
+        <button type="button" class="btn sec" id="icsCloseBtn">Monthly Close Reminder (.ics)</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Ecosystem bridge &amp; backup</h2>
+      <div class="btn-row">
+        <button type="button" class="btn" id="bridgeOutBtn">Export to 1099 Tax Planner (.json)</button>
+        <label class="btn sec" for="bridgeInFile" style="cursor:pointer">Import Host / Seller bridge (.json)</label>
+      </div>
+      <input type="file" id="bridgeInFile" accept=".json,application/json" style="display:none">
+      <div id="bridgeInDraft" style="display:none;margin-top:10px"></div>
+      <div class="btn-row">
+        <button type="button" class="btn sec" id="backupBtn">Backup all books (.json)</button>
+        <label class="btn sec" for="restoreFile" style="cursor:pointer">Restore from backup (.json)</label>
+      </div>
+      <input type="file" id="restoreFile" accept=".json,application/json" style="display:none">
+      <p class="cap" style="margin:10px 0 0">Sample rows are excluded automatically from CSV and 1099 tax exports. Everything stays on this device.</p>
+    </div>
+  </section>
+
+  <footer class="shell-foot no-print">Planning and record-keeping tool — not tax, legal, or accounting advice. IRS 2026 mileage rates checked November 24, 2026. Support: filedawayco@gmail.com</footer>
+
+  <!-- 1-PAGE PRINTABLE ACCOUNTANT TAX-TIME SUMMARY -->
+  <section id="taxPrintSheet" class="print-only"></section>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><span id="toastMsg"></span><button type="button" id="toastUndo" style="display:none">Undo</button></div>
+
+<script>
+(function(){
+"use strict";
+var STORE_KEY = "fac_bookkeeping_v2";
+var CATS = ["Sales Income","Advertising","Supplies","Software","Fuel","Travel","Utilities","Payroll","Rent","Postage & Shipping","Taxes","Meals","Other Income","Other Expense","Uncategorized"];
+var STOPWORDS = { FIRST:1, NATIONAL:1, BANK:1, ACH:1, DEBIT:1, CREDIT:1, CARD:1, POS:1, PURCHASE:1, ONLINE:1, PAYMENT:1, TRANSFER:1, INC:1, LLC:1, CORP:1, CO:1, THE:1, OF:1, AND:1, FOR:1, FROM:1, TO:1, CHECK:1, CARDMEMBER:1, AUTOPAY:1, WITHDRAWAL:1, DEPOSIT:1, VISA:1, MASTERCARD:1, AMEX:1, SQ:1, TST:1, PPD:1, CCD:1, WEB:1 };
+var STARTER_RULES = {
+  "SHELL":"Fuel","EXXON":"Fuel","CHEVRON":"Fuel","BP":"Fuel",
+  "STAPLES":"Supplies","OFFICE DEPOT":"Supplies","AMAZON":"Supplies","AMZN":"Supplies",
+  "GOOGLE ADS":"Advertising","FACEBOOK ADS":"Advertising","META ADS":"Advertising",
+  "UBER":"Travel","LYFT":"Travel","DELTA AIR":"Travel",
+  "COMCAST":"Utilities","VERIZON":"Utilities","AT&T":"Utilities",
+  "ADP":"Payroll","GUSTO":"Payroll",
+  "INTUIT":"Software","QUICKBOOKS":"Software","ADOBE":"Software",
+  "CLIENT PAYMENT":"Sales Income","INVOICE":"Sales Income","STRIPE":"Sales Income","PAYPAL":"Sales Income","SQUARE":"Sales Income",
+  "IRS":"Taxes","EFTPS":"Taxes",
+  "RENT":"Rent","LANDLORD":"Rent",
+  "USPS":"Postage & Shipping","FEDEX":"Postage & Shipping","UPS":"Postage & Shipping",
+  "PANERA":"Meals","CHIPOTLE":"Meals","STARBUCKS":"Meals","CAFE":"Meals","BISTRO":"Meals"
+};
+var SAMPLE_CSV = "Date,Description,Amount\n" +
+  "2026-03-04,CLIENT PAYMENT - HARBOR STUDIO,1250.00\n" +
+  "2026-03-06,ADOBE CREATIVE CLOUD,($21.99)\n" +
+  "2026-03-08,SHELL OIL 57442,48.60-\n" +
+  "2026-03-10,AMAZON MKTPLACE SUPPLIES,-86.25\n" +
+  "2026-08-12,STRIPE PAYOUT,1640.00\n" +
+  "2026-08-15,PANERA CLIENT LUNCH,-64.00\n" +
+  "2026-08-18,COMCAST BUSINESS,-129.99\n" +
+  "2026-08-20,USPS POSTAGE,-18.40\n";
+
+var rawRows = [], headers = [], draft = [], draftSkipped = 0, draftIsSample = false, pendingBridge = null;
+var undoFn = null, toastT = null;
+
+function clone(o){ return JSON.parse(JSON.stringify(o)); }
+function esc(s){ return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+function localISO(d){ return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
+function todayISO(){ return localISO(new Date()); }
+function fmt$(n){ var v = Math.round((Number(n) || 0) * 100) / 100; return (v < 0 ? "−" : "") + "$" + Math.abs(v).toLocaleString("en-US", { minimumFractionDigits:2, maximumFractionDigits:2 }); }
+function csvCell(v){ v = String(v == null ? "" : v); return /[",\n\r]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }
+function csvText(v){ v = String(v == null ? "" : v); if (/^\s*[=+\-@]/.test(v) || /^[\t\r]/.test(v)) v = "'" + v; return csvCell(v); }
+
+/* ---------- Strict Accounting Money Parser: ($48.60), 48.60-, -$48.60, $-48.60 ---------- */
+function parseMoneyStrict(raw){
+  if (raw == null) return null;
+  var s = String(raw).trim();
+  if (!s) return null;
+  var neg = false;
+  if (/^\(.*\)$/.test(s)) { neg = true; s = s.slice(1, -1).trim(); }
+  if (s.endsWith("-")) { neg = true; s = s.slice(0, -1).trim(); }
+  if (s.startsWith("$")) s = s.slice(1).trim();
+  if (s.startsWith("-")) { neg = true; s = s.slice(1).trim(); }
+  if (s.startsWith("+")) s = s.slice(1).trim();
+  s = s.replace(/^\$/, "").replace(/,/g, "").trim();
+  if (!/^\d+(\.\d{1,2})?$/.test(s)) return null;
+  var v = parseFloat(s);
+  if (!isFinite(v) || v > 1e9) return null;
+  return neg ? -v : v;
+}
+
+/* ---------- Word-Boundary Stopword-Stripped Weighted-Token Learner ---------- */
+function extractKeyTokens(desc){
+  var raw = String(desc || "").toUpperCase().replace(/[^A-Z0-9& ]+/g, " ").split(/\s+/).filter(Boolean);
+  var kept = raw.filter(function(tok){
+    if (/^\d+$/.test(tok)) return false;
+    if (tok.length <= 1) return false;
+    if (STOPWORDS[tok]) return false;
+    return true;
+  });
+  return kept.slice(0, 2).join(" ");
+}
+function escapeRe(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
+function suggestCategory(desc, rules){
+  var up = String(desc || "").toUpperCase();
+  // Sort rules by descending length so multi-word specific rules beat single words!
+  var keys = Object.keys(rules).sort(function(a, b){ return b.length - a.length; });
+  for (var i = 0; i < keys.length; i++){
+    var k = keys[i].trim();
+    if (!k) continue;
+    var re = new RegExp("(^|[^A-Z0-9])" + escapeRe(k) + "([^A-Z0-9]|$)");
+    if (re.test(up)) return { cat:rules[keys[i]], guessed:true, matched:k };
+  }
+  return { cat:"Uncategorized", guessed:false, matched:null };
+}
+
+/* ---------- 2026 IRS Split Mileage Engine ---------- */
+function mileageRateForDate(dateStr, customNon2026){
+  var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(dateStr || ""));
+  if (!m) return { rate:Number(customNon2026) || 0.70, basis:"Custom rate", half:"other" };
+  var yr = +m[1], mo = +m[2];
+  if (yr === 2026) {
+    if (mo <= 6) return { rate:0.725, basis:"2026 H1 IRS (72.5¢, Notice 2026-10)", half:"h1" };
+    return { rate:0.76, basis:"2026 H2 IRS (76¢, Ann. 2026-11)", half:"h2" };
+  }
+  var cr = Number(customNon2026) > 0 ? Number(customNon2026) : 0.70;
+  return { rate:cr, basis:"Non-2026 custom rate", half:"other" };
+}
+
+function parseCSV(text){
+  text = String(text || "").replace(/^\uFEFF/, "");
+  if (!text.trim()) return [];
+  var rows = [], row = [], cur = "", q = false;
+  for (var i = 0; i < text.length; i++){
+    var ch = text[i];
+    if (q){ if (ch === '"'){ if (text[i+1] === '"'){ cur += '"'; i++; } else q = false; } else cur += ch; }
+    else if (ch === '"') q = true;
+    else if (ch === ','){ row.push(cur); cur = ""; }
+    else if (ch === '\n' || ch === '\r'){ if (ch === '\r' && text[i+1] === '\n') i++; row.push(cur); cur = ""; if (row.length > 1 || row[0] !== "") rows.push(row); row = []; }
+    else cur += ch;
+  }
+  if (cur !== "" || row.length){ row.push(cur); rows.push(row); }
+  return rows;
+}
+function detectCol(head, names){
+  for (var j = 0; j < names.length; j++) for (var i = 0; i < head.length; i++) if (head[i] === names[j]) return i;
+  for (var j2 = 0; j2 < names.length; j2++) for (var i2 = 0; i2 < head.length; i2++) if (head[i2].indexOf(names[j2]) >= 0) return i2;
+  return -1;
+}
+
+function defaultState(){
+  return { sample:false, txs:[], trips:[], customRate:0.70, rules:clone(STARTER_RULES) };
+}
+function sampleState(){
+  var st = defaultState();
+  st.sample = true;
+  st.txs = [
+    { id:"tx-s1", date:"2026-03-04", desc:"CLIENT PAYMENT - HARBOR STUDIO", amount:1250.00, type:"Income", cat:"Sales Income", sample:true },
+    { id:"tx-s2", date:"2026-03-06", desc:"ADOBE CREATIVE CLOUD", amount:21.99, type:"Expense", cat:"Software", sample:true },
+    { id:"tx-s3", date:"2026-03-08", desc:"SHELL OIL 57442", amount:48.60, type:"Expense", cat:"Fuel", sample:true },
+    { id:"tx-s4", date:"2026-03-10", desc:"AMAZON MKTPLACE SUPPLIES", amount:86.25, type:"Expense", cat:"Supplies", sample:true },
+    { id:"tx-s5", date:"2026-08-12", desc:"STRIPE PAYOUT", amount:1640.00, type:"Income", cat:"Sales Income", sample:true },
+    { id:"tx-s6", date:"2026-08-15", desc:"PANERA CLIENT LUNCH", amount:64.00, type:"Expense", cat:"Meals", sample:true },
+    { id:"tx-s7", date:"2026-08-18", desc:"COMCAST BUSINESS", amount:129.99, type:"Expense", cat:"Utilities", sample:true },
+    { id:"tx-s8", date:"2026-08-20", desc:"USPS POSTAGE", amount:18.40, type:"Expense", cat:"Postage & Shipping", sample:true }
+  ];
+  st.trips = [
+    { id:"mi-s1", date:"2026-03-10", purpose:"Post office — client parcels", miles:18, sample:true },
+    { id:"mi-s2", date:"2026-08-14", purpose:"Supplier — collect stock", miles:42, sample:true }
+  ];
+  return st;
+}
+function loadState(){
+  try {
+    var raw = localStorage.getItem(STORE_KEY);
+    if (raw) {
+      var o = JSON.parse(raw);
+      if (o && Array.isArray(o.txs)) return Object.assign(defaultState(), o, { rules:Object.assign(clone(STARTER_RULES), o.rules || {}) });
+    }
+  } catch(e){}
+  return defaultState();
+}
+var state = loadState();
+function persist(){ try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch(e){} }
+
+/* ---------- Pure P&L + Meals 50% + Outlier + Mileage Math ---------- */
+function computeBooks(txs, trips, customRate){
+  var inc = 0, bookExp = 0, mealsFull = 0, byCat = {}, expByCat = {}, catCounts = {};
+  txs.forEach(function(t){
+    var amt = Math.max(0, Number(t.amount) || 0);
+    if (t.type === "Income") {
+      inc += amt;
+      byCat[t.cat] = (byCat[t.cat] || 0) + amt;
+    } else {
+      bookExp += amt;
+      if (t.cat === "Meals") mealsFull += amt;
+      byCat[t.cat] = (byCat[t.cat] || 0) - amt;
+      expByCat[t.cat] = (expByCat[t.cat] || 0) + amt;
+      catCounts[t.cat] = (catCounts[t.cat] || 0) + 1;
+    }
+  });
+  var mealsDed = Math.round(mealsFull * 0.50 * 100) / 100;
+  var mealsNonDed = Math.round((mealsFull - mealsDed) * 100) / 100;
+  var dedExp = Math.round((bookExp - mealsNonDed) * 100) / 100;
+  var h1Amt = 0, h2Amt = 0, othAmt = 0, totMi = 0;
+  trips.forEach(function(tr){
+    var mi = Math.max(0, Number(tr.miles) || 0);
+    var r = mileageRateForDate(tr.date, customRate);
+    var amt = Math.round(mi * r.rate * 100) / 100;
+    totMi += mi;
+    if (r.half === "h1") h1Amt += amt;
+    else if (r.half === "h2") h2Amt += amt;
+    else othAmt += amt;
+  });
+  var miTotal = Math.round((h1Amt + h2Amt + othAmt) * 100) / 100;
+  var taxNet = Math.round((inc - dedExp - miTotal) * 100) / 100;
+  // Outliers: expense >= $2,500 or >3x leave-one-out peer average (expense-only!) when >=3 entries in same category
+  var outliers = {};
+  txs.forEach(function(t){
+    if (t.type !== "Expense") return;
+    var peerAvg = catCounts[t.cat] >= 3 ? (((expByCat[t.cat] || 0) - t.amount) / (catCounts[t.cat] - 1)) : 0;
+    if (t.amount >= 2500 || (peerAvg > 0 && t.amount > peerAvg * 3)) outliers[t.id] = true;
+  });
+  return {
+    inc:Math.round(inc * 100) / 100, bookExp:Math.round(bookExp * 100) / 100,
+    mealsFull:Math.round(mealsFull * 100) / 100, mealsDed:mealsDed, mealsNonDed:mealsNonDed, dedExp:dedExp,
+    h1Amt:Math.round(h1Amt * 100) / 100, h2Amt:Math.round(h2Amt * 100) / 100, othAmt:Math.round(othAmt * 100) / 100,
+    totMi:Math.round(totMi * 10) / 10, miTotal:miTotal,
+    taxNet:taxNet, byCat:byCat, outliers:outliers
+  };
+}
+
+function parseBankCSVRows(rows, map, existingTxs, rules){
+  var out = [], skipped = 0;
+  var usingSplit = (map.debit >= 0 || map.credit >= 0);
+  rows.slice(1).forEach(function(r){
+    var amt = null;
+    if (usingSplit) {
+      var dVal = map.debit >= 0 ? parseMoneyStrict(r[map.debit]) : null;
+      var cVal = map.credit >= 0 ? parseMoneyStrict(r[map.credit]) : null;
+      if (dVal != null && Math.abs(dVal) > 0) amt = -Math.abs(dVal);
+      else if (cVal != null && Math.abs(cVal) > 0) amt = Math.abs(cVal);
+    } else if (map.amt >= 0) {
+      amt = parseMoneyStrict(r[map.amt]);
+    }
+    if (amt === null || amt === 0) {
+      var hasAny = r.some(function(c){ return String(c || "").trim() !== ""; });
+      if (hasAny) skipped++;
+      return;
+    }
+    var date = map.date >= 0 ? String(r[map.date] || "").trim() : todayISO();
+    var desc = map.desc >= 0 ? String(r[map.desc] || "").trim() : "";
+    var type = amt < 0 ? "Expense" : "Income";
+    var absAmt = Math.round(Math.abs(amt) * 100) / 100;
+    var sug = suggestCategory(desc, rules);
+    var cat = sug.cat;
+    if (type === "Income" && cat === "Uncategorized") cat = "Sales Income";
+    var dup = existingTxs.some(function(x){
+      return x.date === date && Math.abs(x.amount - absAmt) < 0.01 && x.desc.toLowerCase() === desc.toLowerCase();
+    });
+    out.push({ date:date, desc:desc, amount:absAmt, type:type, cat:cat, guessed:sug.guessed, dup:dup, checked:!dup });
+  });
+  return { rows:out, skipped:skipped };
+}
+
+function buildCloseICS(){
+  var d = new Date(); d.setDate(1); d.setMonth(d.getMonth() + 1);
+  var dtStart = localISO(d).replace(/-/g, "");
+  var stamp = new Date().toISOString().replace(/[-:]/g, "").slice(0, 15) + "Z";
+  return [
+    "BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//FiledAwayCo//Small Business Bookkeeping//EN","CALSCALE:GREGORIAN",
+    "BEGIN:VEVENT","UID:fac-bk-month-close@filedawayco.local","DTSTAMP:" + stamp,
+    "DTSTART;VALUE=DATE:" + dtStart,"RRULE:FREQ=MONTHLY;BYMONTHDAY=1",
+    "SUMMARY:Monthly Bookkeeping Close (15 min)",
+    "DESCRIPTION:Import last month's bank CSV\\, verify receipts and mileage\\, and paste totals into Small Business Bookkeeping.",
+    "END:VEVENT","END:VCALENDAR"
+  ].join("\r\n") + "\r\n";
+}
+
+function download(name, text, mime){
+  var b = new Blob([text], { type:mime }), u = URL.createObjectURL(b), a = document.createElement("a");
+  a.href = u; a.download = name; document.body.appendChild(a); a.click();
+  setTimeout(function(){ URL.revokeObjectURL(u); a.remove(); }, 500);
+}
+function showToast(msg, fn){
+  var el = document.getElementById("toast");
+  document.getElementById("toastMsg").textContent = msg;
+  var ub = document.getElementById("toastUndo");
+  undoFn = fn || null;
+  ub.style.display = fn ? "inline-flex" : "none";
+  el.classList.add("on");
+  clearTimeout(toastT);
+  toastT = setTimeout(function(){ el.classList.remove("on"); undoFn = null; }, fn ? 7000 : 2800);
+}
+
+/* ---------- Renders ---------- */
+function renderBanner(){
+  var hasS = state.txs.some(function(x){return x.sample;}) || state.trips.some(function(x){return x.sample;});
+  state.sample = hasS;
+  document.getElementById("sampleBanner").style.display = hasS ? "flex" : "none";
+  document.getElementById("topSampleBtn").style.display = hasS ? "none" : "inline-flex";
+  document.getElementById("emptyHeroCta").style.display = (!state.txs.length && !state.trips.length && !draft.length) ? "flex" : "none";
+}
+
+function renderDict(){
+  var keys = Object.keys(state.rules).sort();
+  var customKeys = keys.filter(function(k){ return STARTER_RULES[k] !== state.rules[k]; });
+  var html = '<div>' + keys.length + ' active rules (' + customKeys.length + ' learned by you). Starter examples: ' +
+    keys.slice(0, 6).map(function(k){ return esc(k) + ' → ' + esc(state.rules[k]); }).join(' · ') + '</div>';
+  if (customKeys.length) {
+    html += '<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px">' +
+      customKeys.map(function(k){
+        return '<button type="button" class="btn sec" data-rmrule="' + esc(k) + '" style="min-height:44px;padding:0 10px;font-size:12.5px">' + esc(k) + ' → ' + esc(state.rules[k]) + ' ×</button>';
+      }).join("") + '</div>';
+  }
+  document.getElementById("dictBox").innerHTML = html;
+}
+
+function renderDraft(skipped){
+  var card = document.getElementById("draftCard");
+  renderBanner();
+  if (!draft.length) {
+    card.style.display = "none";
+    if (skipped > 0) showToast(skipped + " row(s) skipped (unreadable or $0 amount) — check your column mapping above and tap Re-read.");
+    return;
+  }
+  card.style.display = "block";
+  var nDup = draft.filter(function(r){ return r.dup; }).length;
+  var nUnc = draft.filter(function(r){ return r.checked && r.cat === "Uncategorized"; }).length;
+  var notes = [];
+  if (draftIsSample) notes.push("Sample CSV draft — rows will be badged SAMPLE.");
+  if (nDup) notes.push(nDup + " duplicate row(s) unchecked automatically.");
+  if (skipped) notes.push(skipped + " row(s) skipped due to unreadable/zero amount.");
+  if (nUnc) notes.push(nUnc + " checked row(s) still Uncategorized.");
+  document.getElementById("draftSummary").textContent = notes.join(" ") || "Review every row below, then tap Confirm & save.";
+
+  document.getElementById("draftList").innerHTML = draft.map(function(r, i){
+    var cls = "draft-row" + (!r.checked ? " skip-row" : (r.cat === "Uncategorized" ? " unpicked" : ""));
+    var amtSigned = r.type === "Expense" ? -r.amount : r.amount;
+    return '<div class="' + cls + '" role="listitem">' +
+      '<label class="chk-lbl" aria-label="Keep ' + esc(r.desc) + '"><input type="checkbox" data-dchk="' + i + '"' + (r.checked ? ' checked' : '') + '></label>' +
+      '<div class="draft-meta"><div><span class="draft-date num">' + esc(r.date) + '</span>' + (r.dup ? ' <span class="tag warn">Duplicate</span>' : '') + '</div><div class="draft-desc">' + esc(r.desc) + '</div></div>' +
+      '<div class="draft-amt num" style="color:' + (amtSigned < 0 ? 'var(--ink)' : 'var(--good-ink)') + '">' + fmt$(amtSigned) + '</div>' +
+      '<div class="draft-cat-cell"><select class="tbl-sel" aria-label="Category for ' + esc(r.desc) + '" data-dcat="' + i + '">' +
+      CATS.map(function(c){ return '<option' + (c === r.cat ? ' selected' : '') + '>' + esc(c) + '</option>'; }).join("") + '</select></div></div>';
+  }).join("");
+}
+
+function renderLedger(){
+  var b = computeBooks(state.txs, state.trips, state.customRate);
+  document.getElementById("kInc").textContent = fmt$(b.inc);
+  document.getElementById("kExp").textContent = fmt$(b.bookExp);
+  document.getElementById("kMi").textContent = fmt$(b.miTotal);
+  document.getElementById("kNet").textContent = fmt$(b.taxNet);
+
+  document.getElementById("mealsNoteBox").innerHTML = b.mealsFull > 0
+    ? '<div class="note-box num"><b>IRS 50% Meals Rule applied:</b> ' + fmt$(b.mealsFull) + ' spent on Business Meals → <b>' + fmt$(b.mealsDed) + ' deductible</b> on Schedule C Line 24b (' + fmt$(b.mealsNonDed) + ' non-deductible).</div>'
+    : '';
+
+  var cats = Object.keys(b.byCat).sort();
+  document.getElementById("catTbl").innerHTML = cats.length
+    ? ('<thead><tr><th>Category</th><th class="r">Book net</th><th class="r">Tax deductible</th></tr></thead><tbody>' +
+       cats.map(function(c){
+         var v = b.byCat[c];
+         var taxV = c === "Meals" ? -(b.mealsDed) : v;
+         return '<tr><td><b>' + esc(c) + '</b>' + (c === "Meals" ? ' <span class="tag warn">50% limit</span>' : '') + '</td><td class="r num">' + fmt$(v) + '</td><td class="r num"><b>' + fmt$(taxV) + '</b></td></tr>';
+       }).join("") + '</tbody>')
+    : '<tbody><tr><td class="cap">No transactions saved yet.</td></tr></tbody>';
+
+  var txBox = document.getElementById("txList");
+  if (!state.txs.length) {
+    txBox.innerHTML = '<p class="cap" style="margin:0">No transactions saved yet. Import a CSV or tap Add entry manually.</p>';
+  } else {
+    txBox.innerHTML = state.txs.slice().reverse().map(function(t){
+      var idx = state.txs.indexOf(t);
+      var signed = t.type === "Expense" ? -t.amount : t.amount;
+      return '<div class="row-card"><div><b class="num">' + esc(t.date) + '</b> · ' + esc(t.desc) +
+        (t.sample ? ' <span class="tag warn">SAMPLE</span>' : '') +
+        (b.outliers[t.id] ? ' <span class="tag alert">Check receipt</span>' : '') +
+        '<div class="cap">' + esc(t.type) + ' · <b class="num" style="color:' + (signed < 0 ? 'var(--ink)' : 'var(--good-ink)') + '">' + fmt$(signed) + '</b></div></div>' +
+        '<div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">' +
+        '<select class="tbl-sel" aria-label="Category for ' + esc(t.desc) + '" data-txcat="' + idx + '">' +
+        CATS.map(function(c){ return '<option' + (c === t.cat ? ' selected' : '') + '>' + esc(c) + '</option>'; }).join("") + '</select>' +
+        '<button type="button" class="btn sec" data-deltx="' + idx + '" style="min-height:44px;padding:0 12px;font-size:13.5px">Delete</button></div></div>';
+    }).join("");
+  }
+
+  // Mileage Tab
+  document.getElementById("mH1").textContent = fmt$(b.h1Amt);
+  document.getElementById("mH2").textContent = fmt$(b.h2Amt);
+  document.getElementById("mTotMi").textContent = String(b.totMi);
+  document.getElementById("mTotAmt").textContent = fmt$(b.miTotal);
+  var miBox = document.getElementById("miList");
+  if (!state.trips.length) {
+    miBox.innerHTML = '<p class="cap" style="margin:0">No trips logged yet.</p>';
+  } else {
+    miBox.innerHTML = state.trips.slice().reverse().map(function(tr){
+      var idx = state.trips.indexOf(tr);
+      var r = mileageRateForDate(tr.date, state.customRate);
+      var amt = Math.round(tr.miles * r.rate * 100) / 100;
+      return '<div class="row-card"><div><b class="num">' + esc(tr.date) + '</b> · ' + esc(tr.purpose) + (tr.sample ? ' <span class="tag warn">SAMPLE</span>' : '') +
+        '<div class="cap num">' + tr.miles + ' mi × $' + r.rate.toFixed(3) + ' (' + esc(r.basis) + ')</div></div>' +
+        '<div style="display:flex;align-items:center;gap:8px"><b class="num" style="color:var(--good-ink)">' + fmt$(amt) + '</b>' +
+        '<button type="button" class="btn sec" data-delmi="' + idx + '" style="min-height:44px;padding:0 12px;font-size:13.5px">Delete</button></div></div>';
+    }).join("");
+  }
+
+  // 1-Page Tax-Time Accountant Print Summary
+  var realTx = state.txs.filter(function(x){ return !x.sample; });
+  var realTr = state.trips.filter(function(x){ return !x.sample; });
+  var isSamplePr = !realTx.length && !realTr.length && (state.txs.length > 0 || state.trips.length > 0);
+  var pb = computeBooks(isSamplePr ? state.txs : realTx, isSamplePr ? state.trips : realTr, state.customRate);
+  document.getElementById("taxPrintSheet").innerHTML =
+    (isSamplePr ? '<div style="padding:8px 12px;border:1.5px solid #D9C79A;background:#FFF4D6;margin-bottom:10px;font-weight:700">SAMPLE DATA — example books, not your tax records</div>' : '') +
+    '<h1>Tax-Time Profit &amp; Loss Summary (<span class="h-num">' + todayISO() + '</span>)</h1>' +
+    '<p class="num">Gross Income: <b>' + fmt$(pb.inc) + '</b> · Deductible Expenses (50% meals): <b>' + fmt$(pb.dedExp) + '</b> · 2026 Mileage (' + pb.totMi + ' mi): <b>' + fmt$(pb.miTotal) + '</b> · Est. Taxable Net: <b>' + fmt$(pb.taxNet) + '</b></p>' +
+    '<h2>Category Breakdown</h2><table class="grid"><thead><tr><th>Category</th><th class="r">Book Total</th><th class="r">Tax Deductible</th></tr></thead><tbody>' +
+    Object.keys(pb.byCat).sort().map(function(c){
+      var v = pb.byCat[c], tv = c === "Meals" ? -pb.mealsDed : v;
+      return '<tr><td>' + esc(c) + '</td><td class="r num">' + fmt$(v) + '</td><td class="r num">' + fmt$(tv) + '</td></tr>';
+    }).join("") + '</tbody></table>' +
+    '<h2><span class="h-num">2026</span> IRS Split Mileage Summary</h2><p class="num">Jan–Jun 2026 (72.5¢/mi): ' + fmt$(pb.h1Amt) + ' · Jul–Dec 2026 (76¢/mi): ' + fmt$(pb.h2Amt) + (pb.othAmt > 0 ? (' · Non-2026 custom rate: ' + fmt$(pb.othAmt)) : '') + ' · Total Mileage Deduction: <b>' + fmt$(pb.miTotal) + '</b></p>' +
+    '<p style="margin-top:14px;font-size:9pt">Record-keeping summary — verify against receipts before filing. Not tax or accounting advice. IRS 2026 mileage rates checked Nov 24, 2026.</p>';
+}
+
+function populateMapping(){
+  var ids = ["mapDate","mapDesc","mapAmt","mapDebit","mapCredit"];
+  ids.forEach(function(id){
+    var sel = document.getElementById(id);
+    sel.innerHTML = (id === "mapAmt" || id === "mapDebit" || id === "mapCredit") ? '<option value="-1">— None —</option>' : '';
+    headers.forEach(function(h, i){
+      var o = document.createElement("option"); o.value = i; o.textContent = h || ("Column " + (i + 1)); sel.appendChild(o);
+    });
+  });
+  var lh = headers.map(function(h){ return String(h || "").toLowerCase().trim(); });
+  var di = detectCol(lh, ["date","posted","transaction date"]);
+  var de = detectCol(lh, ["description","name","memo","payee","details"]);
+  var am = detectCol(lh, ["amount","value","total"]);
+  var db = detectCol(lh, ["debit","withdrawal","outflow"]);
+  var cr = detectCol(lh, ["credit","deposit","inflow"]);
+  if (di >= 0) document.getElementById("mapDate").value = di;
+  if (de >= 0) document.getElementById("mapDesc").value = de;
+  if (db >= 0 && cr >= 0) {
+    document.getElementById("mapDebit").value = db;
+    document.getElementById("mapCredit").value = cr;
+    document.getElementById("mapAmt").value = "-1";
+  } else if (am >= 0) {
+    document.getElementById("mapAmt").value = am;
+  }
+  document.getElementById("mapBox").style.display = "block";
+}
+function runMapping(){
+  var map = {
+    date:+document.getElementById("mapDate").value,
+    desc:+document.getElementById("mapDesc").value,
+    amt:+document.getElementById("mapAmt").value,
+    debit:+document.getElementById("mapDebit").value,
+    credit:+document.getElementById("mapCredit").value
+  };
+  var res = parseBankCSVRows(rawRows, map, state.txs, state.rules);
+  draft = res.rows;
+  draftSkipped = res.skipped;
+  renderDraft(draftSkipped);
+}
+
+function renderAll(){ renderBanner(); renderDict(); renderLedger(); }
+function switchTab(t){
+  document.querySelectorAll(".pane").forEach(function(p){ p.classList.toggle("active", p.id === "pane-" + t); });
+  document.querySelectorAll(".tabbar button").forEach(function(b){ b.setAttribute("aria-current", b.dataset.tab === t ? "page" : "false"); });
+}
+
+/* ---------- Events ---------- */
+document.getElementById("mCat").innerHTML = CATS.map(function(c){ return '<option>' + esc(c) + '</option>'; }).join("");
+document.getElementById("mDate").value = todayISO();
+document.getElementById("miDate").value = todayISO();
+document.getElementById("miCustomRate").value = Number(state.customRate || 0.70).toFixed(2);
+document.getElementById("miCustomRate").addEventListener("input", function(e){
+  var raw = String(e.target.value || "").replace(/^\$/, "").trim();
+  if (/^\d+(\.\d{1,4})?$/.test(raw)) {
+    var v = parseFloat(raw);
+    if (v > 0) { state.customRate = v; persist(); renderLedger(); }
+  }
+});
+
+document.getElementById("csvFile").addEventListener("change", function(ev){
+  var f = ev.target.files && ev.target.files[0]; if (!f) return;
+  var rd = new FileReader();
+  rd.onload = function(){
+    draftIsSample = false;
+    rawRows = parseCSV(String(rd.result || ""));
+    if (rawRows.length < 2) { showToast("CSV has no data rows."); return; }
+    headers = rawRows[0]; populateMapping(); runMapping();
+  };
+  rd.readAsText(f); ev.target.value = "";
+});
+
+document.addEventListener("change", function(e){
+  var el = e.target;
+  if (el.dataset && el.dataset.dchk != null) {
+    draft[+el.dataset.dchk].checked = el.checked;
+    renderDraft(draftSkipped);
+  } else if (el.dataset && el.dataset.dcat != null) {
+    var r = draft[+el.dataset.dcat];
+    r.cat = el.value; r.guessed = false;
+    var tok = extractKeyTokens(r.desc);
+    if (tok && el.value !== "Uncategorized") {
+      state.rules[tok] = el.value; persist(); renderDict();
+      showToast("Learned rule: " + tok + " → " + el.value);
+    }
+    renderDraft(draftSkipped);
+  } else if (el.dataset && el.dataset.txcat != null) {
+    var tx = state.txs[+el.dataset.txcat];
+    if (!tx) return;
+    tx.cat = el.value;
+    var tok2 = extractKeyTokens(tx.desc);
+    if (!tx.sample && tok2 && el.value !== "Uncategorized") state.rules[tok2] = el.value;
+    persist(); renderAll(); showToast("Updated category to " + el.value + ".");
+  }
+});
+
+document.getElementById("manualTxForm").addEventListener("submit", function(ev){
+  ev.preventDefault();
+  var amt = parseMoneyStrict(document.getElementById("mAmt").value);
+  if (amt == null || amt <= 0) { showToast("Enter a positive dollar amount."); return; }
+  state.txs.push({ id:"tx-" + Date.now(), date:document.getElementById("mDate").value || todayISO(), desc:document.getElementById("mDesc").value.trim(), amount:amt, type:document.getElementById("mType").value, cat:document.getElementById("mCat").value, sample:false });
+  document.getElementById("mDesc").value = ""; document.getElementById("mAmt").value = "";
+  persist(); renderAll(); showToast("Entry saved.");
+});
+
+document.getElementById("miForm").addEventListener("submit", function(ev){
+  ev.preventDefault();
+  var mi = parseMoneyStrict(document.getElementById("miMiles").value);
+  if (mi == null || mi <= 0) { showToast("Enter positive miles."); return; }
+  state.trips.push({ id:"mi-" + Date.now(), date:document.getElementById("miDate").value || todayISO(), purpose:document.getElementById("miPurpose").value.trim(), miles:mi, sample:false });
+  document.getElementById("miMiles").value = ""; document.getElementById("miPurpose").value = "";
+  persist(); renderAll(); showToast("Trip logged.");
+});
+
+document.addEventListener("click", function(e){
+  var t = e.target.closest("button");
+  if (!t) return;
+  if (t.dataset.tab) { switchTab(t.dataset.tab); }
+  else if (t.id === "topSampleBtn" || t.id === "primarySampleBtn") {
+    var s = sampleState();
+    var ut = state.txs.filter(function(x){ return !x.sample; });
+    var um = state.trips.filter(function(x){ return !x.sample; });
+    state.sample = true; state.txs = s.txs.concat(ut); state.trips = s.trips.concat(um);
+    persist(); renderAll(); switchTab("ledger");
+  } else if (t.id === "loadSampleCsvBtn") {
+    draftIsSample = true;
+    rawRows = parseCSV(SAMPLE_CSV); headers = rawRows[0]; populateMapping(); runMapping();
+  } else if (t.dataset.rmrule) {
+    delete state.rules[t.dataset.rmrule]; persist(); renderDict(); showToast("Removed rule " + t.dataset.rmrule + ".");
+  } else if (t.id === "clearSampleBtn") {
+    var snap = clone(state);
+    state.sample = false;
+    state.txs = state.txs.filter(function(x){ return !x.sample; });
+    state.trips = state.trips.filter(function(x){ return !x.sample; });
+    persist(); renderAll();
+    showToast("Sample books cleared.", function(){ state = snap; persist(); renderAll(); showToast("Sample restored."); });
+  } else if (t.id === "toastUndo") {
+    if (undoFn) { var f = undoFn; undoFn = null; document.getElementById("toast").classList.remove("on"); f(); }
+  } else if (t.id === "reMapBtn") { runMapping(); }
+  else if (t.id === "discardDraftBtn") { draft = []; renderDraft(0); }
+  else if (t.id === "confirmDraftBtn") {
+    var kept = draft.filter(function(r){ return r.checked; });
+    if (!kept.length) { showToast("No checked rows to save."); return; }
+    var snapC = clone(state.txs);
+    kept.forEach(function(r, idx){
+      state.txs.push({ id:"tx-" + Date.now() + "-" + idx, date:r.date, desc:r.desc, amount:r.amount, type:r.type, cat:r.cat, sample:draftIsSample });
+    });
+    if (draftIsSample) state.sample = true;
+    draft = []; draftIsSample = false; renderDraft(0);
+    persist(); renderAll();
+    showToast("Saved " + kept.length + " row(s) to Ledger.", function(){ state.txs = snapC; persist(); renderAll(); });
+  } else if (t.id === "resetDictBtn") {
+    state.rules = clone(STARTER_RULES); persist(); renderDict(); showToast("Category rules reset to defaults.");
+  } else if (t.id === "toggleAddTxBtn") {
+    var fm = document.getElementById("manualTxForm");
+    fm.style.display = fm.style.display === "none" ? "block" : "none";
+  } else if (t.dataset.deltx != null) {
+    var i = +t.dataset.deltx, snapT = clone(state.txs);
+    state.txs.splice(i, 1); persist(); renderAll();
+    showToast("Entry deleted.", function(){ state.txs = snapT; persist(); renderAll(); });
+  } else if (t.dataset.delmi != null) {
+    var mi = +t.dataset.delmi, snapM = clone(state.trips);
+    state.trips.splice(mi, 1); persist(); renderAll();
+    showToast("Trip deleted.", function(){ state.trips = snapM; persist(); renderAll(); });
+  } else if (t.id === "exportTxCsvBtn") {
+    var realT = state.txs.filter(function(x){ return !x.sample; });
+    if (!realT.length) { showToast("Save your own transactions first — sample rows are excluded from exports."); return; }
+    var rows = [["Date","Description","Category","Amount","Type"].join(",")].concat(realT.map(function(x){
+      return [csvText(x.date), csvText(x.desc), csvText(x.cat), x.amount.toFixed(2), csvText(x.type)].join(",");
+    }));
+    download("bookkeeping-ledger-" + todayISO() + ".csv", rows.join("\r\n") + "\r\n", "text/csv;charset=utf-8");
+    showToast("Formula-safe Ledger CSV downloaded.");
+  } else if (t.id === "exportMiCsvBtn") {
+    var realM = state.trips.filter(function(x){ return !x.sample; });
+    if (!realM.length) { showToast("Log your own business trips first — sample trips are excluded."); return; }
+    var rowsM = [["Trip date","From -> To / purpose","Miles","Rate applied $/mile","Rate basis","Amount $"].join(",")].concat(realM.map(function(tr){
+      var r = mileageRateForDate(tr.date, state.customRate);
+      var amt = Math.round(tr.miles * r.rate * 100) / 100;
+      return [csvText(tr.date), csvText(tr.purpose), tr.miles, r.rate.toFixed(3), csvText(r.basis), amt.toFixed(2)].join(",");
+    }));
+    download("bookkeeping-mileage-" + todayISO() + ".csv", rowsM.join("\r\n") + "\r\n", "text/csv;charset=utf-8");
+    showToast("Formula-safe Mileage CSV downloaded.");
+  } else if (t.id === "printTaxBtn") { window.print(); }
+  else if (t.id === "icsCloseBtn") {
+    download("bookkeeping-month-close.ics", buildCloseICS(), "text/calendar;charset=utf-8");
+    showToast("Monthly close reminder (.ics) downloaded.");
+  } else if (t.id === "bridgeOutBtn") {
+    var rTx = state.txs.filter(function(x){ return !x.sample; });
+    var rTr = state.trips.filter(function(x){ return !x.sample; });
+    if (!rTx.length && !rTr.length) { showToast("Add your own books first — sample data is excluded from 1099 Tax exports."); return; }
+    var bk = computeBooks(rTx, rTr, state.customRate);
+    var payload = JSON.stringify({
+      bridge:"fac-bridge-v1", source:"small-business-bookkeeping", exported:todayISO(), taxYear:2026,
+      grossSales:bk.inc, deductibleExpenses:bk.dedExp, mileageDeduction:bk.miTotal, trueNet:bk.taxNet,
+      disclaimer:"Planning summary from Small Business Bookkeeping — verify against receipts before filing. Not tax advice."
+    }, null, 2);
+    download("fac-bridge-bookkeeping-" + todayISO() + ".json", payload, "application/json");
+    showToast("1099 Tax Planner bridge (.json) downloaded.");
+  } else if (t.id === "backupBtn") {
+    download("bookkeeping-backup-" + todayISO() + ".json", JSON.stringify({ app:"fac-bookkeeping", exported:todayISO(), state:state }, null, 2), "application/json");
+    showToast("Backup JSON saved.");
+  } else if (t.id === "confirmBridgeInBtn") {
+    if (!pendingBridge) return;
+    var snapB = clone(state.txs);
+    var gs = Math.round((Number(pendingBridge.grossSales) || 0) * 100) / 100;
+    var pf = Math.round((Number(pendingBridge.platformFees) || 0) * 100) / 100;
+    var oc = Math.round((Number(pendingBridge.operatingCosts) || 0) * 100) / 100;
+    if (gs > 0) state.txs.push({ id:"tx-b1-"+Date.now(), date:pendingBridge.exported || todayISO(), desc:"Bridge income (" + pendingBridge.source + ")", amount:gs, type:"Income", cat:"Sales Income", sample:false });
+    if (pf > 0) state.txs.push({ id:"tx-b2-"+Date.now(), date:pendingBridge.exported || todayISO(), desc:"Platform fees (" + pendingBridge.source + ")", amount:pf, type:"Expense", cat:"Other Expense", sample:false });
+    if (oc > 0) state.txs.push({ id:"tx-b3-"+Date.now(), date:pendingBridge.exported || todayISO(), desc:"Operating costs (" + pendingBridge.source + ")", amount:oc, type:"Expense", cat:"Supplies", sample:false });
+    pendingBridge = null; document.getElementById("bridgeInDraft").style.display = "none";
+    persist(); renderAll();
+    showToast("Imported ecosystem summary into Ledger.", function(){ state.txs = snapB; persist(); renderAll(); });
+  } else if (t.id === "discardBridgeInBtn") {
+    pendingBridge = null; document.getElementById("bridgeInDraft").style.display = "none";
+  }
+});
+
+document.getElementById("bridgeInFile").addEventListener("change", function(ev){
+  var f = ev.target.files && ev.target.files[0]; if (!f) return;
+  var rd = new FileReader();
+  rd.onload = function(){
+    try {
+      var o = JSON.parse(String(rd.result || ""));
+      if (!o || o.bridge !== "fac-bridge-v1") throw new Error("Not bridge");
+      pendingBridge = o;
+      var box = document.getElementById("bridgeInDraft");
+      box.innerHTML = '<div class="note-box num"><b>Draft bridge (' + esc(o.source || "FiledAwayCo") + '):</b> Gross ' + fmt$(o.grossSales || 0) + ' · Fees ' + fmt$(o.platformFees || 0) + ' · Costs ' + fmt$(o.operatingCosts || 0) +
+        '<div class="btn-row"><button type="button" class="btn" id="confirmBridgeInBtn">Confirm &amp; import rows</button><button type="button" class="btn sec" id="discardBridgeInBtn">Discard</button></div></div>';
+      box.style.display = "block";
+    } catch(e){ showToast("That file is not a valid fac-bridge-v1 export."); }
+  };
+  rd.readAsText(f); ev.target.value = "";
+});
+
+document.getElementById("restoreFile").addEventListener("change", function(ev){
+  var f = ev.target.files && ev.target.files[0]; if (!f) return;
+  var rd = new FileReader();
+  rd.onload = function(){
+    try {
+      var o = JSON.parse(String(rd.result || ""));
+      var s = o && o.state ? o.state : o;
+      if (!s || !Array.isArray(s.txs)) throw new Error("Invalid");
+      state = Object.assign(defaultState(), s, { rules:Object.assign(clone(STARTER_RULES), s.rules || {}) });
+      persist(); renderAll(); showToast("Backup restored.");
+    } catch(e){ showToast("That file is not a valid Bookkeeping backup."); }
+  };
+  rd.readAsText(f); ev.target.value = "";
+});
+
+window.__BK = { parseMoneyStrict:parseMoneyStrict, extractKeyTokens:extractKeyTokens, suggestCategory:suggestCategory, mileageRateForDate:mileageRateForDate, computeBooks:computeBooks, parseBankCSVRows:parseBankCSVRows, parseCSV:parseCSV, fmt$:fmt$, csvText:csvText, STARTER_RULES:STARTER_RULES };
+renderAll();
+})();
+</script>
+</body>
+</html>

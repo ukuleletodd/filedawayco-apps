@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en" data-temp="counter">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Delist Alert Companion · FiledAwayCo</title>
+<style>
+:root,[data-temp="counter"]{
+  --brand:#1E293B; --brand-ink:#FFFFFF; --accent:#2F6B4F; --accent-ink:#FFFFFF;
+  --mint-on-dark:#86C5A7;
+  --paper:#FBF8F2; --card:#FFFFFF; --cream:#E8E0D2;
+  --ink:#1E293B; --muted:#475569; --line:#D8D1C4; --hairline:#ECE7DC;
+  --input-bg:#FFF4D6; --input-border:#D9C79A; --input-ink:#1A1A1A;
+  --auto-bg:#F1F3F5; --auto-ink:#1E293B;
+  --good-ink:#16533C; --good-bg:#E6F3EC;
+  --warn-ink:#7A4700; --warn-bg:#FFF4D6;
+  --alert-ink:#962324; --alert-bg:#FBEAEA;
+  --radius:14px; --radius-sm:10px;
+  --font-display:Georgia,"Times New Roman",serif;
+  --font-body:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--cream);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.45;-webkit-text-size-adjust:100%}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+.shell{max-width:860px;margin:0 auto;min-height:100vh;background:var(--paper);padding:14px 14px 40px}
+@media(min-width:768px){.shell{margin:18px auto;border-radius:18px;border:1px solid var(--line);padding:22px 26px 48px;box-shadow:0 6px 24px rgba(30,41,59,.08)}}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--hairline);margin-bottom:12px}
+.wm{display:flex;align-items:center;gap:10px}
+.mark{width:34px;height:34px;border-radius:9px;background:var(--brand);color:#fff;display:grid;place-items:center;font-weight:800;font-size:15px;letter-spacing:-.02em;position:relative;flex:none}
+.mark::after{content:"";position:absolute;right:4px;top:4px;width:8px;height:8px;border-radius:2px;background:var(--accent)}
+.wm-t b{display:block;font-size:15px;color:var(--brand);line-height:1.15}
+.wm-t span{display:block;font-size:12.5px;color:var(--muted)}
+h1{font-family:var(--font-display);font-size:24px;font-weight:700;margin:0 0 4px;color:var(--brand)}
+h2{font-family:var(--font-display);font-size:18px;font-weight:700;margin:0 0 8px;color:var(--brand)}
+h3{font-size:15px;font-weight:700;margin:0 0 8px;color:var(--brand)}
+.cap{font-size:13.5px;color:var(--muted);line-height:1.45}
+.banner{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--warn-bg);border:1px solid var(--input-border);border-radius:var(--radius-sm);padding:8px 10px 8px 12px;margin-bottom:12px;color:var(--warn-ink);font-size:14px}
+.banner button{min-height:44px;flex:none;white-space:nowrap;padding:0 14px;border-radius:8px;border:1px solid var(--input-border);background:#fff;color:var(--brand);font-weight:700;font-size:13.5px;cursor:pointer}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:14px}
+.hero{background:var(--brand);color:#fff;border-color:var(--brand)}
+.hero .ey{font-size:13px;font-weight:700;color:var(--mint-on-dark);margin-bottom:6px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:520px){.hero-grid{grid-template-columns:1fr 1fr}}
+.hbox{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:12px 14px}
+.hbox .lbl{font-size:12.5px;color:#CBD5E1}
+.hbox .big{font-size:30px;font-weight:800;line-height:1.15;color:#fff;margin-top:2px}
+.hbox .sub{font-size:12.5px;color:#CBD5E1;margin-top:3px}
+.grid2{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:560px){.grid2{grid-template-columns:1fr 1fr}}
+.field{display:block;margin-bottom:10px}
+.field:last-child{margin-bottom:0}
+.field .l{display:block;font-size:13.5px;font-weight:700;color:var(--brand);margin-bottom:4px}
+.inp-wrap{display:flex;align-items:center;background:var(--input-bg);border:1.5px solid var(--input-border);border-radius:var(--radius-sm);padding:0 12px;min-height:46px}
+.inp-wrap:focus-within{border-color:var(--accent);box-shadow:0 0 0 2px rgba(47,107,79,.18)}
+.inp-wrap .pre{font-weight:700;color:var(--muted);margin-right:6px}
+.inp-wrap input,.inp-wrap select{width:100%;border:0;background:transparent;font:inherit;color:var(--input-ink);outline:none;padding:10px 0;min-height:44px}
+.seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:4px;background:var(--auto-bg);padding:4px;border-radius:var(--radius-sm)}
+.seg button{min-height:44px;border:0;border-radius:8px;background:transparent;color:var(--brand);font-weight:700;font-size:13.5px;cursor:pointer;padding:0 8px}
+.seg button[aria-pressed="true"]{background:#fff;box-shadow:0 1px 3px rgba(30,41,59,.14)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip-btn{min-height:44px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--brand);font:inherit;font-size:13.5px;font-weight:700;cursor:pointer}
+.chip-btn[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.tag{display:inline-block;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:700;background:var(--auto-bg);color:var(--brand);white-space:nowrap}
+.tag.good{background:var(--good-bg);color:var(--good-ink)}
+tr.best .tag.good{background:#FFFFFF;border:1px solid #B7DEC8;color:var(--good-ink)}
+.tag.warn{background:var(--warn-bg);color:var(--warn-ink)}
+.tag.alert{background:var(--alert-bg);color:var(--alert-ink)}
+.h-sub{font-family:var(--font-body);font-size:13px;font-weight:600;color:var(--muted)}
+.chk-lbl{display:inline-flex;align-items:center;gap:10px;min-height:44px;cursor:pointer;font-size:13.5px;color:var(--ink)}
+.chk-lbl input{width:20px;height:20px;accent-color:var(--accent);flex:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 16px;border-radius:var(--radius-sm);border:1.5px solid var(--accent);background:var(--accent);color:#fff;font:inherit;font-weight:700;font-size:14.5px;cursor:pointer;text-decoration:none}
+.btn.sec{background:#fff;color:var(--brand);border-color:var(--line)}
+.btn.danger{background:var(--alert-ink);border-color:var(--alert-ink);color:#fff}
+.btn.full{width:100%}
+.btn-row{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}
+@media(min-width:520px){.btn-row{grid-template-columns:1fr 1fr}}
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table.grid{width:100%;border-collapse:collapse;font-size:13.5px}
+table.grid th,table.grid td{padding:9px 7px;border-bottom:1px solid var(--hairline);text-align:left;vertical-align:top}
+@media(max-width:440px){table.grid{font-size:12.5px}table.grid th,table.grid td{padding:7px 4px}}
+table.grid th{background:var(--auto-bg);color:var(--muted);font-size:12px;font-weight:700}
+table.grid td.r,table.grid th.r{text-align:right;white-space:nowrap}
+table.grid tr.best{background:var(--good-bg)}
+table.grid tr.flag{background:var(--alert-bg)}
+.job{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px;border:1px solid #E5B4B4;background:var(--alert-bg);border-radius:12px;margin-bottom:8px}
+.job button{min-height:44px;flex:none;white-space:nowrap;padding:0 14px;border-radius:9px;border:1.5px solid var(--brand);background:#fff;color:var(--brand);font-weight:700;cursor:pointer}
+.inv-row{padding:12px 0;border-bottom:1px solid var(--hairline)}
+.inv-row:last-child{border-bottom:0}
+details.drawer{border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--paper);margin-top:10px}
+details.drawer summary{list-style:none;cursor:pointer;padding:12px 14px;font-weight:700;color:var(--brand);min-height:46px;display:flex;justify-content:space-between;align-items:center}
+details.drawer summary::-webkit-details-marker{display:none}
+details.drawer summary::after{content:"Show";color:var(--accent);font-size:13px}
+details.drawer[open] summary::after{content:"Hide"}
+details.drawer .inner{padding:0 14px 14px}
+.badread{display:inline-flex;align-items:center;min-height:44px;color:var(--accent);font-weight:700;font-size:14px}
+.tabbar{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;background:var(--auto-bg);padding:4px;border-radius:var(--radius-sm);margin-bottom:14px}
+.tabbar button{min-height:46px;border:0;border-radius:8px;background:transparent;color:var(--muted);font:inherit;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:4px;cursor:pointer;padding:0 6px}
+.tabbar button[aria-current="page"]{color:var(--brand);background:#fff;box-shadow:0 1px 3px rgba(30,41,59,.14)}
+.badge-dot{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 5px;border-radius:999px;background:var(--alert-ink);color:#fff;font-size:11px;font-weight:800;margin-left:4px}
+.toast{position:fixed;left:50%;bottom:74px;transform:translateX(-50%) translateY(90px);opacity:0;visibility:hidden;pointer-events:none;background:var(--brand);color:#fff;padding:10px 14px;border-radius:12px;display:flex;align-items:center;gap:12px;box-shadow:0 8px 24px rgba(0,0,0,.22);transition:transform .2s ease,opacity .2s ease;z-index:60;max-width:calc(100vw - 24px);font-size:14px}
+.toast.on{transform:translateX(-50%) translateY(0);opacity:1;visibility:visible;pointer-events:auto}
+.toast button{min-height:44px;padding:0 14px;border-radius:8px;border:0;background:var(--mint-on-dark);color:var(--brand);font-weight:800;cursor:pointer}
+.pane{display:none}
+.pane.active{display:block}
+.print-only{display:none}
+@media print{
+  body{background:#fff;font-size:11pt}
+  .shell{max-width:100%;margin:0;padding:0;border:0;box-shadow:none;background:#fff}
+  .no-print,.tabbar,.banner,.toast{display:none!important}
+  .pane{display:none!important}
+  #printSummary{display:block!important}
+}
+</style>
+<style id="fa-name-title">.wm-t b,.wm-text b{font-size:19px;font-weight:800;line-height:1.12;letter-spacing:-.2px;white-space:normal}</style>
+</head>
+<body>
+<div class="shell">
+  <div class="topbar">
+    <div class="wm">
+      <div class="mark" aria-hidden="true">fa</div>
+      <div class="wm-t"><b>Delist Alert Reseller Tracker</b><span>Pocket Max-Buy · CSV Delist Queue · 2026 Fees</span></div>
+    </div>
+    <button type="button" class="btn sec no-print" id="loadSampleBtn" style="min-height:44px;padding:0 14px;font-size:13.5px;flex:none;white-space:nowrap">Try sample</button>
+  </div>
+
+  <div class="banner no-print" id="sampleBanner" data-sample-banner="1" style="display:none">
+    <span><b>Sample shop</b> — example items &amp; delist alert, not your inventory</span>
+    <button type="button" id="clearSampleBtn">Clear sample</button>
+  </div>
+
+  <nav class="tabbar no-print" aria-label="Main navigation">
+    <button type="button" data-tab="source" aria-current="page"><span>Source</span></button>
+    <button type="button" data-tab="queue"><span>Queue<span class="badge-dot" id="qBadge" style="display:none">0</span></span></button>
+    <button type="button" data-tab="inv"><span>Inventory</span></button>
+    <button type="button" data-tab="export"><span>Export</span></button>
+  </nav>
+
+  <!-- TAB 1: SOURCE (Pocket Max-Buy-Price Calculator) -->
+  <section class="pane active" id="pane-source" aria-label="Pocket Max Buy Price Calculator">
+    <h1>Where to list &amp; Max Buy Price</h1>
+    <p class="cap" style="margin:0 0 12px">Standing in the thrift aisle? Enter the expected sale price and target profit to see what you keep on all 8 marketplaces — and the most you should pay.</p>
+
+    <div class="card hero">
+      <div class="ey">
+        <span id="srcHeroTitle">Max Buy Price (eBay)</span>
+        <span class="tag good" id="srcBestBadge">Best: —</span>
+      </div>
+      <div class="hero-grid">
+        <div class="hbox">
+          <div class="lbl">Most you should pay to hit target</div>
+          <div class="big num" id="outMaxBuy">$0.00</div>
+          <div class="sub num" id="outMaxBuySub">After fees, label &amp; target profit</div>
+        </div>
+        <div class="hbox">
+          <div class="lbl">Highest-net marketplace</div>
+          <div class="big num" id="outBestNet">$0.00</div>
+          <div class="sub" id="outBestSite">—</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="grid2">
+        <label class="field"><span class="l">Expected sale price</span><span class="inp-wrap"><span class="pre">$</span><input id="sPrice" inputmode="decimal" value="40"></span></label>
+        <label class="field"><span class="l">Target profit ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="sTarget" inputmode="decimal" value="10"></span></label>
+        <label class="field"><span class="l">Buyer-paid shipping</span><span class="inp-wrap"><span class="pre">$</span><input id="sShip" inputmode="decimal" value="7.99"></span></label>
+        <label class="field"><span class="l">Your label cost (eBay / Etsy / FB)</span><span class="inp-wrap"><span class="pre">$</span><input id="sLabel" inputmode="decimal" value="7.25"></span></label>
+      </div>
+      <div class="grid2" style="margin-top:4px">
+        <label class="field">
+          <span class="l">Target site for Max Buy Price</span>
+          <span class="inp-wrap"><select id="sSite">
+            <option value="eBay">eBay</option><option value="Poshmark">Poshmark</option><option value="Mercari">Mercari</option>
+            <option value="Depop">Depop (US)</option><option value="Whatnot">Whatnot</option><option value="Vinted">Vinted (US)</option>
+            <option value="Etsy">Etsy</option><option value="Facebook">Facebook (shipped)</option>
+          </select></span>
+        </label>
+        <label class="field"><span class="l">Est. buyer sales tax (eBay/Depop/FB/WN)</span><span class="inp-wrap"><span class="pre">$</span><input id="sTax" inputmode="decimal" value="3.36"></span></label>
+      </div>
+      <details class="drawer">
+        <summary>Category &amp; fee switches (eBay, Depop Boost, Whatnot $1,500 cap)</summary>
+        <div class="inner">
+          <div class="grid2">
+            <label class="field">
+              <span class="l">eBay category</span>
+              <span class="inp-wrap"><select id="sEbayCat">
+                <option value="most">Most categories (13.6% up to $7,500, 2.35% over)</option>
+                <option value="books">Books, movies &amp; music (15.3%)</option>
+                <option value="cards">Trading cards &amp; comics (13.25%)</option>
+                <option value="sneakers">Sneakers $150+ (8%, no order fee)</option>
+              </select></span>
+            </label>
+            <label class="field">
+              <span class="l">Whatnot category ($1,500 cap rule)</span>
+              <span class="inp-wrap"><select id="sWnQual">
+                <option value="0">Non-qualifying — Fashion, Home, general (no $1,500 cap — full 8%)</option>
+                <option value="1">Qualifying (TCG/Comics/Toys/Coins/Sports/Bags/Jewelry — 0% over $1,500)</option>
+              </select></span>
+            </label>
+          </div>
+          <div class="field" style="margin-top:6px">
+            <span class="l">Depop (US) listing type</span>
+            <div class="seg" role="group" aria-label="Depop Boosted">
+              <button type="button" data-depop="0" aria-pressed="true">Standard (0% + 3.3%+$0.45)</button>
+              <button type="button" data-depop="1" aria-pressed="false">Boosted (+12%)</button>
+            </div>
+          </div>
+        </div>
+      </details>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:8px">
+        <h2 style="margin:0">Marketplace comparison</h2>
+        <span class="h-sub num">All 8 sites · 2026 fees checked Nov 24, 2026</span>
+      </div>
+      <div class="tbl-wrap">
+        <table class="grid">
+          <thead><tr><th>Marketplace</th><th class="r">Fee</th><th class="r">Label</th><th class="r">You keep</th><th class="r">Max buy</th></tr></thead>
+          <tbody id="srcTable"></tbody>
+        </table>
+      </div>
+      <p class="cap" style="margin:8px 0 0">Buyer shipping pays the label on Poshmark, Mercari, Depop, Whatnot, and Vinted; on eBay, Etsy, and Facebook Shipped you buy the label. Vinted charges $0 seller fee (buyer pays Vinted's fee). Whatnot Electronics has a 5% base commission (verify in Whatnot Seller Hub).</p>
+    </div>
+  </section>
+
+  <!-- TAB 2: QUEUE (CSV Import + Deterministic Fuzzy Matcher + Delist Queue + .ics) -->
+  <section class="pane" id="pane-queue" aria-label="Delist Queue and CSV Import">
+    <h1>Delist Queue &amp; Sales CSV Import</h1>
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px">
+        <h2 style="margin:0">Active delist queue</h2>
+        <button type="button" class="btn sec" id="icsBtn" style="min-height:44px;padding:0 12px;font-size:13.5px">Weekly Delist Day (.ics)</button>
+      </div>
+      <div id="queueBox"></div>
+    </div>
+
+    <div class="card">
+      <h2>Import a sales report CSV</h2>
+      <p class="cap" style="margin:0 0 10px">Read locally on your device — never uploaded. Supports eBay, Poshmark, Mercari, Depop, Whatnot, Vinted, Etsy, and Facebook. Fuzzy title matching suggests your inventory SKU when the CSV omits it — nothing saves until you confirm.</p>
+      <label class="field" style="margin-bottom:10px">
+        <span class="l">Marketplace fallback (used if CSV has no Platform column)</span>
+        <span class="inp-wrap"><select id="csvSiteFallback">
+          <option value="">Auto-detect from CSV headers</option>
+          <option value="eBay">eBay</option><option value="Poshmark">Poshmark</option><option value="Mercari">Mercari</option>
+          <option value="Depop">Depop</option><option value="Whatnot">Whatnot</option><option value="Vinted">Vinted</option>
+          <option value="Etsy">Etsy</option><option value="Facebook">Facebook</option>
+        </select></span>
+      </label>
+      <label class="btn sec full" for="csvFile" style="cursor:pointer">Choose sales report CSV</label>
+      <input type="file" id="csvFile" accept=".csv,text/csv" style="display:none">
+    </div>
+
+    <div class="card" id="reviewCard" style="display:none">
+      <h2>Review draft sales before saving</h2>
+      <p class="cap" id="importNotes" style="color:var(--warn-ink);font-weight:700"></p>
+      <div class="tbl-wrap"><table class="grid" id="reviewTable"></table></div>
+      <label class="chk-lbl" id="capRow" style="display:none;margin-top:8px"><input type="checkbox" id="capOk"><span>Include rows over $100,000 (verified against platform report)</span></label>
+      <div class="btn-row">
+        <button type="button" class="btn" id="confirmBtn">Confirm import &amp; update delist queue</button>
+        <button type="button" class="btn sec" id="discardDraftBtn">Discard draft</button>
+      </div>
+      <p style="margin:8px 0 0"><a class="badread" href="mailto:filedawayco@gmail.com?subject=Delist%20Alert%20%E2%80%94%20CSV%20import%20bad%20read&body=Platform%3A%0AColumn%20headers%3A%0AWhat%20looked%20wrong%3A">Report a bad read</a></p>
+    </div>
+  </section>
+
+  <!-- TAB 3: INVENTORY (+ Stale Break-Even Markdown Drawer + Collapsed Bins/Consignment) -->
+  <section class="pane" id="pane-inv" aria-label="Inventory and Stale Stock">
+    <h1>Inventory &amp; Stale Markdowns</h1>
+
+    <div class="card">
+      <h2>Quick add item</h2>
+      <form id="invForm">
+        <div class="grid2">
+          <label class="field"><span class="l">SKU</span><span class="inp-wrap"><input id="iSku" required placeholder="e.g. BIN3-042" autocomplete="off"></span></label>
+          <label class="field"><span class="l">Item title</span><span class="inp-wrap"><input id="iTitle" required placeholder="e.g. Vintage brass lamp" autocomplete="off"></span></label>
+          <label class="field"><span class="l">Item cost ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="iCost" inputmode="decimal" placeholder="0.00"></span></label>
+          <label class="field"><span class="l">Date listed</span><span class="inp-wrap"><input type="date" id="iDate"></span></label>
+        </div>
+        <div class="field" style="margin-top:4px">
+          <span class="l">Live on (tap every marketplace)</span>
+          <div class="chips" id="platChips"></div>
+        </div>
+        <details class="drawer">
+          <summary>More details (Bin / Storage location, Lot ID, Consignment split %)</summary>
+          <div class="inner">
+            <div class="grid2">
+              <label class="field"><span class="l">Bin / storage location</span><span class="inp-wrap"><input id="iBin" placeholder="e.g. Shelf B · Bin 4"></span></label>
+              <label class="field"><span class="l">Consignor name (optional)</span><span class="inp-wrap"><input id="iConsignor" placeholder="Leave blank if owned"></span></label>
+              <label class="field"><span class="l">Consignor payout %</span><span class="inp-wrap"><input id="iConsignPct" inputmode="decimal" placeholder="e.g. 50"></span></label>
+            </div>
+          </div>
+        </details>
+        <button type="submit" class="btn full" style="margin-top:12px">Add item to inventory</button>
+      </form>
+    </div>
+
+    <div class="card" id="staleCard" style="display:none">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px">
+        <h2 style="margin:0">Stale stock break-even markdowns</h2>
+        <span class="tag warn num" id="staleCountTag">0 stale (&gt;90d)</span>
+      </div>
+      <p class="cap" style="margin:0 0 8px">Lowest price you can mark down to on each live site without selling below your item cost (after 2026 platform fees).</p>
+      <div id="staleList"></div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px">
+        <h2 style="margin:0">Your cross-listed items</h2>
+        <span class="tag" id="invCountTag">0 items</span>
+      </div>
+      <div id="invBox"></div>
+    </div>
+  </section>
+
+  <!-- TAB 4: EXPORT & TOOLS -->
+  <section class="pane" id="pane-export" aria-label="Export and Tools">
+    <h1>Export, Tax Bridge &amp; Backup</h1>
+    <div class="card">
+      <h2>Confirmed sales summary</h2>
+      <div id="expStats"></div>
+      <div class="btn-row">
+        <button type="button" class="btn" id="exportCsvBtn">Export formula-safe CSV</button>
+        <button type="button" class="btn sec" id="bridge1099Btn">Export for 1099 Tax Planner (.json)</button>
+      </div>
+      <div class="btn-row">
+        <button type="button" class="btn sec" id="printBtn">Print 1-page reseller summary</button>
+        <button type="button" class="btn sec" id="backupBtn">Backup all data (.json)</button>
+      </div>
+      <div style="margin-top:10px">
+        <label class="btn sec full" for="restoreFile" style="cursor:pointer">Restore from JSON backup</label>
+        <input type="file" id="restoreFile" accept="application/json,.json" style="display:none">
+      </div>
+    </div>
+
+    <div class="card" id="consignCard" style="display:none">
+      <h2>Consignment payout roll-up</h2>
+      <div id="consignBox"></div>
+    </div>
+
+    <div class="card">
+      <h2>About &amp; rules checked</h2>
+      <p class="cap" style="margin:0 0 6px"><b>Imports are drafts</b> — you confirm every row; your confirmed records are the record. Everything stays locally on this device.</p>
+      <p class="cap" style="margin:0 0 6px">Fee rules checked November 24, 2026 against official marketplace help pages (eBay, Poshmark, Mercari, Depop US, Whatnot US Sep 2026 tiers &amp; qualifying $1,500 cap, Vinted US, Etsy, Facebook Shipped). Not tax, legal, or financial advice.</p>
+      <p class="cap" style="margin:0">Delist Alert Companion · FiledAwayCo · Support: filedawayco@gmail.com</p>
+    </div>
+  </section>
+
+  <!-- 1-PAGE PRINT VIEW -->
+  <section id="printSummary" class="print-only"></section>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><span id="toastMsg"></span><button type="button" id="toastUndo" style="display:none">Undo</button></div>
+
+<script>
+(function(){
+"use strict";
+var PLATS = ["eBay","Poshmark","Mercari","Depop","Whatnot","Vinted","Etsy","Facebook"];
+var STORE_KEY = "fac_delist_v1";
+var state = loadState();
+var activeTab = "source";
+var depopBoosted = false;
+var selectedPlats = ["eBay","Poshmark"];
+var draft = [];
+var undoFn = null, toastT = null;
+
+function esc(s){
+  return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
+  });
+}
+function fmt$(n){ var v = Number(n) || 0; return (v < 0 ? "−" : "") + "$" + Math.abs(v).toLocaleString("en-US", { minimumFractionDigits:2, maximumFractionDigits:2 }); }
+function localISO(d){ var y = d.getFullYear(), m = String(d.getMonth() + 1).padStart(2, "0"), dy = String(d.getDate()).padStart(2, "0"); return y + "-" + m + "-" + dy; }
+function todayISO(){ return localISO(new Date()); }
+function daysSince(iso){
+  if (!iso || !/^\d{4}-\d{2}-\d{2}$/.test(iso)) return 0;
+  var d = new Date(iso + "T00:00:00"), n = new Date(); n.setHours(0,0,0,0);
+  return Math.max(0, Math.round((n - d) / 86400000));
+}
+
+function defaultState(){ return { sample: false, inv: [], sales: [], queue: [] }; }
+function sampleState(){
+  var oldDate = new Date(Date.now() - 108 * 86400000).toISOString().slice(0,10);
+  var recent = new Date(Date.now() - 12 * 86400000).toISOString().slice(0,10);
+  var f1 = feeFor("eBay", 86, { ship: 0, tax: 0 }).fee;
+  return {
+    sample: true,
+    inv: [
+      { sku:"SAMPLE-001", title:"Vintage brass table lamp", cost:18, listed:recent, bin:"Shelf A · Bin 2", consignor:"", consignPct:0, platforms:["eBay","Poshmark","Mercari"], sample:true },
+      { sku:"SAMPLE-002", title:"Pendleton wool throw blanket", cost:24, listed:oldDate, bin:"Shelf B · Bin 1", consignor:"Maya R.", consignPct:40, platforms:["Etsy","eBay","Depop"], sample:true },
+      { sku:"SAMPLE-003", title:"Ceramic vase set (3 pc)", cost:12, listed:recent, bin:"Shelf A · Bin 4", consignor:"", consignPct:0, platforms:["Poshmark","Whatnot","Vinted"], sample:true }
+    ],
+    sales: [
+      { id:"s-sample-1", date:todayISO(), sku:"SAMPLE-001", title:"Vintage brass table lamp", platform:"eBay", price:86, fee:f1, cost:18, reported:null, flag:false, sample:true }
+    ],
+    queue: [
+      { sku:"SAMPLE-001", title:"Vintage brass table lamp", soldOn:"eBay", platform:"Poshmark", done:false, sample:true },
+      { sku:"SAMPLE-001", title:"Vintage brass table lamp", soldOn:"eBay", platform:"Mercari", done:false, sample:true }
+    ]
+  };
+}
+function loadState(){
+  try {
+    var raw = localStorage.getItem(STORE_KEY);
+    if (raw) {
+      var o = JSON.parse(raw);
+      if (o && Array.isArray(o.inv) && Array.isArray(o.sales) && Array.isArray(o.queue)) return o;
+    }
+  } catch(e){}
+  return defaultState();
+}
+function persist(){ try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch(e){} }
+
+/* ---------- Verified 2026 8-Marketplace Fee Engine ---------- */
+function feeFor(platform, price, opts){
+  opts = opts || {};
+  var p = String(platform || "").toLowerCase();
+  var pr = Math.max(0, Number(price) || 0);
+  if (pr <= 0) {
+    var bpl = /posh|mercari|depop|whatnot|vinted/.test(p);
+    return { fee: 0, buyerPaysLabel: bpl, note: "Enter a sale price above $0" };
+  }
+  var ship = Math.max(0, Number(opts.ship) || 0);
+  var tax = Math.max(0, Number(opts.tax) || 0);
+  var tot = pr + ship + tax;
+
+  if (p.indexOf("ebay") >= 0) {
+    var cat = opts.ebayCat || "most";
+    if (cat === "sneakers" && tot >= 150) return { fee: tot * 0.08, buyerPaysLabel: false, note: "8% sneakers $150+, $0 order fee" };
+    var r1 = cat === "books" ? 0.153 : (cat === "cards" ? 0.1325 : 0.136);
+    var flat = tot <= 10 ? 0.30 : 0.40;
+    var f = Math.min(tot, 7500) * r1 + Math.max(0, tot - 7500) * 0.0235 + flat;
+    return { fee: f, buyerPaysLabel: false, note: (r1*100).toFixed(cat==="cards"?2:1) + "% up to $7,500, 2.35% over + $" + flat.toFixed(2) };
+  }
+  if (p.indexOf("posh") >= 0) {
+    var fp = pr < 15 ? 2.95 : pr * 0.20;
+    return { fee: fp, buyerPaysLabel: true, note: pr < 15 ? "$2.95 flat under $15" : "20% of item price" };
+  }
+  if (p.indexOf("mercari") >= 0) {
+    return { fee: (pr + ship) * 0.10, buyerPaysLabel: true, note: "10% of item + buyer shipping" };
+  }
+  if (p.indexOf("depop") >= 0) {
+    var boost = !!opts.depopBoosted;
+    var fd = (boost ? pr * 0.12 : 0) + tot * 0.033 + 0.45;
+    return { fee: fd, buyerPaysLabel: true, note: boost ? "12% Boosted + 3.3%+$0.45 proc" : "0% selling fee + 3.3%+$0.45 proc" };
+  }
+  if (p.indexOf("whatnot") >= 0) {
+    var qual = !!opts.whatnotQualifying;
+    var commBase = qual ? Math.min(pr, 1500) : pr;
+    var fw = commBase * 0.08 + tot * 0.029 + 0.30;
+    return { fee: fw, buyerPaysLabel: true, note: qual ? "8% capped at $1,500 + 2.9%+$0.30 full" : "8% full price (no cap) + 2.9%+$0.30" };
+  }
+  if (p.indexOf("vinted") >= 0) {
+    return { fee: 0, buyerPaysLabel: true, note: "$0 seller fee (buyer pays Vinted fee)" };
+  }
+  if (p.indexOf("etsy") >= 0) {
+    var fe = (pr + ship) * 0.065 + tot * 0.03 + 0.25 + 0.20;
+    return { fee: fe, buyerPaysLabel: false, note: "6.5% tx + 3%+$0.25 proc + $0.20 listing" };
+  }
+  if (p.indexOf("facebook") >= 0 || p.indexOf("fb") >= 0) {
+    var ffb = Math.max(tot * 0.10, 0.80);
+    return { fee: ffb, buyerPaysLabel: false, note: "10% shipped ($0.80 min); local cash $0" };
+  }
+  return { fee: 0, buyerPaysLabel: false, note: "Unrecognized platform — verify fee" };
+}
+
+function maxBuyPrice(platform, price, opts){
+  opts = opts || {};
+  var f = feeFor(platform, price, opts);
+  var ship = Math.max(0, Number(opts.ship) || 0);
+  var label = Math.max(0, Number(opts.label) || 0);
+  var labelCharged = f.buyerPaysLabel ? 0 : label;
+  var keep = price + (f.buyerPaysLabel ? 0 : ship) - f.fee - labelCharged;
+  var target = Math.max(0, Number(opts.targetProfit) || 0);
+  return Math.max(0, Math.round((keep - target) * 100) / 100);
+}
+
+function breakEvenPrice(platform, cost, opts){
+  var c = Math.max(0, Number(cost) || 0);
+  if (c <= 0) return 0;
+  var lo = c, hi = Math.max(c * 2.5 + 10, 50);
+  for (var i = 0; i < 34; i++){
+    var mid = (lo + hi) / 2;
+    var net = mid - feeFor(platform, mid, opts).fee;
+    if (net >= c) hi = mid; else lo = mid;
+  }
+  return Math.ceil(hi * 100) / 100;
+}
+
+/* ---------- Deterministic On-Device Fuzzy SKU/Title Matcher (L6 — zero LLM) ---------- */
+function tokens(s){
+  return String(s || "").toLowerCase().replace(/[^a-z0-9\s]/g, " ").split(/\s+/).filter(function(w){ return w.length >= 2; });
+}
+function fuzzyMatch(title, invList){
+  var t1 = tokens(title);
+  if (!t1.length || !invList.length) return null;
+  var set1 = {}; t1.forEach(function(w){ set1[w] = 1; });
+  var best = null;
+  invList.forEach(function(it){
+    var t2 = tokens(it.title);
+    if (!t2.length) return;
+    var inter = 0, union = Object.keys(set1).length;
+    var seen = {};
+    t2.forEach(function(w){
+      if (seen[w]) return; seen[w] = 1;
+      if (set1[w]) inter++; else union++;
+    });
+    var jac = union ? inter / union : 0;
+    if (jac >= 0.45 && (!best || jac > best.score)) best = { sku: it.sku, title: it.title, score: Math.round(jac * 100) / 100 };
+  });
+  return best;
+}
+
+/* ---------- CSV Parser (UTF-8 BOM & empty-file safe) + Formula-Injection-Safe Export ---------- */
+function parseCSV(text){
+  text = String(text || "").replace(/^\uFEFF/, "");
+  if (!text.trim()) return [];
+  var rows = [], row = [], cur = "", q = false;
+  for (var i = 0; i < text.length; i++){
+    var ch = text[i];
+    if (q) { if (ch === '"') { if (text[i + 1] === '"') { cur += '"'; i++; } else q = false; } else cur += ch; }
+    else if (ch === '"') q = true;
+    else if (ch === ',') { row.push(cur); cur = ""; }
+    else if (ch === '\n' || ch === '\r') { if (ch === '\r' && text[i + 1] === '\n') i++; row.push(cur); cur = ""; if (row.length > 1 || row[0] !== "") rows.push(row); row = []; }
+    else cur += ch;
+  }
+  if (cur !== "" || row.length) { row.push(cur); rows.push(row); }
+  return rows;
+}
+function parseMoney(raw){
+  if (raw == null) return null;
+  var s = String(raw).trim().replace(/^\$/, "").replace(/,/g, "").trim();
+  if (!/^\d+(\.\d{1,2})?$/.test(s)) return null;
+  return parseFloat(s);
+}
+function parseNum(raw){
+  if (raw == null) return 0;
+  var s = String(raw).trim().replace(/[$,\s]/g, "");
+  var v = parseFloat(s);
+  return isNaN(v) ? 0 : Math.max(0, v);
+}
+function csvCell(v){ v = String(v == null ? "" : v); return /[",\n\r]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }
+function csvText(v){ v = String(v == null ? "" : v); if (/^\s*[=+\-@]/.test(v) || /^[\t\r]/.test(v)) v = "'" + v; return csvCell(v); }
+
+function buildDelistICS(){
+  var now = new Date();
+  var nextSun = new Date(now.getFullYear(), now.getMonth(), now.getDate() + ((7 - now.getDay()) % 7 || 7));
+  var ymd = localISO(nextSun).replace(/-/g, "");
+  var stamp = now.toISOString().replace(/[-:]/g, "").slice(0, 15) + "Z";
+  return [
+    "BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//FiledAwayCo//Delist Alert Companion//EN","CALSCALE:GREGORIAN",
+    "BEGIN:VEVENT","UID:fac-delist-weekly@filedawayco.local","DTSTAMP:" + stamp,
+    "DTSTART;VALUE=DATE:" + ymd,"RRULE:FREQ=WEEKLY;BYDAY=SU",
+    "SUMMARY:Weekly Delist Check & Stale Markdown Review (Delist Alert)",
+    "DESCRIPTION:Import marketplace CSVs, clear your Delist Queue, and review stale >90-day break-even markdowns.",
+    "BEGIN:VALARM","TRIGGER:-PT12H","ACTION:DISPLAY","DESCRIPTION:Weekly Delist Check tomorrow","END:VALARM",
+    "END:VEVENT","END:VCALENDAR",""
+  ].join("\r\n");
+}
+
+function download(name, text, mime){
+  var b = new Blob([text], { type: mime }), u = URL.createObjectURL(b), a = document.createElement("a");
+  a.href = u; a.download = name; document.body.appendChild(a); a.click();
+  setTimeout(function(){ URL.revokeObjectURL(u); a.remove(); }, 500);
+}
+function showToast(msg, fn){
+  var el = document.getElementById("toast");
+  document.getElementById("toastMsg").textContent = msg;
+  var ub = document.getElementById("toastUndo");
+  undoFn = fn || null;
+  ub.style.display = fn ? "inline-flex" : "none";
+  el.classList.add("on");
+  clearTimeout(toastT);
+  toastT = setTimeout(function(){ el.classList.remove("on"); undoFn = null; }, fn ? 7000 : 2800);
+}
+
+/* ---------- Renders ---------- */
+function renderSource(){
+  var price = parseNum(document.getElementById("sPrice").value);
+  var ship = parseNum(document.getElementById("sShip").value);
+  var label = parseNum(document.getElementById("sLabel").value);
+  var tax = parseNum(document.getElementById("sTax").value);
+  var target = parseNum(document.getElementById("sTarget").value);
+  var site = document.getElementById("sSite").value;
+  var opts = { ship: ship, tax: tax, label: label, targetProfit: target, ebayCat: document.getElementById("sEbayCat").value, depopBoosted: depopBoosted, whatnotQualifying: document.getElementById("sWnQual").value === "1" };
+
+  var rows = PLATS.map(function(pl){
+    var f = feeFor(pl, price, opts);
+    var lbl = f.buyerPaysLabel ? 0 : label;
+    var keep = price + (f.buyerPaysLabel ? 0 : ship) - f.fee - lbl;
+    var mb = Math.max(0, keep - target);
+    return { pl: pl, fee: f.fee, lbl: lbl, keep: keep, mb: mb, note: f.note };
+  });
+  var best = rows.slice().sort(function(a,b){ return b.keep - a.keep; })[0];
+  var sel = rows.filter(function(r){ return r.pl === site; })[0] || rows[0];
+
+  document.getElementById("srcHeroTitle").textContent = "Max Buy Price (" + sel.pl + ")";
+  document.getElementById("srcBestBadge").textContent = "Best net: " + best.pl;
+  document.getElementById("outMaxBuy").textContent = fmt$(sel.mb);
+  document.getElementById("outMaxBuySub").textContent = "Keep " + fmt$(sel.keep) + " − " + fmt$(target) + " target profit";
+  document.getElementById("outBestNet").textContent = fmt$(best.keep);
+  document.getElementById("outBestSite").textContent = best.pl + " (" + best.note + ")";
+
+  document.getElementById("srcTable").innerHTML = rows.map(function(r){
+    var isBest = r.pl === best.pl && price > 0;
+    return '<tr' + (isBest ? ' class="best"' : '') + '><td><b>' + esc(r.pl) + '</b>' + (isBest ? ' <span class="tag good">Highest net</span>' : '') + '<div class="cap" style="font-size:12px">' + esc(r.note) + '</div></td>' +
+      '<td class="r num">' + fmt$(r.fee) + '</td><td class="r num">' + fmt$(r.lbl) + '</td><td class="r num"><b>' + fmt$(r.keep) + '</b></td><td class="r num">' + fmt$(r.mb) + '</td></tr>';
+  }).join("");
+}
+
+function renderBanner(){
+  var hasS = state.sample || state.inv.some(function(x){return x.sample;}) || state.sales.some(function(x){return x.sample;});
+  document.getElementById("sampleBanner").style.display = hasS ? "flex" : "none";
+  document.getElementById("loadSampleBtn").style.display = hasS ? "none" : "inline-flex";
+}
+
+function renderQueue(){
+  var open = state.queue.filter(function(q){ return !q.done; });
+  var badge = document.getElementById("qBadge");
+  badge.style.display = open.length ? "inline-flex" : "none";
+  badge.textContent = String(open.length);
+
+  var box = document.getElementById("queueBox");
+  if (!state.queue.length) {
+    box.innerHTML = '<p class="cap" style="margin:0">Nothing queued yet. Load sample items or import a sales CSV below — every other site an item is still live on will appear here.</p>';
+    return;
+  }
+  if (!open.length) {
+    box.innerHTML = '<p class="cap" style="margin:0;color:var(--good-ink);font-weight:700">Queue clear. Every cross-listing from your confirmed sales has been delisted.</p>';
+    return;
+  }
+  box.innerHTML = '<p class="cap" style="margin:0 0 8px;color:var(--alert-ink);font-weight:700">' + open.length + ' cross-listing' + (open.length === 1 ? '' : 's') + ' still live — pull now to avoid double-selling:</p>' +
+    open.map(function(q){
+      var idx = state.queue.indexOf(q);
+      return '<div class="job"><div><b>' + esc(q.sku) + '</b> · ' + esc(q.title) + '<div class="cap">Sold on ' + esc(q.soldOn) + ' · still live on <b>' + esc(q.platform) + '</b></div></div>' +
+        '<button type="button" data-delist="' + idx + '">Mark delisted</button></div>';
+    }).join("");
+}
+
+function renderInventory(){
+  document.getElementById("invCountTag").textContent = state.inv.length + (state.inv.length === 1 ? " item" : " items");
+  // Stale break-even drawer
+  var stale = state.inv.filter(function(it){
+    var isSold = state.sales.some(function(s){ return s.sku.toLowerCase() === it.sku.toLowerCase(); });
+    return !isSold && daysSince(it.listed) > 90;
+  });
+  var sc = document.getElementById("staleCard");
+  if (stale.length) {
+    sc.style.display = "block";
+    document.getElementById("staleCountTag").textContent = stale.length + " stale";
+    document.getElementById("staleList").innerHTML = stale.map(function(it){
+      var d = daysSince(it.listed);
+      var floors = (it.platforms || []).map(function(pl){
+        return esc(pl) + ": " + fmt$(breakEvenPrice(pl, it.cost || 0));
+      }).join(" · ");
+      return '<div class="inv-row"><div><b>' + esc(it.sku) + '</b> · ' + esc(it.title) + ' <span class="tag warn">' + d + 'd old</span></div>' +
+        '<div class="cap">Cost ' + fmt$(it.cost || 0) + ' · Break-even floor: <span class="num">' + (floors || "—") + '</span></div></div>';
+    }).join("");
+  } else {
+    sc.style.display = "none";
+  }
+
+  var box = document.getElementById("invBox");
+  if (!state.inv.length) {
+    box.innerHTML = '<p class="cap" style="margin:0">No items yet — add your first item above or tap Try sample.</p>';
+    return;
+  }
+  box.innerHTML = state.inv.map(function(it){
+    var sold = state.sales.filter(function(s){ return s.sku.toLowerCase() === it.sku.toLowerCase(); });
+    var chips = (it.platforms || []).map(function(pl){
+      var isSold = sold.some(function(s){ return s.platform.toLowerCase() === pl.toLowerCase(); });
+      var done = state.queue.some(function(q){ return q.sku.toLowerCase() === it.sku.toLowerCase() && q.platform.toLowerCase() === pl.toLowerCase() && q.done; });
+      var cls = isSold ? "alert" : (done ? "" : "good");
+      var lbl = isSold ? "Sold here" : (done ? "Delisted" : "Live");
+      return '<span class="tag ' + cls + '" style="margin:3px 4px 0 0">' + esc(pl) + " · " + lbl + '</span>';
+    }).join("");
+    var meta = [];
+    if (it.cost) meta.push("Cost " + fmt$(it.cost));
+    if (it.bin) meta.push(it.bin);
+    if (it.consignor) meta.push("Consignor: " + it.consignor + " (" + (it.consignPct || 0) + "%)");
+    return '<div class="inv-row"><div><b>' + esc(it.sku) + '</b> · ' + esc(it.title) + (it.sample ? ' <span class="tag warn">SAMPLE</span>' : '') + '</div>' +
+      (meta.length ? '<div class="cap" style="margin-top:2px">' + esc(meta.join(" · ")) + '</div>' : '') +
+      '<div style="margin-top:4px">' + chips + '</div></div>';
+  }).join("");
+}
+
+function renderExport(){
+  var g = 0, f = 0, c = 0;
+  state.sales.forEach(function(s){ g += Number(s.price)||0; f += Number(s.fee)||0; c += Number(s.cost)||0; });
+  var net = g - f - c;
+  document.getElementById("expStats").innerHTML =
+    '<div class="grid2" style="margin-bottom:8px">' +
+    '<div style="background:var(--auto-bg);padding:12px;border-radius:10px"><div class="cap">Confirmed sales (' + state.sales.length + ')</div><b class="num" style="font-size:22px">' + fmt$(g) + '</b></div>' +
+    '<div style="background:var(--auto-bg);padding:12px;border-radius:10px"><div class="cap">True profit (after fees &amp; item cost)</div><b class="num" style="font-size:22px;color:var(--good-ink)">' + fmt$(net) + '</b><div class="cap num">Fees ' + fmt$(f) + ' · Cost ' + fmt$(c) + '</div></div></div>';
+
+  // Consignment roll-up (Premium feature preview!)
+  var byC = {};
+  state.inv.forEach(function(it){
+    if (!it.consignor) return;
+    var s = state.sales.filter(function(x){ return x.sku.toLowerCase() === it.sku.toLowerCase(); })[0];
+    if (!byC[it.consignor]) byC[it.consignor] = { items: 0, sold: 0, owed: 0 };
+    byC[it.consignor].items++;
+    if (s) {
+      byC[it.consignor].sold++;
+      byC[it.consignor].owed += Math.max(0, (s.price - s.fee) * ((it.consignPct || 0) / 100));
+    }
+  });
+  var cKeys = Object.keys(byC);
+  var cc = document.getElementById("consignCard");
+  if (cKeys.length) {
+    cc.style.display = "block";
+    document.getElementById("consignBox").innerHTML = cKeys.map(function(k){
+      var x = byC[k];
+      return '<div class="inv-row"><b>' + esc(k) + '</b> · ' + x.items + ' item(s), ' + x.sold + ' sold · Owed: <b class="num">' + fmt$(x.owed) + '</b></div>';
+    }).join("");
+  } else {
+    cc.style.display = "none";
+  }
+
+  document.getElementById("printSummary").innerHTML =
+    '<h1>Delist Alert — Reseller Summary (' + todayISO() + ')</h1>' +
+    '<p>Confirmed sales: ' + state.sales.length + ' · Gross: ' + fmt$(g) + ' · Fees: ' + fmt$(f) + ' · Item cost: ' + fmt$(c) + ' · True profit: ' + fmt$(net) + '</p>' +
+    '<table class="grid"><thead><tr><th>Date</th><th>SKU</th><th>Item</th><th>Platform</th><th class="r">Price</th><th class="r">Fee</th><th class="r">Net</th></tr></thead><tbody>' +
+    state.sales.map(function(s){ return '<tr><td>' + esc(s.date) + '</td><td>' + esc(s.sku) + '</td><td>' + esc(s.title) + '</td><td>' + esc(s.platform) + '</td><td class="r num">' + fmt$(s.price) + '</td><td class="r num">' + fmt$(s.fee) + '</td><td class="r num">' + fmt$(s.price - s.fee) + '</td></tr>'; }).join("") +
+    '</tbody></table><p style="margin-top:12px;font-size:10pt">Planning record from FiledAwayCo Delist Alert Companion — not tax or accounting advice.</p>';
+}
+
+function renderPlatChips(){
+  document.getElementById("platChips").innerHTML = PLATS.map(function(pl){
+    return '<button type="button" class="chip-btn" data-pchip="' + esc(pl) + '" aria-pressed="' + (selectedPlats.indexOf(pl) >= 0) + '">' + esc(pl) + '</button>';
+  }).join("");
+}
+
+function renderAll(){ renderBanner(); renderSource(); renderQueue(); renderInventory(); renderExport(); renderPlatChips(); }
+
+function switchTab(t){
+  activeTab = t;
+  document.querySelectorAll(".pane").forEach(function(p){ p.classList.toggle("active", p.id === "pane-" + t); });
+  document.querySelectorAll(".tabbar button").forEach(function(b){ b.setAttribute("aria-current", b.dataset.tab === t ? "page" : "false"); });
+}
+
+/* ---------- Events ---------- */
+["sPrice","sTarget","sShip","sLabel","sTax","sSite","sEbayCat","sWnQual"].forEach(function(id){
+  var el = document.getElementById(id);
+  el.addEventListener("input", renderSource);
+  el.addEventListener("change", renderSource);
+});
+document.getElementById("iDate").value = todayISO();
+
+document.addEventListener("click", function(e){
+  var t = e.target.closest("button");
+  if (!t) return;
+  if (t.dataset.tab) { switchTab(t.dataset.tab); }
+  else if (t.dataset.depop != null) {
+    depopBoosted = t.dataset.depop === "1";
+    document.querySelectorAll("[data-depop]").forEach(function(b){ b.setAttribute("aria-pressed", String(b.dataset.depop === t.dataset.depop)); });
+    renderSource();
+  } else if (t.dataset.pchip) {
+    var pl = t.dataset.pchip, idx = selectedPlats.indexOf(pl);
+    if (idx >= 0) { if (selectedPlats.length > 1) selectedPlats.splice(idx, 1); } else selectedPlats.push(pl);
+    renderPlatChips();
+  } else if (t.dataset.delist != null) {
+    var qi = +t.dataset.delist;
+    if (state.queue[qi]) {
+      state.queue[qi].done = true; persist(); renderAll();
+      showToast("Marked delisted on " + state.queue[qi].platform + ".", function(){
+        state.queue[qi].done = false; persist(); renderAll();
+      });
+    }
+  } else if (t.id === "loadSampleBtn") {
+    var s = sampleState();
+    // Preserve any non-sample user items instead of wiping them
+    var userInv = state.inv.filter(function(x){ return !x.sample; });
+    var userSales = state.sales.filter(function(x){ return !x.sample; });
+    var userQueue = state.queue.filter(function(x){ return !x.sample; });
+    state = { sample: true, inv: s.inv.concat(userInv), sales: s.sales.concat(userSales), queue: s.queue.concat(userQueue) };
+    persist(); renderAll();
+  } else if (t.id === "clearSampleBtn") {
+    var prev2 = JSON.parse(JSON.stringify(state));
+    state.sample = false;
+    state.inv = state.inv.filter(function(x){ return !x.sample; });
+    state.sales = state.sales.filter(function(x){ return !x.sample; });
+    state.queue = state.queue.filter(function(x){ return !x.sample; });
+    persist(); renderAll();
+    showToast("Sample data cleared.", function(){ state = prev2; persist(); renderAll(); showToast("Sample restored."); });
+  } else if (t.id === "toastUndo") {
+    if (undoFn) { var f = undoFn; undoFn = null; document.getElementById("toast").classList.remove("on"); f(); }
+  } else if (t.id === "icsBtn") {
+    download("filedawayco-weekly-delist-day.ics", buildDelistICS(), "text/calendar;charset=utf-8");
+    showToast("Weekly Delist Day calendar (.ics) saved.");
+  } else if (t.id === "discardDraftBtn") {
+    draft = []; document.getElementById("reviewCard").style.display = "none";
+  } else if (t.id === "confirmBtn") {
+    var includeOver = document.getElementById("capOk").checked;
+    var addable = draft.filter(function(d){ return !d.dup && !d.missingPlat && (includeOver || !d.overCap); });
+    if (!addable.length) { showToast("No importable rows (pick a marketplace fallback if platform is blank)."); return; }
+    var snap = JSON.parse(JSON.stringify(state));
+    addable.forEach(function(d){
+      var it = state.inv.filter(function(x){ return x.sku.toLowerCase() === String(d.sku || "").toLowerCase(); })[0];
+      state.sales.push({ id: "s" + Date.now() + Math.random().toString(36).slice(2,5), date: d.date || todayISO(), sku: d.sku, title: d.title, platform: d.platform, price: d.price, fee: d.computed, cost: it ? (it.cost || 0) : 0, reported: d.reported, flag: d.flag, sample: false });
+      if (it) {
+        (it.platforms || []).forEach(function(pl){
+          if (pl.toLowerCase() !== String(d.platform).toLowerCase()) {
+            var exists = state.queue.some(function(q){ return q.sku.toLowerCase() === it.sku.toLowerCase() && q.platform.toLowerCase() === pl.toLowerCase(); });
+            if (!exists) state.queue.push({ sku: it.sku, title: it.title, soldOn: d.platform, platform: pl, done: false, sample: false });
+          }
+        });
+      }
+    });
+    draft = []; document.getElementById("reviewCard").style.display = "none";
+    persist(); renderAll();
+    showToast("Imported " + addable.length + " sale(s) & updated delist queue.", function(){ state = snap; persist(); renderAll(); });
+  } else if (t.id === "exportCsvBtn") {
+    if (!state.sales.length) { showToast("No confirmed sales to export yet."); return; }
+    var head = ["Date","SKU","Title","Sold on","Price","Fee (2026 table)","Item cost","True net"];
+    var lines = [head.join(",")].concat(state.sales.map(function(s){
+      return [csvText(s.date), csvText(s.sku), csvText(s.title), csvText(s.platform), Number(s.price).toFixed(2), Number(s.fee).toFixed(2), Number(s.cost||0).toFixed(2), (Number(s.price)-Number(s.fee)-Number(s.cost||0)).toFixed(2)].join(",");
+    }));
+    download("delist-confirmed-sales-" + todayISO() + ".csv", lines.join("\r\n") + "\r\n", "text/csv;charset=utf-8");
+    showToast("Formula-safe CSV downloaded.");
+  } else if (t.id === "bridge1099Btn") {
+    var g = 0, f = 0, c = 0; state.sales.forEach(function(s){ g += Number(s.price)||0; f += Number(s.fee)||0; c += Number(s.cost)||0; });
+    var payload = JSON.stringify({ bridge:"fac-bridge-v1", source:"delist-alert", exported:todayISO(), taxYear:new Date().getFullYear(), grossSales:+g.toFixed(2), platformFees:+f.toFixed(2), itemCosts:+c.toFixed(2), trueNet:+(g-f-c).toFixed(2), salesCount:state.sales.length, disclaimer:"Planning record exported from Delist Alert — verify totals before filing. Not tax advice." }, null, 2);
+    download("fac-bridge-1099-delist-" + todayISO() + ".json", payload, "application/json");
+    showToast("1099 Tax Planner bridge (.json) downloaded.");
+  } else if (t.id === "printBtn") {
+    window.print();
+  } else if (t.id === "backupBtn") {
+    download("delist-alert-backup-" + todayISO() + ".json", JSON.stringify({ app:"fac-delist", exported:todayISO(), state:state }, null, 2), "application/json");
+    showToast("Backup JSON saved.");
+  }
+});
+
+document.getElementById("invForm").addEventListener("submit", function(ev){
+  ev.preventDefault();
+  var sku = document.getElementById("iSku").value.trim();
+  var title = document.getElementById("iTitle").value.trim();
+  if (!sku || !title) return;
+  state.inv.push({
+    sku: sku, title: title, cost: parseNum(document.getElementById("iCost").value),
+    listed: document.getElementById("iDate").value || todayISO(),
+    bin: document.getElementById("iBin").value.trim(),
+    consignor: document.getElementById("iConsignor").value.trim(),
+    consignPct: Math.min(100, parseNum(document.getElementById("iConsignPct").value)),
+    platforms: selectedPlats.slice(), sample: false
+  });
+  persist(); ev.target.reset(); document.getElementById("iDate").value = todayISO(); renderAll();
+  showToast("Item added to inventory.");
+});
+
+function detectPlatformFromHeaders(head, fileName){
+  var joined = head.join(" | ") + " | " + String(fileName || "").toLowerCase();
+  if (/sales record number|custom label|ebay/.test(joined)) return "eBay";
+  if (/poshmark|order earnings|closet/.test(joined)) return "Poshmark";
+  if (/mercari/.test(joined)) return "Mercari";
+  if (/depop/.test(joined)) return "Depop";
+  if (/whatnot|livestream/.test(joined)) return "Whatnot";
+  if (/vinted/.test(joined)) return "Vinted";
+  if (/etsy|shop name|listing id/.test(joined)) return "Etsy";
+  if (/facebook/.test(joined)) return "Facebook";
+  return "";
+}
+
+function findCol(head, names, excludeRe){
+  // Pass 1: exact match in preference order (names outer, head inner!)
+  for (var j = 0; j < names.length; j++){
+    for (var i = 0; i < head.length; i++){
+      if (head[i] === names[j]) return i;
+    }
+  }
+  // Pass 2: substring match in preference order, excluding ID/record/shipping traps
+  for (var j2 = 0; j2 < names.length; j2++){
+    for (var i2 = 0; i2 < head.length; i2++){
+      if (excludeRe && excludeRe.test(head[i2])) continue;
+      if (head[i2].indexOf(names[j2]) >= 0) return i2;
+    }
+  }
+  return -1;
+}
+
+document.getElementById("csvFile").addEventListener("change", function(ev){
+  var f = ev.target.files && ev.target.files[0]; if (!f) return;
+  var rd = new FileReader();
+  rd.onload = function(){
+    var rows = parseCSV(String(rd.result || ""));
+    if (rows.length < 2) { showToast("CSV has no data rows — nothing imported."); return; }
+    var head = rows[0].map(function(h){ return String(h || "").toLowerCase().trim(); });
+    var ci = {
+      date: findCol(head, ["sale date","order date","date sold","date"], /updated|listed/),
+      sku: findCol(head, ["sku","custom label (sku)","custom label","item id","item number"], null),
+      title: findCol(head, ["item title","listing title","title","item name","product name","item","name"], /\b(id|number|num|record|sku|buyer|seller|customer)\b/),
+      plat: findCol(head, ["platform","sold on","marketplace","channel","site"], null),
+      price: findCol(head, ["sold for","sale price","item price","order price","price","gross","total price","total","amount"], /\b(id|number|num|record|ship|tax|fee|cost|net|profit)\b/),
+      fee: findCol(head, ["fee (2026 table)","platform fee","seller fee","final value fee","total fees","fees","fee"], /shipping/)
+    };
+    var fallbackPlat = document.getElementById("csvSiteFallback").value || detectPlatformFromHeaders(head, f.name);
+    draft = []; var skipped = [], dups = 0, missingPlats = 0;
+    rows.slice(1).forEach(function(r){
+      var rawPrice = ci.price >= 0 ? r[ci.price] : "";
+      var price = parseMoney(rawPrice);
+      if (price === null) { if (String(rawPrice || "").trim()) skipped.push(String(rawPrice).trim()); return; }
+      var title = ci.title >= 0 ? String(r[ci.title] || "").trim() : "";
+      var sku = ci.sku >= 0 ? String(r[ci.sku] || "").trim() : "";
+      var plat = (ci.plat >= 0 ? String(r[ci.plat] || "").trim() : "") || fallbackPlat;
+      var missingPlat = !plat;
+      if (missingPlat) missingPlats++;
+      var fuzzyNote = "";
+      var hasInvSku = sku && state.inv.some(function(it){ return it.sku.toLowerCase() === sku.toLowerCase(); });
+      if (!hasInvSku) {
+        var exact = state.inv.filter(function(it){ return it.title.toLowerCase() === title.toLowerCase(); })[0];
+        if (exact) { sku = exact.sku; fuzzyNote = "Matched by title"; }
+        else {
+          var fm = fuzzyMatch(title, state.inv);
+          if (fm) { sku = fm.sku; fuzzyNote = "Fuzzy match (" + Math.round(fm.score * 100) + "%)"; }
+        }
+      }
+      var rep = ci.fee >= 0 ? parseMoney(r[ci.fee]) : null;
+      var comp = missingPlat ? 0 : feeFor(plat, price, {}).fee;
+      var dup = !missingPlat && state.sales.some(function(s){
+        var sameItem = sku ? (s.sku.toLowerCase() === sku.toLowerCase()) : (s.title.toLowerCase() === title.toLowerCase());
+        return sameItem && s.platform.toLowerCase() === plat.toLowerCase() && Math.abs(s.price - price) < 0.01;
+      });
+      if (dup) dups++;
+      draft.push({ date: ci.date >= 0 && r[ci.date] ? String(r[ci.date]).trim() : todayISO(), sku: sku, title: title, platform: plat, missingPlat: missingPlat, price: price, reported: rep, computed: comp, overCap: price > 100000, flag: !missingPlat && rep !== null && Math.abs(rep - comp) > 0.25, dup: dup, fuzzyNote: fuzzyNote });
+    });
+    var tbl = document.getElementById("reviewTable");
+    tbl.innerHTML = '<thead><tr><th>Item / SKU</th><th>Site</th><th class="r">Price</th><th class="r">2026 Fee</th><th class="r">Reported</th><th>Status</th></tr></thead><tbody>' +
+      draft.map(function(d){
+        var st = [];
+        if (d.missingPlat) st.push('<span class="tag alert">Pick marketplace above</span>');
+        if (d.dup) st.push('<span class="tag warn">Already logged (duplicate)</span>');
+        if (d.overCap) st.push('<span class="tag alert">Over $100k — verify</span>');
+        if (d.flag) st.push('<span class="tag alert">Fee differs</span>');
+        if (d.fuzzyNote) st.push('<span class="tag good">' + esc(d.fuzzyNote) + '</span>');
+        if (!st.length) st.push('<span class="tag good">Ready</span>');
+        return '<tr' + ((d.flag || d.overCap || d.missingPlat) ? ' class="flag"' : '') + '><td><b>' + esc(d.sku || "No SKU") + '</b><div class="cap">' + esc(d.title) + '</div></td>' +
+          '<td>' + esc(d.platform || "Missing") + '</td><td class="r num">' + fmt$(d.price) + '</td><td class="r num">' + (d.missingPlat ? "—" : fmt$(d.computed)) + '</td>' +
+          '<td class="r num">' + (d.reported == null ? "—" : fmt$(d.reported)) + '</td><td>' + st.join(" ") + '</td></tr>';
+      }).join("") + '</tbody>';
+    var notes = [];
+    if (missingPlats) notes.push(missingPlats + " row(s) have no Platform column — pick the marketplace above and re-select the CSV.");
+    if (dups) notes.push(dups + " duplicate row(s) already logged — will be skipped.");
+    if (skipped.length) notes.push(skipped.length + " row(s) skipped due to unreadable price.");
+    var nOver = draft.filter(function(d){ return d.overCap; }).length;
+    if (nOver) notes.push(nOver + " row(s) over $100,000 held back until verified.");
+    document.getElementById("importNotes").textContent = notes.join(" ");
+    document.getElementById("capRow").style.display = nOver ? "block" : "none";
+    document.getElementById("capOk").checked = false;
+    document.getElementById("reviewCard").style.display = "block";
+  };
+  rd.readAsText(f); ev.target.value = "";
+});
+
+document.getElementById("restoreFile").addEventListener("change", function(ev){
+  var f = ev.target.files && ev.target.files[0]; if (!f) return;
+  var rd = new FileReader();
+  rd.onload = function(){
+    try {
+      var o = JSON.parse(String(rd.result || ""));
+      var s = o && o.state ? o.state : o;
+      if (!s || !Array.isArray(s.inv) || !Array.isArray(s.sales) || !Array.isArray(s.queue)) throw new Error("Invalid backup");
+      state = s; persist(); renderAll(); showToast("Backup restored.");
+    } catch(e){ showToast("That file is not a valid Delist Alert backup."); }
+  };
+  rd.readAsText(f); ev.target.value = "";
+});
+
+window.__DL = { feeFor: feeFor, maxBuyPrice: maxBuyPrice, breakEvenPrice: breakEvenPrice, fuzzyMatch: fuzzyMatch, parseCSV: parseCSV, parseNum: parseNum, csvText: csvText, buildDelistICS: buildDelistICS, findCol: findCol, detectPlatformFromHeaders: detectPlatformFromHeaders };
+renderAll();
+})();
+</script>
+</body>
+</html>

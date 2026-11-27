@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en" data-temp="editorial">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LOAD-IN Field Companion · Live Events &amp; Corporate AV</title>
+<style>
+:root,[data-temp="editorial"]{
+  --brand:#355245; --brand-ink:#FFFFFF; --accent:#1F5C45; --accent-ink:#FFFFFF;
+  --mint-on-dark:#9ED1B7;
+  --paper:#FBF8F2; --card:#FFFFFF; --cream:#E8E0D2;
+  --ink:#1F2A24; --muted:#4A5952; --line:#D9D1C3; --hairline:#EDE6DA;
+  --input-bg:#FFF4D6; --input-border:#D9C79A; --input-ink:#1A1A1A;
+  --auto-bg:#F1F3F5; --auto-ink:#1F2A24;
+  --good-ink:#16533C; --good-bg:#E6F3EC;
+  --warn-ink:#7A4700; --warn-bg:#FFF4D6;
+  --alert-ink:#8B1C1D; --alert-bg:#FBEAEA;
+  --radius:14px; --radius-sm:10px;
+  --font-display:Georgia,"Times New Roman",serif;
+  --font-body:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--cream);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.45;-webkit-text-size-adjust:100%}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+.h-num{font-family:var(--font-body);font-variant-numeric:tabular-nums}
+.shell{max-width:880px;margin:0 auto;min-height:100vh;background:var(--paper);padding:14px 14px 44px}
+@media(min-width:768px){.shell{margin:18px auto;border-radius:18px;border:1px solid var(--line);padding:22px 26px 48px;box-shadow:0 6px 24px rgba(31,42,36,.09)}}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--hairline);margin-bottom:12px}
+.wm{display:flex;align-items:center;gap:10px;min-width:0}
+.mark{width:34px;height:34px;border-radius:8px;background:var(--brand);color:#fff;font-weight:800;font-size:13px;display:grid;place-items:center;flex:none}
+.wm-t b{display:block;font-size:15px;color:var(--brand);line-height:1.15}
+.wm-t span{display:block;font-size:12px;color:var(--muted)}
+.banner{background:var(--warn-bg);border:1px solid var(--input-border);color:var(--warn-ink);border-radius:var(--radius-sm);padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;font-size:14px}
+.banner button{min-height:44px;padding:0 14px;border-radius:8px;border:1px solid var(--warn-ink);background:#fff;color:var(--warn-ink);font-weight:700;font-size:13.5px;cursor:pointer;white-space:nowrap;flex:none}
+.tabbar{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;background:var(--cream);padding:4px;border-radius:12px;margin-bottom:16px}
+.tabbar button{min-height:46px;border:0;border-radius:9px;background:transparent;color:var(--brand);font:inherit;font-size:12px;font-weight:700;cursor:pointer;padding:6px 2px;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.15}
+.tabbar button[aria-current="page"]{background:var(--brand);color:#fff}
+h1{font-family:var(--font-display);font-size:24px;line-height:1.2;color:var(--brand);margin:0 0 6px}
+h2{font-family:var(--font-display);font-size:18px;line-height:1.25;color:var(--brand);margin:0 0 10px}
+.cap{font-size:13.5px;color:var(--muted);line-height:1.45}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:14px}
+.empty-cta{background:var(--paper);border:1.5px dashed var(--input-border);border-radius:var(--radius);padding:16px;margin-bottom:14px;display:flex;flex-direction:column;gap:10px}
+.grid2{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:560px){.grid2{grid-template-columns:1fr 1fr}}
+.field{display:block;margin-bottom:10px}
+.field:last-child{margin-bottom:0}
+.field .l{display:block;font-size:13.5px;font-weight:700;color:var(--brand);margin-bottom:4px}
+.inp-wrap{display:flex;align-items:center;background:var(--input-bg);border:1.5px solid var(--input-border);border-radius:var(--radius-sm);padding:0 12px;min-height:46px}
+.inp-wrap:focus-within{border-color:var(--accent);box-shadow:0 0 0 2px rgba(31,92,69,.18)}
+.inp-wrap input,.inp-wrap select{width:100%;border:0;background:transparent;font:inherit;color:var(--input-ink);outline:none;padding:10px 0;min-height:44px}
+textarea.box-in{width:100%;min-height:92px;background:var(--input-bg);border:1.5px solid var(--input-border);border-radius:var(--radius-sm);padding:10px 12px;font:inherit;font-size:16px;color:var(--input-ink);resize:vertical}
+textarea.prompt-out{width:100%;min-height:215px;background:var(--paper);border:1.5px solid var(--line);border-radius:var(--radius-sm);padding:12px;font:inherit;font-size:14.5px;color:var(--ink);resize:vertical}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 16px;border-radius:var(--radius-sm);border:1.5px solid var(--accent);background:var(--accent);color:#fff;font:inherit;font-weight:700;font-size:14.5px;cursor:pointer;text-decoration:none}
+.btn:disabled{background:#52615A;border-color:#52615A;color:#fff;cursor:not-allowed}
+.btn.sec{background:#fff;color:var(--brand);border-color:var(--line)}
+.btn.full{width:100%}
+.btn-row{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}
+@media(min-width:520px){.btn-row{grid-template-columns:1fr 1fr}}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.chip-btn{min-height:44px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--brand);font:inherit;font-size:13.5px;font-weight:700;cursor:pointer}
+.chip-btn[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:#fff}
+.chip-btn.danger[aria-pressed="true"]{background:var(--alert-ink);border-color:var(--alert-ink);color:#fff}
+.chk-item{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--hairline);min-height:46px;cursor:pointer}
+.chk-item:last-child{border-bottom:0}
+.chk-item input{width:22px;height:22px;margin-top:2px;flex:none;accent-color:var(--accent)}
+.chk-item.done span{text-decoration:line-through;color:var(--muted)}
+.comms-card{background:var(--brand);color:#fff;border-radius:12px;padding:14px 16px;margin-bottom:10px}
+.comms-card b{display:block;font-size:19px;line-height:1.25;margin-bottom:4px;color:#fff}
+.comms-card span{display:block;font-size:14px;color:#E6F2EC}
+.stop-box{background:var(--alert-bg);border:2.5px solid var(--alert-ink);color:var(--alert-ink);border-radius:12px;padding:16px}
+.stop-box h3{margin:0 0 6px;font-size:18px;color:var(--alert-ink)}
+.stop-box p{margin:0 0 8px;color:var(--ink);font-weight:600}
+.step-item{padding:10px 12px;background:var(--paper);border-left:4px solid var(--accent);border-radius:0 10px 10px 0;margin-bottom:8px}
+.note-box{background:var(--paper);border-left:4px solid var(--brand);padding:10px 12px;border-radius:0 10px 10px 0;font-size:14px;margin-top:10px}
+.tag{display:inline-block;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:700;background:var(--auto-bg);color:var(--brand);white-space:nowrap}
+.tag.good{background:var(--good-bg);color:var(--good-ink)}
+.tag.warn{background:var(--warn-bg);color:var(--warn-ink)}
+.row-card{padding:10px 0;border-bottom:1px solid var(--hairline);display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.row-card:last-child{border-bottom:0}
+.shell-foot{margin-top:16px;padding-top:12px;border-top:1px solid var(--hairline);font-size:12.5px;color:var(--muted);line-height:1.45}
+.pane{display:none}
+.pane.active{display:block}
+.toast{position:fixed;left:12px;right:12px;bottom:20px;max-width:520px;margin:0 auto;transform:translateY(90px);opacity:0;visibility:hidden;pointer-events:none;background:var(--brand);color:#fff;padding:10px 14px;border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 8px 24px rgba(0,0,0,.22);transition:transform .2s ease,opacity .2s ease;z-index:60;font-size:14px}
+.toast.on{transform:translateY(0);opacity:1;visibility:visible;pointer-events:auto}
+.toast button{min-height:44px;padding:0 14px;border-radius:8px;border:0;background:var(--mint-on-dark);color:#14241C;font-weight:800;cursor:pointer;align-items:center;justify-content:center}
+/* Logo-free printable Pocket Call Card (CLAUDE.md:14!) */
+.print-only{display:none}
+@media print{
+  body{background:#fff;color:#111;font-size:10pt}
+  .shell{max-width:100%;margin:0;padding:0;border:0;box-shadow:none;background:#fff}
+  .no-print,.topbar,.tabbar,.banner,.toast,.pane{display:none!important}
+  #pocketPrintSheet{display:block!important}
+  #pocketPrintSheet h1{font-size:16pt;margin:0 0 6px;color:#1F2A24}
+  #pocketPrintSheet h2{font-size:12pt;margin:10px 0 4px;border-bottom:1px solid #355245;padding-bottom:2px}
+  #pocketPrintSheet ul{margin:4px 0 8px;padding-left:18px}
+}
+</style>
+<style id="fa-name-title">.wm-t b,.wm-text b{font-size:19px;font-weight:800;line-height:1.12;letter-spacing:-.2px;white-space:normal}</style>
+</head>
+<body>
+<div class="shell">
+  <div class="topbar no-print">
+    <div class="wm">
+      <div class="mark" aria-hidden="true">LI</div>
+      <div class="wm-t"><b>LOAD-IN Field Companion</b><span>Offline Call-Day Pocket Guide · Book One</span></div>
+    </div>
+    <button type="button" class="btn sec" id="topSampleBtn" style="min-height:44px;padding:0 14px;font-size:13.5px;flex:none;white-space:nowrap">Try sample</button>
+  </div>
+
+  <div class="banner no-print" id="sampleBanner" data-sample-banner="1" style="display:none">
+    <span><b>Sample call day</b> — fictional ballroom call &amp; starter checklist, not your gig</span>
+    <button type="button" id="clearSampleBtn">Clear sample</button>
+  </div>
+
+  <nav class="tabbar no-print" aria-label="Main navigation">
+    <button type="button" data-tab="call" aria-current="page"><span>Call Day</span></button>
+    <button type="button" data-tab="comms"><span>Comms</span></button>
+    <button type="button" data-tab="chain"><span>Signal</span></button>
+    <button type="button" data-tab="loop"><span>5-Move AI</span></button>
+    <button type="button" data-tab="gloss"><span>Glossary</span></button>
+  </nav>
+
+  <!-- TAB 1: CALL-DAY CHECKLIST & MY POCKET TOOLS -->
+  <section class="pane active" id="pane-call" aria-label="Call-Day Checklist">
+    <h1>Call-Day Checklist</h1>
+    <p class="cap" style="margin:0 0 12px">Appendix A in your pocket — works 100% offline in a basement ballroom with zero cell signal. Track your call sheet and build your own pocket-tool list.</p>
+
+    <div class="empty-cta" id="emptyHeroCta" style="display:none">
+      <div><b>See a filled call day in one tap:</b> load a sample hotel ballroom call sheet and example pocket tools, or enter your own upcoming gig below.</div>
+      <button type="button" class="btn full" id="primarySampleBtn">Load sample call day</button>
+    </div>
+
+    <div class="card">
+      <h2>My call sheet details</h2>
+      <div class="grid2">
+        <label class="field"><span class="l">Venue / hotel &amp; room</span><span class="inp-wrap"><input id="cVenue" placeholder="e.g. Grand Ballroom B"></span></label>
+        <label class="field"><span class="l">Call time &amp; date</span><span class="inp-wrap"><input id="cTime" placeholder="e.g. 6:00 AM · Tue"></span></label>
+        <label class="field"><span class="l">Lead / PM name</span><span class="inp-wrap"><input id="cLead" placeholder="Learn &amp; use their name"></span></label>
+        <label class="field"><span class="l">Your role / department</span><span class="inp-wrap"><input id="cRole" placeholder="e.g. Stagehand / Breakout / L2"></span></label>
+      </div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px">
+        <h2 style="margin:0">Show phases (<span class="h-num" id="chkProg">0/16</span>)</h2>
+        <button type="button" class="btn sec" id="resetChkBtn" style="min-height:44px;padding:0 12px;font-size:13.5px">Reset checks</button>
+      </div>
+      <div id="checklistBox"></div>
+    </div>
+
+    <div class="card">
+      <h2>My pocket tools (build your own list)</h2>
+      <p class="cap" style="margin:0 0 8px">Add the tools your market and calls actually require — saved on this device and printed on your Pocket Call Card.</p>
+      <form id="toolForm" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px">
+        <span class="inp-wrap" style="flex:1;min-width:190px"><input id="toolInp" placeholder="Add a tool you carry" aria-label="Add pocket tool" required></span>
+        <button type="submit" class="btn" style="flex:none">Add tool</button>
+      </form>
+      <div id="toolList"></div>
+    </div>
+  </section>
+
+  <!-- TAB 2: APPENDIX B COMMS PHRASES -->
+  <section class="pane" id="pane-comms" aria-label="Comms Phrases">
+    <h1>Headset Comms Phrases</h1>
+    <p class="cap" style="margin:0 0 12px">Appendix B — high-contrast cards readable backstage in the dark. Keep the channel for show business; chatter goes to another channel or waits.</p>
+    <div id="commsBox"></div>
+    <div class="note-box"><b>Channel rule (Ch. 8):</b> If you did not hear a cue, say <b>"Say again"</b> immediately. A repeated cue is free; a missed cue is not.</div>
+  </section>
+
+  <!-- TAB 3: SIGNAL-CHAIN TROUBLESHOOTER + HARD SAFETY STOP -->
+  <section class="pane" id="pane-chain" aria-label="Signal Chain Troubleshooter">
+    <h1>Signal-Chain Troubleshooter</h1>
+    <p class="cap" style="margin:0 0 12px">When something goes wrong: the room must not know → swap to spare/backup → walk the chain one link at a time after.</p>
+    <div class="chips" role="group" aria-label="Choose department">
+      <button type="button" class="chip-btn" data-dept="audio" aria-pressed="true">Audio (Ch. 4)</button>
+      <button type="button" class="chip-btn" data-dept="video" aria-pressed="false">Video (Ch. 5)</button>
+      <button type="button" class="chip-btn" data-dept="lighting" aria-pressed="false">Lighting (Ch. 6)</button>
+      <button type="button" class="chip-btn danger" data-dept="safety" aria-pressed="false">Power / Rigging / Truss</button>
+    </div>
+    <div class="card" id="chainBox"></div>
+  </section>
+
+  <!-- TAB 4: CH. 10 5-MOVE BOARD LOOP PROMPT BUILDER (FREE-AI TRACK) -->
+  <section class="pane" id="pane-loop" aria-label="Five Move Board Loop">
+    <h1>The <span class="h-num">5</span>-Move Board Loop</h1>
+    <p class="cap" style="margin:0 0 12px">Chapter 10's method for an unfamiliar console — builds a clean, focused prompt to paste into your phone's AI chat alongside your board photos. Zero API keys; stays offline.</p>
+
+    <div class="card">
+      <h2>Build your console prompt</h2>
+      <div class="grid2">
+        <label class="field"><span class="l">Department</span><span class="inp-wrap"><select id="lDept">
+          <option value="lighting">Lighting console (DMX / patch)</option>
+          <option value="audio">Audio mixer (channels / EQ)</option>
+          <option value="video">Video switcher (Preview / Program)</option>
+          <option value="playback">Playback machine (roll-ins)</option>
+        </select></span></label>
+        <label class="field"><span class="l">Console / board model</span><span class="inp-wrap"><input id="lBoard" placeholder="e.g. ETC ColorSource or Hog 4"></span></label>
+      </div>
+      <label class="field"><span class="l">Which move are you on?</span><span class="inp-wrap"><select id="lMove">
+        <option value="1">Move 1 — Photo map before touching</option>
+        <option value="2" selected>Move 2 — Orient me to the layout</option>
+        <option value="3">Move 3 — One verified step at a time</option>
+        <option value="4">Move 4 — One working unit on a fader</option>
+        <option value="5">Move 5 — Expand, faders &amp; save show</option>
+      </select></span></label>
+      <label class="field"><span class="l">Exact goal right now</span><span class="inp-wrap"><input id="lGoal" placeholder="e.g. Patch 1 wash at DMX 1 on Fader 1"></span></label>
+      <label class="field"><span class="l">What does the board actually show? (if it disagrees with AI)</span><textarea class="box-in" id="lActual" placeholder="Leave blank on Move 2, or describe what the screen/LEDs actually show after your last step."></textarea></label>
+      <div id="loopSafetyBox" style="display:none;margin-bottom:10px"></div>
+      <textarea class="prompt-out" id="lPromptOut" readonly aria-label="Generated board loop prompt"></textarea>
+      <button type="button" class="btn full" id="copyPromptBtn" style="margin-top:10px">Copy prompt for my AI chat</button>
+    </div>
+
+    <div class="card">
+      <h2>Eyes-verified checklist (<span class="h-num">5</span> moves)</h2>
+      <div id="loopChecks"></div>
+      <div class="note-box"><b>The <span class="h-num">4</span> Honesty Rules (Ch. <span class="h-num">10</span>):</b><br>
+        1. AI can be wrong — your eyes outrank it.<br>
+        2. Operating gear ONLY — NEVER power distro, rigging, truss loads, or anything overhead.<br>
+        3. Never fake it silently — solve it, then tell your lead what you did and how.<br>
+        4. Start early, keep your phone charged, and remember load-in clocks do not stop.
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 5: GLOSSARY, ROLES & PRINTABLE POCKET CALL CARD -->
+  <section class="pane" id="pane-gloss" aria-label="Glossary and Roles">
+    <h1>Glossary, Roles &amp; Pocket Card</h1>
+    <p class="cap" style="margin:0 0 12px">All 26 Appendix C terms, all 12 Chapter 9 crew rungs, and a clean 1-page logo-free Pocket Call Card you can fold and keep on site.</p>
+
+    <div class="card">
+      <h2>Printable <span class="h-num">1</span>-page pocket call card</h2>
+      <p class="cap" style="margin:0 0 10px">Prints your call sheet, your pocket tools, and Appendix B comms phrases with <b>zero shop logo or app chrome</b>.</p>
+      <button type="button" class="btn full" id="printCardBtn">Print 1-page pocket call card</button>
+    </div>
+
+    <div class="card">
+      <h2>Crew glossary (<span class="h-num">26</span> terms)</h2>
+      <label class="field"><span class="l">Filter terms</span><span class="inp-wrap"><input id="gSearch" placeholder="Type e.g. DMX, FOH, lav, throw..."></span></label>
+      <div id="glossList" style="margin-top:8px"></div>
+    </div>
+
+    <div class="card">
+      <h2>The <span class="h-num">12</span> crew roles (Ch. <span class="h-num">9</span>)</h2>
+      <div id="rolesList"></div>
+    </div>
+  </section>
+
+  <footer class="shell-foot no-print">LOAD-IN Book One Field Companion · Offline reference tool, not engineering, electrical, or rigging instruction. Overhead loads, truss, and power distribution belong strictly to the ME and qualified leads.</footer>
+
+  <!-- STRICTLY LOGO-FREE PRINTABLE POCKET CALL CARD (CLAUDE.md:14) -->
+  <section id="pocketPrintSheet" class="print-only"></section>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><span id="toastMsg"></span><button type="button" id="toastUndo" style="display:none">Undo</button></div>
+
+<script>
+(function(){
+"use strict";
+var STORE_KEY = "fac_loadin_companion_v1";
+var undoFn = null, toastT = null;
+var activeDept = "audio";
+
+var CHECKS = [
+  { id:"nb1", grp:"Night Before", text:"Call time and venue address confirmed" },
+  { id:"nb2", grp:"Night Before", text:"Clean black clothes laid out (no screaming logos)" },
+  { id:"nb3", grp:"Night Before", text:"Steel-toe boots (if required) and work gloves ready" },
+  { id:"nb4", grp:"Night Before", text:"Phone fully charged + charging cable packed" },
+  { id:"nb5", grp:"Night Before", text:"Water and food plan packed (show days eat when they can)" },
+  { id:"ar1", grp:"Arrival", text:"Arrive early (early is on time; on time is late)" },
+  { id:"ar2", grp:"Arrival", text:"Find the lead; learn and use their name" },
+  { id:"ar3", grp:"Arrival", text:"Check in on comms with your name and position" },
+  { id:"ar4", grp:"Arrival", text:"Walk the room once: truck, stage, FOH, department base" },
+  { id:"du1", grp:"During", text:"Hands on the case whenever a case moves; call rolling/stopping/door" },
+  { id:"du2", grp:"During", text:"Answer every standby with your position (e.g. 'LX standing by')" },
+  { id:"du3", grp:"During", text:"Spares within reach (handheld mic, fresh batteries, clicker)" },
+  { id:"du4", grp:"During", text:"Keep phone away during work; ask lead for next task when done" },
+  { id:"st1", grp:"Strike & Load-Out", text:"Strike your department carefully; coil cable over-under" },
+  { id:"st2", grp:"Strike & Load-Out", text:"Cases closed, latched, and labelled cleanly" },
+  { id:"st3", grp:"Strike & Load-Out", text:"Stay through load-out until released; thank the lead by name" }
+];
+
+var COMMS = [
+  { p:'"[Position] on comms"', d:"Joining the headset channel so the caller knows you are live." },
+  { p:'"Standing by"', d:'Answering a standby cue with your position: "LX standing by."' },
+  { p:'"Go"', d:"The ONLY word that fires a cue; everything else is conversation." },
+  { p:'"Say again"', d:"The professional way to ask for a repeat — always free to use." },
+  { p:'"Copy"', d:"Understood." },
+  { p:'"Hold"', d:"Stop the sequence immediately and wait for the caller." },
+  { p:'"Work note"', d:"Flagging a non-urgent issue to handle after the cue passes." },
+  { p:'"Name, Position — request"', d:'Names before requests: "Dave, LX — can I get a hand?"' }
+];
+
+var LOOP_MOVES = [
+  { id:"m1", txt:"Move 1: Photographed whole board + close-ups before touching anything" },
+  { id:"m2", txt:"Move 2: Asked for orientation first (where patching & faders live)" },
+  { id:"m3", txt:"Move 3: Verified EVERY single step with my own eyes before moving on" },
+  { id:"m4", txt:"Move 4: Got ONE fixture/channel responding on a fader first" },
+  { id:"m5", txt:"Move 5: Expanded the rest, saved show file, and told my lead honestly" }
+];
+
+var GLOSSARY = [
+  ["Advance","The pre-show planning and paperwork (call sheet, plot, input list)."],
+  ["A1 / A2","Audio lead (mixer/room sound) / Audio assist (mics, RF, batteries, stage)."],
+  ["Breakout","A small session room (20–100 people) off the main general session."],
+  ["Call sheet","Document stating who works, call times, venue address, and departments."],
+  ["Comms","The crew headset intercom system (base station, belt packs, headsets)."],
+  ["Confidence monitor","Screen at the stage edge facing the presenter (slides, notes, or timer)."],
+  ["Cue","A numbered or named show moment called by the stage manager / show caller."],
+  ["DMX","The lighting control language; every fixture listens at its assigned address."],
+  ["Distro","Power distribution unit — owned strictly by the ME; ask before plugging in."],
+  ["FOH","Front of House — the operators' console position facing the stage."],
+  ["GAV","General AV tech — the all-rounder who sets basics and floats across rooms."],
+  ["L1 / L2","Lighting lead (runs the console) / Lighting assist (hang, cable, focus)."],
+  ["Lav","Lavalier — small clip-on chest mic for hands-free presenters."],
+  ["Load-in / Load-out","Unloading the truck and building the show / packing it back out."],
+  ["ME","Master Electrician — owns power distribution, circuit loads, and lighting safety."],
+  ["Patch","Telling the lighting board which fixtures live at which DMX addresses."],
+  ["PM","Production Manager — owns client, budget, crew, schedule, and advance."],
+  ["Program / Preview","What the audience sees live (Program) vs what is queued next (Preview)."],
+  ["RF","Radio frequency — wireless mic spectrum coordinated so mics do not fight."],
+  ["Roster","A staffing agency's list of bookable techs."],
+  ["Show call","The live performance with audience in the room and crew at positions."],
+  ["Strike","Tearing down the show in reverse after the audience leaves."],
+  ["TD","Technical Director — engineering authority for systems design and signal flow."],
+  ["Throw","Distance a projector needs from the screen to fill the target image size."],
+  ["Truss","Aluminium overhead structure fixtures hang from — never improvise rigging."],
+  ["V1 / V2","Video lead (runs switcher) / Video assist (cameras, playback, records)."]
+];
+
+var ROLES = [
+  ["Stagehand","Truck work, road cases, over-under cable wrap, screen building, taping, strike. Unlocks: reliability."],
+  ["Breakout Tech","Owns a small session room end-to-end (screen, speakers, mixer, mic, clicker). Unlocks: room trust."],
+  ["GAV (General AV)","All-rounder floating across departments and solving small room problems. Unlocks: breadth."],
+  ["A2 (Audio Assist)","Mics, RF coordination, fresh batteries, presenter care, spares ready. Unlocks: A1 console trust."],
+  ["V2 (Video Assist)","Cameras (headroom/focus), playback roll-ins, records, confidence monitors. Unlocks: switcher time."],
+  ["L2 (Lighting Assist)","Hang/focus fixtures, run DMX, support board op. Unlocks: the console."],
+  ["A1 (Audio Op)","Runs live audio mixer, balance, EQ/compression, room sound. Operator day-rate rung."],
+  ["V1 (Video Op)","Runs live video switcher (Preview → Program) and directs camera cuts. Operator rung."],
+  ["L1 (Lighting Op)","Runs lighting console live from faders — top tech day rate without managing."],
+  ["ME (Master Electrician)","Owns power distribution, circuit loads, and lighting system safety."],
+  ["TD (Technical Director)","Engineering brain for show-wide systems design and technical escalations."],
+  ["PM (Production Manager)","Owns client, budget, crew booking, schedule, and the advance."]
+];
+
+function clone(o){ return JSON.parse(JSON.stringify(o)); }
+function esc(s){ return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+function copyTextSafe(text, cb){
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function(){ cb(true); }).catch(function(){ fallbackCopy(text, cb); });
+  } else { fallbackCopy(text, cb); }
+}
+function fallbackCopy(text, cb){
+  try {
+    var ta = document.createElement("textarea");
+    ta.value = text; ta.setAttribute("readonly", "");
+    ta.style.position = "fixed"; ta.style.left = "-9999px";
+    document.body.appendChild(ta); ta.select();
+    var ok = document.execCommand("copy"); ta.remove(); cb(!!ok);
+  } catch(e){ cb(false); }
+}
+
+function defaultState(){
+  return { sample:false, prevCall:null, prevChecks:null, prevLoopDone:null, call:{ venue:"", time:"", lead:"", role:"" }, checks:{}, loopDone:{}, tools:[] };
+}
+function sampleState(){
+  return {
+    sample:true, prevCall:null, prevChecks:null, prevLoopDone:null,
+    call:{ venue:"Harbor Hotel — Ballroom B (Sample)", time:"6:00 AM · Wed", lead:"Jordan (L1 / Lead)", role:"Breakout / L2 Assist" },
+    checks:{ nb1:true, nb2:true, ar1:true },
+    loopDone:{ m1:true },
+    tools:[
+      { id:"st1", name:"Work gloves (sample item — replace with your own)", sample:true },
+      { id:"st2", name:"Small flashlight (sample item — replace with your own)", sample:true },
+      { id:"st3", name:"Black Sharpie & gaff tape (sample item — replace with your own)", sample:true }
+    ]
+  };
+}
+function loadState(){
+  try {
+    var raw = localStorage.getItem(STORE_KEY);
+    if (raw) {
+      var o = JSON.parse(raw);
+      if (o && typeof o === "object") return Object.assign(defaultState(), o, { call:Object.assign(defaultState().call, o.call || {}) });
+    }
+  } catch(e){}
+  return defaultState();
+}
+var state = loadState();
+function persist(){ try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch(e){} }
+
+function showToast(msg, fn){
+  var el = document.getElementById("toast");
+  document.getElementById("toastMsg").textContent = msg;
+  var ub = document.getElementById("toastUndo");
+  undoFn = fn || null;
+  ub.style.display = fn ? "inline-flex" : "none";
+  el.classList.add("on");
+  clearTimeout(toastT);
+  toastT = setTimeout(function(){ el.classList.remove("on"); undoFn = null; }, fn ? 7000 : 2800);
+}
+
+var SAFETY_RE = /\b(distro|power\s*dist\w*|rigging|truss|circuit|breaker|motor|hoist|chain\s*motor|overhead|3-?phase|cam-?lok|feeder|load\s*limit|shackle|bridle)\b/i;
+function isSafetyBlocked(board, goal, actual){
+  return SAFETY_RE.test((board || "") + " " + (goal || "") + " " + (actual || ""));
+}
+
+function buildBoardPrompt(dept, board, move, goal, actual){
+  if (isSafetyBlocked(board, goal, actual)) {
+    return "HARD SAFETY STOP — NO DIY, NO AI. Power distribution (distro), circuits, rigging, truss, motors, and anything overhead belong strictly to the Master Electrician (ME) and qualified leads. Find your ME or lead now.";
+  }
+  var b = (board || "").trim() || "[exact console/model name from my photo]";
+  var g = (goal || "").trim() || "patch one fixture/channel and confirm live output";
+  var act = (actual || "").trim();
+  var safety = "Safety scope: operating console software/routing ONLY (never power distribution, distro loads, rigging, or overhead truss).";
+  var moveText = {
+    "1": "I am about to photograph a " + b + " (" + dept + "). Tell me the 3 most important angles/screens to capture clearly before I touch a single button.",
+    "2": "This is a " + b + " (" + dept + "). I am a working AV tech who needs to " + g + ". Walk me through the physical layout and menu logic FIRST — do NOT give me 5 steps at once.",
+    "3": "Working on " + b + " (" + dept + ") to " + g + ". Give me ONE single step only, and tell me exactly what my eyes should see on the console/screen to verify it worked before we take the next step.",
+    "4": "Working on " + b + " (" + dept + "). Walk me step-by-step (ONE step at a time) through getting ONE single working fixture/channel responding on a fader to prove the whole chain works before touching the rest.",
+    "5": "One test channel/fixture is now working on " + b + " (" + dept + "). Walk me one step at a time through expanding to the remaining units, assigning clean show faders, and saving the show file."
+  }[move] || "";
+  var disagree = act ? ("\n\nWhat my eyes actually see right now: " + act + "\nMy eyes outrank the prior step — correct the instruction for this exact screen.") : "";
+  return moveText + disagree + "\n\n" + safety;
+}
+
+function renderBanner(){
+  var hasS = state.sample || state.tools.some(function(t){ return t.sample; });
+  state.sample = hasS;
+  document.getElementById("sampleBanner").style.display = hasS ? "flex" : "none";
+  document.getElementById("topSampleBtn").style.display = hasS ? "none" : "inline-flex";
+  var empty = !state.call.venue && !state.call.time && !state.tools.length && !Object.keys(state.checks).some(function(k){ return state.checks[k]; });
+  document.getElementById("emptyHeroCta").style.display = empty ? "flex" : "none";
+}
+
+function renderChecklist(){
+  var doneCnt = CHECKS.filter(function(c){ return !!state.checks[c.id]; }).length;
+  document.getElementById("chkProg").textContent = doneCnt + "/" + CHECKS.length;
+  var groups = ["Night Before","Arrival","During","Strike & Load-Out"];
+  document.getElementById("checklistBox").innerHTML = groups.map(function(g){
+    var items = CHECKS.filter(function(c){ return c.grp === g; });
+    return '<div style="margin-bottom:10px"><div class="tag" style="margin-bottom:4px">' + esc(g) + '</div>' +
+      items.map(function(c){
+        var ck = !!state.checks[c.id];
+        return '<label class="chk-item' + (ck ? ' done' : '') + '"><input type="checkbox" data-chk="' + c.id + '"' + (ck ? ' checked' : '') + '><span>' + esc(c.text) + '</span></label>';
+      }).join("") + '</div>';
+  }).join("");
+
+  var tl = document.getElementById("toolList");
+  if (!state.tools.length) {
+    tl.innerHTML = '<p class="cap" style="margin:0">No pocket tools listed yet. Add the exact tools you carry for your calls.</p>';
+  } else {
+    tl.innerHTML = state.tools.map(function(t, idx){
+      return '<div class="row-card"><div><b>' + esc(t.name) + '</b>' + (t.sample ? ' <span class="tag warn">SAMPLE</span>' : '') + '</div>' +
+        '<button type="button" class="btn sec" data-deltool="' + idx + '" style="min-height:44px;padding:0 12px;font-size:13.5px">Remove</button></div>';
+    }).join("");
+  }
+}
+
+function renderChain(){
+  var box = document.getElementById("chainBox");
+  document.querySelectorAll("[data-dept]").forEach(function(b){ b.setAttribute("aria-pressed", String(b.dataset.dept === activeDept)); });
+  if (activeDept === "safety") {
+    box.innerHTML = '<div class="stop-box" data-safety-stop="1">' +
+      '<h3>HARD SAFETY STOP — NO DIY, NO AI</h3>' +
+      '<p>Power distribution (distro), circuit loads, rigging, truss, motors, and ANYTHING overhead belong strictly to the Master Electrician (ME) and qualified leads.</p>' +
+      '<p>Ch. 6 &amp; Ch. 10 Rule: Ask before you plug anything in. Never walk under a load in the air. Never improvise rigging or ask an AI how to wire or hang overhead gear. Find your ME or lead right now.</p></div>';
+    return;
+  }
+  var data = {
+    audio: {
+      titleHtml: 'Audio Signal Chain (Ch. <span class="h-num">4</span>)',
+      chain: "Source (Mic / Playback) → Cable → Mixer → Amplifier → Speaker → Ears",
+      steps: [
+        "1. Treat every mic as live until you KNOW it is muted.",
+        "2. Swap to the spare handheld or fresh battery FIRST so the room never knows.",
+        "3. Walk the chain one link at a time: battery/power → mute switch → cable/RF receiver → mixer channel strip → output.",
+        "4. Feedback (howl) — 3 moves: (a) geometry first (aim mic away from speaker), (b) lower the fader, (c) A1 notches the frequency in EQ."
+      ]
+    },
+    video: {
+      titleHtml: 'Video Signal Chain (Ch. <span class="h-num">5</span>)',
+      chain: "Source (Show Laptop / Camera / Playback) → Switcher (Preview → Program) → Screen / Projector / LED",
+      steps: [
+        "1. NEVER take a source to Program without seeing it clean in Preview first.",
+        "2. Test the ACTUAL presenter laptop, file, and clicker from the presenter's spot early.",
+        "3. Washed-out image? Check room light / blinds and lumens vs throw distance — physics first, not a broken projector.",
+        "4. Check confidence monitor feed and match 16:9 output shape before doors open."
+      ]
+    },
+    lighting: {
+      titleHtml: 'Lighting Control Chain (Ch. <span class="h-num">6</span>)',
+      chain: "Console (Board) → DMX Cable → Fixture Address → Stage Look",
+      steps: [
+        "1. Verify fixture power ONLY with ME approval — never move power plugs without asking.",
+        "2. Check DMX address on the fixture display matches the console's Patch.",
+        "3. Confirm DMX cable continuity and terminator; test ONE single fixture on one fader first (Move 4).",
+        "4. Remember to kill work lights before doors open; if unfamiliar with the board, open the 5-Move AI tab."
+      ]
+    }
+  }[activeDept];
+  box.innerHTML = '<h2>' + data.titleHtml + '</h2><p class="cap" style="margin:0 0 10px"><b>Chain:</b> ' + esc(data.chain) + '</p>' +
+    data.steps.map(function(s){ return '<div class="step-item">' + esc(s) + '</div>'; }).join("");
+}
+
+function renderLoop(){
+  var dept = document.getElementById("lDept").value;
+  var board = document.getElementById("lBoard").value;
+  var move = document.getElementById("lMove").value;
+  var goal = document.getElementById("lGoal").value;
+  var actual = document.getElementById("lActual").value;
+  var blocked = isSafetyBlocked(board, goal, actual);
+  var sbox = document.getElementById("loopSafetyBox");
+  var cbtn = document.getElementById("copyPromptBtn");
+  if (blocked) {
+    sbox.style.display = "block";
+    sbox.innerHTML = '<div class="stop-box" data-loop-safety-stop="1"><h3>HARD SAFETY STOP — NO AI ON POWER, RIGGING, OR OVERHEAD</h3><p>This prompt builder is strictly for operating consoles (DMX, audio mixers, video switchers, playback). Power distro, circuits, truss, rigging, motors, and overhead loads belong strictly to your ME or qualified lead.</p></div>';
+    cbtn.disabled = true;
+    cbtn.textContent = "Prompt blocked — ask your ME or lead";
+  } else {
+    sbox.style.display = "none";
+    sbox.innerHTML = "";
+    cbtn.disabled = false;
+    cbtn.textContent = "Copy prompt for my AI chat";
+  }
+  var p = buildBoardPrompt(dept, board, move, goal, actual);
+  document.getElementById("lPromptOut").value = p;
+  document.getElementById("loopChecks").innerHTML = LOOP_MOVES.map(function(m){
+    var ck = !!state.loopDone[m.id];
+    return '<label class="chk-item' + (ck ? ' done' : '') + '"><input type="checkbox" data-lchk="' + m.id + '"' + (ck ? ' checked' : '') + '><span>' + esc(m.txt) + '</span></label>';
+  }).join("");
+}
+
+function renderGlossary(){
+  var q = (document.getElementById("gSearch").value || "").trim().toLowerCase();
+  var list = GLOSSARY.filter(function(g){ return !q || g[0].toLowerCase().indexOf(q) >= 0 || g[1].toLowerCase().indexOf(q) >= 0; });
+  document.getElementById("glossList").innerHTML = list.length
+    ? list.map(function(g){ return '<div class="row-card"><div><b>' + esc(g[0]) + '</b><div class="cap">' + esc(g[1]) + '</div></div></div>'; }).join("")
+    : '<p class="cap" style="margin:0">No glossary terms match that search.</p>';
+}
+
+function renderPrintCard(){
+  // Strictly logo-free printable pocket card (CLAUDE.md:14!)
+  var realTools = state.tools.filter(function(t){ return !t.sample; });
+  var toolsList = realTools.length ? realTools : state.tools;
+  var call = state.call;
+  document.getElementById("pocketPrintSheet").innerHTML =
+    '<h1>Call-Day Pocket Card</h1>' +
+    '<p><b>Venue:</b> ' + esc(call.venue || "________________________") + ' &nbsp;|&nbsp; <b>Call:</b> ' + esc(call.time || "____________") + '<br>' +
+    '<b>Lead:</b> ' + esc(call.lead || "__________________") + ' &nbsp;|&nbsp; <b>Role:</b> ' + esc(call.role || "__________________") + '</p>' +
+    '<h2>My Pocket Tools</h2><ul>' +
+    (toolsList.length ? toolsList.map(function(t){ return '<li>☐ ' + esc(t.name) + '</li>'; }).join("") : '<li>☐ (Write your pocket tools here)</li>') + '</ul>' +
+    '<h2>Headset Comms Phrases</h2><ul>' +
+    COMMS.map(function(c){ return '<li><b>' + esc(c.p) + '</b> — ' + esc(c.d) + '</li>'; }).join("") + '</ul>' +
+    '<h2>Hard Safety Rule</h2><p>Power distribution (distro), rigging, truss loads, and anything overhead belong strictly to the ME and qualified leads. Ask before plugging anything in.</p>';
+}
+
+function syncCallInputs(){
+  document.getElementById("cVenue").value = state.call.venue || "";
+  document.getElementById("cTime").value = state.call.time || "";
+  document.getElementById("cLead").value = state.call.lead || "";
+  document.getElementById("cRole").value = state.call.role || "";
+}
+function renderAll(){ renderBanner(); syncCallInputs(); renderChecklist(); renderChain(); renderLoop(); renderGlossary(); renderPrintCard(); }
+function switchTab(t){
+  document.querySelectorAll(".pane").forEach(function(p){ p.classList.toggle("active", p.id === "pane-" + t); });
+  document.querySelectorAll(".tabbar button").forEach(function(b){ b.setAttribute("aria-current", b.dataset.tab === t ? "page" : "false"); });
+}
+
+document.getElementById("commsBox").innerHTML = COMMS.map(function(c){
+  return '<div class="comms-card"><b>' + esc(c.p) + '</b><span>' + esc(c.d) + '</span></div>';
+}).join("");
+document.getElementById("rolesList").innerHTML = ROLES.map(function(r, i){
+  return '<div class="row-card"><div><b class="num">' + (i + 1) + '. ' + esc(r[0]) + '</b><div class="cap">' + esc(r[1]) + '</div></div></div>';
+}).join("");
+
+[["cVenue","venue"],["cTime","time"],["cLead","lead"],["cRole","role"]].forEach(function(pair){
+  document.getElementById(pair[0]).addEventListener("input", function(e){
+    state.call[pair[1]] = e.target.value; persist(); renderBanner(); renderPrintCard();
+  });
+});
+["lDept","lBoard","lMove","lGoal","lActual"].forEach(function(id){
+  var el = document.getElementById(id); el.addEventListener("input", renderLoop); el.addEventListener("change", renderLoop);
+});
+document.getElementById("gSearch").addEventListener("input", renderGlossary);
+
+document.getElementById("toolForm").addEventListener("submit", function(ev){
+  ev.preventDefault();
+  var nm = document.getElementById("toolInp").value.trim(); if (!nm) return;
+  state.tools.push({ id:"t-" + Date.now(), name:nm, sample:false });
+  document.getElementById("toolInp").value = "";
+  persist(); renderAll(); showToast("Tool added.");
+});
+
+document.addEventListener("change", function(e){
+  var el = e.target;
+  if (el.dataset && el.dataset.chk) { state.checks[el.dataset.chk] = el.checked; persist(); renderBanner(); renderChecklist(); }
+  else if (el.dataset && el.dataset.lchk) { state.loopDone[el.dataset.lchk] = el.checked; persist(); renderLoop(); }
+});
+
+document.addEventListener("click", function(e){
+  var t = e.target.closest("button"); if (!t) return;
+  if (t.dataset.tab) { switchTab(t.dataset.tab); }
+  else if (t.dataset.dept) { activeDept = t.dataset.dept; renderChain(); }
+  else if (t.id === "topSampleBtn" || t.id === "primarySampleBtn") {
+    var s = sampleState();
+    if (!state.sample) {
+      state.prevCall = clone(state.call);
+      state.prevChecks = clone(state.checks);
+      state.prevLoopDone = clone(state.loopDone);
+    }
+    var userTools = state.tools.filter(function(x){ return !x.sample; });
+    state.sample = true; state.call = s.call; state.checks = Object.assign({}, s.checks, state.checks);
+    state.loopDone = Object.assign({}, s.loopDone, state.loopDone);
+    state.tools = s.tools.concat(userTools);
+    persist(); renderAll();
+  } else if (t.id === "clearSampleBtn") {
+    var snap = clone(state);
+    state.sample = false;
+    state.tools = state.tools.filter(function(x){ return !x.sample; });
+    if (state.prevCall) { state.call = state.prevCall; state.prevCall = null; } else { state.call = defaultState().call; }
+    state.checks = state.prevChecks ? state.prevChecks : {};
+    state.loopDone = state.prevLoopDone ? state.prevLoopDone : {};
+    state.prevChecks = null; state.prevLoopDone = null;
+    persist(); renderAll();
+    showToast("Sample call day cleared.", function(){ state = snap; persist(); renderAll(); showToast("Sample restored."); });
+  } else if (t.id === "toastUndo") {
+    if (undoFn) { var f = undoFn; undoFn = null; document.getElementById("toast").classList.remove("on"); f(); }
+  } else if (t.id === "resetChkBtn") {
+    var snapC = clone(state.checks);
+    state.checks = {}; persist(); renderBanner(); renderChecklist();
+    showToast("Call-day checks reset.", function(){ state.checks = snapC; persist(); renderBanner(); renderChecklist(); });
+  } else if (t.dataset.deltool != null) {
+    var snapT = clone(state.tools);
+    state.tools.splice(+t.dataset.deltool, 1); persist(); renderAll();
+    showToast("Tool removed.", function(){ state.tools = snapT; persist(); renderAll(); });
+  } else if (t.id === "copyPromptBtn") {
+    if (t.disabled) return;
+    copyTextSafe(document.getElementById("lPromptOut").value, function(ok){
+      showToast(ok ? "Board-loop prompt copied." : "Select the prompt box text above to copy.");
+    });
+  } else if (t.id === "printCardBtn") { renderPrintCard(); window.print(); }
+});
+
+window.__LOADIN = { buildBoardPrompt:buildBoardPrompt, isSafetyBlocked:isSafetyBlocked, GLOSSARY:GLOSSARY, ROLES:ROLES, CHECKS:CHECKS, COMMS:COMMS };
+renderAll();
+})();
+</script>
+</body>
+</html>

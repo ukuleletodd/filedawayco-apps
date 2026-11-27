@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en" data-temp="ledger">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>1099 Quarterly Estimator · FiledAwayCo</title>
+<style>
+:root,[data-temp="ledger"]{
+  --brand:#1B2A40; --brand-ink:#FFFFFF; --accent:#1F5C45; --accent-ink:#FFFFFF;
+  --accent-soft:#E6F3EC; --mint-on-dark:#7FB89E;
+  --paper:#FBF8F2; --card:#FFFFFF; --cream:#E8E0D2;
+  --ink:#1B2A40; --muted:#4A5563; --line:#D8D1C4; --hairline:#ECE7DC;
+  --input-bg:#FFF4D6; --input-border:#D9C79A; --input-ink:#1A1A1A;
+  --auto-bg:#F1F3F5; --auto-ink:#1B2A40;
+  --good-ink:#16533C; --good-bg:#E6F3EC;
+  --warn-ink:#7A4700; --warn-bg:#FFF4D6;
+  --alert-ink:#962324; --alert-bg:#FBEAEA;
+  --radius:14px; --radius-sm:10px;
+  --font-display:Georgia,"Times New Roman",serif;
+  --font-body:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--cream);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.45;-webkit-text-size-adjust:100%}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+.app{max-width:780px;margin:0 auto;min-height:100vh;background:var(--paper);padding:16px 16px 40px}
+@media(min-width:768px){.app{margin:20px auto;border-radius:18px;border:1px solid var(--line);padding:24px 28px 44px;box-shadow:0 6px 24px rgba(27,42,64,.08)}}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:12px;border-bottom:1px solid var(--hairline);margin-bottom:14px}
+.wm{display:flex;align-items:center;gap:10px}
+.mark{width:34px;height:34px;border-radius:9px;background:var(--brand);color:#fff;display:grid;place-items:center;font-weight:800;font-size:15px;letter-spacing:-.02em;position:relative;flex:none}
+.mark::after{content:"";position:absolute;right:4px;top:4px;width:8px;height:8px;border-radius:2px;background:var(--accent)}
+.h-num{font-family:var(--font-body);font-variant-numeric:tabular-nums}
+.wm-text b{display:block;font-size:15px;color:var(--brand);line-height:1.15}
+.wm-text span{display:block;font-size:12.5px;color:var(--muted)}
+h1{font-family:var(--font-display);font-size:26px;font-weight:700;margin:0 0 4px;color:var(--brand);line-height:1.2}
+h2{font-family:var(--font-display);font-size:18px;font-weight:700;margin:0 0 10px;color:var(--brand)}
+h3{font-size:15px;font-weight:700;margin:0 0 8px;color:var(--brand)}
+p.sub{margin:0 0 14px;font-size:14.5px;color:var(--muted)}
+.cap{font-size:13.5px;color:var(--muted);line-height:1.45}
+.banner{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--warn-bg);border:1px solid var(--input-border);border-radius:var(--radius-sm);padding:8px 10px 8px 12px;margin-bottom:14px;color:var(--warn-ink);font-size:14px}
+.banner button{min-height:44px;flex:none;white-space:nowrap;padding:0 14px;border-radius:8px;border:1px solid var(--input-border);background:#fff;color:var(--brand);font-weight:700;font-size:13.5px;cursor:pointer}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:14px}
+.hero{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+.hero .eyebrow{font-size:13px;font-weight:700;color:var(--mint-on-dark);margin-bottom:6px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:560px){.hero-grid{grid-template-columns:1fr 1fr}}
+.hero-box{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:14px}
+.hero-box .lbl{font-size:13px;color:#DCE5EE;margin-bottom:4px}
+.hero-box .big{font-size:32px;font-weight:800;line-height:1.1;color:#fff}
+.hero-box .meta{font-size:13px;color:#DCE5EE;margin-top:4px}
+.pill-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;align-items:center}
+.pill{min-height:44px;min-width:44px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--brand);font-weight:700;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.pill[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.hero .pill{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.28);color:#fff}
+.hero .pill[aria-pressed="true"]{background:#fff;border-color:#fff;color:var(--brand)}
+.rule-chip{display:inline-block;padding:4px 10px;border-radius:999px;font-size:12.5px;font-weight:700;background:rgba(127,184,158,.2);color:#E6F3EC}
+.tag{display:inline-block;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:700;background:var(--auto-bg);color:var(--brand)}
+.tag.good{background:var(--good-bg);color:var(--good-ink)}
+.tag.warn{background:var(--warn-bg);color:var(--warn-ink)}
+.tag.alert{background:var(--alert-bg);color:var(--alert-ink)}
+.grid2{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:580px){.grid2{grid-template-columns:1fr 1fr}}
+.field{display:block;margin-bottom:12px}
+.field:last-child{margin-bottom:0}
+.field .l{display:block;font-size:14px;font-weight:700;color:var(--brand);margin-bottom:5px}
+.field .h{display:block;font-size:12.5px;color:var(--muted);margin-top:4px}
+.field .err{display:block;font-size:13px;font-weight:700;color:var(--alert-ink);margin-top:4px}
+.inp-wrap{display:flex;align-items:center;background:var(--input-bg);border:1.5px solid var(--input-border);border-radius:var(--radius-sm);padding:0 12px;min-height:46px}
+.inp-wrap:focus-within{border-color:var(--accent);box-shadow:0 0 0 2px rgba(31,92,69,.18)}
+.inp-wrap .pre{font-weight:700;color:var(--muted);margin-right:6px;user-select:none}
+.inp-wrap .suf{font-weight:700;color:var(--muted);margin-left:6px;user-select:none}
+.inp-wrap input,.inp-wrap select,.inp-wrap textarea{width:100%;border:0;background:transparent;font:inherit;color:var(--input-ink);outline:none;padding:10px 0;min-height:44px}
+textarea.bridge-box{width:100%;min-height:92px;background:var(--input-bg);border:1.5px solid var(--input-border);border-radius:var(--radius-sm);padding:10px 12px;font:14px/1.4 monospace;color:var(--input-ink);resize:vertical}
+.seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:6px;background:var(--auto-bg);padding:4px;border-radius:var(--radius-sm)}
+.seg button{min-height:44px;border:0;border-radius:8px;background:transparent;color:var(--brand);font-weight:700;font-size:14px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:#fff;color:var(--brand);box-shadow:0 1px 3px rgba(27,42,64,.14)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 16px;border-radius:var(--radius-sm);border:1.5px solid var(--accent);background:var(--accent);color:#fff;font:inherit;font-weight:700;font-size:14.5px;cursor:pointer;text-decoration:none}
+.btn.sec{background:#fff;color:var(--brand);border-color:var(--line)}
+.btn.full{width:100%}
+.btn-row{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}
+@media(min-width:520px){.btn-row{grid-template-columns:1fr 1fr}}
+details.drawer{border:1px solid var(--line);border-radius:var(--radius);background:#fff;margin-bottom:14px}
+details.drawer summary{list-style:none;cursor:pointer;padding:14px 16px;font-weight:700;color:var(--brand);display:flex;align-items:center;justify-content:space-between;min-height:48px}
+details.drawer summary::-webkit-details-marker{display:none}
+details.drawer summary::after{content:"Show";font-size:13px;font-weight:700;color:var(--accent)}
+details.drawer[open] summary::after{content:"Hide"}
+details.drawer .inner{padding:0 16px 16px;border-top:1px solid var(--hairline);padding-top:14px}
+.brief{border-left:4px solid var(--accent)}
+.brief ul{margin:0;padding-left:18px;font-size:14.5px;line-height:1.5}
+.brief li+li{margin-top:7px}
+.paycheck-strip{display:grid;grid-template-columns:1fr;gap:12px;align-items:end}
+@media(min-width:560px){.paycheck-strip{grid-template-columns:1fr 1.2fr}}
+.paycheck-out{background:var(--auto-bg);border-radius:var(--radius-sm);padding:12px 14px;min-height:70px;display:flex;flex-direction:column;justify-content:center}
+.paycheck-out b{font-size:22px;color:var(--good-ink)}
+table.ledger{width:100%;border-collapse:collapse;font-size:14px}
+table.ledger th,table.ledger td{padding:9px 8px;border-bottom:1px solid var(--hairline);text-align:left}
+table.ledger th{font-size:12.5px;font-weight:700;color:var(--muted);background:var(--auto-bg)}
+table.ledger td.r,table.ledger th.r{text-align:right;white-space:nowrap}
+table.ledger tr.tot td{font-weight:700;border-top:2px solid var(--line);background:var(--auto-bg)}
+.due-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 10px;border-bottom:1px solid var(--hairline);font-size:14.5px}
+.due-row:last-child{border-bottom:0}
+.due-row.next{background:var(--warn-bg);border-radius:8px;border-bottom:0;margin:4px 0}
+.due-amt{flex:none;text-align:right;white-space:nowrap}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%) translateY(90px);opacity:0;visibility:hidden;pointer-events:none;background:var(--brand);color:#fff;padding:10px 14px;border-radius:12px;display:flex;align-items:center;gap:12px;box-shadow:0 8px 24px rgba(0,0,0,.22);transition:transform .2s ease,opacity .2s ease;z-index:50;max-width:calc(100vw - 24px);font-size:14px}
+.toast.on{transform:translateX(-50%) translateY(0);opacity:1;visibility:visible;pointer-events:auto}
+.toast button{min-height:44px;padding:0 14px;border-radius:8px;border:0;background:var(--mint-on-dark);color:var(--brand);font-weight:800;cursor:pointer}
+.draft-box{background:var(--warn-bg);border:1px solid var(--input-border);border-radius:var(--radius-sm);padding:12px;margin-top:10px}
+.badread{display:inline-flex;align-items:center;min-height:44px;color:var(--accent);font-weight:700;font-size:14px}
+footer{margin-top:18px;padding-top:14px;border-top:1px solid var(--hairline);font-size:13px;color:var(--muted);line-height:1.5}
+.print-only{display:none}
+@media print{
+  body{background:#fff;font-size:12pt}
+  .app{max-width:100%;margin:0;padding:0;border:0;box-shadow:none;background:#fff}
+  .no-print,.banner,.toast,details.drawer,.pill-row,.btn-row{display:none!important}
+  .print-only{display:block!important}
+  .hero{background:#fff!important;color:#1B2A40!important;border:2px solid #1B2A40!important}
+  .hero .eyebrow,.hero-box .lbl,.hero-box .big,.hero-box .meta{color:#1B2A40!important}
+  .hero-box{border:1px solid #D8D1C4!important;background:#F1F3F5!important}
+  .card{break-inside:avoid;border-color:#D8D1C4}
+}
+</style>
+<style id="fa-name-title">.wm-t b,.wm-text b{font-size:19px;font-weight:800;line-height:1.12;letter-spacing:-.2px;white-space:normal}</style>
+</head>
+<body>
+<div class="app">
+  <div class="topbar">
+    <div class="wm">
+      <div class="mark" aria-hidden="true">fa</div>
+      <div class="wm-text"><b>1099 Quarterly Tax Estimator</b><span>FiledAwayCo · 2026 &amp; 2027 estimated taxes</span></div>
+    </div>
+    <button type="button" class="btn sec no-print" id="loadSampleTopBtn" style="min-height:44px;padding:0 14px;font-size:13.5px;flex:none;white-space:nowrap">Try sample</button>
+  </div>
+
+  <div class="banner no-print" id="sampleBanner" data-sample-banner="1">
+    <span><b>Sample data</b> — Juniper Lane Design example, not your numbers</span>
+    <button type="button" id="clearSampleBtn">Clear sample</button>
+  </div>
+
+  <h1><span class="h-num">1099</span> Quarterly Tax Estimator</h1>
+  <p class="sub">Full 2026 &amp; 2027 federal Form 1040-ES math — all 7 brackets, QBI (§199A), SE tax, and safe harbor — running offline on your device.</p>
+
+  <!-- 1. CORE 4 INPUTS (clean mobile-first screen) -->
+  <section class="card no-print" aria-label="Core tax inputs">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px">
+      <h2 style="margin:0">Your year in plain numbers</h2>
+      <div class="seg" role="group" aria-label="Tax year" style="width:168px">
+        <button type="button" data-year="2026" aria-pressed="true">2026</button>
+        <button type="button" data-year="2027" aria-pressed="false">2027</button>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <label class="field">
+        <span class="l">Filing status</span>
+        <span class="inp-wrap">
+          <select id="status">
+            <option value="Single">Single</option>
+            <option value="Married filing jointly">Married filing jointly</option>
+            <option value="Head of household">Head of household</option>
+            <option value="Married filing separately">Married filing separately</option>
+          </select>
+        </span>
+      </label>
+
+      <label class="field">
+        <span class="l">Expected 1099 net profit (full year)</span>
+        <span class="inp-wrap"><span class="pre">$</span><input id="profit" inputmode="decimal" autocomplete="off" placeholder="0" value=""></span>
+        <span class="h">Gross self-employment income minus business expenses.</span>
+        <span class="err" id="err-profit" role="alert"></span>
+      </label>
+
+      <label class="field">
+        <span class="l">Last year's total tax (optional, safe harbor)</span>
+        <span class="inp-wrap"><span class="pre">$</span><input id="priorTax" inputmode="decimal" autocomplete="off" placeholder="Leave blank if none" value=""></span>
+        <span class="h">Form 1040 line 24 from last year's return.</span>
+        <span class="err" id="err-priorTax" role="alert"></span>
+      </label>
+
+      <label class="field">
+        <span class="l">State set-aside % (optional, separate)</span>
+        <span class="inp-wrap"><input id="statePct" inputmode="decimal" autocomplete="off" placeholder="0" value=""><span class="suf">%</span></span>
+        <span class="h">Your state rate; kept separate from federal Form 1040-ES.</span>
+        <span class="err" id="err-statePct" role="alert"></span>
+      </label>
+    </div>
+
+    <div class="grid2" style="margin-top:4px">
+      <label class="field">
+        <span class="l">Last year's AGI (sets 100% vs 110% rule)</span>
+        <span class="inp-wrap"><span class="pre">$</span><input id="priorAGI" inputmode="decimal" autocomplete="off" placeholder="0" value=""></span>
+        <span class="h">Over $150,000 ($75,000 MFS) uses 110% of last year's tax.</span>
+        <span class="err" id="err-priorAGI" role="alert"></span>
+      </label>
+      <div class="field" style="display:flex;flex-direction:column;justify-content:center">
+        <span class="cap">Type in the yellow cells. Gray cells calculate. Every figure updates immediately.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADVANCED PROGRESSIVE DISCLOSURE -->
+  <details class="drawer no-print" id="moreDetails">
+    <summary>More details (W-2 job, withholding, QBI, deductions, paid so far)</summary>
+    <div class="inner">
+      <div class="grid2">
+        <label class="field">
+          <span class="l">Your W-2 wages this year</span>
+          <span class="inp-wrap"><span class="pre">$</span><input id="w2Self" inputmode="decimal" placeholder="0" value=""></span>
+          <span class="h">Counts toward the Social Security wage cap &amp; bracket.</span>
+          <span class="err" id="err-w2Self" role="alert"></span>
+        </label>
+        <label class="field">
+          <span class="l">Spouse W-2 wages (joint filers)</span>
+          <span class="inp-wrap"><span class="pre">$</span><input id="w2Spouse" inputmode="decimal" placeholder="0" value=""></span>
+          <span class="err" id="err-w2Spouse" role="alert"></span>
+        </label>
+        <label class="field">
+          <span class="l">Federal tax withheld from paychecks</span>
+          <span class="inp-wrap"><span class="pre">$</span><input id="withholding" inputmode="decimal" placeholder="0" value=""></span>
+          <span class="h">Subtracts directly from what you need to pay quarterly.</span>
+          <span class="err" id="err-withholding" role="alert"></span>
+        </label>
+        <label class="field">
+          <span class="l">Federal quarterly estimates already paid</span>
+          <span class="inp-wrap"><span class="pre">$</span><input id="paidYTD" inputmode="decimal" placeholder="0" value=""></span>
+          <span class="h">Shows how much remains for the rest of the year.</span>
+          <span class="err" id="err-paidYTD" role="alert"></span>
+        </label>
+        <label class="field">
+          <span class="l">Self-employed retirement (SEP / solo 401k)</span>
+          <span class="inp-wrap"><span class="pre">$</span><input id="retirement" inputmode="decimal" placeholder="0" value=""></span>
+          <span class="err" id="err-retirement" role="alert"></span>
+        </label>
+        <label class="field">
+          <span class="l">Self-employed health insurance premiums</span>
+          <span class="inp-wrap"><span class="pre">$</span><input id="health" inputmode="decimal" placeholder="0" value=""></span>
+          <span class="err" id="err-health" role="alert"></span>
+        </label>
+        <label class="field">
+          <span class="l">Other deductions (Schedule 1-A / itemized extra)</span>
+          <span class="inp-wrap"><span class="pre">$</span><input id="otherDed" inputmode="decimal" placeholder="0" value=""></span>
+          <span class="err" id="err-otherDed" role="alert"></span>
+        </label>
+        <label class="field">
+          <span class="l">Expected tax credits</span>
+          <span class="inp-wrap"><span class="pre">$</span><input id="credits" inputmode="decimal" placeholder="0" value=""></span>
+          <span class="err" id="err-credits" role="alert"></span>
+        </label>
+      </div>
+      <div class="grid2" style="margin-top:8px">
+        <div class="field">
+          <span class="l">Include 20% QBI deduction (§199A)?</span>
+          <div class="seg" role="group" aria-label="Include QBI">
+            <button type="button" data-qbi="yes" aria-pressed="true">Yes</button>
+            <button type="button" data-qbi="no" aria-pressed="false">No</button>
+          </div>
+        </div>
+        <div class="field">
+          <span class="l">Specified service business (SSTB)?</span>
+          <div class="seg" role="group" aria-label="SSTB">
+            <button type="button" data-sstb="no" aria-pressed="true">No</button>
+            <button type="button" data-sstb="yes" aria-pressed="false">Yes</button>
+          </div>
+          <span class="h">Health, law, consulting, finance — only matters above the QBI threshold.</span>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <!-- ECOSYSTEM IMPORT DRAWER (L5 confirm-before-save) -->
+  <details class="drawer no-print" id="bridgeDetails">
+    <summary>Import income from another FiledAwayCo tool (optional)</summary>
+    <div class="inner">
+      <p class="cap" style="margin:0 0 10px">Drop or paste a <code>fac-bridge-v1</code> JSON export from Seller Dashboard, Delist Alert, Freelancer Money System, Well Kept Host Kit, UGC Kit, or Bookkeeping. Nothing changes until you confirm the draft below.</p>
+      <div class="btn-row" style="margin:0 0 10px">
+        <label class="btn sec" for="bridgeFile" style="cursor:pointer">Choose .json bridge file</label>
+        <input type="file" id="bridgeFile" accept="application/json,.json" style="display:none">
+        <button type="button" class="btn sec" id="bridgePreviewBtn">Preview pasted JSON</button>
+      </div>
+      <textarea class="bridge-box" id="bridgePaste" aria-label="Paste fac-bridge-v1 JSON" placeholder='Paste JSON here (e.g. {"bridge":"fac-bridge-v1","source":"seller-dashboard","taxYear":2026,"trueNet":42500})'></textarea>
+      <div id="bridgeDraft" class="draft-box" style="display:none"></div>
+      <div id="bridgeStreams" style="margin-top:8px"></div>
+      <a class="badread" href="mailto:filedawayco@gmail.com?subject=1099%20Estimator%20%E2%80%94%20bridge%20import%20bad%20read&body=Tool%20source%3A%0AWhat%20looked%20wrong%3A">Report a bad read</a>
+    </div>
+  </details>
+
+  <!-- 2. TWO-NUMBER HERO + STRESS TESTER -->
+  <section class="card hero" aria-label="Quarterly payment summary">
+    <div class="eyebrow">
+      <span id="heroHeading">2026 Federal Quarterly Estimate</span>
+      <span class="rule-chip" id="ruleChip">Safe harbor</span>
+    </div>
+    <div class="hero-grid">
+      <div class="hero-box">
+        <div class="lbl">Safe-harbor minimum (per quarter)</div>
+        <div class="big num" id="outSafeQ">$0</div>
+        <div class="meta num" id="outSafeMeta">Annual minimum: $0</div>
+      </div>
+      <div class="hero-box">
+        <div class="lbl">Full estimate (per quarter)</div>
+        <div class="big num" id="outFullQ">$0</div>
+        <div class="meta num" id="outFullMeta">Annual federal tax: $0</div>
+      </div>
+    </div>
+    <div style="margin-top:12px">
+      <div style="font-size:13px;color:#DCE5EE;font-weight:700;margin-bottom:6px">What if profit changes?</div>
+      <div class="pill-row no-print" role="group" aria-label="Income stress test" style="margin-top:0">
+        <button type="button" class="pill" data-stress="0.75" aria-pressed="false">−25%</button>
+        <button type="button" class="pill" data-stress="1" aria-pressed="true">Plan</button>
+        <button type="button" class="pill" data-stress="1.25" aria-pressed="false">+25%</button>
+        <span class="cap" id="stressNote" style="color:#DCE5EE;margin-left:auto"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. DETERMINISTIC PLAIN-ENGLISH BRIEF (L6 — zero LLM / zero network) -->
+  <section class="card brief" aria-label="Plain-English tax brief">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px">
+      <h2 style="margin:0">In plain English</h2>
+      <span class="tag good" id="briefBadge">On-device math</span>
+    </div>
+    <ul id="briefList"></ul>
+  </section>
+
+  <!-- 4. PER-PAYCHECK SET-ASIDE QUICK CARD -->
+  <section class="card no-print" aria-label="Per-paycheck set-aside">
+    <h2>Got paid today? Set aside right now</h2>
+    <div class="paycheck-strip">
+      <label class="field" style="margin:0">
+        <span class="l">Payment received today</span>
+        <span class="inp-wrap"><span class="pre">$</span><input id="todayPay" inputmode="decimal" placeholder="1000" value="1500"></span>
+        <span class="err" id="err-todayPay" role="alert"></span>
+      </label>
+      <div class="paycheck-out">
+        <span class="cap" id="paycheckLbl">Move to tax savings account</span>
+        <b class="num" id="paycheckAmt">$0</b>
+        <span class="cap num" id="paycheckSplit"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. DUE DATES + .ICS + 1-PAGE PRINT -->
+  <section class="card" aria-label="Quarterly due dates">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:4px">
+      <h2 style="margin:0" id="duesHeading">Quarterly Due Dates</h2>
+      <span class="tag" id="duesBadge">IRS Form 1040-ES</span>
+    </div>
+    <p class="cap" style="margin:0 0 8px">Amounts shown: <b>Safe-harbor minimum</b> / full quarterly estimate.</p>
+    <div id="duesList"></div>
+    <p class="cap" id="stateFoot" style="margin:10px 0 0"></p>
+    <div class="btn-row no-print">
+      <button type="button" class="btn" id="icsBtn">Add dates to calendar (.ics)</button>
+      <button type="button" class="btn sec" id="printBtn">Print 1-page tax summary</button>
+    </div>
+  </section>
+
+  <!-- 6. STEP-BY-STEP TRANSPARENT IRS MATH -->
+  <section class="card" aria-label="Calculation breakdown">
+    <h2>Every step of the calculation</h2>
+    <table class="ledger">
+      <thead><tr><th>Form 1040-ES / Schedule SE line</th><th class="r">Amount</th></tr></thead>
+      <tbody id="mathRows"></tbody>
+    </table>
+    <p class="cap" id="rateSourceNote" style="margin:10px 0 0"></p>
+  </section>
+
+  <footer class="print-only" style="margin-top:8px">
+    <p><b>Printed summary</b> — prepared from FiledAwayCo 1099 Quarterly Estimator. Verify totals against your full return and IRS Form 1040-ES before filing.</p>
+  </footer>
+  <footer>
+    <p><b>Estimate only — not tax, legal, or accounting advice.</b> Built on 2026 IRS Rev. Proc. 2025-32 and 2027 Rev. Proc. 2026-35 figures (checked Nov 2026). All calculations run locally in your browser — nothing is sent anywhere.</p>
+    <p>1099 Quarterly Estimator · 2026–2027 Edition · FiledAwayCo · Support: filedawayco@gmail.com</p>
+  </footer>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><span id="toastMsg"></span><button type="button" id="toastUndo" style="display:none">Undo</button></div>
+
+<script>
+(function(){
+"use strict";
+
+var RATES = {
+  2026: {
+    source: "IRS Rev. Proc. 2025-32 & SSA 2026 wage base (checked Nov 2026)",
+    datesEstimated: false,
+    seFactor: 0.9235, seMin: 400, ssRate: 0.124, medRate: 0.029, ssBase: 184500, addlRate: 0.009,
+    addlThr: { "Single":200000, "Head of household":200000, "Married filing jointly":250000, "Married filing separately":125000 },
+    std: { "Single":16100, "Married filing jointly":32200, "Married filing separately":16100, "Head of household":24150 },
+    qbiRate: 0.20, qbiMinDed: 400, qbiMinQBI: 1000,
+    qbiThr: { "Single":201750, "Head of household":201750, "Married filing jointly":403500, "Married filing separately":201775 },
+    qbiEnd: { "Single":276750, "Head of household":276750, "Married filing jointly":553500, "Married filing separately":276775 },
+    brackets: {
+      "Single":[[0.10,0],[0.12,12400],[0.22,50400],[0.24,105700],[0.32,201775],[0.35,256225],[0.37,640600]],
+      "Married filing jointly":[[0.10,0],[0.12,24800],[0.22,100800],[0.24,211400],[0.32,403550],[0.35,512450],[0.37,768700]],
+      "Married filing separately":[[0.10,0],[0.12,12400],[0.22,50400],[0.24,105700],[0.32,201775],[0.35,256225],[0.37,384350]],
+      "Head of household":[[0.10,0],[0.12,17700],[0.22,67450],[0.24,105700],[0.32,201750],[0.35,256200],[0.37,640600]]
+    },
+    dues: [
+      { q:1, label:"Payment 1 (Jan 1 – Mar 31)", iso:"2026-04-15" },
+      { q:2, label:"Payment 2 (Apr 1 – May 31)", iso:"2026-06-15" },
+      { q:3, label:"Payment 3 (Jun 1 – Aug 31)", iso:"2026-09-15" },
+      { q:4, label:"Payment 4 (Sep 1 – Dec 31)", iso:"2027-01-15" }
+    ]
+  },
+  2027: {
+    source: "IRS Rev. Proc. 2026-35 & SSA 2027 wage base (checked Nov 2026); 2027 due dates estimated",
+    datesEstimated: true,
+    seFactor: 0.9235, seMin: 400, ssRate: 0.124, medRate: 0.029, ssBase: 192300, addlRate: 0.009,
+    addlThr: { "Single":200000, "Head of household":200000, "Married filing jointly":250000, "Married filing separately":125000 },
+    std: { "Single":16600, "Married filing jointly":33200, "Married filing separately":16600, "Head of household":24925 },
+    qbiRate: 0.20, qbiMinDed: 415, qbiMinQBI: 1030,
+    qbiThr: { "Single":208300, "Head of household":208300, "Married filing jointly":416600, "Married filing separately":208325 },
+    qbiEnd: { "Single":283300, "Head of household":283300, "Married filing jointly":566600, "Married filing separately":283325 },
+    brackets: {
+      "Single":[[0.10,0],[0.12,12800],[0.22,52025],[0.24,109125],[0.32,208325],[0.35,264550],[0.37,661375]],
+      "Married filing jointly":[[0.10,0],[0.12,25600],[0.22,104050],[0.24,218250],[0.32,416650],[0.35,529100],[0.37,793650]],
+      "Married filing separately":[[0.10,0],[0.12,12800],[0.22,52025],[0.24,109125],[0.32,208325],[0.35,264550],[0.37,396825]],
+      "Head of household":[[0.10,0],[0.12,18250],[0.22,69650],[0.24,109100],[0.32,208300],[0.35,264550],[0.37,661350]]
+    },
+    dues: [
+      { q:1, label:"Payment 1 (Jan 1 – Mar 31)", iso:"2027-04-15" },
+      { q:2, label:"Payment 2 (Apr 1 – May 31)", iso:"2027-06-15" },
+      { q:3, label:"Payment 3 (Jun 1 – Aug 31)", iso:"2027-09-15" },
+      { q:4, label:"Payment 4 (Sep 1 – Dec 31, MLK Day adjusted)", iso:"2028-01-18" }
+    ]
+  }
+};
+
+var SAMPLE_STATE = {
+  sample: true, year: 2026, status: "Single", profit: "63590", priorTax: "14200", priorAGI: "78000",
+  statePct: "4.4", w2Self: "0", w2Spouse: "0", withholding: "0", paidYTD: "8100",
+  retirement: "6000", health: "4800", otherDed: "0", credits: "0", useQBI: true, sstb: false,
+  stress: 1, todayPay: "1500", streams: []
+};
+var BLANK_STATE = {
+  sample: false, year: 2026, status: "Single", profit: "", priorTax: "", priorAGI: "",
+  statePct: "", w2Self: "", w2Spouse: "", withholding: "", paidYTD: "",
+  retirement: "", health: "", otherDed: "", credits: "", useQBI: true, sstb: false,
+  stress: 1, todayPay: "1000", streams: []
+};
+
+var STORE_KEY = "fac-1099-estimator-2026-v2";
+var state = loadState();
+var pendingBridge = null;
+var undoSnapshot = null;
+var toastTimer = null;
+
+function clone(o){ return JSON.parse(JSON.stringify(o)); }
+function loadState(){
+  try {
+    var raw = localStorage.getItem(STORE_KEY);
+    if (raw) {
+      var o = JSON.parse(raw);
+      if (o && typeof o === "object") return Object.assign(clone(BLANK_STATE), o);
+    }
+  } catch(e){}
+  // Open BLANK by default with prominent 1-tap "Try sample" button so hidden sample deductions can NEVER leak into a buyer's own numbers!
+  return clone(BLANK_STATE);
+}
+function saveState(){
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch(e){}
+}
+
+function parseMoney(raw){
+  if (raw == null) return 0;
+  var s = String(raw).trim();
+  if (s === "") return 0;
+  var cleaned = s.replace(/[$,\s]/g, "");
+  if (!/^-?\d+(\.\d+)?$/.test(cleaned)) return NaN;
+  return parseFloat(cleaned);
+}
+
+function esc(s){
+  return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
+  });
+}
+function fmt$(n){
+  var v = Number(n) || 0;
+  var sign = v < 0 ? "−" : "";
+  return sign + "$" + Math.round(Math.abs(v)).toLocaleString("en-US");
+}
+function fmt$2(n){
+  var v = Number(n) || 0;
+  var sign = v < 0 ? "−" : "";
+  return sign + "$" + Math.abs(v).toLocaleString("en-US", { minimumFractionDigits:2, maximumFractionDigits:2 });
+}
+
+/* ---------- Exact 2026 & 2027 IRS Form 1040-ES / Schedule SE Engine ---------- */
+function compute(inp){
+  var yr = (inp.year === 2027) ? 2027 : 2026;
+  var R = RATES[yr];
+  var st = R.std[inp.status] != null ? inp.status : "Single";
+  var profit = Number(inp.profit) || 0;
+  var w2Self = Math.max(0, Number(inp.w2Self) || 0);
+  var w2Spouse = st === "Married filing jointly" ? Math.max(0, Number(inp.w2Spouse) || 0) : 0;
+  var withholding = Math.max(0, Number(inp.withholding) || 0);
+  var paidYTD = Math.max(0, Number(inp.paidYTD) || 0);
+  var retirement = Math.max(0, Number(inp.retirement) || 0);
+  var health = Math.max(0, Number(inp.health) || 0);
+  var otherDed = Math.max(0, Number(inp.otherDed) || 0);
+  var credits = Math.max(0, Number(inp.credits) || 0);
+  var useQBI = inp.useQBI !== false;
+  var sstb = !!inp.sstb;
+  var hasPriorTax = inp.priorTax !== "" && inp.priorTax != null && !isNaN(Number(inp.priorTax));
+  var priorTax = hasPriorTax ? Math.max(0, Number(inp.priorTax)) : null;
+  var priorAGI = Math.max(0, Number(inp.priorAGI) || 0);
+  var statePct = Math.max(0, Math.min(25, Number(inp.statePct) || 0));
+
+  // Schedule SE (profit <= 0 -> $0 SE tax; netSE < $400 -> $0 SE tax)
+  var posProfit = Math.max(0, profit);
+  var rawSE = posProfit * R.seFactor;
+  var netSE = rawSE < R.seMin ? 0 : rawSE;
+  var ssRoom = Math.max(0, R.ssBase - w2Self);
+  var ssPart = R.ssRate * Math.min(netSE, ssRoom);
+  var medPart = R.medRate * netSE;
+  var seTax = ssPart + medPart;
+  var halfSE = seTax / 2;
+
+  // Additional Medicare Tax (0.9%, Form 8959 — non-deductible)
+  var addlThr = R.addlThr[st];
+  var wagesTotal = w2Self + w2Spouse;
+  var addlMed = R.addlRate * (Math.max(0, wagesTotal - addlThr) + Math.max(0, netSE - Math.max(0, addlThr - wagesTotal)));
+
+  // Form 1040 AGI & deductions
+  var totalIncome = profit + wagesTotal;
+  var seHealthAllowed = Math.min(health, Math.max(0, posProfit - halfSE - retirement));
+  var agi = totalIncome - halfSE - seHealthAllowed - retirement;
+  var stdDed = R.std[st];
+  var tiBeforeQBI = Math.max(0, agi - stdDed - otherDed);
+
+  // QBI Deduction (§199A + §199A(i) $400/$415 minimum)
+  var qbi = Math.max(0, posProfit - halfSE - seHealthAllowed - retirement);
+  var qbiThr = R.qbiThr[st], qbiEnd = R.qbiEnd[st];
+  var qbiFactor = tiBeforeQBI <= qbiThr ? 1 : Math.max(0, 1 - (tiBeforeQBI - qbiThr) / (qbiEnd - qbiThr));
+  var qbiCounted = sstb ? qbi * qbiFactor : qbi;
+  var qbiCalc = (!useQBI || qbi <= 0) ? 0 : Math.min(R.qbiRate * tiBeforeQBI, R.qbiRate * qbiCounted * qbiFactor);
+  var qbiDedRaw = (!useQBI || qbi <= 0) ? 0 : (qbiCounted >= R.qbiMinQBI ? Math.max(qbiCalc, R.qbiMinDed) : qbiCalc);
+  var qbiDed = Math.min(tiBeforeQBI, qbiDedRaw);
+
+  var taxableIncome = Math.max(0, tiBeforeQBI - qbiDed);
+
+  // 7-bracket income tax (exact workbook rounding per bracket)
+  var br = R.brackets[st], incomeTax = 0, topRate = 0.10;
+  for (var i = 0; i < br.length; i++){
+    var rate = br[i][0], lo = br[i][1], hi = (i + 1 < br.length) ? br[i + 1][1] : Infinity;
+    var slice = Math.max(0, Math.min(taxableIncome, hi) - lo);
+    if (slice > 0) topRate = rate;
+    incomeTax += Math.round(slice * rate * 100) / 100;
+  }
+  var incomeTaxNet = Math.max(0, incomeTax - credits);
+  var totalTax = incomeTaxNet + seTax + addlMed;
+  var estNeeded = Math.max(0, totalTax - withholding);
+
+  // Safe harbor (Form 1040-ES)
+  var safeCurrent = 0.90 * totalTax;
+  var agiLimit = (st === "Married filing separately") ? 75000 : 150000;
+  var priorMult = priorAGI > agiLimit ? 1.10 : 1.00;
+  var safePriorAmt = hasPriorTax ? priorTax * priorMult : null;
+  var requiredAnnual = hasPriorTax ? Math.min(safeCurrent, safePriorAmt) : safeCurrent;
+  var requiredEst = Math.max(0, requiredAnnual - withholding);
+  var underMin = estNeeded < 1000;
+  var requiredPlan = underMin ? 0 : requiredEst;
+  var safeRule = underMin
+    ? "Under $1,000 rule"
+    : (!hasPriorTax || safeCurrent < safePriorAmt ? "90% of this year (moves)" : (Math.round(priorMult * 100) + "% of last year's tax (fixed)"));
+  var fixedPerPay = hasPriorTax ? Math.max(0, safePriorAmt - withholding) / 4 : null;
+
+  var safeQ = requiredPlan / 4;
+  var fullQ = estNeeded / 4;
+  var leftSafe = Math.max(0, requiredPlan - paidYTD);
+  var leftFull = Math.max(0, estNeeded - paidYTD);
+  var stateAnnual = posProfit * statePct / 100;
+  var fedSetAsidePct = posProfit > 0 ? (estNeeded / posProfit) * 100 : 0;
+
+  return {
+    year: yr, status: st, profit: profit, posProfit: posProfit,
+    netSE: netSE, ssPart: ssPart, medPart: medPart, seTax: seTax, halfSE: halfSE, addlMed: addlMed,
+    totalIncome: totalIncome, seHealthAllowed: seHealthAllowed, agi: agi, stdDed: stdDed,
+    tiBeforeQBI: tiBeforeQBI, qbi: qbi, qbiDed: qbiDed, taxableIncome: taxableIncome,
+    incomeTax: incomeTax, incomeTaxNet: incomeTaxNet, topRate: topRate,
+    totalTax: totalTax, withholding: withholding, estNeeded: estNeeded,
+    safeCurrent: safeCurrent, priorMult: priorMult, safePriorAmt: safePriorAmt,
+    requiredAnnual: requiredAnnual, requiredPlan: requiredPlan, underMin: underMin, safeRule: safeRule,
+    fixedPerPay: fixedPerPay, safeQ: safeQ, fullQ: fullQ, paidYTD: paidYTD, leftSafe: leftSafe, leftFull: leftFull,
+    statePct: statePct, stateAnnual: stateAnnual, stateQ: stateAnnual / 4, fedSetAsidePct: fedSetAsidePct
+  };
+}
+
+function buildICS(year, safeQ, fullQ){
+  var R = RATES[year === 2027 ? 2027 : 2026];
+  var stamp = new Date().toISOString().replace(/[-:]/g, "").slice(0, 15) + "Z";
+  var tag = R.datesEstimated ? "Estimated date — confirm against IRS Form 1040-ES once published. " : "Checked Nov 2026 against IRS 2026 Form 1040-ES. ";
+  var lines = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//FiledAwayCo//1099 Quarterly Estimator//EN","CALSCALE:GREGORIAN"];
+  R.dues.forEach(function(d){
+    var dtCompact = d.iso.replace(/-/g, "");
+    lines.push("BEGIN:VEVENT");
+    lines.push("UID:fac-1099-" + year + "-q" + d.q + "@filedawayco.local");
+    lines.push("DTSTAMP:" + stamp);
+    lines.push("DTSTART;VALUE=DATE:" + dtCompact);
+    lines.push("SUMMARY:IRS " + year + " Estimated Tax — Payment " + d.q + (R.datesEstimated ? " (Estimated)" : ""));
+    lines.push("DESCRIPTION:" + tag + "Safe-harbor target: " + fmt$(safeQ) + " | Full estimate: " + fmt$(fullQ) + ". Pay via IRS Direct Pay or EFTPS. Estimate only\\, not tax advice.");
+    lines.push("BEGIN:VALARM","TRIGGER:-P14D","ACTION:DISPLAY","DESCRIPTION:Quarterly estimated tax due in 14 days","END:VALARM");
+    lines.push("BEGIN:VALARM","TRIGGER:-P3D","ACTION:DISPLAY","DESCRIPTION:Quarterly estimated tax due in 3 days","END:VALARM");
+    lines.push("END:VEVENT");
+  });
+  lines.push("END:VCALENDAR");
+  return lines.join("\r\n") + "\r\n";
+}
+
+function showToast(msg, undoFn){
+  var el = document.getElementById("toast");
+  document.getElementById("toastMsg").textContent = msg;
+  var ub = document.getElementById("toastUndo");
+  undoSnapshot = undoFn || null;
+  ub.style.display = undoFn ? "inline-flex" : "none";
+  el.classList.add("on");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ el.classList.remove("on"); undoSnapshot = null; }, undoFn ? 7000 : 2800);
+}
+
+var NUM_FIELDS = ["profit","priorTax","priorAGI","statePct","w2Self","w2Spouse","withholding","paidYTD","retirement","health","otherDed","credits"];
+
+function syncInputsFromState(){
+  document.getElementById("status").value = state.status;
+  NUM_FIELDS.forEach(function(id){ document.getElementById(id).value = state[id] == null ? "" : String(state[id]); });
+  document.getElementById("todayPay").value = state.todayPay == null ? "" : String(state.todayPay);
+  document.querySelectorAll("[data-year]").forEach(function(b){ b.setAttribute("aria-pressed", String(+b.dataset.year === state.year)); });
+  document.querySelectorAll("[data-qbi]").forEach(function(b){ b.setAttribute("aria-pressed", String((b.dataset.qbi === "yes") === state.useQBI)); });
+  document.querySelectorAll("[data-sstb]").forEach(function(b){ b.setAttribute("aria-pressed", String((b.dataset.sstb === "yes") === state.sstb)); });
+  document.querySelectorAll("[data-stress]").forEach(function(b){ b.setAttribute("aria-pressed", String(parseFloat(b.dataset.stress) === state.stress)); });
+}
+
+function buildComputeInput(){
+  var vals = {};
+  NUM_FIELDS.forEach(function(id){
+    var v = parseMoney(state[id]);
+    vals[id] = isNaN(v) ? 0 : v;
+  });
+  var hasPrior = String(state.priorTax || "").trim() !== "" && !isNaN(parseMoney(state.priorTax));
+  return {
+    year: state.year, status: state.status, profit: vals.profit * state.stress,
+    priorTax: hasPrior ? parseMoney(state.priorTax) : "",
+    priorAGI: vals.priorAGI, statePct: vals.statePct,
+    w2Self: vals.w2Self, w2Spouse: vals.w2Spouse, withholding: vals.withholding, paidYTD: vals.paidYTD,
+    retirement: vals.retirement, health: vals.health, otherDed: vals.otherDed, credits: vals.credits,
+    useQBI: state.useQBI, sstb: state.sstb, _vals: vals
+  };
+}
+
+function render(){
+  var sb = document.getElementById("sampleBanner");
+  sb.style.display = state.sample ? "flex" : "none";
+  document.getElementById("loadSampleTopBtn").style.display = state.sample ? "none" : "inline-flex";
+
+  NUM_FIELDS.forEach(function(id){
+    var v = parseMoney(state[id]);
+    var errEl = document.getElementById("err-" + id);
+    if (errEl) errEl.textContent = isNaN(v) ? 'Use plain numbers only (e.g. 60000, not "60k").' : "";
+  });
+
+  var cinp = buildComputeInput();
+  var vals = cinp._vals;
+  var scaledProfit = cinp.profit;
+  var res = compute(cinp);
+
+  // Hero
+  document.getElementById("heroHeading").textContent = res.year + " Federal Quarterly Estimate" + (state.stress !== 1 ? (state.stress > 1 ? " (+25% stress)" : " (−25% stress)") : "");
+  document.getElementById("ruleChip").textContent = res.safeRule;
+  document.getElementById("outSafeQ").textContent = fmt$(res.safeQ);
+  document.getElementById("outSafeMeta").textContent = res.underMin ? "Under $1,000 owed — quarterly payments generally optional" : ("Annual safe harbor: " + fmt$(res.requiredPlan) + (res.paidYTD > 0 ? " · Left: " + fmt$(res.leftSafe) : ""));
+  document.getElementById("outFullQ").textContent = fmt$(res.fullQ);
+  document.getElementById("outFullMeta").textContent = "Annual federal tax: " + fmt$(res.totalTax) + (res.withholding > 0 ? " (−" + fmt$(res.withholding) + " W-2 withheld)" : "") + (res.paidYTD > 0 ? " · Left: " + fmt$(res.leftFull) : "");
+  document.getElementById("stressNote").textContent = state.stress === 1 ? "" : ("Testing " + (state.stress > 1 ? "25% higher" : "25% lower") + " profit (" + fmt$(scaledProfit) + ")");
+
+  // Deterministic 4-sentence Plain-English Brief (L6)
+  var b = [];
+  if (res.posProfit <= 0 && res.totalIncome <= 0) {
+    b.push("Enter your expected full-year 1099 net profit above (or tap Try sample) to see your federal quarterly plan.");
+  } else {
+    if (res.underMin) {
+      b.push("Your estimated federal bill after paycheck withholding is " + fmt$(res.estNeeded) + " — under the IRS $1,000 threshold, so quarterly payments are generally not required.");
+    } else if (res.safePriorAmt != null && res.safePriorAmt <= res.safeCurrent) {
+      b.push("Your safe-harbor floor is " + fmt$(res.safeQ) + " per quarter (" + Math.round(res.priorMult * 100) + "% of last year's tax) — paying that on time generally avoids the IRS underpayment penalty even if this year's income jumps.");
+    } else {
+      b.push("Your safe-harbor floor is " + fmt$(res.safeQ) + " per quarter (90% of this year's estimate). Because 90% moves with your income, update your profit if you have a big quarter" + (res.fixedPerPay != null ? " — or pay the fixed " + fmt$(res.fixedPerPay) + "/quarter from last year's rule." : "."));
+    }
+    b.push("Your full-year federal estimate of " + fmt$(res.totalTax) + " combines " + fmt$(res.seTax + res.addlMed) + " in self-employment/Medicare tax and " + fmt$(res.incomeTaxNet) + " in income tax (top bracket " + Math.round(res.topRate * 100) + "%).");
+    if (res.qbiDed > 0) {
+      b.push("The 20% QBI deduction trims " + fmt$(res.qbiDed) + " off your taxable income before brackets apply" + (res.seHealthAllowed + vals.retirement > 0 ? ", on top of " + fmt$(res.seHealthAllowed + vals.retirement) + " in retirement and self-employed health deductions." : "."));
+    } else if (res.posProfit > 0 && res.netSE === 0) {
+      b.push("Net self-employment earnings are under the $400 IRS floor, so self-employment tax is $0.");
+    }
+    if (res.statePct > 0) {
+      b.push("Hold an extra " + fmt$(res.stateQ) + " per quarter (" + res.statePct + "% of profit) separately for state tax — states set their own due dates and forms.");
+    } else {
+      b.push("State income tax is not included above — add your state set-aside % if your state taxes income.");
+    }
+  }
+  document.getElementById("briefBadge").textContent = state.sample ? "SAMPLE" : "On-device math";
+  document.getElementById("briefBadge").className = "tag " + (state.sample ? "warn" : "good");
+  document.getElementById("briefList").innerHTML = b.map(function(s){ return "<li>" + esc(s) + "</li>"; }).join("");
+
+  // Per-paycheck quick strip (with inline error on non-numeric input)
+  var payRaw = parseMoney(state.todayPay);
+  var errTP = document.getElementById("err-todayPay");
+  if (errTP) errTP.textContent = isNaN(payRaw) ? 'Use plain numbers only (e.g. 1500, not "1.5k").' : "";
+  var payAmt = isNaN(payRaw) ? 0 : Math.max(0, payRaw);
+  var fedRate = res.fedSetAsidePct / 100;
+  var stRate = res.statePct / 100;
+  var fedHold = payAmt * fedRate, stHold = payAmt * stRate;
+  document.getElementById("paycheckAmt").textContent = fmt$(fedHold + stHold);
+  document.getElementById("paycheckSplit").textContent = (fedRate * 100).toFixed(1) + "% federal (" + fmt$(fedHold) + ")" + (stRate > 0 ? " + " + (stRate * 100).toFixed(1) + "% state (" + fmt$(stHold) + ")" : " · no state % set");
+
+  // Due dates
+  var R = RATES[res.year];
+  document.getElementById("duesHeading").innerHTML = '<span class="h-num">' + res.year + '</span> Quarterly Due Dates' + (R.datesEstimated ? ' (Estimated)' : '');
+  document.getElementById("duesBadge").textContent = R.datesEstimated ? "Estimated dates" : "Checked Nov 2026";
+  document.getElementById("duesBadge").className = "tag " + (R.datesEstimated ? "warn" : "good");
+  var today = new Date(); today.setHours(0,0,0,0);
+  var nextMarked = false;
+  document.getElementById("duesList").innerHTML = R.dues.map(function(d){
+    var dt = new Date(d.iso + "T00:00:00");
+    var days = Math.round((dt - today) / 86400000);
+    var isNext = !nextMarked && days >= 0;
+    if (isNext) nextMarked = true;
+    var statusTxt = days < 0 ? "Date passed" : (isNext ? ("Next · " + days + "d left") : ("In " + days + " days"));
+    return '<div class="due-row' + (isNext ? ' next' : '') + '">' +
+      '<div><b>' + esc(d.label) + '</b><div class="cap">' + esc(d.iso) + (R.datesEstimated ? ' (estimated)' : '') + '</div></div>' +
+      '<div class="due-amt"><b class="num">' + fmt$(res.safeQ) + '</b> <span class="cap num">/ ' + fmt$(res.fullQ) + '</span><div class="cap">' + esc(statusTxt) + '</div></div></div>';
+  }).join("");
+  document.getElementById("stateFoot").textContent = res.statePct > 0
+    ? ("State tax (separate, at " + res.statePct + "% of profit): about " + fmt$(res.stateQ) + " per quarter (" + fmt$(res.stateAnnual) + "/year). Pay federal via IRS Direct Pay or EFTPS.")
+    : "Pay federal estimates via IRS Direct Pay or EFTPS and log confirmations in the workbook.";
+
+  // Breakdown table (shows every active adjustment so AGI visibly reconciles!)
+  var rows = [
+    ["1099 net profit used" + (state.stress !== 1 ? " (stress-adjusted)" : ""), fmt$2(res.profit)]
+  ];
+  if (vals.w2Self + (res.status === "Married filing jointly" ? vals.w2Spouse : 0) > 0) {
+    rows.push(["Household W-2 wages", fmt$2(vals.w2Self + (res.status === "Married filing jointly" ? vals.w2Spouse : 0))]);
+  }
+  rows.push(
+    ["Net SE earnings (profit × 92.35%; $0 under $400)", fmt$2(res.netSE)],
+    ["Social Security tax (12.4% up to " + fmt$(R.ssBase) + " minus W-2)", fmt$2(res.ssPart)],
+    ["Medicare tax (2.9%)", fmt$2(res.medPart)],
+    ["Self-employment tax (Schedule SE)", fmt$2(res.seTax)],
+    ["Additional Medicare tax (0.9% Form 8959, non-deductible)", fmt$2(res.addlMed)],
+    ["Less deductible half of SE tax", "−" + fmt$2(res.halfSE)]
+  );
+  if (vals.retirement > 0) rows.push(["Less self-employed retirement (SEP / solo 401k)", "−" + fmt$2(vals.retirement)]);
+  if (res.seHealthAllowed > 0) rows.push(["Less self-employed health insurance", "−" + fmt$2(res.seHealthAllowed)]);
+  rows.push(
+    ["Adjusted gross income (AGI)", fmt$2(res.agi)],
+    ["Standard deduction (" + res.status + ", " + res.year + ")", "−" + fmt$2(res.stdDed)]
+  );
+  if (vals.otherDed > 0) rows.push(["Other deductions (Schedule 1-A / itemized extra)", "−" + fmt$2(vals.otherDed)]);
+  rows.push(
+    ["20% QBI deduction (§199A" + (state.sstb ? ", SSTB" : "") + ")", "−" + fmt$2(res.qbiDed)],
+    ["Taxable income", fmt$2(res.taxableIncome)],
+    ["Federal income tax (7 brackets)", fmt$2(res.incomeTax)]
+  );
+  if (vals.credits > 0) rows.push(["Less expected tax credits", "−" + fmt$2(vals.credits)]);
+  rows.push(
+    ["Total annual federal tax", fmt$2(res.totalTax), true],
+    ["Less W-2 federal withholding", "−" + fmt$2(res.withholding)],
+    ["Full estimate via quarterly payments (" + fmt$(res.fullQ) + "/qtr)", fmt$2(res.estNeeded), true],
+    ["Safe-harbor minimum (" + res.safeRule + ", " + fmt$(res.safeQ) + "/qtr)", fmt$2(res.requiredPlan), true]
+  );
+  document.getElementById("mathRows").innerHTML = rows.map(function(r){
+    return '<tr' + (r[2] ? ' class="tot"' : '') + '><td>' + esc(r[0]) + '</td><td class="r num">' + esc(r[1]) + '</td></tr>';
+  }).join("");
+  document.getElementById("rateSourceNote").textContent = "Sources: " + R.source + ".";
+
+  // Render imported bridge streams if any
+  var bs = document.getElementById("bridgeStreams");
+  if (state.streams && state.streams.length) {
+    bs.innerHTML = '<div class="cap" style="margin-bottom:4px"><b>Imported income streams included in profit:</b></div>' +
+      state.streams.map(function(x, i){
+        return '<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--hairline);font-size:13.5px">' +
+          '<span>' + esc(x.source) + ' (' + esc(x.taxYear) + ')</span>' +
+          '<span><b class="num">' + fmt$(x.trueNet) + '</b> <button type="button" data-rmstream="' + i + '" style="min-height:44px;min-width:44px;margin-left:8px;border:1px solid var(--line);border-radius:8px;background:#fff;cursor:pointer;font-weight:700">Remove</button></span></div>';
+      }).join("");
+  } else {
+    bs.innerHTML = "";
+  }
+}
+
+function previewBridgeText(txt){
+  var box = document.getElementById("bridgeDraft");
+  try {
+    var obj = JSON.parse(String(txt || "").trim());
+    if (!obj || obj.bridge !== "fac-bridge-v1" || typeof obj.trueNet !== "number" || isNaN(obj.trueNet)) {
+      throw new Error("Expected a fac-bridge-v1 JSON with numeric trueNet.");
+    }
+    pendingBridge = {
+      source: String(obj.source || "FiledAwayCo tool"),
+      taxYear: obj.taxYear === 2027 ? 2027 : 2026,
+      trueNet: Math.round(obj.trueNet * 100) / 100
+    };
+    box.style.display = "block";
+    box.innerHTML = '<div><b>Draft ready to confirm:</b> ' + esc(pendingBridge.source) + ' · Tax year ' + pendingBridge.taxYear + ' · Net profit <b class="num">' + fmt$2(pendingBridge.trueNet) + '</b></div>' +
+      '<div class="btn-row" style="margin-top:8px">' +
+      '<button type="button" class="btn" id="bridgeReplaceBtn">Replace profit with ' + fmt$(pendingBridge.trueNet) + '</button>' +
+      '<button type="button" class="btn sec" id="bridgeAddBtn">Add to current profit</button></div>';
+  } catch(err){
+    pendingBridge = null;
+    box.style.display = "block";
+    box.innerHTML = '<div style="color:var(--alert-ink);font-weight:700">Could not read bridge file: ' + esc(err.message) + ' Nothing was changed.</div>';
+  }
+}
+
+/* ---------- Events ---------- */
+var DRAWER_FIELDS = ["w2Self","w2Spouse","withholding","paidYTD","retirement","health","otherDed","credits"];
+NUM_FIELDS.forEach(function(id){
+  document.getElementById(id).addEventListener("input", function(e){
+    var typed = e.target.value;
+    if (state.sample) {
+      // Clear untouched hidden sample drawer deductions so they NEVER leak silently into buyer numbers!
+      DRAWER_FIELDS.forEach(function(df){ if (df !== id) state[df] = ""; });
+      state.sample = false;
+      state[id] = typed;
+      syncInputsFromState();
+    } else {
+      state[id] = typed;
+    }
+    saveState(); render();
+  });
+});
+document.getElementById("status").addEventListener("change", function(e){ state.status = e.target.value; saveState(); render(); });
+document.getElementById("todayPay").addEventListener("input", function(e){ state.todayPay = e.target.value; saveState(); render(); });
+
+document.addEventListener("click", function(e){
+  var t = e.target.closest("button");
+  if (!t) return;
+  if (t.dataset.year) { state.year = +t.dataset.year; syncInputsFromState(); saveState(); render(); }
+  else if (t.dataset.qbi) { state.useQBI = t.dataset.qbi === "yes"; syncInputsFromState(); saveState(); render(); }
+  else if (t.dataset.sstb) { state.sstb = t.dataset.sstb === "yes"; syncInputsFromState(); saveState(); render(); }
+  else if (t.dataset.stress) { state.stress = parseFloat(t.dataset.stress); syncInputsFromState(); saveState(); render(); }
+  else if (t.id === "clearSampleBtn") {
+    var snap = clone(state);
+    state = clone(BLANK_STATE);
+    syncInputsFromState(); saveState(); render();
+    showToast("Sample cleared. Enter your own numbers.", function(){
+      state = snap; syncInputsFromState(); saveState(); render(); showToast("Sample restored.");
+    });
+  } else if (t.id === "loadSampleTopBtn") {
+    state = clone(SAMPLE_STATE);
+    syncInputsFromState(); saveState(); render();
+  } else if (t.id === "toastUndo") {
+    if (undoSnapshot) { var fn = undoSnapshot; undoSnapshot = null; document.getElementById("toast").classList.remove("on"); fn(); }
+  } else if (t.id === "icsBtn") {
+    var r = compute(buildComputeInput());
+    var blob = new Blob([buildICS(r.year, r.safeQ, r.fullQ)], { type:"text/calendar;charset=utf-8" });
+    var u = URL.createObjectURL(blob), a = document.createElement("a");
+    a.href = u; a.download = "filedawayco-1099-quarterly-" + r.year + ".ics"; document.body.appendChild(a); a.click();
+    setTimeout(function(){ URL.revokeObjectURL(u); a.remove(); }, 400);
+    showToast("Calendar file (.ics) downloaded.");
+  } else if (t.id === "printBtn") {
+    window.print();
+  } else if (t.id === "bridgePreviewBtn") {
+    previewBridgeText(document.getElementById("bridgePaste").value);
+  } else if (t.id === "bridgeReplaceBtn" && pendingBridge) {
+    var prev = clone(state);
+    if (state.sample) state = clone(BLANK_STATE);
+    state.sample = false; state.year = pendingBridge.taxYear; state.profit = String(pendingBridge.trueNet); state.streams = [pendingBridge];
+    pendingBridge = null; document.getElementById("bridgeDraft").style.display = "none";
+    syncInputsFromState(); saveState(); render();
+    showToast("Imported profit applied.", function(){ state = prev; syncInputsFromState(); saveState(); render(); });
+  } else if (t.id === "bridgeAddBtn" && pendingBridge) {
+    var prevA = clone(state);
+    if (state.sample) state = clone(BLANK_STATE);
+    var curP = parseMoney(state.profit); if (isNaN(curP)) curP = 0;
+    state.sample = false; state.profit = String(Math.round((curP + pendingBridge.trueNet) * 100) / 100);
+    state.streams = (state.streams || []).concat([pendingBridge]);
+    pendingBridge = null; document.getElementById("bridgeDraft").style.display = "none";
+    syncInputsFromState(); saveState(); render();
+    showToast("Stream added to profit.", function(){ state = prevA; syncInputsFromState(); saveState(); render(); });
+  } else if (t.dataset.rmstream != null) {
+    var idx = +t.dataset.rmstream, rm = state.streams[idx];
+    if (rm) {
+      var prevR = clone(state);
+      var curP2 = parseMoney(state.profit) || 0;
+      state.streams.splice(idx, 1);
+      state.profit = String(Math.max(0, Math.round((curP2 - rm.trueNet) * 100) / 100));
+      syncInputsFromState(); saveState(); render();
+      showToast("Stream removed.", function(){ state = prevR; syncInputsFromState(); saveState(); render(); });
+    }
+  }
+});
+
+document.getElementById("bridgeFile").addEventListener("change", function(e){
+  var f = e.target.files && e.target.files[0]; if (!f) return;
+  var rd = new FileReader();
+  rd.onload = function(){ document.getElementById("bridgePaste").value = String(rd.result || ""); previewBridgeText(rd.result); };
+  rd.readAsText(f); e.target.value = "";
+});
+
+window.__TAX = { compute: compute, buildICS: buildICS, parseMoney: parseMoney, RATES: RATES };
+syncInputsFromState();
+render();
+})();
+</script>
+<div id="vrSticky" role="button" tabindex="0" aria-label="Jump to your quarterly estimate" hidden>
+  <span class="vr-l">Set aside per quarter</span><span class="vr-v"><b id="vrSafe">—</b> safe-harbor · <b id="vrFull">—</b> full</span><span class="vr-go">See ↓</span>
+</div>
+<style>/* v-review 2026-11-26: sticky result bar so phone users see the answer while typing */
+#vrSticky{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;flex-wrap:wrap;align-items:center;gap:2px 10px;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:#1B2A40;color:#FBF8F2;font-size:14px;box-shadow:0 -4px 14px rgba(0,0,0,.18);cursor:pointer}
+#vrSticky[hidden]{display:none}
+#vrSticky .vr-l{width:100%;font-size:12px;color:#DCE6F2}
+#vrSticky .vr-v b{font-size:17px;color:#fff}
+#vrSticky .vr-go{margin-left:auto;font-weight:700;color:#7FB89E}
+@media (min-width:900px){#vrSticky{display:none!important}}
+@media print{#vrSticky{display:none!important}}
+body.vr-pad{padding-bottom:74px}
+</style>
+<script>(function(){var bar=document.getElementById('vrSticky'),s=document.getElementById('outSafeQ'),f=document.getElementById('outFullQ');if(!bar||!s||!f)return;
+var vs=document.getElementById('vrSafe'),vf=document.getElementById('vrFull'),seen=false;
+function sync(){vs.textContent=s.textContent.trim()||'—';vf.textContent=f.textContent.trim()||'—';}
+sync();new MutationObserver(sync).observe(s,{childList:true,characterData:true,subtree:true});new MutationObserver(sync).observe(f,{childList:true,characterData:true,subtree:true});
+var io=new IntersectionObserver(function(es){es.forEach(function(e){var below=e.boundingClientRect.top>window.innerHeight;var show=!e.isIntersecting&&below;bar.hidden=!show;document.body.classList.toggle('vr-pad',show);});});io.observe(s);
+function go(){s.scrollIntoView({behavior:'smooth',block:'center'});}bar.addEventListener('click',go);bar.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();go();}});})();</script>
+</body>
+</html>

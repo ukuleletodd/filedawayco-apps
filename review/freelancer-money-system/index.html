@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en" data-temp="ledger">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Freelancer Money Companion · FiledAwayCo</title>
+<style>
+:root,[data-temp="ledger"]{
+  --brand:#1B2A40; --brand-ink:#FFFFFF; --accent:#1F5C45; --accent-ink:#FFFFFF;
+  --mint-on-dark:#7FB89E;
+  --paper:#FBF8F2; --card:#FFFFFF; --cream:#E8E0D2;
+  --ink:#1B2430; --muted:#4A5563; --line:#D9D1C3; --hairline:#EDE6DA;
+  --input-bg:#FFF4D6; --input-border:#D9C79A; --input-ink:#1A1A1A;
+  --auto-bg:#F1F3F5; --auto-ink:#1B2430;
+  --good-ink:#16533C; --good-bg:#E6F3EC;
+  --warn-ink:#7A4700; --warn-bg:#FFF4D6;
+  --alert-ink:#962324; --alert-bg:#FBEAEA;
+  --radius:14px; --radius-sm:10px;
+  --font-display:Georgia,"Times New Roman",serif;
+  --font-body:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--cream);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.45;-webkit-text-size-adjust:100%}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+.h-num{font-family:var(--font-body);font-variant-numeric:tabular-nums}
+.shell{max-width:900px;margin:0 auto;min-height:100vh;background:var(--paper);padding:14px 14px 44px}
+@media(min-width:768px){.shell{margin:18px auto;border-radius:18px;border:1px solid var(--line);padding:22px 26px 48px;box-shadow:0 6px 24px rgba(27,42,64,.09)}}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--hairline);margin-bottom:12px}
+.wm{display:flex;align-items:center;gap:10px;min-width:0}
+.mark{width:34px;height:34px;border-radius:8px;background:var(--brand);color:#fff;font-weight:800;font-size:14px;display:grid;place-items:center;position:relative;flex:none}
+.mark::after{content:"";position:absolute;top:0;right:0;width:10px;height:10px;background:var(--accent);border-bottom-left-radius:4px;border-top-right-radius:8px}
+.wm-t{min-width:0}
+.wm-t b{display:block;font-size:15px;color:var(--brand);line-height:1.15}
+.wm-t span{display:block;font-size:12px;color:var(--muted)}
+.banner{background:var(--warn-bg);border:1px solid var(--input-border);color:var(--warn-ink);border-radius:var(--radius-sm);padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;font-size:14px}
+.banner button{min-height:44px;padding:0 14px;border-radius:8px;border:1px solid var(--warn-ink);background:#fff;color:var(--warn-ink);font-weight:700;font-size:13.5px;cursor:pointer;white-space:nowrap;flex:none}
+.tabbar{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;background:var(--cream);padding:5px;border-radius:12px;margin-bottom:16px}
+.tabbar button{min-height:46px;border:0;border-radius:9px;background:transparent;color:var(--brand);font:inherit;font-size:12.5px;font-weight:700;cursor:pointer;padding:6px 3px;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.15}
+.tabbar button[aria-current="page"]{background:var(--brand);color:#fff}
+h1{font-family:var(--font-display);font-size:24px;line-height:1.2;color:var(--brand);margin:0 0 6px}
+h2{font-family:var(--font-display);font-size:18px;line-height:1.25;color:var(--brand);margin:0 0 10px}
+.cap{font-size:13px;color:var(--muted);line-height:1.45}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:14px}
+.empty-cta{background:var(--paper);border:1.5px dashed var(--input-border);border-radius:var(--radius);padding:16px;margin-bottom:14px;display:flex;flex-direction:column;gap:10px}
+.hero{background:var(--brand);color:#fff;border-color:var(--brand)}
+.hero .lbl{font-size:12.5px;color:#DCE6F2;font-weight:600}
+.hero .big{font-size:32px;font-weight:800;line-height:1.1;margin:4px 0}
+.hero .sub{font-size:13.5px;color:var(--mint-on-dark);font-weight:600}
+.age-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+@media(min-width:560px){.age-grid{grid-template-columns:repeat(4,1fr)}}
+.age-box{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:10px}
+.age-box .kl{font-size:12.5px;color:#DCE6F2}
+.age-box .kv{font-size:17px;font-weight:800;color:#fff;margin-top:2px}
+.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(min-width:640px){.kpi-grid{grid-template-columns:repeat(4,1fr)}}
+.kpi{background:var(--auto-bg);border:1px solid var(--hairline);border-radius:12px;padding:12px}
+.kpi.main{background:var(--paper);border:2px solid var(--accent)}
+.kpi .lbl{font-size:12px;color:var(--muted);font-weight:600}
+.kpi .big{font-size:21px;font-weight:800;color:var(--brand);margin-top:2px}
+.kpi.main .big{color:var(--good-ink)}
+.grid2{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:560px){.grid2{grid-template-columns:1fr 1fr}}
+.grid3{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:600px){.grid3{grid-template-columns:repeat(3,1fr)}}
+.field{display:block;margin-bottom:10px}
+.field:last-child{margin-bottom:0}
+.field .l{display:block;font-size:13.5px;font-weight:700;color:var(--brand);margin-bottom:4px}
+.inp-wrap{display:flex;align-items:center;background:var(--input-bg);border:1.5px solid var(--input-border);border-radius:var(--radius-sm);padding:0 12px;min-height:46px}
+.inp-wrap:focus-within{border-color:var(--accent);box-shadow:0 0 0 2px rgba(31,92,69,.18)}
+.inp-wrap .pre,.inp-wrap .suf{font-weight:700;color:var(--muted)}
+.inp-wrap .pre{margin-right:6px}
+.inp-wrap .suf{margin-left:6px}
+.inp-wrap input,.inp-wrap select{width:100%;border:0;background:transparent;font:inherit;color:var(--input-ink);outline:none;padding:10px 0;min-height:44px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 16px;border-radius:var(--radius-sm);border:1.5px solid var(--accent);background:var(--accent);color:#fff;font:inherit;font-weight:700;font-size:14px;cursor:pointer;text-decoration:none}
+.btn.sec{background:#fff;color:var(--brand);border-color:var(--line)}
+.btn.full{width:100%}
+.btn-row{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}
+@media(min-width:520px){.btn-row{grid-template-columns:1fr 1fr}}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.chip-btn{min-height:44px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--brand);font:inherit;font-size:13.5px;font-weight:700;cursor:pointer}
+.chip-btn[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.tag{display:inline-block;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:700;background:var(--auto-bg);color:var(--brand);white-space:nowrap}
+.tag.good{background:var(--good-bg);color:var(--good-ink)}
+.tag.warn{background:var(--warn-bg);color:var(--warn-ink)}
+.tag.alert{background:var(--alert-bg);color:var(--alert-ink)}
+.row-card{padding:11px 0;border-bottom:1px solid var(--hairline);display:flex;justify-content:space-between;align-items:flex-start;gap:8px;flex-wrap:wrap}
+.row-card > div:first-child{flex:1 1 240px;min-width:0}
+.row-card:last-child{border-bottom:0}
+.act-grp{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.chase-box{background:var(--paper);border:1.5px solid var(--line);border-radius:var(--radius-sm);padding:12px;margin-top:10px}
+.chase-txt{width:100%;min-height:130px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px;font:inherit;font-size:14px;color:var(--ink);resize:vertical}
+select.tbl-sel{min-height:44px;padding:6px 8px;border:1px solid var(--input-border);border-radius:8px;background:var(--input-bg);font:inherit;font-size:13.5px;color:var(--input-ink);max-width:100%}
+.chk-lbl{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;cursor:pointer}
+.chk-lbl input{width:20px;height:20px;accent-color:var(--accent)}
+.toggle-lbl{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:14px;font-weight:600;color:var(--brand);cursor:pointer}
+.toggle-lbl input{width:20px;height:20px;accent-color:var(--accent)}
+.draft-row{padding:10px 8px;border-bottom:1px solid var(--hairline);display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:8px;align-items:center}
+.draft-row:last-child{border-bottom:0}
+.draft-row.skip-row{background:var(--auto-bg)}
+.draft-row.skip-row .draft-amt{text-decoration:line-through;color:var(--muted)!important}
+.draft-row.unpicked{background:var(--warn-bg)}
+.draft-meta{min-width:0}
+.draft-date{white-space:nowrap;font-weight:700}
+.draft-desc{font-size:13px;color:var(--muted);line-height:1.35;overflow-wrap:anywhere}
+.draft-amt{font-weight:800;white-space:nowrap;text-align:right}
+.draft-controls{grid-column:1 / -1;display:grid;grid-template-columns:1fr;gap:6px}
+@media(min-width:600px){.draft-controls{grid-template-columns:1fr 1fr}}
+.draft-controls select.tbl-sel{width:100%}
+.badread{display:inline-flex;align-items:center;min-height:44px;color:var(--accent);font-weight:700;font-size:14px}
+.note-box{background:var(--paper);border-left:4px solid var(--accent);padding:10px 12px;border-radius:0 10px 10px 0;font-size:13.5px;margin:10px 0}
+.shell-foot{margin-top:16px;padding-top:12px;border-top:1px solid var(--hairline);font-size:12.5px;color:var(--muted);line-height:1.45}
+.pane{display:none}
+.pane.active{display:block}
+.toast{position:fixed;left:12px;right:12px;bottom:20px;max-width:520px;margin:0 auto;transform:translateY(90px);opacity:0;visibility:hidden;pointer-events:none;background:var(--brand);color:#fff;padding:10px 14px;border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 8px 24px rgba(0,0,0,.22);transition:transform .2s ease,opacity .2s ease;z-index:60;font-size:14px}
+.toast.on{transform:translateY(0);opacity:1;visibility:visible;pointer-events:auto}
+.toast button{min-height:44px;padding:0 14px;border-radius:8px;border:0;background:var(--mint-on-dark);color:var(--brand);font-weight:800;cursor:pointer;align-items:center;justify-content:center}
+.print-only{display:none}
+@media print{
+  body{background:#fff;color:#111;font-size:10.5pt}
+  .shell{max-width:100%;margin:0;padding:0;border:0;box-shadow:none;background:#fff}
+  .no-print,.topbar,.tabbar,.banner,.toast,.pane{display:none!important}
+  #printSummary{display:block!important}
+  #printSummary h1{font-size:18pt;margin:0 0 6px;color:#1B2A40}
+  #printSummary table{width:100%;border-collapse:collapse;font-size:9.5pt;margin-top:8px}
+  #printSummary th,#printSummary td{border-bottom:1px solid #ccc;padding:5px 4px;text-align:left}
+  #printSummary td.r,#printSummary th.r{text-align:right}
+}
+</style>
+<style id="fa-name-title">.wm-t b,.wm-text b{font-size:19px;font-weight:800;line-height:1.12;letter-spacing:-.2px;white-space:normal}</style>
+</head>
+<body>
+<div class="shell">
+  <div class="topbar no-print">
+    <div class="wm">
+      <div class="mark" aria-hidden="true">fa</div>
+      <div class="wm-t"><b>Freelancer Money System</b><span>Who Owes Me · CSV Import · Profit &amp; Tax</span></div>
+    </div>
+    <button type="button" class="btn sec" id="topSampleBtn" style="min-height:44px;padding:0 14px;font-size:13.5px;flex:none;white-space:nowrap">Try sample</button>
+  </div>
+
+  <div class="banner no-print" id="sampleBanner" data-sample-banner="1" style="display:none">
+    <span><b>Sample books</b> — workbook example clients &amp; invoices, not yours</span>
+    <button type="button" id="clearSampleBtn">Clear sample</button>
+  </div>
+
+  <nav class="tabbar no-print" aria-label="Main navigation">
+    <button type="button" data-tab="owe" aria-current="page"><span>Who Owes Me</span></button>
+    <button type="button" data-tab="csv"><span>Import CSV</span></button>
+    <button type="button" data-tab="tax"><span>Profit &amp; Tax</span></button>
+    <button type="button" data-tab="export"><span>Export</span></button>
+  </nav>
+
+  <!-- TAB 1: WHO OWES ME + CHASE EMAILS + CLIENT PAYMENT-SPEED TRACKER -->
+  <section class="pane active" id="pane-owe" aria-label="Who Owes Me">
+    <h1>Who Owes Me</h1>
+    <p class="cap" style="margin:0 0 12px">Open every Monday: unpaid invoices ranked oldest-and-largest first, 1-tap Polite/Firm/Final chase emails, and client payment-speed tracking.</p>
+
+    <div class="empty-cta" id="emptyHeroCta" style="display:none">
+      <div><b>See the whole system in one tap:</b> load the worked example ($5,900 unpaid across 4 open invoices, 6 paid invoices, expenses, and 2026 mileage), or add your first invoice below.</div>
+      <button type="button" class="btn full" id="primarySampleBtn">Try sample books</button>
+    </div>
+
+    <div class="card hero">
+      <div class="lbl">Total unpaid invoices</div>
+      <div class="big num" id="outUnpaid">$0.00</div>
+      <div class="sub num" id="outOverdueSub">$0.00 overdue · $0.00 collected YTD</div>
+      <div class="age-grid">
+        <div class="age-box"><div class="kl">Current (not due)</div><div class="kv num" id="aCur">$0</div></div>
+        <div class="age-box"><div class="kl">1–14 days late</div><div class="kv num" id="a14">$0</div></div>
+        <div class="age-box"><div class="kl">15–30 days late</div><div class="kv num" id="a30">$0</div></div>
+        <div class="age-box"><div class="kl">30+ days late</div><div class="kv num" id="a30p">$0</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Weekly chase queue</h2>
+      <div id="chaseList"></div>
+      <div id="chaseDrawer" class="chase-box" style="display:none">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px">
+          <b id="chaseDrawerTitle">Chase email</b>
+          <div class="chips" style="margin:0">
+            <button type="button" class="chip-btn" data-ctone="polite" aria-pressed="true">Polite</button>
+            <button type="button" class="chip-btn" data-ctone="firm" aria-pressed="false">Firm</button>
+            <button type="button" class="chip-btn" data-ctone="final" aria-pressed="false">Final</button>
+          </div>
+        </div>
+        <textarea class="chase-txt" id="chaseText" aria-label="Chase email draft"></textarea>
+        <div class="btn-row">
+          <button type="button" class="btn" id="copyChaseBtn">Copy email text</button>
+          <button type="button" class="btn sec" id="icsChaseBtn">Follow-up reminder (.ics)</button>
+        </div>
+        <button type="button" class="btn sec full" id="closeChaseBtn" style="margin-top:8px">Close email draft</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Client payment-speed tracker</h2>
+      <p class="cap" style="margin:0 0 8px">Calculated locally from your paid invoice history so you spot slow payers before quoting the next project.</p>
+      <div id="speedList"></div>
+    </div>
+
+    <div class="card">
+      <h2>Log an invoice</h2>
+      <form id="invForm">
+        <div class="grid2">
+          <label class="field"><span class="l">Invoice #</span><span class="inp-wrap"><input id="iNum" placeholder="INV-011" required></span></label>
+          <label class="field"><span class="l">Client</span><span class="inp-wrap"><input id="iClient" placeholder="e.g. Harbor Studio" required></span></label>
+          <label class="field"><span class="l">Project / description</span><span class="inp-wrap"><input id="iDesc" placeholder="Design sprint" required></span></label>
+          <label class="field"><span class="l">Billed amount ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="iAmt" inputmode="decimal" placeholder="1200" required></span></label>
+          <label class="field"><span class="l">Date issued</span><span class="inp-wrap"><input type="date" id="iIss" required></span></label>
+          <label class="field"><span class="l">Due date</span><span class="inp-wrap"><input type="date" id="iDue" required></span></label>
+        </div>
+        <button type="submit" class="btn full" style="margin-top:10px">Add invoice</button>
+      </form>
+      <div id="paidInvWrap" style="margin-top:12px"></div>
+    </div>
+  </section>
+
+  <!-- TAB 2: HARDENED BANK / CARD CSV IMPORT -->
+  <section class="pane" id="pane-csv" aria-label="Import Bank CSV">
+    <h1>Import Bank / Card CSV</h1>
+    <p class="cap" style="margin:0 0 12px">100% offline. Handles accounting parentheses <code>($125.00)</code>, trailing minus <code>125-</code>, split Debit/Credit columns, credit-card sign-flip, and optional open-invoice linking.</p>
+
+    <div class="card">
+      <h2><span class="h-num">1.</span> Choose a CSV file</h2>
+      <div class="btn-row" style="margin-top:0">
+        <button type="button" class="btn full" id="csvPickBtn">Choose bank / card CSV</button>
+        <button type="button" class="btn sec full" id="loadSampleCsvBtn">Load sample CSV draft</button>
+      </div>
+      <input type="file" id="csvFile" accept=".csv,text/csv" style="display:none">
+      <div id="mapBox" style="display:none;margin-top:12px">
+        <div class="grid3">
+          <label class="field"><span class="l">Date column</span><span class="inp-wrap"><select id="mapDate"></select></span></label>
+          <label class="field"><span class="l">Description column</span><span class="inp-wrap"><select id="mapDesc"></select></span></label>
+          <label class="field"><span class="l">Amount column</span><span class="inp-wrap"><select id="mapAmt"></select></span></label>
+        </div>
+        <div class="grid2" style="margin-top:8px">
+          <label class="field"><span class="l">Optional Debit column</span><span class="inp-wrap"><select id="mapDebit"></select></span></label>
+          <label class="field"><span class="l">Optional Credit column</span><span class="inp-wrap"><select id="mapCredit"></select></span></label>
+        </div>
+        <label class="toggle-lbl" style="margin-top:6px"><input type="checkbox" id="ccFlipChk"> Credit-card CSV (positive numbers are expenses)</label>
+        <button type="button" class="btn sec" id="reMapBtn" style="margin-top:8px">Re-read with this mapping</button>
+      </div>
+    </div>
+
+    <div class="card" id="draftCard" style="display:none">
+      <h2><span class="h-num">2.</span> Confirm draft before saving</h2>
+      <p class="cap" id="draftSummary" style="color:var(--warn-ink);font-weight:700;margin:0 0 8px"></p>
+      <div id="draftList" role="list" aria-label="CSV draft rows"></div>
+      <div class="btn-row">
+        <button type="button" class="btn" id="confirmDraftBtn">Confirm &amp; save checked rows</button>
+        <button type="button" class="btn sec" id="discardDraftBtn">Discard draft</button>
+      </div>
+      <p style="margin:8px 0 0"><a class="badread" href="mailto:filedawayco@gmail.com?subject=Freelancer%20Companion%20%E2%80%94%20CSV%20bad%20read&body=Bank%20or%20card%3A%0AColumn%20headers%20only%20(no%20account%20numbers)%3A%0AWhat%20looked%20wrong%3A">Report a bad read</a></p>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px">
+        <h2 style="margin:0">Smart category rules (on-device)</h2>
+        <button type="button" class="btn sec" id="resetDictBtn" style="min-height:44px;padding:0 12px;font-size:13.5px">Reset rules</button>
+      </div>
+      <p class="cap" style="margin:0 0 6px">Word-boundary matching strips bank noise (<code>ACH</code>, <code>DEPOSIT</code>, <code>PAYMENT</code>, <code>FIRST</code>, <code>NATIONAL</code>) so fixing one deposit never poisons unrelated rows.</p>
+      <div id="dictBox" class="cap"></div>
+    </div>
+  </section>
+
+  <!-- TAB 3: PROFIT, 2026 SPLIT MILEAGE & TAX SET-ASIDE -->
+  <section class="pane" id="pane-tax" aria-label="Profit and Tax Set-Aside">
+    <h1>Profit, <span class="h-num">2026</span> Mileage &amp; Tax Set-Aside</h1>
+    <p class="cap" style="margin:0 0 12px">Received cash minus business expenses and 2026 split IRS mileage (72.5¢/mi Jan–Jun, Notice 2026-10; 76¢/mi Jul–Dec, Announcement 2026-11, IRS.gov).</p>
+
+    <div class="card">
+      <div class="kpi-grid">
+        <div class="kpi"><div class="lbl">Received YTD</div><div class="big num" id="tRec">$0.00</div></div>
+        <div class="kpi"><div class="lbl">Expenses + mileage</div><div class="big num" id="tExp">$0.00</div></div>
+        <div class="kpi"><div class="lbl">Est. profit</div><div class="big num" id="tProf">$0.00</div></div>
+        <div class="kpi main"><div class="lbl" id="tSetLbl">Tax set-aside (25%)</div><div class="big num" id="tSet">$0.00</div></div>
+      </div>
+      <div class="grid2" style="margin-top:12px">
+        <label class="field"><span class="l">Your tax set-aside rate (%)</span><span class="inp-wrap"><input id="taxPctInp" inputmode="decimal" value="25"><span class="suf">%</span></span></label>
+        <div class="note-box num" style="margin:0"><b>2026 Quarterly Due Dates:</b><br>Apr 15 · Jun 15 · Sep 15, 2026 · Jan 15, 2027</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Saved business expenses</h2>
+      <form id="expForm" style="margin-bottom:10px">
+        <div class="grid3">
+          <label class="field"><span class="l">Date</span><span class="inp-wrap"><input type="date" id="eDate" required></span></label>
+          <label class="field"><span class="l">Vendor / description</span><span class="inp-wrap"><input id="eDesc" placeholder="e.g. Adobe CC" required></span></label>
+          <label class="field"><span class="l">Amount ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="eAmt" inputmode="decimal" placeholder="54.99" required></span></label>
+        </div>
+        <div class="grid2">
+          <label class="field"><span class="l">Category</span><span class="inp-wrap"><select id="eCat"></select></span></label>
+          <div class="field" style="display:flex;align-items:flex-end"><button type="submit" class="btn full">Add expense</button></div>
+        </div>
+      </form>
+      <div id="expList"></div>
+    </div>
+
+    <div class="card">
+      <h2><span class="h-num">2026</span> Split IRS mileage log</h2>
+      <form id="miForm" style="margin-bottom:10px">
+        <div class="grid3">
+          <label class="field"><span class="l">Trip date</span><span class="inp-wrap"><input type="date" id="mDate" required></span></label>
+          <label class="field"><span class="l">Miles</span><span class="inp-wrap"><input id="mMiles" inputmode="decimal" placeholder="34" required></span></label>
+          <label class="field"><span class="l">Purpose</span><span class="inp-wrap"><input id="mPurp" placeholder="Client shoot — downtown" required></span></label>
+        </div>
+        <button type="submit" class="btn full">Add mileage trip</button>
+      </form>
+      <div id="miList"></div>
+    </div>
+  </section>
+
+  <!-- TAB 4: EXPORT, ECOSYSTEM BRIDGE & PRINT -->
+  <section class="pane" id="pane-export" aria-label="Export and Bridge">
+    <h1>Export, Bridge &amp; Print</h1>
+    <p class="cap" style="margin:0 0 12px">Export formula-safe CSVs in workbook column order, import won deals from UGC Creator Kit, or send received profit into our 1099 Quarterly Tax Planner.</p>
+
+    <div class="card">
+      <h2>Workbook CSV &amp; <span class="h-num">1</span>-page print</h2>
+      <div class="btn-row">
+        <button type="button" class="btn" id="expInvCsvBtn">Export Invoices CSV</button>
+        <button type="button" class="btn sec" id="expExpCsvBtn">Export Expenses CSV</button>
+      </div>
+      <div class="btn-row">
+        <button type="button" class="btn sec" id="expMiCsvBtn">Export Mileage CSV</button>
+        <button type="button" class="btn sec" id="printBtn">Print 1-page summary</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Ecosystem bridge &amp; backup</h2>
+      <div class="btn-row">
+        <button type="button" class="btn" id="bridgeOutBtn">Export to 1099 Tax Planner (.json)</button>
+        <button type="button" class="btn sec" id="bridgeInPickBtn">Import UGC Creator Kit (.json)</button>
+      </div>
+      <input type="file" id="bridgeInFile" accept=".json,application/json" style="display:none">
+      <div id="bridgeInDraft" style="display:none;margin-top:10px"></div>
+      <div class="btn-row">
+        <button type="button" class="btn sec" id="backupBtn">Backup all data (.json)</button>
+        <button type="button" class="btn sec" id="restorePickBtn">Restore backup (.json)</button>
+      </div>
+      <input type="file" id="restoreFile" accept=".json,application/json" style="display:none">
+      <p class="cap" style="margin:10px 0 0">Sample rows are excluded automatically from CSV and 1099 Tax bridge exports.</p>
+    </div>
+  </section>
+
+  <footer class="shell-foot no-print">Planning and record-keeping tool — not tax, legal, or accounting advice. 2026 IRS rules ($2,000 1099-NEC, 72.5¢/76¢ split mileage, IRS.gov) verified Nov 24, 2026. Support: filedawayco@gmail.com</footer>
+
+  <section id="printSummary" class="print-only"></section>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><span id="toastMsg"></span><button type="button" id="toastUndo" style="display:none">Undo</button></div>
+
+<script>
+(function(){
+"use strict";
+var STORE_KEY = "fac_freelancer_v2";
+var CATS = ["Software","Equipment & Gear","Supplies","Marketing","Travel","Subcontractors","Office & Utilities","Education","Bank & Platform Fees","Other Expense","Uncategorized"];
+var STOPWORDS = { ACH:1, DEPOSIT:1, PAYMENT:1, DEBIT:1, CREDIT:1, CARD:1, POS:1, PURCHASE:1, ONLINE:1, TRANSFER:1, WIRE:1, FIRST:1, NATIONAL:1, BANK:1, INC:1, LLC:1, CORP:1, CO:1, THE:1, OF:1, AND:1, FOR:1, FROM:1, TO:1, CHECK:1, AUTOPAY:1, WITHDRAWAL:1, VISA:1, MASTERCARD:1, AMEX:1, SQ:1, PPD:1, CCD:1, WEB:1, CLIENT:1 };
+var STARTER_RULES = {
+  "ADOBE":"Software","FIGMA":"Software","NOTION":"Software","CANVA":"Software","ZOOM":"Software","GOOGLE WORKSPACE":"Software","DROPBOX":"Software",
+  "APPLE":"Equipment & Gear","B&H":"Equipment & Gear","BEST BUY":"Equipment & Gear",
+  "AMAZON":"Supplies","AMZN":"Supplies","STAPLES":"Supplies",
+  "META ADS":"Marketing","GOOGLE ADS":"Marketing","MAILCHIMP":"Marketing",
+  "UBER":"Travel","LYFT":"Travel","DELTA":"Travel","HOTEL":"Travel",
+  "COMCAST":"Office & Utilities","VERIZON":"Office & Utilities","WEWORK":"Office & Utilities",
+  "STRIPE FEE":"Bank & Platform Fees","PAYPAL FEE":"Bank & Platform Fees","WISE":"Bank & Platform Fees"
+};
+var SAMPLE_CSV = "Date,Description,Amount\n" +
+  "2026-10-08,ACH DEPOSIT NORTHWIND OUTFITTERS,2100.00\n" +
+  "2026-10-12,ADOBE CREATIVE CLOUD,($54.99)\n" +
+  "2026-10-15,FIGMA PROFESSIONAL,15.00-\n" +
+  "2026-10-20,FIRST NATIONAL BANK FEE,-12.00\n" +
+  "2026-10-24,AMAZON MKTPLACE GEAR,-148.50\n";
+
+var rawRows = [], headers = [], draft = [], draftSkipped = 0, draftIsSample = false, pendingBridge = null;
+var activeChaseId = null, activeChaseTone = "polite";
+var undoFn = null, toastT = null;
+
+function clone(o){ return JSON.parse(JSON.stringify(o)); }
+function esc(s){ return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+function localISO(d){ return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
+function todayISO(){ return localISO(new Date()); }
+function round2(n){ return Math.round((Number(n) + 1e-12) * 100) / 100; }
+function fmt$(n){ var v = round2(n); return (v < 0 ? "−" : "") + "$" + Math.abs(v).toLocaleString("en-US", { minimumFractionDigits:2, maximumFractionDigits:2 }); }
+function fmt$0(n){ var v = Number(n) || 0; return (v < 0 ? "−" : "") + "$" + Math.round(Math.abs(v)).toLocaleString("en-US"); }
+function csvCell(v){ v = String(v == null ? "" : v); return /[",\n\r]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }
+function csvText(v){ v = String(v == null ? "" : v); if (/^\s*[=+\-@]/.test(v) || /^[\t\r]/.test(v)) v = "'" + v; return csvCell(v); }
+function daysBetween(isoA, isoB){
+  var a = new Date(isoA + "T00:00:00"), b = new Date(isoB + "T00:00:00");
+  if (isNaN(a) || isNaN(b)) return 0;
+  return Math.round((b - a) / 86400000);
+}
+function icsEsc(s){ return String(s || "").replace(/\\/g, "\\\\").replace(/,/g, "\\,").replace(/;/g, "\\;").replace(/\r?\n/g, "\\n"); }
+
+function copyTextSafe(text, cb){
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function(){ cb(true); }).catch(function(){ fallbackCopy(text, cb); });
+  } else { fallbackCopy(text, cb); }
+}
+function fallbackCopy(text, cb){
+  try {
+    var ta = document.createElement("textarea");
+    ta.value = text; ta.setAttribute("readonly", "");
+    ta.style.position = "fixed"; ta.style.left = "-9999px";
+    document.body.appendChild(ta); ta.select();
+    var ok = document.execCommand("copy"); ta.remove(); cb(!!ok);
+  } catch(e){ cb(false); }
+}
+
+/* ---------- Strict Accounting Money Parser ---------- */
+function parseMoneyStrict(raw){
+  if (raw == null) return null;
+  var s = String(raw).trim();
+  if (!s) return null;
+  var neg = false;
+  if (/^\(.*\)$/.test(s)) { neg = true; s = s.slice(1, -1).trim(); }
+  if (s.endsWith("-")) { neg = true; s = s.slice(0, -1).trim(); }
+  if (s.startsWith("$")) s = s.slice(1).trim();
+  if (s.startsWith("-")) { neg = true; s = s.slice(1).trim(); }
+  if (s.startsWith("+")) s = s.slice(1).trim();
+  s = s.replace(/^\$/, "").trim();
+  if (!/^(?:(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d{1,2})?|\.\d{1,2})$/.test(s)) return null;
+  var v = parseFloat(s.replace(/,/g, ""));
+  if (!isFinite(v) || v > 1e9) return null;
+  return neg ? -v : v;
+}
+
+/* ---------- Z's Word-Boundary Stopword-Stripped Weighted-Token Matcher ---------- */
+function extractKeyTokens(desc){
+  var raw = String(desc || "").toUpperCase().replace(/[^A-Z0-9& ]+/g, " ").split(/\s+/).filter(Boolean);
+  var kept = raw.filter(function(tok){
+    if (/^\d+$/.test(tok) || tok.length <= 1 || STOPWORDS[tok]) return false;
+    return true;
+  });
+  return kept.slice(0, 2).join(" ");
+}
+function wordMatch(haystackUpper, needleUpper){
+  var escN = needleUpper.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return new RegExp("(^|[^A-Z0-9])" + escN + "([^A-Z0-9]|$)").test(haystackUpper);
+}
+function suggestCategory(desc, rules){
+  var u = String(desc || "").toUpperCase();
+  var keys = Object.keys(rules || {}).sort(function(a, b){ return b.length - a.length; });
+  for (var i = 0; i < keys.length; i++){
+    var k = keys[i].toUpperCase();
+    if (k && wordMatch(u, k)) return { cat:rules[keys[i]], guessed:true };
+  }
+  return { cat:"Uncategorized", guessed:false };
+}
+
+function parseCSV(text){
+  var rows = [], row = [], cur = "", inQ = false;
+  for (var i = 0; i < text.length; i++){
+    var ch = text[i];
+    if (inQ) {
+      if (ch === '"' && text[i + 1] === '"') { cur += '"'; i++; }
+      else if (ch === '"') inQ = false;
+      else cur += ch;
+    } else {
+      if (ch === '"') inQ = true;
+      else if (ch === ",") { row.push(cur); cur = ""; }
+      else if (ch === "\n" || ch === "\r") {
+        if (ch === "\r" && text[i + 1] === "\n") i++;
+        row.push(cur); if (row.some(function(c){ return c.trim() !== ""; })) rows.push(row);
+        row = []; cur = "";
+      } else cur += ch;
+    }
+  }
+  if (cur.length || row.length) { row.push(cur); if (row.some(function(c){ return c.trim() !== ""; })) rows.push(row); }
+  return rows;
+}
+function detectCol(lh, hints){
+  for (var i = 0; i < hints.length; i++){
+    for (var j = 0; j < lh.length; j++){ if (lh[j].indexOf(hints[i]) >= 0) return j; }
+  }
+  return -1;
+}
+function mileageRateForDate(iso){
+  var s = String(iso || "");
+  if (s >= "2026-01-01" && s <= "2026-06-30") return { rate:0.725, half:"h1", basis:"2026 H1 (Notice 2026-10)" };
+  if (s >= "2026-07-01" && s <= "2026-12-31") return { rate:0.760, half:"h2", basis:"2026 H2 (Announcement 2026-11)" };
+  return { rate:0.700, half:"other", basis:"Non-2026 standard ($0.70)" };
+}
+
+function parseBankCSVRows(rows, map, existingExps, openInvs, rules, ccFlip){
+  var out = [], skipped = 0;
+  var usingSplit = (map.debit >= 0 || map.credit >= 0);
+  rows.slice(1).forEach(function(r){
+    var amt = null;
+    if (usingSplit) {
+      var dVal = map.debit >= 0 ? parseMoneyStrict(r[map.debit]) : null;
+      var cVal = map.credit >= 0 ? parseMoneyStrict(r[map.credit]) : null;
+      if (dVal != null && Math.abs(dVal) > 0) amt = -Math.abs(dVal);
+      else if (cVal != null && Math.abs(cVal) > 0) amt = Math.abs(cVal);
+    } else if (map.amt >= 0) {
+      amt = parseMoneyStrict(r[map.amt]);
+      if (amt != null && ccFlip) amt = -amt;
+    }
+    if (amt === null || amt === 0) {
+      if (r.some(function(c){ return String(c || "").trim() !== ""; })) skipped++;
+      return;
+    }
+    var date = map.date >= 0 ? String(r[map.date] || "").trim() : todayISO();
+    var desc = map.desc >= 0 ? String(r[map.desc] || "").trim() : "";
+    var isDeposit = amt > 0;
+    var absAmt = round2(Math.abs(amt));
+    var sug = isDeposit ? { cat:"Client Payment", guessed:true } : suggestCategory(desc, rules);
+    var dup = existingExps.some(function(x){
+      return x.date === date && Math.abs(x.amount - absAmt) < 0.01 && x.desc.toLowerCase() === desc.toLowerCase();
+    });
+    // Strict 3-pass deposit auto-matcher: (1) client + exact balance, (2) exact balance, (3) client where deposit <= remaining balance
+    var matchInvId = "";
+    if (isDeposit && openInvs && openInvs.length) {
+      var uDesc = desc.toUpperCase();
+      var candidates = openInvs.filter(function(iv){ return round2(iv.billed - iv.paid) > 0.01; });
+      var exactClient = candidates.find(function(iv){
+        var rem = round2(iv.billed - iv.paid);
+        return Math.abs(rem - absAmt) < 0.01 && wordMatch(uDesc, iv.client.toUpperCase());
+      });
+      var exactAmt = !exactClient && candidates.find(function(iv){
+        return Math.abs(round2(iv.billed - iv.paid) - absAmt) < 0.01;
+      });
+      var partialClient = !exactClient && !exactAmt && candidates.find(function(iv){
+        var rem = round2(iv.billed - iv.paid);
+        return absAmt <= rem + 0.01 && wordMatch(uDesc, iv.client.toUpperCase());
+      });
+      var picked = exactClient || exactAmt || partialClient;
+      if (picked) matchInvId = picked.id;
+    }
+    out.push({ date:date, desc:desc, amount:absAmt, isDeposit:isDeposit, cat:sug.cat, linkInvId:matchInvId, dup:dup, checked:!dup });
+  });
+  return { rows:out, skipped:skipped };
+}
+
+/* ---------- Core Ageing, Client Speed & Tax Engine ---------- */
+function computeFreelancer(st, asOfISO){
+  var ref = asOfISO || todayISO();
+  var unpaidTotal = 0, overdueTotal = 0, receivedTotal = 0;
+  var buckets = { cur:0, d14:0, d30:0, d30p:0 };
+  var chase = [];
+  var clientStats = {};
+
+  st.invoices.forEach(function(inv){
+    var billed = Math.max(0, round2(inv.billed));
+    var paid = Math.max(0, round2(inv.paid));
+    var rem = round2(Math.max(0, billed - paid));
+    receivedTotal = round2(receivedTotal + paid);
+
+    // Client payment speed (from invoices with a paidDate)
+    if (inv.paidDate && inv.issued && paid > 0) {
+      var daysToPay = Math.max(0, daysBetween(inv.issued, inv.paidDate));
+      var daysVsDue = inv.due ? daysBetween(inv.due, inv.paidDate) : 0;
+      if (!clientStats[inv.client]) clientStats[inv.client] = { client:inv.client, count:0, sumDays:0, sumLate:0 };
+      clientStats[inv.client].count++;
+      clientStats[inv.client].sumDays += daysToPay;
+      clientStats[inv.client].sumLate += Math.max(0, daysVsDue);
+    }
+
+    if (rem > 0.005) {
+      unpaidTotal = round2(unpaidTotal + rem);
+      var late = daysBetween(inv.due, ref);
+      if (late <= 0) buckets.cur = round2(buckets.cur + rem);
+      else {
+        overdueTotal = round2(overdueTotal + rem);
+        if (late <= 14) buckets.d14 = round2(buckets.d14 + rem);
+        else if (late <= 30) buckets.d30 = round2(buckets.d30 + rem);
+        else buckets.d30p = round2(buckets.d30p + rem);
+      }
+      chase.push({ id:inv.id, num:inv.num, client:inv.client, desc:inv.desc, billed:billed, paid:paid, rem:rem, due:inv.due, late:late, sample:!!inv.sample });
+    }
+  });
+
+  // Sort chase queue: most overdue first, then largest balance
+  chase.sort(function(a, b){ return b.late !== a.late ? b.late - a.late : b.rem - a.rem; });
+
+  var speeds = Object.keys(clientStats).sort().map(function(c){
+    var s = clientStats[c];
+    var avgDays = Math.round(s.sumDays / s.count);
+    var avgLate = Math.round(s.sumLate / s.count);
+    return { client:c, count:s.count, avgDays:avgDays, avgLate:avgLate, label:"Avg " + avgDays + "d · " + (avgLate > 0 ? (avgLate + "d late") : "on time") };
+  });
+
+  var expTotal = round2(st.expenses.reduce(function(a, e){ return a + Math.max(0, Number(e.amount) || 0); }, 0));
+  var miTotal = round2(st.trips.reduce(function(a, t){
+    var r = mileageRateForDate(t.date);
+    return a + round2(Math.max(0, Number(t.miles) || 0) * r.rate);
+  }, 0));
+  var profit = round2(receivedTotal - expTotal - miTotal);
+  var rawPct = (st.taxPct != null && st.taxPct !== "" && isFinite(Number(st.taxPct))) ? Number(st.taxPct) : 25;
+  var pct = Math.max(0, Math.min(60, rawPct));
+  var taxSetAside = round2(Math.max(0, profit) * (pct / 100));
+
+  return {
+    unpaidTotal:unpaidTotal, overdueTotal:overdueTotal, receivedTotal:receivedTotal,
+    buckets:buckets, chase:chase, speeds:speeds,
+    expTotal:expTotal, miTotal:miTotal, profit:profit, taxPct:pct, taxSetAside:taxSetAside
+  };
+}
+
+function buildChaseEmail(inv, tone){
+  var amt = fmt$(inv.rem);
+  var lateTxt = inv.late > 0 ? (" (" + inv.late + " day(s) past the " + inv.due + " due date)") : (" (due " + inv.due + ")");
+  if (tone === "final") {
+    return "Subject: Final notice — Invoice " + inv.num + " (" + amt + " past due)\n\nHi " + inv.client + " team,\n\nInvoice " + inv.num + " for " + inv.desc + " (" + amt + ")" + lateTxt + " remains unpaid after prior follow-ups. Please arrange payment within 5 business days or confirm the exact transfer date today so we can keep the account current.\n\nThank you,";
+  }
+  if (tone === "firm") {
+    return "Subject: Follow-up: Invoice " + inv.num + " — " + amt + " overdue\n\nHi " + inv.client + " team,\n\nChecking back in on Invoice " + inv.num + " (" + inv.desc + ") for " + amt + lateTxt + ". Could you confirm when payment is scheduled to go out this week?\n\nThanks,";
+  }
+  return "Subject: Friendly reminder: Invoice " + inv.num + " (" + amt + ")\n\nHi " + inv.client + " team,\n\nHope your week is going well! Quick note on Invoice " + inv.num + " for " + inv.desc + " (" + amt + ")" + lateTxt + ". Let me know if you need another copy of the invoice or anything else to process it.\n\nBest,";
+}
+
+function buildFollowUpICS(inv){
+  var d = new Date(); d.setDate(d.getDate() + 3);
+  var dtStart = localISO(d).replace(/-/g, "");
+  var stamp = new Date().toISOString().replace(/[-:]/g, "").slice(0, 15) + "Z";
+  return [
+    "BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//FiledAwayCo//Freelancer Money Companion//EN","CALSCALE:GREGORIAN",
+    "BEGIN:VEVENT","UID:fac-fms-chase-" + inv.id + "@filedawayco.local","DTSTAMP:" + stamp,
+    "DTSTART;VALUE=DATE:" + dtStart,
+    "SUMMARY:" + icsEsc("Follow up: " + inv.client + " " + inv.num + " (" + fmt$(inv.rem) + ")"),
+    "DESCRIPTION:" + icsEsc("Check payment status for " + inv.num + " (" + inv.desc + ") due " + inv.due + "."),
+    "END:VEVENT","END:VCALENDAR"
+  ].join("\r\n") + "\r\n";
+}
+
+function defaultState(){ return { sample:false, prevTaxPct:null, taxPct:25, invoices:[], expenses:[], trips:[], rules:clone(STARTER_RULES) }; }
+function sampleState(){
+  // Matches Freelancer-Money-System.xlsx EXAMPLE tabs to the exact dollar!
+  var st = defaultState();
+  st.sample = true;
+  st.invoices = [
+    { id:"s-inv1", num:"INV-001", client:"Brightpath Dental", desc:"Website refresh — phase 1", issued:"2026-01-12", due:"2026-01-27", billed:1800, paid:1800, paidDate:"2026-01-26", sample:true },
+    { id:"s-inv2", num:"INV-002", client:"Northwind Outfitters", desc:"Spring catalogue design", issued:"2026-02-03", due:"2026-03-05", billed:2400, paid:2400, paidDate:"2026-03-20", sample:true },
+    { id:"s-inv3", num:"INV-003", client:"Casa Verde Restaurants", desc:"Menu redesign", issued:"2026-03-09", due:"2026-03-23", billed:950,  paid:950,  paidDate:"2026-03-22", sample:true },
+    { id:"s-inv4", num:"INV-004", client:"Brightpath Dental", desc:"Social templates pack", issued:"2026-04-06", due:"2026-04-21", billed:1200, paid:1200, paidDate:"2026-04-20", sample:true },
+    { id:"s-inv5", num:"INV-005", client:"Northwind Outfitters", desc:"Summer lookbook (balance)", issued:"2026-05-04", due:"2026-06-03", billed:2600, paid:1300, paidDate:"2026-06-10", sample:true },
+    { id:"s-inv6", num:"INV-006", client:"Casa Verde Restaurants", desc:"Seasonal promo graphics", issued:"2026-06-01", due:"2026-06-15", billed:800,  paid:800,  paidDate:"2026-06-14", sample:true },
+    { id:"s-inv7", num:"INV-007", client:"Northwind Outfitters", desc:"Autumn campaign design", issued:"2026-09-07", due:"2026-10-07", billed:2100, paid:0,    paidDate:"",           sample:true },
+    { id:"s-inv8", num:"INV-008", client:"Brightpath Dental", desc:"Website refresh — phase 2", issued:"2026-10-19", due:"2026-11-03", billed:1650, paid:1650, paidDate:"2026-11-02", sample:true },
+    { id:"s-inv9", num:"INV-009", client:"Northwind Outfitters", desc:"Holiday campaign design", issued:"2026-10-26", due:"2026-11-25", billed:1900, paid:0,    paidDate:"",           sample:true },
+    { id:"s-inv10",num:"INV-010", client:"Casa Verde Restaurants", desc:"Loyalty card design", issued:"2026-11-09", due:"2026-11-23", billed:600,  paid:0,    paidDate:"",           sample:true }
+  ];
+  st.expenses = [
+    { id:"s-e1", date:"2026-02-10", desc:"Adobe Creative Cloud (annual)", cat:"Software", amount:659.88, sample:true },
+    { id:"s-e2", date:"2026-05-14", desc:"Figma Professional", cat:"Software", amount:180.00, sample:true },
+    { id:"s-e3", date:"2026-08-22", desc:"External SSD & studio supplies", cat:"Equipment & Gear", amount:288.61, sample:true }
+  ];
+  st.trips = [
+    { id:"s-m1", date:"2026-03-14", purpose:"Brightpath Dental photo shoot", miles:34, sample:true },
+    { id:"s-m2", date:"2026-09-18", purpose:"Casa Verde menu proof delivery", miles:44, sample:true }
+  ];
+  return st;
+}
+function loadState(){
+  try {
+    var raw = localStorage.getItem(STORE_KEY);
+    if (raw) {
+      var o = JSON.parse(raw);
+      if (o && Array.isArray(o.invoices)) return Object.assign(defaultState(), o, { rules:Object.assign(clone(STARTER_RULES), o.rules || {}) });
+    }
+  } catch(e){}
+  return defaultState();
+}
+var state = loadState();
+function persist(){ try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch(e){} }
+
+function download(name, text, mime){
+  var b = new Blob([text], { type:mime }), u = URL.createObjectURL(b), a = document.createElement("a");
+  a.href = u; a.download = name; document.body.appendChild(a); a.click();
+  setTimeout(function(){ URL.revokeObjectURL(u); a.remove(); }, 500);
+}
+function showToast(msg, fn){
+  var el = document.getElementById("toast");
+  document.getElementById("toastMsg").textContent = msg;
+  var ub = document.getElementById("toastUndo");
+  undoFn = fn || null;
+  ub.style.display = fn ? "inline-flex" : "none";
+  el.classList.add("on");
+  clearTimeout(toastT);
+  toastT = setTimeout(function(){ el.classList.remove("on"); undoFn = null; }, fn ? 7000 : 2800);
+}
+
+/* ---------- Renders ---------- */
+function renderBanner(){
+  var hasS = state.sample || state.invoices.some(function(x){return x.sample;}) || state.expenses.some(function(x){return x.sample;}) || state.trips.some(function(x){return x.sample;});
+  state.sample = hasS;
+  document.getElementById("sampleBanner").style.display = hasS ? "flex" : "none";
+  document.getElementById("topSampleBtn").style.display = hasS ? "none" : "inline-flex";
+  document.getElementById("emptyHeroCta").style.display = (!state.invoices.length && !state.expenses.length && !state.trips.length) ? "flex" : "none";
+}
+
+function renderDict(){
+  var keys = Object.keys(state.rules).sort();
+  var customKeys = keys.filter(function(k){ return STARTER_RULES[k] !== state.rules[k]; });
+  var html = '<div>' + keys.length + ' active rules (' + customKeys.length + ' learned by you).</div>';
+  if (customKeys.length) {
+    html += '<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px">' +
+      customKeys.map(function(k){
+        return '<button type="button" class="btn sec" data-rmrule="' + esc(k) + '" style="min-height:44px;padding:0 10px;font-size:12.5px">' + esc(k) + ' → ' + esc(state.rules[k]) + ' ×</button>';
+      }).join("") + '</div>';
+  }
+  document.getElementById("dictBox").innerHTML = html;
+}
+
+function renderDraft(skipped){
+  var card = document.getElementById("draftCard");
+  if (!draft.length) {
+    card.style.display = "none";
+    if (skipped > 0) showToast(skipped + " row(s) skipped — check your column mapping and tap Re-read.");
+    return;
+  }
+  card.style.display = "block";
+  var nDup = draft.filter(function(r){ return r.dup; }).length;
+  var notes = [];
+  if (draftIsSample) notes.push("Sample CSV draft.");
+  if (nDup) notes.push(nDup + " duplicate row(s) unchecked automatically.");
+  if (skipped) notes.push(skipped + " row(s) skipped (blank/zero).");
+  document.getElementById("draftSummary").textContent = notes.join(" ") || "Review every row below, link client deposits if desired, then tap Confirm & save.";
+
+  var openInvs = state.invoices.filter(function(iv){ return (iv.billed - iv.paid) > 0.005; });
+  document.getElementById("draftList").innerHTML = draft.map(function(r, i){
+    var cls = "draft-row" + (!r.checked ? " skip-row" : (!r.isDeposit && r.cat === "Uncategorized" ? " unpicked" : ""));
+    var signed = r.isDeposit ? r.amount : -r.amount;
+    var ctrlHtml = r.isDeposit
+      ? '<select class="tbl-sel" aria-label="Link deposit to open invoice" data-dlink="' + i + '"><option value="">Deposit — do not link to invoice</option>' +
+        openInvs.map(function(iv){ return '<option value="' + esc(iv.id) + '"' + (r.linkInvId === iv.id ? ' selected' : '') + '>Mark Paid: ' + esc(iv.num + ' (' + fmt$(iv.billed - iv.paid) + ') · ' + iv.client) + '</option>'; }).join("") + '</select>'
+      : '<select class="tbl-sel" aria-label="Category for ' + esc(r.desc) + '" data-dcat="' + i + '">' +
+        CATS.map(function(c){ return '<option' + (c === r.cat ? ' selected' : '') + '>' + esc(c) + '</option>'; }).join("") + '</select>';
+    return '<div class="' + cls + '" role="listitem">' +
+      '<label class="chk-lbl" aria-label="Keep ' + esc(r.desc) + '"><input type="checkbox" data-dchk="' + i + '"' + (r.checked ? ' checked' : '') + '></label>' +
+      '<div class="draft-meta"><div><span class="draft-date num">' + esc(r.date) + '</span>' + (r.dup ? ' <span class="tag warn">Duplicate</span>' : '') + (r.isDeposit ? ' <span class="tag good">Deposit</span>' : '') + '</div><div class="draft-desc">' + esc(r.desc) + '</div></div>' +
+      '<div class="draft-amt num" style="color:' + (signed < 0 ? 'var(--ink)' : 'var(--good-ink)') + '">' + fmt$(signed) + '</div>' +
+      '<div class="draft-controls">' + ctrlHtml + '</div></div>';
+  }).join("");
+}
+
+function renderAll(){
+  renderBanner();
+  renderDict();
+  var f = computeFreelancer(state);
+  document.getElementById("outUnpaid").textContent = fmt$(f.unpaidTotal);
+  document.getElementById("outOverdueSub").textContent = fmt$(f.overdueTotal) + " overdue · " + fmt$(f.receivedTotal) + " collected YTD";
+  document.getElementById("aCur").textContent = fmt$0(f.buckets.cur);
+  document.getElementById("a14").textContent = fmt$0(f.buckets.d14);
+  document.getElementById("a30").textContent = fmt$0(f.buckets.d30);
+  document.getElementById("a30p").textContent = fmt$0(f.buckets.d30p);
+
+  // Weekly Chase Queue
+  var cl = document.getElementById("chaseList");
+  if (!f.chase.length) {
+    cl.innerHTML = '<p class="cap" style="margin:0">No unpaid invoices. Add an invoice below or load the sample books.</p>';
+  } else {
+    cl.innerHTML = f.chase.map(function(iv){
+      var badge = iv.late > 30 ? '<span class="tag alert num">' + iv.late + 'd overdue</span>'
+        : (iv.late > 0 ? '<span class="tag warn num">' + iv.late + 'd overdue</span>' : '<span class="tag good">Current</span>');
+      return '<div class="row-card"><div><b>' + esc(iv.num) + ' · ' + esc(iv.client) + '</b> ' + badge + (iv.sample ? ' <span class="tag warn">Sample</span>' : '') +
+        '<div class="cap num">' + esc(iv.desc) + ' · Due ' + esc(iv.due) + ' · Balance <b>' + fmt$(iv.rem) + '</b></div></div>' +
+        '<div class="act-grp">' +
+        '<button type="button" class="btn sec" data-chase="' + esc(iv.id) + '" style="min-height:44px;padding:0 12px;font-size:13.5px">Chase email</button>' +
+        '<button type="button" class="btn" data-markpaid="' + esc(iv.id) + '" style="min-height:44px;padding:0 12px;font-size:13.5px">Mark paid</button>' +
+        '<button type="button" class="btn sec" data-delinv="' + esc(iv.id) + '" style="min-height:44px;padding:0 12px;font-size:13.5px">Delete</button></div></div>';
+    }).join("");
+  }
+
+  // Client Payment-Speed Tracker (Z)
+  var sp = document.getElementById("speedList");
+  if (!f.speeds.length) {
+    sp.innerHTML = '<p class="cap" style="margin:0">Mark invoices paid (with issue &amp; paid dates) to track each client\'s average payment speed.</p>';
+  } else {
+    sp.innerHTML = f.speeds.map(function(s){
+      return '<div class="row-card"><div><b>' + esc(s.client) + '</b><div class="cap num">' + s.count + ' paid invoice(s)</div></div>' +
+        '<span class="tag ' + (s.avgLate > 0 ? 'warn' : 'good') + ' num">' + esc(s.label) + '</span></div>';
+    }).join("");
+  }
+
+  // Paid invoices complete list (shows all paid invoices cleanly!)
+  var paidInvs = state.invoices.filter(function(iv){ return (iv.billed - iv.paid) <= 0.005; });
+  document.getElementById("paidInvWrap").innerHTML = paidInvs.length
+    ? ('<p class="cap" style="margin:0 0 6px"><b>Paid invoice history (' + paidInvs.length + ')</b></p>' +
+       paidInvs.slice().reverse().map(function(iv){
+         return '<div class="row-card"><div class="cap num"><b>' + esc(iv.num) + '</b> · ' + esc(iv.client) + ' · Paid ' + esc(iv.paidDate || "") + (iv.sample ? ' <span class="tag warn">Sample</span>' : '') + '</div>' +
+           '<b class="num" style="color:var(--good-ink)">' + fmt$(iv.paid) + '</b></div>';
+       }).join(""))
+    : '';
+
+  // Tab 3: Profit & Tax
+  document.getElementById("tRec").textContent = fmt$(f.receivedTotal);
+  document.getElementById("tExp").textContent = fmt$(f.expTotal + f.miTotal);
+  document.getElementById("tProf").textContent = fmt$(f.profit);
+  document.getElementById("tSetLbl").textContent = "Tax set-aside (" + f.taxPct + "%)";
+  document.getElementById("tSet").textContent = fmt$(f.taxSetAside);
+
+  var el = document.getElementById("expList");
+  if (!state.expenses.length) {
+    el.innerHTML = '<p class="cap" style="margin:0">No expenses logged yet.</p>';
+  } else {
+    el.innerHTML = state.expenses.slice().reverse().map(function(ex){
+      var idx = state.expenses.indexOf(ex);
+      return '<div class="row-card"><div><b class="num">' + esc(ex.date) + '</b> · ' + esc(ex.desc) + (ex.sample ? ' <span class="tag warn">Sample</span>' : '') +
+        '<div class="cap num"><b>' + fmt$(ex.amount) + '</b></div></div>' +
+        '<div class="act-grp"><select class="tbl-sel" aria-label="Category for ' + esc(ex.desc) + '" data-expcat="' + idx + '">' +
+        CATS.map(function(c){ return '<option' + (c === ex.cat ? ' selected' : '') + '>' + esc(c) + '</option>'; }).join("") + '</select>' +
+        '<button type="button" class="btn sec" data-delexp="' + idx + '" style="min-height:44px;padding:0 12px;font-size:13.5px">Delete</button></div></div>';
+    }).join("");
+  }
+
+  var ml = document.getElementById("miList");
+  if (!state.trips.length) {
+    ml.innerHTML = '<p class="cap" style="margin:0">No business trips logged yet.</p>';
+  } else {
+    ml.innerHTML = state.trips.slice().reverse().map(function(tr){
+      var idx = state.trips.indexOf(tr);
+      var r = mileageRateForDate(tr.date);
+      var amt = round2(tr.miles * r.rate);
+      return '<div class="row-card"><div><b class="num">' + esc(tr.date) + '</b> · ' + esc(tr.purpose) + (tr.sample ? ' <span class="tag warn">Sample</span>' : '') +
+        '<div class="cap num">' + tr.miles + ' mi × $' + r.rate.toFixed(3) + ' (' + esc(r.basis) + ')</div></div>' +
+        '<div class="act-grp"><b class="num" style="color:var(--good-ink)">' + fmt$(amt) + '</b>' +
+        '<button type="button" class="btn sec" data-delmi="' + idx + '" style="min-height:44px;padding:0 12px;font-size:13.5px">Delete</button></div></div>';
+    }).join("");
+  }
+
+  // 1-page Print Summary
+  var rInv = state.invoices.filter(function(x){ return !x.sample; });
+  var rExp = state.expenses.filter(function(x){ return !x.sample; });
+  var rTri = state.trips.filter(function(x){ return !x.sample; });
+  var isSPr = !rInv.length && !rExp.length && !rTri.length && (state.invoices.length > 0 || state.expenses.length > 0);
+  var pf = computeFreelancer(isSPr ? state : { invoices:rInv, expenses:rExp, trips:rTri, taxPct:state.taxPct });
+  document.getElementById("printSummary").innerHTML =
+    (isSPr ? '<div style="padding:8px 12px;border:1.5px solid #D9C79A;background:#FFF4D6;margin-bottom:10px;font-weight:700">SAMPLE DATA — workbook example, not your business records</div>' : '') +
+    '<h1>Freelancer Cash-Flow &amp; Tax Summary (<span class="h-num">' + todayISO() + '</span>)</h1>' +
+    '<p class="num">Collected: <b>' + fmt$(pf.receivedTotal) + '</b> · Unpaid: <b>' + fmt$(pf.unpaidTotal) + '</b> (Overdue: <b>' + fmt$(pf.overdueTotal) + '</b>) · Expenses: <b>' + fmt$(pf.expTotal) + '</b> · 2026 Mileage: <b>' + fmt$(pf.miTotal) + '</b> · Est. Profit: <b>' + fmt$(pf.profit) + '</b> · Tax Set-Aside (' + pf.taxPct + '%): <b>' + fmt$(pf.taxSetAside) + '</b></p>' +
+    '<table><thead><tr><th>Invoice</th><th>Client</th><th>Due</th><th class="r">Balance</th></tr></thead><tbody>' +
+    (pf.chase.length ? pf.chase.map(function(iv){
+      return '<tr><td class="num">' + esc(iv.num) + '</td><td>' + esc(iv.client) + '</td><td class="num">' + esc(iv.due) + '</td><td class="r num">' + fmt$(iv.rem) + '</td></tr>';
+    }).join("") : '<tr><td colspan="4">No unpaid invoices.</td></tr>') + '</tbody></table>' +
+    '<p style="margin-top:12px;font-size:9pt">Record-keeping &amp; planning summary — not tax or legal advice. 2026 IRS split mileage (Notice 2026-10 / Announcement 2026-11) verified Nov 24, 2026.</p>';
+}
+
+function populateMapping(){
+  ["mapDate","mapDesc","mapAmt","mapDebit","mapCredit"].forEach(function(id){
+    var sel = document.getElementById(id);
+    sel.innerHTML = (id === "mapAmt" || id === "mapDebit" || id === "mapCredit") ? '<option value="-1">— None —</option>' : '';
+    headers.forEach(function(h, i){ var o = document.createElement("option"); o.value = i; o.textContent = h || ("Column " + (i + 1)); sel.appendChild(o); });
+  });
+  var lh = headers.map(function(h){ return String(h || "").toLowerCase().trim(); });
+  var di = detectCol(lh, ["date","posted"]), de = detectCol(lh, ["description","memo","name","payee"]), am = detectCol(lh, ["amount","value"]);
+  var db = detectCol(lh, ["debit","withdrawal"]), cr = detectCol(lh, ["credit","deposit"]);
+  if (di >= 0) document.getElementById("mapDate").value = di;
+  if (de >= 0) document.getElementById("mapDesc").value = de;
+  if (db >= 0 && cr >= 0) { document.getElementById("mapDebit").value = db; document.getElementById("mapCredit").value = cr; document.getElementById("mapAmt").value = "-1"; }
+  else if (am >= 0) document.getElementById("mapAmt").value = am;
+  document.getElementById("mapBox").style.display = "block";
+}
+function runMapping(){
+  var openInvs = state.invoices.filter(function(iv){ return (iv.billed - iv.paid) > 0.005; });
+  var res = parseBankCSVRows(rawRows, {
+    date:+document.getElementById("mapDate").value, desc:+document.getElementById("mapDesc").value,
+    amt:+document.getElementById("mapAmt").value, debit:+document.getElementById("mapDebit").value, credit:+document.getElementById("mapCredit").value
+  }, state.expenses, openInvs, state.rules, document.getElementById("ccFlipChk").checked);
+  draft = res.rows; draftSkipped = res.skipped;
+  renderDraft(draftSkipped);
+}
+function switchTab(t){
+  document.querySelectorAll(".pane").forEach(function(p){ p.classList.toggle("active", p.id === "pane-" + t); });
+  document.querySelectorAll(".tabbar button").forEach(function(b){ b.setAttribute("aria-current", b.dataset.tab === t ? "page" : "false"); });
+}
+
+/* ---------- Events ---------- */
+document.getElementById("eCat").innerHTML = CATS.map(function(c){ return '<option>' + esc(c) + '</option>'; }).join("");
+document.getElementById("iIss").value = todayISO();
+document.getElementById("eDate").value = todayISO();
+document.getElementById("mDate").value = todayISO();
+document.getElementById("taxPctInp").value = (state.taxPct != null ? state.taxPct : 25);
+
+document.getElementById("taxPctInp").addEventListener("input", function(e){
+  var raw = e.target.value.trim();
+  if (!raw) return;
+  var v = parseMoneyStrict(raw);
+  if (v == null || v < 0 || v > 60) { showToast("Enter a tax set-aside rate between 0% and 60%."); return; }
+  state.taxPct = v; persist(); renderAll();
+});
+document.getElementById("ccFlipChk").addEventListener("change", function(){ if (rawRows.length > 1) runMapping(); });
+
+document.getElementById("csvFile").addEventListener("change", function(ev){
+  var f = ev.target.files && ev.target.files[0]; if (!f) return;
+  draftIsSample = false;
+  var rd = new FileReader();
+  rd.onload = function(){
+    rawRows = parseCSV(String(rd.result || ""));
+    if (rawRows.length < 2) { showToast("That CSV looks empty."); return; }
+    headers = rawRows[0]; populateMapping(); runMapping();
+  };
+  rd.readAsText(f); ev.target.value = "";
+});
+
+document.addEventListener("change", function(e){
+  var el = e.target;
+  if (el.dataset && el.dataset.dchk != null) { draft[+el.dataset.dchk].checked = el.checked; renderDraft(draftSkipped); }
+  else if (el.dataset && el.dataset.dlink != null) { draft[+el.dataset.dlink].linkInvId = el.value; }
+  else if (el.dataset && el.dataset.dcat != null) {
+    var r = draft[+el.dataset.dcat]; r.cat = el.value;
+    var tok = extractKeyTokens(r.desc);
+    if (!draftIsSample && tok && el.value !== "Uncategorized") { state.rules[tok] = el.value; persist(); renderDict(); showToast("Learned rule: " + tok + " → " + el.value); }
+    renderDraft(draftSkipped);
+  } else if (el.dataset && el.dataset.expcat != null) {
+    var ex = state.expenses[+el.dataset.expcat]; if (!ex) return;
+    ex.cat = el.value;
+    var tok2 = extractKeyTokens(ex.desc);
+    if (!ex.sample && tok2 && el.value !== "Uncategorized") state.rules[tok2] = el.value;
+    persist(); renderAll(); showToast("Updated expense category.");
+  }
+});
+
+document.getElementById("invForm").addEventListener("submit", function(ev){
+  ev.preventDefault();
+  var amt = parseMoneyStrict(document.getElementById("iAmt").value);
+  if (amt == null || amt <= 0) { showToast("Enter a positive invoice amount."); return; }
+  state.invoices.push({
+    id:"inv-" + Date.now(), num:document.getElementById("iNum").value.trim(), client:document.getElementById("iClient").value.trim(),
+    desc:document.getElementById("iDesc").value.trim(), issued:document.getElementById("iIss").value || todayISO(),
+    due:document.getElementById("iDue").value || todayISO(), billed:round2(amt), paid:0, paidDate:"", sample:false
+  });
+  document.getElementById("iNum").value = ""; document.getElementById("iClient").value = ""; document.getElementById("iDesc").value = ""; document.getElementById("iAmt").value = "";
+  persist(); renderAll(); showToast("Invoice added.");
+});
+document.getElementById("expForm").addEventListener("submit", function(ev){
+  ev.preventDefault();
+  var amt = parseMoneyStrict(document.getElementById("eAmt").value);
+  if (amt == null || amt <= 0) { showToast("Enter a positive expense amount."); return; }
+  state.expenses.push({ id:"e-" + Date.now(), date:document.getElementById("eDate").value || todayISO(), desc:document.getElementById("eDesc").value.trim(), cat:document.getElementById("eCat").value, amount:round2(amt), sample:false });
+  document.getElementById("eDesc").value = ""; document.getElementById("eAmt").value = "";
+  persist(); renderAll(); showToast("Expense saved.");
+});
+document.getElementById("miForm").addEventListener("submit", function(ev){
+  ev.preventDefault();
+  var mi = parseMoneyStrict(document.getElementById("mMiles").value);
+  if (mi == null || mi <= 0) { showToast("Enter positive miles."); return; }
+  state.trips.push({ id:"m-" + Date.now(), date:document.getElementById("mDate").value || todayISO(), purpose:document.getElementById("mPurp").value.trim(), miles:mi, sample:false });
+  document.getElementById("mMiles").value = ""; document.getElementById("mPurp").value = "";
+  persist(); renderAll(); showToast("Mileage trip saved.");
+});
+
+document.addEventListener("click", function(e){
+  var t = e.target.closest("button"); if (!t) return;
+  if (t.dataset.tab) { switchTab(t.dataset.tab); }
+  else if (t.id === "topSampleBtn" || t.id === "primarySampleBtn") {
+    var s = sampleState();
+    if (!state.sample) state.prevTaxPct = state.taxPct;
+    var uInv = state.invoices.filter(function(x){ return !x.sample; });
+    var uExp = state.expenses.filter(function(x){ return !x.sample; });
+    var uTri = state.trips.filter(function(x){ return !x.sample; });
+    state.sample = true; state.invoices = s.invoices.concat(uInv); state.expenses = s.expenses.concat(uExp); state.trips = s.trips.concat(uTri);
+    persist(); renderAll();
+  } else if (t.id === "clearSampleBtn") {
+    var snap = clone(state);
+    state.sample = false;
+    state.invoices = state.invoices.filter(function(x){ return !x.sample; });
+    state.expenses = state.expenses.filter(function(x){ return !x.sample; });
+    state.trips = state.trips.filter(function(x){ return !x.sample; });
+    if (state.prevTaxPct != null) { state.taxPct = state.prevTaxPct; state.prevTaxPct = null; document.getElementById("taxPctInp").value = state.taxPct; }
+    document.getElementById("chaseDrawer").style.display = "none";
+    persist(); renderAll();
+    showToast("Sample books cleared.", function(){ state = snap; persist(); renderAll(); showToast("Sample restored."); });
+  } else if (t.id === "toastUndo") {
+    if (undoFn) { var f = undoFn; undoFn = null; document.getElementById("toast").classList.remove("on"); f(); }
+  } else if (t.dataset.chase) {
+    var inv = state.invoices.find(function(x){ return x.id === t.dataset.chase; }); if (!inv) return;
+    activeChaseId = inv.id; activeChaseTone = "polite";
+    var rem = round2(inv.billed - inv.paid), late = daysBetween(inv.due, todayISO());
+    document.getElementById("chaseDrawerTitle").textContent = "Chase email — " + inv.num + " · " + inv.client;
+    document.querySelectorAll("[data-ctone]").forEach(function(b){ b.setAttribute("aria-pressed", String(b.dataset.ctone === "polite")); });
+    document.getElementById("chaseText").value = buildChaseEmail({ num:inv.num, client:inv.client, desc:inv.desc, rem:rem, due:inv.due, late:late }, "polite");
+    var dr = document.getElementById("chaseDrawer");
+    dr.style.display = "block";
+    dr.scrollIntoView({ behavior:"smooth", block:"nearest" });
+  } else if (t.dataset.ctone && activeChaseId) {
+    var inv2 = state.invoices.find(function(x){ return x.id === activeChaseId; }); if (!inv2) return;
+    activeChaseTone = t.dataset.ctone;
+    document.querySelectorAll("[data-ctone]").forEach(function(b){ b.setAttribute("aria-pressed", String(b.dataset.ctone === activeChaseTone)); });
+    document.getElementById("chaseText").value = buildChaseEmail({ num:inv2.num, client:inv2.client, desc:inv2.desc, rem:round2(inv2.billed - inv2.paid), due:inv2.due, late:daysBetween(inv2.due, todayISO()) }, activeChaseTone);
+  } else if (t.id === "copyChaseBtn") {
+    copyTextSafe(document.getElementById("chaseText").value, function(ok){
+      showToast(ok ? "Chase email copied to clipboard." : "Select the email box text above to copy.");
+    });
+  } else if (t.id === "icsChaseBtn" && activeChaseId) {
+    var inv3 = state.invoices.find(function(x){ return x.id === activeChaseId; }); if (!inv3) return;
+    if (inv3.sample) { showToast("Add your own invoice first — sample invoices are excluded from calendar exports."); return; }
+    download("chase-" + inv3.num + ".ics", buildFollowUpICS({ id:inv3.id, num:inv3.num, client:inv3.client, desc:inv3.desc, rem:round2(inv3.billed - inv3.paid), due:inv3.due }), "text/calendar;charset=utf-8");
+    showToast("Follow-up calendar reminder (.ics) downloaded.");
+  } else if (t.id === "closeChaseBtn") {
+    document.getElementById("chaseDrawer").style.display = "none"; activeChaseId = null;
+  } else if (t.dataset.markpaid) {
+    var invP = state.invoices.find(function(x){ return x.id === t.dataset.markpaid; }); if (!invP) return;
+    var snapP = clone(state.invoices);
+    invP.paid = invP.billed; invP.paidDate = todayISO();
+    if (activeChaseId === invP.id) { document.getElementById("chaseDrawer").style.display = "none"; activeChaseId = null; }
+    persist(); renderAll();
+    showToast(invP.num + " marked paid.", function(){ state.invoices = snapP; persist(); renderAll(); });
+  } else if (t.dataset.delinv) {
+    var snapI = clone(state.invoices);
+    if (activeChaseId === t.dataset.delinv) { document.getElementById("chaseDrawer").style.display = "none"; activeChaseId = null; }
+    state.invoices = state.invoices.filter(function(x){ return x.id !== t.dataset.delinv; });
+    persist(); renderAll();
+    showToast("Invoice deleted.", function(){ state.invoices = snapI; persist(); renderAll(); });
+  } else if (t.id === "csvPickBtn") { document.getElementById("csvFile").click(); }
+  else if (t.id === "loadSampleCsvBtn") {
+    draftIsSample = true; rawRows = parseCSV(SAMPLE_CSV); headers = rawRows[0]; populateMapping(); runMapping();
+  } else if (t.id === "reMapBtn") { runMapping(); }
+  else if (t.id === "discardDraftBtn") { draft = []; renderDraft(0); }
+  else if (t.id === "confirmDraftBtn") {
+    var kept = draft.filter(function(r){ return r.checked; });
+    if (!kept.length) { showToast("No checked rows to save."); return; }
+    // Guard against silently truncating an overpayment linked to a smaller open invoice!
+    for (var ki = 0; ki < kept.length; ki++){
+      var kr = kept[ki];
+      if (kr.isDeposit && kr.linkInvId) {
+        var tgt = state.invoices.find(function(x){ return x.id === kr.linkInvId; });
+        var remBal = tgt ? round2(tgt.billed - tgt.paid) : 0;
+        if (tgt && kr.amount > remBal + 0.01) {
+          showToast("Deposit " + fmt$(kr.amount) + " exceeds " + tgt.num + " balance (" + fmt$(remBal) + ") — choose the matching invoice or unlink before saving.");
+          return;
+        }
+      }
+    }
+    var snapAll = clone(state);
+    var linkedCnt = 0, expCnt = 0;
+    kept.forEach(function(r, idx){
+      if (r.isDeposit) {
+        if (r.linkInvId) {
+          var iv = state.invoices.find(function(x){ return x.id === r.linkInvId; });
+          if (iv) { iv.paid = round2(iv.paid + r.amount); iv.paidDate = r.date || todayISO(); linkedCnt++; }
+        }
+      } else {
+        state.expenses.push({ id:"e-" + Date.now() + "-" + idx, date:r.date, desc:r.desc, cat:r.cat, amount:r.amount, sample:draftIsSample });
+        expCnt++;
+      }
+    });
+    if (draftIsSample) state.sample = true;
+    draft = []; draftIsSample = false; renderDraft(0);
+    persist(); renderAll();
+    showToast("Saved " + expCnt + " expense(s)" + (linkedCnt ? (" & linked " + linkedCnt + " invoice payment(s)") : "") + ".", function(){ state = snapAll; persist(); renderAll(); });
+  } else if (t.id === "resetDictBtn") { state.rules = clone(STARTER_RULES); persist(); renderDict(); showToast("Category rules reset."); }
+  else if (t.dataset.rmrule) { delete state.rules[t.dataset.rmrule]; persist(); renderDict(); showToast("Removed rule."); }
+  else if (t.dataset.delexp != null) {
+    var snapE = clone(state.expenses); state.expenses.splice(+t.dataset.delexp, 1); persist(); renderAll();
+    showToast("Expense deleted.", function(){ state.expenses = snapE; persist(); renderAll(); });
+  } else if (t.dataset.delmi != null) {
+    var snapM = clone(state.trips); state.trips.splice(+t.dataset.delmi, 1); persist(); renderAll();
+    showToast("Trip deleted.", function(){ state.trips = snapM; persist(); renderAll(); });
+  } else if (t.id === "expInvCsvBtn") {
+    var rI = state.invoices.filter(function(x){ return !x.sample; });
+    if (!rI.length) { showToast("Add your own invoices first — sample rows are excluded."); return; }
+    var rows = [["Invoice #","Client","Description","Date issued","Due date","Billed $","Paid $","Date paid"].join(",")].concat(rI.map(function(iv){
+      return [csvText(iv.num), csvText(iv.client), csvText(iv.desc), csvText(iv.issued), csvText(iv.due), iv.billed.toFixed(2), iv.paid.toFixed(2), csvText(iv.paidDate || "")].join(",");
+    }));
+    download("freelancer-invoices-" + todayISO() + ".csv", rows.join("\r\n") + "\r\n", "text/csv;charset=utf-8");
+    showToast("Formula-safe Invoices CSV downloaded.");
+  } else if (t.id === "expExpCsvBtn") {
+    var rE = state.expenses.filter(function(x){ return !x.sample; });
+    if (!rE.length) { showToast("Add your own expenses first — sample rows are excluded."); return; }
+    var rowsE = [["Date","Vendor / Description","Category","Amount $"].join(",")].concat(rE.map(function(ex){
+      return [csvText(ex.date), csvText(ex.desc), csvText(ex.cat), ex.amount.toFixed(2)].join(",");
+    }));
+    download("freelancer-expenses-" + todayISO() + ".csv", rowsE.join("\r\n") + "\r\n", "text/csv;charset=utf-8");
+    showToast("Formula-safe Expenses CSV downloaded.");
+  } else if (t.id === "expMiCsvBtn") {
+    var rM = state.trips.filter(function(x){ return !x.sample; });
+    if (!rM.length) { showToast("Add your own trips first — sample trips are excluded."); return; }
+    var rowsM = [["Date","Purpose","Miles","Rate $/mi","Basis","Amount $"].join(",")].concat(rM.map(function(tr){
+      var r = mileageRateForDate(tr.date);
+      return [csvText(tr.date), csvText(tr.purpose), tr.miles, r.rate.toFixed(3), csvText(r.basis), round2(tr.miles * r.rate).toFixed(2)].join(",");
+    }));
+    download("freelancer-mileage-" + todayISO() + ".csv", rowsM.join("\r\n") + "\r\n", "text/csv;charset=utf-8");
+    showToast("Formula-safe Mileage CSV downloaded.");
+  } else if (t.id === "printBtn") { window.print(); }
+  else if (t.id === "bridgeOutBtn") {
+    var uI = state.invoices.filter(function(x){ return !x.sample; });
+    var uE = state.expenses.filter(function(x){ return !x.sample; });
+    var uT = state.trips.filter(function(x){ return !x.sample; });
+    if (!uI.length && !uE.length && !uT.length) { showToast("Add your own records first — sample data is excluded from 1099 Tax exports."); return; }
+    var bf = computeFreelancer({ invoices:uI, expenses:uE, trips:uT, taxPct:state.taxPct });
+    var payload = JSON.stringify({
+      bridge:"fac-bridge-v1", source:"freelancer-money-system", exported:todayISO(), taxYear:2026,
+      grossSales:bf.receivedTotal, deductibleExpenses:bf.expTotal, mileageDeduction:bf.miTotal, trueNet:bf.profit,
+      disclaimer:"Planning summary from Freelancer Money System — not tax advice."
+    }, null, 2);
+    download("fac-bridge-freelancer-" + todayISO() + ".json", payload, "application/json");
+    showToast("1099 Tax Planner bridge (.json) downloaded.");
+  } else if (t.id === "bridgeInPickBtn") { document.getElementById("bridgeInFile").click(); }
+  else if (t.id === "confirmBridgeBtn") {
+    if (!pendingBridge) return;
+    var snapBI = clone(state.invoices);
+    var deals = Array.isArray(pendingBridge.deals) ? pendingBridge.deals : [];
+    var addedDeals = 0;
+    deals.forEach(function(dl, i){
+      var amt = round2(Number(dl.total || dl.amount || 0));
+      if (amt <= 0) return;
+      state.invoices.push({
+        id:"ugc-" + Date.now() + "-" + i, num:"UGC-" + (state.invoices.length + 1),
+        client:String(dl.brand || dl.client || "UGC Client"), desc:String(dl.scope || dl.desc || "UGC Deal"),
+        issued:dl.date || todayISO(), due:dl.due || todayISO(), billed:amt, paid:0, paidDate:"", sample:false
+      });
+      addedDeals++;
+    });
+    pendingBridge = null; document.getElementById("bridgeInDraft").style.display = "none";
+    persist(); renderAll();
+    showToast("Imported " + addedDeals + " UGC deal(s) into Who Owes Me.", function(){ state.invoices = snapBI; persist(); renderAll(); });
+  } else if (t.id === "discardBridgeBtn") { pendingBridge = null; document.getElementById("bridgeInDraft").style.display = "none"; }
+  else if (t.id === "backupBtn") {
+    download("freelancer-backup-" + todayISO() + ".json", JSON.stringify({ app:"fac-freelancer", exported:todayISO(), state:state }, null, 2), "application/json");
+    showToast("Backup JSON saved.");
+  } else if (t.id === "restorePickBtn") { document.getElementById("restoreFile").click(); }
+});
+
+document.getElementById("bridgeInFile").addEventListener("change", function(ev){
+  var f = ev.target.files && ev.target.files[0]; if (!f) return;
+  var rd = new FileReader();
+  rd.onload = function(){
+    try {
+      var o = JSON.parse(String(rd.result || ""));
+      if (!o || o.bridge !== "fac-bridge-v1" || !Array.isArray(o.deals)) throw new Error("Invalid");
+      pendingBridge = o;
+      var box = document.getElementById("bridgeInDraft");
+      var previewRows = o.deals.slice(0, 6).map(function(dl){
+        return '<div>• ' + esc(dl.brand || dl.client || "UGC Client") + ' — ' + fmt$(Number(dl.total || dl.amount || 0)) + '</div>';
+      }).join("");
+      box.innerHTML = '<div class="note-box num"><b>Draft UGC Creator Kit import (' + o.deals.length + ' deal(s)):</b>' + previewRows +
+        '<div class="btn-row"><button type="button" class="btn" id="confirmBridgeBtn">Confirm &amp; import deals</button><button type="button" class="btn sec" id="discardBridgeBtn">Discard</button></div></div>';
+      box.style.display = "block";
+    } catch(e){ showToast("That file is not a valid UGC Creator Kit fac-bridge-v1 export."); }
+  };
+  rd.readAsText(f); ev.target.value = "";
+});
+
+document.getElementById("restoreFile").addEventListener("change", function(ev){
+  var f = ev.target.files && ev.target.files[0]; if (!f) return;
+  var rd = new FileReader();
+  rd.onload = function(){
+    try {
+      var o = JSON.parse(String(rd.result || ""));
+      var s = o && o.state ? o.state : o;
+      if (!s || !Array.isArray(s.invoices)) throw new Error("Invalid");
+      var snapR = clone(state);
+      state = Object.assign(defaultState(), s, { rules:Object.assign(clone(STARTER_RULES), s.rules || {}) });
+      document.getElementById("taxPctInp").value = (state.taxPct != null ? state.taxPct : 25);
+      persist(); renderAll();
+      showToast("Backup restored.", function(){ state = snapR; document.getElementById("taxPctInp").value = (state.taxPct != null ? state.taxPct : 25); persist(); renderAll(); showToast("Restore undone."); });
+    } catch(e){ showToast("That file is not a valid Freelancer backup."); }
+  };
+  rd.readAsText(f); ev.target.value = "";
+});
+
+window.__FMS = { parseMoneyStrict:parseMoneyStrict, extractKeyTokens:extractKeyTokens, suggestCategory:suggestCategory, parseCSV:parseCSV, parseBankCSVRows:parseBankCSVRows, mileageRateForDate:mileageRateForDate, computeFreelancer:computeFreelancer, buildChaseEmail:buildChaseEmail, buildFollowUpICS:buildFollowUpICS, csvText:csvText, sampleState:sampleState, STARTER_RULES:STARTER_RULES };
+renderAll();
+})();
+</script>
+</body>
+</html>

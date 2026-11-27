@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en" data-temp="ledger">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>True Hourly — Tip-Out &amp; Shift Log · FiledAwayCo</title>
+<style>
+:root,[data-temp="ledger"]{
+  --brand:#1B2A40; --accent:#1F5C45; --mint-on-dark:#7FB89E;
+  --paper:#FBF8F2; --card:#FFFFFF; --cream:#E8E0D2;
+  --ink:#1B2430; --muted:#4A5563; --line:#D9D1C3; --hairline:#EDE6DA;
+  --input-bg:#FFF4D6; --input-border:#D9C79A; --input-ink:#1A1A1A;
+  --auto-bg:#F1F3F5; --good-ink:#16533C; --good-bg:#E6F3EC;
+  --warn-ink:#7A4700; --warn-bg:#FFF4D6; --alert-ink:#962324; --alert-bg:#FBEAEA;
+  --radius:14px; --radius-sm:10px;
+  --font-display:Georgia,"Times New Roman",serif;
+  --font-body:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--cream);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.45;-webkit-text-size-adjust:100%}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+.h-num{font-family:var(--font-body);font-variant-numeric:tabular-nums}
+.shell{max-width:860px;margin:0 auto;min-height:100vh;background:var(--paper);padding:14px 14px 44px}
+@media(min-width:768px){.shell{margin:18px auto;border-radius:18px;border:1px solid var(--line);padding:22px 26px 48px;box-shadow:0 6px 24px rgba(27,42,64,.09)}}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--hairline);margin-bottom:12px}
+.wm{display:flex;align-items:center;gap:10px}
+.mark{width:34px;height:34px;border-radius:8px;background:var(--brand);color:#fff;font-weight:800;font-size:14px;display:grid;place-items:center;position:relative;flex:none}
+.mark::after{content:"";position:absolute;top:0;right:0;width:10px;height:10px;background:var(--accent);border-bottom-left-radius:4px;border-top-right-radius:8px}
+.wm-t b{display:block;font-size:15px;color:var(--brand);line-height:1.15}
+.wm-t span{display:block;font-size:12px;color:var(--muted)}
+.banner{background:var(--warn-bg);border:1px solid var(--input-border);color:var(--warn-ink);border-radius:var(--radius-sm);padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;font-size:14px}
+.banner button{min-height:44px;padding:0 14px;border-radius:8px;border:1px solid var(--warn-ink);background:#fff;color:var(--warn-ink);font-weight:700;font-size:13.5px;cursor:pointer;white-space:nowrap;flex:none}
+.tabbar{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:var(--cream);padding:5px;border-radius:12px;margin-bottom:16px}
+.tabbar button{min-height:46px;border:0;border-radius:9px;background:transparent;color:var(--brand);font:inherit;font-size:13.5px;font-weight:700;cursor:pointer;padding:6px 4px;display:flex;align-items:center;justify-content:center;text-align:center}
+.tabbar button[aria-current="page"]{background:var(--brand);color:#fff}
+h1{font-family:var(--font-display);font-size:24px;line-height:1.2;color:var(--brand);margin:0 0 6px}
+h2{font-family:var(--font-display);font-size:18px;line-height:1.25;color:var(--brand);margin:0 0 10px}
+.cap{font-size:13px;color:var(--muted);line-height:1.45}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:14px}
+.empty-cta{background:var(--paper);border:1.5px dashed var(--input-border);border-radius:var(--radius);padding:16px;margin-bottom:14px;display:flex;flex-direction:column;gap:10px}
+.hero{background:var(--brand);color:#fff;border-color:var(--brand)}
+.hero .lbl{font-size:12.5px;color:#DCE6F2;font-weight:600}
+.hero .big{font-size:34px;font-weight:800;line-height:1.1;margin:4px 0}
+.hero .sub{font-size:13.5px;color:var(--mint-on-dark);font-weight:600}
+.hkpis{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.hkpis .hk:last-child{grid-column:1 / -1}
+@media(min-width:560px){.hkpis{grid-template-columns:repeat(3,1fr)}.hkpis .hk:last-child{grid-column:auto}}
+.hk{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:10px}
+.hk .kl{font-size:12.5px;color:#DCE6F2}
+.hk .kv{font-size:18px;font-weight:800;color:#fff;margin-top:2px}
+.grid2{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:560px){.grid2{grid-template-columns:1fr 1fr}}
+.grid3{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:560px){.grid3{grid-template-columns:repeat(3,1fr)}}
+.field{display:block;margin-bottom:10px}
+.field:last-child{margin-bottom:0}
+.grid2>.field,.grid3>.field{margin-bottom:0}
+.field .l{display:block;font-size:13.5px;font-weight:700;color:var(--brand);margin-bottom:4px}
+.inp-wrap{display:flex;align-items:center;background:var(--input-bg);border:1.5px solid var(--input-border);border-radius:var(--radius-sm);padding:0 12px;min-height:46px}
+.inp-wrap:focus-within{border-color:var(--accent);box-shadow:0 0 0 2px rgba(31,92,69,.18)}
+.inp-wrap .pre,.inp-wrap .suf{font-weight:700;color:var(--muted)}
+.inp-wrap .pre{margin-right:6px}
+.inp-wrap .suf{margin-left:6px}
+.inp-wrap input,.inp-wrap select{width:100%;border:0;background:transparent;font:inherit;color:var(--input-ink);outline:none;padding:10px 0;min-height:44px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 16px;border-radius:var(--radius-sm);border:1.5px solid var(--accent);background:var(--accent);color:#fff;font:inherit;font-weight:700;font-size:14.5px;cursor:pointer;text-decoration:none}
+.btn.sec{background:#fff;color:var(--brand);border-color:var(--line)}
+.btn.full{width:100%}
+.btn-row{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}
+@media(min-width:520px){.btn-row{grid-template-columns:1fr 1fr}}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.chip-btn{min-height:44px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--brand);font:inherit;font-size:13.5px;font-weight:700;cursor:pointer}
+.chip-btn[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.warn-box{background:var(--alert-bg);border:1px solid #E5B4B4;color:var(--alert-ink);border-radius:10px;padding:10px 12px;font-size:13.5px;margin-top:10px;font-weight:600}
+.note-box{background:var(--paper);border-left:4px solid var(--accent);padding:10px 12px;border-radius:0 10px 10px 0;font-size:13.5px;margin-top:10px}
+.tag{display:inline-block;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:700;background:var(--auto-bg);color:var(--brand);white-space:nowrap}
+.tag.warn{background:var(--warn-bg);color:var(--warn-ink)}
+.row-card{padding:10px 0;border-bottom:1px solid var(--hairline);display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.row-card:last-child{border-bottom:0}
+.shell-foot{margin-top:16px;padding-top:12px;border-top:1px solid var(--hairline);font-size:12.5px;color:var(--muted);line-height:1.45}
+.pane{display:none}
+.pane.active{display:block}
+.toast{position:fixed;left:12px;right:12px;bottom:20px;max-width:520px;margin:0 auto;transform:translateY(90px);opacity:0;visibility:hidden;pointer-events:none;background:var(--brand);color:#fff;padding:10px 14px;border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 8px 24px rgba(0,0,0,.22);transition:transform .2s ease,opacity .2s ease;z-index:60;font-size:14px}
+.toast.on{transform:translateY(0);opacity:1;visibility:visible;pointer-events:auto}
+.toast button{min-height:44px;padding:0 14px;border-radius:8px;border:0;background:var(--mint-on-dark);color:var(--brand);font-weight:800;cursor:pointer;align-items:center;justify-content:center}
+.print-only{display:none}
+@media print{
+  body{background:#fff;color:#111;font-size:10.5pt}
+  .shell{max-width:100%;margin:0;padding:0;border:0;box-shadow:none;background:#fff}
+  .no-print,.topbar,.tabbar,.banner,.toast,.pane{display:none!important}
+  #shiftPrintSheet{display:block!important}
+  #shiftPrintSheet table{width:100%;border-collapse:collapse;font-size:9.5pt;margin-top:8px}
+  #shiftPrintSheet th,#shiftPrintSheet td{border-bottom:1px solid #ccc;padding:5px 4px;text-align:left}
+  #shiftPrintSheet td.r,#shiftPrintSheet th.r{text-align:right}
+}
+</style>
+<style id="fa-name-title">.wm-t b,.wm-text b{font-size:19px;font-weight:800;line-height:1.12;letter-spacing:-.2px;white-space:normal}</style>
+</head>
+<body>
+<div class="shell">
+  <div class="topbar no-print">
+    <div class="wm">
+      <div class="mark" aria-hidden="true">fa</div>
+      <div class="wm-t"><b>True Hourly Tip-Out Calculator</b><span>Free Offline Tip-Out &amp; Shift Calculator</span></div>
+    </div>
+    <button type="button" class="btn sec" id="topSampleBtn" style="min-height:44px;padding:0 14px;font-size:13.5px;flex:none;white-space:nowrap">Try sample</button>
+  </div>
+
+  <div class="banner no-print" id="sampleBanner" data-sample-banner="1" style="display:none">
+    <span><b>Sample shifts</b> — example server week, not your pay</span>
+    <button type="button" id="clearSampleBtn">Clear sample</button>
+  </div>
+
+  <nav class="tabbar no-print" aria-label="Main navigation">
+    <button type="button" data-tab="calc" aria-current="page"><span>Shift Calc</span></button>
+    <button type="button" data-tab="log"><span>Shift Log</span></button>
+    <button type="button" data-tab="split"><span>Bill Split</span></button>
+  </nav>
+
+  <!-- TAB 1: SHIFT & TIP-OUT CALCULATOR -->
+  <section class="pane active" id="pane-calc" aria-label="Shift Calculator">
+    <h1>True Hourly After Tip-Out</h1>
+    <p class="cap" style="margin:0 0 12px">Calculate your real hourly rate after tip-out by % of tips OR % of food/bar sales, reconcile every role to the penny, and save shifts offline.</p>
+
+    <div class="empty-cta" id="emptyHeroCta" style="display:none">
+      <div><b>See a full shift week in one tap:</b> load sample server shifts and tip-out rules, or type tonight's numbers below.</div>
+      <button type="button" class="btn full" id="primarySampleBtn">Try sample shifts</button>
+    </div>
+
+    <div class="card hero">
+      <div class="lbl">Your true hourly rate (this shift)</div>
+      <div class="big num" id="outRate">$0.00/hr</div>
+      <div class="sub num" id="outBreak">Take-home: $0.00 · Net tips: $0.00 · Tip-out: $0.00</div>
+      <div class="hkpis">
+        <div class="hk"><div class="kl">Base wages</div><div class="kv num" id="kWage">$0.00</div></div>
+        <div class="hk"><div class="kl">Net tips kept</div><div class="kv num" id="kNetTips">$0.00</div></div>
+        <div class="hk"><div class="kl">Total tip-out</div><div class="kv num" id="kTipOut">$0.00</div></div>
+      </div>
+      <div id="tipOutWarnBox"></div>
+    </div>
+
+    <div class="card">
+      <h2>Shift numbers</h2>
+      <div class="grid2">
+        <label class="field"><span class="l">Hours worked</span><span class="inp-wrap"><input id="sHours" inputmode="decimal" placeholder="8"></span></label>
+        <label class="field"><span class="l">Base hourly wage ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="sWage" inputmode="decimal" placeholder="6.00"></span></label>
+        <label class="field"><span class="l">Cash tips ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="sCash" inputmode="decimal" placeholder="0"></span></label>
+        <label class="field"><span class="l">Card tips ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="sCard" inputmode="decimal" placeholder="0"></span></label>
+      </div>
+      <div id="numWarnBox"></div>
+    </div>
+
+    <div class="card">
+      <h2>Tip-out rules (penny-reconciled)</h2>
+      <div class="chips" role="group" aria-label="Tip-out mode">
+        <button type="button" class="chip-btn" data-tmode="tips" aria-pressed="true">% of total tips</button>
+        <button type="button" class="chip-btn" data-tmode="sales" aria-pressed="false">% of food / bar sales</button>
+      </div>
+      <div id="salesRow" class="grid2" style="display:none;margin-bottom:10px">
+        <label class="field"><span class="l">Food sales ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="sFood" inputmode="decimal" placeholder="1200"></span></label>
+        <label class="field"><span class="l">Bar / alcohol sales ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="sBar" inputmode="decimal" placeholder="400"></span></label>
+      </div>
+      <div id="rolesBox"></div>
+      <form id="addRoleForm" class="grid3" style="margin-top:10px;align-items:end">
+        <label class="field"><span class="l">New role name</span><span class="inp-wrap"><input id="nrName" placeholder="e.g. Food Runner" required></span></label>
+        <label class="field"><span class="l">Rate (%)</span><span class="inp-wrap"><input id="nrPct" inputmode="decimal" placeholder="3" required><span class="suf">%</span></span></label>
+        <label class="field" id="nrBaseWrap" style="display:none"><span class="l">Applies to</span><span class="inp-wrap"><select id="nrBase"><option value="food">Food sales</option><option value="bar">Bar sales</option><option value="all">Total sales</option></select></span></label>
+        <button type="submit" class="btn sec full" id="addRoleBtn">Add role</button>
+      </form>
+      <div class="btn-row" style="margin-top:12px">
+        <button type="button" class="btn" id="saveShiftBtn">Save shift to log</button>
+        <button type="button" class="btn sec" id="clearInputsBtn">Clear shift inputs</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 2: SHIFT LOG, 2026 OBBBA ESTIMATE & TIPS BRIDGE -->
+  <section class="pane" id="pane-log" aria-label="Shift Log and Export">
+    <h1>Shift Log &amp; <span class="h-num">2026</span> Tip Deduction</h1>
+    <div class="card">
+      <div class="chips" style="margin-bottom:8px">
+        <button type="button" class="chip-btn" data-lview="week" aria-pressed="true">Last 7 days</button>
+        <button type="button" class="chip-btn" data-lview="all" aria-pressed="false">All shifts</button>
+      </div>
+      <div id="logSummary" class="note-box num" style="margin-top:0"></div>
+      <div id="obbbaBox" class="note-box num"></div>
+      <div id="shiftList" style="margin-top:10px"></div>
+    </div>
+    <div class="card">
+      <h2>Export &amp; print</h2>
+      <div class="btn-row">
+        <button type="button" class="btn" id="bridgeTipsBtn">Export to Tips &amp; Overtime (.json)</button>
+        <button type="button" class="btn sec" id="exportCsvBtn">Export Shifts CSV</button>
+      </div>
+      <button type="button" class="btn sec full" id="printLogBtn" style="margin-top:10px">Print 1-page Shift Log</button>
+      <p class="cap" style="margin:8px 0 0">Sample shifts are excluded automatically from CSV and Tips &amp; Overtime bridge exports.</p>
+    </div>
+  </section>
+
+  <!-- TAB 3: BILL SPLIT -->
+  <section class="pane" id="pane-split" aria-label="Bill Split">
+    <h1>Quick Table Bill Split</h1>
+    <div class="card">
+      <div class="grid3">
+        <label class="field"><span class="l">Check total ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="bsAmt" inputmode="decimal" value="120.00"></span></label>
+        <label class="field"><span class="l">Tip (%)</span><span class="inp-wrap"><input id="bsPct" inputmode="decimal" value="20"><span class="suf">%</span></span></label>
+        <label class="field"><span class="l">Split ways</span><span class="inp-wrap"><input id="bsWays" inputmode="numeric" value="4"></span></label>
+      </div>
+      <div class="chips" style="margin-top:8px">
+        <button type="button" class="chip-btn num" data-bsp="15" aria-pressed="false">15%</button>
+        <button type="button" class="chip-btn num" data-bsp="18" aria-pressed="false">18%</button>
+        <button type="button" class="chip-btn num" data-bsp="20" aria-pressed="true">20%</button>
+        <button type="button" class="chip-btn num" data-bsp="22" aria-pressed="false">22%</button>
+        <button type="button" class="chip-btn num" data-bsp="25" aria-pressed="false">25%</button>
+      </div>
+      <div id="bsWarnBox"></div>
+      <div class="note-box num" id="bsOut"></div>
+    </div>
+  </section>
+
+  <footer class="shell-foot no-print">Free offline tool by FiledAwayCo · Planning &amp; shift-tracking tool only, not tax or legal advice. 2026 OBBBA qualified-tips deduction cap ($25,000/return, 26 U.S.C. §224, IRS.gov; voluntary tips in eligible occupations, SSN required, MAGI phase-out above $150k/$300k, MFS ineligible) checked Nov 24, 2026.</footer>
+  <section id="shiftPrintSheet" class="print-only"></section>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><span id="toastMsg"></span><button type="button" id="toastUndo" style="display:none">Undo</button></div>
+
+<script>
+(function(){
+"use strict";
+var STORE_KEY = "fac_true_hourly_v2";
+var undoFn = null, toastT = null;
+var logView = "week";
+
+function clone(o){ return JSON.parse(JSON.stringify(o)); }
+function esc(s){ return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+function localISO(d){ return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
+function todayISO(){ return localISO(new Date()); }
+function addDaysISO(n){ var d = new Date(); d.setDate(d.getDate() + n); return localISO(d); }
+function round2(n){ return Math.round((Number(n) + 1e-12) * 100) / 100; }
+function fmt$(n){ var v = round2(n); return (v < 0 ? "−" : "") + "$" + Math.abs(v).toLocaleString("en-US", { minimumFractionDigits:2, maximumFractionDigits:2 }); }
+function csvCell(v){ v = String(v == null ? "" : v); return /[",\n\r]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }
+function csvText(v){ v = String(v == null ? "" : v); if (/^\s*[=+\-@]/.test(v) || /^[\t\r]/.test(v)) v = "'" + v; return csvCell(v); }
+
+function parseNumStrict(raw){
+  if (raw == null) return null;
+  var s = String(raw).trim().replace(/^\$/, "").replace(/%$/, "").trim();
+  if (!s) return null;
+  if (!/^(?:(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d{1,4})?|\.\d{1,4})$/.test(s)) return null;
+  var v = parseFloat(s.replace(/,/g, ""));
+  if (!isFinite(v) || v > 1e9) return null;
+  return v;
+}
+function parsePos(raw){ var v = parseNumStrict(raw); return (v == null || v < 0) ? 0 : v; }
+
+/* ---------- Exact Shift & Penny-Reconciled Tip-Out Engine ---------- */
+function computeShift(inp, mode, roles){
+  var hrs = Math.max(0, Number(inp.hours) || 0);
+  var wageRate = Math.max(0, Number(inp.wage) || 0);
+  var cash = Math.max(0, round2(inp.cash));
+  var card = Math.max(0, round2(inp.card));
+  var food = Math.max(0, round2(inp.food));
+  var bar = Math.max(0, round2(inp.bar));
+  var grossTips = round2(cash + card);
+  var basePay = round2(hrs * wageRate);
+
+  var rawLines = (roles || []).map(function(r){
+    var pct = Math.max(0, Number(r.pct) || 0);
+    var base = mode === "tips" ? grossTips : (r.base === "food" ? food : (r.base === "bar" ? bar : round2(food + bar)));
+    var exact = base * (pct / 100);
+    return { id:r.id, name:r.name, pct:pct, base:r.base || "food", exact:exact, amt:round2(exact) };
+  });
+  // Exact total rounded from exact sum, then reconcile penny residual on last positive role so SUM(role.amt) === totalTipOut!
+  var exactTotal = rawLines.reduce(function(a, l){ return a + l.exact; }, 0);
+  var totalTipOut = round2(exactTotal);
+  var lineSum = round2(rawLines.reduce(function(a, l){ return a + l.amt; }, 0));
+  var diff = round2(totalTipOut - lineSum);
+  if (Math.abs(diff) >= 0.005) {
+    for (var i = rawLines.length - 1; i >= 0; i--){
+      if (rawLines[i].exact > 0) { rawLines[i].amt = round2(rawLines[i].amt + diff); break; }
+    }
+  }
+  var tipOutExceedsTips = totalTipOut > grossTips + 0.005;
+  var netTips = round2(grossTips - totalTipOut);
+  var takeHome = round2(basePay + netTips);
+  var trueHourly = hrs > 0 ? round2(takeHome / hrs) : 0;
+  return { hrs:hrs, basePay:basePay, cash:cash, card:card, grossTips:grossTips, totalTipOut:totalTipOut, netTips:netTips, takeHome:takeHome, trueHourly:trueHourly, tipOutExceedsTips:tipOutExceedsTips, lines:rawLines };
+}
+
+function defaultRoles(){
+  return [
+    { id:"r1", name:"Busser", pct:10, base:"food" },
+    { id:"r2", name:"Bartender", pct:5, base:"bar" },
+    { id:"r3", name:"Expo / Host", pct:5, base:"food" }
+  ];
+}
+function defaultState(){
+  return { sample:false, mode:"tips", roles:defaultRoles(), cur:{ hours:"", wage:"", cash:"", card:"", food:"", bar:"" }, shifts:[] };
+}
+function sampleState(){
+  return {
+    sample:true, mode:"tips", roles:defaultRoles(),
+    cur:{ hours:"8", wage:"6.00", cash:"200", card:"300", food:"1200", bar:"400" },
+    shifts:[
+      { id:"sh-s1", date:addDaysISO(-5), hours:7.5, wage:6, cash:110, card:265, tipOut:75, netTips:300, total:345, sample:true },
+      { id:"sh-s2", date:addDaysISO(-2), hours:8.0, wage:6, cash:200, card:300, tipOut:100, netTips:400, total:448, sample:true },
+      { id:"sh-s3", date:addDaysISO(0),  hours:6.5, wage:6, cash:95,  card:205, tipOut:60, netTips:240, total:279, sample:true }
+    ]
+  };
+}
+function loadState(){
+  try {
+    var raw = localStorage.getItem(STORE_KEY);
+    if (raw) {
+      var o = JSON.parse(raw);
+      if (o && Array.isArray(o.shifts)) return Object.assign(defaultState(), o, { roles:Array.isArray(o.roles) ? o.roles : defaultRoles() });
+    }
+  } catch(e){}
+  return defaultState();
+}
+var state = loadState();
+function persist(){ try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch(e){} }
+
+function download(name, text, mime){
+  var b = new Blob([text], { type:mime }), u = URL.createObjectURL(b), a = document.createElement("a");
+  a.href = u; a.download = name; document.body.appendChild(a); a.click();
+  setTimeout(function(){ URL.revokeObjectURL(u); a.remove(); }, 500);
+}
+function showToast(msg, fn){
+  var el = document.getElementById("toast");
+  document.getElementById("toastMsg").textContent = msg;
+  var ub = document.getElementById("toastUndo");
+  undoFn = fn || null;
+  ub.style.display = fn ? "inline-flex" : "none";
+  el.classList.add("on");
+  clearTimeout(toastT);
+  toastT = setTimeout(function(){ el.classList.remove("on"); undoFn = null; }, fn ? 7000 : 2800);
+}
+
+function renderBanner(){
+  var hasS = state.sample || state.shifts.some(function(s){ return s.sample; });
+  state.sample = hasS;
+  document.getElementById("sampleBanner").style.display = hasS ? "flex" : "none";
+  document.getElementById("topSampleBtn").style.display = hasS ? "none" : "inline-flex";
+  document.getElementById("emptyHeroCta").style.display = (!state.shifts.length && !parsePos(state.cur.hours)) ? "flex" : "none";
+}
+
+function invalidShiftFields(){
+  var keys = state.mode === "sales" ? ["hours","wage","cash","card","food","bar"] : ["hours","wage","cash","card"];
+  return keys.filter(function(k){ var v = String(state.cur[k] || "").trim(); return v !== "" && parseNumStrict(v) === null; });
+}
+
+function renderCalc(){
+  document.querySelectorAll("[data-tmode]").forEach(function(b){ b.setAttribute("aria-pressed", String(b.dataset.tmode === state.mode)); });
+  document.getElementById("salesRow").style.display = state.mode === "sales" ? "grid" : "none";
+  document.getElementById("nrBaseWrap").style.display = state.mode === "sales" ? "block" : "none";
+  document.getElementById("addRoleBtn").style.gridColumn = state.mode === "sales" ? "1 / -1" : "";
+
+  var badF = invalidShiftFields();
+  document.getElementById("numWarnBox").innerHTML = badF.length
+    ? '<div class="warn-box">Check your number entry (' + esc(badF.join(", ")) + ') — use plain digits like 200 or 12.50.</div>' : '';
+
+  var res = computeShift({
+    hours:parsePos(state.cur.hours), wage:parsePos(state.cur.wage),
+    cash:parsePos(state.cur.cash), card:parsePos(state.cur.card),
+    food:parsePos(state.cur.food), bar:parsePos(state.cur.bar)
+  }, state.mode, state.roles);
+
+  document.getElementById("outRate").textContent = fmt$(res.trueHourly) + "/hr";
+  document.getElementById("outBreak").textContent = "Take-home: " + fmt$(res.takeHome) + " · Net tips: " + fmt$(res.netTips) + " · Tip-out: " + fmt$(res.totalTipOut);
+  document.getElementById("kWage").textContent = fmt$(res.basePay);
+  document.getElementById("kNetTips").textContent = fmt$(res.netTips);
+  document.getElementById("kTipOut").textContent = fmt$(res.totalTipOut);
+  document.getElementById("tipOutWarnBox").innerHTML = res.tipOutExceedsTips
+    ? '<div class="warn-box">Tip-out (' + fmt$(res.totalTipOut) + ') exceeds gross tips (' + fmt$(res.grossTips) + '). Double-check your percentages or sales inputs.</div>' : '';
+
+  document.getElementById("rolesBox").innerHTML = res.lines.length
+    ? res.lines.map(function(l, idx){
+        return '<div class="row-card"><div><b>' + esc(l.name) + '</b> <span class="cap num">(' + l.pct + '%' + (state.mode === "sales" ? (' of ' + l.base + ' sales') : ' of tips') + ')</span></div>' +
+          '<div style="display:flex;align-items:center;gap:8px"><b class="num">' + fmt$(l.amt) + '</b>' +
+          '<button type="button" class="btn sec" data-delrole="' + idx + '" style="min-height:44px;padding:0 12px;font-size:13.5px">Remove</button></div></div>';
+      }).join("")
+    : '<p class="cap" style="margin:0">No tip-out roles configured — add one below.</p>';
+}
+
+function renderLog(){
+  document.querySelectorAll("[data-lview]").forEach(function(b){ b.setAttribute("aria-pressed", String(b.dataset.lview === logView)); });
+  var cut7 = addDaysISO(-6);
+  var shown = logView === "week" ? state.shifts.filter(function(s){ return s.date >= cut7; }) : state.shifts;
+  var sumH = shown.reduce(function(a, s){ return a + s.hours; }, 0);
+  var sumTot = round2(shown.reduce(function(a, s){ return a + s.total; }, 0));
+  var avgHr = sumH > 0 ? round2(sumTot / sumH) : 0;
+  document.getElementById("logSummary").innerHTML = '<b>' + (logView === "week" ? "Last 7 days" : "All logged shifts") + ':</b> ' + shown.length + ' shift(s) · ' + sumH.toFixed(1) + ' hrs · <b>' + fmt$(sumTot) + '</b> total · Avg <b>' + fmt$(avgHr) + '/hr</b>';
+
+  var ytdTips = round2(state.shifts.reduce(function(a, s){ return a + Math.max(0, s.netTips); }, 0));
+  var capDed = Math.min(25000, ytdTips);
+  document.getElementById("obbbaBox").innerHTML = '<b>2026 OBBBA Qualified Tips Estimate (26 U.S.C. §224):</b> ' + fmt$(capDed) + ' logged toward the <b>$25,000</b> per-return cap (illustrative — voluntary tips in eligible occupations only; MAGI phase-out above $150k/$300k; MFS ineligible; verified Nov 24, 2026).';
+
+  var box = document.getElementById("shiftList");
+  if (!shown.length) {
+    box.innerHTML = '<p class="cap" style="margin:0">No shifts in this window yet.</p>';
+  } else {
+    box.innerHTML = shown.slice().reverse().map(function(s){
+      var idx = state.shifts.indexOf(s);
+      var hr = s.hours > 0 ? round2(s.total / s.hours) : 0;
+      return '<div class="row-card"><div><b class="num">' + esc(s.date) + '</b> · ' + s.hours + 'h · <b>' + fmt$(hr) + '/hr</b>' + (s.sample ? ' <span class="tag warn">Sample</span>' : '') +
+        '<div class="cap num">Net tips ' + fmt$(s.netTips) + ' (tip-out ' + fmt$(s.tipOut) + ') · Take-home <b>' + fmt$(s.total) + '</b></div></div>' +
+        '<button type="button" class="btn sec" data-delsh="' + idx + '" style="min-height:44px;padding:0 12px;font-size:13.5px">Delete</button></div>';
+    }).join("");
+  }
+
+  var realS = state.shifts.filter(function(s){ return !s.sample; });
+  var isSamplePrint = !realS.length && state.shifts.length > 0;
+  var pList = realS.length ? realS : state.shifts;
+  document.getElementById("shiftPrintSheet").innerHTML =
+    '<h1>Shift &amp; Tip-Out Log (<span class="h-num">' + todayISO() + '</span>)</h1>' +
+    (isSamplePrint ? '<p><strong>SAMPLE DATA — Example server week, not your pay</strong></p>' : '') +
+    '<table><thead><tr><th>Date</th><th class="r">Hours</th><th class="r">Cash Tips</th><th class="r">Card Tips</th><th class="r">Tip-Out</th><th class="r">Net Tips</th><th class="r">Total</th></tr></thead><tbody>' +
+    pList.map(function(s){
+      return '<tr><td class="num">' + esc(s.date) + (s.sample ? ' (Sample)' : '') + '</td><td class="r num">' + s.hours + '</td><td class="r num">' + fmt$(s.cash) + '</td><td class="r num">' + fmt$(s.card) + '</td><td class="r num">' + fmt$(s.tipOut) + '</td><td class="r num">' + fmt$(s.netTips) + '</td><td class="r num"><b>' + fmt$(s.total) + '</b></td></tr>';
+    }).join("") + '</tbody></table>';
+}
+
+function renderSplit(){
+  var rawAmt = document.getElementById("bsAmt").value.trim();
+  var rawPct = document.getElementById("bsPct").value.trim();
+  var rawWays = document.getElementById("bsWays").value.trim();
+  var bad = [];
+  if (rawAmt !== "" && parseNumStrict(rawAmt) === null) bad.push("check total");
+  if (rawPct !== "" && parseNumStrict(rawPct) === null) bad.push("tip %");
+  if (rawWays !== "" && !/^\d+$/.test(rawWays)) bad.push("split ways");
+  document.getElementById("bsWarnBox").innerHTML = bad.length
+    ? '<div class="warn-box">Check ' + esc(bad.join(", ")) + ' — enter plain numbers only.</div>' : '';
+  var amt = parsePos(rawAmt);
+  var pct = parsePos(rawPct);
+  var ways = Math.max(1, parseInt(rawWays, 10) || 1);
+  document.querySelectorAll("[data-bsp]").forEach(function(b){ b.setAttribute("aria-pressed", String(Number(b.dataset.bsp) === pct)); });
+  var tip = round2(amt * (pct / 100));
+  var tot = round2(amt + tip);
+  var each = round2(tot / ways);
+  document.getElementById("bsOut").innerHTML = 'Tip (' + pct + '%): <b>' + fmt$(tip) + '</b> · Total with tip: <b>' + fmt$(tot) + '</b> · Each (' + ways + ' ways): <b style="font-size:18px">' + fmt$(each) + '</b>';
+}
+
+function syncInputs(){
+  document.getElementById("sHours").value = state.cur.hours || "";
+  document.getElementById("sWage").value = state.cur.wage || "";
+  document.getElementById("sCash").value = state.cur.cash || "";
+  document.getElementById("sCard").value = state.cur.card || "";
+  document.getElementById("sFood").value = state.cur.food || "";
+  document.getElementById("sBar").value = state.cur.bar || "";
+}
+function renderAll(){ renderBanner(); renderCalc(); renderLog(); renderSplit(); }
+function switchTab(t){
+  document.querySelectorAll(".pane").forEach(function(p){ p.classList.toggle("active", p.id === "pane-" + t); });
+  document.querySelectorAll(".tabbar button").forEach(function(b){ b.setAttribute("aria-current", b.dataset.tab === t ? "page" : "false"); });
+}
+
+[["sHours","hours"],["sWage","wage"],["sCash","cash"],["sCard","card"],["sFood","food"],["sBar","bar"]].forEach(function(p){
+  document.getElementById(p[0]).addEventListener("input", function(e){ state.cur[p[1]] = e.target.value; persist(); renderBanner(); renderCalc(); });
+});
+["bsAmt","bsPct","bsWays"].forEach(function(id){ document.getElementById(id).addEventListener("input", renderSplit); });
+
+document.getElementById("addRoleForm").addEventListener("submit", function(ev){
+  ev.preventDefault();
+  var nm = document.getElementById("nrName").value.trim();
+  var pct = parseNumStrict(document.getElementById("nrPct").value);
+  if (!nm || pct == null || pct < 0 || pct > 100) { showToast("Enter a role name and percentage (0–100%)."); return; }
+  state.roles.push({ id:"r-" + Date.now(), name:nm, pct:pct, base:document.getElementById("nrBase").value });
+  document.getElementById("nrName").value = ""; document.getElementById("nrPct").value = "";
+  persist(); renderCalc(); showToast("Role added.");
+});
+
+document.addEventListener("click", function(e){
+  var t = e.target.closest("button"); if (!t) return;
+  if (t.dataset.tab) { switchTab(t.dataset.tab); }
+  else if (t.dataset.tmode) { state.mode = t.dataset.tmode; persist(); renderCalc(); }
+  else if (t.dataset.lview) { logView = t.dataset.lview; renderLog(); }
+  else if (t.dataset.bsp) { document.getElementById("bsPct").value = t.dataset.bsp; renderSplit(); }
+  else if (t.id === "topSampleBtn" || t.id === "primarySampleBtn") {
+    var s = sampleState();
+    var uSh = state.shifts.filter(function(x){ return !x.sample; });
+    state.sample = true; state.cur = s.cur; state.shifts = s.shifts.concat(uSh);
+    persist(); syncInputs(); renderAll();
+  } else if (t.id === "clearSampleBtn") {
+    var snap = clone(state);
+    state.sample = false; state.shifts = state.shifts.filter(function(x){ return !x.sample; });
+    if (!state.shifts.length) state.cur = defaultState().cur;
+    persist(); syncInputs(); renderAll();
+    showToast("Sample shifts cleared.", function(){ state = snap; persist(); syncInputs(); renderAll(); showToast("Sample restored."); });
+  } else if (t.id === "toastUndo") {
+    if (undoFn) { var f = undoFn; undoFn = null; document.getElementById("toast").classList.remove("on"); f(); }
+  } else if (t.dataset.delrole != null) {
+    var snapR = clone(state.roles); state.roles.splice(+t.dataset.delrole, 1); persist(); renderCalc();
+    showToast("Role removed.", function(){ state.roles = snapR; persist(); renderCalc(); });
+  } else if (t.id === "saveShiftBtn") {
+    if (invalidShiftFields().length) { showToast("Fix invalid number entry before saving."); return; }
+    var res = computeShift({ hours:parsePos(state.cur.hours), wage:parsePos(state.cur.wage), cash:parsePos(state.cur.cash), card:parsePos(state.cur.card), food:parsePos(state.cur.food), bar:parsePos(state.cur.bar) }, state.mode, state.roles);
+    if (res.hrs <= 0) { showToast("Enter hours worked above 0 before saving."); return; }
+    state.shifts.push({ id:"sh-" + Date.now(), date:todayISO(), hours:res.hrs, wage:parsePos(state.cur.wage), cash:res.cash, card:res.card, tipOut:res.totalTipOut, netTips:res.netTips, total:res.takeHome, sample:false });
+    persist(); renderAll(); showToast("Shift saved to log.");
+  } else if (t.id === "clearInputsBtn") {
+    state.cur = defaultState().cur; persist(); syncInputs(); renderAll();
+  } else if (t.dataset.delsh != null) {
+    var snapS = clone(state.shifts); state.shifts.splice(+t.dataset.delsh, 1); persist(); renderAll();
+    showToast("Shift deleted.", function(){ state.shifts = snapS; persist(); renderAll(); });
+  } else if (t.id === "bridgeTipsBtn") {
+    var realSh = state.shifts.filter(function(s){ return !s.sample; });
+    if (!realSh.length) { showToast("Save your own shifts first — sample shifts are excluded from exports."); return; }
+    var payload = JSON.stringify({
+      bridge:"fac-bridge-v1", source:"true-hourly", exported:todayISO(),
+      shifts:realSh.map(function(s){ return { date:s.date, emp:"True Hourly shift", hours:s.hours, cash:s.cash, card:s.card, tipOut:s.tipOut, total:s.total }; })
+    }, null, 2);
+    download("fac-bridge-true-hourly-" + todayISO() + ".json", payload, "application/json");
+    showToast("Tips & Overtime bridge (.json) downloaded.");
+  } else if (t.id === "exportCsvBtn") {
+    var realC = state.shifts.filter(function(s){ return !s.sample; });
+    if (!realC.length) { showToast("Save your own shifts first — sample shifts are excluded from exports."); return; }
+    var rows = [["Date","Hours","Base Wage $/hr","Cash Tips $","Card Tips $","Tip-Out $","Net Tips $","Take-Home $"].join(",")].concat(realC.map(function(s){
+      return [csvText(s.date), s.hours, s.wage.toFixed(2), s.cash.toFixed(2), s.card.toFixed(2), s.tipOut.toFixed(2), s.netTips.toFixed(2), s.total.toFixed(2)].join(",");
+    }));
+    download("true-hourly-shifts-" + todayISO() + ".csv", rows.join("\r\n") + "\r\n", "text/csv;charset=utf-8");
+    showToast("Formula-safe Shifts CSV downloaded.");
+  } else if (t.id === "printLogBtn") {
+    if (!state.shifts.length) { showToast("Log a shift or load sample shifts before printing."); return; }
+    window.print();
+  }
+});
+
+window.__TH = { computeShift:computeShift, parseNumStrict:parseNumStrict, defaultRoles:defaultRoles, csvText:csvText };
+syncInputs();
+renderAll();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en" data-temp="ledger">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Timer Suite — Stage, Classroom &amp; Workout · FiledAwayCo</title>
+<style>
+:root,[data-temp="ledger"]{
+  --brand:#1B2A40; --accent:#1F5C45; --mint-on-dark:#7FB89E;
+  --paper:#FBF8F2; --card:#FFFFFF; --cream:#E8E0D2;
+  --ink:#1B2430; --muted:#4A5563; --line:#D9D1C3; --hairline:#EDE6DA;
+  --input-bg:#FFF4D6; --input-border:#D9C79A; --input-ink:#1A1A1A;
+  --auto-bg:#F1F3F5; --warn-ink:#7A4700; --warn-bg:#FFF4D6;
+  --radius:14px; --radius-sm:10px;
+  --font-display:Georgia,"Times New Roman",serif;
+  --font-body:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--cream);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.45;-webkit-text-size-adjust:100%}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+.h-num{font-family:var(--font-body);font-variant-numeric:tabular-nums}
+.shell{max-width:860px;margin:0 auto;min-height:100vh;background:var(--paper);padding:14px 14px 44px}
+@media(min-width:768px){.shell{margin:18px auto;border-radius:18px;border:1px solid var(--line);padding:22px 26px 48px;box-shadow:0 6px 24px rgba(27,42,64,.09)}}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--hairline);margin-bottom:12px}
+.wm{display:flex;align-items:center;gap:10px}
+.mark{width:34px;height:34px;border-radius:8px;background:var(--brand);color:#fff;font-weight:800;font-size:14px;display:grid;place-items:center;position:relative;flex:none}
+.mark::after{content:"";position:absolute;top:0;right:0;width:10px;height:10px;background:var(--accent);border-bottom-left-radius:4px;border-top-right-radius:8px}
+.wm-t b{display:block;font-size:15px;color:var(--brand);line-height:1.15}
+.wm-t span{display:block;font-size:12px;color:var(--muted)}
+.banner{background:var(--warn-bg);border:1px solid var(--input-border);color:var(--warn-ink);border-radius:var(--radius-sm);padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;font-size:14px}
+.banner button{min-height:44px;padding:0 14px;border-radius:8px;border:1px solid var(--warn-ink);background:#fff;color:var(--warn-ink);font-weight:700;font-size:13.5px;cursor:pointer;white-space:nowrap;flex:none}
+.tabbar{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:var(--cream);padding:5px;border-radius:12px;margin-bottom:16px}
+.tabbar button{min-height:46px;border:0;border-radius:9px;background:transparent;color:var(--brand);font:inherit;font-size:13.5px;font-weight:700;cursor:pointer;padding:6px 4px;display:flex;align-items:center;justify-content:center;text-align:center}
+.tabbar button[aria-current="page"]{background:var(--brand);color:#fff}
+h1{font-family:var(--font-display);font-size:24px;line-height:1.2;color:var(--brand);margin:0 0 6px}
+h2{font-family:var(--font-display);font-size:18px;line-height:1.25;color:var(--brand);margin:0 0 10px}
+.cap{font-size:13px;color:var(--muted);line-height:1.45}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:14px}
+/* Pro dark Stage Live Display — dynamic clamp guarantees 8-char "+1:23:45" fits 375/768/1280 with 0 clipping! */
+.stage-disp{background:#0E1520;color:#FBF8F2;border-radius:14px;padding:18px 12px;text-align:center;margin-bottom:14px;overflow:hidden}
+.stage-disp.warn{background:#2A1E08;border:2px solid #F5B742}
+.stage-disp.over{background:#2B0E11;border:2px solid #E25B5B}
+.stage-badge{display:inline-block;padding:4px 12px;border-radius:999px;font-size:12.5px;font-weight:800;letter-spacing:.05em;background:rgba(255,255,255,.12);color:#9ED1B7;margin-bottom:6px}
+.stage-disp.warn .stage-badge{background:#F5B742;color:#1A1204}
+.stage-disp.over .stage-badge{background:#E25B5B;color:#fff}
+.clock{font-family:var(--font-body);font-weight:800;font-variant-numeric:tabular-nums;line-height:1.05;font-size:clamp(42px,13vw,96px);letter-spacing:-0.02em;white-space:nowrap;max-width:100%}
+.sub-clock{font-size:13.5px;color:#DCE6F2;margin-top:8px;display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+.grid2{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:560px){.grid2{grid-template-columns:1fr 1fr}}
+.grid3{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:560px){.grid3{grid-template-columns:repeat(3,1fr)}}
+.field{display:block;margin-bottom:10px}
+.field:last-child{margin-bottom:0}
+.grid2>.field,.grid3>.field{margin-bottom:0}
+.field .l{display:block;font-size:13.5px;font-weight:700;color:var(--brand);margin-bottom:4px}
+.inp-wrap{display:flex;align-items:center;background:var(--input-bg);border:1.5px solid var(--input-border);border-radius:var(--radius-sm);padding:0 12px;min-height:46px}
+.inp-wrap input,.inp-wrap select{width:100%;border:0;background:transparent;font:inherit;color:var(--input-ink);outline:none;padding:10px 0;min-height:44px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 14px;border-radius:var(--radius-sm);border:1.5px solid var(--accent);background:var(--accent);color:#fff;font:inherit;font-weight:700;font-size:14px;cursor:pointer}
+.btn.sec{background:#fff;color:var(--brand);border-color:var(--line)}
+.btn.full{width:100%}
+.btn-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+@media(min-width:560px){.btn-row.four{grid-template-columns:repeat(4,1fr)}}
+.row-card{padding:10px 0;border-bottom:1px solid var(--hairline);display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.row-card:last-child{border-bottom:0}
+.tag{display:inline-block;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:700;background:var(--auto-bg);color:var(--brand);white-space:nowrap}
+.tag.good{background:#E6F3EC;color:#16533C}
+.tag.warn{background:var(--warn-bg);color:var(--warn-ink)}
+.shell-foot{margin-top:16px;padding-top:12px;border-top:1px solid var(--hairline);font-size:12.5px;color:var(--muted);line-height:1.45}
+.toast{position:fixed;left:12px;right:12px;bottom:20px;max-width:520px;margin:0 auto;transform:translateY(90px);opacity:0;visibility:hidden;pointer-events:none;background:var(--brand);color:#fff;padding:10px 14px;border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 8px 24px rgba(0,0,0,.22);transition:transform .2s ease,opacity .2s ease;z-index:60;font-size:14px}
+.toast.on{transform:translateY(0);opacity:1;visibility:visible;pointer-events:auto}
+.toast button{min-height:44px;padding:0 14px;border-radius:8px;border:0;background:var(--mint-on-dark);color:var(--brand);font-weight:800;cursor:pointer;align-items:center;justify-content:center}
+/* Fullscreen live stage mode hides ALL setup chrome and footer! */
+body.live-fs .setup-only{display:none!important}
+body.live-fs .shell{max-width:100%;min-height:100vh;margin:0;border:0;border-radius:0;background:#0E1520;display:flex;flex-direction:column;justify-content:center}
+</style>
+<style id="fa-name-title">.wm-t b,.wm-text b{font-size:19px;font-weight:800;line-height:1.12;letter-spacing:-.2px;white-space:normal}</style>
+</head>
+<body>
+<div class="shell">
+  <div class="topbar setup-only">
+    <div class="wm">
+      <div class="mark" aria-hidden="true">fa</div>
+      <div class="wm-t"><b>Timer Suite</b><span>Stage Cue · Classroom · Workout Intervals</span></div>
+    </div>
+    <button type="button" class="btn sec" id="topSampleBtn" style="min-height:44px;padding:0 14px;font-size:13.5px;flex:none;white-space:nowrap">Try sample</button>
+  </div>
+
+  <div class="banner setup-only" id="sampleBanner" data-sample-banner="1" style="display:none">
+    <span><b>Sample run-of-show</b> — example conference cue list, not your show</span>
+    <button type="button" id="clearSampleBtn">Clear sample</button>
+  </div>
+
+  <nav class="tabbar setup-only" aria-label="Timer mode">
+    <button type="button" data-mode="stage" aria-current="page"><span>Stage / Show</span></button>
+    <button type="button" data-mode="class"><span>Classroom</span></button>
+    <button type="button" data-mode="workout"><span>Workout</span></button>
+  </nav>
+
+  <h1 class="setup-only" id="modeTitle">Stage &amp; Run-of-Show Timer</h1>
+
+  <!-- LIVE PRO STAGE DISPLAY -->
+  <div class="stage-disp" id="stageDisp" aria-live="off">
+    <div class="stage-badge" id="dispBadge">READY</div>
+    <div class="clock num" id="dispClock">10:00</div>
+    <div class="sub-clock num" id="dispSub"><span>Elapsed: 00:00</span><span>Remaining: 10:00</span><span id="cueNowLbl"></span></div>
+  </div>
+
+  <div class="btn-row four" style="margin-bottom:14px">
+    <button type="button" class="btn" id="startBtn">Start</button>
+    <button type="button" class="btn sec" id="resetBtn">Restart</button>
+    <button type="button" class="btn sec" id="nextCueBtn">Next cue</button>
+    <button type="button" class="btn sec" id="fsBtn">Fullscreen</button>
+  </div>
+
+  <!-- STAGE SETUP -->
+  <div class="card setup-only" id="setup-stage">
+    <h2>Stage cue &amp; hard-out controls</h2>
+    <div class="grid3">
+      <label class="field"><span class="l">Duration (minutes)</span><span class="inp-wrap"><input id="stMin" inputmode="decimal" value="10"></span></label>
+      <label class="field"><span class="l">Amber WRAP UP (min left)</span><span class="inp-wrap"><input id="stWarn" inputmode="decimal" value="2"></span></label>
+      <label class="field"><span class="l">Hard-Out wall time (optional)</span><span class="inp-wrap"><input type="time" id="stHardOut"></span></label>
+    </div>
+    <p class="cap" style="margin:8px 0 0">Keyboard shortcuts (when not typing): <code>Space</code> Start/Pause · <code>R</code> Restart · <code>N</code> Next cue · <code>F</code> Fullscreen. Screen Wake Lock activates automatically while running.</p>
+  </div>
+
+  <div class="card setup-only" id="cueCard">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px">
+      <h2 style="margin:0">Run-of-show cue list</h2>
+      <button type="button" class="btn sec" id="primarySampleBtn" style="min-height:44px;padding:0 12px;font-size:13.5px">Load sample show</button>
+    </div>
+    <form id="cueForm" class="grid3" style="align-items:end;margin-bottom:10px">
+      <label class="field"><span class="l">Cue label</span><span class="inp-wrap"><input id="cLbl" placeholder="e.g. Keynote Opening" required></span></label>
+      <label class="field"><span class="l">Minutes</span><span class="inp-wrap"><input id="cMin" inputmode="decimal" placeholder="15" required></span></label>
+      <button type="submit" class="btn sec full">Add cue</button>
+    </form>
+    <div id="cueList"></div>
+  </div>
+
+  <!-- CLASSROOM SETUP -->
+  <div class="card setup-only" id="setup-class" style="display:none">
+    <h2>Classroom countdown</h2>
+    <div class="grid2">
+      <label class="field"><span class="l">Minutes</span><span class="inp-wrap"><input id="clMin" inputmode="decimal" value="15"></span></label>
+      <label class="field"><span class="l">Amber warning (min left)</span><span class="inp-wrap"><input id="clWarn" inputmode="decimal" value="2"></span></label>
+    </div>
+  </div>
+
+  <!-- WORKOUT SETUP -->
+  <div class="card setup-only" id="setup-workout" style="display:none">
+    <h2>Workout intervals</h2>
+    <div class="grid3">
+      <label class="field"><span class="l">Work (sec)</span><span class="inp-wrap"><input id="wkWork" inputmode="numeric" value="40"></span></label>
+      <label class="field"><span class="l">Rest (sec)</span><span class="inp-wrap"><input id="wkRest" inputmode="numeric" value="20"></span></label>
+      <label class="field"><span class="l">Rounds</span><span class="inp-wrap"><input id="wkRounds" inputmode="numeric" value="6"></span></label>
+    </div>
+  </div>
+
+  <footer class="shell-foot setup-only">Free offline timer by FiledAwayCo · Zero network, zero ads, works offline on stage laptops and phones. Working live events? See <b>LOAD-IN</b>, our beginner's guide to corporate AV.</footer>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><span id="toastMsg"></span><button type="button" id="toastUndo" style="display:none">Undo</button></div>
+
+<script>
+(function(){
+"use strict";
+var STORE_KEY = "fac_timer_suite_v2";
+var undoFn = null, toastT = null, wakeLock = null, tickInt = null;
+var mode = "stage";
+var running = false, terminal = false;
+var totalSec = 600, remSec = 600, elapsedSec = 0;
+var anchorEndMs = null; // Wall-clock anchored for zero pause/drift on live runs!
+var hardOutTargetMs = null; // Fixed wall-clock epoch so Hard-Out crosses 00:00 smoothly into red OVERTIME!
+var wkPhase = "work", wkRound = 1;
+var activeCueIdx = 0;
+
+function clone(o){ return JSON.parse(JSON.stringify(o)); }
+function esc(s){ return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+function formatHMS(sec){
+  var neg = sec < 0;
+  var a = Math.abs(Math.round(sec));
+  var h = Math.floor(a / 3600), m = Math.floor((a % 3600) / 60), s = a % 60;
+  var body = h > 0 ? (h + ":" + String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0")) : (String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0"));
+  return (neg ? "+" : "") + body;
+}
+function computeHardOutRemainingSec(hhmm, nowDate){
+  if (!hhmm || !/^\d{2}:\d{2}$/.test(hhmm)) return null;
+  var p = hhmm.split(":"), now = nowDate || new Date();
+  var tgt = new Date(now.getFullYear(), now.getMonth(), now.getDate(), parseInt(p[0], 10), parseInt(p[1], 10), 0, 0);
+  if (tgt.getTime() <= now.getTime()) tgt.setDate(tgt.getDate() + 1);
+  return Math.round((tgt.getTime() - now.getTime()) / 1000);
+}
+
+function defaultState(){ return { sample:false, cues:[] }; }
+function sampleState(){
+  return {
+    sample:true,
+    cues:[
+      { id:"c1", label:"Walk-In / Housekeeping", min:5, sample:true },
+      { id:"c2", label:"Keynote Speaker", min:25, sample:true },
+      { id:"c3", label:"Audience Q&A", min:10, sample:true }
+    ]
+  };
+}
+function loadState(){
+  try { var raw = localStorage.getItem(STORE_KEY); if (raw) { var o = JSON.parse(raw); if (o && Array.isArray(o.cues)) return Object.assign(defaultState(), o); } } catch(e){}
+  return defaultState();
+}
+var state = loadState();
+function persist(){ try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch(e){} }
+
+function showToast(msg, fn){
+  var el = document.getElementById("toast");
+  document.getElementById("toastMsg").textContent = msg;
+  var ub = document.getElementById("toastUndo");
+  undoFn = fn || null; ub.style.display = fn ? "inline-flex" : "none";
+  el.classList.add("on"); clearTimeout(toastT);
+  toastT = setTimeout(function(){ el.classList.remove("on"); undoFn = null; }, fn ? 7000 : 2800);
+}
+
+function requestWake(){
+  try { if (navigator.wakeLock && navigator.wakeLock.request) navigator.wakeLock.request("screen").then(function(l){ wakeLock = l; }).catch(function(){}); } catch(e){}
+}
+function releaseWake(){
+  try { if (wakeLock) { wakeLock.release(); wakeLock = null; } } catch(e){}
+}
+
+function getWarnSec(){
+  var v = parseFloat(document.getElementById(mode === "class" ? "clWarn" : "stWarn").value);
+  return isFinite(v) && v >= 0 ? Math.round(v * 60) : 120;
+}
+
+function loadTimerFromInputs(){
+  running = false; terminal = false; clearInterval(tickInt); releaseWake();
+  hardOutTargetMs = null;
+  if (mode === "stage") {
+    var ho = document.getElementById("stHardOut").value;
+    var hoSec = computeHardOutRemainingSec(ho);
+    if (hoSec != null) { totalSec = hoSec; hardOutTargetMs = Date.now() + hoSec * 1000; }
+    else {
+      var m = parseFloat(document.getElementById("stMin").value);
+      totalSec = Math.max(1, Math.round((isFinite(m) && m > 0 ? m : 10) * 60));
+    }
+    remSec = totalSec; elapsedSec = 0;
+  } else if (mode === "class") {
+    var cm = parseFloat(document.getElementById("clMin").value);
+    totalSec = Math.max(1, Math.round((isFinite(cm) && cm > 0 ? cm : 15) * 60));
+    remSec = totalSec; elapsedSec = 0;
+  } else {
+    wkPhase = "work"; wkRound = 1;
+    var ws = Math.max(1, parseInt(document.getElementById("wkWork").value, 10) || 40);
+    totalSec = ws; remSec = ws; elapsedSec = 0;
+  }
+  renderDisplay();
+}
+
+function stepTick(){
+  if (!running) return;
+  if (mode === "stage" && hardOutTargetMs != null) {
+    // Anchored to exact wall-clock target epoch: zero pause drift AND smoothly crosses 00:00 into OVERTIME!
+    remSec = Math.round((hardOutTargetMs - Date.now()) / 1000);
+    elapsedSec = Math.max(0, totalSec - remSec);
+    renderDisplay(); return;
+  }
+  var nowRem = Math.round((anchorEndMs - Date.now()) / 1000);
+  if (mode === "stage") {
+    remSec = nowRem;
+    elapsedSec = Math.max(0, totalSec - remSec);
+  } else if (mode === "class") {
+    if (nowRem <= 0) {
+      remSec = 0; elapsedSec = totalSec; running = false; terminal = true; clearInterval(tickInt); releaseWake();
+    } else {
+      remSec = nowRem; elapsedSec = totalSec - remSec;
+    }
+  } else {
+    if (nowRem <= 0) {
+      var maxR = Math.max(1, parseInt(document.getElementById("wkRounds").value, 10) || 6);
+      var wSec = Math.max(1, parseInt(document.getElementById("wkWork").value, 10) || 40);
+      var rawR = parseInt(document.getElementById("wkRest").value, 10);
+      var rSec = isNaN(rawR) ? 20 : Math.max(0, rawR);
+      if (wkPhase === "work" && rSec > 0 && wkRound <= maxR) {
+        wkPhase = "rest"; totalSec = rSec; remSec = rSec; elapsedSec = 0; anchorEndMs = Date.now() + rSec * 1000;
+      } else if (wkRound < maxR) {
+        wkRound++; wkPhase = "work"; totalSec = wSec; remSec = wSec; elapsedSec = 0; anchorEndMs = Date.now() + wSec * 1000;
+      } else {
+        remSec = 0; elapsedSec = totalSec; running = false; terminal = true; clearInterval(tickInt); releaseWake();
+      }
+    } else {
+      remSec = nowRem; elapsedSec = totalSec - remSec;
+    }
+  }
+  renderDisplay();
+}
+
+function toggleStart(){
+  if (terminal) { loadTimerFromInputs(); }
+  if (running) {
+    running = false; clearInterval(tickInt); releaseWake();
+  } else {
+    running = true; terminal = false;
+    anchorEndMs = Date.now() + remSec * 1000;
+    requestWake();
+    clearInterval(tickInt);
+    tickInt = setInterval(stepTick, 250);
+  }
+  renderDisplay();
+}
+
+function renderDisplay(){
+  var disp = document.getElementById("stageDisp");
+  var badge = document.getElementById("dispBadge");
+  var clk = document.getElementById("dispClock");
+  var sub = document.getElementById("dispSub");
+  var warnSec = getWarnSec();
+
+  disp.classList.remove("warn", "over");
+  if (terminal && mode === "class") {
+    disp.classList.add("over"); badge.textContent = "TIME'S UP"; clk.textContent = "00:00";
+  } else if (terminal && mode === "workout") {
+    badge.textContent = "DONE"; clk.textContent = "00:00";
+  } else if (mode === "stage" && remSec < 0) {
+    disp.classList.add("over"); badge.textContent = "OVERTIME"; clk.textContent = formatHMS(remSec);
+  } else if ((mode === "stage" || mode === "class") && remSec <= warnSec && remSec > 0 && running) {
+    disp.classList.add("warn"); badge.textContent = "WRAP UP"; clk.textContent = formatHMS(remSec);
+  } else if (mode === "workout") {
+    var maxR = Math.max(1, parseInt(document.getElementById("wkRounds").value, 10) || 6);
+    badge.textContent = (wkPhase === "work" ? "WORK" : "REST") + " · ROUND " + wkRound + "/" + maxR;
+    if (wkPhase === "rest") disp.classList.add("warn");
+    clk.textContent = formatHMS(remSec);
+  } else {
+    badge.textContent = running ? "LIVE" : "READY";
+    clk.textContent = formatHMS(remSec);
+  }
+
+  var cueTxt = (mode === "stage" && state.cues[activeCueIdx]) ? ("Cue: " + esc(state.cues[activeCueIdx].label)) : "";
+  sub.innerHTML = '<span>Elapsed: ' + formatHMS(elapsedSec) + '</span><span>Remaining: ' + formatHMS(Math.max(0, remSec)) + '</span>' + (cueTxt ? ('<span>' + cueTxt + '</span>') : '');
+  document.getElementById("startBtn").textContent = running ? "Pause" : (terminal ? "Start again" : "Start");
+  document.getElementById("nextCueBtn").style.display = mode === "stage" ? "inline-flex" : "none";
+}
+
+function renderBannerAndCues(){
+  var hasS = state.cues.some(function(c){ return c.sample; });
+  state.sample = hasS;
+  document.getElementById("sampleBanner").style.display = hasS ? "flex" : "none";
+  document.getElementById("topSampleBtn").style.display = hasS ? "none" : "inline-flex";
+  document.getElementById("primarySampleBtn").style.display = hasS ? "none" : "inline-flex";
+
+  var cl = document.getElementById("cueList");
+  if (!state.cues.length) {
+    cl.innerHTML = '<p class="cap" style="margin:0">No cues yet. Add cues above or tap Load sample show.</p>';
+  } else {
+    cl.innerHTML = state.cues.map(function(c, i){
+      var isCur = i === activeCueIdx;
+      return '<div class="row-card"><div><b>' + esc(c.label) + '</b> <span class="cap num">(' + c.min + ' min)</span>' + (isCur ? ' <span class="tag good">Active</span>' : '') + (c.sample ? ' <span class="tag warn">Sample</span>' : '') + '</div>' +
+        '<div style="display:flex;gap:6px"><button type="button" class="btn sec" data-selcue="' + i + '" style="min-height:44px;padding:0 12px;font-size:13.5px">Load</button>' +
+        '<button type="button" class="btn sec" data-delcue="' + i + '" style="min-height:44px;padding:0 12px;font-size:13.5px">Delete</button></div></div>';
+    }).join("");
+  }
+}
+
+function switchMode(m){
+  mode = m;
+  document.querySelectorAll("[data-mode]").forEach(function(b){ b.setAttribute("aria-current", b.dataset.mode === m ? "page" : "false"); });
+  document.getElementById("setup-stage").style.display = m === "stage" ? "block" : "none";
+  document.getElementById("cueCard").style.display = m === "stage" ? "block" : "none";
+  document.getElementById("setup-class").style.display = m === "class" ? "block" : "none";
+  document.getElementById("setup-workout").style.display = m === "workout" ? "block" : "none";
+  document.getElementById("modeTitle").textContent = m === "stage" ? "Stage & Run-of-Show Timer" : (m === "class" ? "Classroom Countdown" : "Workout Interval Timer");
+  loadTimerFromInputs();
+}
+
+function selectCue(idx){
+  if (!state.cues[idx]) return;
+  activeCueIdx = idx;
+  document.getElementById("stHardOut").value = "";
+  document.getElementById("stMin").value = String(state.cues[idx].min);
+  renderBannerAndCues();
+  loadTimerFromInputs();
+}
+
+["stMin","stWarn","stHardOut","clMin","clWarn","wkWork","wkRest","wkRounds"].forEach(function(id){
+  document.getElementById(id).addEventListener("change", loadTimerFromInputs);
+});
+
+document.getElementById("cueForm").addEventListener("submit", function(ev){
+  ev.preventDefault();
+  var lbl = document.getElementById("cLbl").value.trim();
+  var m = parseFloat(document.getElementById("cMin").value);
+  if (!lbl || !isFinite(m) || m <= 0) { showToast("Enter a cue label and positive minutes."); return; }
+  state.cues.push({ id:"c-" + Date.now(), label:lbl, min:m, sample:false });
+  document.getElementById("cLbl").value = ""; document.getElementById("cMin").value = "";
+  persist(); renderBannerAndCues(); showToast("Cue added.");
+});
+
+document.addEventListener("click", function(e){
+  var t = e.target.closest("button"); if (!t) return;
+  if (t.dataset.mode) { switchMode(t.dataset.mode); }
+  else if (t.id === "startBtn") { toggleStart(); }
+  else if (t.id === "resetBtn") { loadTimerFromInputs(); }
+  else if (t.id === "nextCueBtn") {
+    if (!state.cues.length) { showToast("Add cues below first."); return; }
+    selectCue((activeCueIdx + 1) % state.cues.length);
+  } else if (t.id === "fsBtn") {
+    document.body.classList.toggle("live-fs");
+    t.textContent = document.body.classList.contains("live-fs") ? "Exit Fullscreen" : "Fullscreen";
+  } else if (t.id === "topSampleBtn" || t.id === "primarySampleBtn") {
+    var s = sampleState();
+    var uC = state.cues.filter(function(c){ return !c.sample; });
+    state.sample = true; state.cues = s.cues.concat(uC); activeCueIdx = 0;
+    persist(); renderBannerAndCues(); selectCue(0);
+  } else if (t.id === "clearSampleBtn") {
+    var snap = clone(state);
+    var prevMin = document.getElementById("stMin").value;
+    state.sample = false; state.cues = state.cues.filter(function(c){ return !c.sample; }); activeCueIdx = 0;
+    if (!state.cues.length) document.getElementById("stMin").value = "10";
+    persist(); renderBannerAndCues(); loadTimerFromInputs();
+    showToast("Sample show cleared.", function(){ state = snap; document.getElementById("stMin").value = prevMin; persist(); renderBannerAndCues(); selectCue(0); showToast("Sample restored."); });
+  } else if (t.id === "toastUndo") {
+    if (undoFn) { var f = undoFn; undoFn = null; document.getElementById("toast").classList.remove("on"); f(); }
+  } else if (t.dataset.selcue != null) { selectCue(+t.dataset.selcue); }
+  else if (t.dataset.delcue != null) {
+    var snapC = clone(state.cues); state.cues.splice(+t.dataset.delcue, 1); activeCueIdx = 0;
+    persist(); renderBannerAndCues(); renderDisplay();
+    showToast("Cue deleted.", function(){ state.cues = snapC; persist(); renderBannerAndCues(); renderDisplay(); });
+  }
+});
+
+// Keyboard shortcuts — strictly suppressed when typing in inputs/selects/textareas or using Ctrl/Cmd/Alt chords!
+document.addEventListener("keydown", function(e){
+  var tag = (e.target && e.target.tagName || "").toUpperCase();
+  if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || (e.target && e.target.isContentEditable)) return;
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
+  if (e.code === "Space") { e.preventDefault(); toggleStart(); }
+  else if (e.key === "r" || e.key === "R") { loadTimerFromInputs(); }
+  else if (e.key === "n" || e.key === "N") { if (mode === "stage" && state.cues.length) selectCue((activeCueIdx + 1) % state.cues.length); }
+  else if (e.key === "f" || e.key === "F") { document.getElementById("fsBtn").click(); }
+});
+
+window.__TS = {
+  formatHMS:formatHMS, computeHardOutRemainingSec:computeHardOutRemainingSec,
+  setTestState:function(m, rem, tot, term){ mode = m; remSec = rem; totalSec = tot; elapsedSec = Math.max(0, tot - rem); terminal = !!term; running = false; hardOutTargetMs = null; renderDisplay(); },
+  simulateHardOutPast:function(pastSec){ mode = "stage"; totalSec = 600; hardOutTargetMs = Date.now() - pastSec * 1000; running = true; terminal = false; stepTick(); running = false; },
+  getState:function(){ return { mode:mode, remSec:remSec, elapsedSec:elapsedSec, totalSec:totalSec, terminal:terminal, running:running }; }
+};
+renderBannerAndCues();
+loadTimerFromInputs();
+})();
+</script>
+</body>
+</html>

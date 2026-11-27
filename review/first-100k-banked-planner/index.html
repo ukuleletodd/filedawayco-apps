@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en" data-temp="ledger">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>First $100K Companion · FiledAwayCo</title>
+<style>
+:root,[data-temp="ledger"]{
+  --brand:#1B2A40; --brand-ink:#FFFFFF; --accent:#1F5C45; --accent-ink:#FFFFFF;
+  --mint-on-dark:#7FB89E;
+  --paper:#FBF8F2; --card:#FFFFFF; --cream:#E8E0D2;
+  --ink:#1B2430; --muted:#4A5563; --line:#D9D1C3; --hairline:#EDE6DA;
+  --input-bg:#FFF4D6; --input-border:#D9C79A; --input-ink:#1A1A1A;
+  --auto-bg:#F1F3F5; --auto-ink:#1B2430;
+  --good-ink:#16533C; --good-bg:#E6F3EC;
+  --warn-ink:#7A4700; --warn-bg:#FFF4D6;
+  --alert-ink:#962324; --alert-bg:#FBEAEA;
+  --radius:14px; --radius-sm:10px;
+  --font-display:Georgia,"Times New Roman",serif;
+  --font-body:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--cream);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.45;-webkit-text-size-adjust:100%}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+.h-num{font-family:var(--font-body);font-variant-numeric:tabular-nums}
+.shell{max-width:860px;margin:0 auto;min-height:100vh;background:var(--paper);padding:14px 14px 44px}
+@media(min-width:768px){.shell{margin:18px auto;border-radius:18px;border:1px solid var(--line);padding:22px 26px 48px;box-shadow:0 6px 24px rgba(27,42,64,.09)}}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--hairline);margin-bottom:12px}
+.wm{display:flex;align-items:center;gap:10px;min-width:0}
+.mark{width:34px;height:34px;border-radius:8px;background:var(--brand);color:#fff;font-weight:800;font-size:14px;display:grid;place-items:center;position:relative;flex:none}
+.mark::after{content:"";position:absolute;top:0;right:0;width:10px;height:10px;background:var(--accent);border-bottom-left-radius:4px;border-top-right-radius:8px}
+.wm-t{min-width:0}
+.wm-t b{display:block;font-size:15px;color:var(--brand);line-height:1.15}
+.wm-t span{display:block;font-size:12px;color:var(--muted)}
+.banner{background:var(--warn-bg);border:1px solid var(--input-border);color:var(--warn-ink);border-radius:var(--radius-sm);padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;font-size:14px}
+.banner button{min-height:44px;padding:0 14px;border-radius:8px;border:1px solid var(--warn-ink);background:#fff;color:var(--warn-ink);font-weight:700;font-size:13.5px;cursor:pointer;white-space:nowrap;flex:none}
+.tabbar{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:var(--cream);padding:5px;border-radius:12px;margin-bottom:16px}
+.tabbar button{min-height:46px;border:0;border-radius:9px;background:transparent;color:var(--brand);font:inherit;font-size:13.5px;font-weight:700;cursor:pointer;padding:6px 4px;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.2}
+.tabbar button[aria-current="page"]{background:var(--brand);color:#fff}
+h1{font-family:var(--font-display);font-size:24px;line-height:1.2;color:var(--brand);margin:0 0 6px}
+h2{font-family:var(--font-display);font-size:18px;line-height:1.25;color:var(--brand);margin:0 0 10px}
+h3{font-size:15px;font-weight:700;color:var(--brand);margin:0 0 8px}
+.cap{font-size:13px;color:var(--muted);line-height:1.45}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:14px}
+.empty-cta{background:var(--paper);border:1.5px dashed var(--input-border);border-radius:var(--radius);padding:16px;margin-bottom:14px;display:flex;flex-direction:column;gap:10px}
+.hero{background:var(--brand);color:#fff;border-color:var(--brand)}
+.hero .lbl{font-size:12.5px;color:#DCE6F2;font-weight:600}
+.hero .big{font-size:34px;font-weight:800;line-height:1.1;margin:4px 0}
+.hero .sub{font-size:13.5px;color:var(--mint-on-dark);font-weight:600}
+.prog-track{height:14px;background:rgba(255,255,255,.18);border-radius:999px;overflow:hidden;margin-top:10px}
+.prog-fill{height:100%;background:var(--mint-on-dark);border-radius:999px;transition:width .2s ease}
+.kpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.kpi{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:10px}
+.kpi .k-lbl{font-size:12.5px;color:#DCE6F2}
+.kpi .k-val{font-size:17px;font-weight:800;color:#fff;margin-top:2px}
+.kpi-light-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(min-width:600px){.kpi-light-grid{grid-template-columns:repeat(3,1fr)}}
+.kpi-l{background:var(--auto-bg);border:1px solid var(--hairline);border-radius:12px;padding:12px}
+.kpi-l.main{background:var(--paper);border:2px solid var(--accent);grid-column:1 / -1}
+@media(min-width:600px){.kpi-l.main{grid-column:auto}}
+.kpi-l.main.neutral{border-color:var(--line)}
+.kpi-l.main.deficit{background:var(--alert-bg);border-color:var(--alert-ink)}
+.kpi-l .lbl{font-size:12.5px;color:var(--muted);font-weight:600}
+.kpi-l .val{font-size:22px;font-weight:800;color:var(--brand);margin-top:2px}
+.kpi-l.main .val{color:var(--good-ink)}
+.kpi-l.main.neutral .val{color:var(--brand)}
+.kpi-l.main.deficit .val{color:var(--alert-ink)}
+.shell-foot{margin-top:16px;padding-top:12px;border-top:1px solid var(--hairline);font-size:12.5px;color:var(--muted);line-height:1.45}
+/* 20 Milestone Boxes: 5x4 on phone, 10x2 on tablet/desktop — FLAT inner fill bar! */
+.mboxes{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:10px}
+@media(min-width:620px){.mboxes{grid-template-columns:repeat(10,1fr)}}
+.mbox{position:relative;height:44px;border-radius:8px;border:1.5px solid var(--accent);background:#fff;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.mbox-fill{position:absolute;left:0;right:0;bottom:0;background:var(--good-bg);pointer-events:none}
+.mbox.full{background:var(--accent);border-color:var(--accent)}
+.mbox.full .mbox-fill{display:none}
+.mbox-txt{position:relative;z-index:1;font-size:12px;font-weight:800;color:var(--brand)}
+.mbox.full .mbox-txt{color:#fff}
+.brief-box{background:var(--paper);border-left:4px solid var(--accent);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:12px 14px;font-size:14.5px;line-height:1.55}
+.brief-box p{margin:0 0 6px}
+.brief-box p:last-child{margin:0}
+.grid2{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:560px){.grid2{grid-template-columns:1fr 1fr}}
+.field{display:block;margin-bottom:10px}
+.field:last-child{margin-bottom:0}
+.field .l{display:block;font-size:13.5px;font-weight:700;color:var(--brand);margin-bottom:4px}
+.inp-wrap{display:flex;align-items:center;background:var(--input-bg);border:1.5px solid var(--input-border);border-radius:var(--radius-sm);padding:0 12px;min-height:46px}
+.inp-wrap:focus-within{border-color:var(--accent);box-shadow:0 0 0 2px rgba(31,92,69,.18)}
+.inp-wrap .pre,.inp-wrap .suf{font-weight:700;color:var(--muted)}
+.inp-wrap .pre{margin-right:6px}
+.inp-wrap .suf{margin-left:6px}
+.inp-wrap input,.inp-wrap select{width:100%;border:0;background:transparent;font:inherit;color:var(--input-ink);outline:none;padding:10px 0;min-height:44px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 16px;border-radius:var(--radius-sm);border:1.5px solid var(--accent);background:var(--accent);color:#fff;font:inherit;font-weight:700;font-size:14.5px;cursor:pointer;text-decoration:none}
+.btn.sec{background:#fff;color:var(--brand);border-color:var(--line)}
+.btn.full{width:100%}
+.btn-row{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}
+@media(min-width:520px){.btn-row{grid-template-columns:1fr 1fr}}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.chip-btn{min-height:44px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--brand);font:inherit;font-size:13.5px;font-weight:700;cursor:pointer}
+.chip-btn[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.tag{display:inline-block;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:700;background:var(--auto-bg);color:var(--brand);white-space:nowrap}
+.tag.good{background:var(--good-bg);color:var(--good-ink)}
+.tag.warn{background:var(--warn-bg);color:var(--warn-ink)}
+.row-card{padding:11px 0;border-bottom:1px solid var(--hairline);display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.row-card:last-child{border-bottom:0}
+.pane{display:none}
+.pane.active{display:block}
+.toast{position:fixed;left:12px;right:12px;bottom:20px;max-width:520px;margin:0 auto;transform:translateY(90px);opacity:0;visibility:hidden;pointer-events:none;background:var(--brand);color:#fff;padding:10px 14px;border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 8px 24px rgba(0,0,0,.22);transition:transform .2s ease,opacity .2s ease;z-index:60;font-size:14px}
+.toast.on{transform:translateY(0);opacity:1;visibility:visible;pointer-events:auto}
+.toast button{min-height:44px;padding:0 14px;border-radius:8px;border:0;background:var(--mint-on-dark);color:var(--brand);font-weight:800;cursor:pointer;align-items:center;justify-content:center}
+/* Printable 1-Page Wall Chart: STRICTLY ZERO FiledAwayCo branding (CLAUDE.md:14!) */
+.print-only{display:none}
+.wall-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:14px}
+.wall-box{border:1.5px solid #1B2A40;border-radius:8px;padding:12px 6px;text-align:center;font-size:13px;font-weight:700}
+.wall-box.done{background:#E6F3EC;border-color:#1F5C45;color:#16533C}
+@media print{
+  body{background:#fff;color:#111;font-size:11pt}
+  .shell{max-width:100%;margin:0;padding:0;border:0;box-shadow:none;background:#fff}
+  .no-print,.topbar,.tabbar,.banner,.toast,.pane{display:none!important}
+  #milestonePrintSheet{display:block!important}
+  .wall-box.done{background:#E6F3EC;border-color:#1F5C45;color:#16533C;print-color-adjust:exact;-webkit-print-color-adjust:exact}
+}
+</style>
+<style id="fa-name-title">.wm-t b,.wm-text b{font-size:19px;font-weight:800;line-height:1.12;letter-spacing:-.2px;white-space:normal}</style>
+</head>
+<body>
+<div class="shell">
+  <div class="topbar no-print">
+    <div class="wm">
+      <div class="mark" aria-hidden="true">fa</div>
+      <div class="wm-t"><b>First $100K Banked Planner</b><span>Pace · Burn Rate &amp; Runway · Milestones</span></div>
+    </div>
+    <button type="button" class="btn sec" id="topSampleBtn" style="min-height:44px;padding:0 14px;font-size:13.5px;flex:none;white-space:nowrap">Try sample</button>
+  </div>
+
+  <div class="banner no-print" id="sampleBanner" data-sample-banner="1" style="display:none">
+    <span><b>Sample data</b> — Maya's worked example, not your deposits</span>
+    <button type="button" id="clearSampleBtn">Clear sample</button>
+  </div>
+
+  <nav class="tabbar no-print" aria-label="Main navigation">
+    <button type="button" data-tab="pace" aria-current="page"><span>Pace &amp; Deposits</span></button>
+    <button type="button" data-tab="burn"><span>Burn &amp; Runway</span></button>
+    <button type="button" data-tab="export"><span>Milestones &amp; Export</span></button>
+  </nav>
+
+  <!-- TAB 1: PACE & DEPOSITS -->
+  <section class="pane active" id="pane-pace" aria-label="Pace and Deposits">
+    <h1>Banked Progress &amp; Pace</h1>
+    <p class="cap" style="margin:0 0 12px">Log every transfer into savings, watch each 5% milestone box fill, and see what an extra $100/month changes.</p>
+
+    <div class="empty-cta" id="emptyHeroCta" style="display:none">
+      <div><b>See how it works in one tap:</b> load Maya's sample deposits ($12,400 banked over 3 months, $1,200 in the last 4 weeks) and burn-rate sheet, or enter your own target and first deposit below.</div>
+      <button type="button" class="btn full" id="primarySampleBtn">Load Maya's sample</button>
+    </div>
+
+    <div class="card hero">
+      <div class="lbl">Banked so far</div>
+      <div class="big num" id="outBanked">$0</div>
+      <div class="sub num" id="outPct">0.0% of your $100,000 target</div>
+      <div class="prog-track" aria-hidden="true"><div class="prog-fill" id="barFill" style="width:0%"></div></div>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="k-lbl">This week</div><div class="k-val num" id="outWeek">$0</div></div>
+        <div class="kpi"><div class="k-lbl">This month</div><div class="k-val num" id="outMonth">$0</div></div>
+        <div class="kpi"><div class="k-lbl">Still to go</div><div class="k-val num" id="outLeft">$100,000</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+        <h2 style="margin:0"><span class="h-num">20</span> milestone boxes (<span class="h-num">5%</span> each)</h2>
+        <span class="tag good num" id="nextBoxTag">Next: $5,000</span>
+      </div>
+      <div class="mboxes" id="mBoxes" aria-label="Twenty 5 percent milestone boxes"></div>
+      <p class="cap num" id="boxNote" style="margin:8px 0 12px"></p>
+      <div class="grid2">
+        <label class="field"><span class="l">Your banked target ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="inpTarget" inputmode="decimal" value="100000"></span></label>
+        <div class="field"><span class="l">Quick target presets</span>
+          <div class="chips" style="margin:0">
+            <button type="button" class="chip-btn num" data-tpreset="1000">$1K</button>
+            <button type="button" class="chip-btn num" data-tpreset="10000">$10K</button>
+            <button type="button" class="chip-btn num" data-tpreset="25000">$25K</button>
+            <button type="button" class="chip-btn num" data-tpreset="100000">$100K</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Pace &amp; bottleneck brief</h2>
+      <div class="brief-box" id="paceBrief"></div>
+      <p class="cap" style="margin:8px 0 0"><b>Illustrative pace, not a prediction or income guarantee.</b> Computed 100% locally from your rolling 28-day deposits and target.</p>
+    </div>
+
+    <div class="card">
+      <h2>Log a deposit</h2>
+      <form id="depForm">
+        <div class="grid2">
+          <label class="field"><span class="l">Amount ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="depAmt" inputmode="decimal" placeholder="250.00" required></span></label>
+          <label class="field"><span class="l">Date</span><span class="inp-wrap"><input type="date" id="depDate" required></span></label>
+          <label class="field"><span class="l">Source</span><span class="inp-wrap"><select id="depNote">
+            <option>Payday</option><option>Skill income</option><option>Cost cut</option><option>Side income</option><option>Debt freed cash</option><option>Other</option>
+          </select></span></label>
+          <div class="field" style="display:flex;align-items:flex-end"><button type="submit" class="btn full">Save deposit</button></div>
+        </div>
+      </form>
+      <div id="depList" style="margin-top:12px"></div>
+    </div>
+  </section>
+
+  <!-- TAB 2: BURN RATE & RUNWAY (+ DEBT PAYOFF BRIDGE) -->
+  <section class="pane" id="pane-burn" aria-label="Burn Rate and Runway">
+    <h1>Burn Rate &amp; Risk Room</h1>
+    <p class="cap" style="margin:0 0 12px">Matches workbook Tab 2 (Burn Rate &amp; Risk Room): monthly surplus, months of runway today, and what 3 months of banking buys you.</p>
+
+    <div class="card">
+      <div class="kpi-light-grid">
+        <div class="kpi-l main neutral" id="bSurplusBox"><div class="lbl" id="bSurplusLbl">Monthly surplus</div><div class="val num" id="bSurplus">$0</div></div>
+        <div class="kpi-l"><div class="lbl">Risk room today</div><div class="val num" id="bRunNow">—</div></div>
+        <div class="kpi-l"><div class="lbl">Risk room (+3 mo banked)</div><div class="val num" id="bRun3">—</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Your monthly numbers</h2>
+      <div class="grid2">
+        <label class="field"><span class="l">Job income ($/mo)</span><span class="inp-wrap"><span class="pre">$</span><input id="bJob" inputmode="decimal" placeholder="0"></span></label>
+        <label class="field"><span class="l">Other / skill income ($/mo)</span><span class="inp-wrap"><span class="pre">$</span><input id="bSkill" inputmode="decimal" placeholder="0"></span></label>
+        <label class="field"><span class="l">Monthly burn ($/mo — from Tab 1)</span><span class="inp-wrap"><span class="pre">$</span><input id="bBurn" inputmode="decimal" placeholder="0"></span></label>
+        <label class="field"><span class="l">Savings today ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="bSav" inputmode="decimal" placeholder="0"></span></label>
+        <label class="field"><span class="l">Minimum debt payments ($/mo, inside burn)</span><span class="inp-wrap"><span class="pre">$</span><input id="bDebt" inputmode="decimal" placeholder="0"></span></label>
+        <label class="field"><span class="l">Paycheck auto-bank rate (%)</span><span class="inp-wrap"><input id="bPct" inputmode="decimal" placeholder="20"><span class="suf">%</span></span></label>
+      </div>
+      <p class="cap num" id="bPaycheckLine" style="margin:10px 0 0"></p>
+    </div>
+
+    <div class="card">
+      <h2>Import freed cash from Debt Payoff Planner</h2>
+      <p class="cap" style="margin:0 0 10px">Finished paying off a debt in our Debt Payoff Planner? Load its <code>fac-bridge-v1</code> JSON here to preview the freed monthly payment before applying it to your burn rate (confirm-before-save; never leaves your device).</p>
+      <button type="button" class="btn sec full" id="bridgePickBtn">Choose Debt Payoff bridge (.json)</button>
+      <input type="file" id="bridgeInFile" accept=".json,application/json" style="display:none">
+      <div id="bridgeDraftBox" style="display:none;margin-top:10px"></div>
+    </div>
+  </section>
+
+  <!-- TAB 3: MILESTONES & EXPORT -->
+  <section class="pane" id="pane-export" aria-label="Milestones and Export">
+    <h1>Wall Chart, Calendar &amp; Export</h1>
+    <p class="cap" style="margin:0 0 12px">Print a clean, logo-free wall chart for your fridge or desk, book your weekly Sunday review, or export deposit rows to reconcile with Tab 9 (Banked Tracker).</p>
+
+    <div class="card">
+      <h2>Printable <span class="h-num">1</span>-page milestone wall chart</h2>
+      <p class="cap" style="margin:0 0 8px">Prints clean with <b>zero shop logo or app buttons</b> so you can shade boxes on paper.</p>
+      <div class="chips" id="wallPresetChips">
+        <button type="button" class="chip-btn" data-wmode="target" aria-pressed="true">My current target</button>
+        <button type="button" class="chip-btn" data-wmode="1000" aria-pressed="false">First $1,000 ($50 boxes)</button>
+        <button type="button" class="chip-btn" data-wmode="10000" aria-pressed="false">First $10,000 ($500 boxes)</button>
+      </div>
+      <button type="button" class="btn full" id="printWallBtn">Print 1-page milestone chart</button>
+    </div>
+
+    <div class="card">
+      <h2>Weekly review &amp; exports</h2>
+      <div class="btn-row">
+        <button type="button" class="btn" id="exportCsvBtn">Export Banked Tracker CSV</button>
+        <button type="button" class="btn sec" id="icsReviewBtn">Weekly Sunday Review (.ics)</button>
+      </div>
+      <div class="btn-row">
+        <button type="button" class="btn sec" id="bridgeOutBtn">Export Annual Money bridge (.json)</button>
+        <button type="button" class="btn sec" id="backupBtn">Backup all data (.json)</button>
+      </div>
+      <button type="button" class="btn sec full" id="restorePickBtn" style="margin-top:10px">Restore from backup (.json)</button>
+      <input type="file" id="restoreFile" accept=".json,application/json" style="display:none">
+      <p class="cap" style="margin:10px 0 0">Sample deposits are excluded automatically from CSV and bridge exports. Data stays on this device only.</p>
+    </div>
+  </section>
+
+  <footer class="shell-foot no-print">Planning tool — not financial or tax advice; no income or savings result is promised or implied. Everything stays on this device. Support: filedawayco@gmail.com</footer>
+
+  <!-- STRICTLY LOGO-FREE PRINTABLE WALL CHART (CLAUDE.md:14) -->
+  <section id="milestonePrintSheet" class="print-only"></section>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><span id="toastMsg"></span><button type="button" id="toastUndo" style="display:none">Undo</button></div>
+
+<script>
+(function(){
+"use strict";
+var STORE_KEY = "fac_first_100k_v2";
+var undoFn = null, toastT = null;
+var wallMode = "target";
+var pendingBridge = null;
+
+function clone(o){ return JSON.parse(JSON.stringify(o)); }
+function esc(s){ return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+function localISO(d){ return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
+function todayISO(){ return localISO(new Date()); }
+function addDaysISO(days){ var d = new Date(); d.setDate(d.getDate() + days); return localISO(d); }
+function fmt$(n){ var v = Number(n) || 0; return (v < 0 ? "−" : "") + "$" + Math.round(Math.abs(v)).toLocaleString("en-US"); }
+function fmt$2(n){ var v = Number(n) || 0; return (v < 0 ? "−" : "") + "$" + Math.abs(v).toLocaleString("en-US", { minimumFractionDigits:2, maximumFractionDigits:2 }); }
+function csvCell(v){ v = String(v == null ? "" : v); return /[",\n\r]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }
+function csvText(v){ v = String(v == null ? "" : v); if (/^\s*[=+\-@]/.test(v) || /^[\t\r]/.test(v)) v = "'" + v; return csvCell(v); }
+
+function parseMoneyStrict(raw){
+  if (raw == null) return null;
+  var s = String(raw).trim();
+  if (!s) return null;
+  var neg = false;
+  if (/^\(.*\)$/.test(s)) { neg = true; s = s.slice(1, -1).trim(); }
+  if (s.startsWith("$")) s = s.slice(1).trim();
+  if (s.startsWith("-")) { neg = true; s = s.slice(1).trim(); }
+  s = s.replace(/^\$/, "").replace(/,/g, "").trim();
+  if (!/^\d+(\.\d{1,2})?$/.test(s)) return null;
+  var v = parseFloat(s);
+  return neg ? -v : v;
+}
+function parsePos(raw){ var v = parseMoneyStrict(raw); return (v == null || v < 0) ? 0 : v; }
+
+function defaultState(){
+  return {
+    sample:false,
+    burnSample:false,
+    target:100000,
+    deps:[],
+    burn:{ job:0, skill:0, burn:0, sav:0, debt:0, pct:20 }
+  };
+}
+function sampleState(){
+  // Coherent Maya example: $11,200 prior banked + $1,200 inside rolling 28-day window ($300/wk, $1,300/mo pace -> +$100/mo visibly saves ~4.8 months!),
+  // and Tab 2 burn = $1,855 / surplus = $645 (100% parity with workbook EXAMPLE — 2 BURN RATE & RISK RO!)
+  return {
+    sample:true,
+    burnSample:true,
+    target:100000,
+    deps:[
+      { id:"s0", date:addDaysISO(-90), amount:5600, note:"Payday", sample:true },
+      { id:"s1", date:addDaysISO(-52), amount:3600, note:"Skill income", sample:true },
+      { id:"s2", date:addDaysISO(-34), amount:2000, note:"Cost cut", sample:true },
+      { id:"s3", date:addDaysISO(-23), amount:320,  note:"Payday", sample:true },
+      { id:"s4", date:addDaysISO(-16), amount:280,  note:"Skill income", sample:true },
+      { id:"s5", date:addDaysISO(-9),  amount:320,  note:"Payday", sample:true },
+      { id:"s6", date:addDaysISO(0),   amount:280,  note:"Cost cut", sample:true }
+    ],
+    burn:{ job:2350, skill:150, burn:1855, sav:1800, debt:215, pct:20 }
+  };
+}
+function loadState(){
+  try {
+    var raw = localStorage.getItem(STORE_KEY);
+    if (raw) {
+      var o = JSON.parse(raw);
+      if (o && Array.isArray(o.deps)) return Object.assign(defaultState(), o, { burn:Object.assign(defaultState().burn, o.burn || {}) });
+    }
+  } catch(e){}
+  return defaultState();
+}
+var state = loadState();
+function persist(){ try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch(e){} }
+
+/* ---------- Pure Math Engines (M1 Verified) ---------- */
+function computePace(st, refDate){
+  var target = Number(st.target) > 0 ? Number(st.target) : 100000;
+  var banked = Math.round(st.deps.reduce(function(a, d){ return a + (Number(d.amount) || 0); }, 0) * 100) / 100;
+  var pct = Math.min(100, (banked / target) * 100);
+  var left = Math.max(0, Math.round((target - banked) * 100) / 100);
+  var now = refDate ? new Date(refDate + "T00:00:00") : new Date();
+  now.setHours(0,0,0,0);
+  var wk = new Date(now); wk.setDate(now.getDate() - ((now.getDay() + 6) % 7));
+  var mo = new Date(now.getFullYear(), now.getMonth(), 1);
+  var cut28 = new Date(now); cut28.setDate(now.getDate() - 27);
+  var weekSum = 0, monthSum = 0, recent28 = 0;
+  st.deps.forEach(function(d){
+    var dt0 = new Date(String(d.date || "") + "T00:00:00");
+    var amt = Number(d.amount) || 0;
+    if (isNaN(dt0.getTime())) return;
+    if (dt0 >= wk && dt0 <= now) weekSum += amt;
+    if (dt0 >= mo && dt0 <= now) monthSum += amt;
+    if (dt0 >= cut28 && dt0 <= now) recent28 += amt;
+  });
+  var perWeek = recent28 / 4;
+  var perMonth = perWeek * (52 / 12);
+  var monthsLeft = (perMonth > 0 && left > 0) ? (left / perMonth) : null;
+  var monthsWith100 = (perMonth > 0 && left > 0) ? (left / (perMonth + 100)) : null;
+  var monthsSaved100 = (monthsLeft != null && monthsWith100 != null) ? Math.max(0, Math.round((monthsLeft - monthsWith100) * 10) / 10) : 0;
+  var step = target / 20;
+  var nextBox = banked >= target ? target : (Math.floor(banked / step) + 1) * step;
+  return {
+    target:target, banked:banked, pct:pct, left:left,
+    weekSum:Math.round(weekSum * 100) / 100,
+    monthSum:Math.round(monthSum * 100) / 100,
+    recent28:Math.round(recent28 * 100) / 100,
+    perWeek:Math.round(perWeek * 100) / 100,
+    perMonth:Math.round(perMonth * 100) / 100,
+    monthsLeft:monthsLeft != null ? Math.round(monthsLeft * 10) / 10 : null,
+    monthsSaved100:monthsSaved100,
+    step:step, nextBox:nextBox
+  };
+}
+
+function computeBurn(b){
+  var job = Math.max(0, Number(b.job) || 0);
+  var skill = Math.max(0, Number(b.skill) || 0);
+  var burn = Math.max(0, Number(b.burn) || 0);
+  var sav = Math.max(0, Number(b.sav) || 0);
+  var debt = Math.max(0, Number(b.debt) || 0);
+  var pct = Math.max(0, Math.min(100, Number(b.pct) || 0));
+  var income = job + skill;
+  var surplus = Math.round((income - burn) * 100) / 100;
+  var runNow = burn > 0 ? Math.round((sav / burn) * 10) / 10 : null;
+  var run3 = burn > 0 ? Math.round(((sav + surplus * 3) / burn) * 10) / 10 : null;
+  var autoBankMo = Math.round(income * (pct / 100) * 100) / 100;
+  return { income:income, burn:burn, surplus:surplus, sav:sav, debt:debt, pct:pct, runNow:runNow, run3:run3, autoBankMo:autoBankMo };
+}
+
+function icsEsc(s){ return String(s || "").replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r?\n/g, " "); }
+function buildSundayReviewICS(target){
+  var d = new Date();
+  var add = (7 - d.getDay()) % 7 || 7;
+  d.setDate(d.getDate() + add);
+  var dtStart = localISO(d).replace(/-/g, "");
+  var stamp = new Date().toISOString().replace(/[-:]/g, "").slice(0, 15) + "Z";
+  return [
+    "BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//FiledAwayCo//First 100K Companion//EN","CALSCALE:GREGORIAN",
+    "BEGIN:VEVENT","UID:fac-100k-weekly-review@filedawayco.local","DTSTAMP:" + stamp,
+    "DTSTART;VALUE=DATE:" + dtStart,"RRULE:FREQ=WEEKLY;BYDAY=SU",
+    "SUMMARY:" + icsEsc("Weekly 10-Min Money & Banked Check-In (" + fmt$(target) + " Goal)"),
+    "DESCRIPTION:" + icsEsc("Log this week's banked deposits, check your 5% milestone boxes, and review Tab 10 in your First $100K Banked Planner."),
+    "END:VEVENT","END:VCALENDAR"
+  ].join("\r\n") + "\r\n";
+}
+
+function download(name, text, mime){
+  var b = new Blob([text], { type:mime }), u = URL.createObjectURL(b), a = document.createElement("a");
+  a.href = u; a.download = name; document.body.appendChild(a); a.click();
+  setTimeout(function(){ URL.revokeObjectURL(u); a.remove(); }, 500);
+}
+function showToast(msg, fn){
+  var el = document.getElementById("toast");
+  document.getElementById("toastMsg").textContent = msg;
+  var ub = document.getElementById("toastUndo");
+  undoFn = fn || null;
+  ub.style.display = fn ? "inline-flex" : "none";
+  el.classList.add("on");
+  clearTimeout(toastT);
+  toastT = setTimeout(function(){ el.classList.remove("on"); undoFn = null; }, fn ? 7000 : 2800);
+}
+
+/* ---------- Renders ---------- */
+function renderBanner(){
+  var hasS = state.sample || state.burnSample || state.deps.some(function(d){ return d.sample; });
+  document.getElementById("sampleBanner").style.display = hasS ? "flex" : "none";
+  document.getElementById("topSampleBtn").style.display = hasS ? "none" : "inline-flex";
+  document.getElementById("emptyHeroCta").style.display = (!state.deps.length && !state.burn.job && !state.burn.burn) ? "flex" : "none";
+}
+
+function renderPace(){
+  var p = computePace(state);
+  document.getElementById("outBanked").textContent = fmt$(p.banked);
+  document.getElementById("outPct").textContent = p.pct.toFixed(1) + "% of your " + fmt$(p.target) + " target";
+  document.getElementById("barFill").style.width = p.pct.toFixed(1) + "%";
+  document.getElementById("outWeek").textContent = fmt$(p.weekSum);
+  document.getElementById("outMonth").textContent = fmt$(p.monthSum);
+  document.getElementById("outLeft").textContent = fmt$(p.left);
+  document.getElementById("nextBoxTag").textContent = p.banked >= p.target ? "Target reached" : ("Next: " + fmt$(p.nextBox));
+  document.querySelectorAll("[data-tpreset]").forEach(function(btn){
+    btn.setAttribute("aria-pressed", String(Number(btn.dataset.tpreset) === Number(p.target)));
+  });
+
+  var boxesHtml = "";
+  for (var i = 0; i < 20; i++){
+    var lo = p.step * i, hi = p.step * (i + 1);
+    var full = p.banked >= hi - 0.005;
+    var frac = full ? 100 : (p.banked > lo ? Math.min(99, Math.round(((p.banked - lo) / p.step) * 100)) : 0);
+    boxesHtml += '<div class="mbox' + (full ? ' full' : '') + '">' +
+      (!full && frac > 0 ? '<div class="mbox-fill" style="height:' + frac + '%"></div>' : '') +
+      '<span class="mbox-txt num">' + ((i + 1) * 5) + '%</span></div>';
+  }
+  document.getElementById("mBoxes").innerHTML = boxesHtml;
+  document.getElementById("boxNote").textContent = p.banked >= p.target
+    ? ("All 20 boxes filled (" + fmt$(p.target) + "). Raise your target above when ready for the next rung.")
+    : (fmt$(Math.max(0, p.nextBox - p.banked)) + " more fills box #" + (Math.floor(p.banked / p.step) + 1) + " (" + fmt$(p.nextBox) + ").");
+
+  // Deterministic 3-sentence Pace & Bottleneck Brief (L6 — zero AI keys, pure math!)
+  var briefEl = document.getElementById("paceBrief");
+  if (p.banked >= p.target) {
+    briefEl.innerHTML = '<p><b>Target reached:</b> You have banked ' + fmt$(p.banked) + ' against your ' + fmt$(p.target) + ' goal.</p>' +
+      '<p>Keep the habit steady — set your next target above when ready.</p>';
+  } else if (p.perMonth <= 0) {
+    briefEl.innerHTML = '<p>Log at least one deposit from the last 28 days (or tap <b>Try sample</b>) to generate your rolling pace brief.</p>' +
+      '<p>Every $100/month you bank consistently adds $1,200/year before any skill-income jump.</p>';
+  } else {
+    var tgtDate = new Date(); tgtDate.setDate(1); tgtDate.setMonth(tgtDate.getMonth() + Math.ceil(p.monthsLeft));
+    var dateLbl = tgtDate.toLocaleDateString("en-US", { month:"long", year:"numeric" });
+    var b = computeBurn(state.burn);
+    var burnNote = b.surplus > 0
+      ? ('Your Burn & Runway tab shows a ' + fmt$(b.surplus) + '/mo surplus (' + (b.runNow != null ? b.runNow.toFixed(1) + ' mo runway' : 'set burn to see runway') + ').')
+      : (b.burn > 0 && b.surplus < 0
+        ? ('Your Burn & Runway tab shows a ' + fmt$(Math.abs(b.surplus)) + '/mo deficit — closing that gap comes before banking surplus.')
+        : (b.burn > 0 && b.surplus === 0
+          ? 'Your Burn & Runway tab currently breaks even ($0/mo surplus).'
+          : 'Enter your monthly income and burn on Tab 2 to see how much runway your savings already covers.'));
+    var leverTxt = p.monthsSaved100 >= 0.1
+      ? ('roughly <b>' + p.monthsSaved100.toFixed(1) + ' months</b>')
+      : ('roughly <b>' + Math.max(1, Math.round(p.monthsSaved100 * 30)) + ' days</b>');
+    briefEl.innerHTML =
+      '<p class="num"><b>1. Current pace:</b> You banked <b>' + fmt$(p.recent28) + '</b> over the last 28 days (~<b>' + fmt$(p.perWeek) + '/wk</b> or <b>' + fmt$(p.perMonth) + '/mo</b>).</p>' +
+      '<p class="num"><b>2. Illustrative horizon:</b> Straight-line at that pace, the remaining ' + fmt$(p.left) + ' lands around <b>' + esc(dateLbl) + '</b> (~' + p.monthsLeft.toFixed(1) + ' months).</p>' +
+      '<p class="num"><b>3. +$100/mo lever:</b> Adding $100/mo via cost cuts or skill income trims ' + leverTxt + ' off that horizon. ' + burnNote + '</p>';
+  }
+
+  var sorted = state.deps.slice().sort(function(a, b){ return String(b.date).localeCompare(String(a.date)); });
+  var listEl = document.getElementById("depList");
+  if (!sorted.length) {
+    listEl.innerHTML = '<p class="cap" style="margin:0">No deposits logged yet. Save your first transfer above.</p>';
+  } else {
+    listEl.innerHTML = sorted.map(function(d){
+      var idx = state.deps.indexOf(d);
+      return '<div class="row-card"><div><b class="num">' + esc(d.date) + '</b> · ' + esc(d.note) + (d.sample ? ' <span class="tag warn">SAMPLE</span>' : '') + '</div>' +
+        '<div style="display:flex;align-items:center;gap:8px"><b class="num" style="color:var(--good-ink)">' + fmt$2(d.amount) + '</b>' +
+        '<button type="button" class="btn sec" data-deldep="' + idx + '" style="min-height:44px;padding:0 12px;font-size:13.5px">Delete</button></div></div>';
+    }).join("");
+  }
+  renderWallSheet();
+}
+
+function renderBurn(){
+  var b = computeBurn(state.burn);
+  var box = document.getElementById("bSurplusBox");
+  var lbl = document.getElementById("bSurplusLbl");
+  box.classList.toggle("deficit", b.surplus < 0);
+  box.classList.toggle("neutral", b.surplus === 0);
+  lbl.textContent = b.surplus < 0 ? "Monthly deficit" : "Monthly surplus";
+  document.getElementById("bSurplus").textContent = fmt$(b.surplus);
+  document.getElementById("bRunNow").textContent = b.runNow != null ? (b.runNow.toFixed(1) + " mo") : "—";
+  document.getElementById("bRun3").textContent = b.run3 != null ? (b.run3.toFixed(1) + " mo") : "—";
+  document.getElementById("bPaycheckLine").textContent = b.income > 0
+    ? ("Pay-yourself-first at " + b.pct + "% of " + fmt$(b.income) + "/mo = " + fmt$(b.autoBankMo) + "/mo transferred automatically before spending.")
+    : "Enter your monthly income and burn above to calculate surplus and runway.";
+}
+
+function renderWallSheet(){
+  var wallTgt = wallMode === "1000" ? 1000 : (wallMode === "10000" ? 10000 : (Number(state.target) > 0 ? Number(state.target) : 100000));
+  var realBanked = state.deps.filter(function(d){ return !d.sample; }).reduce(function(a, d){ return a + d.amount; }, 0);
+  var step = wallTgt / 20;
+  var boxes = "";
+  for (var i = 1; i <= 20; i++){
+    var val = step * i;
+    var done = realBanked >= val - 0.005;
+    boxes += '<div class="wall-box' + (done ? ' done' : '') + '"><div class="num">' + fmt$(val) + '</div><div style="font-size:10px;font-weight:' + (done ? '700' : '400') + '">' + (i * 5) + '%' + (done ? ' ✓ Done' : '') + '</div></div>';
+  }
+  // Strictly ZERO FiledAwayCo branding/logo/email on printable wall chart (CLAUDE.md:14!)
+  document.getElementById("milestonePrintSheet").innerHTML =
+    '<h1>My Banked Milestone Chart — <span class="h-num">' + fmt$(wallTgt) + '</span></h1>' +
+    '<p class="num" style="margin:0 0 8px">Each box = <b>' + fmt$(step) + '</b> (5%). Shade each box as your banked savings crosses the mark.</p>' +
+    '<div class="wall-grid">' + boxes + '</div>';
+}
+
+function syncInputs(){
+  document.getElementById("inpTarget").value = state.target || 100000;
+  document.getElementById("bJob").value = state.burn.job || "";
+  document.getElementById("bSkill").value = state.burn.skill || "";
+  document.getElementById("bBurn").value = state.burn.burn || "";
+  document.getElementById("bSav").value = state.burn.sav || "";
+  document.getElementById("bDebt").value = state.burn.debt || "";
+  document.getElementById("bPct").value = state.burn.pct != null ? state.burn.pct : 20;
+}
+function renderAll(){ renderBanner(); syncInputs(); renderPace(); renderBurn(); }
+function switchTab(t){
+  document.querySelectorAll(".pane").forEach(function(p){ p.classList.toggle("active", p.id === "pane-" + t); });
+  document.querySelectorAll(".tabbar button").forEach(function(b){ b.setAttribute("aria-current", b.dataset.tab === t ? "page" : "false"); });
+}
+
+/* ---------- Events ---------- */
+document.getElementById("inpTarget").addEventListener("input", function(e){
+  var v = parseMoneyStrict(e.target.value);
+  if (v != null && v > 0) { state.target = v; persist(); renderPace(); }
+});
+[["bJob","job"],["bSkill","skill"],["bBurn","burn"],["bSav","sav"],["bDebt","debt"],["bPct","pct"]].forEach(function(sp){
+  document.getElementById(sp[0]).addEventListener("input", function(e){
+    state.burnSample = false;
+    state.burn[sp[1]] = parsePos(e.target.value);
+    persist(); renderBanner(); renderBurn(); renderPace();
+  });
+});
+
+document.getElementById("depForm").addEventListener("submit", function(ev){
+  ev.preventDefault();
+  var raw = document.getElementById("depAmt").value.trim();
+  var amt = parseMoneyStrict(raw);
+  if (amt == null || amt <= 0) { showToast("Enter a positive dollar amount (e.g. 250.00)."); return; }
+  var d = document.getElementById("depDate").value || todayISO();
+  var note = document.getElementById("depNote").value;
+  state.deps.push({ id:"d-" + Date.now(), date:d, amount:amt, note:note, sample:false });
+  document.getElementById("depAmt").value = "";
+  persist(); renderAll(); showToast("Deposit saved.");
+});
+
+document.addEventListener("click", function(e){
+  var t = e.target.closest("button");
+  if (!t) return;
+  if (t.dataset.tab) { switchTab(t.dataset.tab); }
+  else if (t.id === "topSampleBtn" || t.id === "primarySampleBtn") {
+    var prevSnap = clone(state);
+    var s = sampleState();
+    var userDeps = state.deps.filter(function(d){ return !d.sample; });
+    var hasUserBurn = !state.burnSample && (state.burn.job > 0 || state.burn.burn > 0 || state.burn.sav > 0);
+    state = s;
+    state.deps = s.deps.concat(userDeps);
+    if (hasUserBurn) { state.burn = prevSnap.burn; state.burnSample = false; }
+    if (prevSnap.target && prevSnap.target !== 100000) state.target = prevSnap.target;
+    persist(); renderAll();
+  } else if (t.id === "clearSampleBtn") {
+    var snap = clone(state);
+    state.sample = false;
+    state.deps = state.deps.filter(function(d){ return !d.sample; });
+    if (state.burnSample) { state.burn = defaultState().burn; state.burnSample = false; }
+    persist(); renderAll();
+    showToast("Sample data cleared.", function(){ state = snap; persist(); renderAll(); showToast("Sample restored."); });
+  } else if (t.id === "toastUndo") {
+    if (undoFn) { var f = undoFn; undoFn = null; document.getElementById("toast").classList.remove("on"); f(); }
+  } else if (t.dataset.tpreset) {
+    state.target = Number(t.dataset.tpreset);
+    persist(); syncInputs(); renderPace();
+  } else if (t.dataset.deldep != null) {
+    var di = +t.dataset.deldep, snapD = clone(state.deps);
+    state.deps.splice(di, 1); persist(); renderAll();
+    showToast("Deposit deleted.", function(){ state.deps = snapD; persist(); renderAll(); });
+  } else if (t.dataset.wmode) {
+    wallMode = t.dataset.wmode;
+    document.querySelectorAll("[data-wmode]").forEach(function(b){ b.setAttribute("aria-pressed", String(b.dataset.wmode === wallMode)); });
+    renderWallSheet();
+  } else if (t.id === "printWallBtn") {
+    renderWallSheet(); window.print();
+  } else if (t.id === "icsReviewBtn") {
+    download("first-100k-sunday-review.ics", buildSundayReviewICS(state.target), "text/calendar;charset=utf-8");
+    showToast("Weekly Sunday review (.ics) downloaded.");
+  } else if (t.id === "exportCsvBtn") {
+    var realD = state.deps.filter(function(d){ return !d.sample; }).sort(function(a, b){ return String(a.date).localeCompare(String(b.date)); });
+    if (!realD.length) { showToast("Log your own deposits first — sample deposits are excluded from exports."); return; }
+    var run = 0;
+    var rows = [["Date","Amount","Note","Running total"].join(",")];
+    realD.forEach(function(d){ run = Math.round((run + d.amount) * 100) / 100; rows.push([csvText(d.date), d.amount.toFixed(2), csvText(d.note), run.toFixed(2)].join(",")); });
+    download("banked-tracker-" + todayISO() + ".csv", rows.join("\r\n") + "\r\n", "text/csv;charset=utf-8");
+    showToast("Formula-safe Banked Tracker CSV downloaded.");
+  } else if (t.id === "bridgeOutBtn") {
+    var realB = state.deps.filter(function(d){ return !d.sample; });
+    if (!realB.length) { showToast("Log your own deposits first — sample deposits are excluded from bridge exports."); return; }
+    var p = computePace({ target:state.target, deps:realB });
+    var b = state.burnSample ? computeBurn(defaultState().burn) : computeBurn(state.burn);
+    var payload = JSON.stringify({
+      bridge:"fac-bridge-v1", source:"first-100k-banked-planner", exported:todayISO(),
+      target:p.target, bankedTotal:p.banked, monthlyPace:p.perMonth, monthlySurplus:b.surplus,
+      disclaimer:"Planning summary from First $100K Companion — illustrative figures, not financial advice."
+    }, null, 2);
+    download("fac-bridge-100k-" + todayISO() + ".json", payload, "application/json");
+    showToast("Ecosystem bridge (.json) downloaded.");
+  } else if (t.id === "backupBtn") {
+    download("first-100k-backup-" + todayISO() + ".json", JSON.stringify({ app:"fac-first-100k", exported:todayISO(), state:state }, null, 2), "application/json");
+    showToast("Backup JSON saved.");
+  } else if (t.id === "bridgePickBtn") {
+    document.getElementById("bridgeInFile").click();
+  } else if (t.id === "restorePickBtn") {
+    document.getElementById("restoreFile").click();
+  } else if (t.id === "applyBridgeBtn") {
+    if (!pendingBridge) return;
+    var freed = Number(pendingBridge.freedMonthly) || 0;
+    if (state.burn.burn <= 0) { showToast("Enter your monthly burn above first, then apply the freed debt payment."); return; }
+    var snapB = clone(state);
+    if (freed > 0) {
+      state.burnSample = false;
+      state.burn.debt = Math.max(0, (Number(state.burn.debt) || 0) - freed);
+      state.burn.burn = Math.max(0, (Number(state.burn.burn) || 0) - freed);
+    }
+    pendingBridge = null;
+    document.getElementById("bridgeDraftBox").style.display = "none";
+    persist(); renderAll();
+    showToast("Applied " + fmt$(freed) + "/mo freed debt cash to your burn rate.", function(){ state = snapB; persist(); renderAll(); });
+  } else if (t.id === "discardBridgeBtn") {
+    pendingBridge = null;
+    document.getElementById("bridgeDraftBox").style.display = "none";
+  }
+});
+
+document.getElementById("bridgeInFile").addEventListener("change", function(ev){
+  var f = ev.target.files && ev.target.files[0]; if (!f) return;
+  var rd = new FileReader();
+  rd.onload = function(){
+    try {
+      var o = JSON.parse(String(rd.result || ""));
+      if (!o || o.bridge !== "fac-bridge-v1") throw new Error("Not bridge");
+      var freed = Number(o.freedMonthly || o.monthlyBudget || 0);
+      if (freed <= 0) throw new Error("No positive amount");
+      pendingBridge = { freedMonthly:freed, source:o.source || "Debt Payoff", debtFreeDate:o.debtFreeDate || "" };
+      var box = document.getElementById("bridgeDraftBox");
+      box.innerHTML = '<div class="brief-box"><p class="num"><b>Draft bridge ready (confirm before saving):</b> Freed monthly payment of <b>' + fmt$2(freed) + '/mo</b> from ' + esc(pendingBridge.source) + (pendingBridge.debtFreeDate ? (' (projected debt-free ' + esc(pendingBridge.debtFreeDate) + ')') : '') + '.</p>' +
+        '<div class="btn-row"><button type="button" class="btn" id="applyBridgeBtn">Confirm &amp; reduce monthly burn</button><button type="button" class="btn sec" id="discardBridgeBtn">Discard</button></div></div>';
+      box.style.display = "block";
+    } catch(e){ showToast("That file is not a valid fac-bridge-v1 Debt Payoff export."); }
+  };
+  rd.readAsText(f); ev.target.value = "";
+});
+
+document.getElementById("restoreFile").addEventListener("change", function(ev){
+  var f = ev.target.files && ev.target.files[0]; if (!f) return;
+  var rd = new FileReader();
+  rd.onload = function(){
+    try {
+      var o = JSON.parse(String(rd.result || ""));
+      var s = o && o.state ? o.state : o;
+      if (!s || !Array.isArray(s.deps)) throw new Error("Invalid");
+      var snapRestore = clone(state);
+      state = Object.assign(defaultState(), s, { burn:Object.assign(defaultState().burn, s.burn || {}) });
+      persist(); renderAll();
+      showToast("Backup restored.", function(){ state = snapRestore; persist(); renderAll(); showToast("Restore undone."); });
+    } catch(e){ showToast("That file is not a valid First $100K backup."); }
+  };
+  rd.readAsText(f); ev.target.value = "";
+});
+
+document.getElementById("depDate").value = todayISO();
+window.__100K = { computePace:computePace, computeBurn:computeBurn, parseMoneyStrict:parseMoneyStrict, buildSundayReviewICS:buildSundayReviewICS, csvText:csvText, sampleState:sampleState };
+renderAll();
+})();
+</script>
+</body>
+</html>

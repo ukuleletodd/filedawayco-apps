@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en" data-temp="studio">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>UGC Rate &amp; Rights Companion · FiledAwayCo</title>
+<style>
+:root,[data-temp="studio"]{
+  --brand:#3B284D; --brand-ink:#FFFFFF; --accent:#1F5C45; --accent-ink:#FFFFFF;
+  --mint-on-dark:#9ACCB3;
+  --paper:#FBF8F2; --card:#FFFFFF; --cream:#E8E0D2;
+  --ink:#241A2E; --muted:#564C62; --line:#DDD4C8; --hairline:#EFE9E0;
+  --input-bg:#FFF4D6; --input-border:#D9C79A; --input-ink:#1A1A1A;
+  --auto-bg:#F1F3F5; --auto-ink:#241A2E;
+  --good-ink:#16533C; --good-bg:#E6F3EC;
+  --warn-ink:#7A4700; --warn-bg:#FFF4D6;
+  --alert-ink:#962324; --alert-bg:#FBEAEA;
+  --radius:14px; --radius-sm:10px;
+  --font-display:Georgia,"Times New Roman",serif;
+  --font-body:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--cream);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.45;-webkit-text-size-adjust:100%}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+.h-num{font-family:var(--font-body);font-variant-numeric:tabular-nums}
+.shell{max-width:860px;margin:0 auto;min-height:100vh;background:var(--paper);padding:14px 14px 44px}
+@media(min-width:768px){.shell{margin:18px auto;border-radius:18px;border:1px solid var(--line);padding:22px 26px 48px;box-shadow:0 6px 24px rgba(59,40,77,.09)}}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--hairline);margin-bottom:12px}
+.wm{display:flex;align-items:center;gap:10px}
+.mark{width:34px;height:34px;border-radius:9px;background:var(--brand);color:#fff;display:grid;place-items:center;font-weight:800;font-size:15px;letter-spacing:-.02em;position:relative;flex:none}
+.mark::after{content:"";position:absolute;right:4px;top:4px;width:8px;height:8px;border-radius:2px;background:var(--accent)}
+.wm-t b{display:block;font-size:15px;color:var(--brand);line-height:1.15}
+.wm-t span{display:block;font-size:12.5px;color:var(--muted)}
+h1{font-family:var(--font-display);font-size:24px;font-weight:700;margin:0 0 4px;color:var(--brand);line-height:1.2}
+h2{font-family:var(--font-display);font-size:18px;font-weight:700;margin:0 0 8px;color:var(--brand)}
+h3{font-size:15px;font-weight:700;margin:0 0 8px;color:var(--brand)}
+.cap{font-size:13.5px;color:var(--muted);line-height:1.45}
+.banner{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--warn-bg);border:1px solid var(--input-border);border-radius:var(--radius-sm);padding:8px 10px 8px 12px;margin-bottom:12px;color:var(--warn-ink);font-size:14px}
+.banner button{min-height:44px;flex:none;white-space:nowrap;padding:0 14px;border-radius:8px;border:1px solid var(--input-border);background:#fff;color:var(--brand);font-weight:700;font-size:13.5px;cursor:pointer}
+.tabbar{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:var(--auto-bg);padding:4px;border-radius:var(--radius-sm);margin-bottom:14px}
+.tabbar button{min-height:46px;border:0;border-radius:8px;background:transparent;color:var(--muted);font:inherit;font-size:13.5px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;padding:0 6px}
+.tabbar button[aria-current="page"]{color:var(--brand);background:#fff;box-shadow:0 1px 3px rgba(59,40,77,.14)}
+.badge-dot{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 5px;border-radius:999px;background:var(--alert-ink);color:#fff;font-size:11px;font-weight:800}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:14px}
+.hero{background:var(--brand);color:#fff;border-color:var(--brand)}
+.hero .ey{font-size:13px;font-weight:700;color:var(--mint-on-dark);margin-bottom:6px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:center}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:540px){.hero-grid{grid-template-columns:1fr 1fr}}
+.hbox{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:12px 14px}
+.hbox .lbl{font-size:12.5px;color:#E6DFEE}
+.hbox .big{font-size:30px;font-weight:800;line-height:1.15;color:#fff;margin-top:2px}
+.hbox .sub{font-size:12.5px;color:#E6DFEE;margin-top:3px}
+.grid2{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:560px){.grid2{grid-template-columns:1fr 1fr}}
+.field{display:block;margin-bottom:10px}
+.field:last-child{margin-bottom:0}
+.field .l{display:block;font-size:13.5px;font-weight:700;color:var(--brand);margin-bottom:4px}
+.field .h{display:block;font-size:12.5px;color:var(--muted);margin-top:3px}
+.inp-wrap{display:flex;align-items:center;background:var(--input-bg);border:1.5px solid var(--input-border);border-radius:var(--radius-sm);padding:0 12px;min-height:46px}
+.inp-wrap:focus-within{border-color:var(--accent);box-shadow:0 0 0 2px rgba(31,92,69,.18)}
+.inp-wrap.disabled{background:var(--auto-bg);border-color:var(--line);opacity:.72}
+.inp-wrap .pre{font-weight:700;color:var(--muted);margin-right:6px}
+.inp-wrap .suf{font-weight:700;color:var(--muted);margin-left:6px}
+.inp-wrap input,.inp-wrap select{width:100%;border:0;background:transparent;font:inherit;color:var(--input-ink);outline:none;padding:10px 0;min-height:44px}
+textarea.brief-in{width:100%;min-height:130px;background:var(--input-bg);border:1.5px solid var(--input-border);border-radius:var(--radius-sm);padding:12px;font:inherit;font-size:14.5px;color:var(--input-ink);resize:vertical}
+.seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:4px;background:var(--auto-bg);padding:4px;border-radius:var(--radius-sm)}
+.seg button{min-height:44px;border:0;border-radius:8px;background:transparent;color:var(--brand);font-weight:700;font-size:13.5px;cursor:pointer;padding:0 8px}
+.seg button[aria-pressed="true"]{background:#fff;box-shadow:0 1px 3px rgba(59,40,77,.14)}
+.tag{display:inline-block;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:700;background:var(--auto-bg);color:var(--brand);white-space:nowrap}
+.tag.good{background:var(--good-bg);color:var(--good-ink)}
+.tag.warn{background:var(--warn-bg);color:var(--warn-ink)}
+.tag.alert{background:var(--alert-bg);color:var(--alert-ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 16px;border-radius:var(--radius-sm);border:1.5px solid var(--accent);background:var(--accent);color:#fff;font:inherit;font-weight:700;font-size:14.5px;cursor:pointer;text-decoration:none}
+.btn.sec{background:#fff;color:var(--brand);border-color:var(--line)}
+.btn.full{width:100%}
+.btn-row{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}
+@media(min-width:520px){.btn-row{grid-template-columns:1fr 1fr}}
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table.grid{width:100%;border-collapse:collapse;font-size:13.5px}
+table.grid th,table.grid td{padding:9px 8px;border-bottom:1px solid var(--hairline);text-align:left;vertical-align:top}
+table.grid th{background:var(--auto-bg);color:var(--muted);font-size:12px;font-weight:700}
+table.grid td.r,table.grid th.r{text-align:right;white-space:nowrap}
+table.grid tr.tot td{font-weight:700;background:var(--auto-bg);border-top:2px solid var(--line)}
+details.drawer{border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--paper);margin-top:10px}
+details.drawer summary{list-style:none;cursor:pointer;padding:12px 14px;font-weight:700;color:var(--brand);min-height:46px;display:flex;justify-content:space-between;align-items:center}
+details.drawer summary::-webkit-details-marker{display:none}
+details.drawer summary::after{content:"Show";color:var(--accent);font-size:13px}
+details.drawer[open] summary::after{content:"Hide"}
+details.drawer .inner{padding:0 14px 14px}
+.warn-box{background:var(--warn-bg);border:1px solid var(--input-border);border-radius:10px;padding:12px;margin-top:10px;font-size:14px;color:var(--warn-ink)}
+.flag-row{padding:12px;border:1px solid #E5B4B4;background:var(--alert-bg);border-radius:12px;margin-bottom:8px;display:flex;flex-direction:column;gap:8px}
+@media(min-width:560px){.flag-row{flex-direction:row;align-items:center;justify-content:space-between}}
+.flag-row.added{border-color:#B7DEC8;background:var(--good-bg)}
+.deal-row{padding:12px 0;border-bottom:1px solid var(--hairline)}
+.deal-row:last-child{border-bottom:0}
+.badread{display:inline-flex;align-items:center;min-height:44px;color:var(--accent);font-weight:700;font-size:14px}
+.pane{display:none}
+.pane.active{display:block}
+.toast{position:fixed;left:12px;right:12px;bottom:20px;max-width:520px;margin:0 auto;transform:translateY(90px);opacity:0;visibility:hidden;pointer-events:none;background:var(--brand);color:#fff;padding:10px 14px;border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 8px 24px rgba(0,0,0,.22);transition:transform .2s ease,opacity .2s ease;z-index:60;font-size:14px}
+.toast.on{transform:translateY(0);opacity:1;visibility:visible;pointer-events:auto}
+.toast button{min-height:44px;padding:0 14px;border-radius:8px;border:0;background:var(--mint-on-dark);color:var(--brand);font-weight:800;cursor:pointer}
+.print-only{display:none}
+/* Brand-safe client quote print sheet: ZERO FiledAwayCo logo/chrome, ZERO creator floor warnings, ZERO creator tax notes! */
+@media print{
+  body{background:#fff;font-size:11pt;color:#111}
+  .shell{max-width:100%;margin:0;padding:0;border:0;box-shadow:none;background:#fff}
+  .no-print,.topbar,.tabbar,.banner,.toast,.pane{display:none!important}
+  #clientPrintSheet{display:block!important}
+  .pq-head{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid #241A2E;padding-bottom:12px;margin-bottom:16px}
+  .pq-head h1{font-size:20pt;margin:0;color:#241A2E}
+  .pq-meta{font-size:10pt;color:#444;margin-top:4px}
+  .pq-terms{margin-top:16px;padding-top:10px;border-top:1px solid #DDD;font-size:9.5pt;color:#333;line-height:1.5}
+}
+</style>
+<style id="fa-name-title">.wm-t b,.wm-text b{font-size:19px;font-weight:800;line-height:1.12;letter-spacing:-.2px;white-space:normal}</style>
+</head>
+<body>
+<div class="shell">
+  <div class="topbar no-print">
+    <div class="wm">
+      <div class="mark" aria-hidden="true">fa</div>
+      <div class="wm-t"><b>UGC Creator Rate &amp; Rights Kit</b><span>Custom Quote · Brief Check · Renewal Calendar</span></div>
+    </div>
+    <button type="button" class="btn sec" id="loadSampleBtn" style="min-height:44px;padding:0 14px;font-size:13.5px;flex:none;white-space:nowrap">Try sample</button>
+  </div>
+
+  <div class="banner no-print" id="sampleBanner" data-sample-banner="1" style="display:none">
+    <span><b>Sample deal</b> — Glow Theory Skincare example, not your quote</span>
+    <button type="button" id="clearSampleBtn">Clear sample</button>
+  </div>
+
+  <nav class="tabbar no-print" aria-label="Main navigation">
+    <button type="button" data-tab="quote" aria-current="page"><span>Quote</span></button>
+    <button type="button" data-tab="brief"><span>Brief Check</span></button>
+    <button type="button" data-tab="deals"><span>Deals &amp; Rights</span><span class="badge-dot" id="renewBadge" style="display:none">0</span></button>
+  </nav>
+
+  <!-- TAB 1: QUOTE BUILDER -->
+  <section class="pane active" id="pane-quote" aria-label="UGC Quote Builder">
+    <h1>Quote Builder</h1>
+    <p class="cap" style="margin:0 0 12px">Price deliverables, ad usage, whitelisting, exclusivity, and raw footage line by line — synced with your workbook.</p>
+
+    <div class="card hero">
+      <div class="ey">
+        <span id="qHeroLabel">Itemized quote total</span>
+        <span class="tag good" id="qModeTag">My Rates</span>
+      </div>
+      <div class="hero-grid">
+        <div class="hbox">
+          <div class="lbl">Client quote total</div>
+          <div class="big num" id="outTotal">$0</div>
+          <div class="sub num" id="outDeposit">Deposit (50%): $0 · Balance: $0</div>
+        </div>
+        <div class="hbox">
+          <div class="lbl">Renewal price (same ad window)</div>
+          <div class="big num" id="outRenewal">$0</div>
+          <div class="sub num" id="outTakeHome">Est. take-home after tax/fees: $0</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px">
+        <h2 style="margin:0">Deliverables &amp; usage</h2>
+        <div class="seg" role="group" aria-label="Pricing mode" style="width:236px">
+          <button type="button" data-mode="custom" aria-pressed="true">My Rates</button>
+          <button type="button" data-mode="starter" aria-pressed="false">Starter Guide</button>
+        </div>
+      </div>
+
+      <div class="grid2">
+        <label class="field"><span class="l">Brand / client name</span><span class="inp-wrap"><input id="qBrand" placeholder="e.g. Glow Theory Skincare" autocomplete="off"></span></label>
+        <label class="field"><span class="l">Your studio name (for client quote)</span><span class="inp-wrap"><input id="qStudio" placeholder="Leave blank until ready to print" autocomplete="off"></span></label>
+        <label class="field"><span class="l">UGC videos (qty)</span><span class="inp-wrap"><input id="qVideos" inputmode="numeric" placeholder="0" value=""></span></label>
+        <label class="field"><span class="l">Rate per video ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="qVideoRate" inputmode="decimal" placeholder="175" value=""></span></label>
+        <label class="field"><span class="l">Photo sets (qty)</span><span class="inp-wrap"><input id="qPhotos" inputmode="numeric" placeholder="0" value=""></span></label>
+        <label class="field"><span class="l">Rate per photo set ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="qPhotoRate" inputmode="decimal" placeholder="125" value=""></span></label>
+        <label class="field"><span class="l">Extra hooks / CTA versions (qty)</span><span class="inp-wrap"><input id="qHooks" inputmode="numeric" placeholder="0" value=""></span></label>
+        <label class="field"><span class="l">Rate per extra hook ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="qHookRate" inputmode="decimal" placeholder="50" value=""></span></label>
+      </div>
+
+      <div class="grid2" style="margin-top:4px">
+        <label class="field">
+          <span class="l">Usage rights</span>
+          <span class="inp-wrap"><select id="qUsageType">
+            <option value="organic">Organic only (no paid ads)</option>
+            <option value="paid">Paid ads usage</option>
+          </select></span>
+        </label>
+        <label class="field">
+          <span class="l">Paid-ads usage window</span>
+          <span class="inp-wrap" id="qTermWrap"><select id="qUsageTerm" disabled>
+            <option value="30d">30 days (+30%)</option>
+            <option value="60d">60 days (+45%)</option>
+            <option value="90d" selected>90 days (+60%)</option>
+            <option value="180d">180 days (+90%)</option>
+            <option value="12m">12 months (+120%)</option>
+            <option value="perpetual">Perpetual / buyout (+200%)</option>
+          </select></span>
+          <span class="h" id="qTermHint">Disabled while Organic only is selected.</span>
+        </label>
+      </div>
+
+      <details class="drawer" id="addonsDrawer">
+        <summary>Add-ons &amp; floor protection (Whitelisting, Exclusivity, Raw footage, Rush, Revisions)</summary>
+        <div class="inner">
+          <div class="grid2">
+            <label class="field">
+              <span class="l">Paid-ads platforms (count)</span>
+              <span class="inp-wrap"><input id="qPaidPlats" inputmode="numeric" value="1"></span>
+              <span class="h">Each extra platform adds +50% to paid-ads usage.</span>
+            </label>
+            <label class="field">
+              <span class="l">Whitelisting / Spark Ads (separate from paid ads)</span>
+              <span class="inp-wrap"><select id="qWhitelist">
+                <option value="none">None</option>
+                <option value="7d">7 days (1 block · +30%)</option>
+                <option value="30d">30 days (1 block · +30%)</option>
+                <option value="60d">60 days (2 blocks · +60%)</option>
+                <option value="90d">90 days (3 blocks · +90%)</option>
+                <option value="12m">12 months (12 blocks · +360%)</option>
+              </select></span>
+            </label>
+            <label class="field">
+              <span class="l">Whitelisting platforms (count)</span>
+              <span class="inp-wrap"><input id="qWlPlats" inputmode="numeric" value="1"></span>
+            </label>
+            <label class="field">
+              <span class="l">Category exclusivity</span>
+              <span class="inp-wrap"><select id="qExcl">
+                <option value="none">None</option>
+                <option value="30d">30 days (+25%)</option>
+                <option value="60d">60 days (+45%)</option>
+                <option value="90d">90 days (+60%)</option>
+                <option value="180d">180 days (+100%)</option>
+              </select></span>
+            </label>
+            <label class="field">
+              <span class="l">Raw footage / unedited clips (+40%)</span>
+              <span class="inp-wrap"><select id="qRaw"><option value="no">No</option><option value="yes">Yes (+40% of content fee)</option></select></span>
+            </label>
+            <label class="field">
+              <span class="l">Rush delivery under 7 days (+35%)</span>
+              <span class="inp-wrap"><select id="qRush"><option value="no">No</option><option value="yes">Yes (+35% of content + hooks)</option></select></span>
+            </label>
+            <label class="field">
+              <span class="l">Extra revision rounds ($75 each)</span>
+              <span class="inp-wrap"><input id="qRevs" inputmode="numeric" value="0"></span>
+            </label>
+            <label class="field">
+              <span class="l">Minimum project floor ($)</span>
+              <span class="inp-wrap"><span class="pre">$</span><input id="qFloor" inputmode="decimal" value="200"></span>
+            </label>
+            <label class="field">
+              <span class="l">Your quote email (for printed client quote)</span>
+              <span class="inp-wrap"><input id="qEmail" placeholder="Leave blank if not needed" autocomplete="off"></span>
+            </label>
+            <label class="field">
+              <span class="l">Tax set-aside % (private take-home only)</span>
+              <span class="inp-wrap"><input id="qTaxPct" inputmode="decimal" value="25"><span class="suf">%</span></span>
+            </label>
+          </div>
+        </div>
+      </details>
+    </div>
+
+    <div class="card">
+      <h2>Itemized breakdown</h2>
+      <div class="tbl-wrap"><table class="grid" id="qBreakdown"></table></div>
+      <div id="floorWarnBox"></div>
+
+      <h3 style="margin-top:14px">Option anchoring (30d / 90d / 12m paid usage)</h3>
+      <div class="tbl-wrap"><table class="grid" id="qTierTable"></table></div>
+
+      <div class="btn-row">
+        <button type="button" class="btn" id="copyQuoteBtn">Copy client quote line</button>
+        <button type="button" class="btn sec" id="printQuoteBtn">Print brand-safe quote (PDF)</button>
+      </div>
+      <div style="margin-top:10px">
+        <button type="button" class="btn sec full" id="saveDealBtn">Save as won deal (track renewal)</button>
+      </div>
+      <p class="cap" id="qCopyPreview" style="margin:10px 0 0"></p>
+      <p class="cap" style="margin:8px 0 0">Rough planning guide (inBeat Aug 2026: +30–50% paid usage / 30%/mo whitelisting; Collabstr 2026 avg payout $154; UGCStars median $150 — unverified rough guide). Your rate is your call. Not legal, tax, or financial advice.</p>
+    </div>
+  </section>
+
+  <!-- TAB 2: DETERMINISTIC BRIEF CHECK (L5/L6 — zero LLM, zero API key, negation guarded) -->
+  <section class="pane" id="pane-brief" aria-label="Brand Brief Scope and Pricing Check">
+    <h1>Brief Scope &amp; Pricing Check</h1>
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px">
+        <h2 style="margin:0">Paste a brand brief or email</h2>
+        <button type="button" class="btn sec" id="sampleBriefBtn" style="min-height:44px;padding:0 12px;font-size:13.5px">Try sample brief</button>
+      </div>
+      <p class="cap" style="margin:0 0 10px">Runs 100% locally on your device — nothing is uploaded or sent to an AI service. Scans for 6 unpriced scope items (perpetuity, whitelisting/Spark Ads, unlimited revisions, exclusivity, raw footage, Net-60+ payment terms) and ignores negated lines like &ldquo;no exclusivity&rdquo;. <b>Scope &amp; pricing keyword check only — tool, not legal advice. Always read the full contract.</b></p>
+      <textarea class="brief-in" id="briefText" aria-label="Paste brand brief text" placeholder="Paste the brand's email or brief text here..."></textarea>
+      <div class="btn-row">
+        <button type="button" class="btn" id="scanBriefBtn">Check brief for unpriced rights</button>
+        <button type="button" class="btn sec" id="clearBriefBtn">Clear brief</button>
+      </div>
+    </div>
+
+    <div class="card" id="briefResultsCard" style="display:none">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px">
+        <h2 style="margin:0">Flagged scope &amp; pricing items</h2>
+        <span class="tag" id="briefFlagCount">0 found</span>
+      </div>
+      <p class="cap" style="margin:0 0 10px">Nothing in your quote changes automatically. Review each matched line below and tap <b>Add to Quote</b> only on items you want to price.</p>
+      <div id="briefResultsBox"></div>
+      <p style="margin:8px 0 0"><a class="badread" href="mailto:filedawayco@gmail.com?subject=UGC%20Kit%20%E2%80%94%20Brief%20Check%20bad%20read&body=Snippet%20that%20was%20misread%3A%0AExpected%20result%3A">Report a bad read</a></p>
+    </div>
+  </section>
+
+  <!-- TAB 3: DEALS & RIGHTS RENEWAL ENGINE + .ICS + ECOSYSTEM BRIDGE -->
+  <section class="pane" id="pane-deals" aria-label="Deals, Rights Renewals and Export">
+    <h1>Deals, Rights &amp; Renewals</h1>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px">
+        <h2 style="margin:0">Active deals &amp; usage windows</h2>
+        <span class="tag" id="dealCountTag">0 deals</span>
+      </div>
+      <div id="dealsBox"></div>
+    </div>
+
+    <div class="card">
+      <h2>Export, tax bridge &amp; backup</h2>
+      <p class="cap" style="margin:0 0 10px">Keep a local JSON backup (mobile browsers can clear local storage if storage runs low), export formula-safe CSV for your workbook, or send collected deal totals to Freelancer Money System or 1099 Quarterly Tax Planner.</p>
+      <div class="btn-row">
+        <button type="button" class="btn" id="exportCsvBtn">Export deals CSV (formula-safe)</button>
+        <button type="button" class="btn sec" id="bridgeBtn">Export tax/invoice bridge (.json)</button>
+      </div>
+      <div class="btn-row">
+        <button type="button" class="btn sec" id="backupBtn">Backup all data (.json)</button>
+        <label class="btn sec" for="restoreFile" style="cursor:pointer">Restore from JSON backup</label>
+        <input type="file" id="restoreFile" accept="application/json,.json" style="display:none">
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>About &amp; sources</h2>
+      <p class="cap" style="margin:0 0 6px">Benchmarks checked November 2026 (inBeat Aug 7 2026 guide, Collabstr 2026 report, BravoDM, 30DayPivot, CommissionUGC/Influee; UGCStars noted as unverified rough guide). Planning tool only — not legal, tax, or financial advice.</p>
+      <p class="cap" style="margin:0">UGC Rate &amp; Rights Companion · FiledAwayCo · Support: filedawayco@gmail.com</p>
+    </div>
+  </section>
+
+  <!-- BRAND-SAFE CLIENT QUOTE PRINT SHEET (ZERO FiledAwayCo logo/branding, ZERO creator floor/tax notes!) -->
+  <section id="clientPrintSheet" class="print-only" aria-label="Client Quote Print Sheet"></section>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><span id="toastMsg"></span><button type="button" id="toastUndo" style="display:none">Undo</button></div>
+
+<script>
+(function(){
+"use strict";
+var STORE_KEY = "fac_ugc_kit_2026_v1";
+var USAGE_RATES = { "30d":{ pct:0.30, days:30, lbl:"30 days" }, "60d":{ pct:0.45, days:60, lbl:"60 days" }, "90d":{ pct:0.60, days:90, lbl:"90 days" }, "180d":{ pct:0.90, days:180, lbl:"180 days" }, "12m":{ pct:1.20, days:365, lbl:"12 months" }, "perpetual":{ pct:2.00, days:0, lbl:"Perpetual" } };
+var WL_BLOCKS = { "none":{ blk:0, days:0, lbl:"None" }, "7d":{ blk:1, days:7, lbl:"7 days" }, "30d":{ blk:1, days:30, lbl:"30 days" }, "60d":{ blk:2, days:60, lbl:"60 days" }, "90d":{ blk:3, days:90, lbl:"90 days" }, "12m":{ blk:12, days:365, lbl:"12 months" } };
+var EXCL_RATES = { "none":{ pct:0, lbl:"None" }, "30d":{ pct:0.25, lbl:"30 days" }, "60d":{ pct:0.45, lbl:"60 days" }, "90d":{ pct:0.60, lbl:"90 days" }, "180d":{ pct:1.00, lbl:"180 days" } };
+var XPLAT_PCT = 0.50, WL_RATE = 0.30, RAW_PCT = 0.40, RUSH_PCT = 0.35, REV_FEE = 75, DEPOSIT_PCT = 0.50, FEE_PCT = 0.03;
+
+var BLANK_QUOTE = {
+  mode:"custom", brand:"", studio:"", email:"",
+  videos:"", videoRate:"", photos:"", photoRate:"", hooks:"", hookRate:"",
+  usageType:"organic", usageTerm:"90d", paidPlats:"1",
+  whitelist:"none", wlPlats:"1", excl:"none", raw:"no", rush:"no", revs:"0", floor:"200", taxPct:"25"
+};
+var STARTER_DEFAULTS = { videoRate:"175", photoRate:"125", hookRate:"50", floor:"200" };
+var SAMPLE_BRIEF = "Hi! We would love 3 UGC videos for our summer launch. We need full paid ads usage in perpetuity across TikTok and Meta, plus TikTok Spark Ads whitelisting from your handle for 30 days. Please include raw footage files, 30-day skincare category exclusivity, and unlimited revisions until approved. Payment is Net 60 from invoice.";
+
+var state = loadState();
+var activeTab = "quote";
+var lastBriefFindings = [];
+var undoFn = null, toastT = null;
+
+function clone(o){ return JSON.parse(JSON.stringify(o)); }
+function esc(s){
+  return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
+  });
+}
+function todayISO(){
+  var d = new Date();
+  return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+}
+function addDaysISO(iso, days){
+  var base = iso || todayISO();
+  var d = new Date(base + "T00:00:00Z");
+  d.setUTCDate(d.getUTCDate() + Number(days || 0));
+  return d.toISOString().slice(0, 10);
+}
+function daysUntil(iso){
+  if (!iso || !/^\d{4}-\d{2}-\d{2}$/.test(iso)) return null;
+  var d = new Date(iso + "T00:00:00"), n = new Date(); n.setHours(0,0,0,0);
+  return Math.round((d - n) / 86400000);
+}
+function parseNum(raw){
+  if (raw == null || String(raw).trim() === "") return 0;
+  var v = parseFloat(String(raw).trim().replace(/[$,%\s]/g, ""));
+  return (isNaN(v) || v < 0) ? 0 : v;
+}
+function roundHalfUp(x){ return Math.round(Math.round(x * 1e6) / 1e6); }
+function fmt$(n){ return "$" + Math.round(Number(n) || 0).toLocaleString("en-US"); }
+function csvCell(v){ v = String(v == null ? "" : v); return /[",\n\r]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }
+function csvText(v){ v = String(v == null ? "" : v); if (/^\s*[=+\-@]/.test(v) || /^[\t\r]/.test(v)) v = "'" + v; return csvCell(v); }
+
+function defaultState(){ return { sample:false, quote:clone(BLANK_QUOTE), deals:[] }; }
+function sampleState(){
+  var startSoon = addDaysISO(todayISO(), -80);
+  var expSoon = addDaysISO(startSoon, 90); // 10 days left -> Renew Soon!
+  var startActive = addDaysISO(todayISO(), -20);
+  var expActive = addDaysISO(startActive, 90);
+  return {
+    sample: true,
+    quote: {
+      mode:"custom", brand:"Glow Theory Skincare", studio:"Maya Reyes Studio", email:"hello@mayareyes.example",
+      videos:"3", videoRate:"175", photos:"1", photoRate:"125", hooks:"2", hookRate:"50",
+      usageType:"paid", usageTerm:"90d", paidPlats:"2",
+      whitelist:"30d", wlPlats:"1", excl:"30d", raw:"yes", rush:"no", revs:"0", floor:"200", taxPct:"25"
+    },
+    deals: [
+      { id:"d-sample-1", brand:"Glow Theory Skincare", scope:"3 videos + 1 photo set + 2 hooks (90d paid + 30d whitelist)", total:1953, renewal:780, startDate:startSoon, expiryDate:expSoon, perpetual:false, sample:true },
+      { id:"d-sample-2", brand:"Northwind Coffee Co.", scope:"2 videos (90d paid usage)", total:560, renewal:210, startDate:startActive, expiryDate:expActive, perpetual:false, sample:true }
+    ]
+  };
+}
+function loadState(){
+  try {
+    var raw = localStorage.getItem(STORE_KEY);
+    if (raw) {
+      var o = JSON.parse(raw);
+      if (o && o.quote && Array.isArray(o.deals)) return { sample:!!o.sample, quote:Object.assign(clone(BLANK_QUOTE), o.quote), deals:o.deals };
+    }
+  } catch(e){}
+  return defaultState();
+}
+function persist(){ try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch(e){} }
+
+/* ---------- Exact Workbook-Parity UGC Pricing Engine ---------- */
+function computeQuote(q, overrideTerm){
+  var videos = Math.floor(parseNum(q.videos));
+  var photos = Math.floor(parseNum(q.photos));
+  var hooks = Math.floor(parseNum(q.hooks));
+  var vRate = parseNum(q.videoRate !== "" ? q.videoRate : (q.mode === "starter" ? STARTER_DEFAULTS.videoRate : 0));
+  var pRate = parseNum(q.photoRate !== "" ? q.photoRate : (q.mode === "starter" ? STARTER_DEFAULTS.photoRate : 0));
+  var hRate = parseNum(q.hookRate !== "" ? q.hookRate : (q.mode === "starter" ? STARTER_DEFAULTS.hookRate : 0));
+  var videoLine = roundHalfUp(videos * vRate);
+  var photoLine = roundHalfUp(photos * pRate);
+  var content = videoLine + photoLine;
+  var hookFee = roundHalfUp(hooks * hRate);
+
+  var isPaid = overrideTerm ? true : (q.usageType === "paid");
+  var termKey = overrideTerm || q.usageTerm || "90d";
+  var uObj = isPaid ? (USAGE_RATES[termKey] || USAGE_RATES["90d"]) : { pct:0, days:0, lbl:"Organic only" };
+  var paidPlats = Math.max(1, Math.floor(parseNum(q.paidPlats) || 1));
+  var usageFee = isPaid ? roundHalfUp(content * uObj.pct * (1 + Math.max(0, paidPlats - 1) * XPLAT_PCT)) : 0;
+
+  var wlObj = WL_BLOCKS[q.whitelist || "none"] || WL_BLOCKS.none;
+  var wlPlats = Math.max(1, Math.floor(parseNum(q.wlPlats) || 1));
+  var wlFee = roundHalfUp(content * wlObj.blk * WL_RATE * wlPlats);
+
+  var exObj = EXCL_RATES[q.excl || "none"] || EXCL_RATES.none;
+  var exclFee = roundHalfUp(content * exObj.pct);
+  var rawFee = q.raw === "yes" ? roundHalfUp(content * RAW_PCT) : 0;
+  var revs = Math.floor(parseNum(q.revs));
+  var revFee = roundHalfUp(revs * REV_FEE);
+  var rushFee = q.rush === "yes" ? roundHalfUp((content + hookFee) * RUSH_PCT) : 0;
+
+  var subtotal = content + hookFee + usageFee + wlFee + exclFee + rawFee + revFee + rushFee;
+  var floor = parseNum(q.floor);
+  var floorLift = subtotal > 0 ? Math.max(0, roundHalfUp(floor - subtotal)) : 0;
+  var total = subtotal + floorLift;
+  var deposit = roundHalfUp(total * DEPOSIT_PCT);
+  var balance = total - deposit;
+  var renewal = (termKey === "perpetual" && isPaid ? 0 : usageFee) + wlFee;
+  var taxPct = Math.min(60, parseNum(q.taxPct)) / 100;
+  var takeHome = total > 0 ? roundHalfUp(total * Math.max(0, 1 - FEE_PCT - taxPct)) : 0;
+
+  return {
+    videos:videos, vRate:vRate, videoLine:videoLine,
+    photos:photos, pRate:pRate, photoLine:photoLine,
+    hooks:hooks, hRate:hRate, hookFee:hookFee,
+    content:content, isPaid:isPaid, termKey:termKey, uObj:uObj, paidPlats:paidPlats, usageFee:usageFee,
+    wlObj:wlObj, wlPlats:wlPlats, wlFee:wlFee,
+    exObj:exObj, exclFee:exclFee, rawFee:rawFee, revs:revs, revFee:revFee, rushFee:rushFee,
+    subtotal:subtotal, floor:floor, floorLift:floorLift, total:total,
+    deposit:deposit, balance:balance, renewal:renewal, takeHome:takeHome,
+    hasDeliverables:(videos + photos) > 0,
+    needsRate:(videos > 0 && vRate === 0) || (photos > 0 && pRate === 0)
+  };
+}
+
+/* ---------- Deterministic Negation-Guarded Brief Scope Scanner (L5/L6) ---------- */
+var NEG_WINDOW_RE = /\b(no|not|without|none|never|zero|0|excluding|exclude|non)\b(?:\s+[a-z0-9\-]+){0,3}[\s\-]*$/i;
+var BRIEF_RULES = [
+  { id:"perpetual", title:"Perpetual / unlimited ad usage", re:/\b(in\s+perpetuity|perpetual|forever|unlimited\s+usage|full\s+buyout|lifetime\s+usage)\b/gi, action:"Set Paid Usage -> Perpetual (+200%)", apply:{ usageType:"paid", usageTerm:"perpetual" } },
+  { id:"whitelist", title:"Whitelisting / Spark Ads / Partnership ads", re:/\b(whitelisting|whitelist|spark\s+ads?|partnership\s+ads?|dark\s+post(?:ing)?|allowlisting|run\s+ads?\s+(?:from|through)\s+your\s+handle)\b/gi, action:"Add 30-day Whitelisting (+30%)", apply:{ whitelist:"30d" } },
+  { id:"revisions", title:"Unlimited / open-ended revisions", re:/\b(unlimited\s+revisions?|as\s+many\s+revisions?|revisions?\s+until\s+approved|open[\-\s]ended\s+revisions?)\b/gi, action:"Price 2 extra revision rounds (+$150) & cap in contract", apply:{ revs:"2" } },
+  { id:"exclusivity", title:"Category exclusivity", re:/\b(exclusivity|exclusive\s+rights?|non[\-\s]?compete|cannot\s+work\s+with\s+competitors?)\b/gi, action:"Add 30-day Exclusivity (+25%)", apply:{ excl:"30d" } },
+  { id:"raw", title:"Raw footage / unedited working files", re:/\b(raw\s+footage|raw\s+files?|raw\s+clips?|unedited\s+(?:footage|files|clips)|working\s+files?)\b/gi, action:"Add Raw Footage (+40%)", apply:{ raw:"yes" } },
+  { id:"net60", title:"Slow payment terms (Net 60 / Net 90)", re:/\b(net[\-\s]?(?:60|90|120)|60\s+days?\s+from\s+invoice|90\s+days?\s+from\s+invoice)\b/gi, action:"Counter with 50% deposit + Net 14 balance", apply:null }
+];
+
+function scanBrief(text){
+  var src = String(text || "");
+  if (!src.trim()) return [];
+  var hits = [];
+  BRIEF_RULES.forEach(function(rule){
+    rule.re.lastIndex = 0;
+    var m, found = null;
+    while ((m = rule.re.exec(src)) !== null) {
+      var prefix = src.slice(Math.max(0, m.index - 42), m.index);
+      // Negation guard: skip if preceded within 4 tokens by no/not/without/none/0/excluding (within same clause!)
+      var clausePrefix = prefix.split(/[.,;:\n!?]/).pop() || "";
+      if (NEG_WINDOW_RE.test(clausePrefix)) continue;
+      var s0 = Math.max(0, m.index - 28), s1 = Math.min(src.length, m.index + m[0].length + 34);
+      found = { id:rule.id, title:rule.title, match:m[0], snippet:src.slice(s0, s1).trim(), action:rule.action, apply:rule.apply, added:false };
+      break;
+    }
+    if (found) hits.push(found);
+  });
+  return hits;
+}
+
+/* ---------- RFC 5545 .ics Renewal Reminder (14 Days Pre-Expiry) ---------- */
+function buildRenewalICS(deal){
+  if (!deal || deal.perpetual || !deal.expiryDate) return "";
+  var remindISO = addDaysISO(deal.expiryDate, -14);
+  var dtStart = remindISO.replace(/-/g, "");
+  var stamp = new Date().toISOString().replace(/[-:]/g, "").slice(0, 15) + "Z";
+  var clean = function(s){ return String(s || "").replace(/\\/g, "\\\\").replace(/,/g, "\\,").replace(/;/g, "\\;").replace(/\r?\n/g, " "); };
+  return [
+    "BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//FiledAwayCo//UGC Rate and Rights Companion//EN","CALSCALE:GREGORIAN",
+    "BEGIN:VEVENT",
+    "UID:fac-ugc-renew-" + clean(deal.id) + "@filedawayco.local",
+    "DTSTAMP:" + stamp,
+    "DTSTART;VALUE=DATE:" + dtStart,
+    "SUMMARY:UGC Renewal Check-In: " + clean(deal.brand) + " (usage expires " + deal.expiryDate + ")",
+    "DESCRIPTION:" + clean("Usage window for " + deal.brand + " (" + deal.scope + ") expires on " + deal.expiryDate + ". Suggested renewal anchor: " + fmt$(deal.renewal) + ". Send renewal note before ads keep running."),
+    "BEGIN:VALARM","TRIGGER:-P2D","ACTION:DISPLAY","DESCRIPTION:UGC renewal check-in in 2 days","END:VALARM",
+    "END:VEVENT","END:VCALENDAR",""
+  ].join("\r\n");
+}
+
+function buildRenewalEmail(deal){
+  return "Hi " + (deal.brand || "team") + " — quick heads-up that the paid-ads usage window for our " + (deal.scope || "UGC deliverables") + " wraps up on " + (deal.expiryDate || "the end of this window") + ". If those creatives are still performing well, I'd love to extend usage for another window at " + fmt$(deal.renewal) + ". Let me know if you'd like me to send over the renewal invoice, otherwise please pause paid spend using those clips after " + (deal.expiryDate || "that date") + ". Thanks!";
+}
+
+function copyText(txt, onOk, onFail){
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(txt).then(function(){ onOk(); }, function(){ fallbackCopy(txt, onOk, onFail); });
+  } else {
+    fallbackCopy(txt, onOk, onFail);
+  }
+}
+function fallbackCopy(txt, onOk, onFail){
+  try {
+    var ta = document.createElement("textarea");
+    ta.value = txt; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    var ok = document.execCommand("copy");
+    ta.remove();
+    if (ok) onOk(); else onFail();
+  } catch(e){ onFail(); }
+}
+function download(name, text, mime){
+  var b = new Blob([text], { type:mime }), u = URL.createObjectURL(b), a = document.createElement("a");
+  a.href = u; a.download = name; document.body.appendChild(a); a.click();
+  setTimeout(function(){ URL.revokeObjectURL(u); a.remove(); }, 500);
+}
+function showToast(msg, fn){
+  var el = document.getElementById("toast");
+  document.getElementById("toastMsg").textContent = msg;
+  var ub = document.getElementById("toastUndo");
+  undoFn = fn || null;
+  ub.style.display = fn ? "inline-flex" : "none";
+  el.classList.add("on");
+  clearTimeout(toastT);
+  toastT = setTimeout(function(){ el.classList.remove("on"); undoFn = null; }, fn ? 7000 : 2800);
+}
+
+/* ---------- Sync & Render ---------- */
+var Q_FIELDS = ["brand","studio","email","videos","videoRate","photos","photoRate","hooks","hookRate","usageType","usageTerm","paidPlats","whitelist","wlPlats","excl","raw","rush","revs","floor","taxPct"];
+var Q_IDS = { brand:"qBrand", studio:"qStudio", email:"qEmail", videos:"qVideos", videoRate:"qVideoRate", photos:"qPhotos", photoRate:"qPhotoRate", hooks:"qHooks", hookRate:"qHookRate", usageType:"qUsageType", usageTerm:"qUsageTerm", paidPlats:"qPaidPlats", whitelist:"qWhitelist", wlPlats:"qWlPlats", excl:"qExcl", raw:"qRaw", rush:"qRush", revs:"qRevs", floor:"qFloor", taxPct:"qTaxPct" };
+
+function syncInputs(){
+  var q = state.quote;
+  Q_FIELDS.forEach(function(k){
+    var el = document.getElementById(Q_IDS[k]);
+    if (el) el.value = q[k] == null ? "" : String(q[k]);
+  });
+  document.querySelectorAll("[data-mode]").forEach(function(b){ b.setAttribute("aria-pressed", String(b.dataset.mode === q.mode)); });
+  var isPaid = q.usageType === "paid";
+  document.getElementById("qUsageTerm").disabled = !isPaid;
+  document.getElementById("qTermWrap").classList.toggle("disabled", !isPaid);
+  document.getElementById("qTermHint").textContent = isPaid ? "Multiplies content fee by selected ad window." : "Disabled while Organic only is selected.";
+}
+
+function renderBanner(){
+  var hasS = state.sample || state.deals.some(function(d){ return d.sample; });
+  document.getElementById("sampleBanner").style.display = hasS ? "flex" : "none";
+  document.getElementById("loadSampleBtn").style.display = hasS ? "none" : "inline-flex";
+}
+
+function renderQuote(){
+  var q = state.quote, c = computeQuote(q);
+  document.getElementById("qModeTag").textContent = q.mode === "starter" ? "Starter Guide (editable)" : "My Rates";
+  document.getElementById("outTotal").textContent = fmt$(c.total);
+  document.getElementById("outDeposit").textContent = "Deposit (50%): " + fmt$(c.deposit) + " · Balance: " + fmt$(c.balance);
+  document.getElementById("outRenewal").textContent = fmt$(c.renewal);
+  document.getElementById("outTakeHome").textContent = "Est. take-home (after 3% fee + " + parseNum(q.taxPct) + "% tax): " + fmt$(c.takeHome);
+
+  var rows = [];
+  if (c.videos > 0) rows.push(["UGC videos", c.videos + " × " + fmt$(c.vRate), fmt$(c.videoLine)]);
+  if (c.photos > 0) rows.push(["Photo sets", c.photos + " × " + fmt$(c.pRate), fmt$(c.photoLine)]);
+  if (c.hooks > 0) rows.push(["Extra hooks / CTAs", c.hooks + " × " + fmt$(c.hRate), fmt$(c.hookFee)]);
+  if (c.usageFee > 0) rows.push(["Paid-ads usage", c.uObj.lbl + (c.paidPlats > 1 ? ", " + c.paidPlats + " platforms" : ""), fmt$(c.usageFee)]);
+  if (c.wlFee > 0) rows.push(["Whitelisting / Spark Ads", c.wlObj.lbl + ", " + c.wlPlats + (c.wlPlats === 1 ? " platform" : " platforms"), fmt$(c.wlFee)]);
+  if (c.exclFee > 0) rows.push(["Category exclusivity", c.exObj.lbl, fmt$(c.exclFee)]);
+  if (c.rawFee > 0) rows.push(["Raw footage", "+40% of content fee", fmt$(c.rawFee)]);
+  if (c.revFee > 0) rows.push(["Extra revision rounds", c.revs + " × $75", fmt$(c.revFee)]);
+  if (c.rushFee > 0) rows.push(["Rush delivery (<7 days)", "+35% of content + hooks", fmt$(c.rushFee)]);
+  if (c.floorLift > 0) rows.push(["Minimum project fee applied", "Floor " + fmt$(c.floor), fmt$(c.floorLift)]);
+
+  var bTbl = document.getElementById("qBreakdown");
+  if (!rows.length) {
+    bTbl.innerHTML = '<tbody><tr><td class="cap">Add at least one video or photo set above — or tap <b>Try sample</b> — to build an itemized quote.</td></tr></tbody>';
+  } else {
+    bTbl.innerHTML = '<thead><tr><th>Line item</th><th>Detail</th><th class="r">Amount</th></tr></thead><tbody>' +
+      rows.map(function(r){ return '<tr><td>' + esc(r[0]) + '</td><td class="cap">' + esc(r[1]) + '</td><td class="r num">' + esc(r[2]) + '</td></tr>'; }).join("") +
+      '<tr class="tot"><td colspan="2">Total</td><td class="r num">' + fmt$(c.total) + '</td></tr></tbody>';
+  }
+
+  var fw = document.getElementById("floorWarnBox");
+  if (c.needsRate) {
+    fw.innerHTML = '<div class="warn-box"><b>Add your deliverable rate</b> above (or switch to <b>Starter Guide</b>) so this quote reflects your rate card instead of $0.</div>';
+  } else if (c.floorLift > 0) {
+    fw.innerHTML = '<div class="warn-box"><b>Minimum project floor active (' + fmt$(c.floor) + ').</b> Line to hold: &ldquo;For this scope, my project minimum starts at ' + fmt$(c.floor) + ' — happy to adjust deliverables to fit a budget, but I hold my rate.&rdquo;</div>';
+  } else {
+    fw.innerHTML = "";
+  }
+
+  // 30d / 90d / 12m anchoring table
+  var t30 = computeQuote(q, "30d"), t90 = computeQuote(q, "90d"), t12 = computeQuote(q, "12m");
+  document.getElementById("qTierTable").innerHTML =
+    '<thead><tr><th>Paid-ads option</th><th class="r">Usage add-on</th><th class="r">Quote total</th><th class="r">Renewal</th></tr></thead><tbody>' +
+    '<tr><td>30-day paid usage (+30%)</td><td class="r num">' + fmt$(t30.usageFee) + '</td><td class="r num"><b>' + fmt$(t30.total) + '</b></td><td class="r num">' + fmt$(t30.renewal) + '</td></tr>' +
+    '<tr><td>90-day paid usage (+60%)</td><td class="r num">' + fmt$(t90.usageFee) + '</td><td class="r num"><b>' + fmt$(t90.total) + '</b></td><td class="r num">' + fmt$(t90.renewal) + '</td></tr>' +
+    '<tr><td>12-month paid usage (+120%)</td><td class="r num">' + fmt$(t12.usageFee) + '</td><td class="r num"><b>' + fmt$(t12.total) + '</b></td><td class="r num">' + fmt$(t12.renewal) + '</td></tr></tbody>';
+
+  var copyLine = (c.hasDeliverables && c.total > 0)
+    ? ("For " + (c.videos ? c.videos + " UGC video" + (c.videos === 1 ? "" : "s") : "") + (c.videos && c.photos ? " + " : "") + (c.photos ? c.photos + " photo set" + (c.photos === 1 ? "" : "s") : "") + (c.hooks ? " + " + c.hooks + " extra hook" + (c.hooks === 1 ? "" : "s") : "") + " (" + (c.isPaid ? c.uObj.lbl + " paid-ads usage" : "organic only") + (c.wlFee ? ", " + c.wlObj.lbl + " whitelisting" : "") + (c.exclFee ? ", " + c.exObj.lbl + " exclusivity" : "") + (c.rawFee ? ", raw footage" : "") + "), my total quote is " + fmt$(c.total) + " (50% deposit " + fmt$(c.deposit) + " to start, " + fmt$(c.balance) + " on delivery).")
+    : "Add deliverables and rates above to generate a client quote line — a $0 quote is never copied.";
+  document.getElementById("qCopyPreview").textContent = copyLine;
+
+  // Build brand-safe Client Print Sheet (ZERO FiledAwayCo logo/name, ZERO creator floor/tax notes, ZERO zero-qty rows!)
+  var studio = q.studio.trim() && !/your studio name/i.test(q.studio) ? q.studio.trim() : "";
+  var email = q.email.trim() && !/you@email\.com/i.test(q.email) ? q.email.trim() : "";
+  var validUntil = addDaysISO(todayISO(), 14);
+  document.getElementById("clientPrintSheet").innerHTML =
+    '<div class="pq-head"><div><h1>' + esc(studio || "Project Quote") + '</h1>' +
+    (email ? '<div class="pq-meta">' + esc(email) + '</div>' : '') + '</div>' +
+    '<div style="text-align:right"><b>Quote</b><div class="pq-meta">Date: ' + todayISO() + ' · Valid until: ' + validUntil + '</div>' +
+    (q.brand.trim() ? '<div class="pq-meta">Prepared for: <b>' + esc(q.brand.trim()) + '</b></div>' : '') + '</div></div>' +
+    '<table class="grid"><thead><tr><th>Item</th><th>Detail</th><th class="r">Amount</th></tr></thead><tbody>' +
+    rows.map(function(r){ return '<tr><td>' + esc(r[0]) + '</td><td>' + esc(r[1]) + '</td><td class="r num">' + esc(r[2]) + '</td></tr>'; }).join("") +
+    '<tr class="tot"><td colspan="2">Total</td><td class="r num">' + fmt$(c.total) + '</td></tr>' +
+    '<tr><td colspan="2">Deposit to start (50%)</td><td class="r num">' + fmt$(c.deposit) + '</td></tr>' +
+    '<tr><td colspan="2">Balance on delivery</td><td class="r num">' + fmt$(c.balance) + '</td></tr>' +
+    (c.renewal > 0 ? '<tr><td colspan="2">Optional renewal (extend same usage + whitelisting window)</td><td class="r num">' + fmt$(c.renewal) + '</td></tr>' : '') +
+    '</tbody></table>' +
+    '<div class="pq-terms"><p><b>Usage &amp; payment terms:</b> Organic posting on brand channels is included. Paid-ads usage: ' + esc(c.isPaid ? c.uObj.lbl : "None (organic only)") + '. Whitelisting: ' + esc(c.wlObj.lbl) + '. Exclusivity: ' + esc(c.exObj.lbl) + '. Ad authorization codes are delivered upon final payment. Includes 1 standard revision round; payment due within 14 days of invoice.</p></div>';
+}
+
+function renderDeals(){
+  var soon = state.deals.filter(function(d){ var du = daysUntil(d.expiryDate); return !d.perpetual && du !== null && du <= 14; }).length;
+  var badge = document.getElementById("renewBadge");
+  badge.style.display = soon ? "inline-flex" : "none";
+  badge.textContent = String(soon);
+  document.getElementById("dealCountTag").textContent = state.deals.length + (state.deals.length === 1 ? " deal" : " deals");
+  var box = document.getElementById("dealsBox");
+  if (!state.deals.length) {
+    box.innerHTML = '<p class="cap" style="margin:0">No saved deals yet. Build a quote on Tab 1 and tap <b>Save as won deal</b> (or tap <b>Try sample</b>) to track usage expiry dates and download 14-day renewal reminders.</p>';
+    return;
+  }
+  box.innerHTML = state.deals.map(function(d, idx){
+    var du = d.perpetual ? null : daysUntil(d.expiryDate);
+    var statusTag = d.perpetual
+      ? '<span class="tag">Perpetual</span>'
+      : (du === null ? '<span class="tag">Organic</span>'
+        : (du < 0 ? '<span class="tag alert">Expired (' + Math.abs(du) + 'd ago)</span>'
+          : (du <= 14 ? '<span class="tag warn">Renew soon (' + du + 'd left)</span>'
+            : '<span class="tag good">Active (' + du + 'd left)</span>')));
+    return '<div class="deal-row"><div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;flex-wrap:wrap">' +
+      '<div><b>' + esc(d.brand) + '</b> ' + statusTag + (d.sample ? ' <span class="tag warn">SAMPLE</span>' : '') +
+      '<div class="cap">' + esc(d.scope) + '</div>' +
+      '<div class="cap num">Quote ' + fmt$(d.total) + (d.renewal ? ' · Renewal ' + fmt$(d.renewal) : '') + (d.expiryDate ? ' · Expires ' + esc(d.expiryDate) : '') + '</div></div></div>' +
+      '<div class="btn-row" style="margin-top:8px">' +
+      (!d.perpetual && d.expiryDate ? '<button type="button" class="btn sec" data-ics="' + idx + '">Renewal reminder (.ics, 14d prior)</button>' : '') +
+      (!d.perpetual && d.expiryDate ? '<button type="button" class="btn sec" data-copyrenew="' + idx + '">Copy renewal check-in</button>' : '') +
+      '<button type="button" class="btn sec" data-rmdeal="' + idx + '">Remove</button></div></div>';
+  }).join("");
+}
+
+function renderBriefResults(){
+  var card = document.getElementById("briefResultsCard");
+  var box = document.getElementById("briefResultsBox");
+  card.style.display = "block";
+  document.getElementById("briefFlagCount").textContent = lastBriefFindings.length + (lastBriefFindings.length === 1 ? " item flagged" : " items flagged");
+  if (!lastBriefFindings.length) {
+    box.innerHTML = '<p class="cap" style="margin:0;color:var(--good-ink);font-weight:700">No unpriced rights or payment-term traps matched in that text. Always read the full contract before signing.</p>';
+    return;
+  }
+  box.innerHTML = lastBriefFindings.map(function(f, i){
+    return '<div class="flag-row' + (f.added ? ' added' : '') + '"><div><b>' + esc(f.title) + '</b>' +
+      '<div class="cap">Matched: &ldquo;…' + esc(f.snippet) + '…&rdquo;</div>' +
+      '<div class="cap"><b>Suggested action:</b> ' + esc(f.action) + '</div></div>' +
+      (f.apply ? '<button type="button" class="btn' + (f.added ? ' sec' : '') + '" data-applyflag="' + i + '" style="flex:none">' + (f.added ? 'Added to Quote' : 'Add to Quote') + '</button>' : '<span class="tag warn">Negotiate in contract</span>') +
+      '</div>';
+  }).join("");
+}
+
+function renderAll(){ renderBanner(); syncInputs(); renderQuote(); renderDeals(); }
+function switchTab(t){
+  activeTab = t;
+  document.querySelectorAll(".pane").forEach(function(p){ p.classList.toggle("active", p.id === "pane-" + t); });
+  document.querySelectorAll(".tabbar button").forEach(function(b){ b.setAttribute("aria-current", b.dataset.tab === t ? "page" : "false"); });
+}
+
+/* ---------- Events ---------- */
+Q_FIELDS.forEach(function(k){
+  var el = document.getElementById(Q_IDS[k]);
+  var handler = function(e){
+    var typed = e.target.value;
+    if (state.sample) {
+      state.sample = false;
+      state.quote[k] = typed;
+      syncInputs();
+    } else {
+      state.quote[k] = typed;
+    }
+    if (k === "usageType") syncInputs();
+    persist(); renderBanner(); renderQuote();
+  };
+  el.addEventListener("input", handler);
+  el.addEventListener("change", handler);
+});
+
+document.addEventListener("click", function(e){
+  var t = e.target.closest("button");
+  if (!t) return;
+  if (t.dataset.tab) { switchTab(t.dataset.tab); }
+  else if (t.dataset.mode) {
+    state.quote.mode = t.dataset.mode;
+    if (t.dataset.mode === "starter") {
+      if (!state.quote.videoRate) state.quote.videoRate = STARTER_DEFAULTS.videoRate;
+      if (!state.quote.photoRate) state.quote.photoRate = STARTER_DEFAULTS.photoRate;
+      if (!state.quote.hookRate) state.quote.hookRate = STARTER_DEFAULTS.hookRate;
+    }
+    persist(); renderAll();
+  } else if (t.id === "loadSampleBtn") {
+    var s = sampleState();
+    var userDeals = state.deals.filter(function(d){ return !d.sample; });
+    state = { sample:true, quote:s.quote, deals:s.deals.concat(userDeals) };
+    persist(); renderAll();
+  } else if (t.id === "clearSampleBtn") {
+    var snap = clone(state);
+    if (state.sample) state.quote = clone(BLANK_QUOTE);
+    state.sample = false;
+    state.deals = state.deals.filter(function(d){ return !d.sample; });
+    persist(); renderAll();
+    showToast("Sample cleared.", function(){ state = snap; persist(); renderAll(); showToast("Sample restored."); });
+  } else if (t.id === "toastUndo") {
+    if (undoFn) { var f = undoFn; undoFn = null; document.getElementById("toast").classList.remove("on"); f(); }
+  } else if (t.id === "copyQuoteBtn") {
+    var c = computeQuote(state.quote);
+    if (!c.hasDeliverables || c.total <= 0) { showToast("Add deliverables and rates first."); return; }
+    copyText(document.getElementById("qCopyPreview").textContent,
+      function(){ showToast("Client quote line copied."); },
+      function(){ showToast("Select and copy the quote line below."); });
+  } else if (t.id === "printQuoteBtn") {
+    var c2 = computeQuote(state.quote);
+    if (!c2.hasDeliverables || c2.total <= 0) { showToast("Add deliverables before printing a client quote."); return; }
+    if (state.sample) { showToast("Sample quote open — clear sample or enter your own details before sending to a client."); }
+    window.print();
+  } else if (t.id === "saveDealBtn") {
+    if (state.sample) { showToast("Sample deal is loaded — clear sample or enter your own deal first."); return; }
+    var c3 = computeQuote(state.quote);
+    if (!c3.hasDeliverables || c3.total <= 0) { showToast("Build a non-zero quote before saving a deal."); return; }
+    var start = todayISO();
+    var winDays = Math.max(c3.isPaid ? c3.uObj.days : 0, c3.wlObj.days || 0);
+    var perp = c3.isPaid && c3.termKey === "perpetual";
+    var exp = (!perp && winDays > 0) ? addDaysISO(start, winDays) : "";
+    var deal = {
+      id: "d-" + Date.now(), brand: state.quote.brand.trim() || "Untitled brand",
+      scope: (c3.videos ? c3.videos + " video(s)" : "") + (c3.videos && c3.photos ? " + " : "") + (c3.photos ? c3.photos + " photo set(s)" : "") + " (" + (c3.isPaid ? c3.uObj.lbl + " paid" : "organic") + (c3.wlFee ? " + " + c3.wlObj.lbl + " whitelist" : "") + ")",
+      total: c3.total, renewal: c3.renewal, startDate: start, expiryDate: exp, perpetual: perp, sample: false
+    };
+    state.deals.unshift(deal);
+    persist(); renderDeals(); switchTab("deals");
+    showToast("Saved won deal to Deals & Rights.");
+  } else if (t.id === "sampleBriefBtn") {
+    document.getElementById("briefText").value = SAMPLE_BRIEF;
+    lastBriefFindings = scanBrief(SAMPLE_BRIEF);
+    renderBriefResults();
+  } else if (t.id === "scanBriefBtn") {
+    lastBriefFindings = scanBrief(document.getElementById("briefText").value);
+    renderBriefResults();
+  } else if (t.id === "clearBriefBtn") {
+    document.getElementById("briefText").value = "";
+    lastBriefFindings = [];
+    document.getElementById("briefResultsCard").style.display = "none";
+  } else if (t.dataset.applyflag != null) {
+    var fi = +t.dataset.applyflag, item = lastBriefFindings[fi];
+    if (item && item.apply) {
+      var prevQ = clone(state.quote);
+      Object.keys(item.apply).forEach(function(k){ state.quote[k] = item.apply[k]; });
+      item.added = true;
+      persist(); renderAll(); renderBriefResults();
+      showToast("Added " + item.title + " to Quote.", function(){
+        state.quote = prevQ; item.added = false; persist(); renderAll(); renderBriefResults();
+      });
+    }
+  } else if (t.dataset.ics != null) {
+    var d1 = state.deals[+t.dataset.ics];
+    if (d1) { download("ugc-renewal-" + d1.id + ".ics", buildRenewalICS(d1), "text/calendar;charset=utf-8"); showToast("14-day pre-expiry reminder (.ics) saved."); }
+  } else if (t.dataset.copyrenew != null) {
+    var d2 = state.deals[+t.dataset.copyrenew];
+    if (d2) copyText(buildRenewalEmail(d2), function(){ showToast("Renewal check-in copied."); }, function(){ showToast("Clipboard unavailable — copy manually."); });
+  } else if (t.dataset.rmdeal != null) {
+    var idx = +t.dataset.rmdeal, snapD = clone(state.deals);
+    state.deals.splice(idx, 1); persist(); renderDeals();
+    showToast("Deal removed.", function(){ state.deals = snapD; persist(); renderDeals(); });
+  } else if (t.id === "exportCsvBtn") {
+    var realDeals = state.deals.filter(function(d){ return !d.sample; });
+    if (!realDeals.length) { showToast("Save your own won deals first — sample deals are excluded from exports."); return; }
+    var head = ["Brand","Scope","Start Date","Expiry Date","Total","Renewal Estimate"];
+    var lines = [head.join(",")].concat(realDeals.map(function(d){
+      return [csvText(d.brand), csvText(d.scope), csvText(d.startDate), csvText(d.perpetual ? "Perpetual" : (d.expiryDate || "Organic")), Number(d.total).toFixed(2), Number(d.renewal || 0).toFixed(2)].join(",");
+    }));
+    download("ugc-deals-" + todayISO() + ".csv", lines.join("\r\n") + "\r\n", "text/csv;charset=utf-8");
+    showToast("Formula-safe deals CSV downloaded.");
+  } else if (t.id === "bridgeBtn") {
+    var realBridgeDeals = state.deals.filter(function(d){ return !d.sample; });
+    if (!realBridgeDeals.length) { showToast("Save your own won deals first — sample deals are excluded from tax/invoice exports."); return; }
+    var tot = 0; realBridgeDeals.forEach(function(d){ tot += Number(d.total) || 0; });
+    var payload = JSON.stringify({
+      bridge:"fac-bridge-v1", source:"ugc-creator-kit", exported:todayISO(), taxYear:new Date().getFullYear(),
+      grossSales:+tot.toFixed(2), platformFees:+(tot * FEE_PCT).toFixed(2), trueNet:+(tot * (1 - FEE_PCT)).toFixed(2),
+      dealCount:realBridgeDeals.length, deals:realBridgeDeals.map(function(d){ return { brand:d.brand, total:d.total, startDate:d.startDate, expiryDate:d.expiryDate }; }),
+      disclaimer:"Planning record exported from UGC Rate & Rights Companion — verify totals before filing. Not tax or legal advice."
+    }, null, 2);
+    download("fac-bridge-ugc-" + todayISO() + ".json", payload, "application/json");
+    showToast("Ecosystem bridge (.json) downloaded.");
+  } else if (t.id === "backupBtn") {
+    download("ugc-kit-backup-" + todayISO() + ".json", JSON.stringify({ app:"fac-ugc-kit", exported:todayISO(), state:state }, null, 2), "application/json");
+    showToast("Backup JSON saved.");
+  }
+});
+
+document.getElementById("restoreFile").addEventListener("change", function(ev){
+  var f = ev.target.files && ev.target.files[0]; if (!f) return;
+  var rd = new FileReader();
+  rd.onload = function(){
+    try {
+      var o = JSON.parse(String(rd.result || ""));
+      var s = o && o.state ? o.state : o;
+      if (!s || !s.quote || !Array.isArray(s.deals)) throw new Error("Invalid backup");
+      state = { sample:!!s.sample, quote:Object.assign(clone(BLANK_QUOTE), s.quote), deals:s.deals };
+      persist(); renderAll(); showToast("Backup restored.");
+    } catch(e){ showToast("That file is not a valid UGC Kit backup."); }
+  };
+  rd.readAsText(f); ev.target.value = "";
+});
+
+window.__UGC = { computeQuote:computeQuote, scanBrief:scanBrief, buildRenewalICS:buildRenewalICS, buildRenewalEmail:buildRenewalEmail, csvText:csvText };
+renderAll();
+})();
+</script>
+</body>
+</html>

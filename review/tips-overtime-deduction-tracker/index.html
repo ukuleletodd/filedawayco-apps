@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en" data-temp="ledger">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tips &amp; Overtime Companion · FiledAwayCo</title>
+<style>
+:root,[data-temp="ledger"]{
+  --brand:#1B2A40; --brand-ink:#FFFFFF; --accent:#1F5C45; --accent-ink:#FFFFFF;
+  --mint-on-dark:#7FB89E;
+  --paper:#FBF8F2; --card:#FFFFFF; --cream:#E8E0D2;
+  --ink:#1B2430; --muted:#4A5563; --line:#D9D1C3; --hairline:#EDE6DA;
+  --input-bg:#FFF4D6; --input-border:#D9C79A; --input-ink:#1A1A1A;
+  --auto-bg:#F1F3F5; --auto-ink:#1B2430;
+  --good-ink:#16533C; --good-bg:#E6F3EC;
+  --warn-ink:#7A4700; --warn-bg:#FFF4D6;
+  --alert-ink:#962324; --alert-bg:#FBEAEA;
+  --radius:14px; --radius-sm:10px;
+  --font-display:Georgia,"Times New Roman",serif;
+  --font-body:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--cream);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.45;-webkit-text-size-adjust:100%}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+.h-num{font-family:var(--font-body);font-variant-numeric:tabular-nums}
+.shell{max-width:860px;margin:0 auto;min-height:100vh;background:var(--paper);padding:14px 14px 44px}
+@media(min-width:768px){.shell{margin:18px auto;border-radius:18px;border:1px solid var(--line);padding:22px 26px 48px;box-shadow:0 6px 24px rgba(27,42,64,.09)}}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--hairline);margin-bottom:12px}
+.wm{display:flex;align-items:center;gap:10px;min-width:0}
+.mark{width:34px;height:34px;border-radius:8px;background:var(--brand);color:#fff;font-weight:800;font-size:14px;display:grid;place-items:center;position:relative;flex:none}
+.mark::after{content:"";position:absolute;top:0;right:0;width:10px;height:10px;background:var(--accent);border-bottom-left-radius:4px;border-top-right-radius:8px}
+.wm-t b{display:block;font-size:15px;color:var(--brand);line-height:1.15}
+.wm-t span{display:block;font-size:12px;color:var(--muted)}
+.banner{background:var(--warn-bg);border:1px solid var(--input-border);color:var(--warn-ink);border-radius:var(--radius-sm);padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;font-size:14px}
+.banner button{min-height:44px;padding:0 14px;border-radius:8px;border:1px solid var(--warn-ink);background:#fff;color:var(--warn-ink);font-weight:700;font-size:13.5px;cursor:pointer;white-space:nowrap;flex:none}
+.tabbar{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:var(--cream);padding:5px;border-radius:12px;margin-bottom:16px}
+.tabbar button{min-height:46px;border:0;border-radius:9px;background:transparent;color:var(--brand);font:inherit;font-size:13.5px;font-weight:700;cursor:pointer;padding:6px 4px;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.2}
+.tabbar button[aria-current="page"]{background:var(--brand);color:#fff}
+h1{font-family:var(--font-display);font-size:24px;line-height:1.2;color:var(--brand);margin:0 0 6px}
+h2{font-family:var(--font-display);font-size:18px;line-height:1.25;color:var(--brand);margin:0 0 10px}
+.cap{font-size:13px;color:var(--muted);line-height:1.45}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:14px}
+.empty-cta{background:var(--paper);border:1.5px dashed var(--input-border);border-radius:var(--radius);padding:16px;margin-bottom:14px;display:flex;flex-direction:column;gap:10px}
+.hero{background:var(--brand);color:#fff;border-color:var(--brand)}
+.hero .lbl{font-size:12.5px;color:#DCE6F2;font-weight:600}
+.hero .big{font-size:32px;font-weight:800;line-height:1.1;margin:4px 0}
+.hero .sub{font-size:13.5px;color:var(--mint-on-dark);font-weight:600}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}
+@media(min-width:540px){.hero-grid{grid-template-columns:1fr 1fr}}
+.hbox{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:12px}
+.bar-t{height:10px;background:rgba(255,255,255,.18);border-radius:999px;overflow:hidden;margin-top:6px}
+.bar-f{height:100%;background:var(--mint-on-dark);border-radius:999px}
+.grid2{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:560px){.grid2{grid-template-columns:1fr 1fr}}
+.field{display:block;margin-bottom:10px}
+.field:last-child{margin-bottom:0}
+.field .l{display:block;font-size:13.5px;font-weight:700;color:var(--brand);margin-bottom:4px}
+.inp-wrap{display:flex;align-items:center;background:var(--input-bg);border:1.5px solid var(--input-border);border-radius:var(--radius-sm);padding:0 12px;min-height:46px}
+.inp-wrap.low{border-color:#B45309;box-shadow:0 0 0 2px rgba(180,83,9,.18)}
+.inp-wrap:focus-within{border-color:var(--accent);box-shadow:0 0 0 2px rgba(31,92,69,.18)}
+.inp-wrap .pre{font-weight:700;color:var(--muted);margin-right:6px}
+.inp-wrap input,.inp-wrap select{width:100%;border:0;background:transparent;font:inherit;color:var(--input-ink);outline:none;padding:10px 0;min-height:44px}
+textarea.stub-in{width:100%;min-height:110px;background:var(--input-bg);border:1.5px solid var(--input-border);border-radius:var(--radius-sm);padding:12px;font:inherit;font-size:16px;color:var(--input-ink);resize:vertical}
+.hint{font-size:12px;color:var(--warn-ink);font-weight:700;margin-top:3px}
+.warn-box{background:var(--alert-bg);border:1px solid #E5B4B4;color:var(--alert-ink);border-radius:10px;padding:10px 12px;font-size:13.5px;margin-top:10px;font-weight:600}
+.note-box{background:var(--paper);border-left:4px solid var(--accent);padding:10px 12px;border-radius:0 10px 10px 0;font-size:13.5px;margin-top:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 16px;border-radius:var(--radius-sm);border:1.5px solid var(--accent);background:var(--accent);color:#fff;font:inherit;font-weight:700;font-size:14.5px;cursor:pointer;text-decoration:none}
+.btn.sec{background:#fff;color:var(--brand);border-color:var(--line)}
+.btn.full{width:100%}
+.btn-row{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}
+@media(min-width:520px){.btn-row{grid-template-columns:1fr 1fr}}
+.tag{display:inline-block;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:700;background:var(--auto-bg);color:var(--brand);white-space:nowrap}
+.tag.good{background:var(--good-bg);color:var(--good-ink)}
+.tag.warn{background:var(--warn-bg);color:var(--warn-ink)}
+.tag.alert{background:var(--alert-bg);color:var(--alert-ink)}
+.row-card{padding:12px 0;border-bottom:1px solid var(--hairline)}
+.row-card:last-child{border-bottom:0}
+img.stub-thumb{width:100%;max-height:240px;object-fit:contain;border-radius:10px;border:1px solid var(--line);margin-top:8px;background:#fff}
+.badread{display:inline-flex;align-items:center;min-height:44px;color:var(--accent);font-weight:700;font-size:14px}
+.shell-foot{margin-top:16px;padding-top:12px;border-top:1px solid var(--hairline);font-size:12.5px;color:var(--muted);line-height:1.45}
+.pane{display:none}
+.pane.active{display:block}
+.toast{position:fixed;left:12px;right:12px;bottom:20px;max-width:520px;margin:0 auto;transform:translateY(90px);opacity:0;visibility:hidden;pointer-events:none;background:var(--brand);color:#fff;padding:10px 14px;border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 8px 24px rgba(0,0,0,.22);transition:transform .2s ease,opacity .2s ease;z-index:60;font-size:14px}
+.toast.on{transform:translateY(0);opacity:1;visibility:visible;pointer-events:auto}
+.toast button{min-height:44px;padding:0 14px;border-radius:8px;border:0;background:var(--mint-on-dark);color:var(--brand);font-weight:800;cursor:pointer;align-items:center;justify-content:center}
+.print-only{display:none}
+@media print{
+  body{background:#fff;color:#111;font-size:10.5pt}
+  .shell{max-width:100%;margin:0;padding:0;border:0;box-shadow:none;background:#fff}
+  .no-print,.topbar,.tabbar,.banner,.toast,.pane{display:none!important}
+  #taxProPrint{display:block!important}
+  #taxProPrint h1{font-size:18pt;margin:0 0 6px;color:#1B2A40}
+  #taxProPrint table{width:100%;border-collapse:collapse;font-size:9.5pt;margin-top:8px}
+  #taxProPrint th,#taxProPrint td{border-bottom:1px solid #ccc;padding:5px 4px;text-align:left}
+  #taxProPrint td.r,#taxProPrint th.r{text-align:right}
+}
+</style>
+<style id="fa-name-title">.wm-t b,.wm-text b{font-size:19px;font-weight:800;line-height:1.12;letter-spacing:-.2px;white-space:normal}</style>
+</head>
+<body>
+<div class="shell">
+  <div class="topbar no-print">
+    <div class="wm">
+      <div class="mark" aria-hidden="true">fa</div>
+      <div class="wm-t"><b>Tips &amp; Overtime Deduction Tracker</b><span>OBBBA 2025–2028 · Schedule 1-A Estimate</span></div>
+    </div>
+    <button type="button" class="btn sec" id="topSampleBtn" style="min-height:44px;padding:0 14px;font-size:13.5px;flex:none;white-space:nowrap">Try sample</button>
+  </div>
+
+  <div class="banner no-print" id="sampleBanner" data-sample-banner="1" style="display:none">
+    <span><b>Sample records</b> — Riley's example from the workbook, not your pay stubs</span>
+    <button type="button" id="clearSampleBtn">Clear sample</button>
+  </div>
+
+  <nav class="tabbar no-print" aria-label="Main navigation">
+    <button type="button" data-tab="capture" aria-current="page"><span>Estimate &amp; Log</span></button>
+    <button type="button" data-tab="flsa"><span>FLSA OT Check</span></button>
+    <button type="button" data-tab="records"><span>Records &amp; Export</span></button>
+  </nav>
+
+  <!-- TAB 1: ESTIMATE & CAPTURE -->
+  <section class="pane active" id="pane-capture" aria-label="OBBBA Deduction Estimate and Capture">
+    <h1><span class="h-num">2026</span> Tips &amp; Overtime Estimate</h1>
+    <p class="cap" style="margin:0 0 12px">Track qualified tips and FLSA half-time overtime premium on your device — zero cloud uploads, zero API keys. Rules verified Nov 24, 2026 (26 U.S.C. §224 &amp; §225, IRS Notice 2025-69, Schedule 1-A).</p>
+
+    <div class="empty-cta" id="emptyHeroCta" style="display:none">
+      <div><b>See how it works in one tap:</b> load Riley's sample Harbor Table shifts &amp; overtime stub, or paste your own pay-stub text / log a shift below.</div>
+      <button type="button" class="btn full" id="primarySampleBtn">Try Riley's sample</button>
+    </div>
+
+    <div class="card hero">
+      <div class="lbl">Estimated total OBBBA deduction (Schedule 1-A)</div>
+      <div class="big num" id="outTotalDed">$0.00</div>
+      <div class="sub num" id="outStatusNote">Single / HoH · Caps: $25,000 tips · $12,500 OT premium</div>
+      <div class="hero-grid">
+        <div class="hbox">
+          <div class="lbl">Qualified tips deduction</div>
+          <div style="font-size:22px;font-weight:800" class="num" id="outTipsDed">$0.00</div>
+          <div class="cap num" style="color:#DCE6F2" id="outTipsSub">$0.00 logged · $25,000 cap</div>
+          <div class="bar-t"><div class="bar-f" id="bTips" style="width:0%"></div></div>
+        </div>
+        <div class="hbox">
+          <div class="lbl">Qualified OT premium deduction</div>
+          <div style="font-size:22px;font-weight:800" class="num" id="outOtDed">$0.00</div>
+          <div class="cap num" style="color:#DCE6F2" id="outOtSub">$0.00 logged · $12,500 cap</div>
+          <div class="bar-t"><div class="bar-f" id="bOt" style="width:0%"></div></div>
+        </div>
+      </div>
+      <div id="mfsWarnBox"></div>
+    </div>
+
+    <div class="card">
+      <h2>Filing status &amp; MAGI phase-out check</h2>
+      <div class="grid2">
+        <label class="field"><span class="l">Filing status</span><span class="inp-wrap"><select id="fStatus">
+          <option value="single">Single / Head of Household</option>
+          <option value="mfj">Married Filing Jointly</option>
+          <option value="mfs">Married Filing Separately (ineligible)</option>
+        </select></span></label>
+        <label class="field"><span class="l">Estimated Modified AGI ($, optional)</span><span class="inp-wrap" id="fMagiWrap"><span class="pre">$</span><input id="fMagi" inputmode="decimal" placeholder="0 (under $150k Single / $300k MFJ)"></span></label>
+      </div>
+      <p class="cap num" id="phaseOutLine" style="margin:6px 0 0"></p>
+    </div>
+
+    <div class="card">
+      <h2><span class="h-num">1.</span> Capture a pay stub or shift (<span class="h-num">100%</span> offline)</h2>
+      <p class="cap" style="margin:0 0 8px">Copy-paste text from ADP, Gusto, Workday, Toast, or Square right here — parsed instantly on your phone with zero internet. Or tap manual entry / attach a photo.</p>
+      <textarea class="stub-in" id="stubText" aria-label="Paste pay stub text" placeholder="Paste pay-stub text here (e.g. Pay Date: 01/15/2026 | Regular Hours: 35 | Card Tips: $671.00 | Overtime Hours: 3.5 | OT Premium: $21.88 | Gross Pay: $812.40)"></textarea>
+      <div class="btn-row">
+        <button type="button" class="btn" id="parseTextBtn">Draft from pasted text</button>
+        <button type="button" class="btn sec" id="manualBtn">Type entry manually</button>
+      </div>
+      <div class="btn-row">
+        <label class="btn sec" for="photoPick" style="cursor:pointer">Attach stub photo (offline downscale)</label>
+        <button type="button" class="btn sec" id="loadOcrBtn">Optional: load photo OCR (~4 MB)</button>
+      </div>
+      <input type="file" id="photoPick" accept="image/*" style="display:none">
+      <p class="cap" id="ocrStatus" style="margin:8px 0 0">Photo OCR (Tesseract.js, Apache-2.0) is never loaded unless you tap the opt-in button above. Everything else works 100% offline.</p>
+    </div>
+
+    <div class="card" id="draftCard" style="display:none">
+      <h2><span class="h-num">2.</span> Confirm draft before saving</h2>
+      <p class="cap" id="draftHint" style="margin:0 0 8px">Check every number against your pay stub. Highlighted boxes were not found in the text — type them or leave blank if $0. Nothing saves until you tap Confirm.</p>
+      <img id="draftPhotoImg" class="stub-thumb" style="display:none" alt="Attached pay stub preview">
+      <form id="draftForm" style="margin-top:10px">
+        <div class="grid2">
+          <label class="field"><span class="l">Pay / shift date</span><span class="inp-wrap"><input type="date" id="dDate" required></span></label>
+          <label class="field"><span class="l">Employer / job</span><span class="inp-wrap"><input id="dEmp" placeholder="e.g. Harbor Table"></span></label>
+          <label class="field"><span class="l">Total hours worked</span><span class="inp-wrap"><input id="dHours" inputmode="decimal" placeholder="0"></span></label>
+          <label class="field"><span class="l">Cash tips ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="dCash" inputmode="decimal" placeholder="0"></span></label>
+          <label class="field"><span class="l">Card / reported tips ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="dCard" inputmode="decimal" placeholder="0"></span></label>
+          <label class="field"><span class="l">Tip-out paid ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="dOut" inputmode="decimal" placeholder="0"></span></label>
+          <label class="field"><span class="l">Overtime hours</span><span class="inp-wrap"><input id="dOtH" inputmode="decimal" placeholder="0"></span></label>
+          <label class="field"><span class="l">FLSA OT premium $ (half-time ONLY)</span><span class="inp-wrap"><span class="pre">$</span><input id="dOtP" inputmode="decimal" placeholder="0"></span></label>
+          <label class="field"><span class="l">Gross pay ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="dGross" inputmode="decimal" placeholder="0"></span></label>
+        </div>
+        <div class="btn-row">
+          <button type="submit" class="btn">Confirm &amp; save record</button>
+          <button type="button" class="btn sec" id="cancelDraftBtn">Discard draft</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- TAB 2: FLSA OVERTIME HALF-TIME VERIFIER -->
+  <section class="pane" id="pane-flsa" aria-label="FLSA Overtime Half-Time Verifier">
+    <h1>FLSA Half-Time Premium Verifier</h1>
+    <p class="cap" style="margin:0 0 12px">Under IRS Notice 2025-69, ONLY the FLSA half-time premium (the extra 0.5×) counts — NOT your full 1.5× or 2.0× overtime gross. Use this helper to pull the exact qualifying dollar figure from any pay stub.</p>
+
+    <div class="card">
+      <label class="field"><span class="l">How does your pay stub show overtime?</span><span class="inp-wrap"><select id="flsaMode">
+        <option value="hrs">OT hours + base rate (× 0.5)</option>
+        <option value="gross15">1.5× overtime gross (÷ 3)</option>
+        <option value="gross20">2.0× double-time gross (÷ 4)</option>
+        <option value="prem20">1.0× double-time prem (÷ 2)</option>
+      </select></span></label>
+      <div class="grid2" id="flsaHrsRow">
+        <label class="field"><span class="l">Overtime hours</span><span class="inp-wrap"><input id="flsaHrs" inputmode="decimal" value="3.5"></span></label>
+        <label class="field"><span class="l">Regular hourly base rate ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="flsaBase" inputmode="decimal" value="12.50"></span></label>
+      </div>
+      <div id="flsaAmtRow" style="display:none">
+        <label class="field"><span class="l">Dollar amount printed on your pay stub ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="flsaAmt" inputmode="decimal" value="300.00"></span></label>
+      </div>
+      <div class="note-box num">
+        <div>Qualifying FLSA half-time premium: <b id="flsaOut" style="font-size:20px;color:var(--brand)">$21.88</b></div>
+        <div class="cap" id="flsaExplain" style="margin-top:4px"></div>
+      </div>
+      <button type="button" class="btn full" id="sendFlsaToDraftBtn" style="margin-top:10px">Copy into new pay-stub draft</button>
+    </div>
+  </section>
+
+  <!-- TAB 3: RECORDS & EXPORT -->
+  <section class="pane" id="pane-records" aria-label="Saved Records and Export">
+    <h1>Your Records &amp; Tax-Pro Export</h1>
+    <p class="cap" style="margin:0 0 12px">Export formula-safe CSV straight into Tabs 1–3 of your workbook, import shifts from our free True Hourly tool, or print a clean 1-page Schedule 1-A worksheet for your tax preparer.</p>
+
+    <div class="card">
+      <h2>Saved pay-stub &amp; shift records</h2>
+      <div id="recList"></div>
+    </div>
+
+    <div class="card">
+      <h2>Export, import &amp; print</h2>
+      <div class="btn-row">
+        <button type="button" class="btn" id="exportCsvBtn">Export workbook CSV (formula-safe)</button>
+        <button type="button" class="btn sec" id="printProBtn">Print 1-page Tax-Pro summary</button>
+      </div>
+      <div class="btn-row">
+        <label class="btn sec" for="thBridgeFile" style="cursor:pointer">Import shifts from True Hourly (.json)</label>
+        <button type="button" class="btn sec" id="backupBtn">Backup records (.json)</button>
+      </div>
+      <input type="file" id="thBridgeFile" accept=".json,application/json" style="display:none">
+      <div id="thBridgeDraft" style="display:none;margin-top:10px"></div>
+      <label class="btn sec full" for="restoreFile" style="margin-top:10px;cursor:pointer">Restore from backup (.json)</label>
+      <input type="file" id="restoreFile" accept=".json,application/json" style="display:none">
+      <p class="cap" style="margin:10px 0 0">Sample records are excluded automatically from CSV exports. Everything stays on this device.</p>
+    </div>
+  </section>
+
+  <footer class="shell-foot no-print">Record-keeping &amp; planning tool only — not tax, legal, or accounting advice. Verify eligibility with a qualified tax professional. Rules checked Nov 24, 2026 (26 U.S.C. §224/§225, IRS Notice 2025-69, Schedule 1-A). Support: filedawayco@gmail.com</footer>
+
+  <!-- 1-PAGE PRINTABLE TAX-PRO SUMMARY -->
+  <section id="taxProPrint" class="print-only"></section>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><span id="toastMsg"></span><button type="button" id="toastUndo" style="display:none">Undo</button></div>
+
+<script>
+(function(){
+"use strict";
+var STORE_KEY = "fac_tips_overtime_v2";
+var pendingPhoto = null, pendingBridge = null, ocrLoaded = false;
+var undoFn = null, toastT = null;
+
+function clone(o){ return JSON.parse(JSON.stringify(o)); }
+function esc(s){ return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+function localISO(d){ return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
+function todayISO(){ return localISO(new Date()); }
+function fmt$(n){ var v = Math.round((Number(n) || 0) * 100) / 100; return (v < 0 ? "−" : "") + "$" + Math.abs(v).toLocaleString("en-US", { minimumFractionDigits:2, maximumFractionDigits:2 }); }
+function csvCell(v){ v = String(v == null ? "" : v); return /[",\n\r]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }
+function csvText(v){ v = String(v == null ? "" : v); if (/^\s*[=+\-@]/.test(v) || /^[\t\r]/.test(v)) v = "'" + v; return csvCell(v); }
+function parseNumStrict(raw){
+  if (raw == null) return null;
+  var s = String(raw).trim().replace(/^\$/, "").trim();
+  if (!s) return null;
+  if (!/^(?:(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d{1,4})?|\.\d{1,4})$/.test(s)) return null;
+  var v = parseFloat(s.replace(/,/g, ""));
+  if (!isFinite(v) || v > 1e9) return null;
+  return v;
+}
+function parsePos(raw){ var v = parseNumStrict(raw); return (v == null || v < 0) ? 0 : v; }
+function safePhotoUrl(u){ return (typeof u === "string" && /^data:image\/(png|jpe?g|webp|gif);base64,[A-Za-z0-9+/=\s]+$/i.test(u)) ? u : null; }
+
+/* ---------- Exact 26 U.S.C. §224 & §225 + IRS Schedule 1-A Math Engine ---------- */
+function computeOBBBA(netTips, otPrem, status, magi){
+  var rawTips = Math.max(0, Math.round((Number(netTips) || 0) * 100) / 100);
+  var rawOt = Math.max(0, Math.round((Number(otPrem) || 0) * 100) / 100);
+  var m = Math.max(0, Number(magi) || 0);
+  if (status === "mfs") {
+    return { status:"mfs", tipsCap:0, otCap:0, threshold:0, reduction:0, tipsDed:0, otDed:0, totalDed:0, rawTips:rawTips, rawOt:rawOt, ineligible:true };
+  }
+  var isMfj = status === "mfj";
+  // §224: $25,000 PER RETURN (even MFJ is $25,000!). §225: $12,500 Single/HoH, $25,000 MFJ.
+  var tipsCap = 25000;
+  var otCap = isMfj ? 25000 : 12500;
+  var threshold = isMfj ? 300000 : 150000;
+  // Statutory ROUND-DOWN phase-out: $100 per FULL $1,000 over threshold (Math.floor, NOT ceil!)
+  var excess = Math.max(0, m - threshold);
+  var reduction = Math.floor(excess / 1000) * 100;
+  // Reduction subtracts from CAPPED ALLOWABLE DEDUCTION, not just from the cap!
+  var tipsDed = Math.round(Math.max(0, Math.min(rawTips, tipsCap) - reduction) * 100) / 100;
+  var otDed = Math.round(Math.max(0, Math.min(rawOt, otCap) - reduction) * 100) / 100;
+  var totalDed = Math.round((tipsDed + otDed) * 100) / 100;
+  return { status:status, tipsCap:tipsCap, otCap:otCap, threshold:threshold, reduction:reduction, tipsDed:tipsDed, otDed:otDed, totalDed:totalDed, rawTips:rawTips, rawOt:rawOt, ineligible:false };
+}
+
+/* ---------- Exact FLSA Half-Time Premium Verifier (IRS Notice 2025-69) ---------- */
+function computeFLSA(mode, hrs, base, amt){
+  var h = Math.max(0, Number(hrs) || 0), b = Math.max(0, Number(base) || 0), a = Math.max(0, Number(amt) || 0);
+  if (mode === "hrs") return { prem:Math.round(h * b * 0.5 * 100) / 100, note:h + " OT hrs × $" + b.toFixed(2) + " × 0.5 (FLSA half-time premium)" };
+  if (mode === "gross15") return { prem:Math.round((a / 3) * 100) / 100, note:"$" + a.toFixed(2) + " combined 1.5× gross ÷ 3 = 0.5× FLSA premium" };
+  if (mode === "gross20") return { prem:Math.round((a / 4) * 100) / 100, note:"$" + a.toFixed(2) + " combined 2.0× double-time gross ÷ 4 = 0.5× FLSA premium" };
+  return { prem:Math.round((a / 2) * 100) / 100, note:"$" + a.toFixed(2) + " isolated 1.0× double-time premium ÷ 2 = 0.5× FLSA premium" };
+}
+
+/* ---------- 100% Offline Deterministic Pay-Stub Text Parser (ADP/Gusto/Workday/Toast) ---------- */
+function pickLabelNum(text, rules){
+  var lines = String(text || "").split(/[\r\n|]+/);
+  // Outer loop = rules (most specific first) so specific labels ALWAYS win across the whole stub!
+  for (var j = 0; j < rules.length; j++){
+    var rule = typeof rules[j] === "string" ? { k:rules[j], ex:[] } : rules[j];
+    var key = rule.k, ex = rule.ex || [];
+    for (var i = 0; i < lines.length; i++){
+      var low = lines[i].toLowerCase();
+      var blocked = false;
+      for (var e = 0; e < ex.length; e++){ if (low.indexOf(ex[e]) >= 0) { blocked = true; break; } }
+      if (blocked) continue;
+      var idx = low.indexOf(key);
+      if (idx >= 0){
+        var after = lines[i].slice(idx + key.length);
+        var m = after.match(/^(?:\s*\([^)]*\))?[:\s\-=]*\$?\s*(\d{1,3}(?:,\d{3})+(?:\.\d{1,4})?|\d+(?:\.\d{1,4})?|\.\d{1,4})(?!\d)/);
+        if (m) return parseFloat(m[1].replace(/,/g, ""));
+      }
+    }
+  }
+  return null;
+}
+function pickStubDate(text){
+  var s = String(text || "");
+  var mIso = s.match(/\b(20\d{2})-(\d{2})-(\d{2})\b/);
+  if (mIso) return mIso[1] + "-" + mIso[2] + "-" + mIso[3];
+  var mUs = s.match(/\b(\d{1,2})[\/\-](\d{1,2})[\/\-](20\d{2})\b/);
+  if (mUs) return mUs[3] + "-" + String(mUs[1]).padStart(2, "0") + "-" + String(mUs[2]).padStart(2, "0");
+  return null;
+}
+function parsePayStubText(text){
+  var otPrem = pickLabelNum(text, ["overtime premium","ot premium","flsa premium","half-time premium"]);
+  var otGross15 = pickLabelNum(text, ["overtime pay","ot pay","overtime earnings","1.5x overtime","overtime gross"]);
+  if (otPrem == null && otGross15 != null) otPrem = Math.round((otGross15 / 3) * 100) / 100;
+  return {
+    date: pickStubDate(text),
+    hours: pickLabelNum(text, ["regular hours","total hours","hours worked","hrs worked",{ k:"hours", ex:["overtime","ot ","ot:","ot-"] }]),
+    cash: pickLabelNum(text, ["cash tips"]),
+    card: pickLabelNum(text, ["card tips","charged tips","credit card tips","reported tips","tips reported",{ k:"tips", ex:["cash","tip-out","tip out","tipout"] }]),
+    out: pickLabelNum(text, ["tip-out","tip out","tipout"]),
+    otH: pickLabelNum(text, ["overtime hours","ot hours","ot hrs"]),
+    otP: otPrem,
+    gross: pickLabelNum(text, ["gross pay","gross earnings","total gross",{ k:"gross", ex:["overtime","ot ","ot:","ot-"] }])
+  };
+}
+
+function defaultState(){ return { sample:false, status:"single", magi:0, prevSettings:null, entries:[] }; }
+function sampleState(){
+  // Matches Riley's Harbor Table workbook EXAMPLE totals: $280 cash + $671 card - $53 tip-out = $898.00 net tips; $34.38 OT prem ($932.38 total)!
+  return {
+    sample:true, status:"single", magi:48000, prevSettings:null,
+    entries:[
+      { id:"s1", date:"2026-01-10", emp:"Harbor Table (server — Wk 1)", hours:35, cash:125, card:336, out:26, otH:3.5, otP:21.88, gross:812.40, photo:null, sample:true },
+      { id:"s2", date:"2026-01-17", emp:"Harbor Table (server — Wk 2)", hours:37, cash:155, card:335, out:27, otH:2.0, otP:12.50, gross:860.00, photo:null, sample:true }
+    ]
+  };
+}
+function sanitizeEntry(en, idx){
+  var num = function(v){ var n = Number(v); return (isFinite(n) && n > 0 && n <= 1e9) ? n : 0; };
+  return {
+    id: String((en && en.id) || ("r-" + Date.now() + "-" + idx)),
+    date: String((en && en.date) || ""),
+    emp: String((en && en.emp) || ""),
+    hours: num(en && en.hours),
+    cash: num(en && en.cash),
+    card: num(en && en.card),
+    out: num(en && en.out),
+    otH: num(en && en.otH),
+    otP: num(en && en.otP),
+    gross: num(en && en.gross),
+    photo: safePhotoUrl(en && en.photo),
+    sample: Boolean(en && en.sample)
+  };
+}
+function sanitizeState(raw){
+  var st = defaultState();
+  if (!raw || typeof raw !== "object") return st;
+  var okStatus = (raw.status === "single" || raw.status === "mfj" || raw.status === "mfs") ? raw.status : "single";
+  var m = Number(raw.magi);
+  st.sample = Boolean(raw.sample);
+  st.status = okStatus;
+  st.magi = (isFinite(m) && m > 0 && m <= 1e9) ? m : 0;
+  st.prevSettings = (raw.prevSettings && typeof raw.prevSettings === "object")
+    ? { status:(raw.prevSettings.status === "mfj" || raw.prevSettings.status === "mfs") ? raw.prevSettings.status : "single", magi:Math.max(0, Number(raw.prevSettings.magi) || 0) }
+    : null;
+  st.entries = Array.isArray(raw.entries) ? raw.entries.map(sanitizeEntry) : [];
+  return st;
+}
+function loadState(){
+  try {
+    var raw = localStorage.getItem(STORE_KEY);
+    if (raw) { var o = JSON.parse(raw); if (o && Array.isArray(o.entries)) return sanitizeState(o); }
+  } catch(e){}
+  return defaultState();
+}
+var state = loadState();
+function persist(){
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); return true; }
+  catch(e){
+    // QuotaExceededError safe fallback: drop oldest photo blobs before losing records!
+    var stripped = clone(state);
+    stripped.entries.forEach(function(en){ en.photo = null; });
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(stripped)); showToast("Storage full — saved record numbers without image copy."); return true; }
+    catch(e2){ showToast("Browser storage full — export CSV / JSON backup now."); return false; }
+  }
+}
+
+function download(name, text, mime){
+  var b = new Blob([text], { type:mime }), u = URL.createObjectURL(b), a = document.createElement("a");
+  a.href = u; a.download = name; document.body.appendChild(a); a.click();
+  setTimeout(function(){ URL.revokeObjectURL(u); a.remove(); }, 500);
+}
+function showToast(msg, fn){
+  var el = document.getElementById("toast");
+  document.getElementById("toastMsg").textContent = msg;
+  var ub = document.getElementById("toastUndo");
+  undoFn = fn || null;
+  ub.style.display = fn ? "inline-flex" : "none";
+  el.classList.add("on");
+  clearTimeout(toastT);
+  toastT = setTimeout(function(){ el.classList.remove("on"); undoFn = null; }, fn ? 7000 : 2800);
+}
+
+/* ---------- Renders ---------- */
+function renderBanner(){
+  var hasS = state.sample || state.entries.some(function(e){ return e.sample; });
+  document.getElementById("sampleBanner").style.display = hasS ? "flex" : "none";
+  document.getElementById("topSampleBtn").style.display = hasS ? "none" : "inline-flex";
+  document.getElementById("emptyHeroCta").style.display = !state.entries.length ? "flex" : "none";
+}
+
+function renderSummary(){
+  var netTips = 0, otPrem = 0;
+  state.entries.forEach(function(e){
+    netTips += Math.max(0, (Number(e.cash) || 0) + (Number(e.card) || 0) - (Number(e.out) || 0));
+    otPrem += Math.max(0, Number(e.otP) || 0);
+  });
+  var res = computeOBBBA(netTips, otPrem, state.status, state.magi);
+  document.getElementById("outTotalDed").textContent = fmt$(res.totalDed);
+  document.getElementById("outTipsDed").textContent = fmt$(res.tipsDed);
+  document.getElementById("outOtDed").textContent = fmt$(res.otDed);
+  document.getElementById("outTipsSub").textContent = fmt$(res.rawTips) + " net tips logged · " + (res.ineligible ? "MFS ineligible" : "$25,000 per-return cap");
+  document.getElementById("outOtSub").textContent = fmt$(res.rawOt) + " OT premium logged · " + (res.ineligible ? "MFS ineligible" : ("$" + res.otCap.toLocaleString("en-US") + " cap"));
+  document.getElementById("bTips").style.width = res.tipsCap > 0 ? Math.min(100, (res.tipsDed / res.tipsCap) * 100).toFixed(1) + "%" : "0%";
+  document.getElementById("bOt").style.width = res.otCap > 0 ? Math.min(100, (res.otDed / res.otCap) * 100).toFixed(1) + "%" : "0%";
+
+  var statusLbl = state.status === "mfj" ? "Married Filing Jointly · Caps: $25,000 tips · $25,000 OT" : (state.status === "mfs" ? "Married Filing Separately — Not eligible under §224/§225" : "Single / HoH · Caps: $25,000 tips · $12,500 OT");
+  document.getElementById("outStatusNote").textContent = statusLbl;
+  document.getElementById("mfsWarnBox").innerHTML = res.ineligible
+    ? '<div class="warn-box">Married Filing Separately returns are NOT eligible for the 2025–2028 tips or overtime deductions (26 U.S.C. §224 &amp; §225).</div>' : '';
+  document.getElementById("phaseOutLine").textContent = res.ineligible
+    ? "Married Filing Separately: $0 allowable deduction."
+    : (res.reduction > 0
+      ? ("MAGI phase-out active: $" + Math.round(state.magi).toLocaleString("en-US") + " exceeds $" + res.threshold.toLocaleString("en-US") + " → −" + fmt$(res.reduction) + " applied to each capped deduction (round-down $100 per full $1,000).")
+      : ("MAGI at or under $" + res.threshold.toLocaleString("en-US") + " threshold → $0 phase-out reduction."));
+
+  // Records list & Print summary
+  var box = document.getElementById("recList");
+  if (!state.entries.length) {
+    box.innerHTML = '<p class="cap" style="margin:0">No records saved yet. Paste a pay stub, log a shift, or tap Try sample on Tab 1.</p>';
+  } else {
+    box.innerHTML = state.entries.slice().reverse().map(function(e){
+      var idx = state.entries.indexOf(e);
+      var nt = Math.max(0, (Number(e.cash) || 0) + (Number(e.card) || 0) - (Number(e.out) || 0));
+      var repHref = "mailto:filedawayco@gmail.com?subject=" + encodeURIComponent("Tips Companion — bad read report") + "&body=" + encodeURIComponent("Date: " + (e.date || "") + "\nWhat stub said vs drafted: ");
+      return '<div class="row-card"><div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;flex-wrap:wrap">' +
+        '<div><b class="num">' + esc(e.date || "No date") + '</b> · ' + esc(e.emp || "Shift / Stub") + (e.sample ? ' <span class="tag warn">SAMPLE</span>' : '') +
+        '<div class="cap num">Net tips <b>' + fmt$(nt) + '</b> (cash ' + fmt$(e.cash || 0) + ' + card ' + fmt$(e.card || 0) + ' − tip-out ' + fmt$(e.out || 0) + ') · OT prem <b>' + fmt$(e.otP || 0) + '</b> (' + (Number(e.otH) || 0) + 'h) · Hrs ' + (Number(e.hours) || 0) + '</div></div>' +
+        '<div style="display:flex;gap:8px;align-items:center"><button type="button" class="btn sec" data-delrec="' + idx + '" style="min-height:44px;padding:0 12px;font-size:13.5px">Delete</button>' +
+        '<a class="badread" href="' + repHref + '">Bad read?</a></div></div>' +
+        (safePhotoUrl(e.photo) ? '<img class="stub-thumb" src="' + esc(safePhotoUrl(e.photo)) + '" alt="Attached stub">' : '') + '</div>';
+    }).join("");
+  }
+
+  var realE = state.entries.filter(function(e){ return !e.sample; });
+  var isSPr = !realE.length && state.entries.length > 0;
+  var pList = isSPr ? state.entries : realE;
+  var pTips = 0, pOt = 0;
+  pList.forEach(function(e){ pTips += Math.max(0, (Number(e.cash) || 0) + (Number(e.card) || 0) - (Number(e.out) || 0)); pOt += Math.max(0, Number(e.otP) || 0); });
+  var pr = computeOBBBA(pTips, pOt, state.status, state.magi);
+  document.getElementById("taxProPrint").innerHTML =
+    (isSPr ? '<div style="padding:8px 12px;border:1.5px solid #D9C79A;background:#FFF4D6;margin-bottom:10px;font-weight:700">SAMPLE DATA — Riley example, not your pay stubs</div>' : '') +
+    '<h1>Tips &amp; Overtime Schedule <span class="h-num">1</span>-A Worksheet (<span class="h-num">' + todayISO() + '</span>)</h1>' +
+    '<p class="num">Filing Status: <b>' + esc(state.status.toUpperCase()) + '</b> · Est. MAGI: <b>' + fmt$(state.magi) + '</b> · Phase-out Reduction: <b>' + fmt$(pr.reduction) + '</b></p>' +
+    '<p class="num">Qualified Tips Deductible: <b>' + fmt$(pr.tipsDed) + '</b> · Qualified OT Premium Deductible: <b>' + fmt$(pr.otDed) + '</b> · Total Est. Deduction: <b>' + fmt$(pr.totalDed) + '</b></p>' +
+    '<table><thead><tr><th>Date</th><th>Employer</th><th class="r">Hours</th><th class="r">Net Tips</th><th class="r">OT Hrs</th><th class="r">FLSA OT Prem</th><th class="r">Gross</th></tr></thead><tbody>' +
+    pList.map(function(e){
+      var nt = Math.max(0, (Number(e.cash) || 0) + (Number(e.card) || 0) - (Number(e.out) || 0));
+      return '<tr><td class="num">' + esc(e.date || "") + '</td><td>' + esc(e.emp || "") + '</td><td class="r num">' + (Number(e.hours) || 0) + '</td><td class="r num">' + fmt$(nt) + '</td><td class="r num">' + (Number(e.otH) || 0) + '</td><td class="r num">' + fmt$(e.otP || 0) + '</td><td class="r num">' + fmt$(e.gross || 0) + '</td></tr>';
+    }).join("") + '</tbody></table>' +
+    '<p style="margin-top:12px;font-size:9pt">Estimate only — not tax advice. Keep original pay stubs and W-2/1099 forms. Rules verified Nov 24, 2026 (26 U.S.C. §224/§225, IRS Notice 2025-69).</p>';
+}
+
+function renderFLSA(){
+  var mode = document.getElementById("flsaMode").value;
+  document.getElementById("flsaHrsRow").style.display = mode === "hrs" ? "grid" : "none";
+  document.getElementById("flsaAmtRow").style.display = mode === "hrs" ? "none" : "block";
+  var checkId = function(id){
+    var el = document.getElementById(id), wrap = el.closest(".inp-wrap"), raw = el.value.trim();
+    if (!raw) { if (wrap) wrap.classList.remove("low"); return { ok:true, v:0 }; }
+    var p = parseNumStrict(raw);
+    if (wrap) wrap.classList.toggle("low", p === null);
+    return { ok:p !== null, v:p || 0 };
+  };
+  var rH = mode === "hrs" ? checkId("flsaHrs") : { ok:true, v:0 };
+  var rB = mode === "hrs" ? checkId("flsaBase") : { ok:true, v:0 };
+  var rA = mode !== "hrs" ? checkId("flsaAmt") : { ok:true, v:0 };
+  if (!rH.ok || !rB.ok || !rA.ok) {
+    document.getElementById("flsaOut").textContent = "—";
+    document.getElementById("flsaExplain").textContent = "Enter plain positive numbers (e.g. 3.5 or 300.00) — letters or spaces cannot be calculated.";
+    return;
+  }
+  var res = computeFLSA(mode, rH.v, rB.v, rA.v);
+  document.getElementById("flsaOut").textContent = fmt$(res.prem);
+  document.getElementById("flsaExplain").textContent = res.note;
+}
+
+function openDraft(vals, photo, highlightMissing){
+  var hl = highlightMissing === true;
+  pendingPhoto = safePhotoUrl(photo);
+  var img = document.getElementById("draftPhotoImg");
+  if (pendingPhoto) { img.src = pendingPhoto; img.style.display = "block"; } else { img.removeAttribute("src"); img.style.display = "none"; }
+  var hint = document.getElementById("draftHint");
+  if (hint) {
+    hint.textContent = hl
+      ? "Check every number against your pay stub. Highlighted boxes were not found in the text — type them or leave blank if $0. Nothing saves until you tap Confirm."
+      : "Enter the figures from your pay stub or shift, then tap Confirm & save record.";
+  }
+  // Clean reset of ALL fields including dEmp & old hints!
+  document.getElementById("dEmp").value = vals.emp || "";
+  var map = { dDate:vals.date || todayISO(), dHours:vals.hours, dCash:vals.cash, dCard:vals.card, dOut:vals.out, dOtH:vals.otH, dOtP:vals.otP, dGross:vals.gross };
+  Object.keys(map).forEach(function(id){
+    var el = document.getElementById(id), wrap = el.closest(".inp-wrap");
+    var v = map[id];
+    el.value = (v === null || v === undefined) ? "" : String(v);
+    var missing = (id === "dDate") ? !vals.date : (v === null || v === undefined);
+    if (wrap) wrap.classList.toggle("low", hl && missing);
+  });
+  var card = document.getElementById("draftCard");
+  card.style.display = "block";
+  card.scrollIntoView({ behavior:"smooth", block:"nearest" });
+}
+
+function downscalePhoto(file, cb){
+  var rd = new FileReader();
+  rd.onload = function(){
+    var img = new Image();
+    img.onload = function(){
+      var maxW = 900, w = img.width, h = img.height;
+      if (w > maxW) { h = Math.round(h * (maxW / w)); w = maxW; }
+      var c = document.createElement("canvas"); c.width = w; c.height = h;
+      c.getContext("2d").drawImage(img, 0, 0, w, h);
+      cb(c.toDataURL("image/jpeg", 0.65));
+    };
+    img.onerror = function(){ cb(null); };
+    img.src = rd.result;
+  };
+  rd.readAsDataURL(file);
+}
+
+function syncInputs(){
+  document.getElementById("fStatus").value = state.status || "single";
+  document.getElementById("fMagi").value = state.magi ? String(state.magi) : "";
+  var w = document.getElementById("fMagiWrap");
+  if (w) w.classList.remove("low");
+}
+function renderAll(){ renderBanner(); syncInputs(); renderSummary(); renderFLSA(); }
+function switchTab(t){
+  document.querySelectorAll(".pane").forEach(function(p){ p.classList.toggle("active", p.id === "pane-" + t); });
+  document.querySelectorAll(".tabbar button").forEach(function(b){ b.setAttribute("aria-current", b.dataset.tab === t ? "page" : "false"); });
+}
+
+/* ---------- Events ---------- */
+document.getElementById("fStatus").addEventListener("change", function(e){ state.status = e.target.value; persist(); renderSummary(); });
+document.getElementById("fMagi").addEventListener("input", function(e){
+  var raw = e.target.value.trim();
+  var wrap = document.getElementById("fMagiWrap");
+  if (!raw) {
+    if (wrap) wrap.classList.remove("low");
+    state.magi = 0; persist(); renderSummary(); return;
+  }
+  var parsed = parseNumStrict(raw);
+  if (parsed === null) {
+    if (wrap) wrap.classList.add("low");
+    document.getElementById("phaseOutLine").textContent = "Enter a plain dollar number for MAGI (e.g. 165000) — letters, spaces, or negatives cannot be calculated.";
+    return;
+  }
+  if (wrap) wrap.classList.remove("low");
+  state.magi = parsed; persist(); renderSummary();
+});
+["flsaMode","flsaHrs","flsaBase","flsaAmt"].forEach(function(id){
+  var el = document.getElementById(id); el.addEventListener("input", renderFLSA); el.addEventListener("change", renderFLSA);
+});
+
+document.getElementById("photoPick").addEventListener("change", function(ev){
+  var f = ev.target.files && ev.target.files[0]; if (!f) return;
+  downscalePhoto(f, function(dataUrl){
+    if (window.Tesseract && dataUrl) {
+      document.getElementById("ocrStatus").textContent = "Reading photo locally with Tesseract.js...";
+      window.Tesseract.recognize(dataUrl, "eng").then(function(r){
+        document.getElementById("ocrStatus").textContent = "Photo read complete — verify every number in step 2.";
+        openDraft(parsePayStubText(r.data.text || ""), dataUrl, true);
+      }).catch(function(){
+        document.getElementById("ocrStatus").textContent = "Could not read photo text — photo attached; enter numbers manually.";
+        openDraft({}, dataUrl, false);
+      });
+    } else {
+      openDraft({}, dataUrl, false);
+      showToast("Stub photo compressed & attached offline.");
+    }
+  });
+  ev.target.value = "";
+});
+
+document.getElementById("draftForm").addEventListener("submit", function(ev){
+  ev.preventDefault();
+  var numIds = ["dHours","dCash","dCard","dOut","dOtH","dOtP","dGross"];
+  var vals = {}, bad = 0;
+  numIds.forEach(function(id){
+    var el = document.getElementById(id), wrap = el.closest(".inp-wrap"), raw = el.value.trim();
+    if (!raw) { vals[id] = 0; if (wrap) wrap.classList.remove("low"); return; }
+    var p = parseNumStrict(raw);
+    if (p === null) { bad++; if (wrap) wrap.classList.add("low"); }
+    else { vals[id] = p; if (wrap) wrap.classList.remove("low"); }
+  });
+  if (bad > 0) { showToast("Check highlighted number(s) — enter plain figures like 125.50."); return; }
+  var rec = {
+    id:"r-" + Date.now(), date:document.getElementById("dDate").value || todayISO(),
+    emp:document.getElementById("dEmp").value.trim(),
+    hours:vals.dHours, cash:vals.dCash, card:vals.dCard, out:vals.dOut,
+    otH:vals.dOtH, otP:vals.dOtP, gross:vals.dGross,
+    photo:pendingPhoto, sample:false
+  };
+  state.entries.push(rec);
+  pendingPhoto = null;
+  document.getElementById("draftCard").style.display = "none";
+  persist(); renderAll(); showToast("Record saved.");
+});
+
+document.addEventListener("click", function(e){
+  var t = e.target.closest("button");
+  if (!t) return;
+  if (t.dataset.tab) { switchTab(t.dataset.tab); }
+  else if (t.id === "topSampleBtn" || t.id === "primarySampleBtn") {
+    var s = sampleState();
+    var userE = state.entries.filter(function(x){ return !x.sample; });
+    if (!state.sample) state.prevSettings = { status:state.status, magi:state.magi };
+    state.sample = true; state.status = s.status; state.magi = s.magi; state.entries = s.entries.concat(userE);
+    persist(); renderAll();
+  } else if (t.id === "clearSampleBtn") {
+    var snap = clone(state);
+    state.sample = false;
+    state.entries = state.entries.filter(function(x){ return !x.sample; });
+    if (state.prevSettings) {
+      state.status = state.prevSettings.status || "single";
+      state.magi = Number(state.prevSettings.magi) || 0;
+      state.prevSettings = null;
+    } else if (!state.entries.length) {
+      state.magi = 0;
+    }
+    persist(); renderAll();
+    showToast("Sample records cleared.", function(){ state = snap; persist(); renderAll(); showToast("Sample restored."); });
+  } else if (t.id === "toastUndo") {
+    if (undoFn) { var f = undoFn; undoFn = null; document.getElementById("toast").classList.remove("on"); f(); }
+  } else if (t.id === "parseTextBtn") {
+    var txt = document.getElementById("stubText").value;
+    if (!txt.trim()) { showToast("Paste pay-stub text first, or tap Type entry manually."); return; }
+    openDraft(parsePayStubText(txt), null, true);
+  } else if (t.id === "manualBtn") {
+    openDraft({}, null, false);
+  } else if (t.id === "cancelDraftBtn") {
+    pendingPhoto = null; document.getElementById("draftCard").style.display = "none";
+  } else if (t.id === "loadOcrBtn") {
+    if (ocrLoaded || window.Tesseract) { showToast("On-device photo reader is already ready."); return; }
+    document.getElementById("ocrStatus").textContent = "Loading optional Tesseract.js (Apache-2.0) on demand...";
+    var sc = document.createElement("script");
+    sc.src = "https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js";
+    sc.onload = function(){ ocrLoaded = true; document.getElementById("ocrStatus").textContent = "On-device photo reader ready. Now choose a stub photo."; showToast("Photo OCR ready."); };
+    sc.onerror = function(){ document.getElementById("ocrStatus").textContent = "Offline — photo OCR needs a one-time connection. Paste text or manual entry still works 100% offline."; };
+    document.head.appendChild(sc);
+  } else if (t.id === "sendFlsaToDraftBtn") {
+    var mode = document.getElementById("flsaMode").value;
+    var hrs = mode === "hrs" ? parsePos(document.getElementById("flsaHrs").value) : null;
+    var res = computeFLSA(mode, parsePos(document.getElementById("flsaHrs").value), parsePos(document.getElementById("flsaBase").value), parsePos(document.getElementById("flsaAmt").value));
+    switchTab("capture");
+    openDraft({ date:todayISO(), otH:hrs, otP:res.prem }, null, false);
+    showToast("FLSA half-time premium (" + fmt$(res.prem) + ") loaded into draft.");
+  } else if (t.dataset.delrec != null) {
+    var di = +t.dataset.delrec, snapR = clone(state);
+    state.entries.splice(di, 1);
+    if (state.sample && !state.entries.some(function(x){ return x.sample; })) {
+      state.sample = false;
+      if (state.prevSettings) {
+        state.status = state.prevSettings.status || "single";
+        state.magi = Number(state.prevSettings.magi) || 0;
+        state.prevSettings = null;
+      } else if (!state.entries.length) { state.magi = 0; }
+    }
+    persist(); renderAll();
+    showToast("Record deleted.", function(){ state = snapR; persist(); renderAll(); });
+  } else if (t.id === "exportCsvBtn") {
+    var realR = state.entries.filter(function(x){ return !x.sample; });
+    if (!realR.length) { showToast("Save your own records first — sample rows are excluded from exports."); return; }
+    var head = ["Date","Employer / job","Hours worked","Cash tips $","Card tips $","Tip-out paid $","Net tips $","Overtime hours","FLSA OT premium $","Gross pay $","Stub photo attached"];
+    var lines = [head.join(",")].concat(realR.map(function(e){
+      var nt = Math.max(0, (Number(e.cash) || 0) + (Number(e.card) || 0) - (Number(e.out) || 0));
+      return [csvText(e.date || ""), csvText(e.emp || ""), (Number(e.hours) || 0), (Number(e.cash) || 0).toFixed(2), (Number(e.card) || 0).toFixed(2), (Number(e.out) || 0).toFixed(2), nt.toFixed(2), (Number(e.otH) || 0), (Number(e.otP) || 0).toFixed(2), (Number(e.gross) || 0).toFixed(2), safePhotoUrl(e.photo) ? "YES" : "NO"].join(",");
+    }));
+    download("tips-overtime-records-" + todayISO() + ".csv", lines.join("\r\n") + "\r\n", "text/csv;charset=utf-8");
+    showToast("Formula-safe CSV downloaded.");
+  } else if (t.id === "printProBtn") { window.print(); }
+  else if (t.id === "backupBtn") {
+    download("tips-overtime-backup-" + todayISO() + ".json", JSON.stringify({ app:"fac-tips-overtime", exported:todayISO(), state:state }, null, 2), "application/json");
+    showToast("Backup JSON saved.");
+  } else if (t.id === "confirmThBtn") {
+    if (!pendingBridge || !Array.isArray(pendingBridge.shifts)) return;
+    var snapB = clone(state.entries);
+    pendingBridge.shifts.forEach(function(sh, idx){
+      state.entries.push({
+        id:"th-" + Date.now() + "-" + idx, date:sh.date || todayISO(), emp:sh.emp || "True Hourly shift",
+        hours:Number(sh.hours) || 0, cash:Number(sh.cash) || 0, card:Number(sh.card) || 0,
+        out:Number(sh.tipOut) || 0, otH:0, otP:0, gross:Number(sh.total) || 0, photo:null, sample:false
+      });
+    });
+    var cnt = pendingBridge.shifts.length;
+    pendingBridge = null; document.getElementById("thBridgeDraft").style.display = "none";
+    persist(); renderAll();
+    showToast("Imported " + cnt + " shift(s) from True Hourly.", function(){ state.entries = snapB; persist(); renderAll(); });
+  } else if (t.id === "discardThBtn") {
+    pendingBridge = null; document.getElementById("thBridgeDraft").style.display = "none";
+  }
+});
+
+document.getElementById("thBridgeFile").addEventListener("change", function(ev){
+  var f = ev.target.files && ev.target.files[0]; if (!f) return;
+  var rd = new FileReader();
+  rd.onload = function(){
+    try {
+      var o = JSON.parse(String(rd.result || ""));
+      if (!o || o.bridge !== "fac-bridge-v1" || !Array.isArray(o.shifts)) throw new Error("Invalid");
+      pendingBridge = o;
+      var box = document.getElementById("thBridgeDraft");
+      var totShTips = o.shifts.reduce(function(a, sh){ return a + Math.max(0, (Number(sh.cash) || 0) + (Number(sh.card) || 0) - (Number(sh.tipOut) || 0)); }, 0);
+      var dates = o.shifts.map(function(sh){ return String(sh.date || ""); }).filter(Boolean).sort();
+      var rngLbl = dates.length ? (" (" + esc(dates[0]) + (dates.length > 1 ? (" → " + esc(dates[dates.length - 1])) : "") + ")") : "";
+      box.innerHTML = '<div class="note-box num"><b>Draft True Hourly import (' + o.shifts.length + ' shift(s)' + rngLbl + ' · ' + fmt$(totShTips) + ' net tips):</b> Review before saving to your tax records.' +
+        '<div class="btn-row"><button type="button" class="btn" id="confirmThBtn">Confirm &amp; import shifts</button><button type="button" class="btn sec" id="discardThBtn">Discard</button></div></div>';
+      box.style.display = "block";
+    } catch(e){ showToast("That file is not a valid True Hourly fac-bridge-v1 export."); }
+  };
+  rd.readAsText(f); ev.target.value = "";
+});
+
+document.getElementById("restoreFile").addEventListener("change", function(ev){
+  var f = ev.target.files && ev.target.files[0]; if (!f) return;
+  var rd = new FileReader();
+  rd.onload = function(){
+    try {
+      var o = JSON.parse(String(rd.result || ""));
+      var s = o && o.state ? o.state : o;
+      if (!s || !Array.isArray(s.entries)) throw new Error("Invalid");
+      var snapRestore = clone(state);
+      state = sanitizeState(s); persist(); renderAll();
+      showToast("Backup restored.", function(){ state = snapRestore; persist(); renderAll(); showToast("Restore undone."); });
+    } catch(e){ showToast("That file is not a valid Tips & Overtime backup."); }
+  };
+  rd.readAsText(f); ev.target.value = "";
+});
+
+window.__TIPS = { computeOBBBA:computeOBBBA, computeFLSA:computeFLSA, parsePayStubText:parsePayStubText, parseNumStrict:parseNumStrict, safePhotoUrl:safePhotoUrl, sanitizeState:sanitizeState, csvText:csvText };
+renderAll();
+})();
+</script>
+</body>
+</html>

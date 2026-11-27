@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en" data-temp="editorial">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Clear Wedding Companion · FiledAwayCo</title>
+<style>
+:root,[data-temp="editorial"]{
+  --brand:#355245; --brand-ink:#FFFFFF; --accent:#1F5C45; --accent-ink:#FFFFFF;
+  --mint-on-dark:#B8DEC9;
+  --paper:#FBF8F2; --card:#FFFFFF; --cream:#E8E0D2;
+  --ink:#1F2A24; --muted:#4E5B54; --line:#D9D1C5; --hairline:#EDE7DC;
+  --input-bg:#FFF4D6; --input-border:#D9C79A; --input-ink:#1A1A1A;
+  --auto-bg:#F1F3F5; --auto-ink:#1F2A24;
+  --good-ink:#16533C; --good-bg:#E6F3EC;
+  --warn-ink:#7A4700; --warn-bg:#FFF4D6;
+  --alert-ink:#962324; --alert-bg:#FBEAEA;
+  --radius:14px; --radius-sm:10px;
+  --font-display:Georgia,"Times New Roman",serif;
+  --font-body:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--cream);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.45;-webkit-text-size-adjust:100%}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+.shell{max-width:860px;margin:0 auto;min-height:100vh;background:var(--paper);padding:14px 14px 44px}
+@media(min-width:768px){.shell{margin:18px auto;border-radius:18px;border:1px solid var(--line);padding:22px 26px 48px;box-shadow:0 6px 24px rgba(53,82,69,.09)}}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--hairline);margin-bottom:12px}
+.wm{display:flex;align-items:center;gap:10px}
+.mark{width:34px;height:34px;border-radius:9px;background:var(--brand);color:#fff;display:grid;place-items:center;font-weight:800;font-size:15px;letter-spacing:-.02em;position:relative;flex:none}
+.mark::after{content:"";position:absolute;right:4px;top:4px;width:8px;height:8px;border-radius:2px;background:var(--mint-on-dark)}
+.wm-t b{display:block;font-size:15px;color:var(--brand);line-height:1.15}
+.wm-t span{display:block;font-size:12.5px;color:var(--muted)}
+h1{font-family:var(--font-display);font-size:24px;font-weight:700;margin:0 0 4px;color:var(--brand);line-height:1.2}
+h2{font-family:var(--font-display);font-size:18px;font-weight:700;margin:0 0 8px;color:var(--brand)}
+h3{font-size:15px;font-weight:700;margin:0 0 8px;color:var(--brand)}
+.cap{font-size:13.5px;color:var(--muted);line-height:1.45}
+.banner{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--warn-bg);border:1px solid var(--input-border);border-radius:var(--radius-sm);padding:8px 10px 8px 12px;margin-bottom:12px;color:var(--warn-ink);font-size:14px}
+.banner button{min-height:44px;flex:none;white-space:nowrap;padding:0 14px;border-radius:8px;border:1px solid var(--input-border);background:#fff;color:var(--brand);font-weight:700;font-size:13.5px;cursor:pointer}
+.tabbar{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:var(--auto-bg);padding:4px;border-radius:var(--radius-sm);margin-bottom:14px}
+.tabbar button{min-height:46px;border:0;border-radius:8px;background:transparent;color:var(--muted);font:inherit;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;padding:0 6px;text-align:center}
+.tabbar button[aria-current="page"]{color:var(--brand);background:#fff;box-shadow:0 1px 3px rgba(53,82,69,.14)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:14px}
+.empty-cta{background:var(--paper);border:1.5px dashed var(--input-border);border-radius:var(--radius);padding:16px;margin-bottom:14px;display:flex;flex-direction:column;gap:10px}
+.hero{background:var(--brand);color:#fff;border-color:var(--brand)}
+.hero .ey{font-size:13px;font-weight:700;color:var(--mint-on-dark);margin-bottom:6px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:center}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:540px){.hero-grid{grid-template-columns:1fr 1fr}}
+.hbox{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:12px 14px}
+.hbox .lbl{font-size:12.5px;color:#E2EFE8}
+.hbox .big{font-size:30px;font-weight:800;line-height:1.15;color:#fff;margin-top:2px}
+.hbox .sub{font-size:12.5px;color:#E2EFE8;margin-top:3px}
+.grid2{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:560px){.grid2{grid-template-columns:1fr 1fr}}
+.grid3{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:560px){.grid3{grid-template-columns:repeat(3,1fr)}}
+.field{display:block;margin-bottom:10px}
+.field:last-child{margin-bottom:0}
+.field .l{display:block;font-size:13.5px;font-weight:700;color:var(--brand);margin-bottom:4px}
+.field .h{display:block;font-size:12.5px;color:var(--muted);margin-top:3px}
+.inp-wrap{display:flex;align-items:center;background:var(--input-bg);border:1.5px solid var(--input-border);border-radius:var(--radius-sm);padding:0 12px;min-height:46px}
+.inp-wrap:focus-within{border-color:var(--accent);box-shadow:0 0 0 2px rgba(31,92,69,.18)}
+.inp-wrap .pre{font-weight:700;color:var(--muted);margin-right:6px}
+.inp-wrap .suf{font-weight:700;color:var(--muted);margin-left:6px}
+.inp-wrap input,.inp-wrap select{width:100%;border:0;background:transparent;font:inherit;color:var(--input-ink);outline:none;padding:10px 0;min-height:44px}
+textarea.quote-in{width:100%;min-height:105px;background:var(--input-bg);border:1.5px solid var(--input-border);border-radius:var(--radius-sm);padding:12px;font:inherit;font-size:14.5px;color:var(--input-ink);resize:vertical}
+.seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:4px;background:var(--auto-bg);padding:4px;border-radius:var(--radius-sm)}
+.seg button{min-height:44px;border:0;border-radius:8px;background:transparent;color:var(--brand);font-weight:700;font-size:13.5px;cursor:pointer;padding:0 8px}
+.seg button[aria-pressed="true"]{background:#fff;box-shadow:0 1px 3px rgba(53,82,69,.14)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip-btn{min-height:44px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--brand);font:inherit;font-size:13.5px;font-weight:700;cursor:pointer}
+.chip-btn[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.tag{display:inline-block;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:700;background:var(--auto-bg);color:var(--brand);white-space:nowrap}
+.tag.good{background:var(--good-bg);color:var(--good-ink)}
+.tag.warn{background:var(--warn-bg);color:var(--warn-ink)}
+.tag.alert{background:var(--alert-bg);color:var(--alert-ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 16px;border-radius:var(--radius-sm);border:1.5px solid var(--accent);background:var(--accent);color:#fff;font:inherit;font-weight:700;font-size:14.5px;cursor:pointer;text-decoration:none}
+.btn.sec{background:#fff;color:var(--brand);border-color:var(--line)}
+.btn.full{width:100%}
+.btn-row{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}
+@media(min-width:520px){.btn-row{grid-template-columns:1fr 1fr}}
+.stepper{display:flex;align-items:center;gap:10px;margin-top:6px}
+.stepper button{min-height:46px;min-width:52px;border-radius:10px;border:1.5px solid var(--line);background:#fff;color:var(--brand);font-size:20px;font-weight:800;cursor:pointer}
+.stepper .val{flex:1;text-align:center;font-size:20px;font-weight:800;background:var(--auto-bg);padding:10px;border-radius:10px}
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table.grid{width:100%;border-collapse:collapse;font-size:13.5px}
+table.grid th,table.grid td{padding:8px 6px;border-bottom:1px solid var(--hairline);text-align:left;vertical-align:top}
+table.grid th{background:var(--auto-bg);color:var(--muted);font-size:12px;font-weight:700}
+table.grid td.r,table.grid th.r{text-align:right;white-space:nowrap}
+table.grid tr.best{background:var(--good-bg)}
+.row-card{padding:11px 0;border-bottom:1px solid var(--hairline)}
+.row-card:last-child{border-bottom:0}
+details.drawer{border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--paper);margin-top:10px}
+details.drawer summary{list-style:none;cursor:pointer;padding:12px 14px;font-weight:700;color:var(--brand);min-height:46px;display:flex;justify-content:space-between;align-items:center}
+details.drawer summary::-webkit-details-marker{display:none}
+details.drawer summary::after{content:"Show";color:var(--accent);font-size:13px}
+details.drawer[open] summary::after{content:"Hide"}
+details.drawer .inner{padding:0 14px 14px}
+.tel-link{display:inline-flex;align-items:center;min-height:44px;color:var(--accent);font-weight:700;text-decoration:none}
+.pane{display:none}
+.pane.active{display:block}
+.toast{position:fixed;left:12px;right:12px;bottom:20px;max-width:520px;margin:0 auto;transform:translateY(90px);opacity:0;visibility:hidden;pointer-events:none;background:var(--brand);color:#fff;padding:10px 14px;border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 8px 24px rgba(0,0,0,.22);transition:transform .2s ease,opacity .2s ease;z-index:60;font-size:14px}
+.toast.on{transform:translateY(0);opacity:1;visibility:visible;pointer-events:auto}
+.toast button{min-height:44px;padding:0 14px;border-radius:8px;border:0;background:var(--mint-on-dark);color:var(--brand);font-weight:800;cursor:pointer;align-items:center;justify-content:center}
+.print-only{display:none}
+/* Day-Of Print Sheet: STRICTLY ZERO FiledAwayCo branding/chrome/sample banner (CLAUDE.md:14 Surfaces rule)! */
+@media print{
+  body{background:#fff;font-size:11pt;color:#111}
+  .shell{max-width:100%;margin:0;padding:0;border:0;box-shadow:none;background:#fff}
+  .no-print,.topbar,.tabbar,.banner,.toast,.pane{display:none!important}
+  #dayOfPrintSheet{display:block!important}
+  #dayOfPrintSheet h1{font-size:20pt;margin:0 0 4px;color:#1F2A24}
+  #dayOfPrintSheet h2{font-size:13pt;margin:14px 0 6px;border-bottom:1.5px solid #355245;padding-bottom:3px;color:#355245}
+}
+</style>
+<style id="fa-name-title">.wm-t b,.wm-text b{font-size:19px;font-weight:800;line-height:1.12;letter-spacing:-.2px;white-space:normal}</style>
+</head>
+<body>
+<div class="shell">
+  <div class="topbar no-print">
+    <div class="wm">
+      <div class="mark" aria-hidden="true">fa</div>
+      <div class="wm-t"><b>Clear Wedding Planner</b><span>Venue Quote · Guest Cost · Payments &amp; Day-Of</span></div>
+    </div>
+    <button type="button" class="btn sec" id="topSampleBtn" style="min-height:44px;padding:0 14px;font-size:13.5px;flex:none;white-space:nowrap">Try sample</button>
+  </div>
+
+  <div class="banner no-print" id="sampleBanner" data-sample-banner="1" style="display:none">
+    <span><b>Sample wedding</b> — Maya &amp; Jordan example, not your numbers</span>
+    <button type="button" id="clearSampleBtn">Clear sample</button>
+  </div>
+
+  <nav class="tabbar no-print" aria-label="Main navigation">
+    <button type="button" data-tab="quote" aria-current="page"><span>Venue Quote</span></button>
+    <button type="button" data-tab="guests"><span>Guest Cost</span></button>
+    <button type="button" data-tab="dayof"><span>Payments &amp; Day-Of</span></button>
+  </nav>
+
+  <!-- TAB 1: VENUE & QUOTE CHECK (+ HIDDEN-FEE ADD-ONS + DETERMINISTIC QUOTE PASTE CHECK) -->
+  <section class="pane active" id="pane-quote" aria-label="Venue and Quote Check">
+    <h1>Venue &amp; Quote Check</h1>
+    <p class="cap" style="margin:0 0 12px">Standing at a venue tour or tasting? See the real all-in total after service charges, compounding sales tax, and hidden add-ons.</p>
+
+    <div class="empty-cta" id="emptyHeroCta" style="display:none">
+      <div><b>See the math in one tap:</b> load Maya &amp; Jordan's sample wedding ($45,000 budget, 110 guests, 3 venue quotes, payment calendar, and day-of timeline) or type your first quote below.</div>
+      <button type="button" class="btn full" id="primarySampleBtn">Load sample wedding (Maya &amp; Jordan)</button>
+    </div>
+
+    <div class="card hero">
+      <div class="ey">
+        <span>True all-in quote total</span>
+        <span class="tag good" id="qDeltaBadge">+$0 over base</span>
+      </div>
+      <div class="hero-grid">
+        <div class="hbox">
+          <div class="lbl">All-in total (with service, tax &amp; add-ons)</div>
+          <div class="big num" id="outAllIn">$0.00</div>
+          <div class="sub num" id="outBreakdownSub">Base $0 · Service $0 · Tax $0 · Add-ons $0</div>
+        </div>
+        <div class="hbox">
+          <div class="lbl">Tax-on-service compounding difference</div>
+          <div class="big num" id="outTaxDelta">$0.00</div>
+          <div class="sub num" id="outTaxCompare">Compounded vs non-compounded</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Quote details</h2>
+      <div class="grid2">
+        <label class="field"><span class="l">Vendor / venue name</span><span class="inp-wrap"><input id="vName" placeholder="e.g. Willow Creek Barn" autocomplete="off"></span></label>
+        <label class="field"><span class="l">Base quote ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="vBase" inputmode="decimal" placeholder="9000"></span></label>
+        <label class="field"><span class="l">Service charge % (typical 20–25%)</span><span class="inp-wrap"><input id="vSvc" inputmode="decimal" placeholder="20"><span class="suf">%</span></span></label>
+        <label class="field"><span class="l">Sales tax %</span><span class="inp-wrap"><input id="vTax" inputmode="decimal" placeholder="8"><span class="suf">%</span></span></label>
+      </div>
+      <div class="field" style="margin-top:4px">
+        <span class="l">Does sales tax apply on top of the service charge?</span>
+        <div class="seg" role="group" aria-label="Tax on service charge">
+          <button type="button" data-tos="yes" aria-pressed="true">Yes (most states — compounds)</button>
+          <button type="button" data-tos="no" aria-pressed="false">No (base only)</button>
+        </div>
+      </div>
+
+      <div class="field" style="margin-top:10px">
+        <span class="l">Quick-tap hidden-fee add-ons (optional)</span>
+        <div class="chips" id="addonChips">
+          <button type="button" class="chip-btn" data-addon="cake" aria-pressed="false">Cake cutting ($250)</button>
+          <button type="button" class="chip-btn" data-addon="corkage" aria-pressed="false">Corkage ($400)</button>
+          <button type="button" class="chip-btn" data-addon="overtime" aria-pressed="false">Overtime 1 hr ($600)</button>
+          <button type="button" class="chip-btn" data-addon="setup" aria-pressed="false">Setup / security ($500)</button>
+        </div>
+      </div>
+
+      <div class="grid2" style="margin-top:10px">
+        <label class="field"><span class="l">Custom extra / attrition fees ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="vExtra" inputmode="decimal" placeholder="0"></span></label>
+        <div class="field" style="display:flex;align-items:flex-end">
+          <button type="button" class="btn full" id="saveQuoteBtn">Save to 3-quote comparison</button>
+        </div>
+      </div>
+
+      <details class="drawer" id="quotePasteDrawer">
+        <summary>Paste quote text to check for hidden fees (offline, optional)</summary>
+        <div class="inner">
+          <p class="cap" style="margin:0 0 8px">Runs 100% locally on your device — never uploaded. Scans for service charges, cake-cutting, corkage, overtime, setup/security, and headcount minimums while skipping negated phrases (&ldquo;no corkage&rdquo;). <b>Planning calculator only — not legal advice.</b></p>
+          <textarea class="quote-in" id="quotePasteText" aria-label="Paste venue quote text" placeholder="Paste venue or caterer email/quote snippet here..."></textarea>
+          <div class="btn-row">
+            <button type="button" class="btn" id="scanQuoteBtn">Check text for hidden fees</button>
+            <button type="button" class="btn sec" id="sampleQuoteTextBtn">Try sample quote text</button>
+          </div>
+          <div id="quoteFindingsBox" style="margin-top:10px"></div>
+        </div>
+      </details>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px">
+        <h2 style="margin:0">Compare up to 3 saved quotes</h2>
+        <button type="button" class="btn sec" id="copyVendorRowBtn" style="min-height:44px;padding:0 12px;font-size:13.5px">Copy current quote line</button>
+      </div>
+      <div id="compareBox"></div>
+      <p class="cap" style="margin:8px 0 0">Venue/caterer service charges typically run 20–25% of food &amp; drink (The Knot, checked Nov 24, 2026; ask your venue whether service charge is taxable and separate from gratuity).</p>
+    </div>
+  </section>
+
+  <!-- TAB 2: GUEST-COST TRIMMER + COMPACT CATERING MEAL TALLY -->
+  <section class="pane" id="pane-guests" aria-label="Guest Cost Trimmer and Meal Tally">
+    <h1>Guest-Cost Trimmer</h1>
+    <p class="cap" style="margin:0 0 12px">See what each additional guest really costs — and how much trimming your guest list saves against your budget.</p>
+
+    <div class="card hero">
+      <div class="ey">
+        <span>True marginal cost per guest</span>
+        <span class="tag good num" id="gMaxTag">Max guests: 0</span>
+      </div>
+      <div class="hero-grid">
+        <div class="hbox">
+          <div class="lbl">Each extra guest adds</div>
+          <div class="big num" id="outPerGuest">$0</div>
+          <div class="sub num" id="outPer10">Every 10 guests ≈ $0</div>
+        </div>
+        <div class="hbox">
+          <div class="lbl">Cutting <span id="outCutCnt">0</span> guests saves</div>
+          <div class="big num" id="outCutSave">$0</div>
+          <div class="sub num" id="outNewTotal">New projected total: $0</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Budget &amp; guest numbers</h2>
+      <div class="grid2">
+        <label class="field"><span class="l">Total wedding budget ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="gBudget" inputmode="decimal" placeholder="45000"></span></label>
+        <label class="field"><span class="l">Planned guest count</span><span class="inp-wrap"><input id="gPlanned" inputmode="numeric" placeholder="110"></span></label>
+        <label class="field"><span class="l">Fixed costs (venue, photo, attire — $)</span><span class="inp-wrap"><span class="pre">$</span><input id="gFixed" inputmode="decimal" placeholder="35084"></span></label>
+        <label class="field"><span class="l">Guest-based costs (food, bar, rentals — $)</span><span class="inp-wrap"><span class="pre">$</span><input id="gVar" inputmode="decimal" placeholder="15698"></span></label>
+      </div>
+      <div class="field" style="margin-top:8px">
+        <span class="l">Try trimming guests (step by 5)</span>
+        <div class="stepper">
+          <button type="button" id="cutMinusBtn" aria-label="Trim 5 fewer guests">−5</button>
+          <div class="val num" id="cutDisplay">0 fewer guests</div>
+          <button type="button" id="cutPlusBtn" aria-label="Trim 5 more guests">+5</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Tier scenarios (85% expected Yes rate)</h2>
+      <div class="grid3" style="margin-bottom:10px">
+        <label class="field"><span class="l">Tier A invited</span><span class="inp-wrap"><input id="gTierA" inputmode="numeric" placeholder="60"></span></label>
+        <label class="field"><span class="l">Tier B invited</span><span class="inp-wrap"><input id="gTierB" inputmode="numeric" placeholder="35"></span></label>
+        <label class="field"><span class="l">Tier C invited</span><span class="inp-wrap"><input id="gTierC" inputmode="numeric" placeholder="25"></span></label>
+      </div>
+      <div class="tbl-wrap"><table class="grid" id="tierTable"></table></div>
+    </div>
+
+    <div class="card">
+      <h2>Compact catering meal tally</h2>
+      <p class="cap" style="margin:0 0 8px">Quick headcount summary to text your caterer (full 250-row household list stays in your workbook).</p>
+      <div class="grid3">
+        <label class="field"><span class="l">Entrée 1 (e.g. Short rib)</span><span class="inp-wrap"><input id="m1" inputmode="numeric" placeholder="0"></span></label>
+        <label class="field"><span class="l">Entrée 2 (e.g. Salmon)</span><span class="inp-wrap"><input id="m2" inputmode="numeric" placeholder="0"></span></label>
+        <label class="field"><span class="l">Entrée 3 (e.g. Risotto)</span><span class="inp-wrap"><input id="m3" inputmode="numeric" placeholder="0"></span></label>
+        <label class="field"><span class="l">Kids' meals</span><span class="inp-wrap"><input id="mKid" inputmode="numeric" placeholder="0"></span></label>
+        <label class="field"><span class="l">Vendor meals</span><span class="inp-wrap"><input id="mVen" inputmode="numeric" placeholder="0"></span></label>
+        <div class="field" style="display:flex;align-items:flex-end"><div class="tag good num" id="mTotalPill" style="padding:10px 14px;font-size:14px">Total: 0 meals</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 3: PAYMENT .ICS REMINDERS & LOGO-FREE PRINTABLE DAY-OF SHEET -->
+  <section class="pane" id="pane-dayof" aria-label="Vendor Payments and Day-Of Sheet">
+    <h1>Payments Calendar &amp; Day-Of Sheet</h1>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px">
+        <h2 style="margin:0">Upcoming vendor payments</h2>
+        <button type="button" class="btn" id="icsPayBtn" style="min-height:44px;padding:0 12px;font-size:13.5px">Download reminders (.ics)</button>
+      </div>
+      <p class="cap" style="margin:0 0 10px">Calendar file includes 14-day and 3-day alerts before every deposit or balance due date.</p>
+      <div id="payList"></div>
+      <form id="payForm" style="margin-top:12px;padding-top:12px;border-top:1px solid var(--hairline)">
+        <div class="grid3">
+          <label class="field"><span class="l">Vendor &amp; milestone</span><span class="inp-wrap"><input id="pVendor" required placeholder="e.g. Florist final balance"></span></label>
+          <label class="field"><span class="l">Due date</span><span class="inp-wrap"><input type="date" id="pDate" required></span></label>
+          <label class="field"><span class="l">Amount ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="pAmt" inputmode="decimal" required placeholder="1500"></span></label>
+        </div>
+        <button type="submit" class="btn sec full" style="margin-top:10px">Add payment reminder</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px">
+        <h2 style="margin:0">Day-Of timeline &amp; vendor contacts</h2>
+        <button type="button" class="btn" id="printDayOfBtn" style="min-height:44px;padding:0 14px;font-size:13.5px">Print Day-Of Sheet (logo-free)</button>
+      </div>
+      <p class="cap" style="margin:0 0 10px">Tap any phone number to call directly on wedding morning. The printed sheet carries <b>zero shop branding</b> — clean to hand to your coordinator, bridal party, and vendors.</p>
+      <div class="grid2" style="margin-bottom:10px">
+        <label class="field"><span class="l">Couple / event title (for print sheet)</span><span class="inp-wrap"><input id="dTitle" placeholder="e.g. Maya & Jordan"></span></label>
+        <label class="field"><span class="l">Wedding date</span><span class="inp-wrap"><input type="date" id="dDate"></span></label>
+      </div>
+      <h3>Timeline</h3>
+      <div id="timelineBox"></div>
+      <form id="tlForm" style="margin-top:10px;padding-top:10px;border-top:1px solid var(--hairline)">
+        <div class="grid3">
+          <label class="field"><span class="l">Time</span><span class="inp-wrap"><input id="tlTime" required placeholder="e.g. 2:30 PM"></span></label>
+          <label class="field"><span class="l">Event</span><span class="inp-wrap"><input id="tlItem" required placeholder="e.g. First look photos"></span></label>
+          <label class="field"><span class="l">Lead / owner</span><span class="inp-wrap"><input id="tlOwner" placeholder="e.g. Photographer"></span></label>
+        </div>
+        <button type="submit" class="btn sec full" style="margin-top:8px">Add timeline item</button>
+      </form>
+      <h3 style="margin-top:16px">Key vendor contacts</h3>
+      <div id="contactsBox"></div>
+      <form id="ctForm" style="margin-top:10px;padding-top:10px;border-top:1px solid var(--hairline)">
+        <div class="grid3">
+          <label class="field"><span class="l">Role</span><span class="inp-wrap"><input id="ctRole" required placeholder="e.g. Florist"></span></label>
+          <label class="field"><span class="l">Contact name</span><span class="inp-wrap"><input id="ctName" required placeholder="e.g. Elena (Bloom Co)"></span></label>
+          <label class="field"><span class="l">Phone</span><span class="inp-wrap"><input id="ctPhone" type="tel" required placeholder="555-201-4400"></span></label>
+        </div>
+        <button type="submit" class="btn sec full" style="margin-top:8px">Add vendor contact</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h2>Backup &amp; about</h2>
+      <div class="btn-row">
+        <button type="button" class="btn sec" id="backupBtn">Backup companion data (.json)</button>
+        <label class="btn sec" for="restoreFile" style="cursor:pointer">Restore from JSON backup</label>
+        <input type="file" id="restoreFile" accept="application/json,.json" style="display:none">
+      </div>
+      <p class="cap" style="margin:10px 0 0">Clear Wedding Companion · FiledAwayCo · Planning tool only — not legal or financial advice. Verify all terms against your signed vendor contracts.</p>
+    </div>
+  </section>
+
+  <!-- STRICTLY ZERO-BRANDING DAY-OF PRINT SHEET (CLAUDE.md:14) -->
+  <section id="dayOfPrintSheet" class="print-only" aria-label="Printable Day-Of Timeline and Contact Sheet"></section>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><span id="toastMsg"></span><button type="button" id="toastUndo" style="display:none">Undo</button></div>
+
+<script>
+(function(){
+"use strict";
+var STORE_KEY = "fac_clear_wedding_v1";
+var ADDON_VALS = { cake:250, corkage:400, overtime:600, setup:500 };
+var NEG_RE = /\b(no|not|without|waived|free|0|zero|included\s+at\s+no)\b(?:\s+[a-z0-9\-]+){0,3}[\s\-]*$/i;
+var FEE_RULES = [
+  { id:"cake", title:"Cake-cutting fee", addon:"cake", re:/\b(cake[\-\s]?cutting|plating\s+fee)\b/gi },
+  { id:"corkage", title:"Corkage / outside alcohol fee", addon:"corkage", re:/\b(corkage|outside\s+alcohol\s+fee)\b/gi },
+  { id:"overtime", title:"Overtime / extended-hours charge", addon:"overtime", re:/\b(overtime|additional\s+hour|extra\s+hour\s+fee)\b/gi },
+  { id:"setup", title:"Setup / teardown / security fee", addon:"setup", re:/\b(setup\s+fee|tear[\-\s]?down\s+fee|security\s+(fee|officer|guard)|load[\-\s]?in\s+fee)\b/gi },
+  { id:"service", title:"Service charge / mandatory gratuity", addon:null, note:"Verify % & taxability", re:/\b(service\s+charge|mandatory\s+gratuity|auto[\-\s]?gratuity)\b/gi },
+  { id:"attrition", title:"Food & beverage / guest count minimum", addon:null, note:"Verify minimum in contract", re:/\b(guest\s+minimum|headcount\s+minimum|f&b\s+minimum|food\s+and\s+beverage\s+minimum|attrition)\b/gi }
+];
+var SAMPLE_QUOTE_TEXT = "Venue rental is $9,000 plus a 20% service charge and 8% state tax. No corkage fee for champagne. Cake-cutting fee is $250, security fee applies for bar service, and overtime is billed per hour past 10pm. Note our 100-guest food and beverage minimum.";
+
+function defaultState(){
+  return {
+    sample:false,
+    quote:{ name:"", base:"", svc:"20", tax:"8", tos:true, addons:[], extra:"" },
+    savedQuotes:[],
+    guests:{ budget:"", planned:"", fixed:"", varCost:"", cut:0, tierA:"", tierB:"", tierC:"", m1:"", m2:"", m3:"", mKid:"", mVen:"" },
+    payments:[],
+    dayOf:{ title:"", date:"", timeline:[], contacts:[] }
+  };
+}
+function sampleState(){
+  return {
+    sample:true,
+    quote:{ name:"Willow Creek Barn", base:"9000", svc:"20", tax:"8", tos:true, addons:[], extra:"" },
+    savedQuotes:[
+      { name:"Willow Creek Barn", base:9000, svc:20, tax:8, tos:true, addonsTotal:0, allIn:11664, sample:true },
+      { name:"Lakeside Pavilion", base:9800, svc:22, tax:8, tos:true, addonsTotal:500, allIn:13412.48, sample:true },
+      { name:"The Grand Atrium", base:11250, svc:20, tax:8, tos:true, addonsTotal:250, allIn:14830, sample:true }
+    ],
+    guests:{ budget:"45000", planned:"110", fixed:"35084", varCost:"15698", cut:15, tierA:"62", tierB:"36", tierC:"22", m1:"44", m2:"36", m3:"18", mKid:"6", mVen:"5" },
+    payments:[
+      { id:"p-s1", vendor:"Willow Creek Barn — 2nd installment", date:"2027-03-18", amount:3500, sample:true },
+      { id:"p-s2", vendor:"Cedar & Light Catering — menu deposit", date:"2027-06-18", amount:4800, sample:true },
+      { id:"p-s3", vendor:"Oak Photo Studio — final balance", date:"2027-08-18", amount:2400, sample:true }
+    ],
+    dayOf:{
+      title:"Maya & Jordan", date:"2027-09-18",
+      timeline:[
+        { time:"1:00 PM", item:"Venue opens · floral & rentals load-in", owner:"Coordinator", sample:true },
+        { time:"2:30 PM", item:"First look & wedding party portraits", owner:"Photographer", sample:true },
+        { time:"4:30 PM", item:"Ceremony begins on the lawn", owner:"Officiant", sample:true },
+        { time:"5:15 PM", item:"Cocktail hour & family photos", owner:"Caterer / DJ", sample:true },
+        { time:"6:30 PM", item:"Dinner service & toasts", owner:"Caterer", sample:true },
+        { time:"10:30 PM", item:"Last song & vendor pack-out", owner:"Coordinator", sample:true }
+      ],
+      contacts:[
+        { role:"Venue Manager", name:"Willow Creek Barn (Hannah)", phone:"555-201-3344", sample:true },
+        { role:"Caterer", name:"Cedar & Light Catering", phone:"555-319-8820", sample:true },
+        { role:"Photographer", name:"Oak Photo Studio", phone:"555-442-1190", sample:true }
+      ]
+    }
+  };
+}
+
+var state = loadState();
+var quoteFindings = [];
+var undoFn = null, toastT = null;
+
+function clone(o){ return JSON.parse(JSON.stringify(o)); }
+function esc(s){ return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+function parseNum(raw){ if (raw == null) return 0; var s = String(raw).trim().replace(/[$,%\s]/g, ""); if (!/^\d+(\.\d+)?$/.test(s)) return 0; var v = parseFloat(s); return (isNaN(v) || v < 0) ? 0 : v; }
+function fmt$(n){ var v = Number(n) || 0; return (v < 0 ? "−" : "") + "$" + Math.round(Math.abs(v)).toLocaleString("en-US"); }
+function fmt$2(n){ var v = Number(n) || 0; return (v < 0 ? "−" : "") + "$" + Math.abs(v).toLocaleString("en-US", { minimumFractionDigits:2, maximumFractionDigits:2 }); }
+function localISO(d){ return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
+function todayISO(){ return localISO(new Date()); }
+
+function loadState(){
+  try {
+    var raw = localStorage.getItem(STORE_KEY);
+    if (raw) {
+      var o = JSON.parse(raw);
+      if (o && o.quote && o.guests) return Object.assign(defaultState(), o);
+    }
+  } catch(e){}
+  return defaultState();
+}
+function persist(){ try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch(e){} }
+
+/* ---------- Exact Workbook-Parity Quote & Guest-Cost Math ---------- */
+function computeQuote(q){
+  var base = parseNum(q.base);
+  var svcPct = parseNum(q.svc) / 100;
+  var taxPct = parseNum(q.tax) / 100;
+  var svcAmt = Math.round(base * svcPct * 100) / 100;
+  var compounded = Math.round(base * (1 + svcPct) * (1 + taxPct) * 100) / 100;
+  var simple = Math.round(base * (1 + svcPct + taxPct) * 100) / 100;
+  var taxAmt = q.tos ? Math.round((compounded - base - svcAmt) * 100) / 100 : Math.round((simple - base - svcAmt) * 100) / 100;
+  var addonsTotal = (q.addons || []).reduce(function(s, k){ return s + (ADDON_VALS[k] || 0); }, 0) + parseNum(q.extra);
+  var allIn = Math.round(((q.tos ? compounded : simple) + addonsTotal) * 100) / 100;
+  var deltaOverBase = Math.round((allIn - base) * 100) / 100;
+  var taxCompDelta = Math.round((compounded - simple) * 100) / 100;
+  return { base:base, svcAmt:svcAmt, taxAmt:taxAmt, addonsTotal:addonsTotal, allIn:allIn, compounded:compounded, simple:simple, deltaOverBase:deltaOverBase, taxCompDelta:taxCompDelta };
+}
+
+function computeGuestMath(g){
+  var budget = parseNum(g.budget);
+  var planned = Math.floor(parseNum(g.planned));
+  var fixed = parseNum(g.fixed);
+  var varCost = parseNum(g.varCost);
+  var perGuest = planned > 0 ? (varCost / planned) : 0;
+  var cut = Math.max(0, Math.min(planned, Math.floor(Number(g.cut) || 0)));
+  var cutSave = Math.round(cut * perGuest);
+  var newTotal = Math.round(fixed + Math.max(0, planned - cut) * perGuest);
+  var maxGuests = (budget > 0 && perGuest > 0) ? Math.max(0, Math.floor((budget - fixed) / perGuest)) : 0;
+  var a = Math.floor(parseNum(g.tierA)), b = Math.floor(parseNum(g.tierB)), c = Math.floor(parseNum(g.tierC));
+  var tiers = [
+    { name:"Tier A only (must invite)", invited:a },
+    { name:"Tiers A + B", invited:a + b },
+    { name:"Everyone (A + B + C)", invited:a + b + c }
+  ].map(function(t){
+    var exp = Math.round(t.invited * 0.85);
+    var tot = Math.round(fixed + exp * perGuest);
+    return { name:t.name, invited:t.invited, exp:exp, tot:tot, diff:budget > 0 ? (budget - tot) : null };
+  });
+  return { budget:budget, planned:planned, fixed:fixed, varCost:varCost, perGuest:perGuest, perGuestRounded:Math.round(perGuest), cut:cut, cutSave:cutSave, newTotal:newTotal, maxGuests:maxGuests, tiers:tiers };
+}
+
+function scanQuoteText(text){
+  var src = String(text || "");
+  if (!src.trim()) return [];
+  var out = [];
+  FEE_RULES.forEach(function(r){
+    r.re.lastIndex = 0;
+    var m;
+    while ((m = r.re.exec(src)) !== null) {
+      var pre = src.slice(Math.max(0, m.index - 36), m.index).split(/[.,;:\n!?]/).pop() || "";
+      if (NEG_RE.test(pre)) continue;
+      out.push({ id:r.id, title:r.title, addon:r.addon, note:r.note || "", match:m[0], added:false });
+      break;
+    }
+  });
+  return out;
+}
+
+function icsEsc(s){ return String(s || "").replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r?\n/g, " "); }
+function buildPaymentsICS(payments, weddingDate, title){
+  var stamp = new Date().toISOString().replace(/[-:]/g, "").slice(0, 15) + "Z";
+  var lines = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//FiledAwayCo//Clear Wedding Companion//EN","CALSCALE:GREGORIAN"];
+  payments.forEach(function(p){
+    if (!p || !p.date) return;
+    var d = String(p.date).replace(/-/g, "");
+    lines.push("BEGIN:VEVENT","UID:fac-wed-pay-" + icsEsc(p.id || d) + "@filedawayco.local","DTSTAMP:" + stamp,"DTSTART;VALUE=DATE:" + d);
+    lines.push("SUMMARY:Wedding Payment: " + icsEsc(p.vendor) + " (" + icsEsc(fmt$(p.amount)) + ")");
+    lines.push("DESCRIPTION:" + icsEsc("Scheduled vendor payment of " + fmt$2(p.amount) + ". Verify due date against your signed vendor contract."));
+    lines.push("BEGIN:VALARM","TRIGGER:-P14D","ACTION:DISPLAY","DESCRIPTION:Wedding payment due in 14 days","END:VALARM");
+    lines.push("BEGIN:VALARM","TRIGGER:-P3D","ACTION:DISPLAY","DESCRIPTION:Wedding payment due in 3 days","END:VALARM");
+    lines.push("END:VEVENT");
+  });
+  if (weddingDate && /^\d{4}-\d{2}-\d{2}$/.test(weddingDate)) {
+    var wd = weddingDate.replace(/-/g, "");
+    lines.push("BEGIN:VEVENT","UID:fac-wed-day@filedawayco.local","DTSTAMP:" + stamp,"DTSTART;VALUE=DATE:" + wd);
+    lines.push("SUMMARY:" + icsEsc((title || "Wedding") + " — Wedding Day"));
+    lines.push("END:VEVENT");
+  }
+  lines.push("END:VCALENDAR");
+  return lines.join("\r\n") + "\r\n";
+}
+
+function download(name, text, mime){
+  var b = new Blob([text], { type:mime }), u = URL.createObjectURL(b), a = document.createElement("a");
+  a.href = u; a.download = name; document.body.appendChild(a); a.click();
+  setTimeout(function(){ URL.revokeObjectURL(u); a.remove(); }, 500);
+}
+function showToast(msg, fn){
+  var el = document.getElementById("toast");
+  document.getElementById("toastMsg").textContent = msg;
+  var ub = document.getElementById("toastUndo");
+  undoFn = fn || null;
+  ub.style.display = fn ? "inline-flex" : "none";
+  el.classList.add("on");
+  clearTimeout(toastT);
+  toastT = setTimeout(function(){ el.classList.remove("on"); undoFn = null; }, fn ? 7000 : 2800);
+}
+
+/* ---------- Sync & Render ---------- */
+function syncInputs(){
+  var q = state.quote, g = state.guests, d = state.dayOf;
+  document.getElementById("vName").value = q.name || "";
+  document.getElementById("vBase").value = q.base || "";
+  document.getElementById("vSvc").value = q.svc || "";
+  document.getElementById("vTax").value = q.tax || "";
+  document.getElementById("vExtra").value = q.extra || "";
+  document.querySelectorAll("[data-tos]").forEach(function(b){ b.setAttribute("aria-pressed", String((b.dataset.tos === "yes") === !!q.tos)); });
+  document.querySelectorAll("[data-addon]").forEach(function(b){ b.setAttribute("aria-pressed", String((q.addons || []).indexOf(b.dataset.addon) >= 0)); });
+  document.getElementById("gBudget").value = g.budget || "";
+  document.getElementById("gPlanned").value = g.planned || "";
+  document.getElementById("gFixed").value = g.fixed || "";
+  document.getElementById("gVar").value = g.varCost || "";
+  document.getElementById("gTierA").value = g.tierA || "";
+  document.getElementById("gTierB").value = g.tierB || "";
+  document.getElementById("gTierC").value = g.tierC || "";
+  ["m1","m2","m3","mKid","mVen"].forEach(function(k){ document.getElementById(k).value = g[k] || ""; });
+  document.getElementById("dTitle").value = d.title || "";
+  document.getElementById("dDate").value = d.date || "";
+}
+
+function renderBanner(){
+  var tl = state.dayOf.timeline || [], cs = state.dayOf.contacts || [];
+  var hasS = state.sample || state.savedQuotes.some(function(x){return x.sample;}) || state.payments.some(function(x){return x.sample;}) || tl.some(function(x){return x.sample;}) || cs.some(function(x){return x.sample;});
+  document.getElementById("sampleBanner").style.display = hasS ? "flex" : "none";
+  document.getElementById("topSampleBtn").style.display = hasS ? "none" : "inline-flex";
+  var isEmpty = !state.quote.base && !state.savedQuotes.length && !state.guests.budget && !state.payments.length && !tl.length && !cs.length;
+  document.getElementById("emptyHeroCta").style.display = isEmpty ? "flex" : "none";
+}
+
+function renderQuote(){
+  var r = computeQuote(state.quote);
+  document.getElementById("outAllIn").textContent = fmt$2(r.allIn);
+  document.getElementById("outBreakdownSub").textContent = "Base " + fmt$(r.base) + " · Service " + fmt$2(r.svcAmt) + " · Tax " + fmt$2(r.taxAmt) + " · Add-ons " + fmt$(r.addonsTotal);
+  document.getElementById("qDeltaBadge").textContent = "+" + fmt$(r.deltaOverBase) + " over base";
+  document.getElementById("outTaxDelta").textContent = fmt$2(r.taxCompDelta);
+  document.getElementById("outTaxCompare").textContent = "Compounded " + fmt$2(r.compounded) + " vs simple " + fmt$2(r.simple);
+
+  var cb = document.getElementById("compareBox");
+  if (!state.savedQuotes.length) {
+    cb.innerHTML = '<p class="cap" style="margin:0">No quotes saved yet. Enter a quote above and tap <b>Save to 3-quote comparison</b>.</p>';
+  } else {
+    var minVal = Math.min.apply(null, state.savedQuotes.map(function(x){ return x.allIn; }));
+    // Responsive unclipped cards (0px horizontal clipping on 375px phones AND clean single-row on tablet/desktop!)
+    cb.innerHTML = state.savedQuotes.map(function(x, i){
+      var isLow = state.savedQuotes.length > 1 && Math.abs(x.allIn - minVal) < 0.01;
+      return '<div class="row-card"' + (isLow ? ' style="background:var(--good-bg);margin:0 -8px;padding:11px 8px;border-radius:10px"' : '') + '>' +
+        '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">' +
+        '<div><div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px"><b>' + esc(x.name) + '</b>' +
+        (isLow ? '<span class="tag good">Lowest</span>' : '') + (x.sample ? '<span class="tag warn">SAMPLE</span>' : '') + '</div>' +
+        '<div class="cap num">Base ' + fmt$(x.base) + ' · ' + x.svc + '% svc / ' + x.tax + '% tax → <b style="color:var(--brand)">All-in ' + fmt$2(x.allIn) + '</b></div></div>' +
+        '<button type="button" class="btn sec" data-rmq="' + i + '" style="min-height:44px;padding:0 12px;font-size:13px">Remove</button></div></div>';
+    }).join("");
+  }
+}
+
+function renderGuests(){
+  var r = computeGuestMath(state.guests);
+  document.getElementById("outPerGuest").textContent = fmt$(r.perGuestRounded);
+  document.getElementById("outPer10").textContent = "Every 10 guests ≈ " + fmt$(r.perGuest * 10);
+  document.getElementById("gMaxTag").textContent = "Max guests at budget: " + r.maxGuests;
+  document.getElementById("outCutCnt").textContent = String(r.cut);
+  document.getElementById("outCutSave").textContent = fmt$(r.cutSave);
+  document.getElementById("outNewTotal").textContent = "New projected total: " + fmt$(r.newTotal);
+  document.getElementById("cutDisplay").textContent = r.cut + " fewer guests";
+
+  // Responsive unclipped tier list (zero horizontal clipping on 375px phones!)
+  document.getElementById("tierTable").innerHTML = '<tbody>' +
+    r.tiers.map(function(t){
+      var dTxt = t.diff == null ? "—" : (t.diff >= 0 ? ('<span class="tag good">Under ' + fmt$(t.diff) + '</span>') : ('<span class="tag alert">Over ' + fmt$(-t.diff) + '</span>'));
+      return '<tr><td><b>' + esc(t.name) + '</b><div class="cap num">' + t.invited + ' invited · ~' + t.exp + ' est. Yes</div></td>' +
+        '<td class="r"><div class="num"><b>' + fmt$(t.tot) + '</b></div><div style="margin-top:4px">' + dTxt + '</div></td></tr>';
+    }).join("") + '</tbody>';
+
+  var g = state.guests;
+  var mTot = Math.floor(parseNum(g.m1)) + Math.floor(parseNum(g.m2)) + Math.floor(parseNum(g.m3)) + Math.floor(parseNum(g.mKid)) + Math.floor(parseNum(g.mVen));
+  document.getElementById("mTotalPill").textContent = "Total: " + mTot + " meals";
+}
+
+function renderDayOf(){
+  var pb = document.getElementById("payList");
+  if (!state.payments.length) {
+    pb.innerHTML = '<p class="cap" style="margin:0">No payments added yet. Add vendor deposits &amp; balances below to export your calendar reminders.</p>';
+  } else {
+    pb.innerHTML = state.payments.map(function(p, i){
+      return '<div class="row-card"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">' +
+        '<div><b>' + esc(p.vendor) + '</b>' + (p.sample ? ' <span class="tag warn">SAMPLE</span>' : '') + '<div class="cap num">Due ' + esc(p.date) + ' · <b>' + fmt$2(p.amount) + '</b></div></div>' +
+        '<button type="button" class="btn sec" data-rmpay="' + i + '" style="min-height:44px;padding:0 12px;font-size:13px">Remove</button></div></div>';
+    }).join("");
+  }
+
+  var tl = state.dayOf.timeline || [];
+  document.getElementById("timelineBox").innerHTML = tl.length
+    ? tl.map(function(x, i){
+        return '<div class="row-card"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">' +
+          '<div><b class="num">' + esc(x.time) + '</b> · ' + esc(x.item) + (x.owner ? ' <span class="tag">' + esc(x.owner) + '</span>' : '') + (x.sample ? ' <span class="tag warn">SAMPLE</span>' : '') + '</div>' +
+          '<button type="button" class="btn sec" data-rmtl="' + i + '" style="min-height:44px;padding:0 12px;font-size:13px">Remove</button></div></div>';
+      }).join("")
+    : '<p class="cap" style="margin:0">No timeline items yet — add your wedding-day moments below.</p>';
+
+  var cs = state.dayOf.contacts || [];
+  document.getElementById("contactsBox").innerHTML = cs.length
+    ? cs.map(function(c, i){
+        var tel = String(c.phone || "").replace(/[^0-9+]/g, "");
+        return '<div class="row-card"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">' +
+          '<div><b>' + esc(c.role) + '</b> · ' + esc(c.name) + (c.sample ? ' <span class="tag warn">SAMPLE</span>' : '') +
+          (tel ? '<div><a class="tel-link num" href="tel:' + esc(tel) + '">' + esc(c.phone) + '</a></div>' : '') + '</div>' +
+          '<button type="button" class="btn sec" data-rmct="' + i + '" style="min-height:44px;padding:0 12px;font-size:13px">Remove</button></div></div>';
+      }).join("")
+    : '<p class="cap" style="margin:0">No vendor contacts yet — add your venue, caterer, photo, and coordinator below.</p>';
+
+  // Build STRICTLY LOGO-FREE Day-Of Print Sheet (ZERO FiledAwayCo name, logo, email, or sample banner — CLAUDE.md:14!)
+  document.getElementById("dayOfPrintSheet").innerHTML =
+    '<h1>' + esc(state.dayOf.title.trim() || "Wedding Day-Of Sheet") + '</h1>' +
+    (state.dayOf.date ? '<p style="margin:0 0 12px;color:#4E5B54"><b>Date:</b> <span class="h-num">' + esc(state.dayOf.date) + '</span></p>' : '') +
+    '<h2>Day-Of Schedule</h2>' +
+    '<table class="grid"><thead><tr><th>Time</th><th>Event</th><th>Lead</th></tr></thead><tbody>' +
+    tl.map(function(x){ return '<tr><td class="num"><b>' + esc(x.time) + '</b></td><td>' + esc(x.item) + '</td><td>' + esc(x.owner || "") + '</td></tr>'; }).join("") +
+    '</tbody></table>' +
+    '<h2>Vendor Contacts</h2>' +
+    '<table class="grid"><thead><tr><th>Role</th><th>Contact</th><th>Phone</th></tr></thead><tbody>' +
+    cs.map(function(c){ return '<tr><td><b>' + esc(c.role) + '</b></td><td>' + esc(c.name) + '</td><td class="num">' + esc(c.phone) + '</td></tr>'; }).join("") +
+    '</tbody></table>';
+}
+
+function renderAll(){ renderBanner(); syncInputs(); renderQuote(); renderGuests(); renderDayOf(); }
+function switchTab(t){
+  document.querySelectorAll(".pane").forEach(function(p){ p.classList.toggle("active", p.id === "pane-" + t); });
+  document.querySelectorAll(".tabbar button").forEach(function(b){ b.setAttribute("aria-current", b.dataset.tab === t ? "page" : "false"); });
+}
+
+/* ---------- Events ---------- */
+[["vName","quote","name"],["vBase","quote","base"],["vSvc","quote","svc"],["vTax","quote","tax"],["vExtra","quote","extra"],
+ ["gBudget","guests","budget"],["gPlanned","guests","planned"],["gFixed","guests","fixed"],["gVar","guests","varCost"],
+ ["gTierA","guests","tierA"],["gTierB","guests","tierB"],["gTierC","guests","tierC"],
+ ["m1","guests","m1"],["m2","guests","m2"],["m3","guests","m3"],["mKid","guests","mKid"],["mVen","guests","mVen"],
+ ["dTitle","dayOf","title"],["dDate","dayOf","date"]].forEach(function(spec){
+  var el = document.getElementById(spec[0]);
+  var h = function(e){
+    if (state.sample) state.sample = false;
+    state[spec[1]][spec[2]] = e.target.value;
+    persist(); renderBanner(); renderQuote(); renderGuests(); renderDayOf();
+  };
+  el.addEventListener("input", h); el.addEventListener("change", h);
+});
+
+document.addEventListener("click", function(e){
+  var t = e.target.closest("button");
+  if (!t) return;
+  if (t.dataset.tab) { switchTab(t.dataset.tab); }
+  else if (t.id === "topSampleBtn" || t.id === "primarySampleBtn") {
+    var s = sampleState();
+    var uq = state.savedQuotes.filter(function(x){return !x.sample;});
+    var up = state.payments.filter(function(x){return !x.sample;});
+    var utl = (state.dayOf.timeline || []).filter(function(x){return !x.sample;});
+    var uct = (state.dayOf.contacts || []).filter(function(x){return !x.sample;});
+    state = s; state.savedQuotes = s.savedQuotes.concat(uq).slice(0, 3); state.payments = s.payments.concat(up);
+    state.dayOf.timeline = s.dayOf.timeline.concat(utl); state.dayOf.contacts = s.dayOf.contacts.concat(uct);
+    persist(); renderAll();
+  } else if (t.id === "clearSampleBtn") {
+    var snap = clone(state);
+    var utl2 = (snap.dayOf.timeline || []).filter(function(x){return !x.sample;});
+    var uct2 = (snap.dayOf.contacts || []).filter(function(x){return !x.sample;});
+    state = defaultState();
+    state.savedQuotes = snap.savedQuotes.filter(function(x){return !x.sample;});
+    state.payments = snap.payments.filter(function(x){return !x.sample;});
+    state.dayOf.timeline = utl2; state.dayOf.contacts = uct2;
+    if (snap.dayOf.title && snap.dayOf.title !== "Maya & Jordan") state.dayOf.title = snap.dayOf.title;
+    if (snap.dayOf.date && snap.dayOf.date !== "2027-09-18") state.dayOf.date = snap.dayOf.date;
+    persist(); renderAll();
+    showToast("Sample wedding cleared.", function(){ state = snap; persist(); renderAll(); showToast("Sample restored."); });
+  } else if (t.id === "toastUndo") {
+    if (undoFn) { var f = undoFn; undoFn = null; document.getElementById("toast").classList.remove("on"); f(); }
+  } else if (t.dataset.tos) {
+    state.quote.tos = t.dataset.tos === "yes"; persist(); syncInputs(); renderQuote();
+  } else if (t.dataset.addon) {
+    var k = t.dataset.addon, idx = state.quote.addons.indexOf(k);
+    if (idx >= 0) state.quote.addons.splice(idx, 1); else state.quote.addons.push(k);
+    persist(); syncInputs(); renderQuote();
+  } else if (t.id === "saveQuoteBtn") {
+    var r = computeQuote(state.quote);
+    if (r.base <= 0) { showToast("Enter a base quote above $0 first."); return; }
+    if (state.savedQuotes.length >= 3) state.savedQuotes.pop();
+    state.savedQuotes.unshift({ name:state.quote.name.trim() || "Quote", base:r.base, svc:parseNum(state.quote.svc), tax:parseNum(state.quote.tax), tos:!!state.quote.tos, addonsTotal:r.addonsTotal, allIn:r.allIn, sample:false });
+    persist(); renderQuote(); showToast("Quote saved to comparison.");
+  } else if (t.dataset.rmq != null) {
+    state.savedQuotes.splice(+t.dataset.rmq, 1); persist(); renderQuote();
+  } else if (t.id === "copyVendorRowBtn") {
+    var rq = computeQuote(state.quote);
+    var line = (state.quote.name.trim() || "Vendor") + " — Base " + fmt$(rq.base) + ", Service " + parseNum(state.quote.svc) + "%, Tax " + parseNum(state.quote.tax) + "% (" + (state.quote.tos ? "tax on service" : "base only") + "), Add-ons " + fmt$(rq.addonsTotal) + " => All-in " + fmt$2(rq.allIn);
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(line).then(function(){ showToast("Quote line copied."); }, function(){ fallbackCopy(line); });
+    } else fallbackCopy(line);
+  } else if (t.id === "sampleQuoteTextBtn") {
+    document.getElementById("quotePasteText").value = SAMPLE_QUOTE_TEXT;
+    runQuoteScan();
+  } else if (t.id === "scanQuoteBtn") {
+    runQuoteScan();
+  } else if (t.dataset.applyfee != null) {
+    var fi = quoteFindings[+t.dataset.applyfee];
+    if (fi && fi.addon && state.quote.addons.indexOf(fi.addon) < 0) {
+      state.quote.addons.push(fi.addon); fi.added = true;
+      persist(); syncInputs(); renderQuote(); renderQuoteFindings();
+      showToast("Added " + fi.title + " to quote.");
+    }
+  } else if (t.id === "cutMinusBtn") {
+    state.guests.cut = Math.max(0, (Number(state.guests.cut) || 0) - 5); persist(); renderGuests();
+  } else if (t.id === "cutPlusBtn") {
+    var maxC = Math.floor(parseNum(state.guests.planned)) || 100;
+    state.guests.cut = Math.min(maxC, (Number(state.guests.cut) || 0) + 5); persist(); renderGuests();
+  } else if (t.dataset.rmpay != null) {
+    var pi = +t.dataset.rmpay, snapP = clone(state.payments);
+    state.payments.splice(pi, 1); persist(); renderDayOf();
+    showToast("Payment removed.", function(){ state.payments = snapP; persist(); renderDayOf(); });
+  } else if (t.dataset.rmtl != null) {
+    var ti = +t.dataset.rmtl, snapT = clone(state.dayOf.timeline);
+    state.dayOf.timeline.splice(ti, 1); persist(); renderDayOf();
+    showToast("Timeline item removed.", function(){ state.dayOf.timeline = snapT; persist(); renderDayOf(); });
+  } else if (t.dataset.rmct != null) {
+    var ci = +t.dataset.rmct, snapC = clone(state.dayOf.contacts);
+    state.dayOf.contacts.splice(ci, 1); persist(); renderDayOf();
+    showToast("Vendor contact removed.", function(){ state.dayOf.contacts = snapC; persist(); renderDayOf(); });
+  } else if (t.id === "icsPayBtn") {
+    var realPays = state.payments.filter(function(p){ return !p.sample; });
+    if (!realPays.length) { showToast("Sample payments aren't exported — add your own vendor payments first."); return; }
+    var isSampleDay = state.dayOf.title === "Maya & Jordan" && state.dayOf.date === "2027-09-18";
+    download("wedding-payments-" + todayISO() + ".ics", buildPaymentsICS(realPays, isSampleDay ? "" : state.dayOf.date, isSampleDay ? "" : state.dayOf.title), "text/calendar;charset=utf-8");
+    showToast("Payment calendar (.ics) downloaded.");
+  } else if (t.id === "printDayOfBtn") {
+    window.print();
+  } else if (t.id === "backupBtn") {
+    download("clear-wedding-backup-" + todayISO() + ".json", JSON.stringify({ app:"fac-clear-wedding", exported:todayISO(), state:state }, null, 2), "application/json");
+    showToast("Backup JSON saved.");
+  }
+});
+
+function fallbackCopy(text){
+  try {
+    var ta = document.createElement("textarea");
+    ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.left = "-9999px";
+    document.body.appendChild(ta); ta.select();
+    var ok = document.execCommand("copy");
+    ta.remove();
+    showToast(ok ? "Quote line copied." : text);
+  } catch(e){ showToast(text); }
+}
+
+function runQuoteScan(){
+  quoteFindings = scanQuoteText(document.getElementById("quotePasteText").value);
+  renderQuoteFindings();
+}
+function renderQuoteFindings(){
+  var box = document.getElementById("quoteFindingsBox");
+  if (!quoteFindings.length) {
+    box.innerHTML = '<p class="cap" style="margin:0;color:var(--good-ink);font-weight:700">No common hidden-fee keywords detected (negated lines like &ldquo;no corkage&rdquo; are skipped). Always read the full contract.</p>';
+    return;
+  }
+  box.innerHTML = quoteFindings.map(function(f, i){
+    return '<div class="row-card" style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">' +
+      '<div><b>' + esc(f.title) + '</b> <span class="cap">(matched &ldquo;' + esc(f.match) + '&rdquo;)</span></div>' +
+      (f.addon ? '<button type="button" class="btn' + (f.added ? ' sec' : '') + '" data-applyfee="' + i + '" style="min-height:44px;padding:0 12px;font-size:13px">' + (f.added ? 'Added' : 'Add to quote') + '</button>' : '<span class="tag warn">' + esc(f.note || 'Verify in contract') + '</span>') +
+      '</div>';
+  }).join("");
+}
+
+document.getElementById("payForm").addEventListener("submit", function(ev){
+  ev.preventDefault();
+  state.payments.push({ id:"p-"+Date.now(), vendor:document.getElementById("pVendor").value.trim(), date:document.getElementById("pDate").value, amount:parseNum(document.getElementById("pAmt").value), sample:false });
+  ev.target.reset(); persist(); renderDayOf(); showToast("Payment reminder added.");
+});
+document.getElementById("tlForm").addEventListener("submit", function(ev){
+  ev.preventDefault();
+  state.dayOf.timeline.push({ time:document.getElementById("tlTime").value.trim(), item:document.getElementById("tlItem").value.trim(), owner:document.getElementById("tlOwner").value.trim(), sample:false });
+  ev.target.reset(); persist(); renderDayOf(); showToast("Timeline item added.");
+});
+document.getElementById("ctForm").addEventListener("submit", function(ev){
+  ev.preventDefault();
+  state.dayOf.contacts.push({ role:document.getElementById("ctRole").value.trim(), name:document.getElementById("ctName").value.trim(), phone:document.getElementById("ctPhone").value.trim(), sample:false });
+  ev.target.reset(); persist(); renderDayOf(); showToast("Vendor contact added.");
+});
+
+document.getElementById("restoreFile").addEventListener("change", function(ev){
+  var f = ev.target.files && ev.target.files[0]; if (!f) return;
+  var rd = new FileReader();
+  rd.onload = function(){
+    try {
+      var o = JSON.parse(String(rd.result || ""));
+      var s = o && o.state ? o.state : o;
+      if (!s || !s.quote || !s.guests) throw new Error("Invalid");
+      state = Object.assign(defaultState(), s); persist(); renderAll(); showToast("Backup restored.");
+    } catch(e){ showToast("That file is not a valid Clear Wedding backup."); }
+  };
+  rd.readAsText(f); ev.target.value = "";
+});
+
+window.__WED = { computeQuote:computeQuote, computeGuestMath:computeGuestMath, scanQuoteText:scanQuoteText, buildPaymentsICS:buildPaymentsICS };
+renderAll();
+})();
+</script>
+</body>
+</html>
