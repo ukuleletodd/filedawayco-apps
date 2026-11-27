@@ -1,0 +1,3 @@
+Date,Type,Confirmation code,Start date,Nights,Guest,Listing,Currency,Amount,Paid out,Service fee,Cleaning fee,Gross earnings
+01/14/2026,Reservation,HMEXAMPLE1,01/12/2026,3,Guest name,My cabin,USD,582.00,,18.00,95.00,600.00
+01/15/2026,Payout,,,,,,USD,,582.00,,,
