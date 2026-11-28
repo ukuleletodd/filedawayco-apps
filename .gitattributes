@@ -3,3 +3,4 @@ review/app3/**/*.csv -text
 review/app4/**/*.csv -text
 review/app5/**/*.csv -text
 review/app6/**/*.csv -text
+review/app7/**/*.csv -text

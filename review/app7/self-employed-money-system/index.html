@@ -1,0 +1,844 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Self-Employed Money System · FiledAwayCo</title>
+<meta name="theme-color" content="#1B2A40"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Money System">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240"%3E%3Crect x="6" y="6" width="228" height="228" rx="48" fill="%2316283C"/%3E%3Cg transform="translate%2858,38%29 scale%281.1%29"%3E%3Crect x="0" y="0" width="28" height="140" rx="4" fill="%23F5F0E4"/%3E%3Crect x="0" y="0" width="100" height="26" rx="4" fill="%23F5F0E4"/%3E%3Crect x="0" y="54" width="72" height="24" rx="4" fill="%23F5F0E4"/%3E%3C/g%3E%3Crect x="138" y="138" width="86" height="86" rx="18" fill="%23E79A28" stroke="%23F5F0E4" stroke-width="4"/%3E%3Cpath d="M160.36,182.72 L175.84,198.20 L203.36,163.80" fill="none" stroke="%2316283C" stroke-width="16.5" stroke-linecap="round" stroke-linejoin="round"/%3E%3C/svg%3E"><link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADaUlEQVR4nOxXWUhUYRT+7uKspjY102ZaWRkKFUSrbRAFUVEPifXQQhHag6BSTwVBIFEvJRWE2UNJYpkRCj70ED5oZjERlBsqbqO5jHqdGWfu6My9/Xcy6c7iMly1h76ne875/v98nH+552cRAoaE/avpCCEBCoDi3Y0D7V96g8Zk1pqDGpPGkwsR50jECAUhAr0kWVE/z95AeyUfIMCwPiWZZfGKuJIxpxDrPB6kDbVU10kW7fMlJalYhiqa++QSqGSGwUsp56QAo9dwm9RiM+YJFEVt8eXExBIYE1M44oz2Jx47tAuPcrMwWwiCgAtZd1D1+XtIjiiKIwNN1TGscc325cGSS4hdaUI4oGkaq6cZK+WUctOiRr0JCwQpN01q4QhF4EbsCGtiUURXT/9MqHZ2qmh3r1VmN7dZcOTsNSgJGguM/wKm3ANJG+Jl9oa1sWj7VBzAc4+N4VL2XXw010FRARQ9swKpVSqoNSqEg397CSw/B2T20LANhaXvg3IbmjuguIARm/yOGuRseFDwZqohoCkKOq0maEwgXYHTyc9cwGxx8dQe7EyMgS4ieNw+6kTbIPD0bS1sDpeyAjJO70Lm7iF4usuA8RAk8u89sC4OW64fx/lbJT6XIptQKvveJANJXhWSw3tIT2anINg6sUxsRfwqk3ICpDVXs2LIOOeikPoiBieeGdBHROiYMej1WuUETAWvICKnPAqdHAuDXkCMVpDFFRdQ3RaB7LJINPQxPvteZSTMlgioGRF5J22kUvJGXNFTIOFdnRofWjT4alHhZDKP4m+/S5171IZNJm8An7Xa+XrjIo1AWqSAajS2diHvr3Pf5XcxBcOVnU7UdKjA8TSem3U+3+UdThzeKD8aZMcIVoe3nkWP2YnElGbiS/SfzDrITXvx+GOjUUBB6gjSS6PJ5qOxb60bmSmj8H8DqVm2E5YaFzuh5gkJ30eYkFqwMbdz0pZKXXiGQ0WjBmlbXVIDKuMLwjhWLF3yWvr2ld3aVP2QiDAjTIy6ePzoocBExU364hYLyNjtxGJt4PEc1m9zqOG4KX3/2YReQksnpaglYhmEgccltUjIOYEoVSu0bPCr0OUex3j0ZqGzg8vKz8/3kRR/nMbHmqDXaQP8DENbo6MiKzqGvFfN5fmT60WFmmi+nue/AAAA//8/yZowAAAABklEQVQDAH3QLPbPURqYAAAAAElFTkSuQmCC"><link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAI8klEQVR4nOzdDXAU5R3H8f/eXS6Xt0uiSTAmEKQaMZCWShpRCeG1UkFerDOKzjgj0rHg6zRAkFFrHaxIS6wt1hY7U61WaKVtCJYKaaFoE7BUCCWBRDIJb0nI+9sll+Tu9vqkGzMxkz8ml92925vfZ5jhCXdkb5Lv7T67e7dnSZg6mwBGYiIABuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAloUM4pc/fmbRnAyLxTAPeEQXLl/5za797/3pIBmBZIjLW4fbrKWH35EkiYyvw9Gdsfh7LreHAp4xNiuPrFoaHGUI9sjw2zPSyQiMsZaurWukINLS1kFGgAkpsBAHsBAHsBAHsBAHsBAHsBAHsBAHsBAHsBAHsBAHsBAHsIxx4q3yfA0Fi+pLdaXlVWQExn7tzFfyeDzHT1VQwLhw+cofCg6RQQR5HM6evlXrXiLwCeYcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwDLQywS9RGO+8lNkRFj1sd2ktrOfX9jx9l/2HzpGQc0Ya45Qa4gPZWjnltSU3MdXUbAzRhwTr0+gADMpaUJ4uI2CGuYcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwMI1wXy0r7C4u7uHglqwX/bJ2bs651VSW31Ta/XFOgp2wX7BOFk+duIMgU8w5wAW4gAW4gAW4gAW4gAW4gAW4gAW4gBWkB8E019sdOQdGdPTUicnJ8bHXRtjktR5L5bs9TY2t9XUNZZVnD/6WWlru4O0hzhUMylpwoa1DyxZMEuStH1zntfrLSgszvv1Hy/W1JOWsFlRx11zv1W4e/vShbdrXYYgFrH823ce3PXThVkzSUtYc6jgoXsXbdn46OCX7oYST1ul3HHR66gVT3NShSgiMslkn2iOudGSMIP+//7ht36y4dlXdu7eq9Wn+yCO8Zp1a9pL6x9Rxl630/nvbe7Ln5AWGkqUvy3JWWGZmyRLqBi/nLvmUm1D0fFS0gA2K+NyTXTUzm3rTab+H6PsqOkqXKdVGUOIRXQVfl8sTozFon+x5WkxCyYNII5x2fj4qqjIcDHwyp7uohflzkukC7Gg7qIfiYVS//5RVM5j95MGEIfvoiLC7lsyVxn3lr0tt1eTjuT2qr4z7yjjB5YvCLOFktoQh++ybvuG2dz/AxTP4L6KPaS73vIPlJWHeBhZmV8ntSEO36WlpigDuaWCZBfpT3bJrZ8PezAqQhy+i782Rhl4mv5LfuJuGthPifviwagIu7K+EzNBZeBp0epzjU/Xmd88Gn6ixnpzvHt1pjN7St+wO8jNZ5VBXKyd1IY1h+/MpoGfnlebbcqRKuuaD6KLzoc6XVJJbchT+fadx8KG3ccrD+Risaj/PEccAaqiwbzxw8ge95d+QW8UR3x6Ub+VPeIIRG1O6am99mFlKA5U6HcJQ8w5Ao7spaf32q90mke81SSpdLJmFBBHwNl+JFzMMLhbV0zvJb0gjsCyvzz0vRPh3K3fTe+Zfp2b9II4Akhlk/mFA+wptKnx7k3z9HgB2CDEESjandK6P9tdnpFfK2S3yTtWtlv1/XVhb0VbDQ5JHMjq7vvqe+bsi6p3mLlbf3ZPR3ykflNRBdYcWhG7o88fiPy4qv9kaYjZ++SdXQ/PdHIvItx2OPz4ZSv3rXLndc6cqN9UYxDWHJpwy/TYnmilDEFsLPI+jtz8tyh5pCf/RxXW359kJ6F3pfY++E399lCGQhyaePczW3nj8LXy/nLb8x8Nn2+erTfn/pU9LXJLgmvb0k7yE8ShicOVI7/05sOztueG9NHqlMTxLu6bxNjk15d3kP9gzqGJ2DCZu2nfGZtHppe/4/B66Zm9dm4SKo6E7ljZMSFK70noUIhDE8vSev9Zxb5uT2xfLGaKsspXORK6aV5XeqIfJqFDIQ5NLEjtWzatp6CMPUl2lZuEe9J67p/h/0sVYs6hlR8ucmRP8WUvQxwJfWGhrkdCOYhDKxYT5S3rHGsfYrKi/5FQDuLQkOjj5ys6546ljzx/HAnlGCOO0+VV9Y0tNHaHi0+Sv20f9fpj83zHrcl+noQOZZgJ6RPPvX7fkuyU5OtGeX/Z6y0pPbc7X6s3GY+esn35QQEdqbra+44CZBI6lGHi+M+pCvGHjEnp48l8qfj8yCdQxCRUTGApwGDOoZP++cfyjjsmj3B+VpmEhpgp0CAO/Yhf/5v3dsy/cfj8Y+vdATQJHQpx+M4jDxwjl6QxbJ1fW9aZM8cxMcZts8gzEl3vP9g6K8X3Sejgot0e9WeyOELqu5a2gbNipugUqvnX6P/jwxk94g+pwRQ9WRk0t6p/8hZx+K6xuV0ZmGK+Rn5iih1YdGNTK6kNcfju1JlKZWCOvYn8xBwzsOiTZedIbZhz+O7I0RJHl1MMTBGJluRs0p0lOcsU0X/gRzyMTz5V/53+iMN3Lrfn/fy/K+OwzA1S5PWkI7G4sMxcZfy7PQdkWf39HcQxLm/8Nr+to//glWSxRcx5xRSbSrowx6ZGZG8VCxVj8QB+9W4BacAcETeJwFe9fa7S8qoVi2dLgtVunbKYTFZP42lx+J40Ygqxpa8Oy1wvWaPFVx6P/GjOq1UXakkDUsLU2QTj89DKhVty1wx+6XV1eZpK3U2lcnM5eVWqxGQ2XXOzJS7dHDdNCokY/OfNW9/alf8P0gbiUMfd82/Le/GJUGsI6aXP5V67afuhIg1PO2Ozoo5z1TUFB4sT4mJvuiFJhwvj7yssXvvsayVllaQlrDlUpnykxrTUG5IS44z+kRqIA1jYlQUW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gDW/wAAAP//NTLMZQAAAAZJREFUAwDtKIpBZJ7kFAAAAABJRU5ErkJggg==">
+<script>window.__FAUX_SUITE=1;</script>
+<style>/* FiledAwayCo app design system v1 (2026-11-27). Tokens follow the Seller Dashboard look. */
+:root{--faa-navy:#1B2A40;--faa-paper:#FBF8F2;--faa-cream:#E8E0D2;--faa-amber:#E39A2D;--faa-green:#1F5C45;--faa-mint:#7FB89E;--faa-mintbg:#E3F1EA;--faa-slate:#4A5563;--faa-line:#E6DECF;--faa-warn:#FFF4D6;--faa-ui:-apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;--faa-r:18px;--faa-nav:68px}
+html.faa-on.faa-home body>*:not(#faa):not(.faux-ov):not(.faux-toast):not(.faux-drop){display:none!important}
+html.faa-on.faa-home,html.faa-on.faa-home body{background:var(--faa-paper)!important;overflow-x:hidden}
+html.faa-on.faa-home body{margin:0!important;padding:0!important;min-height:0!important}
+html.faa-on.faa-det body{padding-bottom:calc(var(--faa-nav) + 14px + env(safe-area-inset-bottom))!important}
+html.faa-test #faa{display:none!important}
+html.faa-on .faux-help{display:none!important}
+#faa,#faa *{box-sizing:border-box}
+#faa [hidden]{display:none!important}
+#faa{font-family:var(--faa-ui);color:var(--faa-navy);-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+#faa button{font-family:inherit;cursor:pointer}
+#faa .faa-mk{width:34px;height:34px;flex:none;display:block}
+#faa .faa-mk svg{width:100%;height:100%;display:block}
+/* home */
+#faa .faa-homev{display:none;flex-direction:column;gap:10px;max-width:480px;margin:0 auto;min-height:100vh;min-height:100dvh;padding:10px 16px calc(var(--faa-nav) + 12px + env(safe-area-inset-bottom))}
+html.faa-home #faa .faa-homev{display:flex}
+#faa .faa-hd{display:flex;align-items:center;gap:10px}
+#faa .faa-hd .t{min-width:0;flex:1}
+#faa .faa-hd h1{margin:0;font-family:var(--faa-ui);font-size:20px;line-height:1.15;font-weight:800;letter-spacing:-.3px;color:var(--faa-navy)}
+#faa .faa-hd small{display:block;font-size:12px;color:var(--faa-slate);font-weight:600}
+#faa .faa-hd small b{color:var(--faa-green)}
+#faa .faa-one{margin:-2px 0 0;font-size:14.5px;line-height:1.35;color:var(--faa-slate)}
+#faa .faa-samp{display:flex;align-items:center;gap:8px;justify-content:space-between;background:var(--faa-warn);border:1px solid #EBD9A6;border-radius:12px;padding:6px 6px 6px 12px;font-size:14px;color:#5A4712}
+#faa .faa-samp button{min-height:40px;padding:0 12px;border:0;border-radius:10px;background:transparent;color:var(--faa-green);font-weight:800;font-size:14px}
+#faa .faa-hero{position:relative;background:var(--faa-navy);color:#fff;border-radius:var(--faa-r);padding:18px 18px 0;box-shadow:0 10px 30px rgba(27,42,64,.18);overflow:hidden;text-align:left;border:0;width:100%;display:block}
+#faa .faa-hero .k{font-size:12.5px;font-weight:800;letter-spacing:.9px;text-transform:uppercase;color:var(--faa-mint)}
+#faa .faa-hero .big{display:block;font-size:46px;line-height:1.05;font-weight:800;letter-spacing:-1.2px;margin:6px 0 4px;word-break:break-word;font-variant-numeric:tabular-nums}
+#faa .faa-hero .big.md{font-size:36px}#faa .faa-hero .big.sm{font-size:28px}
+#faa .faa-hero .sub{font-size:15px;line-height:1.4;color:#E4E9F0;margin:0 0 14px}
+#faa .faa-hero .st{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(255,255,255,.14);margin:0 -18px}
+#faa .faa-hero .st div{padding:11px 10px 12px 18px;min-width:0}
+#faa .faa-hero .st div+div{border-left:1px solid rgba(255,255,255,.14);padding-left:12px}
+#faa .faa-hero .st b{display:block;font-size:17px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#faa .faa-hero .st span{display:block;font-size:12px;color:#C8D1DC;margin-top:2px;line-height:1.25}
+#faa .faa-hero .more{display:flex;align-items:center;justify-content:center;gap:6px;min-height:46px;border-top:1px solid rgba(255,255,255,.14);margin:0 -18px;font-weight:700;font-size:15px;color:#fff;background:transparent;width:calc(100% + 36px);border-left:0;border-right:0;border-bottom:0}
+#faa .faa-hero.pulse{animation:faaPulse .5s ease}
+@keyframes faaPulse{0%{transform:scale(.97);opacity:.6}100%{transform:none;opacity:1}}
+#faa .faa-hero .vis{display:flex;justify-content:center;margin:8px 0 12px}
+#faa .faa-hero .vis img{width:150px;height:150px;border-radius:12px;background:#fff;padding:8px;image-rendering:pixelated}
+#faa .faa-hero .clock{font-size:76px;letter-spacing:-2px}
+#faa .faa-chips{display:flex;gap:8px;margin:0 0 14px;flex-wrap:wrap}
+#faa .faa-chips button{min-height:44px;padding:0 14px;border-radius:999px;border:1.5px solid rgba(255,255,255,.35);background:transparent;color:#fff;font-weight:700;font-size:14px}
+#faa .faa-chips button[aria-pressed="true"]{background:#fff;color:var(--faa-navy);border-color:#fff}
+#faa .faa-auto{display:flex;align-items:center;gap:10px;background:var(--faa-mintbg);border:1px solid #BFDCCD;border-radius:14px;padding:8px 8px 8px 12px;font-size:14px;line-height:1.3}
+#faa .faa-auto span{flex:1;min-width:0}
+#faa .faa-cta{display:grid;gap:8px}
+#faa .faa-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:54px;padding:0 16px;border-radius:14px;border:0;background:var(--faa-green);color:#fff;font-weight:800;font-size:16.5px;letter-spacing:-.1px;text-align:center;line-height:1.2;transition:transform .12s ease}
+#faa .faa-btn:active{transform:scale(.98)}
+#faa .faa-btn.sec{background:#fff;color:var(--faa-navy);border:1.5px solid var(--faa-navy)}
+#faa .faa-btn.ghost{background:transparent;color:var(--faa-navy);border:1.5px solid var(--faa-line)}
+#faa .faa-btn.sm{min-height:44px;font-size:14.5px;width:auto;flex:none;padding:0 14px;border-radius:12px}
+#faa .faa-trust{margin:auto 0 0;font-size:12.5px;color:var(--faa-slate);text-align:center;line-height:1.35}
+/* nav */
+#faa .faa-nav{position:fixed;left:0;right:0;bottom:0;z-index:2147483000;background:#fff;border-top:1px solid var(--faa-line);padding:0 8px env(safe-area-inset-bottom)}
+#faa .faa-nav .in{max-width:480px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);height:var(--faa-nav)}
+#faa .faa-nav button{border:0;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:12.5px;font-weight:700;color:var(--faa-slate);min-height:48px}
+#faa .faa-nav button svg{width:24px;height:24px}
+#faa .faa-nav button[aria-current="page"]{color:var(--faa-green)}
+#faa .faa-nav .plus span.o{width:46px;height:46px;border-radius:50%;background:var(--faa-green);color:#fff;display:grid;place-items:center;box-shadow:0 6px 16px rgba(31,92,69,.35);margin-top:-14px}
+/* details bar */
+#faa .faa-bar{display:none;position:sticky;top:0;z-index:2147482999;background:var(--faa-navy);color:#fff}
+html.faa-det #faa .faa-bar{display:block}
+#faa .faa-bar .in{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:10px;min-height:52px;padding:0 10px}
+#faa .faa-bar button{min-height:44px;border:0;background:rgba(255,255,255,.12);color:#fff;border-radius:10px;padding:0 12px;font-weight:800;font-size:14.5px}
+#faa .faa-bar b{font-size:15px;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#faa .faa-bar .faa-mk{width:28px;height:28px}
+/* sheets */
+#faa .faa-sh{position:fixed;inset:0;z-index:2147483001;display:flex;align-items:flex-end;justify-content:center;background:rgba(17,26,40,.45);animation:faaFade .18s ease}
+#faa .faa-sh[hidden]{display:none}
+#faa .faa-pan{width:100%;max-width:520px;max-height:94vh;max-height:94dvh;overflow:auto;background:var(--faa-paper);border-radius:22px 22px 0 0;padding:14px 18px calc(18px + env(safe-area-inset-bottom));animation:faaUp .26s cubic-bezier(.2,.8,.2,1)}
+@media (min-width:700px){#faa .faa-sh{align-items:center}#faa .faa-pan{border-radius:22px}}
+@keyframes faaUp{from{transform:translateY(40px);opacity:.4}to{transform:none;opacity:1}}
+@keyframes faaFade{from{opacity:0}to{opacity:1}}
+#faa .faa-pan h2{margin:4px 0 6px;font-size:22px;line-height:1.2;letter-spacing:-.3px}
+#faa .faa-pan p{margin:0 0 12px;font-size:15px;line-height:1.45;color:var(--faa-slate)}
+#faa .faa-pan .grab{width:40px;height:5px;border-radius:3px;background:#D8D0C1;margin:0 auto 10px}
+#faa .faa-list{display:grid;gap:8px;margin:0 0 12px}
+#faa .faa-item{display:flex;align-items:center;gap:12px;width:100%;min-height:60px;padding:10px 14px;border-radius:14px;border:1.5px solid var(--faa-line);background:#fff;color:var(--faa-navy);text-align:left;font-size:15.5px;font-weight:700;line-height:1.25}
+#faa .faa-item small{display:block;font-weight:500;font-size:13px;color:var(--faa-slate);margin-top:2px}
+#faa .faa-item .ic{width:38px;height:38px;border-radius:10px;background:var(--faa-mintbg);display:grid;place-items:center;flex:none;font-size:18px}
+#faa ol.faa-steps{margin:0 0 12px;padding-left:20px;font-size:15px;line-height:1.5;color:var(--faa-navy)}
+/* wizard */
+#faa .faa-wz .dots{display:flex;gap:6px;margin:2px 0 14px}
+#faa .faa-wz .dots i{height:6px;flex:1;border-radius:3px;background:#DED6C7}
+#faa .faa-wz .dots i.on{background:var(--faa-green)}
+#faa .faa-wz .qn{font-size:13px;font-weight:800;color:var(--faa-green);letter-spacing:.6px;text-transform:uppercase}
+#faa .faa-wz label.q{display:block;font-size:24px;font-weight:800;line-height:1.2;letter-spacing:-.3px;margin:6px 0 6px}
+#faa .faa-wz .help{font-size:14.5px;color:var(--faa-slate);margin:0 0 12px;line-height:1.4}
+#faa .faa-wz .fld{display:flex;align-items:center;gap:6px;border:2px solid var(--faa-navy);border-radius:14px;background:#fff;padding:0 14px;min-height:62px}
+#faa .faa-wz .fld span{font-size:24px;font-weight:800;color:var(--faa-slate)}
+#faa .faa-wz .fld input{flex:1;min-width:0;border:0;outline:0;background:transparent;font:800 26px var(--faa-ui);color:var(--faa-navy);padding:10px 0}
+#faa .faa-wz .opts{display:grid;gap:8px}
+#faa .faa-wz .opts button{min-height:56px;border-radius:14px;border:1.5px solid var(--faa-line);background:#fff;font-size:16.5px;font-weight:700;color:var(--faa-navy);text-align:left;padding:8px 16px}
+#faa .faa-wz .opts button[aria-pressed="true"]{border:2px solid var(--faa-green);background:var(--faa-mintbg)}
+#faa .faa-wz .nav2{display:grid;grid-template-columns:1fr 2fr;gap:8px;margin-top:16px}
+#faa .faa-toast{position:fixed;left:50%;bottom:calc(var(--faa-nav) + 16px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:2147483002;background:var(--faa-navy);color:#fff;border-radius:14px;padding:10px 10px 10px 16px;display:flex;gap:10px;align-items:center;font-size:14.5px;max-width:92vw;box-shadow:0 8px 24px rgba(0,0,0,.25);animation:faaUp .22s ease}
+#faa .faa-toast button{min-height:40px;border:0;border-radius:10px;background:rgba(255,255,255,.15);color:#fff;font-weight:800;padding:0 12px}
+/* in-app logo swap: the products' "fa" tile becomes the F mark used on the live Seller Dashboard */
+html.faa-on .mark,html.faa-on .faux-mk{font-size:0!important;color:transparent!important;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240' width='240' height='240'%3E%3Crect x='6' y='6' width='228' height='228' rx='48' fill='%2316283C'/%3E%3Cg transform='translate%2863,40%29 scale%281.14%29'%3E%3Crect x='0' y='0' width='28' height='140' rx='3.2' fill='%23F5F0E4'/%3E%3Crect x='0' y='0' width='100' height='26' rx='3.2' fill='%23F5F0E4'/%3E%3Crect x='0' y='54' width='72' height='24' rx='3.2' fill='%23F5F0E4'/%3E%3C/g%3E%3Crect x='148' y='148' width='74' height='74' rx='16' fill='%23E79A28' stroke='%23F5F0E4' stroke-width='5'/%3E%3Cpath d='M167.24,186.48 L180.56,199.80 L204.24,170.20' fill='none' stroke='%2316283C' stroke-width='13.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat!important;border:0!important}
+ /* Seller Dashboard keeps its own header: swap its in-app mark for the Option B tile by CSS only */
+html.faa-on .homebrand>svg,html.faa-on .wm>svg,html.faa-on .brand>svg,html.faa-on .fp-brand>svg{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240' width='240' height='240'%3E%3Crect x='6' y='6' width='228' height='228' rx='48' fill='%2316283C'/%3E%3Cg transform='translate%2863,40%29 scale%281.14%29'%3E%3Crect x='0' y='0' width='28' height='140' rx='3.2' fill='%23F5F0E4'/%3E%3Crect x='0' y='0' width='100' height='26' rx='3.2' fill='%23F5F0E4'/%3E%3Crect x='0' y='54' width='72' height='24' rx='3.2' fill='%23F5F0E4'/%3E%3C/g%3E%3Crect x='148' y='148' width='74' height='74' rx='16' fill='%23E79A28' stroke='%23F5F0E4' stroke-width='5'/%3E%3Cpath d='M167.24,186.48 L180.56,199.80 L204.24,170.20' fill='none' stroke='%2316283C' stroke-width='13.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
+html.faa-on .homebrand>svg>*,html.faa-on .wm>svg>*,html.faa-on .brand>svg>*,html.faa-on .fp-brand>svg>*{display:none}
+html.faa-on #tabs [data-v="settings"]{display:none!important}
+.faa-gear{margin-left:auto;width:44px;height:44px;border:0;border-radius:12px;background:transparent;color:var(--faa-slate);display:grid;place-items:center;cursor:pointer}.faa-gear svg{width:22px;height:22px}
+.faa-sdline{margin:-4px 0 6px;font:500 13.5px/1.35 var(--faa-ui);color:var(--faa-slate)}
+@media (prefers-reduced-motion:reduce){#faa *{animation:none!important;transition:none!important}}
+@media print{#faa{display:none!important}html.faa-on.faa-home body>*{display:revert!important}}
+@media (max-height:700px){#faa .faa-hero .big{font-size:38px}#faa .faa-btn{min-height:50px}#faa .faa-homev{gap:8px}}
+
+html,body{margin:0;height:100%;background:var(--faa-paper);color:var(--faa-navy);font-family:var(--faa-ui)}*{box-sizing:border-box}
+#home{max-width:480px;margin:0 auto;padding:10px 16px 20px;min-height:100dvh;display:flex;flex-direction:column;gap:10px}
+.hd{display:flex;align-items:center;gap:10px}.hd .mk{width:34px;height:34px;flex:none}.hd .mk svg{width:100%;height:100%;display:block}
+.hd h1{margin:0;font-size:20px;line-height:1.15;font-weight:800;letter-spacing:-.3px}.hd small{display:block;font-size:12px;color:var(--faa-slate);font-weight:600}.hd small b{color:var(--faa-green)}
+.one{margin:-2px 0 0;font-size:14.5px;line-height:1.35;color:var(--faa-slate)}
+.sc{display:grid;grid-template-columns:1fr auto;grid-template-areas:"k go" "v go" "s go";text-align:left;width:100%;border:0;border-radius:18px;background:var(--faa-navy);color:#fff;padding:14px 16px;cursor:pointer;box-shadow:0 8px 22px rgba(27,42,64,.16);font-family:inherit}
+.sc .k{grid-area:k;font-size:12.5px;font-weight:800;letter-spacing:.9px;text-transform:uppercase;color:var(--faa-mint)}
+.sc .v{grid-area:v;font-size:34px;font-weight:800;letter-spacing:-.8px;line-height:1.1;margin:4px 0 2px;font-variant-numeric:tabular-nums}
+.sc .s{grid-area:s;font-size:13.5px;color:#D9E0EA;line-height:1.35}
+.sc .go{grid-area:go;align-self:center;font-weight:800;font-size:15px;padding-left:10px}
+.flow{font-size:13.5px;color:var(--faa-slate);text-align:center;margin:0}
+.btn{display:flex;align-items:center;justify-content:center;min-height:54px;border-radius:14px;border:0;background:var(--faa-green);color:#fff;font-weight:800;font-size:16.5px;font-family:inherit;cursor:pointer;width:100%}
+.trust{margin:auto 0 0;font-size:12.5px;color:var(--faa-slate);text-align:center}
+#mod{position:fixed;inset:0;display:flex;flex-direction:column;background:var(--faa-paper)}#mod[hidden]{display:none}
+.bar{display:flex;align-items:center;gap:10px;min-height:52px;padding:0 10px;background:var(--faa-navy);color:#fff}
+.bar button{min-height:44px;border:0;background:rgba(255,255,255,.12);color:#fff;border-radius:10px;padding:0 12px;font-weight:800;font-size:14.5px;font-family:inherit;cursor:pointer}
+.bar .mk{width:28px;height:28px;flex:none}.bar .mk svg{width:100%;height:100%;display:block}.bar b{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:15px}
+.frames{position:relative;flex:1}.frames iframe{position:absolute;inset:0;width:100%;height:100%;border:0;visibility:hidden}.frames iframe.on{visibility:visible}
+body.inmod #home{display:none}
+/* FiledAwayCo app data kit v2 (2026-11-27) */
+html.faa-on.faa-home body>#faa2#faa2{display:block!important}
+#faa2,#faa2 *{box-sizing:border-box}#faa2 [hidden]{display:none!important}
+#faa2{font-family:var(--faa-ui,system-ui,sans-serif);color:var(--faa-navy,#1B2A40);-webkit-tap-highlight-color:transparent}
+#faa2 .a2-sh{position:fixed;inset:0;z-index:2147483005;display:flex;align-items:flex-end;justify-content:center;background:rgba(17,26,40,.45)}
+#faa2 .a2-pan{width:100%;max-width:520px;max-height:94vh;max-height:94dvh;overflow:auto;background:var(--faa-paper,#FBF8F2);border-radius:22px 22px 0 0;padding:14px 18px calc(18px + env(safe-area-inset-bottom));box-shadow:0 -8px 30px rgba(0,0,0,.18)}
+#faa2 .grab{width:40px;height:5px;border-radius:3px;background:#D8D0C1;margin:0 auto 10px}
+#faa2 h2{margin:4px 0 6px;font-size:22px;line-height:1.2;letter-spacing:-.3px}
+#faa2 h3{margin:16px 0 4px;font-size:13px;letter-spacing:.8px;text-transform:uppercase;color:var(--faa-green,#1F5C45)}
+#faa2 p{margin:0 0 10px;font-size:15px;line-height:1.45;color:var(--faa-slate,#4A5563)}
+#faa2 p b{color:var(--faa-navy,#1B2A40)}
+#faa2 .a2-meta{font-size:14px}
+#faa2 .a2-err{color:#8A2A20}
+#faa2 .a2-btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:52px;margin:8px 0 0;padding:0 16px;border-radius:14px;border:0;background:var(--faa-green,#1F5C45);color:#fff;font:800 16px/1.2 inherit;font-family:inherit;cursor:pointer}
+#faa2 .a2-btn.sec{background:#fff;color:var(--faa-green,#1F5C45);border:2px solid var(--faa-green,#1F5C45)}
+#faa2 .a2-btn.ghost{background:transparent;color:var(--faa-slate,#4A5563);border:1.5px solid var(--faa-line,#E6DECF)}
+#faa2 .a2-btn.a2-red{color:#8A2A20}
+#faa2 .a2-card{display:flex;flex-direction:column;gap:2px;background:#fff;border:1.5px solid var(--faa-line,#E6DECF);border-radius:14px;padding:12px 14px;margin:6px 0 12px;font-size:14.5px}
+#faa2 .a2-card span{color:var(--faa-slate,#4A5563);font-size:13.5px}#faa2 .a2-card ul{margin:6px 0 0;padding-left:18px}
+#faa2 .a2-links{display:grid;gap:8px}
+#faa2 .a2-link{display:flex;align-items:center;min-height:48px;padding:8px 14px;border-radius:12px;border:1.5px solid var(--faa-line,#E6DECF);background:#fff;color:var(--faa-navy,#1B2A40);font-weight:700;font-size:15px;text-decoration:none}
+#faa2 .a2-link::after{content:'↓';margin-left:auto;color:var(--faa-green,#1F5C45)}
+#faa2 .a2-toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:2147483006;background:var(--faa-navy,#1B2A40);color:#fff;border-radius:14px;padding:10px 10px 10px 16px;display:flex;gap:10px;align-items:center;font-size:14.5px;width:max-content;max-width:92vw;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+#faa2 .a2-toast button{min-height:40px;border:0;border-radius:10px;background:rgba(255,255,255,.15);color:#fff;font-weight:800;padding:0 12px;font-family:inherit}
+#faa2 .a2-toast{pointer-events:none}#faa2 .a2-toast button{pointer-events:auto;min-height:44px}
+.a2-tl{display:inline;border:0;background:none;padding:2px 2px;margin:0;font:inherit;font-weight:800;color:var(--faa-green,#1F5C45);text-decoration:underline;text-underline-offset:2px;cursor:pointer;min-height:0}
+.a2-tl.a2-due{color:#9A5A00}
+.a2-pill{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 12px;border-radius:999px;border:1.5px solid var(--faa-line,#E6DECF);background:#fff;color:var(--faa-navy,#1B2A40);font:800 13.5px/1 var(--faa-ui,system-ui);cursor:pointer;white-space:nowrap}
+.a2-pill.a2-due{border-color:#E39A2D;background:#FFF4D6}
+@media print{#faa2{display:none!important}}
+/* 44px tap targets (accessibility sweep) */
+#faa .faa-samp button{min-height:44px}
+.a2-tl{display:inline-flex!important;align-items:center;min-height:44px!important;padding:0 4px!important;vertical-align:middle}
+.a2-pill{min-height:44px}
+.faa-gear{min-width:44px!important;min-height:44px!important}
+@media (prefers-reduced-motion: reduce){#faa2 *,#faa2 *::before,#faa2 *::after{animation:none!important;transition:none!important}}
+
+/* v-app3: backup links stay together on their own line */
+.a2-tls{display:inline-block;white-space:nowrap}
+</style><style id="fa6-kit-css">/* FA6 shared kit styles */
+.fa6-chart{width:100%;height:auto;display:block}.fa6-leg{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:4px;font-size:13px}.fa6-leg li{display:flex;align-items:center;gap:8px}.fa6-leg i{width:12px;height:12px;border-radius:3px;flex:none}.fa6-leg b{margin-left:auto}.fa6-leg em{font-style:normal;color:#5B6576;min-width:38px;text-align:right}
+.fa6-leg-row{display:flex;flex-wrap:wrap;gap:14px}.fa6-dwrap{display:flex;gap:16px;align-items:center;flex-wrap:wrap}.fa6-donut{width:150px;height:150px;flex:none}.fa6-dwrap .fa6-leg{flex:1;min-width:180px}
+.fa6-vt{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 10px}.fa6-vt button{border:1px solid #D8CFBF;background:#fff;border-radius:999px;padding:8px 14px;font:inherit;font-size:14px;font-weight:600;color:#1B2A40;cursor:pointer}.fa6-vt button[aria-selected="true"]{background:#1B2A40;color:#fff;border-color:#1B2A40}.fa6-empty{color:#5B6576}
+</style><script id="fa6-kit">/* FiledAwayCo shared kit v-app6 (window.FA6). Offline, no libraries. Used by every app for: charts, editable/reorderable lists,
+   printable sheets, CSV export, dated history logs. All functions return HTML strings or act on elements you pass. */
+(function(){
+var esc = function(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+var money = function(v){ v = +v || 0; return (v < 0 ? '−$' : '$') + Math.abs(v).toLocaleString('en-US', { maximumFractionDigits: 0 }); };
+var PAL = ['#1F5C45', '#E39A2D', '#2F5D8A', '#9A4F62', '#7FB89E', '#8A94A3'];
+function cssv(n, d){ try { var v = getComputedStyle(document.documentElement).getPropertyValue(n).trim(); return v || d; } catch(e){ return d; } }
+function pal(i){ return [cssv('--fa4-acc', PAL[0]), cssv('--fa4-acc3', PAL[1]), PAL[2], PAL[3], cssv('--fa4-acc2', PAL[4]), PAL[5]][i % 6]; }
+/* bar chart: labels[], series [{name, values[]}], opts {title, fmt(v), height} */
+function barChart(labels, series, o){
+  o = o || {}; var W = 640, H = o.height || 220, pl = 52, pb = 34, pt = 14, iw = W - pl - 10, ih = H - pb - pt, fmt = o.fmt || money;
+  var mx = 0; series.forEach(function(s){ s.values.forEach(function(v){ mx = Math.max(mx, +v || 0); }); }); if (!mx) mx = 1;
+  var g = labels.length || 1, gw = iw / g, bw = Math.max(4, Math.min(28, gw / (series.length + 1)));
+  var h = '<svg class="fa6-chart" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(o.title || 'Chart') + ': ' + esc(labels.map(function(l, i){ return l + ' ' + series.map(function(s){ return s.name + ' ' + fmt(s.values[i]); }).join(' '); }).join('; ')) + '">';
+  for (var k = 0; k <= 4; k++){ var y = pt + ih - ih * k / 4; h += '<line x1="' + pl + '" x2="' + (W - 10) + '" y1="' + y + '" y2="' + y + '" stroke="#E6DFD2"/><text x="' + (pl - 6) + '" y="' + (y + 4) + '" font-size="11" text-anchor="end" fill="#5B6576">' + esc(fmt(mx * k / 4)) + '<\/text>'; }
+  labels.forEach(function(l, i){ series.forEach(function(s, j){ var v = +s.values[i] || 0, bh = ih * v / mx, x = pl + i * gw + (gw - bw * series.length) / 2 + j * bw; h += '<rect x="' + x.toFixed(1) + '" y="' + (pt + ih - bh).toFixed(1) + '" width="' + (bw - 2).toFixed(1) + '" height="' + bh.toFixed(1) + '" rx="3" fill="' + pal(j) + '"/>'; });
+    h += '<text x="' + (pl + i * gw + gw / 2).toFixed(1) + '" y="' + (H - 12) + '" font-size="11" text-anchor="middle" fill="#5B6576">' + esc(l) + '<\/text>'; });
+  h += '<\/svg>'; return h + legend(series.map(function(s){ return s.name; }));
+}
+/* line chart: labels[], series [{name, values[]}] */
+function lineChart(labels, series, o){
+  o = o || {}; var W = 640, H = o.height || 220, pl = 56, pb = 34, pt = 14, iw = W - pl - 14, ih = H - pb - pt, fmt = o.fmt || money;
+  var mx = 0; series.forEach(function(s){ s.values.forEach(function(v){ mx = Math.max(mx, +v || 0); }); }); if (!mx) mx = 1;
+  var n = Math.max(1, labels.length - 1), X = function(i){ return pl + iw * i / n; }, Y = function(v){ return pt + ih - ih * (+v || 0) / mx; };
+  var h = '<svg class="fa6-chart" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(o.title || 'Chart') + '">';
+  for (var k = 0; k <= 4; k++){ var y = pt + ih - ih * k / 4; h += '<line x1="' + pl + '" x2="' + (W - 14) + '" y1="' + y + '" y2="' + y + '" stroke="#E6DFD2"/><text x="' + (pl - 6) + '" y="' + (y + 4) + '" font-size="11" text-anchor="end" fill="#5B6576">' + esc(fmt(mx * k / 4)) + '<\/text>'; }
+  var step = Math.ceil(labels.length / 8); labels.forEach(function(l, i){ if (i % step === 0 || i === labels.length - 1) h += '<text x="' + X(i).toFixed(1) + '" y="' + (H - 12) + '" font-size="11" text-anchor="middle" fill="#5B6576">' + esc(l) + '<\/text>'; });
+  series.forEach(function(s, j){ h += '<polyline fill="none" stroke="' + pal(j) + '" stroke-width="3" stroke-linejoin="round" ' + (j ? 'stroke-dasharray="' + (j === 1 ? '7 5' : '2 4') + '" ' : '') + 'points="' + s.values.map(function(v, i){ return X(i).toFixed(1) + ',' + Y(v).toFixed(1); }).join(' ') + '"/>'; });
+  return h + '<\/svg>' + legend(series.map(function(s){ return s.name; }));
+}
+function donut(parts, o){
+  o = o || {}; parts = parts.filter(function(p){ return +p[1] > 0; }); var t = parts.reduce(function(a, p){ return a + +p[1]; }, 0); if (!t) return '';
+  var r = 60, c = 2 * Math.PI * r, off = 0, h = '<svg class="fa6-donut" viewBox="0 0 160 160" role="img" aria-label="' + esc((o.title || 'Breakdown') + ': ' + parts.map(function(p){ return p[0] + ' ' + Math.round(p[1] / t * 100) + '%'; }).join(', ')) + '">';
+  parts.forEach(function(p, i){ var f = p[1] / t; h += '<circle cx="80" cy="80" r="' + r + '" fill="none" stroke="' + pal(i) + '" stroke-width="26" stroke-dasharray="' + (c * f).toFixed(2) + ' ' + c.toFixed(2) + '" stroke-dashoffset="' + (-off).toFixed(2) + '" transform="rotate(-90 80 80)"/>'; off += c * f; });
+  h += '<text x="80" y="86" text-anchor="middle" font-size="18" font-weight="800" fill="#1B2A40">' + esc(o.center || (o.fmt || money)(t)) + '<\/text><\/svg>';
+  return '<div class="fa6-dwrap">' + h + '<ul class="fa6-leg">' + parts.map(function(p, i){ return '<li><i style="background:' + pal(i) + '"><\/i><span>' + esc(p[0]) + '<\/span><b>' + esc((o.fmt || money)(p[1])) + '<\/b><em>' + Math.round(p[1] / t * 100) + '%<\/em><\/li>'; }).join('') + '<\/ul><\/div>';
+}
+function legend(names){ return names.length > 1 ? '<ul class="fa6-leg fa6-leg-row">' + names.map(function(n, i){ return '<li><i style="background:' + pal(i) + '"><\/i><span>' + esc(n) + '<\/span><\/li>'; }).join('') + '<\/ul>' : ''; }
+/* chart switcher: views [{label, html()}] -> tabs + body inside el */
+function views(el, list, key){
+  if (!el) return; var cur = +(sessionStorage.getItem('fa6v-' + key) || 0); if (cur >= list.length) cur = 0;
+  function draw(){ el.innerHTML = '<div class="fa6-vt" role="tablist">' + list.map(function(v, i){ return '<button type="button" role="tab" aria-selected="' + (i === cur) + '" data-fa6v="' + i + '">' + esc(v.label) + '<\/button>'; }).join('') + '<\/div><div class="fa6-vb">' + (list[cur].html() || '<p class="fa6-empty">Nothing to show yet.<\/p>') + '<\/div>'; }
+  el.onclick = function(e){ var b = e.target.closest('[data-fa6v]'); if (b){ cur = +b.getAttribute('data-fa6v'); try { sessionStorage.setItem('fa6v-' + key, cur); } catch(x){} draw(); } };
+  draw();
+}
+/* move item i up/down in array (returns true if moved) */
+function move(arr, i, d){ var j = i + d; if (j < 0 || j >= arr.length) return false; var t = arr[i]; arr[i] = arr[j]; arr[j] = t; return true; }
+/* printable sheet in a new window (falls back to in-page print frame) */
+function printSheet(title, bodyHtml){
+  var doc = '<!doctype html><html><head><meta charset="utf-8"><title>' + esc(title) + '<\/title><style>body{font:14px/1.45 system-ui,"Segoe UI",sans-serif;color:#1B2A40;margin:28px}h1{font-size:22px;margin:0 0 4px}p.s{color:#5B6576;margin:0 0 16px}table{border-collapse:collapse;width:100%;margin:10px 0}th,td{border:1px solid #CFC6B6;padding:7px 8px;text-align:left;vertical-align:top}th{background:#F3EEE4}td.n{text-align:right}.line td{height:26px}@page{margin:14mm}<\/style><\/head><body><h1>' + esc(title) + '<\/h1><p class="s">FiledAwayCo · printed ' + new Date().toLocaleDateString('en-US') + '<\/p>' + bodyHtml + '<\/body><\/html>';
+  var f = document.createElement('iframe'); f.setAttribute('aria-hidden', 'true'); f.style.cssText = 'position:fixed;right:0;bottom:0;width:0;height:0;border:0'; document.body.appendChild(f);
+  f.contentDocument.open(); f.contentDocument.write(doc); f.contentDocument.close();
+  setTimeout(function(){ try { f.contentWindow.focus(); f.contentWindow.print(); } catch(e){} setTimeout(function(){ f.remove(); }, 60000); }, 150);
+  return doc;
+}
+function table(head, rows, blank){ var h = '<table><thead><tr>' + head.map(function(c){ return '<th>' + esc(c) + '<\/th>'; }).join('') + '<\/tr><\/thead><tbody>' + rows.map(function(r){ return '<tr>' + r.map(function(c){ return '<td' + (typeof c === 'number' ? ' class="n"' : '') + '>' + esc(typeof c === 'number' ? c.toLocaleString('en-US', { maximumFractionDigits: 2 }) : c) + '<\/td>'; }).join('') + '<\/tr>'; }).join('');
+  for (var i = 0; i < (blank || 0); i++) h += '<tr class="line">' + head.map(function(){ return '<td><\/td>'; }).join('') + '<\/tr>'; return h + '<\/tbody><\/table>'; }
+/* CSV download */
+function csv(name, head, rows){
+  var q = function(v){ v = String(v == null ? '' : v); return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; };
+  var s = [head].concat(rows).map(function(r){ return r.map(q).join(','); }).join('\r\n') + '\r\n';
+  var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([s], { type: 'text/csv' })); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 500); return s;
+}
+function ym(d){ return String(d || '').slice(0, 7); }
+var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function monLabel(k){ var m = String(k).match(/(\d{4})-(\d\d)/); return m ? MON[+m[2] - 1] + (m[1] !== String(new Date().getFullYear()) ? " '" + m[1].slice(2) : '') : k; }
+/* group rows by month: rows, dateKey, valueFn -> {labels, values, keys} */
+function byMonth(rows, dk, vf){ var M = {}; rows.forEach(function(r){ var k = ym(r[dk]); if (k.length === 7){ M[k] = (M[k] || 0) + (+vf(r) || 0); } }); var ks = Object.keys(M).sort(); return { keys: ks, labels: ks.map(monLabel), values: ks.map(function(k){ return M[k]; }) }; }
+window.FA6 = { esc: esc, money: money, barChart: barChart, lineChart: lineChart, donut: donut, views: views, move: move, printSheet: printSheet, table: table, csv: csv, byMonth: byMonth, monLabel: monLabel, pal: pal };
+})();
+</script>
+<style id="fa4-css">/* FiledAwayCo design layer v-app4 (2026-11-27): responsive dashboard, side panel, charts, accents. Tokens: see DESIGN-SYSTEM.md */
+:root{--fa4-acc:#1F5C45;--fa4-acc2:#7FB89E;--fa4-acc3:#E39A2D;--fa4-card:#fff;--fa4-line:#E6DECF;--fa4-r:16px;--fa4-shadow:0 1px 2px rgba(27,42,64,.06),0 8px 24px rgba(27,42,64,.07)}
+#faa .faa-hero{border-top:4px solid var(--fa4-acc2)}
+#faa .faa-hero:before{content:"";position:absolute;right:-60px;top:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.09),rgba(255,255,255,0) 70%);pointer-events:none}
+#faa .fa4-grid{display:flex;flex-direction:column;gap:10px}
+#faa .fa4-main{display:contents}
+#faa .fa4-main .faa-heroW{order:1}#faa .fa4-main .faa-auto{order:2}#faa .fa4-main .faa-cta{order:3}#faa .fa4-side{order:4}#faa .fa4-main .fa4-ph{order:5}#faa .fa4-main .fa4-strip{order:6}#faa .fa4-main .faa-trust{order:7}
+#faa .fa4-side{display:flex;flex-direction:column;gap:10px}
+#faa .fa4-card{background:var(--fa4-card);border:1px solid var(--fa4-line);border-radius:var(--fa4-r);padding:14px 16px;box-shadow:var(--fa4-shadow);color:var(--faa-navy);font-family:var(--faa-ui);margin:0}
+#faa .fa4-card h2,#faa .fa4-card h2 span,#faa .fa4-card button{font-family:var(--faa-ui)}
+#faa .fa4-card h2{margin:0 0 10px;font-size:13px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--faa-slate);display:flex;justify-content:space-between;gap:8px}
+#faa .fa4-card h2 span{letter-spacing:0;text-transform:none;font-weight:700;color:var(--faa-navy)}
+#faa .fa4-bar{display:flex;height:14px;border-radius:8px;overflow:hidden;background:#EFEAE0;margin:2px 0 12px}
+#faa .fa4-bar i{display:block;height:100%;min-width:3px}
+#faa .fa4-bar i+i{border-left:2px solid #fff}
+#faa .fa4-leg{display:grid;gap:7px;margin:0;padding:0;list-style:none}
+#faa .fa4-leg li{display:grid;grid-template-columns:12px 1fr auto auto;align-items:center;gap:8px;font-size:14.5px;line-height:1.25}
+#faa .fa4-leg li .d{width:12px;height:12px;border-radius:4px}
+#faa .fa4-leg li b{font-variant-numeric:tabular-nums;font-weight:800}
+#faa .fa4-leg li em{font-style:normal;color:var(--faa-slate);font-size:13px;min-width:38px;text-align:right;font-variant-numeric:tabular-nums}
+#faa .fa4-bars{display:grid;gap:10px}
+#faa .fa4-bars .r{display:grid;gap:4px;font-size:14.5px}
+#faa .fa4-bars .r div:first-child{display:flex;justify-content:space-between;gap:8px}
+#faa .fa4-bars .r b{font-variant-numeric:tabular-nums}
+#faa .fa4-bars .t{height:10px;border-radius:6px;background:#EFEAE0;overflow:hidden}
+#faa .fa4-bars .t i{display:block;height:100%;border-radius:6px}
+#faa .fa4-prog{display:flex;align-items:center;gap:14px}
+#faa .fa4-prog svg{width:84px;height:84px;flex:none}
+#faa .fa4-prog p{margin:0;font-size:14.5px;line-height:1.35;color:var(--faa-slate)}
+#faa .fa4-prog p b{display:block;font-size:22px;color:var(--faa-navy);font-variant-numeric:tabular-nums}
+#faa .fa4-list{list-style:none;margin:0;padding:0;display:grid}
+#faa .fa4-list li{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:9px 0;border-top:1px solid #F0EBE1;font-size:14.5px}
+#faa .fa4-list li:first-child{border-top:0}
+#faa .fa4-list li .q{width:34px;height:34px;border-radius:10px;background:#F3EFE6;display:grid;place-items:center;font-weight:800;font-size:13px;color:var(--faa-navy)}
+#faa .fa4-list li.nx .q{background:var(--fa4-acc);color:#fff}
+#faa .fa4-list li small{display:block;color:var(--faa-slate);font-size:12.5px}
+#faa .fa4-list li b{font-variant-numeric:tabular-nums}
+#faa .fa4-tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+#faa .fa4-tiles button{display:flex;align-items:center;gap:10px;min-height:56px;padding:10px 12px;border-radius:12px;border:1px solid var(--fa4-line);background:#FDFBF7;color:var(--faa-navy);font-weight:700;font-size:14px;line-height:1.2;text-align:left;cursor:pointer}
+#faa .fa4-tiles button:hover{border-color:var(--fa4-acc);background:#fff}
+#faa .fa4-tiles button .ic{flex:none;width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:#F0ECE3;font-size:16px}
+#faa .fa4-empty{border:1.5px dashed #D9D0BE;border-radius:12px;padding:14px;text-align:center;color:var(--faa-slate);font-size:14.5px;line-height:1.4}
+#faa .fa4-empty .sk{display:flex;height:14px;border-radius:8px;overflow:hidden;margin:0 0 10px;opacity:.55}
+#faa .fa4-empty button{margin-top:10px;min-height:44px;padding:0 16px;border-radius:12px;border:1.5px solid var(--faa-navy);background:#fff;color:var(--faa-navy);font-weight:800;font-size:14.5px;cursor:pointer}
+#faa .fa4-photo{padding:0;overflow:hidden}
+#faa .fa4-photo img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+#faa .fa4-photo figcaption{display:flex;justify-content:space-between;gap:8px;padding:10px 14px;font-size:14px;line-height:1.3}
+#faa .fa4-photo figcaption small{color:var(--faa-slate);font-size:11.5px;white-space:nowrap}
+#faa .fa4-strip{display:flex;flex-wrap:wrap;gap:6px 14px;justify-content:center;font-size:12.5px;color:var(--faa-slate);font-weight:600;margin:2px 0 0}
+#faa .fa4-strip span:before{content:"✓ ";color:var(--faa-green);font-weight:800}
+@media (min-width:980px){
+  body.faa-home{background:radial-gradient(1200px 500px at 85% -10%,rgba(127,184,158,.16),transparent 60%),var(--faa-paper)}
+  #faa .faa-homev{max-width:1120px;padding:28px 32px calc(var(--faa-nav) + 40px);gap:12px}
+  #faa .faa-hd h1{font-size:28px}
+  #faa .faa-one{font-size:16.5px;max-width:760px}
+  #faa .faa-samp{max-width:none}
+  #faa .fa4-main{display:grid;gap:12px;align-content:start}
+  #faa .fa4-main .fa4-ph{order:9}
+  #faa .fa4-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:20px;align-items:start}
+  #faa .faa-hero{padding:24px 24px 0}
+  #faa .faa-hero .st,#faa .faa-hero .more{margin-left:-24px;margin-right:-24px}
+  #faa .faa-hero .more{width:calc(100% + 48px)}
+  #faa .faa-hero .st div{padding-left:24px}
+  #faa .faa-hero .big{font-size:64px}
+  #faa .faa-hero .big.md{font-size:48px}
+  #faa .faa-hero .big.sm{font-size:34px}
+  #faa .faa-hero .sub{font-size:16px;max-width:560px}
+  #faa .faa-hero .st b{font-size:20px}
+  #faa .faa-cta{grid-template-columns:1fr 1fr}
+  #faa .faa-cta .faa-btn:only-child{grid-column:1/-1}
+  #faa .faa-nav{left:50%;right:auto;bottom:16px;transform:translateX(-50%);width:520px;border:1px solid var(--faa-line);border-radius:22px;box-shadow:0 10px 30px rgba(27,42,64,.14);padding:0 8px}
+  #faa .faa-nav .in{max-width:none}
+}
+@media (min-width:980px) and (max-height:700px){#faa .faa-homev{padding-top:16px}}
+@media (prefers-reduced-motion:reduce){#faa .faa-hero.pulse{animation:none}}
+
+/* v-app5 additions */
+.fa5-cols{display:flex;gap:6px;align-items:flex-end;height:120px;margin:6px 0 8px}.fa5-cols .c{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0}
+.fa5-cols .b{height:100px;width:100%;display:flex;gap:2px;align-items:flex-end;justify-content:center}.fa5-cols .b i{display:block;width:44%;border-radius:4px 4px 0 0;min-height:2px}.fa5-cols span{font-size:11px;color:#5B6576}
+
+/* suite: same layer rules scoped to .fa5-wrap (the suite home has no #faa shell) */
+.fa5-wrap .faa-hero{border-top:4px solid var(--fa4-acc2)}
+.fa5-wrap .faa-hero:before{content:"";position:absolute;right:-60px;top:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.09),rgba(255,255,255,0) 70%);pointer-events:none}
+.fa5-wrap .fa4-grid{display:flex;flex-direction:column;gap:10px}
+.fa5-wrap .fa4-main{display:contents}
+.fa5-wrap .fa4-main .faa-heroW{order:1}
+.fa5-wrap .fa4-main .faa-auto{order:2}
+.fa5-wrap .fa4-main .faa-cta{order:3}
+.fa5-wrap .fa4-side{order:4}
+.fa5-wrap .fa4-main .fa4-ph{order:5}
+.fa5-wrap .fa4-main .fa4-strip{order:6}
+.fa5-wrap .fa4-main .faa-trust{order:7}
+.fa5-wrap .fa4-side{display:flex;flex-direction:column;gap:10px}
+.fa5-wrap .fa4-card{background:var(--fa4-card);border:1px solid var(--fa4-line);border-radius:var(--fa4-r);padding:14px 16px;box-shadow:var(--fa4-shadow);color:var(--faa-navy);font-family:var(--faa-ui);margin:0}
+.fa5-wrap .fa4-card h2,.fa5-wrap .fa4-card h2 span,.fa5-wrap .fa4-card button{font-family:var(--faa-ui)}
+.fa5-wrap .fa4-card h2{margin:0 0 10px;font-size:13px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--faa-slate);display:flex;justify-content:space-between;gap:8px}
+.fa5-wrap .fa4-card h2 span{letter-spacing:0;text-transform:none;font-weight:700;color:var(--faa-navy)}
+.fa5-wrap .fa4-bar{display:flex;height:14px;border-radius:8px;overflow:hidden;background:#EFEAE0;margin:2px 0 12px}
+.fa5-wrap .fa4-bar i{display:block;height:100%;min-width:3px}
+.fa5-wrap .fa4-bar i+i{border-left:2px solid #fff}
+.fa5-wrap .fa4-leg{display:grid;gap:7px;margin:0;padding:0;list-style:none}
+.fa5-wrap .fa4-leg li{display:grid;grid-template-columns:12px 1fr auto auto;align-items:center;gap:8px;font-size:14.5px;line-height:1.25}
+.fa5-wrap .fa4-leg li .d{width:12px;height:12px;border-radius:4px}
+.fa5-wrap .fa4-leg li b{font-variant-numeric:tabular-nums;font-weight:800}
+.fa5-wrap .fa4-leg li em{font-style:normal;color:var(--faa-slate);font-size:13px;min-width:38px;text-align:right;font-variant-numeric:tabular-nums}
+.fa5-wrap .fa4-bars{display:grid;gap:10px}
+.fa5-wrap .fa4-bars .r{display:grid;gap:4px;font-size:14.5px}
+.fa5-wrap .fa4-bars .r div:first-child{display:flex;justify-content:space-between;gap:8px}
+.fa5-wrap .fa4-bars .r b{font-variant-numeric:tabular-nums}
+.fa5-wrap .fa4-bars .t{height:10px;border-radius:6px;background:#EFEAE0;overflow:hidden}
+.fa5-wrap .fa4-bars .t i{display:block;height:100%;border-radius:6px}
+.fa5-wrap .fa4-prog{display:flex;align-items:center;gap:14px}
+.fa5-wrap .fa4-prog svg{width:84px;height:84px;flex:none}
+.fa5-wrap .fa4-prog p{margin:0;font-size:14.5px;line-height:1.35;color:var(--faa-slate)}
+.fa5-wrap .fa4-prog p b{display:block;font-size:22px;color:var(--faa-navy);font-variant-numeric:tabular-nums}
+.fa5-wrap .fa4-list{list-style:none;margin:0;padding:0;display:grid}
+.fa5-wrap .fa4-list li{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:9px 0;border-top:1px solid #F0EBE1;font-size:14.5px}
+.fa5-wrap .fa4-list li:first-child{border-top:0}
+.fa5-wrap .fa4-list li .q{width:34px;height:34px;border-radius:10px;background:#F3EFE6;display:grid;place-items:center;font-weight:800;font-size:13px;color:var(--faa-navy)}
+.fa5-wrap .fa4-list li.nx .q{background:var(--fa4-acc);color:#fff}
+.fa5-wrap .fa4-list li small{display:block;color:var(--faa-slate);font-size:12.5px}
+.fa5-wrap .fa4-list li b{font-variant-numeric:tabular-nums}
+.fa5-wrap .fa4-tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.fa5-wrap .fa4-tiles button{display:flex;align-items:center;gap:10px;min-height:56px;padding:10px 12px;border-radius:12px;border:1px solid var(--fa4-line);background:#FDFBF7;color:var(--faa-navy);font-weight:700;font-size:14px;line-height:1.2;text-align:left;cursor:pointer}
+.fa5-wrap .fa4-tiles button:hover{border-color:var(--fa4-acc);background:#fff}
+.fa5-wrap .fa4-tiles button .ic{flex:none;width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:#F0ECE3;font-size:16px}
+.fa5-wrap .fa4-empty{border:1.5px dashed #D9D0BE;border-radius:12px;padding:14px;text-align:center;color:var(--faa-slate);font-size:14.5px;line-height:1.4}
+.fa5-wrap .fa4-empty .sk{display:flex;height:14px;border-radius:8px;overflow:hidden;margin:0 0 10px;opacity:.55}
+.fa5-wrap .fa4-empty button{margin-top:10px;min-height:44px;padding:0 16px;border-radius:12px;border:1.5px solid var(--faa-navy);background:#fff;color:var(--faa-navy);font-weight:800;font-size:14.5px;cursor:pointer}
+.fa5-wrap .fa4-photo{padding:0;overflow:hidden}
+.fa5-wrap .fa4-photo img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+.fa5-wrap .fa4-photo figcaption{display:flex;justify-content:space-between;gap:8px;padding:10px 14px;font-size:14px;line-height:1.3}
+.fa5-wrap .fa4-photo figcaption small{color:var(--faa-slate);font-size:11.5px;white-space:nowrap}
+.fa5-wrap .fa4-strip{display:flex;flex-wrap:wrap;gap:6px 14px;justify-content:center;font-size:12.5px;color:var(--faa-slate);font-weight:600;margin:2px 0 0}
+.fa5-wrap .fa4-strip span:before{content:"✓ ";color:var(--faa-green);font-weight:800}
+.fa5-wrap .faa-homev{max-width:1120px;padding:28px 32px calc(var(--faa-nav) + 40px);gap:12px}
+.fa5-wrap .faa-hd h1{font-size:28px}
+.fa5-wrap .faa-one{font-size:16.5px;max-width:760px}
+.fa5-wrap .faa-samp{max-width:none}
+.fa5-wrap .fa4-main{display:grid;gap:12px;align-content:start}
+.fa5-wrap .fa4-main .fa4-ph{order:9}
+.fa5-wrap .fa4-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:20px;align-items:start}
+.fa5-wrap .faa-hero{padding:24px 24px 0}
+.fa5-wrap .faa-hero .st,.fa5-wrap .faa-hero .more{margin-left:-24px;margin-right:-24px}
+.fa5-wrap .faa-hero .more{width:calc(100% + 48px)}
+.fa5-wrap .faa-hero .st div{padding-left:24px}
+.fa5-wrap .faa-hero .big{font-size:64px}
+.fa5-wrap .faa-hero .big.md{font-size:48px}
+.fa5-wrap .faa-hero .big.sm{font-size:34px}
+.fa5-wrap .faa-hero .sub{font-size:16px;max-width:560px}
+.fa5-wrap .faa-hero .st b{font-size:20px}
+.fa5-wrap .faa-cta{grid-template-columns:1fr 1fr}
+.fa5-wrap .faa-cta .faa-btn:only-child{grid-column:1/-1}
+.fa5-wrap .faa-nav{left:50%;right:auto;bottom:16px;transform:translateX(-50%);width:520px;border:1px solid var(--faa-line);border-radius:22px;box-shadow:0 10px 30px rgba(27,42,64,.14);padding:0 8px}
+.fa5-wrap .faa-nav .in{max-width:none}
+.fa5-wrap .faa-homev{padding-top:16px}
+.fa5-wrap .faa-hero.pulse{animation:none}
+@media (min-width:980px){
+  body.faa-home{background:radial-gradient(1200px 500px at 85% -10%,rgba(127,184,158,.16),transparent 60%),var(--faa-paper)}
+  .fa5-wrap .faa-homev{max-width:1120px;padding:28px 32px calc(var(--faa-nav) + 40px);gap:12px}
+  .fa5-wrap .faa-hd h1{font-size:28px}
+  .fa5-wrap .faa-one{font-size:16.5px;max-width:760px}
+  .fa5-wrap .faa-samp{max-width:none}
+  .fa5-wrap .fa4-main{display:grid;gap:12px;align-content:start}
+  .fa5-wrap .fa4-main .fa4-ph{order:9}
+  .fa5-wrap .fa4-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:20px;align-items:start}
+  .fa5-wrap .faa-hero{padding:24px 24px 0}
+  .fa5-wrap .faa-hero .st,.fa5-wrap .faa-hero .more{margin-left:-24px;margin-right:-24px}
+  .fa5-wrap .faa-hero .more{width:calc(100% + 48px)}
+  .fa5-wrap .faa-hero .st div{padding-left:24px}
+  .fa5-wrap .faa-hero .big{font-size:64px}
+  .fa5-wrap .faa-hero .big.md{font-size:48px}
+  .fa5-wrap .faa-hero .big.sm{font-size:34px}
+  .fa5-wrap .faa-hero .sub{font-size:16px;max-width:560px}
+  .fa5-wrap .faa-hero .st b{font-size:20px}
+  .fa5-wrap .faa-cta{grid-template-columns:1fr 1fr}
+  .fa5-wrap .faa-cta .faa-btn:only-child{grid-column:1/-1}
+  .fa5-wrap .faa-nav{left:50%;right:auto;bottom:16px;transform:translateX(-50%);width:520px;border:1px solid var(--faa-line);border-radius:22px;box-shadow:0 10px 30px rgba(27,42,64,.14);padding:0 8px}
+  .fa5-wrap .faa-nav .in{max-width:none}
+}
+@media (min-width:980px) and (max-height:700px){.fa5-wrap .faa-homev{padding-top:16px}}
+@media (prefers-reduced-motion:reduce){.fa5-wrap .faa-hero.pulse{animation:none}}.fa5-wrap .fa5-suite>.fa4-side{display:none}
+@media (min-width:980px){.fa5-wrap{max-width:1120px;margin:0 auto;padding:10px 16px 20px}.fa5-wrap #home{min-height:0;max-width:none;padding:0}.fa5-wrap .fa5-suite>.fa4-side{display:flex;flex-direction:column;gap:10px;margin-top:64px}}
+@media (max-width:979.98px){.fa5-wrap,.fa5-wrap .fa5-suite,.fa5-wrap .fa5-suite>.fa4-main{display:contents}}
+/* v-app5: 44px tap targets for controls added in v-app5 */
+button,select{min-height:44px!important}button{min-width:44px!important}
+/* v-app6 fixes from the Antigravity critic (app5): desktop nav no longer covers the last controls; toast never blocks taps behind it and never clips "Undo"; colour pickers 44px */
+@media (min-width:980px){html.faa-on.faa-det body{padding-bottom:calc(var(--faa-nav,64px) + 56px + env(safe-area-inset-bottom))!important}html.faa-on.faa-det{scroll-padding-bottom:140px}}
+#faa .faa-toast{pointer-events:none}#faa .faa-toast button,#faa .faa-toast a{pointer-events:auto;white-space:nowrap;flex:none;min-width:max-content!important}#faa .faa-toast span{min-width:0}
+input[type=color]{min-width:44px!important;min-height:44px!important}
+</style>
+</head><body>
+<main id="home">
+<header class="hd"><span class="mk" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240"><rect x="6" y="6" width="228" height="228" rx="48" fill="#16283C"/><g transform="translate(63,40) scale(1.14)"><rect x="0" y="0" width="28" height="140" rx="3.2" fill="#F5F0E4"/><rect x="0" y="0" width="100" height="26" rx="3.2" fill="#F5F0E4"/><rect x="0" y="54" width="72" height="24" rx="3.2" fill="#F5F0E4"/></g><rect x="148" y="148" width="74" height="74" rx="16" fill="#E79A28" stroke="#F5F0E4" stroke-width="5"/><path d="M167.24,186.48 L180.56,199.80 L204.24,170.20" fill="none" stroke="#16283C" stroke-width="13.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><h1>Self-Employed Money System</h1><small>by FiledAway<b>Co</b></small></div></header>
+<p class="one">Books, invoices and quarterly tax in one app: import your bank file once, then pull your profit into your tax estimate in one tap.</p>
+
+<button type="button" class="sc" data-open="books"><span class="k">Bookkeeping · profit so far</span><span class="v" id="v-books">…</span><span class="s" id="s-books"></span><span class="go">Open ›</span></button><button type="button" class="sc" data-open="owe"><span class="k">Invoices · clients owe you</span><span class="v" id="v-owe">…</span><span class="s" id="s-owe"></span><span class="go">Open ›</span></button><button type="button" class="sc" data-open="tax"><span class="k">Tax · next quarterly payment</span><span class="v" id="v-tax">…</span><span class="s" id="s-tax"></span><span class="go">Open ›</span></button>
+<p class="flow">Import your bank file in Bookkeeping first. Then open Tax and tap Use to pull in your profit — nothing leaves this device.</p>
+<button type="button" class="btn" id="impBtn">Import my bank file</button>
+<p class="trust">🔒 Works offline. Your numbers stay on this device. No account.</p>
+</main>
+<section id="mod" hidden><div class="bar"><button type="button" id="back">‹ System</button><span class="mk" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240"><rect x="6" y="6" width="228" height="228" rx="48" fill="#F5F0E4"/><g transform="translate(63,40) scale(1.14)"><rect x="0" y="0" width="28" height="140" rx="3.2" fill="#16283C"/><rect x="0" y="0" width="100" height="26" rx="3.2" fill="#16283C"/><rect x="0" y="54" width="72" height="24" rx="3.2" fill="#16283C"/></g><rect x="148" y="148" width="74" height="74" rx="16" fill="#E79A28" stroke="#16283C" stroke-width="5"/><path d="M167.24,186.48 L180.56,199.80 L204.24,170.20" fill="none" stroke="#16283C" stroke-width="13.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b id="modName"></b></div><div class="frames"><iframe id="f-books" data-src="parts/books.html" title="Small Business Bookkeeping" data-k="books" ></iframe><iframe id="f-owe" data-src="parts/owe.html" title="Freelancer Money System" data-k="owe" ></iframe><iframe id="f-tax" data-src="parts/tax.html" title="1099 Quarterly Tax Planner" data-k="tax" ></iframe></div></section>
+<script>
+(function(){
+var M={"books": ["small-business-bookkeeping", "Small Business Bookkeeping"], "owe": ["freelancer-money-system", "Freelancer Money System"], "tax": ["1099-quarterly-tax-planner", "1099 Quarterly Tax Planner"]};
+function F(k){ return document.getElementById('f-'+k); }
+function W(k){ try { return F(k).contentWindow; } catch(e){ return null; } }
+function load(k){ var f = F(k), t = document.getElementById('src-f-' + k); if (!f || f.__l) return; f.__l = 1; if (t) { f.srcdoc = t.value; t.remove(); return; }
+  fetch(f.getAttribute('data-src')).then(function(r){ if (!r.ok) throw 0; return r.text(); }).then(function(x){ f.srcdoc = x; }).catch(function(){ f.__l = 0; }); }
+function loadAll(){ ['books','owe','tax'].forEach(load); }
+(function(){ var q = ['books','owe','tax'], go = function(){ var k = q.shift(); if (!k) return; load(k); F(k).addEventListener('load', function(){ setTimeout(go, 150); }, { once: true }); };
+  var start = function(){ setTimeout(go, 200); }; if (document.readyState === 'complete') start(); else window.addEventListener('load', start); })();
+function open(k, then){ load(k); document.body.classList.add('inmod'); document.getElementById('mod').hidden=false; document.getElementById('modName').textContent=M[k][1];
+  document.querySelectorAll('.frames iframe').forEach(function(f){ f.classList.toggle('on', f.id==='f-'+k); }); if (then) setTimeout(then, 80); }
+function home(){ document.body.classList.remove('inmod'); document.getElementById('mod').hidden=true; tick(); }
+document.querySelectorAll('[data-open]').forEach(function(b){ b.addEventListener('click', function(){ open(b.getAttribute('data-open')); }); });
+document.getElementById('back').addEventListener('click', home);
+document.getElementById('impBtn').addEventListener('click', function(){ open('books', function(){ var w=W('books'); var b=w && w.document.querySelector('#faa .faa-cta [data-kind="imp"]'); if (b) b.click(); }); });
+function tick(){ Object.keys(M).forEach(function(k){ var w=W(k); if (!w || !w.FAA || !w.FAA.answer) return; var a=w.FAA.answer(), s=w.FAA.isSample();
+  document.getElementById('v-'+k).textContent = a.empty && !s ? 'Not set up yet' : a.big;
+  document.getElementById('s-'+k).textContent = (s ? 'Sample · ' : '') + (k==='tax' ? a.k : (k==='books' ? 'after costs and mileage' : (a.sub||''))); }); }
+setInterval(function(){ if (document.getElementById('mod').hidden) tick(); }, 600); setTimeout(tick, 900);
+if (/^https?:$/.test(location.protocol)) { var l=document.createElement('link'); l.rel='manifest'; l.href='manifest.webmanifest'; document.head.appendChild(l);
+  if ('serviceWorker' in navigator) window.addEventListener('load', function(){ navigator.serviceWorker.register('sw.js').catch(function(){}); }); }
+window.__SUITE={open:open,home:home,tick:tick,load:load,loadAll:loadAll};
+})();
+</script>
+<script id="faa2-cfg">window.FAA2_CFG={"slug": "self-employed-money-system", "name": "Self-Employed Money System", "suite": true, "parts": [{"slug": "small-business-bookkeeping", "name": "Small Business Bookkeeping", "main": "fac_bookkeeping_v2", "keys": ["fac_bookkeeping_v2", "faa_started_small-business-bookkeeping", "faa_wz_small-business-bookkeeping", "faux_seen_small-business-bookkeeping", "faux_done_small-business-bookkeeping"], "bridge": ["small-business-bookkeeping"]}, {"slug": "freelancer-money-system", "name": "Freelancer Money System", "main": "fac_freelancer_v2", "keys": ["fac_freelancer_v2", "faa_started_freelancer-money-system", "faa_wz_freelancer-money-system", "faux_seen_freelancer-money-system", "faux_done_freelancer-money-system"], "bridge": ["freelancer-money-system"]}, {"slug": "1099-quarterly-tax-planner", "name": "1099 Quarterly Tax Planner", "main": "fac-1099-estimator-2026-v2", "keys": ["fac-1099-estimator-2026-v2", "faa_started_1099-quarterly-tax-planner", "faa_wz_1099-quarterly-tax-planner", "faux_seen_1099-quarterly-tax-planner", "faux_done_1099-quarterly-tax-planner"], "bridge": []}], "frames": {"small-business-bookkeeping": "f-books", "freelancer-money-system": "f-owe", "1099-quarterly-tax-planner": "f-tax"}, "keys": [], "bridge": [], "main": null, "promptDelay": 3500, "bonusBase": "https://ukuleletodd.github.io/filedawayco-apps/review/app7/self-employed-money-system/bonus/", "extras": [["Start here (1-page PDF)", "Self-Employed-Money-System-Start-Here.pdf"], ["Printable monthly money sheet (PDF)", "Self-Employed-Money-System-Printable-Sheet.pdf"], ["First 10 minutes checklist (PDF)", "Self-Employed-Money-System-First-10-Minutes.pdf"], ["Tax-time summary (PDF)", "Self-Employed-Money-System-Tax-Time-Summary.pdf"], ["Estimated payments record (PDF)", "Self-Employed-Money-System-Payments-Record.pdf"], ["Import template: bank or card file (simple format) (CSV)", "Self-Employed-Money-System-Import-Template-bank.csv"]]};</script>
+<script id="faa2-js">/* FiledAwayCo app data kit v3 (v-app3, 2026-11-27): backup file, restore with preview + undo, sample data kept apart from your own data.
+   Works on this device only. Nothing is uploaded. The app's own calculations are not touched. */
+(function(){
+'use strict';
+var W = window, D = document, C = W.FAA2_CFG; if (!C || W.__FA_APP_TEST) return;
+var LS = W.localStorage, SL = C.slug, BR = 'fac_bridge_auto_v1';
+var K = { real: 'faa2_real_', undo: 'faa2_undo_' + SL, msg: 'faa2_msg_' + SL, bk: 'faa2_lastbk_' + SL, res: 'faa2_resume_' + SL };
+var _set = Storage.prototype.setItem, _rem = Storage.prototype.removeItem, lock = false;
+var PARTS = C.parts || [{ slug: SL, name: C.name, main: C.main, keys: C.keys, bridge: C.bridge || [] }];
+function owned(k){ if (k === BR) return true; return PARTS.some(function(p){ return p.keys.indexOf(k) >= 0; }); }
+Storage.prototype.setItem = function(k, v){ if (lock && this === LS && owned(k)) return; return _set.call(this, k, v); };
+Storage.prototype.removeItem = function(k){ if (lock && this === LS && owned(k)) return; return _rem.call(this, k); };
+function g(k){ try { return LS.getItem(k); } catch(e){ return null; } }
+function s(k, v){ try { _set.call(LS, k, String(v)); } catch(e){} }
+function r(k){ try { _rem.call(LS, k); } catch(e){} }
+function J(x, d){ try { var v = JSON.parse(x); return v == null ? d : v; } catch(e){ return d; } }
+function esc(x){ return String(x == null ? '' : x).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function ymd(d){ d = d || new Date(); return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
+function when(t){ var d = new Date(t); if (isNaN(d)) return 'an unknown date'; return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) + ' at ' + d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }); }
+var H = W.FAA2_HOOKS = W.FAA2_HOOKS || {};   /* filled by the app shell / adapters: isSample(part), trySample(), clearSample(), resume(obj) */
+/* ---------- read / write one app's (or the bundle's) data ---------- */
+function readPart(p){ var o = {}; p.keys.forEach(function(k){ var v = g(k); if (v != null) o[k] = v; });
+  if (p.bridge.length) { var m = J(g(BR), {}), b = {}, n = 0; p.bridge.forEach(function(x){ if (m[x]) { b[x] = m[x]; n++; } }); if (n) o[BR] = JSON.stringify(b); }
+  return o; }
+function writePart(p, o){ o = o || {};
+  p.keys.forEach(function(k){ if (o[k] != null) s(k, o[k]); else r(k); });
+  if (p.bridge.length) { var m = J(g(BR), {}), b = J(o[BR], {}); p.bridge.forEach(function(x){ if (b[x]) m[x] = b[x]; else delete m[x]; }); s(BR, JSON.stringify(m)); } }
+function hasData(p, o){ return o[p.main] != null && o[p.main] !== ''; }
+function isS(p){ try { return !!(H.isSample && H.isSample(p.slug)); } catch(e){ return false; } }
+function snap(p){ return J(g(K.real + p.slug), null); }
+/* your own data, even while the sample is on screen (it is set aside, not mixed) */
+function realOf(p){ if (isS(p)) { var x = snap(p); return x ? x.data : null; } var o = readPart(p); return hasData(p, o) ? o : null; }
+function stash(slug){ PARTS.forEach(function(p){ if (slug && p.slug !== slug) return; if (isS(p) || snap(p)) return; var o = readPart(p); if (hasData(p, o)) s(K.real + p.slug, JSON.stringify({ at: Date.now(), data: o })); }); }
+function anySnap(){ return PARTS.some(function(p){ return !!snap(p); }); }
+function reload(msg){ if (msg) s(K.msg, msg); lock = true; setTimeout(function(){ try { (C.top ? W.top : W).location.reload(); } catch(e){ W.location.reload(); } }, 40); }
+function backToReal(resume, slug){ var hit = false; PARTS.forEach(function(p){ if (slug && p.slug !== slug) return; var x = snap(p); if (!x) return; writePart(p, x.data); r(K.real + p.slug); hit = true; });
+  if (!hit) return false; if (resume) s(K.res, JSON.stringify(resume)); reload('real'); return true; }
+/* ---------- backup ---------- */
+function backupObj(){ var data = {}, parts = [], any = false;
+  PARTS.forEach(function(p){ var o = realOf(p); if (o) { any = true; parts.push(p.slug); Object.keys(o).forEach(function(k){ if (k === BR && data[BR]) { var a = J(data[BR], {}), b = J(o[BR], {}); Object.keys(b).forEach(function(x){ a[x] = b[x]; }); data[BR] = JSON.stringify(a); } else data[k] = o[k]; }); } });
+  if (!any) return null;
+  return { format: 'filedawayco-backup', version: 1, app: SL, appName: C.name, parts: parts, savedAt: new Date().toISOString(),
+    howToUse: 'Keep this file somewhere safe (email it to yourself or save it to your cloud drive). To bring your data back: open ' + C.name + ', tap Save a backup file / Restore, then Restore from backup and pick this file.', data: data }; }
+function saveBackup(){
+  var f = backupObj();
+  if (!f) { toast(isAnyS() ? 'Nothing to back up yet: sample numbers are never saved in a backup. Add your own info first.' : 'Nothing to back up yet. Add your own info first.'); return null; }
+  var txt = JSON.stringify(f, null, 1), name = 'FiledAwayCo-' + SL + '-backup-' + ymd() + '.json';
+  try { var a = D.createElement('a'); a.href = URL.createObjectURL(new Blob([txt], { type: 'application/json' })); a.download = name; a.rel = 'noopener'; D.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 1500); } catch(e){}
+  s(K.bk, Date.now()); W.__FAA2_LAST = txt; renderNudge();
+  toast('Backup saved: ' + name + '. Keep it somewhere safe.'); closeSheet(); return txt; }
+function isAnyS(){ return PARTS.some(isS); }
+/* ---------- restore: check the file, show what is in it, then replace (with undo) ---------- */
+var pending = null;
+function summary(o){ var out = []; PARTS.forEach(function(p){ var m = J(o[p.main], null); if (!m) return; var bits = [];
+    var walk = function(obj, depth){ Object.keys(obj).forEach(function(k){ var v = obj[k]; if (Array.isArray(v) && v.length && !/^(sample|settings|ui|_)/i.test(k)) bits.push(v.length + ' ' + k.replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase()); else if (v && typeof v === 'object' && !Array.isArray(v) && depth < 1) walk(v, depth + 1); }); };
+    if (typeof m === 'object') walk(m, 0);
+    out.push((PARTS.length > 1 ? p.name + ': ' : '') + (bits.length ? bits.slice(0, 5).join(', ') : 'your saved settings and entries')); });
+  return out; }
+function readFile(file){ if (!file) return; var fr = new FileReader(); fr.onload = function(){ preview(String(fr.result || ''), file.name); }; fr.onerror = function(){ showErr('That file could not be read. Try again.'); }; fr.readAsText(file); }
+function preview(txt, fname){
+  var f = J(txt, null);
+  /* one backup system (v-app3): older files saved inside All features still restore, through the app's own reader */
+  if (f && typeof f === 'object' && f.format !== 'filedawayco-backup') {
+    var cv = null; try { cv = H.legacy ? H.legacy(f) : null; } catch(e){}
+    if (cv) f = { format: 'filedawayco-backup', app: SL, appName: C.name, savedAt: f.exported || f.savedAt || '', data: cv };
+    else if (D.getElementById('restoreFile') && ownLegacy(f)) return legacyPreview(txt, fname, f);
+    else if (C.suite && typeof f.app === 'string' && /^fac-(bookkeeping|freelancer|1099)/.test(f.app)) return showErr('This is an older backup from one part of ' + esc(C.name) + '. Nothing was changed. Open that part (Bookkeeping, Invoices or Tax) and tap Restore from backup there.');
+    else if (typeof f.app === 'string' && /^fac-/.test(f.app)) return showErr('This looks like a backup from a different FiledAwayCo app, not ' + esc(C.name) + '. Nothing was changed. Open the app that saved it and restore it there.');
+  }
+  if (!f || f.format !== 'filedawayco-backup' || !f.data || typeof f.data !== 'object') return showErr('That file is not a ' + esc(C.name) + ' backup, so nothing was changed. Pick the backup file this app saved. Its name starts with FiledAwayCo-.');
+  if (f.app !== SL && C.top && W.parent !== W) { try { if (W.parent.FAA2 && W.parent.FAA2.cfg.slug === f.app) return W.parent.FAA2.preview(txt, fname); } catch(e){} }
+  var ok = (f.app === SL) || (C.accept || []).indexOf(f.app) >= 0;
+  if (!ok) return showErr('This backup is from ' + esc(f.appName || f.app) + ', not ' + esc(C.name) + '. Nothing was changed. Open ' + esc(f.appName || 'that app') + ' and restore it there.');
+  var clean = {}; Object.keys(f.data).forEach(function(k){ if (owned(k) && typeof f.data[k] === 'string') clean[k] = f.data[k]; });
+  if (!PARTS.some(function(p){ return clean[p.main] != null; })) return showErr('This backup has no ' + esc(C.name) + ' data in it.');
+  pending = clean; var cur = PARTS.some(function(p){ return !!realOf(p); });
+  openSheet('<h2>Restore this backup?</h2>' +
+    '<div class="a2-card"><b>' + esc(f.appName || C.name) + '</b><span>Saved ' + esc(when(f.savedAt)) + '</span><span>' + esc(fname || '') + ' · ' + Math.max(1, Math.round(txt.length / 1024)) + ' KB</span>' +
+    '<ul>' + summary(clean).map(function(x){ return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></div>' +
+    '<p>' + (cur ? 'This <b>replaces</b> what is in ' + esc(C.name) + ' on this device now. You can undo it right after.' : 'This puts the backup into ' + esc(C.name) + ' on this device. You can undo it right after.') + '</p>' +
+    '<button type="button" class="a2-btn" data-a2="commit">Restore this backup</button><button type="button" class="a2-btn ghost" data-a2="close">Cancel</button>', 'Restore preview'); }
+function commit(){
+  if (!pending) return; var undo = { at: Date.now(), parts: {} };
+  PARTS.forEach(function(p){ undo.parts[p.slug] = { data: readPart(p), real: g(K.real + p.slug) }; });
+  s(K.undo, JSON.stringify(undo));
+  PARTS.forEach(function(p){ var o = {}; Object.keys(pending).forEach(function(k){ if (k === BR || p.keys.indexOf(k) >= 0) o[k] = pending[k]; }); if (o[p.main] == null) return; writePart(p, o); r(K.real + p.slug); });
+  pending = null; reload('restored'); }
+var lpend = null;
+/* an older file counts as this app's own only when this app's code names its 'app' value (an fac- name) */
+function ownLegacy(f){ if (!f || typeof f.app !== 'string' || !/^fac-[a-z0-9-]+$/.test(f.app)) return false;
+  var q1 = "'" + f.app + "'", q2 = '"' + f.app + '"';
+  return Array.prototype.some.call(D.scripts, function(sc){ if (/^(faa|faux)/.test(sc.id || '')) return false; var t = sc.text || ''; return t.indexOf(q1) >= 0 || t.indexOf(q2) >= 0; }); }
+function legacyPreview(txt, fname, f){ lpend = { txt: txt, name: fname || 'backup.json' };
+  openSheet('<h2>Restore this backup?</h2><div class="a2-card"><b>' + esc(C.name) + '</b><span>An older backup file' + (f.exported || f.savedAt ? ', saved ' + esc(String(f.exported || f.savedAt).slice(0, 10)) : '') + '</span><span>' + esc(fname || '') + ' · ' + Math.max(1, Math.round(txt.length / 1024)) + ' KB</span></div>' +
+    '<p>This replaces what is in ' + esc(C.name) + ' on this device now. You can undo it right after.</p>' +
+    '<button type="button" class="a2-btn" data-a2="lcommit">Restore this backup</button><button type="button" class="a2-btn ghost" data-a2="close">Cancel</button>', 'Restore preview'); }
+function legacyCommit(){ if (!lpend) return; var inp = D.getElementById('restoreFile'); if (!inp) return;
+  var undo = { at: Date.now(), parts: {} }; PARTS.forEach(function(p){ undo.parts[p.slug] = { data: readPart(p), real: g(K.real + p.slug) }; });
+  s(K.undo, JSON.stringify(undo)); var before = JSON.stringify(readPart(PARTS[0]));
+  try { var dt = new DataTransfer(); dt.items.add(new File([lpend.txt], lpend.name, { type: 'application/json' })); inp.files = dt.files; inp.dispatchEvent(new Event('change', { bubbles: true })); } catch(e){ lpend = null; return showErr('This browser could not read that file. Try another browser.'); }
+  lpend = null; closeSheet();
+  setTimeout(function(){ if (JSON.stringify(readPart(PARTS[0])) !== before) toast('Backup restored.', undoRestore); else { r(K.undo); toast('Done. That backup file matched what is already here, so nothing changed.'); } }, 1500); }
+function pick(){ ui(); var i = D.getElementById('faa2File'); i.value = ''; i.click(); }
+/* the app's older backup buttons (inside All features) now use this same backup file and restore */
+function legacyButtons(){
+  D.addEventListener('click', function(e){ var t = e.target; if (!t || !t.closest || t.closest('#faa2')) return;
+    if (t.closest('#backupBtn')) { e.preventDefault(); e.stopImmediatePropagation(); var P = null; try { if (C.top && W.parent !== W && W.parent.FAA2) P = W.parent.FAA2; } catch(x){} (P ? P.save : saveBackup)(); }
+    else if (t.closest('#restorePickBtn, label[for="restoreFile"]')) { e.preventDefault(); e.stopImmediatePropagation(); pick(); } }, true);
+  var fix = function(){ var b = D.getElementById('backupBtn'); if (b && b.textContent !== 'Save a backup file') b.textContent = 'Save a backup file';
+    var rb = D.getElementById('restorePickBtn') || D.querySelector('label[for="restoreFile"]'); if (rb && rb.textContent !== 'Restore from backup') rb.textContent = 'Restore from backup'; };
+  fix(); try { new MutationObserver(fix).observe(D.body, { childList: true, subtree: true }); } catch(e){} }
+function undoRestore(){ var u = J(g(K.undo), null); if (!u) return;
+  PARTS.forEach(function(p){ var x = u.parts && u.parts[p.slug]; if (!x) return; writePart(p, x.data); if (x.real) s(K.real + p.slug, x.real); else r(K.real + p.slug); });
+  r(K.undo); reload('undone'); }
+/* ---------- UI ---------- */
+var root, sh, tT;
+function ui(){ if (root) return; root = D.createElement('div'); root.id = 'faa2'; root.className = 'no-print';
+  root.innerHTML = '<div class="a2-sh" hidden></div><input type="file" id="faa2File" accept=".json,application/json" hidden>';
+  D.body.appendChild(root); sh = root.querySelector('.a2-sh');
+  sh.addEventListener('click', function(e){ if (e.target === sh) closeSheet(); });
+  root.addEventListener('click', function(e){ var b = e.target.closest('[data-a2]'); if (!b) return; var a = b.getAttribute('data-a2');
+    if (a === 'close') closeSheet(); else if (a === 'save') saveBackup(); else if (a === 'pick') pick(); else if (a === 'lcommit') legacyCommit();
+    else if (a === 'commit') commit(); else if (a === 'undo') undoRestore();
+    else if (a === 'try') { closeSheet(); trySample(); } else if (a === 'clear') { closeSheet(); clearSample(); }
+    else if (a === 'bring') { closeSheet(); backToReal(null); } else if (a === 'drop') dropSnap(b); else if (a === 'data') openData(); });
+  D.getElementById('faa2File').addEventListener('change', function(e){ readFile(e.target.files && e.target.files[0]); try { e.target.value = ''; } catch(x){} });
+  D.addEventListener('keydown', function(e){ if (e.key === 'Escape' && sh && !sh.hidden) closeSheet(); }); }
+function openSheet(html, label){ ui(); sh.innerHTML = '<div class="a2-pan" role="dialog" aria-modal="true" aria-label="' + esc(label) + '"><div class="grab"></div>' + html + '</div>'; sh.hidden = false; var f = sh.querySelector('button'); if (f) try { f.focus({ preventScroll: true }); } catch(e){} }
+function closeSheet(){ if (sh) { sh.hidden = true; sh.innerHTML = ''; } }
+function showErr(m){ openSheet('<h2>Can’t restore that file</h2><p class="a2-err">' + m + '</p><button type="button" class="a2-btn" data-a2="pick">Pick another file</button><button type="button" class="a2-btn ghost" data-a2="close">Close</button>', 'Restore'); }
+function toast(m, undo){ ui(); var o = root.querySelector('.a2-toast'); if (o) o.remove(); clearTimeout(tT);
+  var t = D.createElement('div'); t.className = 'a2-toast'; t.setAttribute('role', 'status'); t.innerHTML = '<span>' + esc(m) + '</span>' + (undo ? '<button type="button">Undo</button>' : '');
+  root.appendChild(t); if (undo) t.querySelector('button').addEventListener('click', function(){ t.remove(); undo(); }); tT = setTimeout(function(){ t.remove(); }, undo ? 12000 : 5000); }
+function lastBk(){ var t = +g(K.bk); return t ? when(t) : 'never'; }
+function openData(){
+  var sm = isAnyS(), u = J(g(K.undo), null), sn = anySnap(), B = C.bonusBase || '';
+  var ex = (C.extras || []).map(function(x){ return '<a class="a2-link" href="' + esc(B + x[1]) + '" target="_blank" rel="noopener" download>' + esc(x[0]) + '</a>'; }).join('');
+  openSheet('<h2>Your data</h2>' +
+    '<p>Everything you enter is saved <b>only in this browser on this device</b>. Nothing is uploaded and there is no account. If you clear your browser, switch phones or open the app in a different browser, your data will not be there, so save a backup file now and then.</p>' +
+    '<p class="a2-meta">Last backup: <b>' + esc(lastBk()) + '</b></p>' +
+    '<button type="button" class="a2-btn" data-a2="save">Save a backup file</button>' +
+    '<button type="button" class="a2-btn sec" data-a2="pick">Restore from backup</button>' +
+    (u ? '<button type="button" class="a2-btn ghost" data-a2="undo">Undo the last restore (' + esc(when(u.at)) + ')</button>' : '') +
+    '<h3>Sample data</h3>' +
+    (sm ? '<p>You are looking at made-up sample numbers. They are never mixed into your own data or saved in a backup.' + (sn ? ' Your own data is set aside and comes back when you clear the sample.' : '') + '</p><button type="button" class="a2-btn sec" data-a2="clear">Clear sample data</button>'
+        : '<p>See how it works with made-up numbers first. ' + (PARTS.some(function(p){ return !!realOf(p); }) ? 'Your own data is set aside, untouched, and comes back when you clear the sample.' : 'Clear it whenever you are ready to add your own.') + '</p><button type="button" class="a2-btn sec" data-a2="try">Try with sample data</button>') +
+    (ex ? '<h3>Free extras</h3><div class="a2-links">' + ex + '</div>' : '') +
+    '<button type="button" class="a2-btn ghost" data-a2="close">Close</button>', 'Your data'); }
+function trySample(){ stash(); if (H.trySample) H.trySample(); setTimeout(renderNudge, 400); }
+function clearSample(){ if (anySnap() && isAnyS()) { if (H.clearSampleOnly) H.clearSampleOnly(); backToReal(null); return; } if (H.clearSample) H.clearSample(); setTimeout(renderNudge, 400); }
+function dropSnap(b){ if (b.getAttribute('data-sure') !== '1') { b.setAttribute('data-sure', '1'); b.textContent = 'Tap again to delete it for good'; return; } PARTS.forEach(function(p){ r(K.real + p.slug); }); closeSheet(); toast('Deleted the set-aside copy.'); }
+/* backup nudge for the trust line: shell / adapters call FAA2.nudge(el) */
+var nudgeEls = [];
+function renderNudge(){ nudgeEls.forEach(function(el){ var t = +g(K.bk), real = PARTS.some(function(p){ return !!realOf(p); }); el.classList.toggle('a2-due', real && (!t || Date.now() - t > 30 * 864e5)); }); }
+/* ---------- boot messages ---------- */
+function boot(){
+  ui(); legacyButtons(); var m = g(K.msg); r(K.msg);
+  if (m === 'restored') toast('Backup restored.', undoRestore);
+  else if (m === 'undone') toast('Restore undone. Your earlier data is back.');
+  else if (m === 'real') toast('Sample cleared. Your own data is back.');
+  var res = J(g(K.res), null); r(K.res); if (res && H.resume) setTimeout(function(){ H.resume(res); }, 500);
+  /* a set-aside copy while no sample is showing (e.g. the sample was cleared inside All features): never drop it silently */
+  if (!C.noPrompt) setTimeout(function(){ if (m || !anySnap() || isAnyS()) return; var at = 0; PARTS.forEach(function(p){ var x = snap(p); if (x && x.at > at) at = x.at; });
+    openSheet('<h2>Bring back your own data?</h2><p>While you looked at the sample, your own ' + esc(C.name) + ' data from ' + esc(when(at)) + ' was set aside. It is still here.</p><button type="button" class="a2-btn" data-a2="bring">Bring it back</button><button type="button" class="a2-btn ghost" data-a2="close">Not now</button><button type="button" class="a2-btn ghost a2-red" data-a2="drop">Delete the set-aside copy</button>', 'Your data'); }, C.promptDelay || 1500);
+  setTimeout(renderNudge, 1200); }
+W.FAA2 = { save: saveBackup, pick: pick, open: openData, preview: preview, readFile: readFile, commit: commit, undo: undoRestore, trySample: trySample, clearSample: clearSample,
+  stash: stash, backToReal: backToReal, needsReal: function(){ return anySnap() && isAnyS(); }, snap: snap, realOf: realOf, backupObj: backupObj, parts: PARTS, toast: toast,
+  nudge: function(el){ nudgeEls.push(el); renderNudge(); }, cfg: C };
+if (D.readyState === 'loading') D.addEventListener('DOMContentLoaded', function(){ setTimeout(boot, 30); }); else setTimeout(boot, 30);
+})();
+</script>
+<script id="faa2-adapt">/* FiledAwayCo data kit v3 adapters: Seller Dashboard (its own home screen) and the Self-Employed Money System bundle. */
+(function(){
+'use strict';
+var W = window, D = document, C = W.FAA2_CFG; if (!C || W.__FA_APP_TEST || !W.FAA2) return;
+var H = W.FAA2_HOOKS = W.FAA2_HOOKS || {}, F = W.FAA2;
+if (C.sd) {
+  var KEY = C.main;
+  var sdS = function(){ try { var d = JSON.parse(localStorage.getItem(KEY) || 'null'); return !!(d && d.sample); } catch(e){ return false; } };
+  var fire = function(a){ var b = D.createElement('button'); b.type = 'button'; b.setAttribute('data-act', a); b.style.display = 'none'; (D.getElementById('main') || D.body).appendChild(b); b.click(); b.remove(); };
+  H.isSample = sdS;
+  /* older Settings backups ({app:'fac-seller-dashboard', data}) restore through the same Home restore, with preview and undo */
+  H.legacy = function(f){ if (f && f.app === 'fac-seller-dashboard' && f.data && typeof f.data === 'object' && Array.isArray(f.data.sales)) { var o = {}; o[KEY] = JSON.stringify(f.data); return o; } return null; };
+  H.trySample = function(){ fire('trysample'); F.toast('Sample shop loaded. It is made up and kept apart from your own sales.'); };
+  H.clearSample = function(){ fire('clearsample'); };
+  H.resume = function(r){ if (r.sd) setTimeout(function(){ fire(r.sd); }, 300); };
+  W.addEventListener('click', function(e){ var el = e.target && e.target.closest && e.target.closest('[data-act]'); if (!el || el.closest('#faa2')) return; var a = el.getAttribute('data-act');
+    if (a === 'clearsample' && F.needsReal()) { e.stopImmediatePropagation(); e.preventDefault(); F.backToReal(null); }
+    else if (a === 'trysample') F.stash();
+    else if ((a === 'openimport' || a === 'gotoadd') && sdS() && F.needsReal()) { e.stopImmediatePropagation(); e.preventDefault(); F.backToReal({ sd: a }); } }, true);
+  var pill = function(){ var hb = D.querySelector('.homebrand'); if (!hb || hb.querySelector('.a2-pill')) return; var b = D.createElement('button'); b.type = 'button'; b.className = 'a2-pill'; b.setAttribute('aria-label', 'Your data: save a backup file or restore'); b.textContent = 'Backup';
+    b.addEventListener('click', function(){ F.open(); }); var g = hb.querySelector('.faa-gear'); if (g) { g.style.marginLeft = '6px'; hb.insertBefore(b, g); b.style.marginLeft = 'auto'; } else { b.style.marginLeft = 'auto'; hb.appendChild(b); } F.nudge(b); };
+  new MutationObserver(pill).observe(D.body, { childList: true, subtree: true }); pill();
+}
+if (C.suite) {
+  var FR = C.frames;   /* slug -> iframe id */
+  var win = function(slug){ try { return D.getElementById(FR[slug]).contentWindow; } catch(e){ return null; } };
+  /* the parts start one by one after Home paints (v-app3); a part that has not started yet is read from this device's saved data */
+  var partOf = function(slug){ return (C.parts || []).filter(function(p){ return p.slug === slug; })[0]; };
+  var ready = function(w){ return !!(w && w.FAA && w.FAA.isSample); };
+  H.isSample = function(slug){ var w = win(slug); if (ready(w)) return !!w.FAA.isSample(); var p = partOf(slug); try { var o = JSON.parse(localStorage.getItem(p && p.main) || 'null'); return !!(o && o.sample); } catch(e){ return false; } };
+  var whenAll = function(fn){ var S = W.__SUITE; if (S && S.loadAll) S.loadAll(); var n = 0, t = setInterval(function(){ var ok = Object.keys(FR).every(function(k){ var w = win(k); return ready(w) && w.FAA2; }); if (ok || ++n > 60) { clearInterval(t); fn(); } }, 100); };
+  H.trySample = function(){ whenAll(function(){ Object.keys(FR).forEach(function(k){ var w = win(k); if (w && w.FAA2 && !H.isSample(k)) w.FAA2.trySample(); }); }); };
+  H.clearSample = function(){ whenAll(function(){ Object.keys(FR).forEach(function(k){ var w = win(k); if (w && w.FAA2_HOOKS && w.FAA2_HOOKS.clearSample && H.isSample(k)) w.FAA2_HOOKS.clearSample(); }); }); };
+  var t = D.querySelector('#home .trust');
+  if (t) { t.innerHTML = '🔒 Saved only on this device.<br><span class="a2-tls"><button type="button" class="a2-tl" id="a2Save">Save a backup file</button> · <button type="button" class="a2-tl" id="a2Data">Restore</button></span>';
+    D.getElementById('a2Save').addEventListener('click', function(){ F.save(); }); D.getElementById('a2Data').addEventListener('click', function(){ F.open(); }); F.nudge(D.getElementById('a2Save')); }
+}
+})();
+</script>
+<script id="fa4-cfg">window.FA4_CFG={"slug": "self-employed-money-system", "acc": "#1F5C45", "acc2": "#7FB89E", "acc3": "#E39A2D"};</script>
+<script id="fa4-js">/* FiledAwayCo design layer v-app5 (v-app4 + Wedding payments/guests, Freelancer cash-flow/categories, Delist inventory, Timer run-of-show, QR code panel, Suite dashboard): home dashboard side panel (breakdown chart, next-up list, shortcuts). Reads the tool's own numbers; changes nothing. */
+(function(){
+var D = document, C = window.FA4_CFG || {}, P0 = window.FAA_P || {}, slug = (window.FAA2_CFG || {}).slug || C.slug || '';
+var P = P0[slug] ? P0[slug]() : {};
+var $ = function(s, r){ try { return (r || D).querySelector(s); } catch(e){ return null; } };
+var esc = function(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+var t = function(s){ var e = $(s); return e ? (e.value != null && /INPUT|SELECT|TEXTAREA/.test(e.tagName) ? e.value : e.textContent).trim() : ''; };
+var n = function(s){ s = String(s == null ? '' : s); var m = s.replace(/,/g, '').match(/-?\d+(\.\d+)?/); var v = m ? parseFloat(m[0]) : 0; return /\(\s*\$|−\$|-\$/.test(s) ? -Math.abs(v) : v; };
+var money = function(v){ return (v < 0 ? '−$' : '$') + Math.round(Math.abs(v)).toLocaleString('en-US'); };
+var COL = ['var(--fa4-acc)', 'var(--fa4-acc3)', 'var(--fa4-acc2)', '#8A94A3', '#C9B99A'];
+function split(title, parts, note){
+  parts = parts.filter(function(p){ return p[1] > 0; }); var tot = parts.reduce(function(a, p){ return a + p[1]; }, 0); if (!tot) return '';
+  return '<section class="fa4-card" aria-label="' + esc(title) + '"><h2>' + esc(title) + '<span>' + money(tot) + '</span></h2>' +
+    '<div class="fa4-bar" role="img" aria-label="' + esc(parts.map(function(p){ return p[0] + ' ' + money(p[1]); }).join(', ')) + '">' + parts.map(function(p, i){ return '<i style="width:' + (p[1] / tot * 100).toFixed(2) + '%;background:' + COL[i % COL.length] + '"></i>'; }).join('') + '</div>' +
+    '<ul class="fa4-leg">' + parts.map(function(p, i){ return '<li><span class="d" style="background:' + COL[i % COL.length] + '"></span><span>' + esc(p[0]) + '</span><b>' + money(p[1]) + '</b><em>' + Math.round(p[1] / tot * 100) + '%</em></li>'; }).join('') + '</ul>' + (note ? '<p class="fa4-strip" style="justify-content:flex-start;margin-top:10px">' + esc(note) + '</p>' : '') + '</section>';
+}
+function bars(title, rows){
+  rows = rows.filter(function(r){ return r[1] > 0; }); var mx = Math.max.apply(null, rows.map(function(r){ return r[1]; }).concat([0])); if (!mx) return '';
+  return '<section class="fa4-card" aria-label="' + esc(title) + '"><h2>' + esc(title) + '</h2><div class="fa4-bars">' + rows.map(function(r, i){ return '<div class="r"><div><span>' + esc(r[0]) + '</span><b>' + (r[2] || money(r[1])) + '</b></div><div class="t" aria-hidden="true"><i style="width:' + Math.max(2, r[1] / mx * 100).toFixed(1) + '%;background:' + COL[i % COL.length] + '"></i></div></div>'; }).join('') + '</div></section>';
+}
+function prog(title, done, total, big, line){
+  if (!total) return ''; var f = Math.max(0, Math.min(1, done / total)), r = 36, c = 2 * Math.PI * r;
+  return '<section class="fa4-card" aria-label="' + esc(title) + '"><h2>' + esc(title) + '</h2><div class="fa4-prog"><svg viewBox="0 0 84 84" role="img" aria-label="' + Math.round(f * 100) + ' percent"><circle cx="42" cy="42" r="' + r + '" fill="none" stroke="#EFEAE0" stroke-width="10"/><circle cx="42" cy="42" r="' + r + '" fill="none" stroke="var(--fa4-acc)" stroke-width="10" stroke-linecap="round" stroke-dasharray="' + (c * f).toFixed(1) + ' ' + c.toFixed(1) + '" transform="rotate(-90 42 42)"/><text x="42" y="47" text-anchor="middle" font-size="17" font-weight="800" fill="#1B2A40">' + Math.round(f * 100) + '%</text></svg><p><b>' + esc(big) + '</b>' + esc(line) + '</p></div></section>';
+}
+function list(title, items){
+  if (!items.length) return '';
+  return '<section class="fa4-card" aria-label="' + esc(title) + '"><h2>' + esc(title) + '</h2><ul class="fa4-list">' + items.map(function(it){ return '<li' + (it.nx ? ' class="nx"' : '') + '><span class="q">' + esc(it.q) + '</span><span>' + esc(it.a) + (it.s ? '<small>' + esc(it.s) + '</small>' : '') + '</span><b>' + esc(it.v) + '</b></li>'; }).join('') + '</ul></section>';
+}
+var BLOCK = {
+  '1099-quarterly-tax-planner': function(){
+    var MO = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var rows = Array.prototype.slice.call(D.querySelectorAll('.due-row')).slice(0, 4).map(function(r, i){ var x = r.textContent.replace(/\s+/g, ' '), m = x.match(/\$[\d,]+(\.\d\d)?/), d = x.match(/(\d{4})-(\d\d)-(\d\d)/), cov = x.match(/\(([^)]+)\)/), l = x.match(/(\d+)d left/), nx = r.classList.contains('next');
+      return { q: 'Q' + (i + 1), a: d ? 'Due ' + MO[+d[2] - 1] + ' ' + (+d[3]) + ', ' + d[1] : 'Payment ' + (i + 1), s: (cov ? 'Covers ' + cov[1] : '') + (nx ? ' · next' + (l ? ', ' + l[1] + ' days left' : '') : (/Date passed/.test(x) ? ' · date passed' : '')), v: m ? m[0].replace(/\.\d\d$/, '') : '–', nx: nx }; });
+    return list('Your four payments', rows);
+  },
+  'clear-wedding-planner': function(){
+    var base = n(t('#vBase')), all = n(t('#outAllIn')), bud = n(t('#gBudget'));
+    var fx = n(t('#gFixed')), vr = n(t('#gVar')), pl = n(t('#gPlanned')), mx = n(t('#gMaxTag')), w = fx + vr;
+    return split('Your venue, all in', [['Quoted price', base], ['Service charge and tax', Math.max(0, all - base)]], all > base ? 'The quote leaves out ' + money(all - base) + ' of service charge and tax' : '') +
+      (w ? split('Whole wedding at ' + pl + ' guests', [['Fixed costs', fx], ['Per-guest costs', vr]], bud ? (w > bud ? 'Over your ' + money(bud) + ' budget by ' + money(w - bud) : money(bud - w) + ' under your budget') : '') : '') +
+      (pl && mx ? bars('Guests', [['Planned', pl, String(pl)], ['Your budget fits', mx, String(mx)]]) : '');
+  },
+  'debt-payoff-planner': function(){
+    var d = n(t('#kDebt')), i = n(t('#kInt')), s = n(t('#kSave'));
+    return split('What you will pay in total', [['What you owe now', d], ['Interest on this plan', i]], s ? 'This plan saves ' + money(s) + ' in interest vs paying minimums' : '');
+  },
+  'well-kept-host-kit': function(){
+    var MO = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'], L = $('#dlList'), dl = [];
+    if (L) Array.prototype.slice.call(L.children).forEach(function(r){ var x = r.textContent.replace(/\s+/g, ' '), d = x.match(/Due (\d{4})-(\d\d)-(\d\d)/), nm = x.split(/Due in|Due \d|Overdue|SAMPLE/)[0].trim(), l = x.match(/Due in (\d+)d/); if (d && nm && dl.length < 3) dl.push({ q: MO[+d[2] - 1], a: nm, s: l ? 'in ' + l[1] + ' days' : '', v: (+d[3]) + '', nx: !dl.length }); });
+    return split('Where the booking money went', [['You kept', n(t('#dNet'))], ['Platform fees', n(t('#dFees'))], ['Cleaning and supplies', n(t('#dCosts'))]]) + list('Permits and tax dates coming up', dl);
+  },
+  'small-business-bookkeeping': function(){
+    var inc = n(t('#kInc')), ex = n(t('#kExp')); return split('Money in, split', [['Profit', Math.max(0, inc - ex)], ['Costs', ex]]);
+  },
+  'tips-overtime-deduction-tracker': function(){ return split('Your deduction, split', [['Tips', n(t('#outTipsDed'))], ['Overtime premium', n(t('#outOtDed'))]]); },
+  'freelancer-money-system': function(){ var rec = n(t('#tRec')), ex = n(t('#tExp')), pr = n(t('#tProf')), st = n(t('#tSet'));
+    return split('Money collected this year', [['Yours to keep', Math.max(0, pr - st)], ['Set aside for tax', st], ['Business costs', ex]]) + bars('Who still owes you', [['Not late yet', n(t('#aCur'))], ['1-30 days late', n(t('#a30'))], ['30+ days late', n(t('#a30p'))]]); },
+  'delist-alert-reseller-tracker': function(){ var pr = n(t('#sPrice')), m = t('#outMaxBuySub').match(/Keep \$([\d,.]+)/), keep = m ? n(m[1]) : 0, mb = n(t('#outMaxBuy')), tg = n(t('#sTarget'));
+    return pr && keep ? split('Where the $' + pr + ' sale price goes', [['Most to pay for it', mb], ['Your profit goal', tg], ['Fees and shipping', Math.max(0, pr - keep)]]) : ''; },
+  'first-100k-banked-planner': function(){ var b = n(t('#outBanked')); return prog('Progress to $100k', b, 100000, money(b) + ' banked', ' · ' + money(Math.max(0, 100000 - b)) + ' to go') + bars('Recent saving', [['This week', n(t('#outWeek'))], ['This month', n(t('#outMonth'))]]); },
+  'true-hourly': function(){ return bars('What made up your pay', [['Base wages', n(t('#kWage'))], ['Tips you kept', n(t('#kNetTips'))], ['Tip-out you paid', n(t('#kTipOut'))]]); },
+  'ugc-creator-kit': function(){ return bars('This deal', [['Quote', n(t('#outTotal'))], ['If they renew usage', n(t('#outRenewal'))]]); },
+  'load-in': function(){ var m = t('#chkProg').match(/(\d+)\s*\/\s*(\d+)/); return m ? prog('Your checklist', +m[1], +m[2], m[1] + ' of ' + m[2] + ' ready', ' · tick items as you pack') : ''; }
+};
+
+var KEY = { 'clear-wedding-planner': 'fac_clear_wedding_v1', 'freelancer-money-system': 'fac_freelancer_v2', 'delist-alert-reseller-tracker': 'fac_delist_v1', 'timer-suite': 'fac_timer_suite_v2' };
+function st(){ try { return JSON.parse(localStorage.getItem(KEY[slug]) || '{}') || {}; } catch(e){ return {}; } }
+var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function fdate(d){ var m = String(d || '').match(/(\d{4})-(\d\d)-(\d\d)/); return m ? MON[+m[2] - 1] + ' ' + (+m[3]) + ', ' + m[1] : ''; }
+function months(title, rows){ // rows: [label, in, out]
+  var mx = Math.max.apply(null, rows.map(function(r){ return Math.max(r[1], r[2]); }).concat([0])); if (!mx) return '';
+  return '<section class="fa4-card" aria-label="' + esc(title) + '"><h2>' + esc(title) + '</h2><div class="fa5-cols" role="img" aria-label="' + esc(rows.map(function(r){ return r[0] + ' in ' + money(r[1]) + ' out ' + money(r[2]); }).join(', ')) + '">' +
+    rows.map(function(r){ return '<div class="c"><div class="b"><i style="height:' + (r[1] / mx * 100).toFixed(1) + '%;background:var(--fa4-acc)"></i><i style="height:' + (r[2] / mx * 100).toFixed(1) + '%;background:var(--fa4-acc3)"></i></div><span>' + esc(r[0]) + '</span></div>'; }).join('') +
+    '</div><ul class="fa4-leg"><li><span class="d" style="background:var(--fa4-acc)"></span><span>Money in (paid invoices)</span><b>' + money(rows.reduce(function(a, r){ return a + r[1]; }, 0)) + '</b><em></em></li><li><span class="d" style="background:var(--fa4-acc3)"></span><span>Money out (costs)</span><b>' + money(rows.reduce(function(a, r){ return a + r[2]; }, 0)) + '</b><em></em></li></ul></section>';
+}
+var BLOCK5 = {
+  'clear-wedding-planner': function(){ var S = st(), P = S.payments || [], g = S.guests || {};
+    var paid = P.filter(function(p){ return p.paid; }).reduce(function(a, p){ return a + (+p.amount || 0); }, 0), owed = P.filter(function(p){ return !p.paid; }).reduce(function(a, p){ return a + (+p.amount || 0); }, 0);
+    var nx = P.filter(function(p){ return !p.paid; }).sort(function(a, b){ return String(a.date).localeCompare(String(b.date)); }).slice(0, 3).map(function(p, i){ return { q: fdate(p.date).split(',')[0] || '–', a: p.vendor || 'Payment', s: fdate(p.date).split(', ')[1] || '', v: money(+p.amount || 0), nx: !i }; });
+    var meals = [['Meal choice 1', n(g.m1)], ['Meal choice 2', n(g.m2)], ['Meal choice 3', n(g.m3)], ['Kids', n(g.mKid)], ['Vendors', n(g.mVen)]];
+    return (paid + owed ? split('Vendor payments', [['Paid', paid], ['Still to pay', owed]], owed ? money(owed) + ' still to pay across ' + P.filter(function(p){ return !p.paid; }).length + ' payments' : 'All vendor payments are paid') : '') + list('Next payments due', nx) +
+      bars('Guest list by tier', [['Must invite', n(g.tierA), String(n(g.tierA))], ['Likely', n(g.tierB), String(n(g.tierB))], ['If room', n(g.tierC), String(n(g.tierC))]]) + bars('Meal counts for the caterer', meals.map(function(m){ return [m[0], m[1], String(m[1])]; })); },
+  'freelancer-money-system': function(){ var S = st(), I = S.invoices || [], E = S.expenses || [], y = String(new Date().getFullYear()), M = {};
+    I.forEach(function(v){ var d = String(v.paidDate || ''); if (d.slice(0, 4) === y) { var k = +d.slice(5, 7); M[k] = M[k] || [0, 0]; M[k][0] += +v.paid || 0; } });
+    E.forEach(function(e){ var d = String(e.date || ''); if (d.slice(0, 4) === y) { var k = +d.slice(5, 7); M[k] = M[k] || [0, 0]; M[k][1] += +e.amount || 0; } });
+    var ks = Object.keys(M).map(Number).sort(function(a, b){ return a - b; }), rows = [];
+    if (ks.length) for (var m = ks[0]; m <= ks[ks.length - 1]; m++) rows.push([MON[m - 1], (M[m] || [0, 0])[0], (M[m] || [0, 0])[1]]);
+    var C = {}; E.forEach(function(e){ var c = e.cat || 'Other'; C[c] = (C[c] || 0) + (+e.amount || 0); });
+    var cats = Object.keys(C).map(function(c){ return [c, C[c]]; }).sort(function(a, b){ return b[1] - a[1]; });
+    var B = {}; I.forEach(function(v){ B[v.client] = (B[v.client] || 0) + (+v.billed || 0); });
+    var cl = Object.keys(B).map(function(c){ return [c, B[c]]; }).sort(function(a, b){ return b[1] - a[1]; }).slice(0, 5);
+    return months('Cash flow by month, ' + y, rows) + (cats.length ? split('Costs by category', cats.slice(0, 5)) : '') + bars('Top clients (billed)', cl); },
+  'delist-alert-reseller-tracker': function(){ var S = st(), I = S.inv || [], L = S.sales || [], Q = S.queue || [];
+    var sold = {}; L.forEach(function(x){ sold[x.sku] = 1; }); var act = I.filter(function(x){ return !sold[x.sku]; });
+    var rev = L.reduce(function(a, x){ return a + (+x.price || 0); }, 0), fee = L.reduce(function(a, x){ return a + (+x.fee || 0); }, 0), cost = L.reduce(function(a, x){ return a + (+x.cost || 0); }, 0);
+    var P = {}; act.forEach(function(x){ (x.platforms || []).forEach(function(p){ P[p] = (P[p] || 0) + 1; }); });
+    var pend = Q.filter(function(q){ return !q.done; }).slice(0, 4).map(function(q, i){ return { q: q.platform, a: q.title, s: 'sold on ' + q.soldOn, v: 'Delist', nx: !i }; });
+    return list('Still to delist', pend) + (rev ? split('Your sales so far', [['Profit', Math.max(0, rev - fee - cost)], ['Fees', fee], ['Item cost', cost]]) : '') +
+      bars('Unsold items listed on each platform', Object.keys(P).map(function(p){ return [p, P[p], String(P[p])]; }).sort(function(a, b){ return b[1] - a[1]; })) +
+      '<section class="fa4-card" aria-label="Inventory"><h2>Inventory<span>' + I.length + ' items</span></h2><p class="fa4-strip" style="justify-content:flex-start"><span>' + act.length + ' still for sale</span><span>' + L.length + ' sold</span><span>' + pend.length + ' delists waiting</span></p></section>'; },
+  'timer-suite': function(){ var S = st(), Q = S.cues || [], at = 0;
+    var it = Q.slice(0, 8).map(function(c, i){ var s = at; at += +c.min || 0; return { q: '+' + Math.floor(s / 60) + ':' + ('0' + s % 60).slice(-2), a: c.label, s: '', v: (+c.min || 0) + ' min', nx: !i }; });
+    return list('Run of show' + (Q.length ? ' · ' + Q.reduce(function(a, c){ return a + (+c.min || 0); }, 0) + ' min total' : ''), it) + (Q.length ? bars('Time per cue', Q.slice(0, 8).map(function(c){ return [c.label, +c.min || 0, (+c.min || 0) + ' min']; })) : ''); },
+  'qr-generator': function(){ var u = t('#qUrl'), fg = t('#qFg'), bg = t('#qBg'), sz = t('#qSize'), ec = t('#qEc'), cb = t('#contrastBox'), bt = (t('#batchText') || '').split(/\n/).filter(function(x){ return x.trim(); }).length;
+    var it = [];
+    if (u) it.push({ q: 'Opens', a: u.replace(/^https?:\/\//, ''), s: 'Static code: works forever, no tracking', v: '', nx: true });
+    it.push({ q: 'Size', a: sz ? sz + ' px' : 'default', s: 'Error correction ' + (ec || 'M'), v: '' });
+    if (fg && bg) it.push({ q: 'Colors', a: fg + ' on ' + bg, s: cb.replace(/\s+/g, ' ').slice(0, 60), v: '' });
+    it.push({ q: 'Batch', a: bt ? bt + ' codes ready to make' : 'Make many codes at once', s: 'Print a sheet of them', v: '' });
+    return list('Your code', it); }
+};
+var EMPTY = { '1099-quarterly-tax-planner': 'Your four payment dates and amounts', 'clear-wedding-planner': 'Your venue all-in, whole-wedding cost and guest count', 'debt-payoff-planner': 'Debt vs interest, and what you save', 'well-kept-host-kit': 'Where each booking dollar went', 'small-business-bookkeeping': 'Profit vs costs', 'freelancer-money-system': 'Where this year’s money went and who still owes you', 'delist-alert-reseller-tracker': 'Where the sale price goes: what to pay, your profit, fees', 'tips-overtime-deduction-tracker': 'Tips vs overtime deduction', 'first-100k-banked-planner': 'Your progress ring to $100k', 'true-hourly': 'What made up your pay', 'ugc-creator-kit': 'Your quote vs renewal value' };
+function tiles(){
+  var b = [];
+  (P.more || []).forEach(function(m, i){ b.push('<button type="button" data-more="' + i + '"><span class="ic" aria-hidden="true">' + (m.icon || '›') + '</span><span>' + esc(m.label) + '</span></button>'); });
+  b.push('<button type="button" data-a="details"><span class="ic" aria-hidden="true">☰</span><span>All features</span></button>');
+  if (window.FAA2 && !(window.FAA2_CFG || {}).nodata) b.push('<button type="button" data-a="a2save"><span class="ic" aria-hidden="true">💾</span><span>Save a backup file</span></button>');
+  if (b.length % 2) b.push('<button type="button" data-a="help"><span class="ic" aria-hidden="true">?</span><span>How it works</span></button>');
+  return '<section class="fa4-card" aria-label="Shortcuts"><h2>Jump to</h2><div class="fa4-tiles">' + b.join('') + '</div></section>';
+}
+function photo(){ return C.photo ? '<figure class="fa4-card fa4-photo"><img src="' + C.photo + '" alt="' + esc(C.photoAlt || '') + '" width="720" height="405" loading="lazy" decoding="async"><figcaption><span>' + esc(C.photoLine || '') + '</span><small>AI-generated photo</small></figcaption></figure>' : ''; }
+var side, lastH = '';
+function render(){
+  if (!side) return; var hero = $('#faa .faa-hero'); if (!hero) return;
+  var empty = !$('[data-faa="kicker"]', hero), f = BLOCK[slug], blk = '';
+  if (empty && EMPTY[slug]) blk = '<section class="fa4-card" aria-label="What you will see"><h2>What you will see</h2><div class="fa4-empty"><div class="sk" aria-hidden="true"><i style="flex:5;background:var(--fa4-acc)"></i><i style="flex:3;background:var(--fa4-acc3)"></i><i style="flex:2;background:var(--fa4-acc2)"></i></div>' + esc(EMPTY[slug]) + ', worked out from your own numbers.<br><button type="button" data-a="a2try">See it with sample data</button></div></section>';
+  else { var f5 = BLOCK5[slug]; try { blk = (f ? f() || '' : '') + (f5 ? f5() || '' : ''); } catch(e){ blk = ''; } }
+  var h = blk + tiles();
+  if (h !== lastH) { side.innerHTML = h; lastH = h; }
+}
+function mount(){
+  var hv = $('#faa .faa-homev'), hw = $('#faa .faa-heroW'); if (!hv || !hw || $('#faa .fa4-grid')) return !!hv;
+  var g = D.createElement('div'); g.className = 'fa4-grid'; var m = D.createElement('div'); m.className = 'fa4-main'; side = D.createElement('div'); side.className = 'fa4-side';
+  hv.insertBefore(g, hw); ['.faa-heroW', '.faa-auto', '.faa-cta'].forEach(function(s){ var e = $('#faa ' + s); if (e) m.appendChild(e); });
+  g.appendChild(m); g.appendChild(side);
+  var tr = $('#faa .faa-trust'); if (tr && !$('#faa .fa4-strip')) { var s = D.createElement('p'); s.className = 'fa4-strip'; s.innerHTML = '<span>Works offline</span><span>No account</span><span>No subscription</span>'; m.appendChild(s); m.appendChild(tr); }
+  if (C.photo && !$('#faa .fa4-ph')) { var ph = D.createElement('div'); ph.className = 'fa4-ph'; ph.innerHTML = photo(); m.appendChild(ph); }
+  if (C.acc) D.documentElement.style.setProperty('--fa4-acc', C.acc); if (C.acc2) D.documentElement.style.setProperty('--fa4-acc2', C.acc2); if (C.acc3) D.documentElement.style.setProperty('--fa4-acc3', C.acc3);
+  render(); var tm; new MutationObserver(function(){ clearTimeout(tm); tm = setTimeout(render, 30); }).observe(hw, { childList: true, subtree: true, characterData: true });
+  return true;
+}
+function mountSuite(){
+  var c = D.querySelector('.sc'); if (!c) return false; var host = c.parentNode; if ($('.fa5-suite')) return true;
+  var w = D.createElement('div'); w.className = 'fa5-wrap'; var g = D.createElement('div'); g.className = 'fa4-grid fa5-suite'; w.appendChild(g); var m = D.createElement('div'); m.className = 'fa4-main'; side = D.createElement('div'); side.className = 'fa4-side';
+  host.parentNode.insertBefore(w, host); m.appendChild(host); g.appendChild(m); g.appendChild(side);
+  if (C.acc) D.documentElement.style.setProperty('--fa4-acc', C.acc); if (C.acc2) D.documentElement.style.setProperty('--fa4-acc2', C.acc2); if (C.acc3) D.documentElement.style.setProperty('--fa4-acc3', C.acc3);
+  var draw = function(){ var v = Array.prototype.slice.call(D.querySelectorAll('.sc')).map(function(e){ var x = e.querySelector('.v'); return n(x ? x.textContent : ''); });
+    var h = bars('Your year at a glance', [['Profit so far', v[0] || 0], ['Clients still owe you', v[1] || 0], ['Next tax payment', v[2] || 0]]) + '<p class="fa4-strip">All three apps share one profit number; nothing leaves this device.</p>' + '<section class="fa4-card" aria-label="Shortcuts"><h2>Open an app</h2><div class="fa4-tiles">' + Array.prototype.slice.call(D.querySelectorAll('.sc')).map(function(e, i){ var k = e.querySelector('.k'); return '<button type="button" data-fa5go="' + i + '"><span class="ic" aria-hidden="true">›</span><span>' + esc(k ? k.textContent.split('·')[0].trim() : 'Open') + '</span></button>'; }).join('') + '</div></section>';
+    if (h !== lastH) { side.innerHTML = h; lastH = h; } };
+  side.addEventListener('click', function(ev){ var b = ev.target.closest('[data-fa5go]'); if (b) { var e = D.querySelectorAll('.sc')[+b.getAttribute('data-fa5go')]; if (e) e.click(); } });
+  draw(); var tm; new MutationObserver(function(){ clearTimeout(tm); tm = setTimeout(draw, 30); }).observe(host, { childList: true, subtree: true, characterData: true });
+  return true;
+}
+var k = 0; (function go(){ if (!(slug === 'self-employed-money-system' ? mountSuite() : mount()) && ++k < 100) setTimeout(go, 50); })();
+})();
+</script>
+</body></html>
