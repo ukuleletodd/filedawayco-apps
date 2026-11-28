@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<!-- FiledAwayCo Family File v2 (FiledAway Home, R3) 2026-11-27 -->
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Family File by FiledAwayCo</title>
+<meta name="description" content="Everything your family would need to find if something happened to you: who to call, accounts, insurance, papers and bills. Prints a binder. Stays on your device.">
+<meta name="theme-color" content="#1B2A40">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Family File">
+<style>/* FiledAway Home apps: shared look (FiledAwayCo v-app3 style), 2026-11-27 */
+:root{--navy:#1B2A40;--green:#1F5C45;--green2:#E7F1EC;--paper:#FBF8F2;--line:#E6DECF;--slate:#4A5563;--tan:#C89B5A;--tan2:#F6EBDA;--warn:#9A5A00;--warnbg:#FFF4D6;--red:#8A2A20;--redbg:#FBE9E6;--ui:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--navy);font:16px/1.45 var(--ui);-webkit-tap-highlight-color:transparent}
+[hidden]{display:none!important}
+a{color:var(--green)}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid #2F7DE1;outline-offset:2px}
+.wrap{max-width:560px;margin:0 auto;padding:12px 18px calc(110px + env(safe-area-inset-bottom))}
+header.top{display:flex;gap:12px;align-items:center;padding:6px 0 4px}
+header.top img{width:44px;height:44px;border-radius:11px;flex:none}
+header.top h1{margin:0;font-size:22px;line-height:1.15;letter-spacing:-.3px}
+header.top .by{font-size:13px;font-weight:700;color:var(--slate)}header.top .by b{color:var(--green)}
+.tag{margin:6px 0 12px;color:var(--slate);font-size:15.5px}
+.banner{display:flex;gap:10px;align-items:center;justify-content:space-between;background:var(--warnbg);border:1.5px solid #EED9A0;border-radius:14px;padding:10px 12px 10px 16px;margin:0 0 12px;font-size:15px}
+.banner button{flex:none}
+.hero{background:var(--navy);color:#fff;border-radius:20px;padding:18px 20px;margin:0 0 12px;box-shadow:0 6px 18px rgba(27,42,64,.18)}
+.hero .k{font-size:13px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#9FD3B9}
+.hero .big{font-size:30px;line-height:1.15;font-weight:800;margin:6px 0 4px;letter-spacing:-.5px}
+.hero .sub{color:#D7DEE8;font-size:15px}
+.hero .bar{height:12px;border-radius:8px;background:rgba(255,255,255,.18);overflow:hidden;margin:12px 0 4px}
+.hero .bar i{display:block;height:100%;background:linear-gradient(90deg,#7FC8A4,#C89B5A);border-radius:8px}
+.hero .next{display:block;width:100%;margin-top:14px;min-height:52px;border:0;border-radius:14px;background:#fff;color:var(--navy);font-weight:800;font-size:16px;text-align:left;padding:10px 14px;cursor:pointer}
+.hero .next small{display:block;font-weight:600;color:var(--slate);font-size:13px}
+.hero ul{margin:8px 0 0;padding:0;list-style:none}
+.hero li{display:flex;gap:10px;align-items:center;justify-content:space-between;border-top:1px solid rgba(255,255,255,.14);padding:8px 0;font-size:15.5px}
+.hero li:first-child{border-top:0}
+.hero li .d{color:#D7DEE8;font-size:13px;display:block}
+.hero li button{flex:none;min-height:44px;min-width:72px;border:0;border-radius:12px;background:#7FC8A4;color:var(--navy);font-weight:800;cursor:pointer}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:52px;margin:8px 0 0;padding:6px 16px;border-radius:14px;border:0;background:var(--green);color:#fff;font-weight:800;font-size:16px;cursor:pointer;text-decoration:none;text-align:center}
+.btn.sec{background:#fff;color:var(--navy);border:2px solid var(--navy)}
+.btn.ghost{background:transparent;color:var(--slate);border:1.5px solid var(--line)}
+.btn.red{background:#fff;color:var(--red);border:1.5px solid #E5B9B2}
+.btn.sm{min-height:44px;width:auto;display:inline-flex;margin:0;font-size:15px;padding:4px 14px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tl{display:inline-flex;align-items:center;min-height:44px;padding:0 4px;border:0;background:none;color:var(--green);font-weight:800;text-decoration:underline;text-underline-offset:2px;cursor:pointer}
+.card{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;margin:0 0 10px}
+.card h3{margin:0 0 4px;font-size:17px}
+.card p{margin:0 0 6px;color:var(--slate);font-size:15px}
+.list{display:grid;gap:8px;margin:0 0 12px}
+.it{display:flex;gap:12px;align-items:center;width:100%;min-height:64px;background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:10px 14px;text-align:left;cursor:pointer}
+.it .ic{flex:none;width:40px;height:40px;border-radius:12px;background:var(--tan2);display:flex;align-items:center;justify-content:center;font-size:20px}
+.it .tx{flex:1;min-width:0}
+.it .tx b{display:block;font-size:16px}
+.it .tx span{display:block;color:var(--slate);font-size:14px;overflow:hidden;text-overflow:ellipsis}
+.it .st{flex:none;font-size:13px;font-weight:800;border-radius:999px;padding:4px 10px;background:var(--green2);color:var(--green)}
+.it .st.no{background:#F1EEE8;color:var(--slate)}.it .st.part{background:var(--warnbg);color:var(--warn)}.it .st.bad{background:var(--redbg);color:var(--red)}
+.it img.th{flex:none;width:52px;height:52px;border-radius:12px;object-fit:cover;background:#eee}
+h2.h{font-size:20px;margin:18px 0 8px;letter-spacing:-.2px}
+.muted{color:var(--slate);font-size:14.5px}
+.note{background:var(--green2);border-radius:14px;padding:12px 14px;font-size:14.5px;color:#183F31;margin:0 0 12px}
+.note.warn{background:var(--warnbg);color:#5A3A00}
+.note.red{background:var(--redbg);color:var(--red)}
+.trust{text-align:center;font-size:14px;color:var(--slate);margin:18px 0 0}
+nav.bn{position:fixed;left:0;right:0;bottom:0;z-index:50;background:#fff;border-top:1.5px solid var(--line);display:flex;justify-content:center;padding:4px 6px calc(4px + env(safe-area-inset-bottom))}
+nav.bn .in{display:flex;max-width:560px;width:100%;justify-content:space-around;align-items:flex-end}
+nav.bn button{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;min-height:56px;border:0;background:none;color:var(--slate);font-size:13px;font-weight:700;cursor:pointer;padding:4px 0}
+nav.bn button svg{width:24px;height:24px}
+nav.bn button[aria-current="page"]{color:var(--green)}
+nav.bn button.add span.p{width:54px;height:54px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;margin-top:-22px;box-shadow:0 6px 14px rgba(31,92,69,.35);font-size:30px;font-weight:400}
+.sh{position:fixed;inset:0;z-index:100;display:flex;align-items:flex-end;justify-content:center;background:rgba(17,26,40,.45)}
+.pan{width:100%;max-width:560px;max-height:94vh;max-height:94dvh;overflow:auto;background:var(--paper);border-radius:22px 22px 0 0;padding:12px 18px calc(18px + env(safe-area-inset-bottom));box-shadow:0 -8px 30px rgba(0,0,0,.18)}
+.pan .grab{width:40px;height:5px;border-radius:3px;background:#D8D0C1;margin:0 auto 10px}
+.pan h2{margin:4px 0 8px;font-size:22px;line-height:1.2}
+.pan .x{float:right;min-width:44px;min-height:44px;border:0;background:none;font-size:26px;line-height:1;color:var(--slate);cursor:pointer;margin:-6px -8px 0 0}
+label.f{display:block;margin:10px 0 0;font-weight:700;font-size:15px}
+label.f small{font-weight:500;color:var(--slate);display:block;font-size:13.5px}
+.inp{display:block;width:100%;min-height:48px;margin-top:4px;padding:10px 12px;border-radius:12px;border:1.5px solid #CFC6B5;background:#fff;font-size:16px}
+textarea.inp{min-height:88px;resize:vertical}
+.chk{display:flex;gap:10px;align-items:center;min-height:44px;font-weight:600;font-size:15.5px;cursor:pointer}
+.chk input{width:22px;height:22px;accent-color:var(--green);flex:none}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.chip{min-height:44px;padding:0 14px;border-radius:999px;border:1.5px solid var(--line);background:#fff;font-weight:700;font-size:14.5px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--green);border-color:var(--green);color:#fff}
+.toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:200;background:var(--navy);color:#fff;border-radius:14px;padding:10px 10px 10px 16px;display:flex;gap:10px;align-items:center;font-size:15px;width:max-content;max-width:92vw;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.toast button{min-height:44px;border:0;border-radius:10px;background:rgba(255,255,255,.18);color:#fff;font-weight:800;padding:0 12px;cursor:pointer}
+.stat3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 0 12px}
+.stat3 div{background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:10px;text-align:center}
+.stat3 b{display:block;font-size:20px}.stat3 span{font-size:12.5px;color:var(--slate)}
+.photos{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.photos figure{margin:0;position:relative}
+.photos img{width:84px;height:84px;object-fit:cover;border-radius:12px;border:1.5px solid var(--line)}
+.photos figure button{position:absolute;top:-8px;right:-8px;width:32px;height:32px;min-height:0;border-radius:50%;border:0;background:var(--navy);color:#fff;font-size:16px;cursor:pointer}
+.photos figure button::after{content:'';position:absolute;inset:-6px}
+.src{font-size:13px;color:var(--slate)}
+.pill{display:inline-block;font-size:12.5px;font-weight:800;border-radius:999px;padding:2px 8px;background:var(--warnbg);color:var(--warn)}
+.pill.red{background:var(--redbg);color:var(--red)}.pill.ok{background:var(--green2);color:var(--green)}
+#print{display:none}
+@media (min-width:900px){.wrap{padding-top:22px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media print{
+ body{background:#fff}
+ body>*:not(#print){display:none!important}
+ #print{display:block!important;color:#111;font:11pt/1.35 Georgia,"Times New Roman",serif}
+ #print h1{font:700 22pt/1.2 var(--ui);margin:0 0 6pt}
+ #print h2{font:700 15pt/1.2 var(--ui);margin:14pt 0 6pt;padding-bottom:3pt;border-bottom:2px solid #1B2A40;break-after:avoid}
+ #print .pb{break-before:page}
+ #print table{width:100%;border-collapse:collapse;margin:0 0 8pt;break-inside:auto}
+ #print th,#print td{border:1px solid #999;padding:4pt 5pt;text-align:left;vertical-align:top;font-size:9.5pt}
+ #print th{background:#EFEAE0;font-family:var(--ui)}
+ #print tr{break-inside:avoid}
+ #print .cover{text-align:center;padding-top:28vh}
+ #print .cover img{width:90px;height:90px;border-radius:20px}
+ #print .small{font-size:9pt;color:#444}
+ #print img.ph{width:90px;height:90px;object-fit:cover}
+ #print .blank td{height:22pt}
+ @page{margin:14mm}
+}
+.src a{display:inline-block;min-height:44px;line-height:44px;padding:0 4px}
+#main:focus{outline:none}
+
+/* ---- v2: FiledAwayCo design system v-app4 tokens + dashboard (adopted from /workspace/app4-2026-11-27/design-system, read-only) ---- */
+:root{--fa4-acc:#5B4A7A;--fa4-acc2:#7FB89E;--fa4-acc3:#E39A2D;--fa4-line:#E6DECF;--fa4-r:16px;--fa4-shadow:0 1px 2px rgba(27,42,64,.06),0 8px 24px rgba(27,42,64,.07)}
+body.app-hr{--fa4-acc:#4F6B3A}
+.hero{border-top:4px solid var(--fa4-acc2);position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;right:-60px;top:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.09),rgba(255,255,255,0) 70%);pointer-events:none}
+.card{box-shadow:var(--fa4-shadow);border-radius:var(--fa4-r)}
+.fa4-card{background:#fff;border:1px solid var(--fa4-line);border-radius:var(--fa4-r);padding:14px 16px;box-shadow:var(--fa4-shadow);margin:0 0 12px}
+.fa4-card h2{margin:0 0 10px;font-size:13px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--slate);display:flex;justify-content:space-between;gap:8px}
+.fa4-card h2 span{letter-spacing:0;text-transform:none;color:var(--navy)}
+.fa4-prog{display:flex;align-items:center;gap:14px}.fa4-prog svg{width:84px;height:84px;flex:none}.fa4-prog p{margin:0;font-size:14.5px;color:var(--slate)}.fa4-prog p b{display:block;font-size:22px;color:var(--navy)}
+.fa4-bars{display:grid;gap:9px}.fa4-bars .r{display:grid;gap:4px;font-size:14px}.fa4-bars .r div:first-child{display:flex;justify-content:space-between;gap:8px}
+.fa4-bars .t{height:9px;border-radius:6px;background:#EFEAE0;overflow:hidden}.fa4-bars .t i{display:block;height:100%;border-radius:6px;background:var(--fa4-acc)}
+.access ol{margin:6px 0 10px;padding-left:0;list-style:none;display:grid;gap:8px}.access li{display:flex;gap:10px;align-items:flex-start;font-size:15px}.access li .ck{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:#EFEAE0;font-weight:800;font-size:13px}.access li.ok .ck{background:var(--green);color:#fff}
+.linked{display:inline-block;font-size:13px;font-weight:800;border-radius:999px;padding:3px 10px;background:#E5F1EA;color:var(--green)}.linked.no{background:#F6EFE3;color:#7A5A1F}
+.pwstop{border:2px solid #B4533C;background:#FFF1EC;border-radius:14px;padding:12px;margin:10px 0}.pwstop p{margin:0 0 8px;font-weight:600}
+@media (min-width:980px){
+ body.isdash{background:radial-gradient(1200px 500px at 85% -10%,rgba(127,184,158,.16),transparent 60%),var(--paper)}
+ .wrap{max-width:760px}
+ body.isdash .wrap{max-width:1120px;padding:24px 32px 120px}
+ header.top h1{font-size:28px}
+ .dash{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:22px;align-items:start}
+ .hero .big{font-size:40px}
+ nav.bn{left:50%;right:auto;bottom:16px;transform:translateX(-50%);width:520px;border:1px solid var(--fa4-line);border-radius:22px;box-shadow:0 10px 30px rgba(27,42,64,.14)}
+ nav.bn .in{max-width:none}
+ .pan{border-radius:22px;margin-bottom:24px}
+}
+</style>
+</head><body>
+<noscript><p style="padding:20px">Family File needs JavaScript turned on.</p></noscript>
+<script>/* FiledAway Home apps: shared core (2026-11-27). Everything stays on this device: localStorage for your entries, IndexedDB for photos.
+   Backups are files you save yourself. Locked backups use AES-GCM 256 with a key made from your passphrase (PBKDF2-SHA-256, 600,000 rounds). */
+(function(){
+'use strict';
+var W = window, D = document, LS = W.localStorage;
+var F = W.FAH = {};
+var C, APP, mode = 'real', lastFocus = null;
+function esc(x){ return String(x == null ? '' : x).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function J(x, d){ try { var v = JSON.parse(x); return v == null ? d : v; } catch(e){ return d; } }
+function g(k){ try { return LS.getItem(k); } catch(e){ return null; } }
+function s(k, v){ try { LS.setItem(k, v); return true; } catch(e){ F.toast('This device is out of storage space. Save a backup file, then remove some photos.'); return false; } }
+function r(k){ try { LS.removeItem(k); } catch(e){} }
+function pad(n){ return ('0' + n).slice(-2); }
+function ymd(d){ d = d || new Date(); return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+function parseD(x){ if (!x) return null; var m = /^(\d{4})-(\d{2})(?:-(\d{2}))?/.exec(x); if (!m) return null; return new Date(+m[1], +m[2] - 1, +(m[3] || 1)); }
+function fmtD(x, o){ var d = typeof x === 'string' ? parseD(x) : x; if (!d || isNaN(d)) return ''; return d.toLocaleDateString('en-US', o || { month: 'short', day: 'numeric', year: 'numeric' }); }
+function fmtM(x){ var d = typeof x === 'string' ? parseD(x) : x; if (!d) return ''; return d.toLocaleDateString('en-US', { month: 'long', year: 'numeric' }); }
+function addM(d, n){ var x = new Date(d.getFullYear(), d.getMonth() + n, 1); return x; }
+function money(n){ n = +n || 0; return '$' + n.toLocaleString('en-US', { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 }); }
+function uid(p){ return (p || 'e') + Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
+F.esc = esc; F.J = J; F.ymd = ymd; F.parseD = parseD; F.fmtD = fmtD; F.fmtM = fmtM; F.addM = addM; F.money = money; F.uid = uid;
+F.today = function(){ var t = W.__FAH_TODAY; return t ? parseD(t) : new Date(); };   /* tests can pin "today" */
+
+/* ---------- photos + undo: IndexedDB ---------- */
+var dbp = null;
+function db(){ if (dbp) return dbp; dbp = new Promise(function(ok, no){ var q = indexedDB.open('fah-' + C.slug, 1);
+  q.onupgradeneeded = function(){ var d = q.result; if (!d.objectStoreNames.contains('photos')) d.createObjectStore('photos'); if (!d.objectStoreNames.contains('kv')) d.createObjectStore('kv'); };
+  q.onsuccess = function(){ ok(q.result); }; q.onerror = function(){ no(q.error); }; }); return dbp; }
+function tx(store, m, fn){ return db().then(function(d){ return new Promise(function(ok, no){ var t = d.transaction(store, m), o = t.objectStore(store), res; var q = fn(o); if (q) q.onsuccess = function(){ res = q.result; }; t.oncomplete = function(){ ok(res); }; t.onerror = function(){ no(t.error); }; t.onabort = function(){ no(t.error); }; }); }); }
+F.ph = {
+  put: function(id, url){ return tx('photos', 'readwrite', function(o){ return o.put(url, id); }); },
+  get: function(id){ return tx('photos', 'readonly', function(o){ return o.get(id); }); },
+  del: function(id){ return tx('photos', 'readwrite', function(o){ return o.delete(id); }); },
+  keys: function(){ return tx('photos', 'readonly', function(o){ return o.getAllKeys(); }); },
+  all: function(filter){ return F.ph.keys().then(function(ks){ ks = ks.filter(filter || function(){ return true; }); return Promise.all(ks.map(F.ph.get)).then(function(vs){ var o = {}; ks.forEach(function(k, i){ o[k] = vs[i]; }); return o; }); }); }
+};
+F.kv = { put: function(k, v){ return tx('kv', 'readwrite', function(o){ return o.put(v, k); }); }, get: function(k){ return tx('kv', 'readonly', function(o){ return o.get(k); }); }, del: function(k){ return tx('kv', 'readwrite', function(o){ return o.delete(k); }); } };
+/* resize a picked photo so it fits on the phone: longest side 1280px, JPEG */
+F.readPhoto = function(file, max){ max = max || 1280; return new Promise(function(ok, no){ var fr = new FileReader(); fr.onerror = function(){ no(fr.error); };
+  fr.onload = function(){ var im = new Image(); im.onerror = function(){ no(new Error('not an image')); }; im.onload = function(){ var w = im.naturalWidth, h = im.naturalHeight, k = Math.min(1, max / Math.max(w, h)); var c = D.createElement('canvas'); c.width = Math.round(w * k); c.height = Math.round(h * k); c.getContext('2d').drawImage(im, 0, 0, c.width, c.height); ok(c.toDataURL('image/jpeg', 0.72)); }; im.src = fr.result; };
+  fr.readAsDataURL(file); }); };
+F.isRealPhoto = function(id){ return id.indexOf('smp-') !== 0; };
+
+/* ---------- data: your own data and the sample are kept apart ---------- */
+F.data = null;
+F.isSample = function(){ return mode === 'sample'; };
+F.load = function(){ mode = g(C.key + '_mode') === 'sample' ? 'sample' : 'real'; var x = J(g(mode === 'sample' ? C.key + '_sample' : C.key), null); F.data = APP.normalize(x || APP.empty()); return F.data; };
+F.save = function(){ F.data.updatedAt = new Date().toISOString(); if (!F.isSample() && !g(C.key + '_persist') && navigator.storage && navigator.storage.persist) { s(C.key + '_persist', '1'); navigator.storage.persist().then(function(ok){ s(C.key + '_persist', ok ? 'yes' : 'asked'); }).catch(function(){}); } if (!s(F.isSample() ? C.key + '_sample' : C.key, JSON.stringify(F.data))) return false; if (!F.isSample() && APP.onSave) APP.onSave(F.data); return true; };
+F.realData = function(){ return APP.normalize(J(g(C.key), null) || APP.empty()); };
+F.useSample = function(){ mode = 'sample'; s(C.key + '_mode', 'sample'); var smp = APP.sample(); var ph = APP.samplePhotos ? APP.samplePhotos() : {};
+  return Promise.all(Object.keys(ph).map(function(k){ return F.ph.put(k, ph[k]); })).catch(function(){}).then(function(){ s(C.key + '_sample', JSON.stringify(smp)); F.load(); F.go('home'); F.toast('These are made-up sample details. Your own info is kept separate.'); }); };
+F.clearSample = function(){ r(C.key + '_mode'); r(C.key + '_sample'); mode = 'real';
+  return F.ph.keys().then(function(ks){ return Promise.all(ks.filter(function(k){ return !F.isRealPhoto(k); }).map(F.ph.del)); }).catch(function(){}).then(function(){ F.load(); F.go('home'); F.toast('Sample cleared. This is your own file.'); }); };
+
+/* ---------- shared between the FiledAway Home apps (same website, same device) ---------- */
+F.shared = function(){ return J(g('fah_shared_v1'), {}); };
+F.setShared = function(part, val){ if (F.isSample()) return; var o = F.shared(); o[part] = Object.assign({}, val, { from: C.name, at: new Date().toISOString() }); s('fah_shared_v1', JSON.stringify(o)); };
+F.other = function(key){ return J(g(key), null); };
+
+/* ---------- toast, sheets, confirm ---------- */
+var tt;
+F.toast = function(msg, act, fn, ms){ var o = D.getElementById('toast'); if (!o) { o = D.createElement('div'); o.id = 'toast'; o.className = 'toast'; o.setAttribute('role', 'status'); o.setAttribute('aria-live', 'polite'); D.body.appendChild(o); }
+  o.innerHTML = '<span>' + esc(msg) + '</span>' + (act ? '<button type="button">' + esc(act) + '</button>' : ''); o.hidden = false;
+  if (act) o.querySelector('button').onclick = function(){ o.hidden = true; fn && fn(); };
+  clearTimeout(tt); tt = setTimeout(function(){ o.hidden = true; }, ms || (act ? 9000 : 4200)); };
+F.sheet = function(title, body, onmount){ F.close(true); lastFocus = D.activeElement; var sh = D.createElement('div'); sh.className = 'sh'; sh.id = 'sheet';
+  sh.innerHTML = '<div class="pan" role="dialog" aria-modal="true" aria-labelledby="shT"><div class="grab"></div><button type="button" class="x" aria-label="Close" data-close>×</button><h2 id="shT">' + esc(title) + '</h2>' + body + '</div>';
+  sh.addEventListener('click', function(e){ if (e.target === sh || e.target.closest('[data-close]')) F.close(); });
+  sh.addEventListener('keydown', function(e){ if (e.key === 'Escape') F.close(); if (e.key === 'Tab') { var f = [].slice.call(sh.querySelectorAll('button,input,select,textarea,a[href]')).filter(function(x){ return !x.disabled && x.offsetParent; }); if (!f.length) return; var a = f[0], z = f[f.length - 1]; if (e.shiftKey && D.activeElement === a) { e.preventDefault(); z.focus(); } else if (!e.shiftKey && D.activeElement === z) { e.preventDefault(); a.focus(); } } });
+  D.body.appendChild(sh); D.body.style.overflow = 'hidden'; var p = sh.querySelector('.pan'); if (onmount) onmount(p);
+  var first = p.querySelector('input:not([type=checkbox]):not([type=file]),select,textarea'); setTimeout(function(){ (first && !first.value && !W.__FAH_NOFOCUS ? first : p.querySelector('h2')).focus && (first && !first.value ? first.focus() : (p.querySelector('h2').setAttribute('tabindex', '-1'), p.querySelector('h2').focus())); }, 30);
+  return p; };
+F.close = function(silent){ var sh = D.getElementById('sheet'); if (sh) sh.remove(); D.body.style.overflow = ''; if (!silent && lastFocus && lastFocus.focus && D.contains(lastFocus)) lastFocus.focus(); };
+F.ask = function(title, msg, yes, no, danger){ return new Promise(function(ok){ var done = false; var p = F.sheet(title, '<p class="muted">' + msg + '</p><button type="button" class="btn' + (danger ? ' red' : '') + '" data-y>' + esc(yes) + '</button><button type="button" class="btn ghost" data-n>' + esc(no || 'Cancel') + '</button>');
+  p.querySelector('[data-y]').onclick = function(){ done = true; F.close(); ok(true); }; p.querySelector('[data-n]').onclick = function(){ done = true; F.close(); ok(false); };
+  var obs = new MutationObserver(function(){ if (!D.body.contains(p)) { obs.disconnect(); if (!done) ok(false); } }); obs.observe(D.body, { childList: true }); }); };
+F.download = function(name, text, type){ var b = text instanceof Blob ? text : new Blob([text], { type: type || 'application/json' }); var a = D.createElement('a'); a.href = URL.createObjectURL(b); a.download = name; D.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 1500); W.__FAH_LAST_DL = { name: name, size: b.size }; };
+
+/* ---------- passphrase lock (WebCrypto) ---------- */
+var ITER = 600000;
+function b64(buf){ var b = new Uint8Array(buf), s2 = '', i, n = 0x8000; for (i = 0; i < b.length; i += n) s2 += String.fromCharCode.apply(null, b.subarray(i, i + n)); return btoa(s2); }
+function unb64(x){ var s2 = atob(x), b = new Uint8Array(s2.length); for (var i = 0; i < s2.length; i++) b[i] = s2.charCodeAt(i); return b; }
+function keyFrom(pass, salt, iter){ var enc = new TextEncoder(); return crypto.subtle.importKey('raw', enc.encode(pass.normalize('NFC')), 'PBKDF2', false, ['deriveKey']).then(function(k){ return crypto.subtle.deriveKey({ name: 'PBKDF2', salt: salt, iterations: iter, hash: 'SHA-256' }, k, { name: 'AES-GCM', length: 256 }, false, ['encrypt', 'decrypt']); }); }
+F.lock = function(obj, pass){ var salt = crypto.getRandomValues(new Uint8Array(16)), iv = crypto.getRandomValues(new Uint8Array(12));
+  return keyFrom(pass, salt, ITER).then(function(k){ return crypto.subtle.encrypt({ name: 'AES-GCM', iv: iv }, k, new TextEncoder().encode(JSON.stringify(obj))); }).then(function(ct){
+    return { format: 'filedawayco-backup-locked', version: 1, app: C.slug, appName: C.name, savedAt: new Date().toISOString(), howToUse: 'This backup is locked with a passphrase. Open ' + C.name + ', tap Backup, then Restore from a backup file, pick this file and type the passphrase. Without the passphrase nobody (including FiledAwayCo) can open it.',
+      cipher: { name: 'AES-GCM', bits: 256, kdf: 'PBKDF2-SHA-256', iterations: ITER, salt: b64(salt), iv: b64(iv) }, data: b64(ct) }; }); };
+F.unlock = function(env, pass){ var c = env.cipher || {}; return keyFrom(pass, unb64(c.salt), c.iterations || ITER).then(function(k){ return crypto.subtle.decrypt({ name: 'AES-GCM', iv: unb64(c.iv) }, k, unb64(env.data)); }).then(function(pt){ return JSON.parse(new TextDecoder().decode(pt)); }, function(){ throw new Error('WRONG_PASS'); }); };
+
+/* ---------- backup + restore ---------- */
+function payload(){ var d = F.realData(); return (C.photos ? F.ph.all(F.isRealPhoto) : Promise.resolve({})).then(function(ph){ return { data: d, photos: ph }; }); }
+F.hasReal = function(){ return APP.count(F.realData()) > 0; };
+F.canShareFile = function(){ try { return !!(navigator.canShare && navigator.canShare({ files: [new File(['x'], 'x.json', { type: 'application/json' })] })); } catch (e) { return false; } };
+F.backup = function(pass, share){ if (!F.hasReal()) { F.toast(F.isSample() ? 'Nothing to back up yet: sample details are never saved in a backup.' : 'Nothing to back up yet. Add something first.'); return Promise.resolve(null); }
+  var name = C.file + (pass ? '-LOCKED' : '') + '-backup-' + ymd() + '.json';
+  return payload().then(function(p){ if (pass) return F.lock(p, pass); return { format: 'filedawayco-backup', version: 2, app: C.slug, appName: C.name, savedAt: new Date().toISOString(), howToUse: 'Keep this file somewhere safe. To bring your info back: open ' + C.name + ', tap Backup, then Restore from a backup file and pick this file.', data: p.data, photos: p.photos }; })
+   .then(function(o){ var txt = JSON.stringify(o); if (share && F.canShareFile()) { navigator.share({ files: [new File([txt], name, { type: 'application/json' })], title: name }).catch(function(){ F.download(name, txt); }); } else F.download(name, txt); s(C.key + '_lastbk', new Date().toISOString()); F.toast(pass ? 'Locked backup saved: ' + name + '. Keep the passphrase somewhere safe.' : 'Backup saved: ' + name); W.__FAH_LAST_BACKUP = o; F.refresh(); return o; }); };
+F.lastBackup = function(){ return g(C.key + '_lastbk'); };
+function refuse(msg){ F.close(true); F.sheet('Nothing was changed', '<p class="note red" role="alert">' + esc(msg) + '</p><button type="button" class="btn" data-close>OK</button>'); W.__FAH_LAST_REFUSAL = msg; }
+F.restoreText = function(text){ var o = J(text, null);
+  if (!o || typeof o !== 'object' || !/^filedawayco-backup/.test(o.format || '')) return refuse('That file isn\'t a FiledAwayCo backup. Pick the file that ends in "-backup-" and a date.');
+  if (o.app !== C.slug) return refuse('This backup is from ' + (o.appName || 'another FiledAwayCo app') + ', not ' + C.name + '. Open ' + (o.appName || 'that app') + ' and restore it there.');
+  if (o.format === 'filedawayco-backup-locked') return askPass(o);
+  check(o, o); };
+function askPass(env, err){ var p = F.sheet('Type the passphrase', (err ? '<p class="note red" role="alert">' + esc(err) + '</p>' : '') + '<p class="muted">This backup from ' + esc(fmtD(new Date(env.savedAt))) + ' is locked. Type the passphrase you chose when you saved it.</p><label class="f" for="upw">Passphrase</label><input class="inp" id="upw" type="password" autocomplete="off"><button type="button" class="btn" data-u>Unlock</button><button type="button" class="btn ghost" data-close>Cancel</button>');
+  var go = function(){ var pw = p.querySelector('#upw').value; if (!pw) return; p.querySelector('[data-u]').textContent = 'Unlocking…'; F.unlock(env, pw).then(function(x){ check(x, env); }, function(){ W.__FAH_LAST_REFUSAL = 'wrong passphrase'; askPass(env, 'That passphrase didn\'t open this file. Nothing was changed. Check capital letters and spaces, then try again.'); }); };
+  p.querySelector('[data-u]').onclick = go; p.querySelector('#upw').onkeydown = function(e){ if (e.key === 'Enter') go(); }; }
+function check(x, env){ var data = x.data, photos = x.photos || {};
+  if (!data || !APP.valid(data)) return refuse('This backup file is damaged or incomplete, so it wasn\'t used.');
+  data = APP.normalize(data); var n = APP.count(data), cur = APP.count(F.realData());
+  var p = F.sheet('Restore this backup?', '<div class="card"><h3>' + esc(APP.summary(data)) + '</h3><p>Saved ' + esc(fmtD(new Date(env.savedAt))) + (Object.keys(photos).length ? ' · ' + Object.keys(photos).length + ' photos' : '') + '</p></div>' +
+    '<p class="muted">' + (cur ? 'This replaces what\'s on this device now (' + esc(APP.summary(F.realData())) + '). You can undo right after.' : 'Nothing on this device will be lost.') + '</p><button type="button" class="btn" data-y>Restore ' + n + ' entr' + (n === 1 ? 'y' : 'ies') + '</button><button type="button" class="btn ghost" data-close>Cancel</button>');
+  p.querySelector('[data-y]').onclick = function(){ apply(data, photos); }; }
+function apply(data, photos){ var prev = { data: F.realData() };
+  (C.photos ? F.ph.all(F.isRealPhoto) : Promise.resolve({})).then(function(ph){ prev.photos = ph; return F.kv.put('undo', prev); })
+   .then(function(){ return C.photos ? F.ph.keys().then(function(ks){ return Promise.all(ks.map(F.ph.del)); }) : null; })
+   .then(function(){ return Promise.all(Object.keys(photos).map(function(k){ return F.ph.put(k, photos[k]); })); })
+   .then(function(){ r(C.key + '_mode'); r(C.key + '_sample'); s(C.key, JSON.stringify(data)); F.load(); if (APP.onSave) APP.onSave(F.data); F.close(true); F.go('home'); F.toast('Restored. Your info is back.', 'Undo', F.undo, 12000); }); }
+F.undo = function(){ return F.kv.get('undo').then(function(u){ if (!u) return F.toast('Nothing to undo.');
+  return F.ph.keys().then(function(ks){ return Promise.all(ks.filter(F.isRealPhoto).map(F.ph.del)); }).then(function(){ return Promise.all(Object.keys(u.photos || {}).map(function(k){ return F.ph.put(k, u.photos[k]); })); })
+   .then(function(){ s(C.key, JSON.stringify(u.data)); r(C.key + '_mode'); F.kv.del('undo'); F.load(); F.go('home'); F.toast('Undone. Your earlier info is back.'); }); }); };
+F.backupSheet = function(){ var lb = F.lastBackup();
+  var p = F.sheet('Backup', '<p class="muted">Your info lives only in this browser on this device. A backup file is how you keep it safe or move it to a new phone.' + (lb ? ' Last backup: <b>' + esc(fmtD(new Date(lb))) + '</b>.' : ' <b>You haven\'t saved a backup yet.</b>') + '</p>' +
+   (C.lockFirst ? '' : '<button type="button" class="btn" data-b>Save a backup file</button>') +
+   '<button type="button" class="btn' + (C.lockFirst ? '' : ' sec') + '" data-l>Save a locked backup (passphrase)</button>' + (C.lockFirst ? '<button type="button" class="btn sec" data-b>Save an unlocked backup</button>' : '') +
+   '<button type="button" class="btn ghost" data-r>Restore from a backup file</button><input type="file" id="rf" accept=".json,application/json" hidden>' +
+   '<p class="muted" style="margin-top:12px">' + esc(C.backupNote || 'Email the file to yourself or save it to your cloud drive.') + '</p>');
+  p.querySelector('[data-b]').onclick = function(){ if (C.lockFirst) { F.ask('Save without a lock?', 'Anyone who gets this file can read everything in it. A locked backup is safer for this kind of information.', 'Save unlocked anyway', 'Go back').then(function(y){ if (y) F.backup(); }); } else F.backup(); };
+  p.querySelector('[data-l]').onclick = lockSheet;
+  var rf = p.querySelector('#rf'); p.querySelector('[data-r]').onclick = function(){ rf.click(); };
+  rf.onchange = function(){ var f = rf.files[0]; if (!f) return; f.text().then(F.restoreText); }; };
+function lockSheet(){ var p = F.sheet('Lock your backup', '<p class="muted">Pick a passphrase of 4 or more words, like <i>maple river lamp sunday</i>. You\'ll need it to open the backup. <b>If you forget it, nobody can open the file, including FiledAwayCo.</b> Write it down and keep it with your important papers.</p>' +
+  '<label class="f" for="p1">Passphrase</label><input class="inp" id="p1" type="password" autocomplete="new-password"><label class="f" for="p2">Type it again</label><input class="inp" id="p2" type="password" autocomplete="new-password"><p class="note red" id="perr" role="alert" hidden></p><button type="button" class="btn" data-go>Lock and save</button>' + (F.canShareFile() || W.__FAH_SHARE ? '<button type="button" class="btn sec" data-go data-share>Lock and send to someone you trust</button><p class="muted">Send the passphrase a different way, like a phone call, never in the same message.</p>' : '') + '<button type="button" class="btn ghost" data-close>Cancel</button>');
+  p.querySelectorAll('[data-go]').forEach(function(btn){ btn.onclick = function(){ var a = p.querySelector('#p1').value, b = p.querySelector('#p2').value, e = p.querySelector('#perr');
+    if (a.length < 8) { e.textContent = 'Use at least 8 characters. Four ordinary words is easy to remember and hard to guess.'; e.hidden = false; return; }
+    if (a !== b) { e.textContent = 'The two passphrases don\'t match.'; e.hidden = false; return; }
+    btn.textContent = 'Locking…'; F.backup(a, btn.hasAttribute('data-share')).then(function(){ F.close(true); }); }; }); }
+F.backupNudge = function(){ if (F.isSample() || !F.hasReal()) return ''; var lb = F.lastBackup(), n = APP.count(F.realData()); var old = !lb || (Date.now() - new Date(lb)) > 30 * 864e5;
+  if (!old || n < 1) return ''; return '<div class="note warn"><b>' + (lb ? 'Your last backup is over a month old.' : 'No backup yet.') + '</b> If this phone is lost or the browser data is cleared, your info goes with it. <button type="button" class="tl" data-a="backup">Save a backup now</button></div>'; };
+
+/* ---------- shell: header, nav, routing, install, offline ---------- */
+var views = {}, cur = 'home', nav = [];
+F.view = function(name, fn){ views[name] = fn; };
+F.go = function(name, arg){ cur = name; F.arg = arg; F.refresh(); var m = D.getElementById('main'); if (m && !W.__FAH_NOFOCUS) { m.setAttribute('tabindex', '-1'); m.focus({ preventScroll: true }); } W.scrollTo(0, 0); };
+F.refresh = function(){ var m = D.getElementById('main'); if (!m) return; var html0 = null, html = (F.isSample() ? '<div class="banner" role="note"><span>These are made-up sample details.</span><button type="button" class="btn sm sec" data-a="clearSample">Clear sample</button></div>' : '') + views[cur](F.arg);
+  if (html.indexOf('<!--side-->') >= 0) { var pz = html.split('<!--side-->'); html = '<div class="dash"><div class="dm">' + pz[0] + '</div><div class="ds">' + pz[1] + '</div></div>'; } D.body.classList.toggle('isdash', cur === 'home'); D.body.classList.add(C.slug === 'home-records' ? 'app-hr' : 'app-ff'); m.innerHTML = html; D.querySelectorAll('nav.bn button[data-nav]').forEach(function(b){ if (b.getAttribute('data-nav') === cur || (b.getAttribute('data-nav') === 'all' && cur !== 'home' && cur !== 'help')) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
+  if (APP.after) APP.after(cur, m); };
+F.actions = {};
+F.on = function(name, fn){ F.actions[name] = fn; };
+var ico = { home: '<path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>', all: '<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>', help: '<circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.5 9.5a2.5 2.5 0 015 .5c0 1.5-2.5 2-2.5 3.5M12 17h.01" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' };
+function svg(k){ return '<svg viewBox="0 0 24 24" aria-hidden="true">' + ico[k] + '</svg>'; }
+var deferred = null;
+W.addEventListener('beforeinstallprompt', function(e){ e.preventDefault(); deferred = e; });
+F.install = function(){ if (deferred) { deferred.prompt(); deferred = null; return; } var ios = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  F.sheet('Add to your home screen', ios ? '<p class="muted">In Safari, tap the Share button <b>(square with an arrow)</b>, then <b>Add to Home Screen</b>. It then opens like an app and works without internet.</p><button type="button" class="btn" data-close>Got it</button>' : '<p class="muted">Open your browser menu <b>(⋮)</b> and tap <b>Install app</b> or <b>Add to Home screen</b>. It then opens like an app and works without internet.</p><button type="button" class="btn" data-close>Got it</button>'); };
+F.start = function(cfg, app){ C = cfg; APP = app; F.cfg = C;
+  D.title = C.name + ' by FiledAwayCo';
+  D.body.innerHTML = '<a href="#main" class="tl" style="position:absolute;left:-999px" onfocus="this.style.left=\'8px\'" onblur="this.style.left=\'-999px\'">Skip to content</a><div class="wrap"><header class="top"><img src="icon-192.png" alt="" width="44" height="44"><div><h1>' + esc(C.name) + '</h1><div class="by">by FiledAway<b>Co</b></div></div></header><main id="main"></main></div>' +
+    '<nav class="bn" aria-label="Main"><div class="in"><button type="button" data-nav="home">' + svg('home') + 'Home</button><button type="button" data-nav="all">' + svg('all') + esc(C.allLabel || 'All sections') + '</button><button type="button" class="add" data-a="add" aria-label="' + esc(C.addLabel || 'Add') + '"><span class="p" aria-hidden="true">+</span>Add</button><button type="button" data-nav="help">' + svg('help') + 'Help</button></div></nav><div id="print"></div>';
+  D.addEventListener('click', function(e){ var t = e.target.closest('[data-nav],[data-a]'); if (!t || t.closest('#sheet') && !t.hasAttribute('data-a')) return;
+    if (t.hasAttribute('data-nav')) return F.go(t.getAttribute('data-nav'));
+    var a = t.getAttribute('data-a'), fn = F.actions[a]; if (fn) { e.preventDefault(); fn(t.getAttribute('data-id'), t); } });
+  F.on('backup', F.backupSheet); F.on('sample', F.useSample); F.on('clearSample', F.clearSample); F.on('install', F.install); F.on('undoRestore', F.undo);
+  F.load(); F.go(g(C.key + '_seen') || F.hasReal() || F.isSample() ? 'home' : 'welcome');
+  if ('serviceWorker' in navigator && location.protocol !== 'file:') navigator.serviceWorker.register('sw.js').catch(function(){});
+  W.__FAH_READY = true; };
+F.seen = function(){ s(C.key + '_seen', '1'); };
+F.printNow = function(html){ if (W.navigator.standalone && !g('fah_iosprint')) { s('fah_iosprint', '1'); setTimeout(function(){ F.toast('On iPhone, if the print screen doesn\'t open, open this page in Safari and tap Share, then Print.', null, null, 9000); }, 800); } var p = D.getElementById('print'); p.innerHTML = html; W.__FAH_LAST_PRINT = html.length; var imgs = [].slice.call(p.querySelectorAll('img'));
+  Promise.all(imgs.map(function(i){ return i.complete ? 0 : new Promise(function(ok){ i.onload = i.onerror = ok; }); })).then(function(){ setTimeout(function(){ if (!W.__FAH_NOPRINT) W.print(); }, 60); }); };
+F.svg = svg;
+})();
+</script>
+<script>/* "If Something Happens" Family File: app (2026-11-27). Uses core.js (window.FAH). */
+(function(){
+'use strict';
+var F = window.FAH, esc = F.esc;
+var DOCS = ["Birth certificate", "Passport", "Social Security card", "Driver's license or state ID", "Marriage certificate", "Divorce papers", "Prenuptial agreement", "Adoption papers", "Citizenship or immigration papers", "Military discharge papers", "Property deed", "Mortgage papers", "Lease", "Vehicle title", "Vehicle registration", "Will or trust (where it's kept)", "Power of attorney (where it's kept)", "Medical directive (where it's kept)", "Guardianship papers for the kids", "Life insurance policy", "Health insurance cards", "Home or renters policy", "Car insurance card", "Tax returns", "W-2s and 1099s", "Pay stubs", "Retirement account statements", "Bank statements", "Investment statements", "Loan papers", "Business papers", "Diplomas and transcripts", "Medical records", "Vaccination records", "Pet records", "Funeral pre-arrangement papers", "Safe deposit box key", "Other"];
+var GOBAG = ['Water: one gallon per person per day, for several days', 'Food: several days of non-perishable food', 'Battery or hand-crank radio', 'Flashlight', 'First aid kit', 'Extra batteries', 'Whistle', 'Dust masks', 'Plastic sheeting, scissors and duct tape', 'Wet wipes, garbage bags and ties', 'Wrench or pliers to turn off utilities', 'Manual can opener', 'Local maps', 'Phone chargers and a backup battery', 'Prescription medicines and glasses', 'Copies of important papers (or your locked backup on a USB stick)', 'Cash', 'Pet food and water'];
+var CATS = ['Housing', 'Utilities', 'Phone & internet', 'Insurance', 'Loans & cards', 'Subscriptions & memberships', 'Kids & school', 'Health', 'Other'];
+var WHERE = ['In our password manager', 'In the binder / filing cabinet', 'In the fireproof safe', 'With our lawyer or accountant', 'Ask the person named below', 'Online only (statements by email)'];
+var S = [
+ { id: 'people', t: 'People to call', ic: '☎️', thing: 'person', pl: 'people', min: 2, w: 12, intro: 'Who your family should call first, plus the people who help you: doctor, lawyer, accountant, insurance agent.',
+   f: [{ k: 'kind', l: 'Who they are', ty: 'sel', o: ['Emergency contact', 'Family member', 'Doctor', 'Lawyer', 'Accountant / tax preparer', 'Financial advisor', 'Insurance agent', 'Employer / HR', 'Neighbor', 'Other'] }, { k: 'name', l: 'Name', req: 1 }, { k: 'rel', l: 'Relationship or what they help with', ph: 'e.g. My sister · Family doctor' }, { k: 'phone', l: 'Phone', ty: 'tel' }, { k: 'email', l: 'Email', ty: 'email' }, { k: 'notes', l: 'Notes', ty: 'area' }],
+   key: ['name', 'phone'], line: function(e){ return [e.name, [e.kind, e.rel, e.phone].filter(Boolean).join(' · ')]; } },
+ { id: 'about', t: 'About us', ic: '🪪', thing: 'person', pl: 'people', min: 1, w: 5, intro: 'A short profile of each person in the family: birthday, work and benefits contact, military service, faith community and memberships.',
+   f: [{ k: 'name', l: 'Full name', req: 1 }, { k: 'bday', l: 'Birthday', ty: 'date' }, { k: 'work', l: 'Employer and HR or benefits contact', hint: 'Many jobs come with life insurance or a pension.' }, { k: 'mil', l: 'Military service (and where the discharge papers are)' }, { k: 'faith', l: 'Faith community or leader' }, { k: 'clubs', l: 'Clubs, unions and memberships' }, { k: 'ids', l: 'Where their ID cards are kept', ty: 'where', hint: 'Not the numbers themselves.' }, { k: 'notes', l: 'Notes', ty: 'area' }],
+   key: ['name', 'bday'], line: function(e){ return [e.name, [e.bday ? 'Born ' + F.fmtD(e.bday) : '', e.work].filter(Boolean).join(' · ')]; } },
+ { id: 'health', t: 'Health & medicines', ic: '🩺', thing: 'health note', min: 1, w: 8, intro: 'Allergies, medicines and conditions for each person, so a doctor, sitter or relative has them in an emergency.',
+   f: [{ k: 'who', l: 'Who', req: 1, ph: 'e.g. Ana' }, { k: 'allergies', l: 'Allergies', hint: 'Write "None" if there are none.' }, { k: 'meds', l: 'Medicines and doses' }, { k: 'conds', l: 'Conditions worth knowing' }, { k: 'docs', l: 'Doctor and pharmacy' }, { k: 'blood', l: 'Blood type', ty: 'sel', o: ['', 'Not known', 'O+', 'O-', 'A+', 'A-', 'B+', 'B-', 'AB+', 'AB-'] }, { k: 'hosp', l: 'Preferred hospital' }, { k: 'vacc', l: 'Where vaccination records are', ty: 'where' }, { k: 'hist', l: 'Family medical history worth knowing', ty: 'area' }, { k: 'card', l: 'Where the insurance card is', ty: 'where' }, { k: 'photos', l: 'Photo of the insurance card (front and back)', ty: 'photo' }, { k: 'notes', l: 'Notes', ty: 'area' }],
+   key: ['who', 'allergies'], line: function(e){ return [e.who, [e.allergies ? 'Allergies: ' + e.allergies : '', e.meds].filter(Boolean).join(' · ')]; } },
+ { id: 'kids', t: 'Kids & dependents', ic: '🧒', thing: 'child or dependent', pl: 'kids or dependents', min: 1, w: 4, na: 'We don\'t have kids or dependents at home', intro: 'School or daycare, who\'s allowed to pick them up, and the routines a carer would need.',
+   f: [{ k: 'name', l: 'Name', req: 1 }, { k: 'bday', l: 'Birthday', ty: 'date' }, { k: 'school', l: 'School, daycare or care home, and phone' }, { k: 'pickup', l: 'Who is allowed to pick them up' }, { k: 'routine', l: 'Routines (bedtime, food, comfort items)', ty: 'area' }, { k: 'notes', l: 'Notes', ty: 'area' }],
+   key: ['name', 'pickup'], line: function(e){ return [e.name, [e.school, e.pickup ? 'Pick-up: ' + e.pickup : ''].filter(Boolean).join(' · ')]; } },
+ { id: 'accounts', t: 'Money accounts', ic: '🏦', thing: 'account', min: 1, w: 13, intro: 'Bank, retirement, investment and credit accounts, and where the login details are kept. Never type a password here.', warn: 1,
+   f: [{ k: 'kind', l: 'Type', ty: 'sel', o: ['Checking', 'Savings', 'Retirement (401k, IRA)', 'Investment / brokerage', 'Credit card', 'Loan or mortgage', 'HSA / FSA', 'Pension', 'Other'] }, { k: 'inst', l: 'Bank or company', req: 1, ph: 'e.g. Chase, Fidelity' }, { k: 'nick', l: 'Nickname', ph: 'e.g. Joint checking' }, { k: 'last4', l: 'Last 4 digits only', ty: 'last4', hint: 'Never the full number.' }, { k: 'owner', l: 'Whose name it\'s in' }, { k: 'benef', l: 'Who is named on it (joint owner or beneficiary), if anyone' }, { k: 'where', l: 'Where the login details are kept', ty: 'where', hint: 'Where to find it, not the password itself.' }, { k: 'phone', l: 'Company phone', ty: 'tel' }, { k: 'notes', l: 'Notes', ty: 'area' }],
+   key: ['inst', 'where'], line: function(e){ return [(e.nick || e.inst) + (e.last4 ? ' ••' + e.last4 : ''), [e.kind, e.nick ? e.inst : '', e.where].filter(Boolean).join(' · ')]; } },
+ { id: 'insurance', t: 'Insurance', ic: '🛡️', thing: 'policy', min: 1, w: 11, intro: 'Life, health, home or renters, car and other policies, and where each policy is kept.',
+   f: [{ k: 'kind', l: 'Type', ty: 'sel', o: ['Life', 'Health', 'Home or renters', 'Auto', 'Disability', 'Long-term care', 'Umbrella', 'Pet', 'Other'] }, { k: 'co', l: 'Insurance company', req: 1 }, { k: 'pol', l: 'Policy number' }, { k: 'who', l: 'Who it covers' }, { k: 'agent', l: 'Agent or claims phone', ty: 'tel' }, { k: 'where', l: 'Where the policy papers are', ty: 'where' }, { k: 'renew', l: 'Renews on', ty: 'date', hint: 'Home shows a reminder 60 days before.' }, { k: 'photos', l: 'Photo of the policy page or card', ty: 'photo' }, { k: 'notes', l: 'Notes', ty: 'area' }],
+   key: ['co', 'where'], line: function(e){ return [e.co + (e.kind ? ' · ' + e.kind : ''), [e.pol ? 'Policy ' + e.pol : '', e.where].filter(Boolean).join(' · ')]; } },
+ { id: 'documents', t: 'Documents & where they are', ic: '📁', thing: 'document', min: 1, w: 11, intro: 'Where the originals are kept: birth certificates, passports, deeds, titles, and where any will or trust papers are stored.',
+   f: [{ k: 'kind', l: 'Document', ty: 'sel', o: DOCS }, { k: 'whose', l: 'Whose', ph: 'e.g. Ana, the kids' }, { k: 'where', l: 'Where the original is kept', req: 1, ty: 'where' }, { k: 'expires', l: 'Expires on (passports, IDs)', ty: 'date', hint: 'Home shows a reminder 60 days before.' }, { k: 'photos', l: 'Photo or scan (stays on this device)', ty: 'photo' }, { k: 'notes', l: 'Notes', ty: 'area' }],
+   key: ['where'], line: function(e){ return [e.kind + (e.whose ? ' · ' + e.whose : ''), e.where]; } },
+ { id: 'bills', t: 'Bills, autopays & subscriptions', ic: '🧾', thing: 'bill', min: 1, w: 10, intro: 'What gets paid automatically, from where, and whether someone should keep it, cancel it, or move it.',
+   f: [{ k: 'name', l: 'Bill or subscription', req: 1, ph: 'e.g. Mortgage, Netflix, gym' }, { k: 'cat', l: 'Kind of bill', ty: 'sel', o: CATS }, { k: 'amt', l: 'Amount ($)', ty: 'num' }, { k: 'freq', l: 'How often', ty: 'sel', o: ['Monthly', 'Yearly', 'Quarterly', 'Weekly'] }, { k: 'from', l: 'Paid from', ph: 'e.g. Joint checking ••1234' }, { k: 'auto', l: 'On autopay', ty: 'yn' }, { k: 'then', l: 'If something happens', ty: 'sel', o: ['Keep paying', 'Cancel it', 'Move to someone else', 'Not sure yet'] }, { k: 'how', l: 'How to stop or change it', ph: 'e.g. Call 800-…, or in the app settings' }, { k: 'notes', l: 'Notes', ty: 'area' }],
+   key: ['name', 'then'], line: function(e){ return [e.name + (e.amt ? ' · ' + F.money(e.amt) + '/' + ({ Monthly: 'mo', Yearly: 'yr', Quarterly: 'qtr', Weekly: 'wk' }[e.freq] || 'mo') : ''), [e.auto === 'Yes' ? 'Autopay' : '', e.from, e.then].filter(Boolean).join(' · ')]; } },
+ { id: 'property', t: 'Home, vehicles & property', ic: '🏠', thing: 'property', min: 1, w: 8, intro: 'Your home, cars, storage units or safe deposit box, and where the deed, title or key is.',
+   f: [{ k: 'kind', l: 'Type', ty: 'sel', o: ['Home', 'Vehicle', 'Boat or RV', 'Land', 'Rental property', 'Storage unit', 'Safe deposit box', 'Jewelry & valuables', 'Firearms (where they are stored)', 'Business', 'Other'] }, { k: 'what', l: 'What it is', req: 1, ph: 'e.g. Our house, 2019 Honda CR-V' }, { k: 'addr', l: 'Address or location' }, { k: 'loan', l: 'Loan or lease with' }, { k: 'where', l: 'Where the deed, title or key is', ty: 'where' }, { k: 'photos', l: 'Photo', ty: 'photo' }, { k: 'notes', l: 'Notes', ty: 'area' }],
+   key: ['what', 'where'], line: function(e){ return [e.what, [e.kind, e.loan ? 'Loan: ' + e.loan : '', e.where].filter(Boolean).join(' · ')]; } },
+ { id: 'digital', t: 'Phone, email & online accounts', ic: '📱', thing: 'online account', min: 1, w: 10, intro: 'Your phone, email, photos and other online accounts, what should happen to each, and where the login is kept. No passwords here.', warn: 1,
+   f: [{ k: 'kind', l: 'Type', ty: 'sel', o: ['Phone / carrier', 'Email', 'Password manager', 'Computer or tablet', 'Photos / cloud storage', 'Social media', 'Shopping', 'Smart home or alarm app', 'Banking app', 'Website or domain', 'Other'] }, { k: 'svc', l: 'Service', req: 1, ph: 'e.g. iPhone, Gmail, Facebook' }, { k: 'user', l: 'Username or email it uses', hint: 'No passwords.' }, { k: 'then', l: 'What should happen to it', ty: 'sel', o: ['Keep it going', 'Save the photos first', 'Close it', 'Memorialize it', 'Not sure yet'] }, { k: 'where', l: 'Where the login is kept', ty: 'where' }, { k: 'notes', l: 'Notes', ty: 'area' }],
+   key: ['svc', 'where'], line: function(e){ return [e.svc, [e.kind, e.then, e.where].filter(Boolean).join(' · ')]; } },
+ { id: 'household', t: 'Household how-to', ic: '🔧', thing: 'household note', min: 1, w: 6, intro: 'The things a sitter or relative would need: water shut-off, breaker panel, trash day, spare key.',
+   f: [{ k: 'what', l: 'What', ty: 'sel', o: ['Water shut-off', 'Breaker panel', 'Gas shut-off', 'Wi-Fi (network name)', 'Alarm system', 'Trash & recycling day', 'Spare key', 'Thermostat', 'Fire extinguisher', 'First aid kit', 'Emergency kit / go-bag', 'Security questions (where the answers are kept)', 'Mail and packages', 'Other'] }, { k: 'how', l: 'Where it is / how it works', req: 1, ty: 'area' }],
+   key: ['how'], line: function(e){ return [e.what, e.how]; } },
+ { id: 'plan', t: 'Emergency plan', ic: '🚨', thing: 'plan item', min: 2, w: 5, intro: 'Where to meet, how to get out, who to call from out of town, and what\'s in your go-bag.',
+   f: [{ k: 'kind', l: 'What', ty: 'sel', o: ['Meeting place near home', 'Meeting place outside the area', 'Out-of-town contact', 'Fire escape route', 'Shelter-in-place spot', 'Who picks up the kids', 'Evacuation route', 'Other'] }, { k: 'text', l: 'Details', req: 1, ty: 'area' }],
+   key: ['text'], line: function(e){ return [e.kind, e.text]; } },
+ { id: 'pets', t: 'Pets', ic: '🐾', thing: 'pet', min: 1, w: 4, na: 'We don\'t have pets', intro: 'Who your pets are, their vet, food and medicine, and who will look after them.',
+   f: [{ k: 'name', l: 'Name', req: 1 }, { k: 'kind', l: 'What kind', ph: 'e.g. Dog, 6-year-old beagle' }, { k: 'vet', l: 'Vet and phone' }, { k: 'food', l: 'Food and feeding' }, { k: 'meds', l: 'Medicine' }, { k: 'carer', l: 'Who will look after them' }, { k: 'notes', l: 'Notes', ty: 'area' }],
+   key: ['name', 'carer'], line: function(e){ return [e.name + (e.kind ? ' · ' + e.kind : ''), [e.vet, e.carer ? 'Carer: ' + e.carer : ''].filter(Boolean).join(' · ')]; } },
+ { id: 'wishes', t: 'Wishes & notes', ic: '💬', thing: 'note', min: 1, w: 8, intro: 'Notes in your own words. These notes are not legal documents and don\'t replace a will, medical directive or power of attorney.',
+   f: [{ k: 'kind', l: 'About', ty: 'sel', o: ['Medical care', 'Memorial or service', 'Funeral or burial', 'Obituary notes', 'Letter to a loved one', 'Religious or cultural wishes', 'Who to tell', 'Messages to family', 'Other'] }, { k: 'text', l: 'Your note', req: 1, ty: 'area' }],
+   key: ['text'], line: function(e){ return [e.kind || 'Note', e.text]; } }
+];
+var BY = {}; S.forEach(function(x){ BY[x.id] = x; }); var __S_PEOPLE_KINDS = S[0].f[0].o;
+var KEY = 'fah_ff_v1';
+function empty(){ var o = { v: 1, family: '', gobag: {}, sections: {} }; S.forEach(function(x){ o.sections[x.id] = { items: [], na: false }; }); return o; }
+function normalize(d){ var e = empty(); if (!d || typeof d !== 'object') return e; e.family = d.family || ''; e.gobag = d.gobag && typeof d.gobag === 'object' ? d.gobag : {}; e.updatedAt = d.updatedAt; S.forEach(function(x){ var q = (d.sections || {})[x.id] || {}; e.sections[x.id] = { items: Array.isArray(q.items) ? q.items : [], na: !!q.na }; }); return e; }
+function count(d){ return S.reduce(function(a, x){ return a + d.sections[x.id].items.length; }, 0) + (d.family ? 1 : 0); }
+function valid(d){ return d && typeof d === 'object' && d.sections && typeof d.sections === 'object'; }
+function filled(v){ return v != null && String(v).trim() !== ''; }
+function quality(x, e){ return x.key.filter(function(k){ return filled(e[k]); }).length / x.key.length; }
+function secScore(d, x){ var q = d.sections[x.id]; if (q.na && !q.items.length) return 1; if (!q.items.length) return 0; var avg = q.items.reduce(function(a, e){ return a + quality(x, e); }, 0) / q.items.length; var need = x.id === 'people' && !q.items.some(function(e){ return e.kind === 'Emergency contact'; }) ? 0.5 : 1; return Math.min(1, q.items.length / x.min) * avg * need; }
+function pct(d){ var t = 0, w = 0; S.forEach(function(x){ t += x.w * secScore(d, x); w += x.w; }); return Math.round(t / w * 100); }
+function nextThing(d){
+  var has = function(id){ return d.sections[id].items.length > 0 || d.sections[id].na; };
+  var P = d.sections.people.items;
+  if (!P.some(function(e){ return e.kind === 'Emergency contact'; })) return { t: 'Add who to call first in an emergency', s: 'people', kind: 'Emergency contact', why: 'It\'s the first thing anyone helping your family will look for.' };
+  if (!has('about')) return { t: 'Add a short profile for each person', s: 'about', why: 'Full name, birthday, work and benefits contact.' };
+  if (!has('insurance')) return { t: 'Add your insurance policies', s: 'insurance', why: 'Life, health, home and car: the company, policy number and where the papers are.' };
+  if (!has('accounts')) return { t: 'Add your bank and money accounts', s: 'accounts', why: 'Just the bank, last 4 digits and where the login is kept. No passwords.' };
+  if (!has('health')) return { t: 'Add allergies and medicines', s: 'health', why: 'For each person, so a doctor or sitter has them in an emergency.' };
+  if (!has('documents')) return { t: 'Note where your important papers are kept', s: 'documents', why: 'Birth certificates, passports, deeds, titles.' };
+  if (!has('bills')) return { t: 'List bills that are on autopay', s: 'bills', why: 'So someone knows what to keep paying and what to cancel.' };
+  if (!has('digital')) return { t: 'Add your phone and email accounts', s: 'digital', why: 'Almost every other account is reset through these two.' };
+  if (!has('plan')) return { t: 'Pick a family meeting place', s: 'plan', kind: 'Meeting place near home', why: 'Where everyone meets if you have to leave the house fast.' };
+  if (P.length < 2) return { t: 'Add a second person, like your doctor', s: 'people', why: 'A doctor, lawyer, accountant or close relative.' };
+  if (!has('property')) return { t: 'Add your home and vehicles', s: 'property', why: 'And where each deed, title or key is.' };
+  if (!has('household')) return { t: 'Add where the water shut-off is', s: 'household', kind: 'Water shut-off', why: 'Household basics a sitter or relative would need.' };
+  if (!has('kids')) return { t: 'Kids or dependents at home?', s: 'kids', why: 'Add school and who can pick them up, or tap "We don\'t have kids".' };
+  if (!has('pets')) return { t: 'Do you have pets?', s: 'pets', why: 'Add them, or tap "We don\'t have pets".' };
+  if (!has('wishes')) return { t: 'Write a note in your own words', s: 'wishes', why: 'Anything you\'d want your family to know.' };
+  for (var i = 0; i < S.length; i++) { var x = S[i], it = d.sections[x.id].items; for (var j = 0; j < it.length; j++) if (quality(x, it[j]) < 1) { var miss = x.key.filter(function(k){ return !filled(it[j][k]); })[0], fl = x.f.filter(function(f){ return f.k === miss; })[0];
+    return { t: 'Finish "' + F.esc(x.line(it[j])[0]).slice(0, 40) + '"', s: x.id, edit: it[j].id, why: 'Add: ' + (fl ? fl.l.toLowerCase() : 'missing details') + '.', raw: 1 }; } }
+  return null; }
+function summary(d){ var n = count(d); return (d.family ? d.family + ': ' : '') + n + ' entr' + (n === 1 ? 'y' : 'ies') + ', ' + pct(d) + '% done'; }
+function autopayTotal(d){ var m = { Monthly: 1, Yearly: 1 / 12, Quarterly: 1 / 3, Weekly: 52 / 12 }; return d.sections.bills.items.filter(function(e){ return e.auto === 'Yes'; }).reduce(function(a, e){ return a + (+e.amt || 0) * (m[e.freq] || 1); }, 0); }
+
+function dueAlerts(d){ var out = [], now = F.today();
+  [['insurance', 'renew', 'renews'], ['documents', 'expires', 'expires']].forEach(function(z){ d.sections[z[0]].items.forEach(function(e){ var dt = F.parseD(e[z[1]]); if (!dt) return; var days = Math.ceil((dt - now) / 864e5); if (days <= 60) out.push({ t: (z[0] === 'insurance' ? e.co + ' ' + (e.kind || '') : e.kind + (e.whose ? ' (' + e.whose + ')' : '')).trim(), days: days, verb: z[2], s: z[0], id: e.id, date: e[z[1]] }); }); });
+  return out.sort(function(a, b){ return a.days - b.days; }); }
+function glance(d){ var m = { Monthly: 1, Yearly: 1 / 12, Quarterly: 1 / 3, Weekly: 52 / 12 }, by = {}; d.sections.bills.items.forEach(function(e){ var c = e.cat || 'Other'; by[c] = (by[c] || 0) + (+e.amt || 0) * (m[e.freq] || 1); }); return by; }
+function glanceHtml(d){ var by = glance(d), ks = Object.keys(by).filter(function(k){ return by[k]; }); if (!ks.length) return ''; var tot = ks.reduce(function(a, k){ return a + by[k]; }, 0);
+  return '<div class="card"><h3>Bills at a glance</h3><p>' + ks.map(function(k){ return esc(k) + ': <b>' + F.money(Math.round(by[k] * 100) / 100) + '</b>/mo'; }).join('<br>') + '</p><p><b>Total: ' + F.money(Math.round(tot * 100) / 100) + ' a month</b></p></div>'; }
+/* same-device sharing with Home Records: the home insurance policy and the home address */
+function onSave(d){ var hi = d.sections.insurance.items.filter(function(e){ return e.kind === 'Home or renters'; })[0]; var sh = F.shared();
+  if (hi && (!sh.homeInsurance || sh.homeInsurance.co !== hi.co || sh.homeInsurance.pol !== hi.pol || sh.homeInsurance.agent !== hi.agent)) F.setShared('homeInsurance', { co: hi.co || '', pol: hi.pol || '', agent: hi.agent || '' });
+  var home = d.sections.property.items.filter(function(e){ return e.kind === 'Home'; })[0]; if (home && home.addr && (!sh.home || sh.home.addr !== home.addr)) F.setShared('home', { addr: home.addr }); }
+function hrInfo(){ var h = F.other('fah_hr_v1'); if (!h || !h.items) return null; var v = h.items.reduce(function(a, e){ return a + (+e.value || 0); }, 0); return { n: h.items.length, v: v }; }
+function sample(){ var d = empty(), id = 0, add = function(s, e){ e.id = 'smp' + (++id); d.sections[s].items.push(e); };
+  d.family = 'The Rivera family';
+  add('people', { kind: 'Emergency contact', name: 'Lucia Rivera', rel: 'Ana\'s sister', phone: '(555) 201-4417', email: 'lucia@example.com', notes: 'Has a spare house key.' });
+  add('people', { kind: 'Doctor', name: 'Dr. Priya Shah', rel: 'Family doctor, Maple Street Clinic', phone: '(555) 310-2200' });
+  add('people', { kind: 'Insurance agent', name: 'Tom Becker', rel: 'Home and auto', phone: '(555) 448-9012' });
+  add('about', { name: 'Ana Rivera', bday: '1988-02-17', work: 'Northfield Hospital, HR (555) 330-7000', clubs: 'Credit union member', ids: 'Top drawer of the office desk' });
+  add('about', { name: 'Marco Rivera', bday: '1986-09-03', work: 'City Transit, benefits line (555) 330-8100', mil: 'US Army 2005-2009; DD-214 in the fireproof safe' });
+  add('plan', { kind: 'Meeting place near home', text: 'The big oak tree at the end of Alder Lane.' });
+  add('plan', { kind: 'Out-of-town contact', text: 'Aunt Rosa in Phoenix (555) 702-3311. Everyone texts her if we get split up.' });
+  add('health', { who: 'Leo (age 7)', allergies: 'Peanuts (carries an EpiPen in his backpack)', meds: 'None daily', docs: 'Dr. Priya Shah · Main St Pharmacy', card: 'Ana\'s wallet' });
+  add('health', { who: 'Ana', allergies: 'None', meds: 'Thyroid tablet, 1 each morning', docs: 'Dr. Priya Shah' });
+  add('kids', { name: 'Leo', bday: '2019-04-12', school: 'Maple Street Elementary (555) 320-1000', pickup: 'Ana, Marco, Lucia', routine: 'Bed at 8. Reads with the hall light on.' });
+  add('accounts', { kind: 'Checking', inst: 'First Harbor Bank', nick: 'Joint checking', last4: '4821', owner: 'Ana and Marco', benef: 'Joint account', where: 'In our password manager', phone: '(800) 555-0142' });
+  add('accounts', { kind: 'Retirement (401k, IRA)', inst: 'Northfield Investments', nick: 'Marco 401k', last4: '0937', owner: 'Marco', benef: 'Ana', where: 'In our password manager' });
+  add('accounts', { kind: 'Credit card', inst: 'Summit Card', last4: '7710', owner: 'Ana', where: '' });
+  add('insurance', { kind: 'Life', co: 'Evergreen Life', pol: 'EL-2231908', who: 'Marco', agent: '(800) 555-0199', where: 'In the fireproof safe', renew: '2027-03-01' });
+  add('insurance', { kind: 'Home or renters', co: 'Brightside Mutual', pol: 'HO-55-901233', who: 'Our house', agent: '(555) 448-9012', where: 'In the binder / filing cabinet', renew: '2027-06-15' });
+  add('documents', { kind: 'Birth certificate', whose: 'Ana, Marco, kids', where: 'In the fireproof safe' });
+  add('documents', { kind: 'Passport', whose: 'Leo', where: 'Top drawer of the office desk', expires: F.ymd(new Date(F.today().getTime() + 45 * 864e5)) });
+  add('documents', { kind: 'Will or trust (where it\'s kept)', whose: 'Ana and Marco', where: 'With our lawyer or accountant', notes: 'Copy in the safe.' });
+  add('bills', { name: 'Mortgage', cat: 'Housing', amt: 1840, freq: 'Monthly', from: 'Joint checking ••4821', auto: 'Yes', then: 'Keep paying', how: 'Lender: Greenway Home Loans' });
+  add('bills', { name: 'Electric', cat: 'Utilities', amt: 140, freq: 'Monthly', from: 'Joint checking ••4821', auto: 'Yes', then: 'Move to someone else', how: 'Call the utility to change the name' });
+  add('bills', { name: 'Streaming bundle', cat: 'Subscriptions & memberships', amt: 22.99, freq: 'Monthly', from: 'Summit Card ••7710', auto: 'Yes', then: 'Cancel it', how: 'Account settings > Cancel' });
+  add('bills', { name: 'Gym', cat: 'Subscriptions & memberships', amt: 49, freq: 'Monthly', from: 'Summit Card ••7710', auto: 'Yes', then: 'Cancel it', how: 'Must cancel in person' });
+  add('property', { kind: 'Home', what: 'Our house', addr: '14 Alder Lane', loan: 'Greenway Home Loans', where: 'In the fireproof safe' });
+  add('property', { kind: 'Vehicle', what: '2019 Honda CR-V', loan: '', where: 'Title in the fireproof safe' });
+  add('digital', { kind: 'Password manager', svc: 'Our password manager', user: 'ana.rivera@example.com', then: 'Keep it going', where: 'Master password written on the card in the safe' });
+  add('digital', { kind: 'Photos / cloud storage', svc: 'Family photo cloud', user: 'ana.rivera@example.com', then: 'Save the photos first', where: 'In our password manager' });
+  add('household', { what: 'Water shut-off', how: 'Basement, behind the furnace. Turn the red handle clockwise.' });
+  add('household', { what: 'Trash & recycling day', how: 'Tuesday morning. Recycling every other week.' });
+  add('pets', { name: 'Biscuit', kind: 'Dog, 6-year-old beagle', vet: 'Oak Hill Vet (555) 700-1180', food: '1 cup twice a day', carer: 'Lucia' });
+  return d; }
+
+/* ---------- views ---------- */
+var V = {};
+F.view('welcome', function(){ return '<p class="tag">Everything your family would need to find if something happened to you, in one place on your phone.</p>' +
+  '<div class="hero"><div class="k">What you\'ll have</div><ul><li><span>☎️ Who to call, and where every account, policy and paper is</span></li><li><span>🧾 Which bills to keep paying and which to cancel</span></li><li><span>🖨️ A printed binder whenever you want one</span></li></ul></div>' +
+  '<label class="f" for="fam">Whose file is this? <small>Optional, e.g. "The Rivera family"</small></label><input class="inp" id="fam" autocomplete="off">' +
+  '<button type="button" class="btn" data-a="begin">Start my family file</button><button type="button" class="btn sec" data-a="sample">Try it with sample data</button>' +
+  '<p class="trust">🔒 Stays on this device. No account. No passwords stored. <button type="button" class="tl" data-nav="data">Where is my info kept?</button></p><p class="trust">New phone? <button type="button" class="tl" data-a="backup">Restore from a backup file</button></p>'; });
+F.view('home', function(){ var d = F.data, p = pct(d), n = nextThing(d);
+  var h = '<p class="tag">Where everything is, for the people you love.</p>';
+  h += '<div class="hero"><div class="k">' + esc(d.family || 'Your family file') + '</div><div class="big" data-big>Your family file is ' + p + '% done</div><div class="bar" role="progressbar" aria-label="Family file progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + p + '"><i style="width:' + p + '%"></i></div>' +
+    (n ? '<button type="button" class="next" data-a="next"><small>Next most important thing</small>' + (n.raw ? n.t : esc(n.t)) + ' ›<small>' + esc(n.why) + '</small></button>' : '<div class="sub" style="margin-top:8px">Everything is filled in. Print a fresh binder copy and look it over every 6 months.</div>') + '</div>';
+  h += accessCard(d);
+  h += F.backupNudge();
+  if (!F.isSample() && d.updatedAt && (Date.now() - new Date(d.updatedAt)) > 182 * 864e5) h += '<div class="note warn">It\'s been over 6 months since you changed anything. Take 5 minutes to check it\'s still right.</div>';
+  var al = dueAlerts(d); if (al.length) h += '<div class="note warn" role="note">⏰ <b>Coming up:</b> ' + al.slice(0, 3).map(function(a){ return esc(a.t) + ' ' + (a.days < 0 ? (a.verb === 'renews' ? 'renewal date passed' : 'expired') + ' ' + esc(F.fmtD(a.date)) : a.verb + ' in ' + a.days + ' day' + (a.days === 1 ? '' : 's')); }).join('; ') + '. <button type="button" class="tl" data-a="ffics">Add alerts to my calendar</button></div>';
+  h += '<div class="row2"><button type="button" class="btn" data-a="print">🖨️ Print binder</button><button type="button" class="btn sec" data-a="backup">🔒 Backup</button></div>';
+  h += '<p class="trust">🔒 Saved only on this device. <button type="button" class="tl" data-nav="data">Who can see it?</button></p><!--side-->' + ringCard(d);
+  h += '<h2 class="h">Sections</h2><div class="list">' + S.map(secRow).join('') + '</div>';
+  var at = autopayTotal(d); if (at) h += '<p class="muted">Autopays you\'ve listed: <b>' + F.money(Math.round(at * 100) / 100) + ' a month</b>.</p>';
+  h += bundleCard();
+  return h; });
+function ringCard(d){ var p = pct(d), c = 2 * Math.PI * 34, done = S.filter(function(x){ return secScore(d, x) >= 1 || (d.sections[x.id].na && !d.sections[x.id].items.length); }).length;
+  var low = S.map(function(x){ return { x: x, v: Math.round(secScore(d, x) * 100) }; }).filter(function(z){ return !(d.sections[z.x.id].na && !d.sections[z.x.id].items.length); }).sort(function(a, b){ return a.v - b.v; }).slice(0, 5);
+  return '<div class="fa4-card"><h2>Your progress <span>' + done + ' of ' + S.length + ' sections</span></h2><div class="fa4-prog"><svg viewBox="0 0 84 84" aria-hidden="true"><circle cx="42" cy="42" r="34" fill="none" stroke="#EFEAE0" stroke-width="10"/><circle cx="42" cy="42" r="34" fill="none" stroke="#5B4A7A" stroke-width="10" stroke-linecap="round" stroke-dasharray="' + (c * p / 100).toFixed(1) + ' ' + c.toFixed(1) + '" transform="rotate(-90 42 42)"/><text x="42" y="47" text-anchor="middle" font-size="17" font-weight="800" fill="#1B2A40">' + p + '%</text></svg><p><b>' + p + '% done</b>The sections with the most left to fill in:</p></div><div class="fa4-bars" style="margin-top:12px">' + low.map(function(z){ return '<div class="r"><div><span>' + z.x.ic + ' ' + esc(z.x.t) + '</span><b>' + z.v + '%</b></div><div class="t"><i style="width:' + Math.max(z.v, 2) + '%"></i></div></div>'; }).join('') + '</div></div>'; }
+function accessCard(d){ if (F.isSample() || !F.hasReal()) return ''; var a = d.access || {}, lb = F.lastBackup(), up = d.updatedAt ? F.ymd(new Date(d.updatedAt)) : '';
+  var st1 = a.printed ? (up && up > a.printed ? 'Printed ' + F.fmtD(F.parseD(a.printed)) + ', but you\'ve changed things since. Print a fresh copy.' : 'Printed ' + F.fmtD(F.parseD(a.printed)) + '.') : 'Print the binder and keep it with your important papers.';
+  var st2 = lb ? 'Last locked backup ' + F.fmtD(new Date(lb)) + '. Keep a copy somewhere they can reach, like a shared cloud folder or a USB stick in the binder.' : 'Save a locked backup and give a copy to someone you trust.';
+  var st3 = a.told ? 'You told someone on ' + F.fmtD(F.parseD(a.told)) + '.' : 'Tell one person where the binder is and how to get the backup passphrase (not in the binder).';
+  var ok1 = a.printed && !(up && up > a.printed), ok2 = !!lb, ok3 = !!a.told, n = (ok1 ? 1 : 0) + (ok2 ? 1 : 0) + (ok3 ? 1 : 0);
+  return '<div class="fa4-card access"><h2>Give your family a way in <span>' + n + ' of 3</span></h2><ol>' + [[ok1, st1, '<button type="button" class="tl" data-a="print">Print</button>'], [ok2, st2, '<button type="button" class="tl" data-a="backup">' + (F.canShareFile && F.canShareFile() ? 'Back up and share' : 'Back up') + '</button>'], [ok3, st3, a.told ? '' : '<button type="button" class="tl" data-a="told">I\'ve told someone</button>']].map(function(r, i){ return '<li class="' + (r[0] ? 'ok' : '') + '"><span class="ck" aria-hidden="true">' + (r[0] ? '✓' : i + 1) + '</span><span>' + esc(r[1]) + ' ' + r[2] + '</span></li>'; }).join('') + '</ol></div>'; }
+
+function secRow(x){ var q = F.data.sections[x.id], sc = secScore(F.data, x), n = q.items.length;
+  var st = q.na && !n ? '<span class="st">Not needed</span>' : sc >= 1 ? '<span class="st">✓ Done</span>' : n ? '<span class="st part">' + n + ' added</span>' : '<span class="st no">Not started</span>';
+  return '<button type="button" class="it" data-a="sec" data-id="' + x.id + '"><span class="ic" aria-hidden="true">' + x.ic + '</span><span class="tx"><b>' + esc(x.t) + '</b><span>' + (n ? esc(n + ' ' + (n === 1 ? x.thing : x.pl || x.thing + 's')) : esc(x.intro.split('.')[0])) + '</span></span>' + st + '</button>'; }
+F.view('all', function(){ return '<p class="tag">Fourteen sections. Fill them in any order. Tap one to open it.</p><div class="list">' + S.map(secRow).join('') + '</div>'; });
+F.view('sec', function(id){ var x = BY[id] || S[0], q = F.data.sections[x.id];
+  var h = '<p><button type="button" class="tl" data-nav="home">‹ Home</button></p><h2 class="h" style="margin-top:0">' + x.ic + ' ' + esc(x.t) + '</h2><p class="muted">' + esc(x.intro) + '</p>';
+  if (x.warn) h += '<div class="note warn" role="note"><b>No passwords here.</b> Write <i>where</i> the login is kept (for example "in our password manager"). If this phone is lost, anything typed here could be read by whoever unlocks it.</div>';
+  if (x.id === 'wishes') h += '<div class="note" role="note">Notes only. This app doesn\'t make wills or legal forms. For those, talk to a qualified professional where you live.</div>';
+  if (x.id === 'property') { var hr = hrInfo(); if (hr && hr.n) h += '<div class="note">🏠 Your Home Records app lists <b>' + hr.n + ' items</b> worth <b>' + F.money(hr.v) + '</b>. That inventory is printed from Home Records.</div>'; }
+  if (x.id === 'bills') h += glanceHtml(F.data);
+  if (x.id === 'documents') { var have = q.items.map(function(e){ return e.kind; }), miss = DOCS.filter(function(k){ return k !== 'Other' && have.indexOf(k) < 0; });
+    h += '<details class="card"><summary style="min-height:44px;display:flex;align-items:center;font-weight:800;cursor:pointer">📋 Checklist: ' + (DOCS.length - 1 - miss.length) + ' of ' + (DOCS.length - 1) + ' common documents noted</summary><p class="muted">Tap one to note where it is. Skip any you don\'t have.</p><div class="chips">' + miss.map(function(k){ return '<button type="button" class="chip" data-a="quickdoc" data-id="' + esc(k) + '">+ ' + esc(k) + '</button>'; }).join('') + '</div></details>'; }
+  if (x.id === 'plan') { var gb = F.data.gobag, n2 = GOBAG.filter(function(g){ return gb[g]; }).length;
+    h += '<details class="card"' + (n2 ? '' : ' open') + '><summary style="min-height:44px;display:flex;align-items:center;font-weight:800;cursor:pointer">🎒 Go-bag checklist: ' + n2 + ' of ' + GOBAG.length + ' packed</summary>' + GOBAG.map(function(g){ return '<label class="chk"><input type="checkbox" data-a="gobag" data-id="' + esc(g) + '"' + (gb[g] ? ' checked' : '') + '> ' + esc(g) + '</label>'; }).join('') + '<p class="src">Based on the Ready.gov basic disaster supplies kit: <a href="https://www.ready.gov/kit" target="_blank" rel="noopener">ready.gov/kit</a></p></details>'; }
+  h += '<div class="list">' + q.items.map(function(e){ var L = x.line(e), ok = quality(x, e) >= 1; return '<button type="button" class="it" data-a="edit" data-id="' + x.id + ':' + e.id + '"><span class="tx"><b>' + esc(L[0]) + '</b><span>' + esc(L[1] || '') + ((e.photos || []).length ? ' · 📷 ' + e.photos.length : '') + '</span></span>' + (ok ? '' : '<span class="st part">Add details</span>') + '</button>'; }).join('') + '</div>';
+  if (!q.items.length) h += '<p class="muted">Nothing here yet.</p>';
+  h += '<button type="button" class="btn" data-a="new" data-id="' + x.id + '">+ Add ' + (q.items.length ? 'another ' : 'a ') + esc(x.thing) + '</button>';
+  if (IMP[x.id]) h += '<button type="button" class="btn ghost" data-a="imp" data-id="' + x.id + '">⬆️ ' + esc(IMP[x.id].label) + '</button><input type="file" id="impf" accept=".csv,text/csv" hidden><p class="muted">' + esc(IMP[x.id].hint) + '</p>';
+  if (!q.items.length) h += '<label class="chk" style="margin-top:12px"><input type="checkbox" data-a="na" data-id="' + x.id + '"' + (q.na ? ' checked' : '') + '> ' + esc(x.na || 'This doesn\'t apply to us') + '</label>';
+  return h; });
+F.view('data', function(){ return '<p><button type="button" class="tl" data-nav="home">‹ Home</button></p><h2 class="h" style="margin-top:0">Where your info is kept</h2>' +
+  '<div class="card"><h3>Only on this device</h3><p>Everything you type stays in this browser on this phone or computer. There\'s no account, and nothing is uploaded. FiledAwayCo can\'t see it.</p></div>' +
+  '<div class="card"><h3>Anyone who can open this browser can read it</h3><p>It isn\'t locked inside the app. Use it on a device with a screen lock that only you (or your partner) use. On a shared or family computer, anyone using the same browser can open it.</p></div>' +
+  '<div class="card"><h3>Clearing browser data deletes it</h3><p>Don\'t use a private or incognito window: it\'s erased when you close it. Save a backup file now and then so a lost phone doesn\'t take your file with it.</p></div>' +
+  '<div class="card"><h3>Locked backups</h3><p>A locked backup is scrambled with your passphrase (AES-256). Without the passphrase nobody can open it, and nobody can recover a forgotten passphrase for you.</p></div>' +
+  '<div class="card"><h3>Printed binders aren\'t locked</h3><p>Keep a printed copy where you\'d keep a passport, and tell one trusted person where it is.</p></div>' +
+  '<div class="card"><h3>Why no passwords?</h3><p>A list of passwords is the most valuable thing a thief could find. This file says <i>where</i> to find logins, like your password manager, so it stays useful without being dangerous.</p></div>' +
+  '<button type="button" class="btn sec" data-a="backup">Backup options</button><button type="button" class="btn red" data-a="wipe">Delete everything on this device</button>'; });
+F.view('help', function(){ return '<h2 class="h" style="margin-top:0">Help</h2>' +
+  '<div class="card"><h3>How it works</h3><p>Fill in the sections in any order. Home shows how complete your file is and the next most important thing to add. Print the binder whenever you want a paper copy.</p></div>' +
+  '<div class="card"><h3>Put it on your home screen</h3><p>It opens like an app and works without internet.</p><button type="button" class="btn sm sec" data-a="install">How to add it</button></div>' +
+  '<div class="card"><h3>Back it up</h3><p>Save a locked backup file after big changes, and keep the passphrase with your important papers.</p><button type="button" class="btn sm sec" data-a="backup">Backup</button></div>' +
+  '<div class="card"><h3>Who can see my info?</h3><p>Only people who can open this browser on this device.</p><button type="button" class="btn sm sec" data-nav="data">Read more</button></div>' +
+  '<div class="card"><h3>Printables & templates</h3><p><b>51-page printable binder</b> (colour or ink-saver) with a divider and fill-in pages for every section, plus a fridge contacts sheet, emergency plan and go-bag sheet, important documents checklist, "where things are" page, wallet cards, bills worksheet and spreadsheet templates.</p><a class="btn sm" href="bonus/Family-File-Printable-Binder.pdf">51-page binder</a> <a class="btn sm ghost" href="bonus/Family-File-Printable-Binder-Ink-Saver.pdf">Ink-saver binder</a> <a class="btn sm sec" href="bonus/Family-File-Start-Here.pdf">Start Here (PDF)</a> <a class="btn sm ghost" href="bonus/Family-File-Wallet-Cards.pdf">Wallet cards</a> <a class="btn sm ghost" href="bonus/Family-File-Emergency-Contacts.pdf">Fridge sheet</a> <a class="btn sm ghost" href="bonus/Family-File-Emergency-Plan.pdf">Emergency plan</a> <a class="btn sm ghost" href="bonus/Family-File-Documents-Checklist.pdf">Documents checklist</a> <a class="btn sm ghost" href="bonus/Family-File-Binder-Covers.pdf">Binder covers</a></div>' +
+  bundleCard() +
+  '<div class="card"><h3>Good to know</h3><p>Family File is an organizer. It doesn\'t give legal, tax or financial advice, and it doesn\'t create wills or legal documents.</p></div>' +
+  (F.isSample() ? '' : '<button type="button" class="btn ghost" data-a="sample">Look at the sample family file</button>') +
+  '<p class="trust">Family File v1 · FiledAwayCo · 2026-11-27</p>'; });
+function bundleCard(){ var lk = !!F.other('fah_hr_v1'); return '<div class="card"><h3>🏠 Part of FiledAway Home</h3><p><span class="linked' + (lk ? '' : ' no') + '">' + (lk ? '✓ Linked with Home Records on this device' : 'Not linked on this device') + '</span></p>' + (lk ? '' : '<p class="small muted">Linking works when both apps are opened in the same browser on the same device. On a different device, just type the home insurance and address in each app.</p>') + '<p>Home Records keeps your home\'s upkeep schedule, a photo inventory for insurance, and warranties. Used together on this device, your home insurance and address are filled in for you.</p><a class="btn sm sec" href="../home-records-v2/">Open Home Records</a> <a class="btn sm ghost" href="filedaway-home.html">About the bundle</a></div>'; }
+
+/* ---------- forms ---------- */
+var PW = /(pass\s*word|passcode|pass\s*phrase|\bpwd?|\bpin|\bcode|\blogin)\s*(is|:|=|-|was)?\s*['"]?[^\s'"]{3,}/i;
+function looksSecret(txt){ if (!txt) return ''; if (/\b(pass\s*word|passcode|pass\s*phrase|pwd|pin)\b\s*(is|:|=|-|was)?\s*['"]?(?!in\b|on\b|is\b|kept\b|stored\b|manager\b|book\b|the\b|our\b|my\b|a\b|with\b|at\b|under\b)[^\s'"]{3,}/i.test(txt)) return 'pw';
+  var w = txt.split(/\s+/); for (var i = 0; i < w.length; i++) { var t = w[i].replace(/^[("']+|[)"'.,;]+$/g, ''); if (t.length >= 6 && t.length <= 40 && /[A-Za-z]/.test(t) && /\d/.test(t) && !/^\d+(st|nd|rd|th|am|pm|mg|ml|kg|lb|lbs|oz|in|ft|x\d+)$/i.test(t) && !/^[A-Z]{1,3}\d{1,6}$/.test(t) && !/[@\/]|\.com|\.org|www/i.test(t) && (/[a-z]/.test(t) && /[A-Z]/.test(t) || /[!#$%^&*?~]/.test(t))) return 'tok'; }
+  if (/\b(pin|code|passcode)\b[^\n]{0,12}?\b\d{4,8}\b/i.test(txt)) return 'pw'; return ''; }
+function fieldHtml(f, v){ var id = 'fx_' + f.k, val = v == null ? '' : v, lab = '<label class="f" for="' + id + '">' + esc(f.l) + (f.req ? ' *' : '') + (f.hint ? '<small>' + esc(f.hint) + '</small>' : '') + '</label>';
+  if (f.ty === 'sel') return lab + '<select class="inp" id="' + id + '" name="' + f.k + '">' + f.o.map(function(o){ return '<option' + (o === val ? ' selected' : '') + '>' + esc(o) + '</option>'; }).join('') + '</select>';
+  if (f.ty === 'yn') return '<label class="chk"><input type="checkbox" name="' + f.k + '"' + (val === 'Yes' ? ' checked' : '') + '> ' + esc(f.l) + '</label>';
+  if (f.ty === 'photo') return '<div class="f" style="margin-top:12px"><b>' + esc(f.l) + '</b></div><label class="btn sec sm" style="cursor:pointer;margin-top:6px">📷 Add a photo<input type="file" accept="image/*" data-photo hidden></label><div class="photos" data-phs></div>';
+  if (f.ty === 'area') return lab + '<textarea class="inp" id="' + id + '" name="' + f.k + '">' + esc(val) + '</textarea>';
+  if (f.ty === 'where') return lab + '<input class="inp" id="' + id + '" name="' + f.k + '" list="wl" value="' + esc(val) + '" autocomplete="off"><datalist id="wl">' + WHERE.map(function(o){ return '<option value="' + esc(o) + '">'; }).join('') + '</datalist>';
+  var ty = { tel: 'tel', email: 'email', date: 'date', num: 'text', last4: 'text' }[f.ty] || 'text', extra = f.ty === 'num' ? ' inputmode="decimal"' : f.ty === 'last4' ? ' inputmode="numeric" maxlength="4"' : '';
+  return lab + '<input class="inp" id="' + id + '" name="' + f.k + '" type="' + ty + '" value="' + esc(val) + '"' + extra + (f.ph ? ' placeholder="' + esc(f.ph) + '"' : '') + ' autocomplete="off">'; }
+function form(sid, eid, preset){ var x = BY[sid], q = F.data.sections[sid], e = eid ? q.items.filter(function(i){ return i.id === eid; })[0] : null; e = e || Object.assign({}, preset || {});
+  var sh = F.shared(), share = '';
+  if (sid === 'insurance' && sh.homeInsurance && sh.homeInsurance.from !== F.cfg.name) share = '<div class="note" id="shr">Home Records has your home insurance: <b>' + esc(sh.homeInsurance.co) + '</b>. <button type="button" class="tl" id="useShr">Use it here</button></div>';
+  if (sid === 'property' && sh.home && sh.home.from !== F.cfg.name && sh.home.addr) share = '<div class="note" id="shr">Home Records has your home address: <b>' + esc(sh.home.addr) + '</b>. <button type="button" class="tl" id="useShr">Use it here</button></div>';
+  var p = F.sheet((eid ? 'Edit ' : 'Add ') + x.thing, (x.warn ? '<div class="note warn">No passwords: write where to find the login instead.</div>' : '') + share + '<form id="ef" novalidate>' + x.f.map(function(f){ return fieldHtml(f, e[f.k]); }).join('') + '<p class="note red" id="ferr" role="alert" hidden></p><button class="btn" type="submit">Save</button>' + (eid ? '<button type="button" class="btn red" id="del">Delete</button>' : '') + '<button type="button" class="btn ghost" data-close>Cancel</button></form>');
+  var fm = p.querySelector('#ef'), err = p.querySelector('#ferr'), warned = {}, phs = (e.photos || []).slice(), added = [], saved = false;
+  var box = p.querySelector('[data-phs]'); function draw(){ if (!box) return; box.innerHTML = phs.map(function(x){ return '<figure><img data-ph="' + esc(x) + '" alt="Saved photo"><button type="button" aria-label="Remove photo" data-rm="' + esc(x) + '">×</button></figure>'; }).join('');
+    box.querySelectorAll('img[data-ph]').forEach(function(im){ F.ph.get(im.getAttribute('data-ph')).then(function(u){ if (u) im.src = u; }); });
+    box.querySelectorAll('[data-rm]').forEach(function(b){ b.onclick = function(){ var x = b.getAttribute('data-rm'); phs = phs.filter(function(y){ return y !== x; }); if (added.indexOf(x) >= 0) F.ph.del(x); draw(); }; }); }
+  var pin = p.querySelector('[data-photo]'); if (pin) pin.onchange = function(){ var fl = pin.files[0]; pin.value = ''; if (!fl) return; F.readPhoto(fl).then(function(u){ var pid = (F.isSample() ? 'smp-' : 'p-') + F.uid(''); return F.ph.put(pid, u).then(function(){ added.push(pid); phs.push(pid); draw(); }); }).catch(function(){ F.toast('That photo couldn\'t be read. Try another one.'); }); }; draw();
+  var obs = new MutationObserver(function(){ if (!document.body.contains(p)) { obs.disconnect(); if (!saved) added.forEach(function(x){ F.ph.del(x); }); } }); obs.observe(document.body, { childList: true });
+  var u = p.querySelector('#useShr'); if (u) u.onclick = function(){ if (sid === 'insurance') { fm.kind.value = 'Home or renters'; fm.co.value = sh.homeInsurance.co || ''; fm.pol.value = sh.homeInsurance.pol || ''; fm.agent.value = sh.homeInsurance.agent || ''; fm.who.value = fm.who.value || 'Our home'; } else { fm.kind.value = 'Home'; fm.addr.value = sh.home.addr; if (!fm.what.value) fm.what.value = 'Our home'; } p.querySelector('#shr').hidden = true; };
+  fm.onsubmit = function(ev){ ev.preventDefault(); var o = { id: e.id || F.uid('e') }; x.f.forEach(function(f){ if (f.ty === 'photo') { o.photos = phs.slice(); return; } var el = fm.elements[f.k]; o[f.k] = f.ty === 'yn' ? (el.checked ? 'Yes' : 'No') : el.value.trim(); });
+    var miss = x.f.filter(function(f){ return f.req && !o[f.k]; })[0]; if (miss) return bad('Please fill in "' + miss.l + '".', miss.k);
+    if (o.last4 && !/^\d{1,4}$/.test(o.last4)) return bad('Only the last 4 digits, numbers only.', 'last4');
+    if (o.amt && isNaN(+o.amt.replace(/[$,]/g, ''))) return bad('The amount should be a number, like 49.99.', 'amt'); if (o.amt) o.amt = String(+o.amt.replace(/[$,]/g, ''));
+    var txt = x.f.filter(function(f){ return f.ty !== 'sel' && f.ty !== 'yn' && f.ty !== 'photo'; }).map(function(f){ return o[f.k]; }).join(' \n ');
+    if (looksSecret(txt) && warned.pw !== txt) { err.hidden = false; err.innerHTML = '<div class="pwstop" role="alertdialog" aria-label="Is that a password?"><p>Stop: that looks like a password or PIN.</p><p class="small" style="font-weight:400">Family File never stores passwords. Write where to find it instead, like "in our password manager".</p><button type="button" class="btn sm" data-pw="fix">Go back and remove it</button> <button type="button" class="btn sm ghost" data-pw="ok">It isn\'t a password. Save</button></div>'; err.querySelector('[data-pw=fix]').onclick = function(){ err.hidden = true; err.innerHTML = ''; var f = fm.querySelector('textarea,input[type=text]'); if (f) f.focus(); }; err.querySelector('[data-pw=ok]').onclick = function(){ warned.pw = txt; err.hidden = true; err.innerHTML = ''; (fm.requestSubmit ? fm.requestSubmit() : fm.onsubmit && fm.onsubmit(new Event('submit'))); }; err.querySelector('[data-pw=fix]').focus(); return; }
+    if ((x.id === 'accounts' || x.id === 'digital') && /\d{8,}/.test(txt.replace(/[\s-]/g, '')) && warned.num !== txt) { warned.num = txt; return bad('That looks like a full account number. Only keep the last 4 digits here. If it isn\'t, tap Save again.'); }
+    saved = true; var old = eid ? q.items.filter(function(i){ return i.id === eid; })[0] : null; if (old) (old.photos || []).forEach(function(x){ if (phs.indexOf(x) < 0) F.ph.del(x); });
+    if (eid) q.items = q.items.map(function(i){ return i.id === eid ? o : i; }); else q.items.push(o); q.na = false;
+    F.save(); F.close(true); F.go('sec', sid); F.toast('Saved. Your family file is ' + pct(F.data) + '% done.'); };
+  function bad(m, k){ err.textContent = m; err.hidden = false; if (k && fm.elements[k] && fm.elements[k].focus) fm.elements[k].focus(); else err.scrollIntoView({ block: 'center' }); }
+  var del = p.querySelector('#del'); if (del) del.onclick = function(){ saved = true; var old = q.items.slice(); q.items = q.items.filter(function(i){ return i.id !== eid; }); F.save(); F.close(true); F.go('sec', sid); F.toast('Deleted.', 'Undo', function(){ q.items = old; F.save(); F.refresh(); }); }; }
+
+/* ---------- printing the binder ---------- */
+function printSheet(){ var p = F.sheet('Print your binder', '<p class="muted">Pick what to print. In the print window choose your printer, or <b>Save as PDF</b> to keep a copy.</p>' +
+  '<div class="chips" role="group" aria-label="Presets"><button type="button" class="chip" data-pre="all" aria-pressed="true">Whole binder</button><button type="button" class="chip" data-pre="sitter" aria-pressed="false">For a sitter</button><button type="button" class="chip" data-pre="money" aria-pressed="false">Money & insurance</button></div>' +
+  S.map(function(x){ return '<label class="chk"><input type="checkbox" name="ps" value="' + x.id + '" checked> ' + x.ic + ' ' + esc(x.t) + '</label>'; }).join('') +
+  '<label class="chk" style="border-top:1.5px solid var(--line);margin-top:6px"><input type="checkbox" id="blank" checked> Add blank lines to write on</label><label class="chk"><input type="checkbox" id="tabs"> Add a spine label and section tab labels</label><label class="f" for="cth">Cover colour</label><select class="inp" id="cth"><option value="">Plain (saves ink)</option><option value="navy">Navy</option><option value="sage">Sage</option><option value="blush">Blush</option></select><button type="button" class="btn" id="go">Print</button><button type="button" class="btn ghost" data-close>Cancel</button>');
+  var pre = { all: S.map(function(x){ return x.id; }), sitter: ['people', 'health', 'kids', 'household', 'plan', 'pets'], money: ['accounts', 'insurance', 'bills', 'property'] };
+  p.querySelectorAll('[data-pre]').forEach(function(b){ b.onclick = function(){ p.querySelectorAll('[data-pre]').forEach(function(c){ c.setAttribute('aria-pressed', c === b ? 'true' : 'false'); }); var on = pre[b.getAttribute('data-pre')]; p.querySelectorAll('[name=ps]').forEach(function(c){ c.checked = on.indexOf(c.value) >= 0; }); }; });
+  p.querySelector('#go').onclick = function(){ var ids = [].slice.call(p.querySelectorAll('[name=ps]:checked')).map(function(c){ return c.value; }); if (!ids.length) return F.toast('Pick at least one section.'); F.close(true); if (!F.isSample()) { F.data.access = Object.assign({}, F.data.access, { printed: F.ymd(F.today()) }); F.save(); } F.printNow(binder(ids, p.querySelector('#blank').checked, p.querySelector('#tabs').checked, p.querySelector('#cth').value)); }; }
+function binder(ids, blank, tabs, th){ var d = F.data, today = F.fmtD(F.today()), TH = { navy: 'background:#1B2A40;color:#FBF8F2', sage: 'background:#DCE8DF;color:#1B2A40', blush: 'background:#F6E3DA;color:#1B2A40' };
+  var h = '<div class="cover"' + (TH[th] ? ' style="' + TH[th] + ';-webkit-print-color-adjust:exact;print-color-adjust:exact;padding:40pt;min-height:9.5in"' : '') + '><img src="icon-192.png" alt=""><h1>Family File</h1><p style="font-size:16pt">' + esc(d.family || '') + '</p><p>Printed ' + esc(today) + ' · ' + pct(d) + '% complete</p><p class="small" style="max-width:420px;margin:24pt auto 0">This binder says where important things are and who to call. It does not contain passwords. Keep it somewhere safe, like you would a passport, and tell someone you trust where it is.</p></div>';
+  h += '<div class="pb"><h2>Contents</h2><ol>' + ids.map(function(i){ return '<li>' + esc(BY[i].t) + '</li>'; }).join('') + '</ol><p class="small">The most up-to-date version is in the Family File app on: ______________________ &nbsp; Locked backup file kept: ______________________</p></div>';
+  h += '<div class="pb"><h2>For the person opening this</h2><p>If you are reading this because something has happened: take a breath. This binder was made so you know where things are and who to call. Start with <b>Who to call first</b>, then <b>If something happens</b>.</p><h3>To open the newest version</h3><ol><li>The newest copy lives in the Family File app on the phone or computer named on the contents page. If you can unlock that device, open Family File from its home screen.</li><li>If you can\'t, find the locked backup file (its name starts with <b>Family-File</b> and ends in <b>.json</b>). Where it\'s kept: ______________________</li><li>On any phone or computer, open Family File, tap <b>Backup</b>, then <b>Restore from a backup file</b>, choose the file and type the passphrase.</li><li>The passphrase is <b>not</b> written in this binder. Ask: ______________________</li></ol><h3>What this binder does not contain</h3><p class="small">No passwords, no full account numbers and no will or legal documents. It says where those are kept. For legal or money decisions, ask the people listed under Who to call first, a lawyer or a financial adviser.</p></div>';
+  ids.forEach(function(i){ var x = BY[i], q = d.sections[i]; var cols = x.f.filter(function(f){ return f.ty !== 'photo' && (q.items.some(function(e){ return filled(e[f.k]); }) || f.req); });
+    h += '<div class="pb"><h2>' + esc(x.t) + '</h2><p class="small">' + esc(x.intro) + '</p>';
+    if (q.na && !q.items.length) h += '<p>' + esc(x.na || 'Doesn\'t apply to us') + '.</p>';
+    h += '<table><thead><tr>' + cols.map(function(f){ return '<th>' + esc(f.l.replace(/ \(.*\)$/, '')) + '</th>'; }).join('') + '</tr></thead><tbody>' + q.items.map(function(e){ return '<tr>' + cols.map(function(f){ var v = e[f.k] || ''; if (f.ty === 'date') v = F.fmtD(v); if (f.k === 'amt' && v) v = F.money(v); if (f.k === 'last4' && v) v = '••' + v; return '<td>' + esc(v) + '</td>'; }).join('') + '</tr>'; }).join('') +
+      (blank ? new Array(i === 'wishes' ? 3 : 4).join('x').split('x').map(function(){ return '<tr class="blank">' + cols.map(function(){ return '<td></td>'; }).join('') + '</tr>'; }).join('') : '') + '</tbody></table>';
+    if (i === 'bills') { var at = autopayTotal(d), by = glance(d); if (at) h += '<p class="small">Autopays listed: ' + F.money(Math.round(at * 100) / 100) + ' a month.</p>'; var ks = Object.keys(by).filter(function(k){ return by[k]; }); if (ks.length) h += '<table><thead><tr><th>Bills at a glance</th><th>Per month</th></tr></thead><tbody>' + ks.map(function(k){ return '<tr><td>' + esc(k) + '</td><td>' + F.money(Math.round(by[k] * 100) / 100) + '</td></tr>'; }).join('') + '</tbody></table>'; }
+    if (i === 'plan') h += '<table><thead><tr><th>Go-bag</th><th>Packed</th></tr></thead><tbody>' + GOBAG.map(function(g){ return '<tr><td>' + esc(g) + '</td><td>' + (d.gobag[g] ? '✓' : '') + '</td></tr>'; }).join('') + '</tbody></table>';
+    if (q.items.some(function(e){ return (e.photos || []).length; })) h += '<p class="small">Photos for this section are saved in the Family File app.</p>';
+    if (i === 'wishes') h += '<p class="small">These are personal notes, not legal documents.</p>';
+    h += '</div>'; });
+  if (tabs) h += '<div class="pb"><h2>Spine label and tab labels</h2><p class="small">Cut along the lines. Spine strips fit 1, 1.5 and 2 inch binders.</p>' + [1, 1.5, 2].map(function(w){ return '<div style="border:1px dashed #888;width:' + w + 'in;height:9.5in;display:inline-flex;align-items:center;justify-content:center;margin:0 10pt 10pt 0;vertical-align:top"><div style="transform:rotate(-90deg);white-space:nowrap;font-weight:800;font-size:' + (11 + w * 5) + 'pt">Family File · ' + esc(d.family || '') + '</div></div>'; }).join('') + '</div><div class="pb"><h2>Section tab labels</h2><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8pt">' + ids.map(function(i){ return '<div style="border:1px dashed #888;padding:10pt;text-align:center;font-weight:800">' + esc(BY[i].t) + '</div>'; }).join('') + '</div></div>';
+  return h; }
+
+
+/* ---------- spreadsheet import (people from a phone-contacts export, bills from the template) ---------- */
+function parseCsv(t){ var rows = [], row = [], cur = '', q = false; t = String(t).replace(/^\uFEFF/, ''); for (var i = 0; i < t.length; i++) { var c = t[i]; if (q) { if (c === '"') { if (t[i + 1] === '"') { cur += '"'; i++; } else q = false; } else cur += c; } else if (c === '"') q = true; else if (c === ',') { row.push(cur); cur = ''; } else if (c === '\n' || c === '\r') { if (c === '\r' && t[i + 1] === '\n') i++; row.push(cur); rows.push(row); row = []; cur = ''; } else cur += c; } if (cur || row.length) { row.push(cur); rows.push(row); } return rows.filter(function(r){ return r.some(function(x){ return x.trim(); }); }); }
+var IMP = {
+  people: { label: 'Import contacts from a spreadsheet', hint: 'Works with a contacts file exported from Google Contacts or Outlook (CSV), or the People template in your bonus pack.',
+    map: function(g){ var n = g(['name', 'full_name', 'display_name']) || [g(['first_name', 'given_name']), g(['last_name', 'family_name'])].filter(Boolean).join(' ');
+      var kinds = __S_PEOPLE_KINDS, k = g(['type', 'who_they_are', 'kind']); return { kind: kinds.indexOf(k) >= 0 ? k : 'Family member', name: n, rel: g(['relationship', 'relationship_or_role', 'notes_relationship', 'organization_1_name', 'company']), phone: g(['phone', 'phone_number', 'mobile_phone', 'phone_1_value', 'primary_phone', 'mobile']), email: g(['email', 'email_address', 'e_mail_1_value', 'e_mail_address']), notes: g(['notes', 'note']) }; }, key: 'name' },
+  bills: { label: 'Import bills from a spreadsheet', hint: 'Use the Bills template in your bonus pack (columns: name, amount, how_often, paid_from, autopay, if_something_happens, how_to_stop).',
+    map: function(g){ var f = g(['how_often', 'frequency']), then = g(['if_something_happens', 'then']), a = g(['amount', 'amt']).replace(/[$,]/g, ''); return { name: g(['name', 'bill', 'subscription']), amt: a && !isNaN(+a) ? String(+a) : '', freq: ['Monthly', 'Yearly', 'Quarterly', 'Weekly'].filter(function(x){ return x.toLowerCase() === f.toLowerCase(); })[0] || 'Monthly', from: g(['paid_from', 'from', 'account']), auto: /^(y|yes|true|1)$/i.test(g(['autopay', 'on_autopay'])) ? 'Yes' : 'No', then: ['Keep paying', 'Cancel it', 'Move to someone else', 'Not sure yet'].filter(function(x){ return x.toLowerCase() === then.toLowerCase(); })[0] || 'Not sure yet', how: g(['how_to_stop', 'how_to_cancel', 'how']), notes: g(['notes']) }; }, key: 'name' }
+};
+function importCsv(sid, text){ var spec = IMP[sid], rows = parseCsv(text); if (rows.length < 2) return F.toast('Nothing was imported: that file has no rows.');
+  var hd = rows[0].map(function(h){ return h.trim().toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, ''); });
+  var items = rows.slice(1).map(function(r){ var g = function(names){ for (var i = 0; i < names.length; i++) { var k = hd.indexOf(names[i]); if (k >= 0 && (r[k] || '').trim()) return r[k].trim(); } return ''; }; var o = spec.map(g); o.id = F.uid('e'); return o; }).filter(function(o){ return o[spec.key]; });
+  if (!items.length) return F.sheet('Nothing was imported', '<p class="note red" role="alert">No rows had a ' + (sid === 'people' ? 'name' : 'bill name') + '. Check the first row has column names, like the template in your bonus pack.</p><button type="button" class="btn" data-close>OK</button>');
+  var x = BY[sid], p = F.sheet('Import ' + items.length + ' ' + (items.length === 1 ? x.thing : x.pl || x.thing + 's') + '?', '<div class="card"><p>' + items.slice(0, 6).map(function(o){ return esc(x.line(o)[0]); }).join('<br>') + (items.length > 6 ? '<br>… and ' + (items.length - 6) + ' more' : '') + '</p></div><p class="muted">You can edit or delete any of them afterwards.</p><button type="button" class="btn" id="igo">Add ' + items.length + '</button><button type="button" class="btn ghost" data-close>Cancel</button>');
+  p.querySelector('#igo').onclick = function(){ var q = F.data.sections[sid], before = q.items.slice(); q.items = q.items.concat(items); q.na = false; F.save(); F.close(true); F.go('sec', sid); F.toast('Imported ' + items.length + '.', 'Undo', function(){ q.items = before; F.save(); F.refresh(); }); }; }
+F.on('imp', function(sid){ var f = document.getElementById('impf'); f.onchange = function(){ var x = f.files[0]; f.value = ''; if (x) x.text().then(function(t){ importCsv(sid, t); }); }; f.click(); });
+
+/* ---------- actions ---------- */
+F.on('begin', function(){ var v = (document.getElementById('fam') || {}).value; if (v) { F.data.family = v.trim(); F.save(); } F.seen(); F.go('home'); });
+F.on('sec', function(id){ F.go('sec', id); });
+F.on('new', function(id){ form(id); });
+F.on('edit', function(id){ var a = id.split(':'); form(a[0], a[1]); });
+F.on('na', function(id, el){ F.data.sections[id].na = el.checked; F.save(); F.refresh(); });
+F.on('next', function(){ var n = nextThing(F.data); if (!n) return; if ((n.s === 'pets' || n.s === 'kids') && !F.data.sections[n.s].items.length) return F.go('sec', n.s); F.go('sec', n.s); form(n.s, n.edit, n.kind ? { kind: n.kind, what: n.kind } : null); });
+F.on('add', function(){ var p = F.sheet('What do you want to add?', '<div class="list">' + S.map(function(x){ return '<button type="button" class="it" data-pick="' + x.id + '"><span class="ic" aria-hidden="true">' + x.ic + '</span><span class="tx"><b>' + esc(x.t) + '</b></span></button>'; }).join('') + '</div>');
+  p.querySelectorAll('[data-pick]').forEach(function(b){ b.onclick = function(){ var id = b.getAttribute('data-pick'); F.close(true); F.go('sec', id); form(id); }; }); });
+F.on('print', printSheet);
+F.on('told', function(){ F.data.access = Object.assign({}, F.data.access, { told: F.ymd(F.today()) }); F.save(); F.refresh(); F.toast('Noted. Remind them every year or so.'); });
+F.on('ffics', function(){ var d = F.data, L = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//FiledAwayCo//Family File//EN', 'CALSCALE:GREGORIAN'], n = 0, es = function(x){ return String(x).replace(/[,;\\]/g, function(c){ return '\\' + c; }); }, stamp = new Date().toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z';
+  [['insurance', 'renew', 'renews'], ['documents', 'expires', 'expires']].forEach(function(z){ d.sections[z[0]].items.forEach(function(e){ var dt = F.parseD(e[z[1]]); if (!dt) return; n++; var t = (z[0] === 'insurance' ? e.co + ' ' + (e.kind || '') : e.kind + (e.whose ? ' (' + e.whose + ')' : '')).trim() + ' ' + z[2];
+    L.push('BEGIN:VEVENT', 'UID:ff-' + e.id + '-' + z[1] + '@filedawayco', 'DTSTAMP:' + stamp, 'DTSTART;VALUE=DATE:' + F.ymd(dt).replace(/-/g, ''), 'SUMMARY:' + es(t), 'DESCRIPTION:' + es('From Family File. Update the date in the app once it is renewed.'), 'BEGIN:VALARM', 'ACTION:DISPLAY', 'DESCRIPTION:' + es(t + ' in 30 days'), 'TRIGGER:-P30D', 'END:VALARM', 'BEGIN:VALARM', 'ACTION:DISPLAY', 'DESCRIPTION:' + es(t + ' in 7 days'), 'TRIGGER:-P7D', 'END:VALARM', 'END:VEVENT'); }); });
+  if (!n) return F.toast('Add a renewal or expiry date to an insurance policy or document first.'); L.push('END:VCALENDAR'); F.download('Family-File-dates.ics', L.join('\r\n'), 'text/calendar'); window.__FAH_ICS = L.join('\n');
+  F.sheet('Calendar alerts saved', '<p class="muted">Open <b>Family-File-dates.ics</b> to add ' + n + ' date' + (n === 1 ? '' : 's') + ' to your phone calendar. Your calendar will alert you 30 days and 7 days before each one, even when the app is closed.</p><button type="button" class="btn" data-close>OK</button>'); });
+F.on('quickdoc', function(k){ form('documents', null, { kind: k }); });
+F.on('gobag', function(g, el){ var on = !F.data.gobag[g]; if (on) F.data.gobag[g] = 1; else delete F.data.gobag[g]; F.save(); F.refresh(); });
+F.on('wipe', function(){ F.ask('Delete everything?', 'This removes your whole family file from this device. Save a backup first if you might want it back.', 'Delete everything', 'Keep it', true).then(function(y){ if (!y) return; ['', '_sample', '_mode', '_seen', '_lastbk'].forEach(function(s){ localStorage.removeItem(KEY + s); }); F.ph.keys().then(function(ks){ return Promise.all(ks.map(F.ph.del)); }).catch(function(){}); F.load(); F.go('welcome'); F.toast('Deleted from this device.'); }); });
+F.start({ slug: 'family-file', name: 'Family File', file: 'Family-File', key: KEY, photos: true, lockFirst: true, allLabel: 'Sections', addLabel: 'Add to your family file', backupNote: 'Email the file to yourself or save it to your cloud drive. A locked file is safe to store there; an unlocked one is readable by anyone who gets it.' },
+  { empty: empty, normalize: normalize, count: count, valid: valid, summary: summary, sample: sample, onSave: onSave });
+window.__FF = { dueAlerts: dueAlerts, glance: glance, GOBAG: GOBAG, DOCS: DOCS, pct: pct, nextThing: nextThing, S: S, binder: binder, parseCsv: parseCsv };
+})();
+</script>
+</body></html>

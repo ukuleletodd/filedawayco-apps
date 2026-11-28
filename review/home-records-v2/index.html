@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<!-- FiledAwayCo Home Records v2 (FiledAway Home, R3) 2026-11-27 -->
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Home Records by FiledAwayCo</title>
+<meta name="description" content="What your home needs this month, a room-by-room photo inventory for insurance, and warranty reminders. Stays on your device.">
+<meta name="theme-color" content="#1B2A40">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Home Records">
+<style>/* FiledAway Home apps: shared look (FiledAwayCo v-app3 style), 2026-11-27 */
+:root{--navy:#1B2A40;--green:#1F5C45;--green2:#E7F1EC;--paper:#FBF8F2;--line:#E6DECF;--slate:#4A5563;--tan:#C89B5A;--tan2:#F6EBDA;--warn:#9A5A00;--warnbg:#FFF4D6;--red:#8A2A20;--redbg:#FBE9E6;--ui:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--navy);font:16px/1.45 var(--ui);-webkit-tap-highlight-color:transparent}
+[hidden]{display:none!important}
+a{color:var(--green)}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid #2F7DE1;outline-offset:2px}
+.wrap{max-width:560px;margin:0 auto;padding:12px 18px calc(110px + env(safe-area-inset-bottom))}
+header.top{display:flex;gap:12px;align-items:center;padding:6px 0 4px}
+header.top img{width:44px;height:44px;border-radius:11px;flex:none}
+header.top h1{margin:0;font-size:22px;line-height:1.15;letter-spacing:-.3px}
+header.top .by{font-size:13px;font-weight:700;color:var(--slate)}header.top .by b{color:var(--green)}
+.tag{margin:6px 0 12px;color:var(--slate);font-size:15.5px}
+.banner{display:flex;gap:10px;align-items:center;justify-content:space-between;background:var(--warnbg);border:1.5px solid #EED9A0;border-radius:14px;padding:10px 12px 10px 16px;margin:0 0 12px;font-size:15px}
+.banner button{flex:none}
+.hero{background:var(--navy);color:#fff;border-radius:20px;padding:18px 20px;margin:0 0 12px;box-shadow:0 6px 18px rgba(27,42,64,.18)}
+.hero .k{font-size:13px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#9FD3B9}
+.hero .big{font-size:30px;line-height:1.15;font-weight:800;margin:6px 0 4px;letter-spacing:-.5px}
+.hero .sub{color:#D7DEE8;font-size:15px}
+.hero .bar{height:12px;border-radius:8px;background:rgba(255,255,255,.18);overflow:hidden;margin:12px 0 4px}
+.hero .bar i{display:block;height:100%;background:linear-gradient(90deg,#7FC8A4,#C89B5A);border-radius:8px}
+.hero .next{display:block;width:100%;margin-top:14px;min-height:52px;border:0;border-radius:14px;background:#fff;color:var(--navy);font-weight:800;font-size:16px;text-align:left;padding:10px 14px;cursor:pointer}
+.hero .next small{display:block;font-weight:600;color:var(--slate);font-size:13px}
+.hero ul{margin:8px 0 0;padding:0;list-style:none}
+.hero li{display:flex;gap:10px;align-items:center;justify-content:space-between;border-top:1px solid rgba(255,255,255,.14);padding:8px 0;font-size:15.5px}
+.hero li:first-child{border-top:0}
+.hero li .d{color:#D7DEE8;font-size:13px;display:block}
+.hero li button{flex:none;min-height:44px;min-width:72px;border:0;border-radius:12px;background:#7FC8A4;color:var(--navy);font-weight:800;cursor:pointer}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:52px;margin:8px 0 0;padding:6px 16px;border-radius:14px;border:0;background:var(--green);color:#fff;font-weight:800;font-size:16px;cursor:pointer;text-decoration:none;text-align:center}
+.btn.sec{background:#fff;color:var(--navy);border:2px solid var(--navy)}
+.btn.ghost{background:transparent;color:var(--slate);border:1.5px solid var(--line)}
+.btn.red{background:#fff;color:var(--red);border:1.5px solid #E5B9B2}
+.btn.sm{min-height:44px;width:auto;display:inline-flex;margin:0;font-size:15px;padding:4px 14px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tl{display:inline-flex;align-items:center;min-height:44px;padding:0 4px;border:0;background:none;color:var(--green);font-weight:800;text-decoration:underline;text-underline-offset:2px;cursor:pointer}
+.card{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;margin:0 0 10px}
+.card h3{margin:0 0 4px;font-size:17px}
+.card p{margin:0 0 6px;color:var(--slate);font-size:15px}
+.list{display:grid;gap:8px;margin:0 0 12px}
+.it{display:flex;gap:12px;align-items:center;width:100%;min-height:64px;background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:10px 14px;text-align:left;cursor:pointer}
+.it .ic{flex:none;width:40px;height:40px;border-radius:12px;background:var(--tan2);display:flex;align-items:center;justify-content:center;font-size:20px}
+.it .tx{flex:1;min-width:0}
+.it .tx b{display:block;font-size:16px}
+.it .tx span{display:block;color:var(--slate);font-size:14px;overflow:hidden;text-overflow:ellipsis}
+.it .st{flex:none;font-size:13px;font-weight:800;border-radius:999px;padding:4px 10px;background:var(--green2);color:var(--green)}
+.it .st.no{background:#F1EEE8;color:var(--slate)}.it .st.part{background:var(--warnbg);color:var(--warn)}.it .st.bad{background:var(--redbg);color:var(--red)}
+.it img.th{flex:none;width:52px;height:52px;border-radius:12px;object-fit:cover;background:#eee}
+h2.h{font-size:20px;margin:18px 0 8px;letter-spacing:-.2px}
+.muted{color:var(--slate);font-size:14.5px}
+.note{background:var(--green2);border-radius:14px;padding:12px 14px;font-size:14.5px;color:#183F31;margin:0 0 12px}
+.note.warn{background:var(--warnbg);color:#5A3A00}
+.note.red{background:var(--redbg);color:var(--red)}
+.trust{text-align:center;font-size:14px;color:var(--slate);margin:18px 0 0}
+nav.bn{position:fixed;left:0;right:0;bottom:0;z-index:50;background:#fff;border-top:1.5px solid var(--line);display:flex;justify-content:center;padding:4px 6px calc(4px + env(safe-area-inset-bottom))}
+nav.bn .in{display:flex;max-width:560px;width:100%;justify-content:space-around;align-items:flex-end}
+nav.bn button{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;min-height:56px;border:0;background:none;color:var(--slate);font-size:13px;font-weight:700;cursor:pointer;padding:4px 0}
+nav.bn button svg{width:24px;height:24px}
+nav.bn button[aria-current="page"]{color:var(--green)}
+nav.bn button.add span.p{width:54px;height:54px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;margin-top:-22px;box-shadow:0 6px 14px rgba(31,92,69,.35);font-size:30px;font-weight:400}
+.sh{position:fixed;inset:0;z-index:100;display:flex;align-items:flex-end;justify-content:center;background:rgba(17,26,40,.45)}
+.pan{width:100%;max-width:560px;max-height:94vh;max-height:94dvh;overflow:auto;background:var(--paper);border-radius:22px 22px 0 0;padding:12px 18px calc(18px + env(safe-area-inset-bottom));box-shadow:0 -8px 30px rgba(0,0,0,.18)}
+.pan .grab{width:40px;height:5px;border-radius:3px;background:#D8D0C1;margin:0 auto 10px}
+.pan h2{margin:4px 0 8px;font-size:22px;line-height:1.2}
+.pan .x{float:right;min-width:44px;min-height:44px;border:0;background:none;font-size:26px;line-height:1;color:var(--slate);cursor:pointer;margin:-6px -8px 0 0}
+label.f{display:block;margin:10px 0 0;font-weight:700;font-size:15px}
+label.f small{font-weight:500;color:var(--slate);display:block;font-size:13.5px}
+.inp{display:block;width:100%;min-height:48px;margin-top:4px;padding:10px 12px;border-radius:12px;border:1.5px solid #CFC6B5;background:#fff;font-size:16px}
+textarea.inp{min-height:88px;resize:vertical}
+.chk{display:flex;gap:10px;align-items:center;min-height:44px;font-weight:600;font-size:15.5px;cursor:pointer}
+.chk input{width:22px;height:22px;accent-color:var(--green);flex:none}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.chip{min-height:44px;padding:0 14px;border-radius:999px;border:1.5px solid var(--line);background:#fff;font-weight:700;font-size:14.5px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--green);border-color:var(--green);color:#fff}
+.toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:200;background:var(--navy);color:#fff;border-radius:14px;padding:10px 10px 10px 16px;display:flex;gap:10px;align-items:center;font-size:15px;width:max-content;max-width:92vw;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.toast button{min-height:44px;border:0;border-radius:10px;background:rgba(255,255,255,.18);color:#fff;font-weight:800;padding:0 12px;cursor:pointer}
+.stat3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 0 12px}
+.stat3 div{background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:10px;text-align:center}
+.stat3 b{display:block;font-size:20px}.stat3 span{font-size:12.5px;color:var(--slate)}
+.photos{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.photos figure{margin:0;position:relative}
+.photos img{width:84px;height:84px;object-fit:cover;border-radius:12px;border:1.5px solid var(--line)}
+.photos figure button{position:absolute;top:-8px;right:-8px;width:32px;height:32px;min-height:0;border-radius:50%;border:0;background:var(--navy);color:#fff;font-size:16px;cursor:pointer}
+.photos figure button::after{content:'';position:absolute;inset:-6px}
+.src{font-size:13px;color:var(--slate)}
+.pill{display:inline-block;font-size:12.5px;font-weight:800;border-radius:999px;padding:2px 8px;background:var(--warnbg);color:var(--warn)}
+.pill.red{background:var(--redbg);color:var(--red)}.pill.ok{background:var(--green2);color:var(--green)}
+#print{display:none}
+@media (min-width:900px){.wrap{padding-top:22px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media print{
+ body{background:#fff}
+ body>*:not(#print){display:none!important}
+ #print{display:block!important;color:#111;font:11pt/1.35 Georgia,"Times New Roman",serif}
+ #print h1{font:700 22pt/1.2 var(--ui);margin:0 0 6pt}
+ #print h2{font:700 15pt/1.2 var(--ui);margin:14pt 0 6pt;padding-bottom:3pt;border-bottom:2px solid #1B2A40;break-after:avoid}
+ #print .pb{break-before:page}
+ #print table{width:100%;border-collapse:collapse;margin:0 0 8pt;break-inside:auto}
+ #print th,#print td{border:1px solid #999;padding:4pt 5pt;text-align:left;vertical-align:top;font-size:9.5pt}
+ #print th{background:#EFEAE0;font-family:var(--ui)}
+ #print tr{break-inside:avoid}
+ #print .cover{text-align:center;padding-top:28vh}
+ #print .cover img{width:90px;height:90px;border-radius:20px}
+ #print .small{font-size:9pt;color:#444}
+ #print img.ph{width:90px;height:90px;object-fit:cover}
+ #print .blank td{height:22pt}
+ @page{margin:14mm}
+}
+.src a{display:inline-block;min-height:44px;line-height:44px;padding:0 4px}
+#main:focus{outline:none}
+
+/* ---- v2: FiledAwayCo design system v-app4 tokens + dashboard (adopted from /workspace/app4-2026-11-27/design-system, read-only) ---- */
+:root{--fa4-acc:#5B4A7A;--fa4-acc2:#7FB89E;--fa4-acc3:#E39A2D;--fa4-line:#E6DECF;--fa4-r:16px;--fa4-shadow:0 1px 2px rgba(27,42,64,.06),0 8px 24px rgba(27,42,64,.07)}
+body.app-hr{--fa4-acc:#4F6B3A}
+.hero{border-top:4px solid var(--fa4-acc2);position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;right:-60px;top:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.09),rgba(255,255,255,0) 70%);pointer-events:none}
+.card{box-shadow:var(--fa4-shadow);border-radius:var(--fa4-r)}
+.fa4-card{background:#fff;border:1px solid var(--fa4-line);border-radius:var(--fa4-r);padding:14px 16px;box-shadow:var(--fa4-shadow);margin:0 0 12px}
+.fa4-card h2{margin:0 0 10px;font-size:13px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--slate);display:flex;justify-content:space-between;gap:8px}
+.fa4-card h2 span{letter-spacing:0;text-transform:none;color:var(--navy)}
+.fa4-prog{display:flex;align-items:center;gap:14px}.fa4-prog svg{width:84px;height:84px;flex:none}.fa4-prog p{margin:0;font-size:14.5px;color:var(--slate)}.fa4-prog p b{display:block;font-size:22px;color:var(--navy)}
+.fa4-bars{display:grid;gap:9px}.fa4-bars .r{display:grid;gap:4px;font-size:14px}.fa4-bars .r div:first-child{display:flex;justify-content:space-between;gap:8px}
+.fa4-bars .t{height:9px;border-radius:6px;background:#EFEAE0;overflow:hidden}.fa4-bars .t i{display:block;height:100%;border-radius:6px;background:var(--fa4-acc)}
+.access ol{margin:6px 0 10px;padding-left:0;list-style:none;display:grid;gap:8px}.access li{display:flex;gap:10px;align-items:flex-start;font-size:15px}.access li .ck{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:#EFEAE0;font-weight:800;font-size:13px}.access li.ok .ck{background:var(--green);color:#fff}
+.linked{display:inline-block;font-size:13px;font-weight:800;border-radius:999px;padding:3px 10px;background:#E5F1EA;color:var(--green)}.linked.no{background:#F6EFE3;color:#7A5A1F}
+.pwstop{border:2px solid #B4533C;background:#FFF1EC;border-radius:14px;padding:12px;margin:10px 0}.pwstop p{margin:0 0 8px;font-weight:600}
+@media (min-width:980px){
+ body.isdash{background:radial-gradient(1200px 500px at 85% -10%,rgba(127,184,158,.16),transparent 60%),var(--paper)}
+ .wrap{max-width:760px}
+ body.isdash .wrap{max-width:1120px;padding:24px 32px 120px}
+ header.top h1{font-size:28px}
+ .dash{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:22px;align-items:start}
+ .hero .big{font-size:40px}
+ nav.bn{left:50%;right:auto;bottom:16px;transform:translateX(-50%);width:520px;border:1px solid var(--fa4-line);border-radius:22px;box-shadow:0 10px 30px rgba(27,42,64,.14)}
+ nav.bn .in{max-width:none}
+ .pan{border-radius:22px;margin-bottom:24px}
+}
+</style>
+</head><body>
+<noscript><p style="padding:20px">Home Records needs JavaScript turned on.</p></noscript>
+<script>/* FiledAway Home apps: shared core (2026-11-27). Everything stays on this device: localStorage for your entries, IndexedDB for photos.
+   Backups are files you save yourself. Locked backups use AES-GCM 256 with a key made from your passphrase (PBKDF2-SHA-256, 600,000 rounds). */
+(function(){
+'use strict';
+var W = window, D = document, LS = W.localStorage;
+var F = W.FAH = {};
+var C, APP, mode = 'real', lastFocus = null;
+function esc(x){ return String(x == null ? '' : x).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function J(x, d){ try { var v = JSON.parse(x); return v == null ? d : v; } catch(e){ return d; } }
+function g(k){ try { return LS.getItem(k); } catch(e){ return null; } }
+function s(k, v){ try { LS.setItem(k, v); return true; } catch(e){ F.toast('This device is out of storage space. Save a backup file, then remove some photos.'); return false; } }
+function r(k){ try { LS.removeItem(k); } catch(e){} }
+function pad(n){ return ('0' + n).slice(-2); }
+function ymd(d){ d = d || new Date(); return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+function parseD(x){ if (!x) return null; var m = /^(\d{4})-(\d{2})(?:-(\d{2}))?/.exec(x); if (!m) return null; return new Date(+m[1], +m[2] - 1, +(m[3] || 1)); }
+function fmtD(x, o){ var d = typeof x === 'string' ? parseD(x) : x; if (!d || isNaN(d)) return ''; return d.toLocaleDateString('en-US', o || { month: 'short', day: 'numeric', year: 'numeric' }); }
+function fmtM(x){ var d = typeof x === 'string' ? parseD(x) : x; if (!d) return ''; return d.toLocaleDateString('en-US', { month: 'long', year: 'numeric' }); }
+function addM(d, n){ var x = new Date(d.getFullYear(), d.getMonth() + n, 1); return x; }
+function money(n){ n = +n || 0; return '$' + n.toLocaleString('en-US', { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 }); }
+function uid(p){ return (p || 'e') + Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
+F.esc = esc; F.J = J; F.ymd = ymd; F.parseD = parseD; F.fmtD = fmtD; F.fmtM = fmtM; F.addM = addM; F.money = money; F.uid = uid;
+F.today = function(){ var t = W.__FAH_TODAY; return t ? parseD(t) : new Date(); };   /* tests can pin "today" */
+
+/* ---------- photos + undo: IndexedDB ---------- */
+var dbp = null;
+function db(){ if (dbp) return dbp; dbp = new Promise(function(ok, no){ var q = indexedDB.open('fah-' + C.slug, 1);
+  q.onupgradeneeded = function(){ var d = q.result; if (!d.objectStoreNames.contains('photos')) d.createObjectStore('photos'); if (!d.objectStoreNames.contains('kv')) d.createObjectStore('kv'); };
+  q.onsuccess = function(){ ok(q.result); }; q.onerror = function(){ no(q.error); }; }); return dbp; }
+function tx(store, m, fn){ return db().then(function(d){ return new Promise(function(ok, no){ var t = d.transaction(store, m), o = t.objectStore(store), res; var q = fn(o); if (q) q.onsuccess = function(){ res = q.result; }; t.oncomplete = function(){ ok(res); }; t.onerror = function(){ no(t.error); }; t.onabort = function(){ no(t.error); }; }); }); }
+F.ph = {
+  put: function(id, url){ return tx('photos', 'readwrite', function(o){ return o.put(url, id); }); },
+  get: function(id){ return tx('photos', 'readonly', function(o){ return o.get(id); }); },
+  del: function(id){ return tx('photos', 'readwrite', function(o){ return o.delete(id); }); },
+  keys: function(){ return tx('photos', 'readonly', function(o){ return o.getAllKeys(); }); },
+  all: function(filter){ return F.ph.keys().then(function(ks){ ks = ks.filter(filter || function(){ return true; }); return Promise.all(ks.map(F.ph.get)).then(function(vs){ var o = {}; ks.forEach(function(k, i){ o[k] = vs[i]; }); return o; }); }); }
+};
+F.kv = { put: function(k, v){ return tx('kv', 'readwrite', function(o){ return o.put(v, k); }); }, get: function(k){ return tx('kv', 'readonly', function(o){ return o.get(k); }); }, del: function(k){ return tx('kv', 'readwrite', function(o){ return o.delete(k); }); } };
+/* resize a picked photo so it fits on the phone: longest side 1280px, JPEG */
+F.readPhoto = function(file, max){ max = max || 1280; return new Promise(function(ok, no){ var fr = new FileReader(); fr.onerror = function(){ no(fr.error); };
+  fr.onload = function(){ var im = new Image(); im.onerror = function(){ no(new Error('not an image')); }; im.onload = function(){ var w = im.naturalWidth, h = im.naturalHeight, k = Math.min(1, max / Math.max(w, h)); var c = D.createElement('canvas'); c.width = Math.round(w * k); c.height = Math.round(h * k); c.getContext('2d').drawImage(im, 0, 0, c.width, c.height); ok(c.toDataURL('image/jpeg', 0.72)); }; im.src = fr.result; };
+  fr.readAsDataURL(file); }); };
+F.isRealPhoto = function(id){ return id.indexOf('smp-') !== 0; };
+
+/* ---------- data: your own data and the sample are kept apart ---------- */
+F.data = null;
+F.isSample = function(){ return mode === 'sample'; };
+F.load = function(){ mode = g(C.key + '_mode') === 'sample' ? 'sample' : 'real'; var x = J(g(mode === 'sample' ? C.key + '_sample' : C.key), null); F.data = APP.normalize(x || APP.empty()); return F.data; };
+F.save = function(){ F.data.updatedAt = new Date().toISOString(); if (!F.isSample() && !g(C.key + '_persist') && navigator.storage && navigator.storage.persist) { s(C.key + '_persist', '1'); navigator.storage.persist().then(function(ok){ s(C.key + '_persist', ok ? 'yes' : 'asked'); }).catch(function(){}); } if (!s(F.isSample() ? C.key + '_sample' : C.key, JSON.stringify(F.data))) return false; if (!F.isSample() && APP.onSave) APP.onSave(F.data); return true; };
+F.realData = function(){ return APP.normalize(J(g(C.key), null) || APP.empty()); };
+F.useSample = function(){ mode = 'sample'; s(C.key + '_mode', 'sample'); var smp = APP.sample(); var ph = APP.samplePhotos ? APP.samplePhotos() : {};
+  return Promise.all(Object.keys(ph).map(function(k){ return F.ph.put(k, ph[k]); })).catch(function(){}).then(function(){ s(C.key + '_sample', JSON.stringify(smp)); F.load(); F.go('home'); F.toast('These are made-up sample details. Your own info is kept separate.'); }); };
+F.clearSample = function(){ r(C.key + '_mode'); r(C.key + '_sample'); mode = 'real';
+  return F.ph.keys().then(function(ks){ return Promise.all(ks.filter(function(k){ return !F.isRealPhoto(k); }).map(F.ph.del)); }).catch(function(){}).then(function(){ F.load(); F.go('home'); F.toast('Sample cleared. This is your own file.'); }); };
+
+/* ---------- shared between the FiledAway Home apps (same website, same device) ---------- */
+F.shared = function(){ return J(g('fah_shared_v1'), {}); };
+F.setShared = function(part, val){ if (F.isSample()) return; var o = F.shared(); o[part] = Object.assign({}, val, { from: C.name, at: new Date().toISOString() }); s('fah_shared_v1', JSON.stringify(o)); };
+F.other = function(key){ return J(g(key), null); };
+
+/* ---------- toast, sheets, confirm ---------- */
+var tt;
+F.toast = function(msg, act, fn, ms){ var o = D.getElementById('toast'); if (!o) { o = D.createElement('div'); o.id = 'toast'; o.className = 'toast'; o.setAttribute('role', 'status'); o.setAttribute('aria-live', 'polite'); D.body.appendChild(o); }
+  o.innerHTML = '<span>' + esc(msg) + '</span>' + (act ? '<button type="button">' + esc(act) + '</button>' : ''); o.hidden = false;
+  if (act) o.querySelector('button').onclick = function(){ o.hidden = true; fn && fn(); };
+  clearTimeout(tt); tt = setTimeout(function(){ o.hidden = true; }, ms || (act ? 9000 : 4200)); };
+F.sheet = function(title, body, onmount){ F.close(true); lastFocus = D.activeElement; var sh = D.createElement('div'); sh.className = 'sh'; sh.id = 'sheet';
+  sh.innerHTML = '<div class="pan" role="dialog" aria-modal="true" aria-labelledby="shT"><div class="grab"></div><button type="button" class="x" aria-label="Close" data-close>×</button><h2 id="shT">' + esc(title) + '</h2>' + body + '</div>';
+  sh.addEventListener('click', function(e){ if (e.target === sh || e.target.closest('[data-close]')) F.close(); });
+  sh.addEventListener('keydown', function(e){ if (e.key === 'Escape') F.close(); if (e.key === 'Tab') { var f = [].slice.call(sh.querySelectorAll('button,input,select,textarea,a[href]')).filter(function(x){ return !x.disabled && x.offsetParent; }); if (!f.length) return; var a = f[0], z = f[f.length - 1]; if (e.shiftKey && D.activeElement === a) { e.preventDefault(); z.focus(); } else if (!e.shiftKey && D.activeElement === z) { e.preventDefault(); a.focus(); } } });
+  D.body.appendChild(sh); D.body.style.overflow = 'hidden'; var p = sh.querySelector('.pan'); if (onmount) onmount(p);
+  var first = p.querySelector('input:not([type=checkbox]):not([type=file]),select,textarea'); setTimeout(function(){ (first && !first.value && !W.__FAH_NOFOCUS ? first : p.querySelector('h2')).focus && (first && !first.value ? first.focus() : (p.querySelector('h2').setAttribute('tabindex', '-1'), p.querySelector('h2').focus())); }, 30);
+  return p; };
+F.close = function(silent){ var sh = D.getElementById('sheet'); if (sh) sh.remove(); D.body.style.overflow = ''; if (!silent && lastFocus && lastFocus.focus && D.contains(lastFocus)) lastFocus.focus(); };
+F.ask = function(title, msg, yes, no, danger){ return new Promise(function(ok){ var done = false; var p = F.sheet(title, '<p class="muted">' + msg + '</p><button type="button" class="btn' + (danger ? ' red' : '') + '" data-y>' + esc(yes) + '</button><button type="button" class="btn ghost" data-n>' + esc(no || 'Cancel') + '</button>');
+  p.querySelector('[data-y]').onclick = function(){ done = true; F.close(); ok(true); }; p.querySelector('[data-n]').onclick = function(){ done = true; F.close(); ok(false); };
+  var obs = new MutationObserver(function(){ if (!D.body.contains(p)) { obs.disconnect(); if (!done) ok(false); } }); obs.observe(D.body, { childList: true }); }); };
+F.download = function(name, text, type){ var b = text instanceof Blob ? text : new Blob([text], { type: type || 'application/json' }); var a = D.createElement('a'); a.href = URL.createObjectURL(b); a.download = name; D.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 1500); W.__FAH_LAST_DL = { name: name, size: b.size }; };
+
+/* ---------- passphrase lock (WebCrypto) ---------- */
+var ITER = 600000;
+function b64(buf){ var b = new Uint8Array(buf), s2 = '', i, n = 0x8000; for (i = 0; i < b.length; i += n) s2 += String.fromCharCode.apply(null, b.subarray(i, i + n)); return btoa(s2); }
+function unb64(x){ var s2 = atob(x), b = new Uint8Array(s2.length); for (var i = 0; i < s2.length; i++) b[i] = s2.charCodeAt(i); return b; }
+function keyFrom(pass, salt, iter){ var enc = new TextEncoder(); return crypto.subtle.importKey('raw', enc.encode(pass.normalize('NFC')), 'PBKDF2', false, ['deriveKey']).then(function(k){ return crypto.subtle.deriveKey({ name: 'PBKDF2', salt: salt, iterations: iter, hash: 'SHA-256' }, k, { name: 'AES-GCM', length: 256 }, false, ['encrypt', 'decrypt']); }); }
+F.lock = function(obj, pass){ var salt = crypto.getRandomValues(new Uint8Array(16)), iv = crypto.getRandomValues(new Uint8Array(12));
+  return keyFrom(pass, salt, ITER).then(function(k){ return crypto.subtle.encrypt({ name: 'AES-GCM', iv: iv }, k, new TextEncoder().encode(JSON.stringify(obj))); }).then(function(ct){
+    return { format: 'filedawayco-backup-locked', version: 1, app: C.slug, appName: C.name, savedAt: new Date().toISOString(), howToUse: 'This backup is locked with a passphrase. Open ' + C.name + ', tap Backup, then Restore from a backup file, pick this file and type the passphrase. Without the passphrase nobody (including FiledAwayCo) can open it.',
+      cipher: { name: 'AES-GCM', bits: 256, kdf: 'PBKDF2-SHA-256', iterations: ITER, salt: b64(salt), iv: b64(iv) }, data: b64(ct) }; }); };
+F.unlock = function(env, pass){ var c = env.cipher || {}; return keyFrom(pass, unb64(c.salt), c.iterations || ITER).then(function(k){ return crypto.subtle.decrypt({ name: 'AES-GCM', iv: unb64(c.iv) }, k, unb64(env.data)); }).then(function(pt){ return JSON.parse(new TextDecoder().decode(pt)); }, function(){ throw new Error('WRONG_PASS'); }); };
+
+/* ---------- backup + restore ---------- */
+function payload(){ var d = F.realData(); return (C.photos ? F.ph.all(F.isRealPhoto) : Promise.resolve({})).then(function(ph){ return { data: d, photos: ph }; }); }
+F.hasReal = function(){ return APP.count(F.realData()) > 0; };
+F.canShareFile = function(){ try { return !!(navigator.canShare && navigator.canShare({ files: [new File(['x'], 'x.json', { type: 'application/json' })] })); } catch (e) { return false; } };
+F.backup = function(pass, share){ if (!F.hasReal()) { F.toast(F.isSample() ? 'Nothing to back up yet: sample details are never saved in a backup.' : 'Nothing to back up yet. Add something first.'); return Promise.resolve(null); }
+  var name = C.file + (pass ? '-LOCKED' : '') + '-backup-' + ymd() + '.json';
+  return payload().then(function(p){ if (pass) return F.lock(p, pass); return { format: 'filedawayco-backup', version: 2, app: C.slug, appName: C.name, savedAt: new Date().toISOString(), howToUse: 'Keep this file somewhere safe. To bring your info back: open ' + C.name + ', tap Backup, then Restore from a backup file and pick this file.', data: p.data, photos: p.photos }; })
+   .then(function(o){ var txt = JSON.stringify(o); if (share && F.canShareFile()) { navigator.share({ files: [new File([txt], name, { type: 'application/json' })], title: name }).catch(function(){ F.download(name, txt); }); } else F.download(name, txt); s(C.key + '_lastbk', new Date().toISOString()); F.toast(pass ? 'Locked backup saved: ' + name + '. Keep the passphrase somewhere safe.' : 'Backup saved: ' + name); W.__FAH_LAST_BACKUP = o; F.refresh(); return o; }); };
+F.lastBackup = function(){ return g(C.key + '_lastbk'); };
+function refuse(msg){ F.close(true); F.sheet('Nothing was changed', '<p class="note red" role="alert">' + esc(msg) + '</p><button type="button" class="btn" data-close>OK</button>'); W.__FAH_LAST_REFUSAL = msg; }
+F.restoreText = function(text){ var o = J(text, null);
+  if (!o || typeof o !== 'object' || !/^filedawayco-backup/.test(o.format || '')) return refuse('That file isn\'t a FiledAwayCo backup. Pick the file that ends in "-backup-" and a date.');
+  if (o.app !== C.slug) return refuse('This backup is from ' + (o.appName || 'another FiledAwayCo app') + ', not ' + C.name + '. Open ' + (o.appName || 'that app') + ' and restore it there.');
+  if (o.format === 'filedawayco-backup-locked') return askPass(o);
+  check(o, o); };
+function askPass(env, err){ var p = F.sheet('Type the passphrase', (err ? '<p class="note red" role="alert">' + esc(err) + '</p>' : '') + '<p class="muted">This backup from ' + esc(fmtD(new Date(env.savedAt))) + ' is locked. Type the passphrase you chose when you saved it.</p><label class="f" for="upw">Passphrase</label><input class="inp" id="upw" type="password" autocomplete="off"><button type="button" class="btn" data-u>Unlock</button><button type="button" class="btn ghost" data-close>Cancel</button>');
+  var go = function(){ var pw = p.querySelector('#upw').value; if (!pw) return; p.querySelector('[data-u]').textContent = 'Unlocking…'; F.unlock(env, pw).then(function(x){ check(x, env); }, function(){ W.__FAH_LAST_REFUSAL = 'wrong passphrase'; askPass(env, 'That passphrase didn\'t open this file. Nothing was changed. Check capital letters and spaces, then try again.'); }); };
+  p.querySelector('[data-u]').onclick = go; p.querySelector('#upw').onkeydown = function(e){ if (e.key === 'Enter') go(); }; }
+function check(x, env){ var data = x.data, photos = x.photos || {};
+  if (!data || !APP.valid(data)) return refuse('This backup file is damaged or incomplete, so it wasn\'t used.');
+  data = APP.normalize(data); var n = APP.count(data), cur = APP.count(F.realData());
+  var p = F.sheet('Restore this backup?', '<div class="card"><h3>' + esc(APP.summary(data)) + '</h3><p>Saved ' + esc(fmtD(new Date(env.savedAt))) + (Object.keys(photos).length ? ' · ' + Object.keys(photos).length + ' photos' : '') + '</p></div>' +
+    '<p class="muted">' + (cur ? 'This replaces what\'s on this device now (' + esc(APP.summary(F.realData())) + '). You can undo right after.' : 'Nothing on this device will be lost.') + '</p><button type="button" class="btn" data-y>Restore ' + n + ' entr' + (n === 1 ? 'y' : 'ies') + '</button><button type="button" class="btn ghost" data-close>Cancel</button>');
+  p.querySelector('[data-y]').onclick = function(){ apply(data, photos); }; }
+function apply(data, photos){ var prev = { data: F.realData() };
+  (C.photos ? F.ph.all(F.isRealPhoto) : Promise.resolve({})).then(function(ph){ prev.photos = ph; return F.kv.put('undo', prev); })
+   .then(function(){ return C.photos ? F.ph.keys().then(function(ks){ return Promise.all(ks.map(F.ph.del)); }) : null; })
+   .then(function(){ return Promise.all(Object.keys(photos).map(function(k){ return F.ph.put(k, photos[k]); })); })
+   .then(function(){ r(C.key + '_mode'); r(C.key + '_sample'); s(C.key, JSON.stringify(data)); F.load(); if (APP.onSave) APP.onSave(F.data); F.close(true); F.go('home'); F.toast('Restored. Your info is back.', 'Undo', F.undo, 12000); }); }
+F.undo = function(){ return F.kv.get('undo').then(function(u){ if (!u) return F.toast('Nothing to undo.');
+  return F.ph.keys().then(function(ks){ return Promise.all(ks.filter(F.isRealPhoto).map(F.ph.del)); }).then(function(){ return Promise.all(Object.keys(u.photos || {}).map(function(k){ return F.ph.put(k, u.photos[k]); })); })
+   .then(function(){ s(C.key, JSON.stringify(u.data)); r(C.key + '_mode'); F.kv.del('undo'); F.load(); F.go('home'); F.toast('Undone. Your earlier info is back.'); }); }); };
+F.backupSheet = function(){ var lb = F.lastBackup();
+  var p = F.sheet('Backup', '<p class="muted">Your info lives only in this browser on this device. A backup file is how you keep it safe or move it to a new phone.' + (lb ? ' Last backup: <b>' + esc(fmtD(new Date(lb))) + '</b>.' : ' <b>You haven\'t saved a backup yet.</b>') + '</p>' +
+   (C.lockFirst ? '' : '<button type="button" class="btn" data-b>Save a backup file</button>') +
+   '<button type="button" class="btn' + (C.lockFirst ? '' : ' sec') + '" data-l>Save a locked backup (passphrase)</button>' + (C.lockFirst ? '<button type="button" class="btn sec" data-b>Save an unlocked backup</button>' : '') +
+   '<button type="button" class="btn ghost" data-r>Restore from a backup file</button><input type="file" id="rf" accept=".json,application/json" hidden>' +
+   '<p class="muted" style="margin-top:12px">' + esc(C.backupNote || 'Email the file to yourself or save it to your cloud drive.') + '</p>');
+  p.querySelector('[data-b]').onclick = function(){ if (C.lockFirst) { F.ask('Save without a lock?', 'Anyone who gets this file can read everything in it. A locked backup is safer for this kind of information.', 'Save unlocked anyway', 'Go back').then(function(y){ if (y) F.backup(); }); } else F.backup(); };
+  p.querySelector('[data-l]').onclick = lockSheet;
+  var rf = p.querySelector('#rf'); p.querySelector('[data-r]').onclick = function(){ rf.click(); };
+  rf.onchange = function(){ var f = rf.files[0]; if (!f) return; f.text().then(F.restoreText); }; };
+function lockSheet(){ var p = F.sheet('Lock your backup', '<p class="muted">Pick a passphrase of 4 or more words, like <i>maple river lamp sunday</i>. You\'ll need it to open the backup. <b>If you forget it, nobody can open the file, including FiledAwayCo.</b> Write it down and keep it with your important papers.</p>' +
+  '<label class="f" for="p1">Passphrase</label><input class="inp" id="p1" type="password" autocomplete="new-password"><label class="f" for="p2">Type it again</label><input class="inp" id="p2" type="password" autocomplete="new-password"><p class="note red" id="perr" role="alert" hidden></p><button type="button" class="btn" data-go>Lock and save</button>' + (F.canShareFile() || W.__FAH_SHARE ? '<button type="button" class="btn sec" data-go data-share>Lock and send to someone you trust</button><p class="muted">Send the passphrase a different way, like a phone call, never in the same message.</p>' : '') + '<button type="button" class="btn ghost" data-close>Cancel</button>');
+  p.querySelectorAll('[data-go]').forEach(function(btn){ btn.onclick = function(){ var a = p.querySelector('#p1').value, b = p.querySelector('#p2').value, e = p.querySelector('#perr');
+    if (a.length < 8) { e.textContent = 'Use at least 8 characters. Four ordinary words is easy to remember and hard to guess.'; e.hidden = false; return; }
+    if (a !== b) { e.textContent = 'The two passphrases don\'t match.'; e.hidden = false; return; }
+    btn.textContent = 'Locking…'; F.backup(a, btn.hasAttribute('data-share')).then(function(){ F.close(true); }); }; }); }
+F.backupNudge = function(){ if (F.isSample() || !F.hasReal()) return ''; var lb = F.lastBackup(), n = APP.count(F.realData()); var old = !lb || (Date.now() - new Date(lb)) > 30 * 864e5;
+  if (!old || n < 1) return ''; return '<div class="note warn"><b>' + (lb ? 'Your last backup is over a month old.' : 'No backup yet.') + '</b> If this phone is lost or the browser data is cleared, your info goes with it. <button type="button" class="tl" data-a="backup">Save a backup now</button></div>'; };
+
+/* ---------- shell: header, nav, routing, install, offline ---------- */
+var views = {}, cur = 'home', nav = [];
+F.view = function(name, fn){ views[name] = fn; };
+F.go = function(name, arg){ cur = name; F.arg = arg; F.refresh(); var m = D.getElementById('main'); if (m && !W.__FAH_NOFOCUS) { m.setAttribute('tabindex', '-1'); m.focus({ preventScroll: true }); } W.scrollTo(0, 0); };
+F.refresh = function(){ var m = D.getElementById('main'); if (!m) return; var html0 = null, html = (F.isSample() ? '<div class="banner" role="note"><span>These are made-up sample details.</span><button type="button" class="btn sm sec" data-a="clearSample">Clear sample</button></div>' : '') + views[cur](F.arg);
+  if (html.indexOf('<!--side-->') >= 0) { var pz = html.split('<!--side-->'); html = '<div class="dash"><div class="dm">' + pz[0] + '</div><div class="ds">' + pz[1] + '</div></div>'; } D.body.classList.toggle('isdash', cur === 'home'); D.body.classList.add(C.slug === 'home-records' ? 'app-hr' : 'app-ff'); m.innerHTML = html; D.querySelectorAll('nav.bn button[data-nav]').forEach(function(b){ if (b.getAttribute('data-nav') === cur || (b.getAttribute('data-nav') === 'all' && cur !== 'home' && cur !== 'help')) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
+  if (APP.after) APP.after(cur, m); };
+F.actions = {};
+F.on = function(name, fn){ F.actions[name] = fn; };
+var ico = { home: '<path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>', all: '<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>', help: '<circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.5 9.5a2.5 2.5 0 015 .5c0 1.5-2.5 2-2.5 3.5M12 17h.01" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' };
+function svg(k){ return '<svg viewBox="0 0 24 24" aria-hidden="true">' + ico[k] + '</svg>'; }
+var deferred = null;
+W.addEventListener('beforeinstallprompt', function(e){ e.preventDefault(); deferred = e; });
+F.install = function(){ if (deferred) { deferred.prompt(); deferred = null; return; } var ios = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  F.sheet('Add to your home screen', ios ? '<p class="muted">In Safari, tap the Share button <b>(square with an arrow)</b>, then <b>Add to Home Screen</b>. It then opens like an app and works without internet.</p><button type="button" class="btn" data-close>Got it</button>' : '<p class="muted">Open your browser menu <b>(⋮)</b> and tap <b>Install app</b> or <b>Add to Home screen</b>. It then opens like an app and works without internet.</p><button type="button" class="btn" data-close>Got it</button>'); };
+F.start = function(cfg, app){ C = cfg; APP = app; F.cfg = C;
+  D.title = C.name + ' by FiledAwayCo';
+  D.body.innerHTML = '<a href="#main" class="tl" style="position:absolute;left:-999px" onfocus="this.style.left=\'8px\'" onblur="this.style.left=\'-999px\'">Skip to content</a><div class="wrap"><header class="top"><img src="icon-192.png" alt="" width="44" height="44"><div><h1>' + esc(C.name) + '</h1><div class="by">by FiledAway<b>Co</b></div></div></header><main id="main"></main></div>' +
+    '<nav class="bn" aria-label="Main"><div class="in"><button type="button" data-nav="home">' + svg('home') + 'Home</button><button type="button" data-nav="all">' + svg('all') + esc(C.allLabel || 'All sections') + '</button><button type="button" class="add" data-a="add" aria-label="' + esc(C.addLabel || 'Add') + '"><span class="p" aria-hidden="true">+</span>Add</button><button type="button" data-nav="help">' + svg('help') + 'Help</button></div></nav><div id="print"></div>';
+  D.addEventListener('click', function(e){ var t = e.target.closest('[data-nav],[data-a]'); if (!t || t.closest('#sheet') && !t.hasAttribute('data-a')) return;
+    if (t.hasAttribute('data-nav')) return F.go(t.getAttribute('data-nav'));
+    var a = t.getAttribute('data-a'), fn = F.actions[a]; if (fn) { e.preventDefault(); fn(t.getAttribute('data-id'), t); } });
+  F.on('backup', F.backupSheet); F.on('sample', F.useSample); F.on('clearSample', F.clearSample); F.on('install', F.install); F.on('undoRestore', F.undo);
+  F.load(); F.go(g(C.key + '_seen') || F.hasReal() || F.isSample() ? 'home' : 'welcome');
+  if ('serviceWorker' in navigator && location.protocol !== 'file:') navigator.serviceWorker.register('sw.js').catch(function(){});
+  W.__FAH_READY = true; };
+F.seen = function(){ s(C.key + '_seen', '1'); };
+F.printNow = function(html){ if (W.navigator.standalone && !g('fah_iosprint')) { s('fah_iosprint', '1'); setTimeout(function(){ F.toast('On iPhone, if the print screen doesn\'t open, open this page in Safari and tap Share, then Print.', null, null, 9000); }, 800); } var p = D.getElementById('print'); p.innerHTML = html; W.__FAH_LAST_PRINT = html.length; var imgs = [].slice.call(p.querySelectorAll('img'));
+  Promise.all(imgs.map(function(i){ return i.complete ? 0 : new Promise(function(ok){ i.onload = i.onerror = ok; }); })).then(function(){ setTimeout(function(){ if (!W.__FAH_NOPRINT) W.print(); }, 60); }); };
+F.svg = svg;
+})();
+</script>
+<script>/* Home Records: app (2026-11-27). Uses core.js (window.FAH). Maintenance intervals cite their source; where no public source was checked, it says "common practice" and points to the owner's manual. */
+(function(){
+'use strict';
+var F = window.FAH, esc = F.esc, KEY = 'fah_hr_v1';
+var SRC = {
+  es: ['ENERGY STAR: Maintenance checklist', 'https://www.energystar.gov/saveathome/heating-cooling/maintenance-checklist'],
+  nfpa: ['NFPA: Smoke alarms', 'https://www.nfpa.org/education-and-research/home-fire-safety/smoke-alarms'],
+  rg: ['Ready.gov: Home fires', 'https://www.ready.gov/home-fires'],
+  septic: ['EPA: How to care for your septic system', 'https://www.epa.gov/septic/how-care-your-septic-system'],
+  well: ['EPA: Protect your home\'s water', 'https://www.epa.gov/privatewells/protect-your-homes-water'],
+  usfa: ['USFA: Fire extinguishers', 'https://www.usfa.fema.gov/prevention/home-fires/prepare-for-fire/fire-extinguishers/'],
+  man: ['Common practice. Your owner\'s manual comes first.', '']
+};
+var SYS = [['hvac', 'Furnace or central air (has an air filter)'], ['heat', 'Furnace, boiler or heat pump'], ['ac', 'Central air or heat pump'], ['gas', 'Gas appliances or an attached garage'], ['fire', 'Fireplace or wood stove'], ['wh', 'Tank water heater'], ['dryer', 'Clothes dryer'], ['dish', 'Dishwasher'], ['fridge', 'Fridge with a water filter'], ['garage', 'Garage door opener'], ['gutters', 'Gutters'], ['yard', 'Yard with outdoor faucets or sprinklers'], ['deck', 'Deck'], ['sump', 'Sump pump'], ['septic', 'Septic system'], ['well', 'Private well'], ['washer', 'Washing machine'], ['pest', 'Pest control (termites, ants or past bug problems)']];
+/* m: fixed months (1-12); iv: every N months */
+var T = [
+ { id: 'safety', t: 'Monthly safety check', need: '', iv: 1, how: 'Press the test button on every smoke alarm. Test carbon monoxide alarms the way their manual says.', src: 'nfpa' },
+ { id: 'filter', t: 'Check the furnace / AC air filter', need: 'hvac', iv: 1, how: 'Look at the filter each month and change it if it\'s dirty. ENERGY STAR suggests checking monthly.', src: 'es' },
+ { id: 'coolcheck', t: 'Cooling check-up before summer', need: 'ac', m: [4], how: 'Book a pre-season check-up of the cooling system in spring, before contractors get busy.', src: 'es' },
+ { id: 'heatcheck', t: 'Heating check-up before winter', need: 'heat', m: [9], how: 'Book a pre-season check-up of the heating system in fall.', src: 'es' },
+ { id: 'smokebatt', t: 'Smoke alarm batteries and dates', need: '', m: [3, 11], how: 'Change the batteries twice a year, unless your alarms have sealed 10-year batteries (a good time is when the clocks change). Check the date on the back of each alarm and replace any that are 10 years old or more.', src: 'rg' },
+ { id: 'ext', t: 'Check fire extinguishers', need: '', m: [1], how: 'Check the pressure gauge and follow the label: some need shaking monthly, some need testing every few years.', src: 'usfa' },
+ { id: 'chimney', t: 'Chimney or wood stove inspection', need: 'fire', m: [9], how: 'Inspect and clean chimneys and stove pipes once a year, before you start using them.', src: 'rg' },
+ { id: 'dryer', t: 'Clean the dryer vent duct', need: 'dryer', iv: 12, how: 'Clean lint out of the duct and outside vent flap. Clean the lint screen every load.', src: 'man' },
+ { id: 'gutters', t: 'Clean gutters and downspouts', need: 'gutters', m: [5, 11], how: 'After the spring blossoms and after the leaves fall.', src: 'man' },
+ { id: 'wh', t: 'Drain sediment from the water heater', need: 'wh', iv: 12, how: 'Follow your water heater\'s manual. Skip it if the manual says not to.', src: 'man' },
+ { id: 'septicI', t: 'Septic inspection by a professional', need: 'septic', iv: 36, how: 'The EPA says at least every three years.', src: 'septic' },
+ { id: 'septicP', t: 'Septic tank pumping', need: 'septic', iv: 48, how: 'Typically every three to five years. Your inspector will tell you when.', src: 'septic' },
+ { id: 'welltest', t: 'Test the well water', need: 'well', iv: 12, how: 'Test once a year for total coliform bacteria, nitrates, total dissolved solids and pH.', src: 'well' },
+ { id: 'sump', t: 'Test the sump pump', need: 'sump', m: [3], how: 'Before the wet season: pour a bucket of water into the pit and check the pump turns on and drains it.', src: 'man' },
+ { id: 'dish', t: 'Clean the dishwasher filter', need: 'dish', iv: 3, how: 'Twist out the filter at the bottom and rinse it.', src: 'man' },
+ { id: 'fridgef', t: 'Replace the fridge water filter', need: 'fridge', iv: 6, how: 'Your fridge manual gives the exact timing.', src: 'man' },
+ { id: 'coils', t: 'Vacuum the fridge coils', need: '', iv: 12, how: 'Unplug, then vacuum the coils behind or under the fridge.', src: 'man' },
+ { id: 'hood', t: 'Clean the range hood filter', need: '', iv: 3, how: 'Soak the metal filter in hot soapy water.', src: 'man' },
+ { id: 'garage', t: 'Test the garage door auto-reverse', need: 'garage', iv: 6, how: 'Put a board or roll of paper towels under the door and close it. It should reverse when it touches it.', src: 'man' },
+ { id: 'faucets', t: 'Shut off and drain outdoor faucets', need: 'yard', m: [10], how: 'Before the first freeze, if winters get cold where you live.', src: 'man' },
+ { id: 'deck', t: 'Check the deck', need: 'deck', m: [5], how: 'Look for loose boards, wobbly railings and soft or rotting wood.', src: 'man' },
+ { id: 'caulk', t: 'Check caulk around tubs and sinks', need: '', iv: 12, how: 'Re-caulk any gaps or moldy spots so water can\'t get behind them.', src: 'man' },
+ { id: 'roof', t: 'Look over the roof from the ground', need: 'house', m: [4], how: 'Look for missing shingles, damaged flashing and sagging spots. Don\'t climb up.', src: 'man' },
+ { id: 'leaks', t: 'Look for leaks under sinks and around toilets', need: '', iv: 6, how: 'Open the cabinets under every sink with a flashlight. Look for drips, stains, soft wood or a musty smell. Check the floor around each toilet base.', src: 'man' },
+ { id: 'hoses', t: 'Check the washing machine hoses', need: 'washer', iv: 12, how: 'Look for bulges, cracks or rust at the ends. Rubber hoses are commonly replaced every five years; braided steel ones last longer.', src: 'man' },
+ { id: 'bathfan', t: 'Clean the bathroom exhaust fans', need: '', iv: 12, how: 'Turn off the power, pop off the cover, wash it and vacuum the fan.', src: 'man' },
+ { id: 'ceilfan', t: 'Switch ceiling fan direction', need: '', m: [5, 10], how: 'Counterclockwise in summer for a breeze, clockwise on low in winter to push warm air down. Most fans have a small switch on the motor housing.', src: 'man' },
+ { id: 'pest', t: 'Pest check or service visit', need: 'pest', iv: 3, how: 'Walk the outside of the house: look for mud tubes on the foundation (termites), ant trails, droppings and gaps around pipes. If you have a pest-control contract, log each visit here.', src: 'man' }
+];
+var TB = {}; T.forEach(function(x){ TB[x.id] = x; });
+var ROOMS = ['Living room', 'Kitchen', 'Main bedroom', 'Bedroom 2', 'Bathroom', 'Office', 'Garage', 'Basement or storage', 'Outside'];
+function empty(){ return { v: 1, mode: '', improvements: [], profile: { type: 'House', year: '', addr: '', sys: {}, ins: { co: '', pol: '', agent: '' }, owner: '' }, tasks: {}, custom: [], rooms: ROOMS.slice(), items: [], warranties: [], book: [], chores: [] }; }
+function normalize(d){ var e = empty(); if (!d || typeof d !== 'object') return e; ['mode', 'updatedAt'].forEach(function(k){ if (d[k] != null) e[k] = d[k]; });
+  e.profile = Object.assign(e.profile, d.profile || {}); e.profile.sys = Object.assign({}, (d.profile || {}).sys || {}); e.profile.ins = Object.assign({ co: '', pol: '', agent: '' }, (d.profile || {}).ins || {});
+  e.tasks = d.tasks && typeof d.tasks === 'object' ? d.tasks : {}; ['custom', 'items', 'warranties', 'improvements', 'book', 'chores'].forEach(function(k){ if (Array.isArray(d[k])) e[k] = d[k]; }); if (Array.isArray(d.rooms) && d.rooms.length) e.rooms = d.rooms; return e; }
+function count(d){ return d.items.length + d.warranties.length + d.improvements.length + d.book.length + d.chores.length + Object.keys(d.tasks).filter(function(k){ return d.tasks[k].last; }).length + d.custom.length + (d.mode ? 1 : 0); }
+function valid(d){ return d && typeof d === 'object' && Array.isArray(d.items) && d.profile; }
+function total(d, room){ return d.items.filter(function(i){ return !room || i.room === room; }).reduce(function(a, i){ return a + (+i.value || 0); }, 0); }
+function summary(d){ return d.items.length + ' inventory item' + (d.items.length === 1 ? '' : 's') + ' (' + F.money(total(d)) + '), ' + d.warranties.length + ' warrant' + (d.warranties.length === 1 ? 'y' : 'ies'); }
+var rent = function(){ return F.data.mode === 'rent'; };
+
+/* ---------- schedule ---------- */
+function ym(d){ return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2); }
+function nextInMonths(ms, from, strict){ var d = new Date(from.getFullYear(), from.getMonth(), 1); for (var i = strict ? 1 : 0; i < 30; i++) { var x = F.addM(d, i); if (ms.indexOf(x.getMonth() + 1) >= 0) return ym(x); } return ym(d); }
+function hash(s){ var h = 0; for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0; return Math.abs(h); }
+function active(d){ var sys = d.profile.sys, house = d.profile.type !== 'Condo or apartment';
+  return T.filter(function(x){ return !x.need || (x.need === 'house' ? house : sys[x.need]); }).map(function(x){ return Object.assign({}, x, { iv: (d.tasks[x.id] || {}).iv || x.iv }, x.m && d.profile.south ? { m: x.m.map(function(m){ return (m + 5) % 12 + 1; }).sort(function(a, b){ return a - b; }) } : {}); })
+    .concat(d.custom.map(function(c){ return { id: c.id, t: c.t, iv: +c.iv || 12, how: c.how || '', src: '', custom: 1 }; }))
+    .filter(function(x){ return !(d.tasks[x.id] || {}).off; }); }
+function dueOf(d, x){ var st = d.tasks[x.id] || {}, now = F.today(); if (st.next) return st.next;
+  if (x.m && !st.iv) return nextInMonths(x.m, now, false);
+  if (x.iv <= 1) return ym(now); return ym(F.addM(now, hash(x.id) % Math.min(x.iv, 6))); }
+function sched(d){ var now = ym(F.today()); return active(d).map(function(x){ var due = dueOf(d, x), st = d.tasks[x.id] || {}; return Object.assign(x, { due: due, last: st.last || '', state: due < now ? 'over' : due === now ? 'now' : 'later' }); }).sort(function(a, b){ return a.due < b.due ? -1 : a.due > b.due ? 1 : a.t < b.t ? -1 : 1; }); }
+function dueNow(d){ return rent() ? [] : sched(d).filter(function(x){ return x.state !== 'later'; }); }
+function markDone(id, dateStr){ var d = F.data, x = active(d).filter(function(t){ return t.id === id; })[0]; if (!x) return; var dt = F.parseD(dateStr) || F.today(), st = d.tasks[id] = Object.assign({}, d.tasks[id]); st.last = F.ymd(dt); st.hist = [st.last].concat((st.hist || []).filter(function(x){ return x !== st.last; })).slice(0, 12);
+  st.next = x.m && !st.iv ? nextInMonths(x.m, dt, true) : ym(F.addM(dt, x.iv)); }
+function freqText(x){ if (x.m && !(F.data.tasks[x.id] || {}).iv) return 'Every ' + x.m.map(function(m){ return new Date(2026, m - 1, 1).toLocaleDateString('en-US', { month: 'long' }); }).join(' and '); return x.iv === 1 ? 'Every month' : x.iv === 12 ? 'Every year' : x.iv % 12 === 0 ? 'Every ' + x.iv / 12 + ' years' : 'Every ' + x.iv + ' months'; }
+function wStatus(w){ var until = F.parseD(w.until); if (!until) return { k: 'ok', d: 9999 }; var days = Math.ceil((until - F.today()) / 864e5); return { k: days < 0 ? 'exp' : days <= 60 ? 'soon' : 'ok', d: days }; }
+function soonW(d){ return d.warranties.filter(function(w){ return wStatus(w).k === 'soon'; }).sort(function(a, b){ return a.until < b.until ? -1 : 1; }); }
+
+/* ---------- photos ---------- */
+function thumbs(ids, cls){ return (ids || []).map(function(id){ return '<img class="' + (cls || 'th') + '" data-ph="' + esc(id) + '" alt="">'; }).join(''); }
+function fillPhotos(root){ [].slice.call(root.querySelectorAll('img[data-ph]')).forEach(function(im){ if (im.src) return; F.ph.get(im.getAttribute('data-ph')).then(function(u){ if (u) im.src = u; }).catch(function(){}); }); }
+
+/* ---------- views ---------- */
+F.view('welcome', function(){ return '<p class="tag">Your home\'s to-do list, plus proof of everything you own if you ever need to make a claim.</p>' +
+  '<div class="hero"><div class="k">What you\'ll have</div><ul><li><span>📅 What your home needs this month, built from your home</span></li><li><span>📸 A room-by-room photo inventory, ready for an insurance claim</span></li><li><span>🧾 Warranty reminders before they run out</span></li></ul></div>' +
+  '<button type="button" class="btn" data-a="own">I own my home</button><button type="button" class="btn sec" data-a="rent">I rent (inventory only)</button><button type="button" class="btn ghost" data-a="sample">Try it with sample data</button>' +
+  '<p class="trust">🔒 Stays on this device. No account. Photos never leave your phone.</p><p class="trust">New phone? <button type="button" class="tl" data-a="backup">Restore from a backup file</button></p>'; });
+F.view('home', function(){ var d = F.data, h = '';
+  if (!d.mode) { return F.views_welcome(); }
+  if (!rent()) { var dn = dueNow(d), all = sched(d), nx = all.filter(function(x){ return x.state === 'later'; })[0];
+    h += '<div class="hero"><div class="k">' + esc(F.fmtM(F.today())) + '</div><div class="big" data-big>' + (dn.length ? dn.length + ' thing' + (dn.length === 1 ? '' : 's') + ' due this month' : 'Nothing due this month') + '</div>' +
+      (dn.length ? '<ul>' + dn.slice(0, 5).map(function(x){ return '<li><span>' + esc(x.t) + '<span class="d">' + (x.state === 'over' ? 'Overdue since ' + esc(F.fmtM(x.due)) : esc(freqText(x))) + '</span></span><button type="button" data-a="done" data-id="' + esc(x.id) + '" aria-label="Mark done: ' + esc(x.t) + '">Done</button></li>'; }).join('') + '</ul>' + (dn.length > 5 ? '<div class="sub">+ ' + (dn.length - 5) + ' more on the schedule</div>' : '') : '<div class="sub">' + (nx ? 'Next up: ' + esc(nx.t) + ' in ' + esc(F.fmtM(nx.due)) + '.' : 'Set up your home to build a schedule.') + '</div>') +
+      '<button type="button" class="next" data-nav="maint">See the full schedule ›</button></div>';
+    h += lastAsk(d);
+    var sw = soonW(d); if (sw.length) h += '<div class="note warn">🧾 <b>' + sw.length + ' warrant' + (sw.length === 1 ? 'y ends' : 'ies end') + ' soon:</b> ' + sw.slice(0, 2).map(function(w){ return esc(w.item) + ' (' + esc(F.fmtD(w.until)) + ')'; }).join(', ') + '. <button type="button" class="tl" data-nav="warr">See warranties</button></div>';
+  } else h += '<div class="hero"><div class="k">Your home inventory</div><div class="big" data-big>' + F.money(total(d)) + ' recorded</div><div class="sub">' + d.items.length + ' item' + (d.items.length === 1 ? '' : 's') + ' in ' + new Set(d.items.map(function(i){ return i.room; })).size + ' rooms. Photos, values and serial numbers, ready if you ever need to make a claim.</div><button type="button" class="next" data-a="newItem">📸 Add an item ›<small>Take a photo, type a name and a value. About 10 seconds.</small></button></div>';
+  h += F.backupNudge();
+  h += '<div class="stat3"><div><b>' + d.items.length + '</b><span>items</span></div><div><b>' + F.money(Math.round(total(d))) + '</b><span>inventory value</span></div><div><b>' + (rent() ? new Set(d.items.map(function(i){ return i.room; })).size : d.warranties.length) + '</b><span>' + (rent() ? 'rooms' : 'warranties') + '</span></div></div>';
+  h += '<div class="list">' + (rent() ? '' : row('maint', '📅', 'Maintenance schedule', sched(d).length + ' tasks for your home')) + row('inv', '📸', 'Home inventory', d.items.length ? d.items.length + ' items · ' + F.money(total(d)) : 'Photos, values, receipts, serial numbers') + (rent() ? '' : row('warr', '🧾', 'Warranties', d.warranties.length ? d.warranties.length + ' saved' : 'Get reminded before they run out') + row('impr', '🔨', 'Projects & repairs', d.improvements.length ? d.improvements.length + ' logged · ' + F.money(itot(d)) : 'Ideas, budgets, to-dos, what was done and for how much')) + row('book', '📒', 'Home book', d.book.length ? d.book.length + ' notes · paint, helpers, parts, where things are' : 'Paint colors, helpers, filter sizes, where things are') + row('chores', '🧹', 'Chores', d.chores.length ? d.chores.filter(function(c){ return choreDue(c) <= 0; }).length + ' due now · ' + d.chores.length + ' chores' : 'Who does what, and how often') + row('profile', '🏠', rent() ? 'My rental & insurance' : 'My home & insurance', [d.profile.type, d.profile.year ? 'built ' + d.profile.year : '', d.profile.ins.co].filter(Boolean).join(' · ') || 'Tell it about your home') + '</div>';
+  h += '<div class="row2"><button type="button" class="btn" data-a="claim">🖨️ Claim list</button><button type="button" class="btn sec" data-a="backup">💾 Backup</button></div>';
+  h += '<p class="trust">🔒 Saved only on this device.</p><!--side-->' + sideCard(d);
+  h += bundleCard(); return h; });
+var ASK = ['filter', 'wh', 'gutters', 'smokebatt'];
+function lastAsk(d){ if (F.isSample() || d.askedLast) return ''; var xs = active(d).filter(function(x){ return ASK.indexOf(x.id) >= 0 && !(d.tasks[x.id] || {}).last; }); if (!xs.length) return '';
+  return '<div class="fa4-card"><h2>Make the schedule yours</h2><p style="margin:0 0 10px">Your first dates are a starting guess. Tell us when you last did ' + xs.length + ' common job' + (xs.length === 1 ? '' : 's') + ' and the schedule will follow your real dates.</p><button type="button" class="btn sm" data-a="lastask">When did I last…?</button> <button type="button" class="btn sm ghost" data-a="lastskip">Not now</button></div>'; }
+function sideCard(d){ if (rent()) { var by = {}; d.items.forEach(function(i){ by[i.room] = (by[i.room] || 0) + (+i.val || 0) * (+i.qty || 1); }); var ks = Object.keys(by).sort(function(a, b){ return by[b] - by[a]; }).slice(0, 6), mx = ks.length ? by[ks[0]] || 1 : 1; return ks.length ? '<div class="fa4-card"><h2>Value by room</h2><div class="fa4-bars">' + ks.map(function(k){ return '<div class="r"><div><span>' + esc(k) + '</span><b>' + F.money(Math.round(by[k])) + '</b></div><div class="t"><i style="width:' + Math.max(2, Math.round(by[k] / mx * 100)) + '%"></i></div></div>'; }).join('') + '</div></div>' : ''; }
+  var s = sched(d), nxt = {}, now = F.today(); for (var i = 0; i < 6; i++) nxt[ym(F.addM(now, i))] = 0; s.forEach(function(x){ if (x.state !== 'later') nxt[ym(now)]++; else if (x.due in nxt) nxt[x.due]++; }); var mx = Math.max.apply(null, Object.keys(nxt).map(function(k){ return nxt[k]; }).concat([1])), done = s.filter(function(x){ return x.last; }).length;
+  return '<div class="fa4-card"><h2>Next 6 months <span>' + done + ' of ' + s.length + ' tasks have a real date</span></h2><div class="fa4-bars">' + Object.keys(nxt).map(function(k){ return '<div class="r"><div><span>' + esc(F.fmtM(k)) + '</span><b>' + nxt[k] + ' job' + (nxt[k] === 1 ? '' : 's') + '</b></div><div class="t"><i style="width:' + Math.max(2, Math.round(nxt[k] / mx * 100)) + '%"></i></div></div>'; }).join('') + '</div></div>'; }
+F.on('lastskip', function(){ F.data.askedLast = 1; F.save(); F.refresh(); });
+F.on('lastask', function(){ var d = F.data, xs = active(d).filter(function(x){ return ASK.indexOf(x.id) >= 0; }), mx = F.ymd(F.today()).slice(0, 7);
+  var p = F.sheet('When did you last…?', '<p class="muted">Pick the month you last did each one. Leave it blank if you don\'t know; we\'ll keep the suggested date.</p><form id="lastf">' + xs.map(function(x){ return '<label class="f" for="la_' + x.id + '">' + esc(x.t) + '</label><input class="inp" type="month" id="la_' + x.id + '" name="' + x.id + '" max="' + mx + '" placeholder="YYYY-MM">'; }).join('') + '<button class="btn" type="submit">Save dates</button></form>');
+  p.querySelector('#lastf').onsubmit = function(e){ e.preventDefault(); var n = 0; xs.forEach(function(x){ var v = (this.elements[x.id].value || '').trim(); if (/^\d{4}-\d{2}$/.test(v) && v <= mx) { markDone(x.id, v + '-15'); n++; } }, this); F.data.askedLast = 1; F.save(); F.close(true); F.refresh(); F.toast(n ? 'Schedule updated from your ' + n + ' date' + (n === 1 ? '' : 's') + '.' : 'Kept the suggested dates.'); }; });
+F.views_welcome = function(){ return '<p class="tag">Pick one to start.</p><button type="button" class="btn" data-a="own">I own my home</button><button type="button" class="btn sec" data-a="rent">I rent (inventory only)</button><p class="trust">New phone? <button type="button" class="tl" data-a="backup">Restore from a backup file</button></p>'; };
+function row(nav, ic, t, s){ return '<button type="button" class="it" data-nav="' + nav + '"><span class="ic" aria-hidden="true">' + ic + '</span><span class="tx"><b>' + esc(t) + '</b><span>' + esc(s) + '</span></span><span aria-hidden="true">›</span></button>'; }
+F.view('all', function(){ var d = F.data; return '<p class="tag">Everything in Home Records.</p><div class="list">' + (rent() ? '' : row('maint', '📅', 'Maintenance schedule', 'What\'s due and when')) + row('inv', '📸', 'Home inventory', d.items.length + ' items') + (rent() ? '' : row('warr', '🧾', 'Warranties', d.warranties.length + ' saved') + row('impr', '🔨', 'Projects & repairs', d.improvements.length + ' logged')) + row('book', '📒', 'Home book', d.book.length + ' notes') + row('chores', '🧹', 'Chores', d.chores.length + ' chores') + row('profile', '🏠', 'My home & insurance', 'Home details, insurance policy') + '</div>' +
+  '<button type="button" class="btn sec" data-a="claim">🖨️ Print an insurance claim list</button>' + (rent() ? '' : '<button type="button" class="btn ghost" data-a="ics">📅 Add reminders to my phone calendar</button>') + '<button type="button" class="btn ghost" data-a="csv">⬇️ Download inventory as a spreadsheet (CSV)</button><button type="button" class="btn ghost" data-a="imp">⬆️ Import inventory from a CSV file</button><input type="file" id="impf" accept=".csv,text/csv" hidden>'; });
+F.view('maint', function(){ var d = F.data, s = sched(d), groups = [['over', 'Overdue'], ['now', 'Due this month'], ['later', 'Coming up']];
+  var h = '<p><button type="button" class="tl" data-nav="home">‹ Home</button></p><h2 class="h" style="margin-top:0">📅 Maintenance schedule</h2><p class="muted">Built from what your home has. Tap a task to see how, where the timing comes from, or to change it.</p>';
+  groups.forEach(function(g){ var xs = s.filter(function(x){ return x.state === g[0]; }); if (!xs.length) return; h += '<h2 class="h">' + g[1] + '</h2><div class="list">' + xs.map(function(x){ return '<div class="it" style="cursor:default"><button type="button" class="tx" data-a="task" data-id="' + esc(x.id) + '" style="border:0;background:none;text-align:left;padding:0;min-height:44px;cursor:pointer"><b>' + esc(x.t) + '</b><span>' + esc(freqText(x)) + ' · ' + (x.last ? 'last done ' + esc(F.fmtD(x.last)) : 'not done yet') + (g[0] === 'later' ? ' · due ' + esc(F.fmtM(x.due)) : '') + '</span></button>' + (g[0] === 'later' ? '' : '<button type="button" class="btn sm" data-a="done" data-id="' + esc(x.id) + '">Done</button>') + '</div>'; }).join('') + '</div>'; });
+  var off = T.filter(function(x){ return (d.tasks[x.id] || {}).off; }); if (off.length) h += '<p class="muted">Turned off: ' + off.map(function(x){ return esc(x.t); }).join(', ') + '. <button type="button" class="tl" data-a="unhide">Turn them back on</button></p>';
+  h += '<button type="button" class="btn sec" data-a="newTask">+ Add your own task</button><button type="button" class="btn ghost" data-a="ics">📅 Add reminders to my phone calendar</button><button type="button" class="btn ghost" data-nav="profile">Change what my home has</button>'; return h; });
+F.view('inv', function(){ var d = F.data, rooms = d.rooms.concat(d.items.map(function(i){ return i.room; }).filter(function(r){ return d.rooms.indexOf(r) < 0; })).filter(function(v, i, a){ return a.indexOf(v) === i; });
+  var h = '<p><button type="button" class="tl" data-nav="home">‹ Home</button></p><h2 class="h" style="margin-top:0">📸 Home inventory</h2><div class="stat3"><div><b>' + d.items.length + '</b><span>items</span></div><div><b>' + F.money(Math.round(total(d))) + '</b><span>total value</span></div><div><b>' + d.items.filter(function(i){ return (i.photos || []).length; }).length + '</b><span>with photos</span></div></div>';
+  h += '<button type="button" class="btn" data-a="newItem">📸 Add an item</button><h2 class="h">Rooms</h2><div class="list">' + rooms.map(function(r){ var n = d.items.filter(function(i){ return i.room === r; }).length; return '<button type="button" class="it" data-a="room" data-id="' + esc(r) + '"><span class="tx"><b>' + esc(r) + '</b><span>' + (n ? n + ' item' + (n === 1 ? '' : 's') + ' · ' + F.money(total(d, r)) : 'Nothing yet') + '</span></span><span aria-hidden="true">›</span></button>'; }).join('') + '</div>';
+  h += '<button type="button" class="btn ghost" data-a="newRoom">+ Add a room</button><button type="button" class="btn sec" data-a="claim">🖨️ Print an insurance claim list</button>'; return h; });
+F.view('room', function(r){ var d = F.data, xs = d.items.filter(function(i){ return i.room === r; });
+  var h = '<p><button type="button" class="tl" data-nav="inv">‹ Inventory</button></p><h2 class="h" style="margin-top:0">' + esc(r) + '</h2><p class="muted">' + xs.length + ' item' + (xs.length === 1 ? '' : 's') + ' · ' + F.money(total(d, r)) + '</p><div class="list">' +
+    xs.map(function(i){ return '<button type="button" class="it" data-a="item" data-id="' + esc(i.id) + '">' + ((i.photos || []).length ? thumbs([i.photos[0]]) : '<span class="ic" aria-hidden="true">📦</span>') + '<span class="tx"><b>' + esc(i.name) + '</b><span>' + [i.value ? F.money(i.value) : 'No value yet', i.serial ? 'S/N ' + i.serial : '', (i.receipt || []).length ? 'receipt ✓' : ''].filter(Boolean).map(esc).join(' · ') + '</span></span></button>'; }).join('') + '</div>' +
+    '<button type="button" class="btn" data-a="newItem" data-id="' + esc(r) + '">📸 Add an item to ' + esc(r) + '</button>' + (xs.length ? '' : '<button type="button" class="btn ghost" data-a="delRoom" data-id="' + esc(r) + '">Remove this room</button>'); return h; });
+F.view('warr', function(){ var d = F.data, ws = d.warranties.slice().sort(function(a, b){ return (a.until || '9') < (b.until || '9') ? -1 : 1; });
+  var h = '<p><button type="button" class="tl" data-nav="home">‹ Home</button></p><h2 class="h" style="margin-top:0">🧾 Warranties</h2><p class="muted">Home shows a reminder 60 days before one runs out.</p><div class="list">' +
+    ws.map(function(w){ var s = wStatus(w); return '<button type="button" class="it" data-a="warrEdit" data-id="' + esc(w.id) + '"><span class="tx"><b>' + esc(w.item) + '</b><span>' + esc([w.provider, w.until ? (s.k === 'exp' ? 'Ended ' : 'Until ') + F.fmtD(w.until) : ''].filter(Boolean).join(' · ')) + '</span></span>' + (s.k === 'exp' ? '<span class="st no">Ended</span>' : s.k === 'soon' ? '<span class="st part">' + s.d + ' days left</span>' : '<span class="st">Active</span>') + '</button>'; }).join('') + '</div>' + (ws.length ? '' : '<p class="muted">No warranties yet.</p>') + '<button type="button" class="btn" data-a="newWarr">+ Add a warranty</button>'; return h; });
+F.view('profile', function(){ var p = F.data.profile, sh = F.shared(), offer = sh.homeInsurance && sh.homeInsurance.from !== F.cfg.name && sh.homeInsurance.co && sh.homeInsurance.co !== p.ins.co;
+  var h = '<p><button type="button" class="tl" data-nav="home">‹ Home</button></p><h2 class="h" style="margin-top:0">🏠 My home & insurance</h2><form id="pf" novalidate>' +
+   '<div class="chips" role="group" aria-label="Own or rent"><button type="button" class="chip" data-mode="own" aria-pressed="' + (!rent()) + '">I own it</button><button type="button" class="chip" data-mode="rent" aria-pressed="' + rent() + '">I rent (inventory only)</button></div>' +
+   '<label class="f" for="pty">Type of home</label><select class="inp" id="pty" name="type">' + ['House', 'Townhouse', 'Condo or apartment', 'Mobile home'].map(function(o){ return '<option' + (o === p.type ? ' selected' : '') + '>' + o + '</option>'; }).join('') + '</select>' +
+   '<label class="f" for="pyr">Year built <small>Optional</small></label><input class="inp" id="pyr" name="year" inputmode="numeric" maxlength="4" value="' + esc(p.year) + '">' + (rent() ? '' : '<label class="f" for="phemi">Where you live <small>Sets which months seasonal jobs land in</small></label><select class="inp" id="phemi" name="hemi"><option value="n">Northern hemisphere (US, Canada, UK, Europe)</option><option value="s"' + (p.south ? ' selected' : '') + '>Southern hemisphere (Australia, NZ, South Africa, South America)</option></select>') +
+   '<label class="f" for="pad">Address <small>Optional. Printed on the claim list.</small></label><input class="inp" id="pad" name="addr" value="' + esc(p.addr) + '" autocomplete="street-address">' +
+   '<label class="f" for="pow">Name(s) on the policy <small>Printed on the claim list.</small></label><input class="inp" id="pow" name="owner" value="' + esc(p.owner) + '" autocomplete="name">' +
+   (rent() ? '' : '<h2 class="h">What your home has</h2><p class="muted">This builds your maintenance schedule.</p>' + SYS.map(function(s){ return '<label class="chk"><input type="checkbox" name="sys" value="' + s[0] + '"' + (p.sys[s[0]] ? ' checked' : '') + '> ' + esc(s[1]) + '</label>'; }).join('')) +
+   '<h2 class="h">' + (rent() ? 'Renters insurance' : 'Home insurance') + '</h2>' + (offer ? '<div class="note" id="shr">Your Family File has a home insurance policy: <b>' + esc(sh.homeInsurance.co) + '</b>. <button type="button" class="tl" data-a="useShared">Use it here</button></div>' : '') +
+   '<label class="f" for="pco">Insurance company</label><input class="inp" id="pco" name="co" value="' + esc(p.ins.co) + '"><label class="f" for="ppo">Policy number</label><input class="inp" id="ppo" name="pol" value="' + esc(p.ins.pol) + '"><label class="f" for="pag">Agent or claims phone</label><input class="inp" id="pag" name="agent" type="tel" value="' + esc(p.ins.agent) + '">' +
+   '<button type="submit" class="btn">Save</button></form>'; return h; });
+F.view('help', function(){ return '<h2 class="h" style="margin-top:0">Help</h2>' +
+  '<div class="card"><h3>How it works</h3><p>Home shows what your home needs this month. Tap Done when you finish something and it works out when it\'s next due. Add items to the inventory room by room with a photo, a value and the serial number.</p></div>' +
+  '<div class="card"><h3>Where the timings come from</h3><p>Each task shows its source, like ENERGY STAR, NFPA, Ready.gov or the EPA. Where there\'s no official source, it says "common practice": your owner\'s manual comes first. You can change how often any task repeats.</p></div>' +
+  '<div class="card"><h3>Put it on your home screen</h3><p>It opens like an app and works without internet.</p><button type="button" class="btn sm sec" data-a="install">How to add it</button></div>' +
+  '<div class="card"><h3>Back it up, photos and all</h3><p>Photos are stored on this phone only. Save a backup file every month or two, and keep it in your cloud drive or email. That way a lost phone doesn\'t take your inventory with it.</p><button type="button" class="btn sm sec" data-a="backup">Backup</button></div>' +
+  '<div class="card"><h3>Printables & templates</h3><p><b>30-page Home Book planner</b> (colour or ink-saver): seasonal checklists, home systems, room inventory, warranties, service log, paint swatches, mood boards, project planners and budget. Also a 12-month maintenance calendar, room inventory sheets, home systems record, chores chart, decluttering list, project planner, paint log and an inventory spreadsheet template.</p><a class="btn sm" href="bonus/Home-Records-Printable-Planner.pdf">30-page planner</a> <a class="btn sm ghost" href="bonus/Home-Records-Printable-Planner-Ink-Saver.pdf">Ink-saver planner</a> <a class="btn sm sec" href="bonus/Home-Records-Start-Here.pdf">Start Here (PDF)</a> <a class="btn sm ghost" href="bonus/Home-Records-Maintenance-Calendar.pdf">Calendar</a> <a class="btn sm ghost" href="bonus/Home-Records-Chores-Chart.pdf">Chores chart</a> <a class="btn sm ghost" href="bonus/Home-Records-Decluttering-List.pdf">Declutter list</a> <a class="btn sm ghost" href="bonus/Home-Records-Project-Planner.pdf">Project planner</a> <a class="btn sm ghost" href="bonus/Home-Records-Binder-Covers.pdf">Binder covers</a> <a class="btn sm ghost" href="bonus/Home-Records-Inventory-template.csv">CSV template</a></div>' +
+  bundleCard() + '<div class="card"><h3>Good to know</h3><p>Home Records is a record keeper. It doesn\'t give insurance advice, and values are the ones you type in. Ask your insurer what they need for a claim.</p></div>' +
+  (F.isSample() ? '' : '<button type="button" class="btn ghost" data-a="sample">Look at the sample home</button>') + '<button type="button" class="btn red" data-a="wipe">Delete everything on this device</button><p class="trust">Home Records v1 · FiledAwayCo · 2026-11-27</p>'; });
+function bundleCard(){ var lk = !!F.other('fah_ff_v1');
+  return '<div class="card"><h3>📁 Part of FiledAway Home</h3><p><span class="linked' + (lk ? '' : ' no') + '">' + (lk ? '✓ Linked with Family File on this device' : 'Not linked on this device') + '</span></p>' + (lk ? '' : '<p class="small muted">Linking works when both apps are opened in the same browser on the same device. On a different device, just type the home insurance and address in each app.</p>') + '<p>Family File tells your family where everything is: who to call, accounts, insurance and papers. Used together on this device, your home insurance and address are filled in for you.</p><a class="btn sm sec" href="../family-file-v2/">Open Family File</a> <a class="btn sm ghost" href="filedaway-home.html">About the bundle</a></div>'; }
+
+/* ---------- forms ---------- */
+function itemForm(id, room){ var d = F.data, it = id ? d.items.filter(function(i){ return i.id === id; })[0] : null, isNew = !it; it = it ? JSON.parse(JSON.stringify(it)) : { id: F.uid('i'), room: room || d.rooms[0], photos: [], receipt: [] }; var added = [];
+  var rooms = d.rooms.indexOf(it.room) < 0 ? d.rooms.concat([it.room]) : d.rooms;
+  var p = F.sheet(isNew ? 'Add an item' : 'Edit item', '<form id="if" novalidate><div class="row2"><label class="btn sec" style="cursor:pointer">📸 Add photo<input type="file" accept="image/*" id="ph1" hidden></label><label class="btn ghost" style="cursor:pointer">🧾 Receipt<input type="file" accept="image/*" id="ph2" hidden></label></div><div class="photos" id="phs"></div>' +
+   '<label class="f" for="inm">What is it? *</label><input class="inp" id="inm" name="name" value="' + esc(it.name || '') + '" placeholder="e.g. 55-inch TV">' +
+   '<label class="f" for="irm">Room</label><select class="inp" id="irm" name="room">' + rooms.map(function(r){ return '<option' + (r === it.room ? ' selected' : '') + '>' + esc(r) + '</option>'; }).join('') + '</select>' +
+   '<label class="f" for="ival">Value ($) <small>What it cost, or what it would cost to replace</small></label><input class="inp" id="ival" name="value" inputmode="decimal" value="' + esc(it.value || '') + '">' +
+   '<label class="f" for="iser">Serial or model number</label><input class="inp" id="iser" name="serial" value="' + esc(it.serial || '') + '" autocomplete="off">' +
+   '<div class="row2"><div><label class="f" for="idt">Bought on</label><input class="inp" id="idt" name="date" type="date" value="' + esc(it.date || '') + '"></div><div><label class="f" for="iwh">Bought from</label><input class="inp" id="iwh" name="where" value="' + esc(it.where || '') + '"></div></div>' +
+   '<label class="f" for="ino">Notes</label><textarea class="inp" id="ino" name="notes">' + esc(it.notes || '') + '</textarea>' +
+   '<p class="note red" id="ierr" role="alert" hidden></p><button type="submit" class="btn">Save</button>' + (isNew ? '' : '<button type="button" class="btn sec" id="iw">+ Add a warranty for this</button><button type="button" class="btn red" id="idel">Delete item</button>') + '<button type="button" class="btn ghost" data-close>Cancel</button></form>');
+  function draw(){ var box = p.querySelector('#phs'); box.innerHTML = it.photos.map(function(x){ return '<figure>' + thumbs([x], 'x') + '<button type="button" aria-label="Remove photo" data-rm="' + esc(x) + '">×</button></figure>'; }).join('') + it.receipt.map(function(x){ return '<figure>' + thumbs([x], 'x') + '<figcaption class="src">Receipt</figcaption><button type="button" aria-label="Remove receipt" data-rm="' + esc(x) + '">×</button></figure>'; }).join(''); fillPhotos(box);
+    box.querySelectorAll('[data-rm]').forEach(function(b){ b.onclick = function(){ var x = b.getAttribute('data-rm'); it.photos = it.photos.filter(function(y){ return y !== x; }); it.receipt = it.receipt.filter(function(y){ return y !== x; }); if (added.indexOf(x) >= 0) F.ph.del(x); draw(); }; }); }
+  function pick(inp, list){ inp.onchange = function(){ var f = inp.files[0]; inp.value = ''; if (!f) return; F.readPhoto(f).then(function(u){ var pid = (F.isSample() ? 'smp-' : 'p-') + F.uid(''); return F.ph.put(pid, u).then(function(){ added.push(pid); it[list].push(pid); draw(); }); }).catch(function(){ F.toast('That photo couldn\'t be read. Try another one.'); }); }; }
+  pick(p.querySelector('#ph1'), 'photos'); pick(p.querySelector('#ph2'), 'receipt'); draw();
+  var fm = p.querySelector('#if'), saved = false;
+  fm.onsubmit = function(e){ e.preventDefault(); var err = p.querySelector('#ierr'); ['name', 'room', 'value', 'serial', 'date', 'where', 'notes'].forEach(function(k){ it[k] = fm.elements[k].value.trim(); });
+    if (!it.name) { err.textContent = 'Give it a name, like "Sofa" or "Laptop".'; err.hidden = false; fm.elements.name.focus(); return; }
+    if (it.value) { var v = +it.value.replace(/[$,]/g, ''); if (isNaN(v)) { err.textContent = 'The value should be a number, like 499.'; err.hidden = false; fm.elements.value.focus(); return; } it.value = String(v); }
+    saved = true; if (isNew) d.items.push(it); else d.items = d.items.map(function(x){ return x.id === it.id ? it : x; }); F.save(); F.close(true); F.go('room', it.room); F.toast(isNew ? 'Added. ' + F.money(total(d)) + ' recorded in total.' : 'Saved.'); };
+  var del = p.querySelector('#idel'); if (del) del.onclick = function(){ F.ask('Delete this item?', esc(it.name) + ' and its photos will be removed from this device.', 'Delete', 'Keep it', true).then(function(y){ if (!y) return; saved = true; d.items = d.items.filter(function(x){ return x.id !== it.id; }); (it.photos || []).concat(it.receipt || []).forEach(function(x){ F.ph.del(x); }); F.save(); F.go('room', it.room); F.toast('Deleted.'); }); };
+  var iw = p.querySelector('#iw'); if (iw) iw.onclick = function(){ saved = true; F.close(true); warrForm(null, it); };
+  var obs = new MutationObserver(function(){ if (!document.body.contains(p)) { obs.disconnect(); if (!saved) added.forEach(function(x){ F.ph.del(x); }); } }); obs.observe(document.body, { childList: true }); }
+function warrForm(id, fromItem){ var d = F.data, w = id ? d.warranties.filter(function(x){ return x.id === id; })[0] : null, isNew = !w; w = w ? Object.assign({}, w) : { id: F.uid('w'), item: fromItem ? fromItem.name : '', itemId: fromItem ? fromItem.id : '', where: fromItem && (fromItem.receipt || []).length ? 'Receipt photo in Home Records' : '' };
+  var p = F.sheet(isNew ? 'Add a warranty' : 'Edit warranty', '<form id="wf" novalidate><label class="f" for="wit">What it covers *</label><input class="inp" id="wit" name="witem" value="' + esc(w.item) + '" placeholder="e.g. Dishwasher">' +
+   '<label class="f" for="wun">Covered until *</label><input class="inp" id="wun" name="until" type="date" value="' + esc(w.until || '') + '">' +
+   '<label class="f" for="wpr">Who gives the warranty</label><input class="inp" id="wpr" name="provider" value="' + esc(w.provider || '') + '" placeholder="e.g. the maker, the store">' +
+   '<label class="f" for="wph">How to claim (phone or website)</label><input class="inp" id="wph" name="phone" value="' + esc(w.phone || '') + '">' +
+   '<label class="f" for="wwh">Where the receipt or paperwork is</label><input class="inp" id="wwh" name="where" value="' + esc(w.where || '') + '">' +
+   '<p class="note red" id="werr" role="alert" hidden></p><button type="submit" class="btn">Save</button>' + (isNew ? '' : '<button type="button" class="btn red" id="wdel">Delete</button>') + '<button type="button" class="btn ghost" data-close>Cancel</button></form>');
+  var fm = p.querySelector('#wf'); fm.onsubmit = function(e){ e.preventDefault(); ['item', 'until', 'provider', 'phone', 'where'].forEach(function(k){ w[k] = fm.elements[k === 'item' ? 'witem' : k].value.trim(); }); var err = p.querySelector('#werr');
+    if (!w.item || !w.until) { err.textContent = !w.item ? 'Say what it covers.' : 'Add the date it runs out (it\'s on the receipt or warranty card).'; err.hidden = false; fm.elements[!w.item ? 'witem' : 'until'].focus(); return; }
+    if (isNew) d.warranties.push(w); else d.warranties = d.warranties.map(function(x){ return x.id === w.id ? w : x; }); F.save(); F.close(true); F.go('warr'); var s = wStatus(w); F.toast(s.k === 'exp' ? 'Saved. This one has already ended.' : 'Saved. You\'ll see a reminder on Home 60 days before it ends.'); };
+  var del = p.querySelector('#wdel'); if (del) del.onclick = function(){ var old = d.warranties.slice(); d.warranties = d.warranties.filter(function(x){ return x.id !== w.id; }); F.save(); F.close(true); F.go('warr'); F.toast('Deleted.', 'Undo', function(){ d.warranties = old; F.save(); F.refresh(); }); }; }
+function taskSheet(id){ var d = F.data, x = sched(d).filter(function(t){ return t.id === id; })[0]; if (!x) return; var s = SRC[x.src] || null;
+  var p = F.sheet(x.t, '<p class="muted">' + esc(x.how) + '</p><div class="card"><p><b>' + esc(freqText(x)) + '</b> · due ' + esc(F.fmtM(x.due)) + '</p><p>' + (x.last ? 'Last done ' + esc(F.fmtD(x.last)) : 'Not done yet') + '</p>' + (s ? '<p class="src">Source: ' + (s[1] ? '<a href="' + esc(s[1]) + '" target="_blank" rel="noopener">' + esc(s[0]) + '</a>' : esc(s[0])) + '</p>' : '') + '</div>' +
+   '<label class="f" for="tdt">Done on</label><input class="inp" id="tdt" type="date" value="' + F.ymd(F.today()) + '"><button type="button" class="btn" id="tdone">Mark done</button>' +
+   '<label class="f" for="tiv">Repeat</label><select class="inp" id="tiv">' + (x.m ? '<option value="">' + esc(freqText(Object.assign({}, x, { iv: 0 }))) + ' (suggested)</option>' : '') + [1, 2, 3, 6, 12, 24, 36, 48, 60].map(function(n){ return '<option value="' + n + '"' + ((d.tasks[x.id] || {}).iv == n || (!x.m && !(d.tasks[x.id] || {}).iv && x.iv == n) ? ' selected' : '') + '>' + (n === 1 ? 'Every month' : n % 12 === 0 ? 'Every ' + (n / 12 === 1 ? 'year' : n / 12 + ' years') : 'Every ' + n + ' months') + '</option>'; }).join('') + '</select>' +
+   '<button type="button" class="btn ghost" id="toff">' + (x.custom ? 'Delete this task' : 'Turn this task off') + '</button>');
+  p.querySelector('#tdone').onclick = function(){ markDone(id, p.querySelector('#tdt').value); F.save(); F.close(true); F.refresh(); F.toast('Done. Next due ' + F.fmtM(F.data.tasks[id].next) + '.'); };
+  p.querySelector('#tiv').onchange = function(){ var v = this.value, st = d.tasks[id] = Object.assign({}, d.tasks[id]); if (x.custom) { d.custom.forEach(function(c){ if (c.id === id) c.iv = +v || 12; }); } else if (v) st.iv = +v; else delete st.iv; if (st.last) { delete st.next; markDone(id, st.last); } else delete st.next; F.save(); F.refresh(); F.toast('Updated.'); };
+  p.querySelector('#toff').onclick = function(){ if (x.custom) d.custom = d.custom.filter(function(c){ return c.id !== id; }); else d.tasks[id] = Object.assign({}, d.tasks[id], { off: true }); F.save(); F.close(true); F.refresh(); F.toast(x.custom ? 'Deleted.' : 'Turned off. You can turn it back on from the schedule.'); }; }
+
+/* ---------- claim list (print / Save as PDF), CSV, calendar ---------- */
+function claimSheet(){ var d = F.data; if (!d.items.length) return F.toast('Add some inventory items first.'); var rooms = d.rooms.concat(d.items.map(function(i){ return i.room; })).filter(function(v, i, a){ return a.indexOf(v) === i && d.items.some(function(x){ return x.room === v; }); });
+  var p = F.sheet('Insurance claim list', '<p class="muted">Prints a list with photos, serial numbers and values. In the print window choose <b>Save as PDF</b> to email it to your insurer.</p>' + rooms.map(function(r){ return '<label class="chk"><input type="checkbox" name="cr" value="' + esc(r) + '" checked> ' + esc(r) + ' (' + F.money(total(d, r)) + ')</label>'; }).join('') +
+   '<label class="chk" style="border-top:1.5px solid var(--line);margin-top:6px"><input type="checkbox" id="cph" checked> Include photos</label><label class="chk"><input type="checkbox" id="crc" checked> Include receipt photos</label><button type="button" class="btn" id="cgo">Print claim list</button><button type="button" class="btn ghost" data-close>Cancel</button>');
+  p.querySelector('#cgo').onclick = function(){ var rs = [].slice.call(p.querySelectorAll('[name=cr]:checked')).map(function(c){ return c.value; }); if (!rs.length) return F.toast('Pick at least one room.'); var ph = p.querySelector('#cph').checked, rc = p.querySelector('#crc').checked; F.close(true); claimHtml(rs, ph, rc).then(F.printNow); }; }
+function claimHtml(rooms, withPh, withRc){ var d = F.data, pr = d.profile, xs = d.items.filter(function(i){ return rooms.indexOf(i.room) >= 0; });
+  var ids = []; xs.forEach(function(i){ if (withPh) ids = ids.concat((i.photos || []).slice(0, 2)); if (withRc) ids = ids.concat(i.receipt || []); });
+  return Promise.all(ids.map(function(id){ return F.ph.get(id).then(function(u){ return [id, u]; }, function(){ return [id, null]; }); })).then(function(pairs){ var M = {}; pairs.forEach(function(x){ M[x[0]] = x[1]; });
+    var img = function(id){ return M[id] ? '<img class="ph" src="' + M[id] + '" alt="">' : ''; }, sum = xs.reduce(function(a, i){ return a + (+i.value || 0); }, 0);
+    var h = '<h1>Home inventory</h1><p>Prepared ' + esc(F.fmtD(F.today())) + (pr.owner ? ' by ' + esc(pr.owner) : '') + (pr.addr ? ' · ' + esc(pr.addr) : '') + '</p>' + (pr.ins.co ? '<p>Insurance: ' + esc(pr.ins.co) + (pr.ins.pol ? ' · policy ' + esc(pr.ins.pol) : '') + (pr.ins.agent ? ' · ' + esc(pr.ins.agent) : '') + '</p>' : '') +
+      '<table><thead><tr><th>Room</th><th>Items</th><th>Value</th></tr></thead><tbody>' + rooms.map(function(r){ var n = xs.filter(function(i){ return i.room === r; }); return '<tr><td>' + esc(r) + '</td><td>' + n.length + '</td><td>' + F.money(total(d, r)) + '</td></tr>'; }).join('') + '<tr><th>Total</th><th>' + xs.length + '</th><th>' + F.money(sum) + '</th></tr></tbody></table>';
+    rooms.forEach(function(r){ h += '<h2>' + esc(r) + '</h2><table><thead><tr>' + (withPh ? '<th>Photo</th>' : '') + '<th>Item</th><th>Serial / model</th><th>Bought</th><th>Value</th>' + (withRc ? '<th>Receipt</th>' : '') + '</tr></thead><tbody>' +
+      xs.filter(function(i){ return i.room === r; }).map(function(i){ return '<tr>' + (withPh ? '<td>' + img((i.photos || [])[0]) + '</td>' : '') + '<td><b>' + esc(i.name) + '</b>' + (i.notes ? '<br><span class="small">' + esc(i.notes) + '</span>' : '') + '</td><td>' + esc(i.serial || '') + '</td><td>' + esc([F.fmtD(i.date), i.where].filter(Boolean).join(', ')) + '</td><td>' + (i.value ? F.money(i.value) : '') + '</td>' + (withRc ? '<td>' + ((i.receipt || []).length ? img(i.receipt[0]) : 'none') + '</td>' : '') + '</tr>'; }).join('') + '</tbody></table>'; });
+    h += '<p class="small">Values are the owner\'s own purchase prices or replacement estimates. Kept with Home Records by FiledAwayCo.</p>'; return h; }); }
+function csvCell(v){ v = String(v == null ? '' : v); return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }
+var CSVH = ['name', 'room', 'value', 'purchase_date', 'serial_or_model', 'bought_from', 'notes'];
+function toCsv(){ var d = F.data; return [CSVH.join(',')].concat(d.items.map(function(i){ return [i.name, i.room, i.value, i.date, i.serial, i.where, i.notes].map(csvCell).join(','); })).join('\r\n'); }
+function parseCsv(t){ var rows = [], row = [], cur = '', q = false; t = t.replace(/^\uFEFF/, ''); for (var i = 0; i < t.length; i++) { var c = t[i]; if (q) { if (c === '"') { if (t[i + 1] === '"') { cur += '"'; i++; } else q = false; } else cur += c; } else if (c === '"') q = true; else if (c === ',') { row.push(cur); cur = ''; } else if (c === '\n' || c === '\r') { if (c === '\r' && t[i + 1] === '\n') i++; row.push(cur); rows.push(row); row = []; cur = ''; } else cur += c; } if (cur || row.length) { row.push(cur); rows.push(row); } return rows.filter(function(r){ return r.some(function(x){ return x.trim(); }); }); }
+function importCsv(text){ var rows = parseCsv(text); if (rows.length < 2) return F.toast('Nothing was imported: that file has no rows.'); var hd = rows[0].map(function(h){ return h.trim().toLowerCase().replace(/[^a-z]+/g, '_').replace(/^_|_$/g, ''); });
+  var ix = function(names){ for (var i = 0; i < names.length; i++) { var k = hd.indexOf(names[i]); if (k >= 0) return k; } return -1; };
+  var c = { name: ix(['name', 'item', 'description', 'item_name']), room: ix(['room', 'location']), value: ix(['value', 'price', 'cost', 'replacement_value']), date: ix(['purchase_date', 'date', 'bought_on', 'date_purchased']), serial: ix(['serial_or_model', 'serial', 'serial_number', 'model']), where: ix(['bought_from', 'store', 'where']), notes: ix(['notes', 'note']) };
+  if (c.name < 0) return F.sheet('Nothing was imported', '<p class="note red" role="alert">This file needs a column called "name". Use the CSV template from your bonus pack, or rename the column that lists your items to "name".</p><button type="button" class="btn" data-close>OK</button>');
+  var items = rows.slice(1).map(function(r){ var g = function(k){ return c[k] >= 0 ? (r[c[k]] || '').trim() : ''; }; var v = g('value').replace(/[$,]/g, ''); var dt = g('date'), m = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/.exec(dt); if (m) dt = m[3] + '-' + ('0' + m[1]).slice(-2) + '-' + ('0' + m[2]).slice(-2);
+    return { id: F.uid('i'), name: g('name'), room: g('room') || 'Other', value: v && !isNaN(+v) ? String(+v) : '', date: /^\d{4}-\d{2}-\d{2}$/.test(dt) ? dt : '', serial: g('serial'), where: g('where'), notes: g('notes'), photos: [], receipt: [] }; }).filter(function(i){ return i.name; });
+  if (!items.length) return F.toast('Nothing was imported: no rows had a name.'); var sum = items.reduce(function(a, i){ return a + (+i.value || 0); }, 0);
+  var p = F.sheet('Import ' + items.length + ' items?', '<div class="card"><p>' + items.slice(0, 5).map(function(i){ return esc(i.name) + ' · ' + esc(i.room) + (i.value ? ' · ' + F.money(i.value) : ''); }).join('<br>') + (items.length > 5 ? '<br>… and ' + (items.length - 5) + ' more' : '') + '</p><p><b>' + F.money(sum) + '</b> in total</p></div><button type="button" class="btn" id="igo">Add these ' + items.length + ' items</button><button type="button" class="btn ghost" data-close>Cancel</button>');
+  p.querySelector('#igo').onclick = function(){ var d = F.data, before = d.items.slice(); items.forEach(function(i){ if (d.rooms.indexOf(i.room) < 0) d.rooms.push(i.room); }); d.items = d.items.concat(items); F.save(); F.close(true); F.go('inv'); F.toast('Imported ' + items.length + ' items.', 'Undo', function(){ d.items = before; F.save(); F.refresh(); }); }; }
+function ics(){ var d = F.data, s = sched(d), st = function(x){ return x.replace(/[,;\\]/g, function(c){ return '\\' + c; }); };
+  var L = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//FiledAwayCo//Home Records//EN', 'CALSCALE:GREGORIAN'];
+  s.forEach(function(x){ var dt = x.due.replace('-', '') + '01', st2 = d.tasks[x.id] || {}; var rr = x.m && !st2.iv ? 'FREQ=YEARLY;BYMONTH=' + x.m.join(',') + ';BYMONTHDAY=1' : 'FREQ=MONTHLY;INTERVAL=' + x.iv;
+    L.push('BEGIN:VEVENT', 'UID:hr-' + x.id + '@filedawayco', 'DTSTAMP:' + new Date().toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z', 'DTSTART;VALUE=DATE:' + dt, 'RRULE:' + rr, 'SUMMARY:' + st('Home: ' + x.t), 'DESCRIPTION:' + st(x.how + ' (From Home Records. Mark it done in the app.)'), 'BEGIN:VALARM', 'ACTION:DISPLAY', 'DESCRIPTION:' + st('Home: ' + x.t), 'TRIGGER;RELATED=START:PT9H', 'END:VALARM', 'END:VEVENT'); });
+  L.push('END:VCALENDAR'); F.download('Home-Records-reminders.ics', L.join('\r\n'), 'text/calendar'); window.__FAH_ICS = L.join('\n');
+  F.sheet('Calendar reminders saved', '<p class="muted">Open the file <b>Home-Records-reminders.ics</b> to add ' + s.length + ' repeating reminders to your phone calendar. Each one alerts you at 9am on the 1st of the month it\'s due, even when the app is closed. They repeat on their own; they won\'t move when you tap Done in the app, so the app stays the place to check.</p><button type="button" class="btn" data-close>OK</button>'); }
+
+/* ---------- sharing with Family File (same device, same website) ---------- */
+function onSave(d){ var i = d.profile.ins, sh = F.shared(); if (i.co && (!sh.homeInsurance || sh.homeInsurance.co !== i.co || sh.homeInsurance.pol !== i.pol || sh.homeInsurance.agent !== i.agent)) F.setShared('homeInsurance', { co: i.co, pol: i.pol, agent: i.agent });
+  if (d.profile.addr && (!sh.home || sh.home.addr !== d.profile.addr)) F.setShared('home', { addr: d.profile.addr }); }
+
+/* ---------- sample ---------- */
+function svgPh(label, c1, c2, shape){ var s = '<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320"><rect width="320" height="320" fill="' + c1 + '"/>' + shape.replace(/C2/g, c2) + '<text x="160" y="296" font-family="Arial" font-size="22" font-weight="700" fill="#fff" text-anchor="middle">' + label + '</text></svg>'; return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(s); }
+var SHP = { tv: '<rect x="50" y="80" width="220" height="130" rx="8" fill="C2"/><rect x="140" y="214" width="40" height="22" fill="C2"/>', sofa: '<rect x="50" y="130" width="220" height="80" rx="18" fill="C2"/><rect x="40" y="110" width="40" height="110" rx="14" fill="C2"/><rect x="240" y="110" width="40" height="110" rx="14" fill="C2"/>', box: '<rect x="80" y="80" width="160" height="150" rx="14" fill="C2"/>', laptop: '<rect x="80" y="80" width="160" height="110" rx="8" fill="C2"/><rect x="55" y="196" width="210" height="16" rx="6" fill="C2"/>', ring: '<circle cx="160" cy="150" r="60" fill="none" stroke="C2" stroke-width="18"/>', bike: '<circle cx="100" cy="170" r="45" fill="none" stroke="C2" stroke-width="10"/><circle cx="220" cy="170" r="45" fill="none" stroke="C2" stroke-width="10"/><path d="M100 170l50-70h50l20 70M150 100l20 70" stroke="C2" stroke-width="10" fill="none"/>', rec: '<rect x="95" y="50" width="130" height="200" fill="C2"/><path d="M115 90h90M115 120h90M115 150h60" stroke="#999" stroke-width="8"/>' };
+var SP = { 'smp-tv': ['TV', '#2E4A6B', '#9DB7D5', 'tv'], 'smp-sofa': ['Sofa', '#6B4E2E', '#D9B98C', 'sofa'], 'smp-laptop': ['Laptop', '#3B3F46', '#AEB6C2', 'laptop'], 'smp-ring': ['Ring', '#4A2E5C', '#E8C76A', 'ring'], 'smp-bike': ['Bike', '#1F5C45', '#BFE3D0', 'bike'], 'smp-fridge': ['Fridge', '#5A6470', '#E6E9ED', 'box'], 'smp-rc1': ['Receipt', '#8B8B8B', '#FFFFFF', 'rec'], 'smp-wash': ['Washer', '#45657A', '#D8E6EE', 'box'] };
+function samplePhotos(){ var o = {}; Object.keys(SP).forEach(function(k){ var a = SP[k]; o[k] = svgPh(a[0], a[1], a[2], SHP[a[3]]); }); return o; }
+function sample(){ var d = empty(), now = F.today(), ago = function(m, day){ return F.ymd(new Date(now.getFullYear(), now.getMonth() - m, day || 12)); }, ahead = function(days){ return F.ymd(new Date(now.getTime() + days * 864e5)); };
+  d.mode = 'own'; d.profile = { type: 'House', year: '1998', addr: '14 Alder Lane', owner: 'Ana and Marco Rivera', sys: { hvac: 1, heat: 1, ac: 1, gas: 1, wh: 1, dryer: 1, dish: 1, fridge: 1, garage: 1, gutters: 1, yard: 1 }, ins: { co: 'Brightside Mutual', pol: 'HO-55-901233', agent: '(555) 448-9012' } };
+  F.data = d; ['coils', 'caulk', 'dryer'].forEach(function(id, i){ markDone(id, ago(3 + i * 2)); }); markDone('dish', ago(4)); markDone('safety', ago(0, 2));
+  var I = function(n, r, v, ser, dt, wh, ph, rc){ d.items.push({ id: 'smpi' + d.items.length, name: n, room: r, value: String(v), serial: ser || '', date: dt || '', where: wh || '', notes: '', photos: ph ? [ph] : [], receipt: rc ? [rc] : [] }); };
+  I('55-inch TV', 'Living room', 649, 'SN 7HX-22K9-0193', '2024-11-29', 'Best Value Electronics', 'smp-tv', 'smp-rc1'); I('Sofa', 'Living room', 1200, '', '2022-05-14', 'Oak & Thread', 'smp-sofa'); I('Bookshelf', 'Living room', 180);
+  I('Refrigerator', 'Kitchen', 1899, 'Model RF28-T', '2023-08-02', 'Home Appliance Depot', 'smp-fridge'); I('Stand mixer', 'Kitchen', 379, 'SN W10-44821'); I('Laptop', 'Office', 1299, 'SN C02-XK19-77', '2025-02-10', 'Tech Store', 'smp-laptop');
+  I('Engagement ring', 'Main bedroom', 3800, '', '2015-06-20', 'Marlowe Jewelers', 'smp-ring'); I('Mountain bike', 'Garage', 950, 'Frame WTU-381922', '2021-04-03', '', 'smp-bike'); I('Washer', 'Basement or storage', 849, 'Model WA45-B', '2024-03-15', 'Home Appliance Depot', 'smp-wash'); I('Dryer', 'Basement or storage', 799, 'Model DV45-B', '2024-03-15', 'Home Appliance Depot');
+  d.improvements = [{ id: 'smpm1', what: 'New water heater (50 gal gas)', date: '2024-02-08', cost: '1650', who: 'Brightway Plumbing (555) 610-4400', notes: 'Model GT-50, 6-year warranty', photos: ['smp-rc1'] }, { id: 'smpm2', what: 'Roof replaced', date: '2021-09-20', cost: '11800', who: 'Summit Roofing', notes: '30-year architectural shingles', photos: [] }, { id: 'smpm3', what: 'Paint the nursery', status: 'Planned', budget: '350', todo: '[x] Pick a color\nBuy paint and tape\nMove the crib out', date: '', cost: '', who: 'DIY', notes: '', photos: [] }];
+  d.chores = [{ id: 'smpc1', name: 'Take out trash & recycling', who: 'Marco', every: 'Weekly', last: ahead(-8) }, { id: 'smpc2', name: 'Water the plants', who: 'Leo', every: 'Weekly', last: ahead(-2) }, { id: 'smpc3', name: 'Clean bathrooms', who: 'Ana', every: 'Every 2 weeks', last: ahead(-5) }];
+  d.book = [{ id: 'smpb1', type: 'where', name: 'Water shut-off', info: 'Basement, behind the furnace. Turn the red handle right.', room: 'Basement', photos: [] }, { id: 'smpb2', type: 'paint', name: 'Living room walls', info: 'Behr Swiss Coffee 12, eggshell. Half a can in the garage.', room: 'Living room', photos: [] }, { id: 'smpb3', type: 'parts', name: 'Furnace filter', info: '16x25x1, MERV 8', room: '', photos: [] }, { id: 'smpb4', type: 'help', name: 'Brightway Plumbing', info: '(555) 610-4400. Replaced the water heater in 2024. Would use again.', room: '', photos: [] }];
+  d.warranties = [{ id: 'smpw1', item: 'Washer', until: ahead(24), provider: 'The maker', phone: '1-800-555-0110', where: 'Receipt photo in Home Records', itemId: 'smpi8' }, { id: 'smpw2', item: 'Laptop', until: ahead(400), provider: 'Tech Store protection plan', phone: 'techstore.example/claims', where: 'Email from Tech Store' }, { id: 'smpw3', item: 'Refrigerator', until: ahead(-40), provider: 'The maker', where: 'Kitchen drawer' }];
+  return d; }
+
+
+
+
+/* ---------- Chores: who does what, how often ---------- */
+var CEV = { Daily: 1, Weekly: 7, 'Every 2 weeks': 14, Monthly: 30 };
+function choreDue(c){ if (!c.last) return 0; var days = Math.floor((F.today() - F.parseD(c.last)) / 864e5); return (CEV[c.every] || 7) - days; }
+F.view('chores', function(){ var d = F.data, xs = d.chores.slice().sort(function(a, b){ return choreDue(a) - choreDue(b); });
+  var h = '<p><button type="button" class="tl" data-nav="home">‹ Home</button></p><h2 class="h" style="margin-top:0">🧹 Chores</h2><p class="muted">Who does what, and how often. Tap Done and it comes back when it\'s due again.</p>';
+  h += xs.length ? '<div class="list">' + xs.map(function(c){ var n = choreDue(c); return '<div class="it"><span class="tx"><b>' + esc(c.name) + '</b><span>' + esc([c.who, c.every, n <= 0 ? 'Due now' : 'Due in ' + n + ' day' + (n === 1 ? '' : 's')].filter(Boolean).join(' · ')) + '</span></span><button type="button" class="btn sm' + (n <= 0 ? '' : ' ghost') + '" style="width:auto" data-a="choreDone" data-id="' + esc(c.id) + '">Done</button><button type="button" class="btn sm ghost" style="width:auto;min-width:48px" data-a="choreEdit" data-id="' + esc(c.id) + '" aria-label="Edit ' + esc(c.name) + '">✎</button></div>'; }).join('') + '</div>' : '<p class="muted">No chores yet. Add the ones that keep getting forgotten.</p>';
+  return h + '<button type="button" class="btn" data-a="choreEdit" data-id="">+ Add a chore</button><a class="btn ghost" href="bonus/Home-Records-Chores-Chart.pdf">🖨️ Printable weekly chart</a>'; });
+F.on('choreDone', function(id){ var c = F.data.chores.filter(function(x){ return x.id === id; })[0]; if (!c) return; var prev = c.last; c.last = F.ymd(F.today()); F.save(); F.refresh(); F.toast('Done: ' + c.name, 'Undo', function(){ c.last = prev; F.save(); F.refresh(); }); });
+F.on('choreEdit', function(id){ var d = F.data, c = id ? d.chores.filter(function(x){ return x.id === id; })[0] : null, isNew = !c; c = c ? Object.assign({}, c) : { id: F.uid('c'), every: 'Weekly' };
+  var p = F.sheet(isNew ? 'Add a chore' : 'Edit chore', '<form id="cf" novalidate><label class="f" for="cnm">Chore *</label><input class="inp" id="cnm" name="name" value="' + esc(c.name || '') + '" placeholder="e.g. Take out recycling"><label class="f" for="cwh">Who</label><input class="inp" id="cwh" name="who" value="' + esc(c.who || '') + '" placeholder="e.g. Leo"><label class="f" for="cev">How often</label><select class="inp" id="cev" name="every">' + Object.keys(CEV).map(function(k){ return '<option' + (c.every === k ? ' selected' : '') + '>' + k + '</option>'; }).join('') + '</select><p class="note red" id="cerr" role="alert" hidden></p><button type="submit" class="btn">Save</button>' + (isNew ? '' : '<button type="button" class="btn red" id="cdel">Delete</button>') + '<button type="button" class="btn ghost" data-close>Cancel</button></form>');
+  var fm = p.querySelector('#cf'); fm.onsubmit = function(e){ e.preventDefault(); ['name', 'who', 'every'].forEach(function(k){ c[k] = fm.elements[k].value.trim(); }); if (!c.name) { var er = p.querySelector('#cerr'); er.textContent = 'Name the chore.'; er.hidden = false; return; } if (isNew) d.chores.push(c); else d.chores = d.chores.map(function(x){ return x.id === c.id ? c : x; }); F.save(); F.close(true); F.go('chores'); F.toast('Saved.'); };
+  var del = p.querySelector('#cdel'); if (del) del.onclick = function(){ d.chores = d.chores.filter(function(x){ return x.id !== c.id; }); F.save(); F.close(true); F.go('chores'); F.toast('Deleted.'); }; });
+/* ---------- Home book: the facts you always have to look up ---------- */
+var BK = {
+  where: { t: 'Where things are', ic: '📍', a: 'What', b: 'Where it is', ph: 'e.g. Water shut-off', phb: 'e.g. Basement, behind the furnace' },
+  paint: { t: 'Paint & finishes', ic: '🎨', a: 'Room or surface', b: 'Brand, color name and code, finish', ph: 'e.g. Living room walls', phb: 'e.g. Behr Swiss Coffee 12, eggshell' },
+  help: { t: 'Helpers & contractors', ic: '🧰', a: 'Name or company', b: 'Phone, what they do, would you use them again', ph: 'e.g. Brightway Plumbing', phb: 'e.g. (555) 610-4400, plumbing, yes' },
+  appl: { t: 'Appliances & systems', ic: '🔌', a: 'What', b: 'Brand, model, serial, installed', ph: 'e.g. Furnace', phb: 'e.g. Carrier 59SC5, S/N 1234, 2019' },
+  parts: { t: 'Sizes & parts', ic: '🔩', a: 'What', b: 'Size, part number, where to buy', ph: 'e.g. Furnace filter', phb: 'e.g. 16x25x1 MERV 8' },
+  decl: { t: 'Declutter list', ic: '📦', a: 'Item', b: 'Keep, donate, sell or toss (and when)', ph: 'e.g. Old stroller', phb: 'e.g. Sell on Marketplace by March' },
+  prod: { t: 'Products we used', ic: '🧱', a: 'Where it went', b: 'Product, color, store, how much is left', ph: 'e.g. Kitchen backsplash tile', phb: 'e.g. 3x6 white subway, Tile Depot, 1 box in garage' }
+};
+var BKK = Object.keys(BK);
+F.view('book', function(k){ var d = F.data; k = BK[k] ? k : '';
+  var h = '<p><button type="button" class="tl" data-nav="home">‹ Home</button></p><h2 class="h" style="margin-top:0">📒 Home book</h2><p class="muted">The facts you always end up hunting for: paint colors, filter sizes, who fixed the furnace, where the shut-off is.</p>';
+  h += '<div class="chips" role="group" aria-label="Show">' + '<button type="button" class="chip' + (k ? '' : ' on') + '" data-a="bookTab" data-id="" aria-pressed="' + !k + '">All</button>' + BKK.map(function(x){ var n = d.book.filter(function(b){ return b.type === x; }).length; return '<button type="button" class="chip' + (k === x ? ' on' : '') + '" data-a="bookTab" data-id="' + x + '" aria-pressed="' + (k === x) + '">' + BK[x].ic + ' ' + esc(BK[x].t) + (n ? ' (' + n + ')' : '') + '</button>'; }).join('') + '</div>';
+  var xs = d.book.filter(function(b){ return !k || b.type === k; });
+  h += xs.length ? '<div class="list">' + xs.map(function(b){ var c = BK[b.type] || BK.where; return '<button type="button" class="it" data-a="bookEdit" data-id="' + esc(b.id) + '">' + ((b.photos || []).length ? thumbs([b.photos[0]]) : '<span class="ic" aria-hidden="true">' + c.ic + '</span>') + '<span class="tx"><b>' + esc(b.name) + '</b><span>' + esc(b.info || '') + '</span></span></button>'; }).join('') + '</div>' : '<p class="muted">Nothing here yet.</p>';
+  h += '<button type="button" class="btn" data-a="newBook" data-id="' + k + '">+ Add ' + (k ? 'to ' + esc(BK[k].t) : 'a note') + '</button>' + (d.book.length ? '<button type="button" class="btn ghost" data-a="printBook">🖨️ Print the home book</button>' : '');
+  return h; });
+F.on('bookTab', function(k){ F.go('book', k); });
+function bookForm(id, type){ var d = F.data, b = id ? d.book.filter(function(x){ return x.id === id; })[0] : null, isNew = !b; b = b ? JSON.parse(JSON.stringify(b)) : { id: F.uid('b'), type: BK[type] ? type : 'where', photos: [] }; var added = [], saved = false;
+  var p = F.sheet(isNew ? 'Add to your home book' : 'Edit', '<form id="bf" novalidate><label class="f" for="bty">Kind</label><select class="inp" id="bty" name="type">' + BKK.map(function(x){ return '<option value="' + x + '"' + (b.type === x ? ' selected' : '') + '>' + esc(BK[x].t) + '</option>'; }).join('') + '</select>' +
+   '<label class="f" for="bnm" id="bla">' + esc(BK[b.type].a) + ' *</label><input class="inp" id="bnm" name="name" value="' + esc(b.name || '') + '" placeholder="' + esc(BK[b.type].ph) + '">' +
+   '<label class="f" for="bin" id="blb">' + esc(BK[b.type].b) + '</label><textarea class="inp" id="bin" name="info" placeholder="' + esc(BK[b.type].phb) + '">' + esc(b.info || '') + '</textarea>' +
+   '<label class="f" for="brm">Room (optional)</label><input class="inp" id="brm" name="room" value="' + esc(b.room || '') + '" list="rooms"><datalist id="rooms">' + d.rooms.map(function(r){ return '<option value="' + esc(r) + '">'; }).join('') + '</datalist>' +
+   '<label class="btn sec" style="cursor:pointer">📷 Add a photo (label, swatch, card)<input type="file" accept="image/*" id="bph" hidden></label><div class="photos" id="bphs"></div>' +
+   '<p class="note red" id="berr" role="alert" hidden></p><button type="submit" class="btn">Save</button>' + (isNew ? '' : '<button type="button" class="btn red" id="bdel">Delete</button>') + '<button type="button" class="btn ghost" data-close>Cancel</button></form>');
+  var fm = p.querySelector('#bf');
+  fm.elements.type.onchange = function(){ var c = BK[fm.elements.type.value]; p.querySelector('#bla').textContent = c.a + ' *'; p.querySelector('#blb').textContent = c.b; fm.elements.name.placeholder = c.ph; fm.elements.info.placeholder = c.phb; };
+  function draw(){ var box = p.querySelector('#bphs'); box.innerHTML = b.photos.map(function(x){ return '<figure>' + thumbs([x], 'x') + '<button type="button" aria-label="Remove photo" data-rm="' + esc(x) + '">×</button></figure>'; }).join(''); fillPhotos(box);
+    box.querySelectorAll('[data-rm]').forEach(function(btn){ btn.onclick = function(){ var x = btn.getAttribute('data-rm'); b.photos = b.photos.filter(function(y){ return y !== x; }); if (added.indexOf(x) >= 0) F.ph.del(x); draw(); }; }); }
+  var inp = p.querySelector('#bph'); inp.onchange = function(){ var f = inp.files[0]; inp.value = ''; if (!f) return; F.readPhoto(f).then(function(u){ var pid = (F.isSample() ? 'smp-' : 'p-') + F.uid(''); return F.ph.put(pid, u).then(function(){ added.push(pid); b.photos.push(pid); draw(); }); }).catch(function(){ F.toast('That photo couldn\'t be read. Try another one.'); }); }; draw();
+  fm.onsubmit = function(e){ e.preventDefault(); ['type', 'name', 'info', 'room'].forEach(function(k){ b[k] = fm.elements[k].value.trim(); }); var err = p.querySelector('#berr');
+    if (!b.name) { err.textContent = 'Give it a name, like "Water shut-off" or "Living room walls".'; err.hidden = false; fm.elements.name.focus(); return; }
+    saved = true; if (isNew) d.book.push(b); else d.book = d.book.map(function(x){ return x.id === b.id ? b : x; }); F.save(); F.close(true); F.go('book', b.type); F.toast('Saved.'); };
+  var del = p.querySelector('#bdel'); if (del) del.onclick = function(){ saved = true; d.book = d.book.filter(function(x){ return x.id !== b.id; }); (b.photos || []).forEach(function(x){ F.ph.del(x); }); F.save(); F.close(true); F.go('book', b.type); F.toast('Deleted.'); };
+  var obs = new MutationObserver(function(){ if (!document.body.contains(p)) { obs.disconnect(); if (!saved) added.forEach(function(x){ F.ph.del(x); }); } }); obs.observe(document.body, { childList: true }); }
+F.on('newBook', function(k){ bookForm(null, k); });
+F.on('bookEdit', function(id){ bookForm(id); });
+F.on('printBook', function(){ var d = F.data, pr = d.profile; F.printNow('<h1>Home book</h1><p>' + esc([pr.addr, pr.owner].filter(Boolean).join(' · ')) + ' · printed ' + esc(F.fmtD(F.today())) + '</p>' + BKK.map(function(k){ var xs = d.book.filter(function(b){ return b.type === k; }); if (!xs.length) return ''; return '<h2>' + esc(BK[k].t) + '</h2><table><thead><tr><th>' + esc(BK[k].a) + '</th><th>' + esc(BK[k].b) + '</th><th>Room</th></tr></thead><tbody>' + xs.map(function(b){ return '<tr><td><b>' + esc(b.name) + '</b></td><td>' + esc(b.info || '') + '</td><td>' + esc(b.room || '') + '</td></tr>'; }).join('') + '</tbody></table>'; }).join('') + '<p class="small">Kept with Home Records by FiledAwayCo.</p>'); });
+function itot(d){ return d.improvements.reduce(function(a, i){ return a + (+i.cost || 0); }, 0); }
+var PST = ['Idea', 'Planned', 'In progress', 'Done'];
+function pst(i){ return PST.indexOf(i.status) >= 0 ? i.status : 'Done'; }
+function todos(i){ return (i.todo || '').split('\n').map(function(x){ return x.trim(); }).filter(Boolean); }
+F.view('impr', function(){ var d = F.data, xs = d.improvements.slice().sort(function(a, b){ return (b.date || '') < (a.date || '') ? -1 : 1; });
+  return '<p><button type="button" class="tl" data-nav="home">‹ Home</button></p><h2 class="h" style="margin-top:0">🔨 Projects & repairs</h2><p class="muted">Plan projects from idea to done, with a budget and a to-do list, and keep a record of work on your home: new roof, water heater, remodels, big repairs. Handy when something goes wrong again, and when you sell.</p>' +
+   (function(){ var open = xs.filter(function(i){ return pst(i) !== 'Done'; }); if (!open.length) return ''; var bud = open.reduce(function(a, i){ return a + (+i.budget || 0); }, 0); return '<div class="card"><h3>Planned and in progress: ' + open.length + '</h3><p>' + PST.slice(0, 3).map(function(s){ var n = open.filter(function(i){ return pst(i) === s; }).length; return n ? s + ': <b>' + n + '</b>' : ''; }).filter(Boolean).join(' · ') + (bud ? '<br>Budgeted: <b>' + F.money(bud) + '</b>' : '') + '</p></div>'; })() +
+   (xs.length ? '<div class="stat3"><div><b>' + xs.length + '</b><span>logged</span></div><div><b>' + F.money(Math.round(itot(d))) + '</b><span>total spent</span></div><div><b>' + xs.filter(function(i){ return (i.photos || []).length; }).length + '</b><span>with receipts</span></div></div>' : '') +
+   '<div class="list">' + xs.map(function(i){ return '<button type="button" class="it" data-a="imprEdit" data-id="' + esc(i.id) + '">' + ((i.photos || []).length ? thumbs([i.photos[0]]) : '<span class="ic" aria-hidden="true">🔨</span>') + '<span class="tx"><b>' + esc(i.what) + '</b><span>' + esc([pst(i) === 'Done' ? F.fmtD(i.date) : pst(i), i.cost ? F.money(i.cost) + (i.budget ? ' of ' + F.money(i.budget) : '') : (i.budget ? 'budget ' + F.money(i.budget) : ''), todos(i).length ? todos(i).filter(function(t){ return /^\[x\]/i.test(t); }).length + '/' + todos(i).length + ' to-dos' : '', i.who].filter(Boolean).join(' · ')) + '</span></span></button>'; }).join('') + '</div>' +
+   (xs.length ? '' : '<p class="muted">Nothing logged yet.</p>') + '<button type="button" class="btn" data-a="newImpr">+ Add a project or repair</button>' + (xs.length ? '<button type="button" class="btn ghost" data-a="printImpr">🖨️ Print the list</button>' : ''); });
+function imprForm(id){ var d = F.data, it = id ? d.improvements.filter(function(x){ return x.id === id; })[0] : null, isNew = !it; it = it ? JSON.parse(JSON.stringify(it)) : { id: F.uid('m'), date: F.ymd(F.today()), photos: [] }; var added = [], saved = false;
+  var p = F.sheet(isNew ? 'Add a project or repair' : 'Edit', '<form id="mf" novalidate><label class="f" for="mwh">What *</label><input class="inp" id="mwh" name="what" value="' + esc(it.what || '') + '" placeholder="e.g. New water heater, paint the nursery">' +
+   '<label class="f" for="mst">Status</label><select class="inp" id="mst" name="status">' + PST.map(function(s){ return '<option' + (pst(it) === s ? ' selected' : '') + '>' + s + '</option>'; }).join('') + '</select>' +
+   '<details' + (it.budget || it.todo ? ' open' : '') + '><summary style="min-height:44px;display:flex;align-items:center;font-weight:700;cursor:pointer">Budget and to-do list</summary><label class="f" for="mbu">Budget ($)</label><input class="inp" id="mbu" name="budget" inputmode="decimal" value="' + esc(it.budget || '') + '"><label class="f" for="mtd">To-dos, one per line</label><textarea class="inp" id="mtd" name="todo" placeholder="Pick paint color&#10;Buy supplies&#10;[x] Get 3 quotes">' + esc(it.todo || '') + '</textarea><p class="muted">Put [x] at the start of a line when it\'s done.</p></details>' +
+   '<div class="row2"><div><label class="f" for="mdt">When</label><input class="inp" id="mdt" name="date" type="date" value="' + esc(it.date || '') + '"></div><div><label class="f" for="mco">Cost ($)</label><input class="inp" id="mco" name="cost" inputmode="decimal" value="' + esc(it.cost || '') + '"></div></div>' +
+   '<label class="f" for="mwo">Who did it</label><input class="inp" id="mwo" name="who" value="' + esc(it.who || '') + '" placeholder="Company and phone, or DIY">' +
+   '<label class="f" for="mno">Notes</label><textarea class="inp" id="mno" name="notes">' + esc(it.notes || '') + '</textarea>' +
+   '<label class="btn sec" style="cursor:pointer">🧾 Add receipt, photo or inspiration picture<input type="file" accept="image/*" id="mph" hidden></label><div class="photos" id="mphs"></div>' +
+   '<p class="note red" id="merr" role="alert" hidden></p><button type="submit" class="btn">Save</button>' + (isNew ? '' : '<button type="button" class="btn red" id="mdel">Delete</button>') + '<button type="button" class="btn ghost" data-close>Cancel</button></form>');
+  function draw(){ var box = p.querySelector('#mphs'); box.innerHTML = it.photos.map(function(x){ return '<figure>' + thumbs([x], 'x') + '<button type="button" aria-label="Remove photo" data-rm="' + esc(x) + '">×</button></figure>'; }).join(''); fillPhotos(box);
+    box.querySelectorAll('[data-rm]').forEach(function(b){ b.onclick = function(){ var x = b.getAttribute('data-rm'); it.photos = it.photos.filter(function(y){ return y !== x; }); if (added.indexOf(x) >= 0) F.ph.del(x); draw(); }; }); }
+  var inp = p.querySelector('#mph'); inp.onchange = function(){ var f = inp.files[0]; inp.value = ''; if (!f) return; F.readPhoto(f).then(function(u){ var pid = (F.isSample() ? 'smp-' : 'p-') + F.uid(''); return F.ph.put(pid, u).then(function(){ added.push(pid); it.photos.push(pid); draw(); }); }).catch(function(){ F.toast('That photo couldn\'t be read. Try another one.'); }); }; draw();
+  var fm = p.querySelector('#mf'); fm.onsubmit = function(e){ e.preventDefault(); ['what', 'status', 'budget', 'todo', 'date', 'cost', 'who', 'notes'].forEach(function(k){ it[k] = fm.elements[k].value.trim(); }); var err = p.querySelector('#merr');
+    if (!it.what) { err.textContent = 'Say what was done.'; err.hidden = false; fm.elements.what.focus(); return; }
+    var bad = false; ['cost', 'budget'].forEach(function(k){ if (bad || !it[k]) return; var v = +it[k].replace(/[$,]/g, ''); if (isNaN(v)) { err.textContent = 'The ' + k + ' should be a number, like 1450.'; err.hidden = false; bad = true; return; } it[k] = String(v); }); if (bad) return;
+    saved = true; if (isNew) d.improvements.push(it); else d.improvements = d.improvements.map(function(x){ return x.id === it.id ? it : x; }); F.save(); F.close(true); F.go('impr'); F.toast('Saved.'); };
+  var del = p.querySelector('#mdel'); if (del) del.onclick = function(){ saved = true; d.improvements = d.improvements.filter(function(x){ return x.id !== it.id; }); (it.photos || []).forEach(function(x){ F.ph.del(x); }); F.save(); F.close(true); F.go('impr'); F.toast('Deleted.'); };
+  var obs = new MutationObserver(function(){ if (!document.body.contains(p)) { obs.disconnect(); if (!saved) added.forEach(function(x){ F.ph.del(x); }); } }); obs.observe(document.body, { childList: true }); }
+function imprHtml(){ var d = F.data, pr = d.profile, xs = d.improvements.slice().sort(function(a, b){ return (a.date || '') < (b.date || '') ? -1 : 1; });
+  return '<h1>Home projects & repairs</h1><p>' + esc([pr.addr, pr.owner].filter(Boolean).join(' · ')) + ' · printed ' + esc(F.fmtD(F.today())) + '</p><table><thead><tr><th>Date</th><th>What was done</th><th>Who did it</th><th>Cost</th><th>Receipt</th></tr></thead><tbody>' +
+   xs.map(function(i){ return '<tr><td>' + (pst(i) === 'Done' ? esc(F.fmtD(i.date)) : esc(pst(i))) + '</td><td><b>' + esc(i.what) + '</b>' + (i.budget ? ' <span class="small">(budget ' + F.money(i.budget) + ')</span>' : '') + (todos(i).length ? '<br><span class="small">' + todos(i).map(esc).join(' · ') + '</span>' : '') + (i.notes ? '<br><span class="small">' + esc(i.notes) + '</span>' : '') + '</td><td>' + esc(i.who || '') + '</td><td>' + (i.cost ? F.money(i.cost) : '') + '</td><td>' + ((i.photos || []).length ? 'in Home Records' : '') + '</td></tr>'; }).join('') +
+   '<tr><th colspan="3">Total spent</th><th>' + F.money(itot(d)) + '</th><th></th></tr></tbody></table><p class="small">Kept with Home Records by FiledAwayCo. Keep the original receipts.</p>'; }
+F.on('newImpr', function(){ imprForm(); });
+F.on('imprEdit', function(id){ imprForm(id); });
+F.on('printImpr', function(){ F.printNow(imprHtml()); });
+
+/* ---------- actions ---------- */
+function setMode(m){ F.data.mode = m; F.save(); F.seen(); }
+F.on('own', function(){ setMode('own'); if (!Object.keys(F.data.profile.sys).length) { var s = F.data.profile.sys; ['hvac', 'heat', 'ac', 'wh', 'dryer', 'dish', 'gutters', 'yard'].forEach(function(k){ s[k] = 1; }); F.save(); } F.go('profile'); F.toast('Tick what your home has, then tap Save to build your schedule.'); });
+F.on('rent', function(){ setMode('rent'); F.go('home'); });
+F.on('done', function(id){ var d = F.data, before = JSON.stringify(d.tasks); markDone(id); F.save(); F.refresh(); F.toast('Done. Next due ' + F.fmtM(d.tasks[id].next) + '.', 'Undo', function(){ d.tasks = JSON.parse(before); F.save(); F.refresh(); }); });
+F.on('task', taskSheet);
+F.on('unhide', function(){ Object.keys(F.data.tasks).forEach(function(k){ delete F.data.tasks[k].off; }); F.save(); F.refresh(); });
+F.on('newTask', function(){ var p = F.sheet('Add your own task', '<label class="f" for="ctn">Task</label><input class="inp" id="ctn" placeholder="e.g. Service the pool pump"><label class="f" for="cti">Repeat</label><select class="inp" id="cti">' + [[1, 'Every month'], [3, 'Every 3 months'], [6, 'Every 6 months'], [12, 'Every year'], [24, 'Every 2 years']].map(function(o){ return '<option value="' + o[0] + '"' + (o[0] === 12 ? ' selected' : '') + '>' + o[1] + '</option>'; }).join('') + '</select><button type="button" class="btn" id="ctgo">Add task</button><button type="button" class="btn ghost" data-close>Cancel</button>');
+  p.querySelector('#ctgo').onclick = function(){ var t = p.querySelector('#ctn').value.trim(); if (!t) return p.querySelector('#ctn').focus(); var id = F.uid('c'); F.data.custom.push({ id: id, t: t, iv: +p.querySelector('#cti').value }); F.data.tasks[id] = { next: ym(F.today()) }; F.save(); F.close(true); F.go('maint'); F.toast('Added. It\'s due this month.'); }; });
+F.on('newItem', function(room){ itemForm(null, room); });
+F.on('item', function(id){ itemForm(id); });
+F.on('room', function(r){ F.go('room', r); });
+F.on('newRoom', function(){ var p = F.sheet('Add a room', '<label class="f" for="rn">Room name</label><input class="inp" id="rn" placeholder="e.g. Kids\' room"><button type="button" class="btn" id="rgo">Add room</button>'); p.querySelector('#rgo').onclick = function(){ var v = p.querySelector('#rn').value.trim(); if (!v) return; if (F.data.rooms.indexOf(v) < 0) F.data.rooms.push(v); F.save(); F.close(true); F.go('room', v); }; });
+F.on('delRoom', function(r){ F.data.rooms = F.data.rooms.filter(function(x){ return x !== r; }); F.save(); F.go('inv'); });
+F.on('newWarr', function(){ warrForm(); });
+F.on('warrEdit', function(id){ warrForm(id); });
+F.on('claim', claimSheet);
+F.on('csv', function(){ if (!F.data.items.length) return F.toast('Add some inventory items first.'); F.download('Home-inventory-' + F.ymd() + '.csv', '\uFEFF' + toCsv(), 'text/csv'); F.toast('Spreadsheet saved.'); });
+F.on('imp', function(){ var f = document.getElementById('impf'); f.onchange = function(){ var x = f.files[0]; f.value = ''; if (x) x.text().then(importCsv); }; f.click(); });
+F.on('ics', ics);
+F.on('useShared', function(){ var s = F.shared().homeInsurance, fm = document.getElementById('pf'); fm.co.value = s.co || ''; fm.pol.value = s.pol || ''; fm.agent.value = s.agent || ''; document.getElementById('shr').hidden = true; F.toast('Filled in from Family File. Tap Save to keep it.'); });
+F.on('add', function(){ if (rent()) return itemForm(); var p = F.sheet('What do you want to add?', '<div class="list"><button type="button" class="it" data-p="i"><span class="ic" aria-hidden="true">📸</span><span class="tx"><b>An inventory item</b><span>Photo, value, serial number</span></span></button><button type="button" class="it" data-p="w"><span class="ic" aria-hidden="true">🧾</span><span class="tx"><b>A warranty</b><span>Get reminded before it ends</span></span></button><button type="button" class="it" data-p="t"><span class="ic" aria-hidden="true">📅</span><span class="tx"><b>A maintenance task</b><span>Something your home needs regularly</span></span></button><button type="button" class="it" data-p="m"><span class="ic" aria-hidden="true">🔨</span><span class="tx"><b>An improvement or repair</b><span>What was done, when, cost, receipt</span></span></button></div>');
+  p.querySelectorAll('[data-p]').forEach(function(b){ b.onclick = function(){ var k = b.getAttribute('data-p'); F.close(true); if (k === 'i') itemForm(); else if (k === 'w') warrForm(); else if (k === 'm') imprForm(); else F.actions.newTask(); }; }); });
+F.on('wipe', function(){ F.ask('Delete everything?', 'This removes your schedule, inventory, photos and warranties from this device. Save a backup first if you might want them back.', 'Delete everything', 'Keep it', true).then(function(y){ if (!y) return; ['', '_sample', '_mode', '_seen', '_lastbk'].forEach(function(s){ localStorage.removeItem(KEY + s); }); F.ph.keys().then(function(ks){ return Promise.all(ks.map(F.ph.del)); }).then(function(){ F.load(); F.go('welcome'); F.toast('Deleted from this device.'); }); }); });
+document.addEventListener('submit', function(e){ if (e.target.id !== 'pf') return; e.preventDefault(); var fm = e.target, p = F.data.profile; p.type = fm.type.value; p.year = fm.year.value.trim(); if (fm.hemi) { var ns = fm.hemi.value === 's'; if (!!p.south !== ns) { p.south = ns; Object.keys(F.data.tasks).forEach(function(k){ var t = F.data.tasks[k]; if (t && !t.iv && T.some(function(x){ return x.id === k && x.m; })) delete t.next; }); active(F.data).forEach(function(x){ var t = F.data.tasks[x.id]; if (x.m && t && t.last && !t.iv) t.next = nextInMonths(x.m, F.parseD(t.last), true); }); } } p.addr = fm.addr.value.trim(); p.owner = fm.owner.value.trim(); p.ins = { co: fm.co.value.trim(), pol: fm.pol.value.trim(), agent: fm.agent.value.trim() };
+  if (!rent()) { p.sys = {}; [].slice.call(fm.querySelectorAll('[name=sys]:checked')).forEach(function(c){ p.sys[c.value] = 1; }); } F.save(); F.go('home'); F.toast(rent() ? 'Saved.' : 'Saved. Your schedule has ' + sched(F.data).length + ' tasks.'); });
+document.addEventListener('click', function(e){ var b = e.target.closest('[data-mode]'); if (!b) return; F.data.mode = b.getAttribute('data-mode'); F.save(); F.refresh(); });
+F.start({ slug: 'home-records', name: 'Home Records', file: 'Home-Records', key: KEY, photos: true, lockFirst: false, allLabel: 'Records', addLabel: 'Add to Home Records', backupNote: 'The backup file includes your photos, so it can be large. Save it to your cloud drive or email it to yourself.' },
+  { empty: empty, normalize: normalize, count: count, valid: valid, summary: summary, sample: sample, samplePhotos: samplePhotos, onSave: onSave, after: function(v, m){ fillPhotos(m);
+    if (v === 'home' && !F.data.mode) { /* never happens after welcome */ } } });
+window.__HR = { sched: sched, dueNow: dueNow, markDone: markDone, T: T, total: total, wStatus: wStatus, toCsv: toCsv, parseCsv: parseCsv, claimHtml: claimHtml };
+})();
+</script>
+</body></html>

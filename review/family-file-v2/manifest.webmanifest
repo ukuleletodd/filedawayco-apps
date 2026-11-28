@@ -1,0 +1,43 @@
+{
+ "id": "./",
+ "name": "Family File \u00b7 FiledAwayCo",
+ "short_name": "Family File",
+ "description": "Everything your family would need to find if something happened to you: who to call, accounts, insurance, papers and bills. Prints a binder. Stays on your device.",
+ "start_url": "./",
+ "scope": "./",
+ "display": "standalone",
+ "orientation": "any",
+ "background_color": "#FBF8F2",
+ "theme_color": "#1B2A40",
+ "lang": "en-US",
+ "categories": [
+  "lifestyle",
+  "productivity"
+ ],
+ "icons": [
+  {
+   "src": "icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "icon-maskable-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "maskable"
+  },
+  {
+   "src": "icon-maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ]
+}
