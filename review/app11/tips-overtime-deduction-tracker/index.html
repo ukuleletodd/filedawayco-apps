@@ -3532,11 +3532,14 @@ function homeUI(){ var cta = $('#faa .faa-cta'); if (!cta || $('#fa11QaRow')) re
     $('#fa11QaBtn', row).addEventListener('click', quickAdd); } }
 function hashGo(){ var h = location.hash; if (h === '#quick-add') { if (!quickAdd()) { var b = $('#faa .faa-cta .faa-btn'); if (b) b.click(); } }
   else if (h === '#import') { var t = fileTarget(); if (QA[SLUG]) importSheet(); else if (t) t.click(); } }
-function boot(){ if (!$('#faa')) { if ((boot.n = (boot.n || 0) + 1) < 40) setTimeout(boot, 100); return; }
+function boot(){ var f = $('#faa');
+  if (!f) { if (!boot.mo && D.body) { boot.mo = new MutationObserver(function(){ if ($('#faa')) { boot.mo.disconnect(); boot(); } }); boot.mo.observe(D.body, { childList: true, subtree: true }); } else if (!D.body) setTimeout(boot, 0); return; }
+  if (boot.done) return; boot.done = 1;
   homeUI(); whatIf(); rings(); dropInit(); hashGo(); W.addEventListener('hashchange', hashGo);
-  var mo = new MutationObserver(function(){ clearTimeout(boot.t); boot.t = setTimeout(function(){ homeUI(); whatIf(); rings(); }, 120); }); mo.observe($('#faa'), { childList: true, subtree: true }); }
+  /* insert in the same microtask as the shell render, so nothing jumps after paint (no layout shift) */
+  var mo = new MutationObserver(function(){ homeUI(); whatIf(); clearTimeout(boot.t); boot.t = setTimeout(rings, 120); }); mo.observe(f, { childList: true, subtree: true }); }
 W.FA11 = { money: money, parseDate: parseDate, parseLine: function(l, s){ return parseLine(l, QA[s || SLUG] || {}); }, csvRows: csvRows, mapCols: mapCols, runImport: runImport, quickAdd: quickAdd, importSheet: importSheet, dropFile: dropFile, confetti: confetti, countUp: countUp, rings: rings, QA: QA, WI: WI };
-if (D.readyState === 'loading') D.addEventListener('DOMContentLoaded', function(){ setTimeout(boot, 200); }); else setTimeout(boot, 200);
+if (D.readyState === 'loading') D.addEventListener('DOMContentLoaded', boot); else boot();
 })();
 </script>
 </body>
