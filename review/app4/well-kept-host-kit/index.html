@@ -4669,13 +4669,16 @@ var BLOCK = {
     var inc = n(t('#kInc')), ex = n(t('#kExp')); return split('Money in, split', [['Profit', Math.max(0, inc - ex)], ['Costs', ex]]);
   },
   'tips-overtime-deduction-tracker': function(){ return split('Your deduction, split', [['Tips', n(t('#outTipsDed'))], ['Overtime premium', n(t('#outOtDed'))]]); },
-  'freelancer-money-system': function(){ return bars('Money at a glance', [['Profit so far', n(t('#tProf'))], ['Set aside for tax', n(t('#tSet'))], ['Unpaid invoices', n(t('#outUnpaid'))]]); },
+  'freelancer-money-system': function(){ var rec = n(t('#tRec')), ex = n(t('#tExp')), pr = n(t('#tProf')), st = n(t('#tSet'));
+    return split('Money collected this year', [['Yours to keep', Math.max(0, pr - st)], ['Set aside for tax', st], ['Business costs', ex]]) + bars('Who still owes you', [['Not late yet', n(t('#aCur'))], ['1-30 days late', n(t('#a30'))], ['30+ days late', n(t('#a30p'))]]); },
+  'delist-alert-reseller-tracker': function(){ var pr = n(t('#sPrice')), m = t('#outMaxBuySub').match(/Keep \$([\d,.]+)/), keep = m ? n(m[1]) : 0, mb = n(t('#outMaxBuy')), tg = n(t('#sTarget'));
+    return pr && keep ? split('Where the $' + pr + ' sale price goes', [['Most to pay for it', mb], ['Your profit goal', tg], ['Fees and shipping', Math.max(0, pr - keep)]]) : ''; },
   'first-100k-banked-planner': function(){ var b = n(t('#outBanked')); return prog('Progress to $100k', b, 100000, money(b) + ' banked', ' · ' + money(Math.max(0, 100000 - b)) + ' to go') + bars('Recent saving', [['This week', n(t('#outWeek'))], ['This month', n(t('#outMonth'))]]); },
   'true-hourly': function(){ return bars('What made up your pay', [['Base wages', n(t('#kWage'))], ['Tips you kept', n(t('#kNetTips'))], ['Tip-out you paid', n(t('#kTipOut'))]]); },
   'ugc-creator-kit': function(){ return bars('This deal', [['Quote', n(t('#outTotal'))], ['If they renew usage', n(t('#outRenewal'))]]); },
   'load-in': function(){ var m = t('#chkProg').match(/(\d+)\s*\/\s*(\d+)/); return m ? prog('Your checklist', +m[1], +m[2], m[1] + ' of ' + m[2] + ' ready', ' · tick items as you pack') : ''; }
 };
-var EMPTY = { '1099-quarterly-tax-planner': 'Your four payment dates and amounts', 'clear-wedding-planner': 'Your venue all-in, whole-wedding cost and guest count', 'debt-payoff-planner': 'Debt vs interest, and what you save', 'well-kept-host-kit': 'Where each booking dollar went', 'small-business-bookkeeping': 'Profit vs costs', 'freelancer-money-system': 'Profit, tax set-aside and unpaid invoices', 'tips-overtime-deduction-tracker': 'Tips vs overtime deduction', 'first-100k-banked-planner': 'Your progress ring to $100k', 'true-hourly': 'What made up your pay', 'ugc-creator-kit': 'Your quote vs renewal value' };
+var EMPTY = { '1099-quarterly-tax-planner': 'Your four payment dates and amounts', 'clear-wedding-planner': 'Your venue all-in, whole-wedding cost and guest count', 'debt-payoff-planner': 'Debt vs interest, and what you save', 'well-kept-host-kit': 'Where each booking dollar went', 'small-business-bookkeeping': 'Profit vs costs', 'freelancer-money-system': 'Where this year’s money went and who still owes you', 'delist-alert-reseller-tracker': 'Where the sale price goes: what to pay, your profit, fees', 'tips-overtime-deduction-tracker': 'Tips vs overtime deduction', 'first-100k-banked-planner': 'Your progress ring to $100k', 'true-hourly': 'What made up your pay', 'ugc-creator-kit': 'Your quote vs renewal value' };
 function tiles(){
   var b = [];
   (P.more || []).forEach(function(m, i){ b.push('<button type="button" data-more="' + i + '"><span class="ic" aria-hidden="true">' + (m.icon || '›') + '</span><span>' + esc(m.label) + '</span></button>'); });
