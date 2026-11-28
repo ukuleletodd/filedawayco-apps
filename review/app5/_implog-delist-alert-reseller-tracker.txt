@@ -1,0 +1,14 @@
+Implemented the 2 highest-value functional/breadth fixes from the critic report in [index.html](file:///workspace/app5-2026-11-27/base3/delist-alert-reseller-tracker/index.html) and wrote the summary to [_impl-delist-alert-reseller-tracker.md](file:///workspace/app5-2026-11-27/base3/_impl-delist-alert-reseller-tracker.md).
+
+### What was implemented
+1. **Inventory Edit & Delete + Viewable, Editable Confirmed Sales Log with Returns/Refunds (Critic Fix #1):**
+   - Added inline **Edit** (SKU, title, cost, date listed, 8 marketplace chips, bin, consignor/split %, with linked SKU sync) and **Delete** (with Undo) on every item in **Inventory**, plus an optional label/ad fee drawer on `Mark sold`.
+   - Added a **Confirmed sales log** card on **Export** where every sale can be edited (including 1-tap **Recalculate 2026 platform fee**, label cost, ad fee, and note), deleted (with Undo), or marked **Return / Refund** (automatically adjusting net profit, excluding returned sales from consignment payouts, cleaning open delist alerts, and optionally restoring the item to active inventory; includes **Undo return**).
+2. **Expenses, Supplies & Sourcing Mileage Tracker (Critic Fix #3):**
+   - Added an **Expenses & sourcing mileage** card on **Export** with a **Supplies & expenses** / **Sourcing mileage** toggle, 6 plain-English expense categories, category totals, inline Edit & Delete (with Undo), record-keeping-only disclaimers, and separate CSV downloads.
+   - Persisted in `state.expenses` and `state.mileage` (safe `[]` defaults for older saves/backups), included in `persist()`, backup/restore, `sample: true` sample load/clear, **Confirmed sales summary**, 1099 `.json` bridge (optional fields appended), and **Print 1-page reseller summary**.
+   - Added a **+ Add** sheet shortcut to **Sales log, expenses & mileage** while leaving the home screen answer card, bottom tab bar, storage keys, existing IDs, and existing JSON fields untouched.
+
+### Verification
+- Inline script parse check: `ok 9` (all 9 inline `<script>` blocks parse cleanly).
+- Headless Chrome phone test (`390×844`): passed with 0 console/page errors, 0 horizontal overflow across all views and inline edit forms, legacy save compatibility verified, and full CRUD/Undo/sample-clear flows verified.

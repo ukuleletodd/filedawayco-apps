@@ -1,0 +1,18 @@
+Implemented the top 2 breadth/functional fixes from the critic report in [index.html](file:///workspace/app5-2026-11-27/base3/first-100k-banked-planner/index.html) and documented them in [_impl-first-100k-banked-planner.md](file:///workspace/app5-2026-11-27/base3/_impl-first-100k-banked-planner.md).
+
+### What Changed
+1. **Multi-Goal & Sinking Funds Tracking (up to 10 goals) — Critic Fix #2**
+   - Added a **Savings goals & sinking funds** card under **Pace & Deposits** (right below the 20 milestone boxes) with progress bars, High/Medium/Low priority badges, optional target date + example monthly needed math, quick starter presets (**Emergency**, **House**, **Travel**, **Tax buffer**), and Delete with **Undo** (keeping logged deposits intact).
+   - Added an optional **Goal** selector inside **Log a deposit**, goal tags + a goal filter dropdown above the deposit list, a `Goal` column in Deposits CSV export, and an optional goal picker inside the bank CSV import preview when user goals exist.
+   - Stored via optional fields (`goals`, `goalId`) using `persist()` under `fac_first_100k_v2`, with safe defaults for older saves/backups and `sample: true` on Maya's 3 sample goals (matching her `$12,400` total).
+
+2. **Offline SVG Charts & Multi-Period Trends — Critic Fix #3**
+   - Added a **Charts & Trends** tab (`data-tab="trends"`) inside **All features** using pure inline SVG and responsive phone-first markup (390px, no sideways scroll, zero libraries/network):
+     - **Monthly deposits & total banked** SVG bar + cumulative line chart with `Last 6 months` / `Last 12 months` / `All time` chips (optional `chartRange` persisted safely) and summary stats (`Best month`, `Monthly avg`, `Months active`).
+     - **Where your savings came from** source breakdown bars with counts, totals, and `%` share.
+     - **Year-by-year summary** table with deposit count, net added (+ YoY delta), and year-end closing balance.
+
+### Preserved & Verified
+- Home screen answer card, bottom tab bar, existing IDs, `data-a` attributes, `fac_first_100k_v2` storage key, and existing JSON fields remain intact.
+- Inline script syntax check passed: `ok 9`.
+- Verified sample totals (`$12,400` banked / `$1,200` 28-day pace), legacy save defaults, multi-year YoY math, SVG rendering, and Load Sample → Clear Sample roundtrip via Node.

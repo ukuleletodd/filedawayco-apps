@@ -1,0 +1,13 @@
+Implemented the 2 highest-impact functional and breadth fixes in [index.html](file:///workspace/app5-2026-11-27/base3/freelancer-money-system/index.html) and documented the changes in [_impl-freelancer-money-system.md](file:///workspace/app5-2026-11-27/base3/_impl-freelancer-money-system.md).
+
+### What Changed
+1. **Monthly P&L Dashboard & Spending by Category with Inline SVG Charts (Critic Fix #3):**
+   - Added a **Monthly profit & cash flow** card on **Profit & Tax** (`All features` → `Profit & Tax`) with year selector chips, a pure-SVG 12-month bar chart (`Money in` vs `Costs + mileage`), and a phone-first monthly P&L table (`Month`, `In`, `Costs`, `Net` + `Total`) with an `Active months only` / `Show all 12 months` toggle.
+   - Added a **Spending by category** card on **Profit & Tax** with a year / `All time` toggle, a pure-SVG donut chart, biggest-category callout, and per-category breakdown rows (dollar amount, item/trip count, % share, and inline SVG bar) including a **Mileage write-off** line and print summary table.
+2. **Removed Editing Dead Ends + Custom Expense Categories (Critic Fix #4 — core editing & categories):**
+   - **Who Owes Me:** Added inline **Part paid** and **Edit** forms to open invoices (`Weekly chase queue`), plus **Edit**, **Mark unpaid**, and **Delete** (all with Undo) to **Paid invoice history**.
+   - **Profit & Tax:** Added inline **Edit** forms (with Undo) to saved business expenses and 2026 mileage trips, plus a **Manage custom categories** section (`state.customCategories`, optional field defaulting safely to `[]` for older saved data/backups, saved via `persist()`, and available in expense forms, CSV imports, and spending charts).
+
+### Verification
+- Required script parse check passed: `ok 9`.
+- Verified all existing element IDs, `data-a` attributes, `fac_freelancer_v2` storage key, Home answer card, bottom tab bar, sample-data math, inline edits/partial payments/mark-unpaid/custom categories, and backward-compatible loading of older saved JSON without `customCategories`.

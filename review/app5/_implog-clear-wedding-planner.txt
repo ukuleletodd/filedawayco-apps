@@ -1,0 +1,15 @@
+Implemented the 2 highest-value functional/breadth fixes from [clear-wedding-planner-CRITIC4-r1.md](file:///workspace/app3-2026-11-27/critic-claude/clear-wedding-planner-CRITIC4-r1.md) in [index.html](file:///workspace/app5-2026-11-27/base3/clear-wedding-planner/index.html) and wrote the summary to [_impl-clear-wedding-planner.md](file:///workspace/app5-2026-11-27/base3/_impl-clear-wedding-planner.md).
+
+### What Changed
+1. **Itemized Category Budget (Fix #2):**
+   - Added a **Budget** tab (`All features` → **Budget**, plus a jump button from **Guest Cost**) with Planned, Actual/Quoted, Paid, Fixed vs. Guest-based cost type, vendor notes, progress bars, category filters (`All`, `Fixed`, `Guest-based`, `Over plan`), inline edit/remove with Undo, a 1-tap **Add 12 starter categories** button, **Send totals to Guest Cost** sync, and **Export budget (CSV)**.
+   - Pre-populated Maya & Jordan's sample wedding with 12 categories (`sample: true`) matching their `$45,000` planned budget, `$35,084` fixed actual, and `$15,698` guest-based actual (`$13,250` paid).
+   - Stored in `state.budgetItems` via `persist()` under `fac_clear_wedding_v1` with safe defaults (`[]`) so older saved states and backups load cleanly.
+
+2. **Interactive Guest List, RSVP, Meal, Dietary, Table & Thank-You Manager (Fix #3):**
+   - Upgraded `#gListCard` (`All features` → **Guest Cost** → **Your guest list & RSVPs**) so buyers can add/edit guests directly or via CSV import, with 1-tap RSVP status buttons (`Yes / Pending / Invited / No`), Party Size, Tier (`A / B / C`), Meal choice, Dietary/allergy notes, Table # (with live over-10-seat alerts), Gift received, and Thank-You sent toggles.
+   - Added search, filter chips (`All`, `Yes`, `Waiting`, `No`, `Dietary`, `Thank-you`), 1-tap **Apply list to Guest Cost & Meals** sync (with Undo), **Export guest list (CSV)**, 8 Maya & Jordan sample households (`sample: true`), extended CSV column detection, and automatic logo-free **Dietary & Allergy Notes** on the printable Day-Of Sheet.
+
+### Verification
+- Ran the required inline `<script>` parser check (`ok 9` scripts parsed cleanly).
+- Verified all 126 static element IDs have 0 duplicates, all original IDs and `fac_clear_wedding_v1` storage key are preserved, home answer card and bottom tab bar are untouched, and sample budget/guest math matches exactly (`$45,000` planned, `$35,084` fixed, `$15,698` guest-based, all sample rows flagged `sample: true`).

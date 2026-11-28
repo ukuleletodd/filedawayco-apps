@@ -1,0 +1,15 @@
+Implemented the 2 highest-value functional/breadth improvements in [index.html](file:///workspace/app5-2026-11-27/base3/1099-quarterly-tax-planner/index.html) and wrote the summary report to [_impl-1099-quarterly-tax-planner.md](file:///workspace/app5-2026-11-27/base3/_impl-1099-quarterly-tax-planner.md):
+
+1. **In-App 4-Quarter Payment Tracker (Q1–Q4 Paid vs. Left + Confirmation Log)**
+   - Found in **All features → Quarterly Due Dates & Payments** (works for both 2026 and 2027).
+   - Adds a live **Paid so far / Left (safe min) / Left (full est.)** summary strip, progress bar + 4-quarter visual mini bars, inline **Log payment / Edit** forms per quarter (amount with 1-tap safe-min/full fill chips, date paid, payment method, confirmation #, and delete with Undo), automatic syncing with `paidYTD`, and a printable payments record table.
+   - Saved in optional `state.payments` via `saveState()` under `fac-1099-estimator-2026-v2` (included automatically in backup/restore), with sample rows marked `sample: true`.
+
+2. **Offline Profit & Business Expense Worksheet (Schedule C Categories, Mileage & Home Office)**
+   - Found in **All features → Profit & expense worksheet** (also reachable via **Don't know your profit? Add income, costs & miles ↓** under the expected profit input).
+   - Adds a 3-tab phone-first worksheet (**Income**, **Expenses** across 9 plain-English Schedule C categories with category subtotals, and **Miles & Office** with 2026 IRS mileage presets `72.5¢`/`76¢` plus simplified `$5/sq ft` up to 300 sq ft home-office estimate), live net-profit summary, 1-tap **Use $X as my 1099 net profit** button (with Undo), and a printable Schedule C summary block.
+   - Saved in optional `state.incomeItems`, `state.expenseItems`, and `state.worksheet` via `saveState()` with safe defaults for older saved files and sample rows marked `sample: true` reconciling to the existing `$63,590` sample profit.
+
+**Verification:**
+- Inline `<script>` parse check passed (`ok 10`).
+- All existing element IDs, `data-a` attributes, `fac-1099-estimator-2026-v2` storage key, Home screen answer card hooks, and bottom tab bar remain unchanged and intact.

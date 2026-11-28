@@ -1,0 +1,14 @@
+Implemented the 2 highest-impact functional/breadth fixes from [true-hourly-CRITIC4-r1.md](file:///workspace/app3-2026-11-27/critic-claude/true-hourly-CRITIC4-r1.md) in [index.html](file:///workspace/app5-2026-11-27/base3/true-hourly/index.html) and documented the changes in [_impl-true-hourly.md](file:///workspace/app5-2026-11-27/base3/_impl-true-hourly.md).
+
+### Summary of Changes
+1. **Job / Role Presets, Shift Types & Notes, and Inline Editing (Critic Fix #2)**
+   - **Shift Calc:** Added a **Job / role presets** card (`state.presets`, `state.activePresetId`, with sample presets marked `sample: true`), optional **Shift type** chips (`Lunch`, `Dinner`, `Double`, `Bar`, `Event`) and **Shift note** input, and inline **Edit** for tip-out roles (name, %, sales base) with undo.
+   - **Shift Log:** Displayed shift type/job tags and notes on saved shifts, added inline **Edit** for any saved shift (auto-recalculating net tips and take-home with undo), and included shift type, job, and note in CSV export and the 1-page printable sheet.
+
+2. **Bar / Team Tip-Pool Split alongside Table Bill Split (Critic Fix #4)**
+   - **Split Tools (Tab 3):** Added a **Bar / Team Tip Pool** calculator (`state.pool`, with sample team rows marked `sample: true`) supporting cash + card pool totals, optional support tip-out %, splitting by **hours worked** or **shares / points**, exact-cent penny reconciliation (`computeTipPool`), inline coworker editing/removal with undo, and 1-tap **Copy split breakdown**, while keeping **Quick Table Bill Split** and all its existing IDs/controls intact.
+
+### Verification
+- Required script parse check passed (`ok 9`).
+- Verified all 47 original element IDs, `data-a` / `data-*` attributes, `fac_true_hourly_v2` storage key, home answer card, and bottom tab bar remain untouched.
+- Verified sample shift math (`$30.00/hr`), sample tip-pool math (`$468.00` net split), penny reconciliation (`$100 / 3` -> `33.33, 33.33, 33.34`), `sample: true` markers on all sample arrays, and backward-compatible loading of older saved JSON.

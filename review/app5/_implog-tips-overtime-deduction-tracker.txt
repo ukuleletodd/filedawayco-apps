@@ -1,0 +1,14 @@
+Implemented the 2 highest-value functional and breadth fixes in [index.html](file:///workspace/app5-2026-11-27/base3/tips-overtime-deduction-tracker/index.html) and documented the work in [_impl-tips-overtime-deduction-tracker.md](file:///workspace/app5-2026-11-27/base3/_impl-tips-overtime-deduction-tracker.md).
+
+### Implemented Fixes
+1. **Inline Record Editing + Employer/Month/Year Filters (Critic Fix #2)**
+   - Added an **Edit** button beside **Delete** on every saved entry in **Records & Export**, opening the draft form in place (including photo remove/replace support) and saving updates with a 7-second **Undo** toast.
+   - Added tappable **Employer** and **Month** filter chips (plus **Year** chips when records span multiple years) with a live filtered-totals strip and **Clear filters** button, while keeping all `.row-card` nodes in `#recList` (hidden via CSS) so the Home empty-state check stays accurate.
+2. **2025–2028 Tax-Year Selector + Monthly SVG Chart + Per-Employer Totals (Critic Fix #3)**
+   - Added a `2025`–`2028` tax-year selector on **Estimate & Log** (persisted via `persist()` as optional `taxYear` in `fac_tips_overtime_v2`, included in backup/restore and sample-mode settings restore, with safe fallback for older backups) plus a quick-switch bar when records exist in other years.
+   - Added a **Monthly & Employer Breakdown** card with an offline, zero-dependency inline SVG 12-month stacked bar chart (**Net tips** vs. **OT half-time (0.5×)**) and an automatic **Totals by employer** table that also prints on the 1-page Tax-Pro summary (with plain-English filing status labels, `"Not entered (under limit)"` blank-income text, Schedule 1-A Part II/III labels, and MFS notice).
+
+### Verification
+- Ran the required Node `<script>` parse check: `ok 9` (0 syntax errors).
+- Verified all 72 existing/new IDs, `data-a` attributes, and storage keys remain intact, and tested backwards-compatible `sanitizeState`, `groupByEmployer`, and `groupByMonth` behavior in Node.
+- Kept the Home screen answer card and bottom tab bar unchanged.
