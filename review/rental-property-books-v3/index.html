@@ -172,6 +172,8 @@ figure.chartc .lg{margin:6px 0 0;font-size:13.5px;color:var(--slate);line-height
 @media (min-width:560px){.donutw{grid-template-columns:150px 1fr}}
 table.se.pl{width:100%;table-layout:fixed;min-width:0}
 table.se.pl th,table.se.pl td{padding:9px 3px;font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:clip}
+table.se.pl th{white-space:normal;line-height:1.15;vertical-align:bottom}
+@media (max-width:420px){table.se.pl th,table.se.pl td{font-size:12px;padding:9px 2px}}
 table.se.pl th:first-child,table.se.pl td:first-child{width:15%;padding-left:8px}
 table.se.pl td:last-child,table.se.pl th:last-child{padding-right:8px}
 .rtabs{scroll-snap-type:x proximity;-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent);padding-right:28px}
@@ -940,7 +942,7 @@ function dOcc(y){ var o = occ(y, ''), h = '<div class="stats3 card"><div><b>' + 
   return h; }
 function dYoy(y){ var h = picker(), ys = []; S.tx.concat(S.trips).forEach(function(x){ var k = +String(x.date).slice(0,4); if (k && ys.indexOf(k) < 0) ys.push(k); }); if (ys.indexOf(y) < 0) ys.push(y); ys.sort(); ys = ys.slice(-6);
   var rows = ys.map(function(k){ var F = fin(k, taxProp), M = metrics(k, taxProp); return [k, F, M]; }), mx = Math.max.apply(null, rows.map(function(r){ return Math.max(r[1].rent, 1); }));
-  h += '<div class="card"><div class="tblwrap" tabindex="0" role="region" aria-label="Table (scrolls sideways)"><table class="se"><thead><tr><th scope="col" style="text-align:left">Year</th><th scope="col">Rent</th><th scope="col">Expenses</th><th scope="col">Net (Sch E)</th><th scope="col">Cash flow</th><th scope="col">Equity</th></tr></thead><tbody>' +
+  h += '<div class="card"><div class="tblwrap" tabindex="0" role="region" aria-label="Table (scrolls sideways)"><table class="se pl"><thead><tr><th scope="col" style="text-align:left">Year</th><th scope="col">Rent</th><th scope="col">Expenses</th><th scope="col">Net (Sch E)</th><th scope="col">Cash flow</th><th scope="col">Equity</th></tr></thead><tbody>' +
     rows.map(function(r){ return '<tr><td style="text-align:left">' + r[0] + (r[0] === TY ? '*' : '') + '</td><td>' + m0(r[1].rent) + '</td><td>' + m0(r[1].t.exp) + '</td><td>' + m0(r[1].t.net) + '</td><td>' + m0(r[1].cf) + '</td><td>' + (isFinite(r[2].equity) ? m0(r[2].equity) : '–') + '</td></tr>'; }).join('') + '</tbody></table></div></div>';
   h += '<div class="card">' + rows.map(function(r){ return '<div class="brow"><span>' + r[0] + '</span>' + bar(r[1].rent, mx) + '<b>' + m0(r[1].rent) + '</b></div>'; }).join('') + '</div><p class="hint">* ' + TY + ' so far. Equity uses the values you entered minus the loan estimate at year end.</p>';
   return h; }
@@ -948,7 +950,7 @@ function dCmp(y){ var rows = S.props.map(function(p){ var F = fin(y, p.id), M = 
   var K = { cf: function(r){ return r.F.cf; }, rent: function(r){ return r.F.rent; }, cap: function(r){ return isFinite(r.M.cap) ? r.M.cap : -1e9; }, occ: function(r){ return isFinite(r.o) ? r.o : -1; } };
   rows.sort(function(a, b){ return K[key](b) - K[key](a); });
   return '<div class="chips" role="group" aria-label="Rank by">' + [['cf','Cash flow'],['rent','Rent'],['cap','Cap rate'],['occ','Occupancy']].map(function(k){ return '<button type="button" class="chip" data-x="cmp" data-v2="' + k[0] + '" aria-pressed="' + (key === k[0]) + '">' + k[1] + '</button>'; }).join('') + '</div>' +
-    '<div class="card"><div class="tblwrap" tabindex="0" role="region" aria-label="Table (scrolls sideways)"><table class="se"><thead><tr><th scope="col" style="text-align:left">#</th><th scope="col" style="text-align:left">Rental</th><th scope="col">Rent</th><th scope="col">Cash flow</th><th scope="col">Cap rate</th><th scope="col">Occ.</th></tr></thead><tbody>' +
+    '<div class="card"><div class="tblwrap" tabindex="0" role="region" aria-label="Table (scrolls sideways)"><table class="se pl"><thead><tr><th scope="col" style="text-align:left">#</th><th scope="col" style="text-align:left">Rental</th><th scope="col">Rent</th><th scope="col">Cash flow</th><th scope="col">Cap rate</th><th scope="col">Occ.</th></tr></thead><tbody>' +
     rows.map(function(r, i){ return '<tr><td style="text-align:left">' + (i + 1) + '</td><td style="text-align:left">' + esc(r.p.name) + '</td><td>' + m0(r.F.rent) + '</td><td class="' + (r.F.cf < 0 ? 'neg' : '') + '">' + m0(r.F.cf) + '</td><td>' + pct(r.M.cap) + '</td><td>' + pct(r.o, 0) + '</td></tr>'; }).join('') + '</tbody></table></div></div>'; }
 var cmpKey = 'cf';
 function dInv(y){ var h = picker(), M = metrics(y, taxProp), F = M.F, need = !M.value || !M.cash;
@@ -1022,7 +1024,7 @@ function docForm(d){ var isNew = !d; d = d || { id: uid(), prop: taxProp || (S.p
 function tLoans(){ var y = S.year;
   return '<p class="hint">Estimates from the loan terms you enter. Your lender\'s Form 1098 is the number to log for mortgage interest.</p><button type="button" class="btn" data-x="newloan">+ Add a loan</button>' + S.loans.map(function(l){ var o = loanYear(l, y), bal = loanBalAt(l, y < TY ? y + '-12-31' : today());
     return '<div class="card"><h3 class="ch">' + esc(propName(l.prop)) + (l.lender ? ' · ' + esc(l.lender) : '') + '</h3>' + kv('Monthly payment (principal + interest)', money(Math.round(loanPay(l)))) + kv(y + ' interest (estimate)', m0(o.int)) + kv(y + ' principal (estimate)', m0(o.prin)) + kv('Balance ' + (y < TY ? 'at end of ' + y : 'today'), m0(bal)) +
-      '<details class="mon"><summary>Amortization by year</summary><div class="tblwrap" tabindex="0" role="region" aria-label="Table (scrolls sideways)"><table class="se"><thead><tr><th scope="col" style="text-align:left">Year</th><th scope="col">Interest</th><th scope="col">Principal</th><th scope="col">Balance</th></tr></thead><tbody>' + amortRows(l) + '</tbody></table></div></details><button type="button" class="btn sm ghost" data-loan="' + l.id + '">Edit loan</button></div>'; }).join(''); }
+      '<details class="mon"><summary>Amortization by year</summary><div class="tblwrap" tabindex="0" role="region" aria-label="Table (scrolls sideways)"><table class="se pl"><thead><tr><th scope="col" style="text-align:left">Year</th><th scope="col">Interest</th><th scope="col">Principal</th><th scope="col">Balance</th></tr></thead><tbody>' + amortRows(l) + '</tbody></table></div></details><button type="button" class="btn sm ghost" data-loan="' + l.id + '">Edit loan</button></div>'; }).join(''); }
 function amortRows(l){ var Y = {}, ord = []; loanRun(l, function(y, m, it, pr, bal){ if (!Y[y]) { Y[y] = { i: 0, p: 0, b: 0 }; ord.push(y); } Y[y].i += it; Y[y].p += pr; Y[y].b = bal; });
   return ord.map(function(y){ return '<tr' + (y === S.year ? ' class="tot"' : '') + '><td style="text-align:left">' + y + '</td><td>' + m0(Y[y].i) + '</td><td>' + m0(Y[y].p) + '</td><td>' + m0(Y[y].b) + '</td></tr>'; }).join(''); }
 function loanForm(l){ var isNew = !l; l = l || { id: uid(), prop: taxProp || (S.props[0] || {}).id, lender: '', amt: 0, rate: 6.5, years: 30, start: today().slice(0,7) + '-01' };
