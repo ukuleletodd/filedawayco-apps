@@ -1,0 +1,2046 @@
+<!DOCTYPE html>
+<html lang="en" data-temp="ledger">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tips &amp; Overtime Companion · FiledAwayCo</title>
+<style>
+:root,[data-temp="ledger"]{
+  --brand:#1B2A40; --brand-ink:#FFFFFF; --accent:#1F5C45; --accent-ink:#FFFFFF;
+  --mint-on-dark:#7FB89E;
+  --paper:#FBF8F2; --card:#FFFFFF; --cream:#E8E0D2;
+  --ink:#1B2430; --muted:#4A5563; --line:#D9D1C3; --hairline:#EDE6DA;
+  --input-bg:#FFF4D6; --input-border:#D9C79A; --input-ink:#1A1A1A;
+  --auto-bg:#F1F3F5; --auto-ink:#1B2430;
+  --good-ink:#16533C; --good-bg:#E6F3EC;
+  --warn-ink:#7A4700; --warn-bg:#FFF4D6;
+  --alert-ink:#962324; --alert-bg:#FBEAEA;
+  --radius:14px; --radius-sm:10px;
+  --font-display:Georgia,"Times New Roman",serif;
+  --font-body:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--cream);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.45;-webkit-text-size-adjust:100%}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+.h-num{font-family:var(--font-body);font-variant-numeric:tabular-nums}
+.shell{max-width:860px;margin:0 auto;min-height:100vh;background:var(--paper);padding:14px 14px 44px}
+@media(min-width:768px){.shell{margin:18px auto;border-radius:18px;border:1px solid var(--line);padding:22px 26px 48px;box-shadow:0 6px 24px rgba(27,42,64,.09)}}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--hairline);margin-bottom:12px}
+.wm{display:flex;align-items:center;gap:10px;min-width:0}
+.mark{width:34px;height:34px;border-radius:8px;background:var(--brand);color:#fff;font-weight:800;font-size:14px;display:grid;place-items:center;position:relative;flex:none}
+.mark::after{content:"";position:absolute;top:0;right:0;width:10px;height:10px;background:var(--accent);border-bottom-left-radius:4px;border-top-right-radius:8px}
+.wm-t b{display:block;font-size:15px;color:var(--brand);line-height:1.15}
+.wm-t span{display:block;font-size:12px;color:var(--muted)}
+.banner{background:var(--warn-bg);border:1px solid var(--input-border);color:var(--warn-ink);border-radius:var(--radius-sm);padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;font-size:14px}
+.banner button{min-height:44px;padding:0 14px;border-radius:8px;border:1px solid var(--warn-ink);background:#fff;color:var(--warn-ink);font-weight:700;font-size:13.5px;cursor:pointer;white-space:nowrap;flex:none}
+.tabbar{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:var(--cream);padding:5px;border-radius:12px;margin-bottom:16px}
+.tabbar button{min-height:46px;border:0;border-radius:9px;background:transparent;color:var(--brand);font:inherit;font-size:13.5px;font-weight:700;cursor:pointer;padding:6px 4px;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.2}
+.tabbar button[aria-current="page"]{background:var(--brand);color:#fff}
+h1{font-family:var(--font-display);font-size:24px;line-height:1.2;color:var(--brand);margin:0 0 6px}
+h2{font-family:var(--font-display);font-size:18px;line-height:1.25;color:var(--brand);margin:0 0 10px}
+.cap{font-size:13px;color:var(--muted);line-height:1.45}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:14px}
+.empty-cta{background:var(--paper);border:1.5px dashed var(--input-border);border-radius:var(--radius);padding:16px;margin-bottom:14px;display:flex;flex-direction:column;gap:10px}
+.hero{background:var(--brand);color:#fff;border-color:var(--brand)}
+.hero .lbl{font-size:12.5px;color:#DCE6F2;font-weight:600}
+.hero .big{font-size:32px;font-weight:800;line-height:1.1;margin:4px 0}
+.hero .sub{font-size:13.5px;color:var(--mint-on-dark);font-weight:600}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}
+@media(min-width:540px){.hero-grid{grid-template-columns:1fr 1fr}}
+.hbox{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:12px}
+.bar-t{height:10px;background:rgba(255,255,255,.18);border-radius:999px;overflow:hidden;margin-top:6px}
+.bar-f{height:100%;background:var(--mint-on-dark);border-radius:999px}
+.grid2{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:560px){.grid2{grid-template-columns:1fr 1fr}}
+.field{display:block;margin-bottom:10px}
+.field:last-child{margin-bottom:0}
+.field .l{display:block;font-size:13.5px;font-weight:700;color:var(--brand);margin-bottom:4px}
+.inp-wrap{display:flex;align-items:center;background:var(--input-bg);border:1.5px solid var(--input-border);border-radius:var(--radius-sm);padding:0 12px;min-height:46px}
+.inp-wrap.low{border-color:#B45309;box-shadow:0 0 0 2px rgba(180,83,9,.18)}
+.inp-wrap:focus-within{border-color:var(--accent);box-shadow:0 0 0 2px rgba(31,92,69,.18)}
+.inp-wrap .pre{font-weight:700;color:var(--muted);margin-right:6px}
+.inp-wrap input,.inp-wrap select{width:100%;border:0;background:transparent;font:inherit;color:var(--input-ink);outline:none;padding:10px 0;min-height:44px}
+textarea.stub-in{width:100%;min-height:110px;background:var(--input-bg);border:1.5px solid var(--input-border);border-radius:var(--radius-sm);padding:12px;font:inherit;font-size:16px;color:var(--input-ink);resize:vertical}
+.hint{font-size:12px;color:var(--warn-ink);font-weight:700;margin-top:3px}
+.warn-box{background:var(--alert-bg);border:1px solid #E5B4B4;color:var(--alert-ink);border-radius:10px;padding:10px 12px;font-size:13.5px;margin-top:10px;font-weight:600}
+.note-box{background:var(--paper);border-left:4px solid var(--accent);padding:10px 12px;border-radius:0 10px 10px 0;font-size:13.5px;margin-top:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 16px;border-radius:var(--radius-sm);border:1.5px solid var(--accent);background:var(--accent);color:#fff;font:inherit;font-weight:700;font-size:14.5px;cursor:pointer;text-decoration:none}
+.btn.sec{background:#fff;color:var(--brand);border-color:var(--line)}
+.btn.full{width:100%}
+.btn-row{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}
+@media(min-width:520px){.btn-row{grid-template-columns:1fr 1fr}}
+.tag{display:inline-block;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:700;background:var(--auto-bg);color:var(--brand);white-space:nowrap}
+.tag.good{background:var(--good-bg);color:var(--good-ink)}
+.tag.warn{background:var(--warn-bg);color:var(--warn-ink)}
+.tag.alert{background:var(--alert-bg);color:var(--alert-ink)}
+.row-card{padding:12px 0;border-bottom:1px solid var(--hairline)}
+.row-card:last-child{border-bottom:0}
+img.stub-thumb{width:100%;max-height:240px;object-fit:contain;border-radius:10px;border:1px solid var(--line);margin-top:8px;background:#fff}
+.badread{display:inline-flex;align-items:center;min-height:44px;color:var(--accent);font-weight:700;font-size:14px}
+.shell-foot{margin-top:16px;padding-top:12px;border-top:1px solid var(--hairline);font-size:12.5px;color:var(--muted);line-height:1.45}
+.pane{display:none}
+.pane.active{display:block}
+.toast{position:fixed;left:12px;right:12px;bottom:20px;max-width:520px;margin:0 auto;transform:translateY(90px);opacity:0;visibility:hidden;pointer-events:none;background:var(--brand);color:#fff;padding:10px 14px;border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 8px 24px rgba(0,0,0,.22);transition:transform .2s ease,opacity .2s ease;z-index:60;font-size:14px}
+.toast.on{transform:translateY(0);opacity:1;visibility:visible;pointer-events:auto}
+.toast button{min-height:44px;padding:0 14px;border-radius:8px;border:0;background:var(--mint-on-dark);color:var(--brand);font-weight:800;cursor:pointer;align-items:center;justify-content:center}
+.print-only{display:none}
+@media print{
+  body{background:#fff;color:#111;font-size:10.5pt}
+  .shell{max-width:100%;margin:0;padding:0;border:0;box-shadow:none;background:#fff}
+  .no-print,.topbar,.tabbar,.banner,.toast,.pane{display:none!important}
+  #taxProPrint{display:block!important}
+  #taxProPrint h1{font-size:18pt;margin:0 0 6px;color:#1B2A40}
+  #taxProPrint table{width:100%;border-collapse:collapse;font-size:9.5pt;margin-top:8px}
+  #taxProPrint th,#taxProPrint td{border-bottom:1px solid #ccc;padding:5px 4px;text-align:left}
+  #taxProPrint td.r,#taxProPrint th.r{text-align:right}
+}
+</style>
+<style id="fa-name-title">.wm-t b,.wm-text b{font-size:19px;font-weight:800;line-height:1.12;letter-spacing:-.2px;white-space:normal}</style>
+<!-- FiledAwayCo UX layer v1 2026-11-27 -->
+<style id="faux-css">/* FiledAwayCo UX layer v1 (2026-11-27): welcome, import, paste, auto-fill. Added on top of the app; app logic unchanged. */
+.faux-ov{position:fixed;inset:0;z-index:2147483000;background:rgba(27,36,48,.55);display:flex;align-items:center;justify-content:center;padding:12px;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:#1B2430}
+.faux-ov[hidden]{display:none}
+.faux-card{background:#FBF8F2;border-radius:18px;max-width:460px;width:100%;max-height:calc(100dvh - 24px);overflow:auto;padding:18px 18px 14px;box-shadow:0 12px 40px rgba(0,0,0,.25)}
+.faux-hd{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.faux-mk{width:34px;height:34px;border-radius:8px;background:#1B2A40;color:#fff;font-weight:800;font-size:14px;display:grid;place-items:center;flex:none}
+.faux-nm{font-weight:800;font-size:15px;color:#1B2A40;line-height:1.15}
+.faux-x{margin-left:auto;min-width:44px;min-height:44px;border:0;background:transparent;font-size:22px;color:#4A5563;cursor:pointer;border-radius:10px}
+.faux-one{font-family:Georgia,"Times New Roman",serif;font-size:21px;line-height:1.2;color:#1B2A40;margin:2px 0 10px;font-weight:700}
+.faux-steps{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:7px}
+.faux-steps li{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;line-height:1.3}
+.faux-steps b.n{flex:none;width:24px;height:24px;border-radius:50%;background:#1F5C45;color:#fff;font-size:13px;display:grid;place-items:center;margin-top:-1px}
+.faux-btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:48px;border-radius:12px;border:0;background:#1F5C45;color:#fff;font:inherit;font-weight:700;font-size:15.5px;cursor:pointer;padding:0 14px;text-align:center}
+.faux-btn.sec{background:#fff;color:#1B2A40;border:1.5px solid #1B2A40}
+.faux-btn.ghost{background:transparent;color:#1B2A40;border:0;text-decoration:underline;min-height:44px}
+.faux-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.faux-trust{font-size:12.5px;color:#4A5563;margin:10px 0 0;display:flex;gap:6px;align-items:flex-start;line-height:1.35}
+.faux-help{min-width:44px;min-height:44px;border-radius:10px;border:1.5px solid #1B2A40;background:#fff;color:#1B2A40;font-weight:800;font-size:17px;cursor:pointer;flex:none;padding:0}
+.faux-fab{position:fixed;right:12px;bottom:12px;z-index:2147482000;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+.faux-h2{font-size:17px;font-weight:800;color:#1B2A40;margin:0 0 4px}
+.faux-sub{font-size:13.5px;color:#4A5563;margin:0 0 10px;line-height:1.35}
+.faux-opt{background:#fff;border:1px solid #D9D1C3;border-radius:12px;padding:10px 12px;margin:0 0 8px}
+.faux-opt b{display:block;font-size:14.5px;color:#1B2A40}
+.faux-opt small{display:block;font-size:12.5px;color:#4A5563;margin:2px 0 8px;line-height:1.35}
+.faux-opt .faux-row{margin-top:0}
+.faux-ta{width:100%;min-height:120px;border:1.5px solid #D9C79A;background:#FFF4D6;border-radius:10px;padding:8px 10px;font:13px/1.4 ui-monospace,Menlo,Consolas,monospace;color:#1A1A1A;box-sizing:border-box}
+.faux-tbl{width:100%;border-collapse:collapse;font-size:12.5px;margin:6px 0 8px}
+.faux-tbl th,.faux-tbl td{border-bottom:1px solid #EDE6DA;padding:5px 4px;text-align:left;vertical-align:top;word-break:break-word}
+.faux-tbl th{color:#4A5563;font-weight:700}
+.faux-tblw{max-height:46dvh;overflow:auto;border:1px solid #EDE6DA;border-radius:8px;background:#fff}
+.faux-err{background:#FBEAEA;color:#962324;border-radius:10px;padding:8px 10px;font-size:13.5px;margin:6px 0}
+.faux-ok{background:#E6F3EC;color:#16533C;border-radius:10px;padding:8px 10px;font-size:13.5px;margin:6px 0}
+.faux-drop{position:fixed;inset:0;z-index:2147483100;background:rgba(31,92,69,.82);color:#fff;display:flex;align-items:center;justify-content:center;font:800 22px/1.3 system-ui,sans-serif;text-align:center;padding:20px}
+.faux-drop[hidden]{display:none}
+.faux-auto{background:#E6F3EC;border:1px solid #9CC9B3;border-radius:12px;padding:10px 12px;margin:0 0 12px;color:#16533C;font-size:14px}
+.faux-auto b{color:#16533C}
+.faux-auto .faux-src{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap;border-top:1px solid #CFE6DA;padding-top:8px;margin-top:8px}
+.faux-auto .faux-btn{width:auto;min-height:44px;font-size:14px}
+.faux-toast{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;z-index:2147483200;background:#1B2A40;color:#fff;border-radius:12px;padding:10px 14px;font:600 14px/1.3 system-ui,sans-serif;display:flex;gap:12px;align-items:center;max-width:calc(100vw - 24px);box-shadow:0 6px 20px rgba(0,0,0,.25)}
+.faux-toast button{min-height:40px;border-radius:8px;border:1px solid #fff;background:transparent;color:#fff;font-weight:700;padding:0 12px;cursor:pointer}
+html.faux-quiet #toast,html.faux-quiet #toast-bar{visibility:hidden!important}
+.faux-sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+@media (max-height:700px){.faux-card{padding:14px 14px 10px}.faux-one{font-size:19px;margin-bottom:8px}.faux-steps{gap:5px;margin-bottom:10px}.faux-steps li{font-size:14px}.faux-btn{min-height:46px}}
+@media print{.faux-ov,.faux-fab,.faux-help,.faux-drop,.faux-toast,.faux-auto{display:none!important}}
+</style>
+<!-- FiledAwayCo app shell v2 + data kit v3 (v-app3) + design layer v-app4 2026-11-27 -->
+<meta name="theme-color" content="#1B2A40"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Tips &amp; OT"><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240"%3E%3Crect x="6" y="6" width="228" height="228" rx="48" fill="%2316283C"/%3E%3Cg transform="translate%2858,38%29 scale%281.1%29"%3E%3Crect x="0" y="0" width="28" height="140" rx="4" fill="%23F5F0E4"/%3E%3Crect x="0" y="0" width="100" height="26" rx="4" fill="%23F5F0E4"/%3E%3Crect x="0" y="54" width="72" height="24" rx="4" fill="%23F5F0E4"/%3E%3C/g%3E%3Crect x="138" y="138" width="86" height="86" rx="18" fill="%23E79A28" stroke="%23F5F0E4" stroke-width="4"/%3E%3Cpath d="M160.36,182.72 L175.84,198.20 L203.36,163.80" fill="none" stroke="%2316283C" stroke-width="16.5" stroke-linecap="round" stroke-linejoin="round"/%3E%3C/svg%3E" data-faa="1"><link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADaUlEQVR4nOxXWUhUYRT+7uKspjY102ZaWRkKFUSrbRAFUVEPifXQQhHag6BSTwVBIFEvJRWE2UNJYpkRCj70ED5oZjERlBsqbqO5jHqdGWfu6My9/Xcy6c7iMly1h76ne875/v98nH+552cRAoaE/avpCCEBCoDi3Y0D7V96g8Zk1pqDGpPGkwsR50jECAUhAr0kWVE/z95AeyUfIMCwPiWZZfGKuJIxpxDrPB6kDbVU10kW7fMlJalYhiqa++QSqGSGwUsp56QAo9dwm9RiM+YJFEVt8eXExBIYE1M44oz2Jx47tAuPcrMwWwiCgAtZd1D1+XtIjiiKIwNN1TGscc325cGSS4hdaUI4oGkaq6cZK+WUctOiRr0JCwQpN01q4QhF4EbsCGtiUURXT/9MqHZ2qmh3r1VmN7dZcOTsNSgJGguM/wKm3ANJG+Jl9oa1sWj7VBzAc4+N4VL2XXw010FRARQ9swKpVSqoNSqEg397CSw/B2T20LANhaXvg3IbmjuguIARm/yOGuRseFDwZqohoCkKOq0maEwgXYHTyc9cwGxx8dQe7EyMgS4ieNw+6kTbIPD0bS1sDpeyAjJO70Lm7iF4usuA8RAk8u89sC4OW64fx/lbJT6XIptQKvveJANJXhWSw3tIT2anINg6sUxsRfwqk3ICpDVXs2LIOOeikPoiBieeGdBHROiYMej1WuUETAWvICKnPAqdHAuDXkCMVpDFFRdQ3RaB7LJINPQxPvteZSTMlgioGRF5J22kUvJGXNFTIOFdnRofWjT4alHhZDKP4m+/S5171IZNJm8An7Xa+XrjIo1AWqSAajS2diHvr3Pf5XcxBcOVnU7UdKjA8TSem3U+3+UdThzeKD8aZMcIVoe3nkWP2YnElGbiS/SfzDrITXvx+GOjUUBB6gjSS6PJ5qOxb60bmSmj8H8DqVm2E5YaFzuh5gkJ30eYkFqwMbdz0pZKXXiGQ0WjBmlbXVIDKuMLwjhWLF3yWvr2ld3aVP2QiDAjTIy6ePzoocBExU364hYLyNjtxGJt4PEc1m9zqOG4KX3/2YReQksnpaglYhmEgccltUjIOYEoVSu0bPCr0OUex3j0ZqGzg8vKz8/3kRR/nMbHmqDXaQP8DENbo6MiKzqGvFfN5fmT60WFmmi+nue/AAAA//8/yZowAAAABklEQVQDAH3QLPbPURqYAAAAAElFTkSuQmCC" data-faa="1"><link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAI8klEQVR4nOzdDXAU5R3H8f/eXS6Xt0uiSTAmEKQaMZCWShpRCeG1UkFerDOKzjgj0rHg6zRAkFFrHaxIS6wt1hY7U61WaKVtCJYKaaFoE7BUCCWBRDIJb0nI+9sll+Tu9vqkGzMxkz8ml92925vfZ5jhCXdkb5Lv7T67e7dnSZg6mwBGYiIABuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAFuIAloUM4pc/fmbRnAyLxTAPeEQXLl/5za797/3pIBmBZIjLW4fbrKWH35EkiYyvw9Gdsfh7LreHAp4xNiuPrFoaHGUI9sjw2zPSyQiMsZaurWukINLS1kFGgAkpsBAHsBAHsBAHsBAHsBAHsBAHsBAHsBAHsBAHsBAHsBAHsIxx4q3yfA0Fi+pLdaXlVWQExn7tzFfyeDzHT1VQwLhw+cofCg6RQQR5HM6evlXrXiLwCeYcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwDLQywS9RGO+8lNkRFj1sd2ktrOfX9jx9l/2HzpGQc0Ya45Qa4gPZWjnltSU3MdXUbAzRhwTr0+gADMpaUJ4uI2CGuYcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwMI1wXy0r7C4u7uHglqwX/bJ2bs651VSW31Ta/XFOgp2wX7BOFk+duIMgU8w5wAW4gAW4gAW4gAW4gAW4gAW4gAW4gBWkB8E019sdOQdGdPTUicnJ8bHXRtjktR5L5bs9TY2t9XUNZZVnD/6WWlru4O0hzhUMylpwoa1DyxZMEuStH1zntfrLSgszvv1Hy/W1JOWsFlRx11zv1W4e/vShbdrXYYgFrH823ce3PXThVkzSUtYc6jgoXsXbdn46OCX7oYST1ul3HHR66gVT3NShSgiMslkn2iOudGSMIP+//7ht36y4dlXdu7eq9Wn+yCO8Zp1a9pL6x9Rxl630/nvbe7Ln5AWGkqUvy3JWWGZmyRLqBi/nLvmUm1D0fFS0gA2K+NyTXTUzm3rTab+H6PsqOkqXKdVGUOIRXQVfl8sTozFon+x5WkxCyYNII5x2fj4qqjIcDHwyp7uohflzkukC7Gg7qIfiYVS//5RVM5j95MGEIfvoiLC7lsyVxn3lr0tt1eTjuT2qr4z7yjjB5YvCLOFktoQh++ybvuG2dz/AxTP4L6KPaS73vIPlJWHeBhZmV8ntSEO36WlpigDuaWCZBfpT3bJrZ8PezAqQhy+i782Rhl4mv5LfuJuGthPifviwagIu7K+EzNBZeBp0epzjU/Xmd88Gn6ixnpzvHt1pjN7St+wO8jNZ5VBXKyd1IY1h+/MpoGfnlebbcqRKuuaD6KLzoc6XVJJbchT+fadx8KG3ccrD+Risaj/PEccAaqiwbzxw8ge95d+QW8UR3x6Ub+VPeIIRG1O6am99mFlKA5U6HcJQ8w5Ao7spaf32q90mke81SSpdLJmFBBHwNl+JFzMMLhbV0zvJb0gjsCyvzz0vRPh3K3fTe+Zfp2b9II4Akhlk/mFA+wptKnx7k3z9HgB2CDEESjandK6P9tdnpFfK2S3yTtWtlv1/XVhb0VbDQ5JHMjq7vvqe+bsi6p3mLlbf3ZPR3ykflNRBdYcWhG7o88fiPy4qv9kaYjZ++SdXQ/PdHIvItx2OPz4ZSv3rXLndc6cqN9UYxDWHJpwy/TYnmilDEFsLPI+jtz8tyh5pCf/RxXW359kJ6F3pfY++E399lCGQhyaePczW3nj8LXy/nLb8x8Nn2+erTfn/pU9LXJLgmvb0k7yE8ShicOVI7/05sOztueG9NHqlMTxLu6bxNjk15d3kP9gzqGJ2DCZu2nfGZtHppe/4/B66Zm9dm4SKo6E7ljZMSFK70noUIhDE8vSev9Zxb5uT2xfLGaKsspXORK6aV5XeqIfJqFDIQ5NLEjtWzatp6CMPUl2lZuEe9J67p/h/0sVYs6hlR8ucmRP8WUvQxwJfWGhrkdCOYhDKxYT5S3rHGsfYrKi/5FQDuLQkOjj5ys6546ljzx/HAnlGCOO0+VV9Y0tNHaHi0+Sv20f9fpj83zHrcl+noQOZZgJ6RPPvX7fkuyU5OtGeX/Z6y0pPbc7X6s3GY+esn35QQEdqbra+44CZBI6lGHi+M+pCvGHjEnp48l8qfj8yCdQxCRUTGApwGDOoZP++cfyjjsmj3B+VpmEhpgp0CAO/Yhf/5v3dsy/cfj8Y+vdATQJHQpx+M4jDxwjl6QxbJ1fW9aZM8cxMcZts8gzEl3vP9g6K8X3Sejgot0e9WeyOELqu5a2gbNipugUqvnX6P/jwxk94g+pwRQ9WRk0t6p/8hZx+K6xuV0ZmGK+Rn5iih1YdGNTK6kNcfju1JlKZWCOvYn8xBwzsOiTZedIbZhz+O7I0RJHl1MMTBGJluRs0p0lOcsU0X/gRzyMTz5V/53+iMN3Lrfn/fy/K+OwzA1S5PWkI7G4sMxcZfy7PQdkWf39HcQxLm/8Nr+to//glWSxRcx5xRSbSrowx6ZGZG8VCxVj8QB+9W4BacAcETeJwFe9fa7S8qoVi2dLgtVunbKYTFZP42lx+J40Ygqxpa8Oy1wvWaPFVx6P/GjOq1UXakkDUsLU2QTj89DKhVty1wx+6XV1eZpK3U2lcnM5eVWqxGQ2XXOzJS7dHDdNCokY/OfNW9/alf8P0gbiUMfd82/Le/GJUGsI6aXP5V67afuhIg1PO2Ozoo5z1TUFB4sT4mJvuiFJhwvj7yssXvvsayVllaQlrDlUpnykxrTUG5IS44z+kRqIA1jYlQUW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gAW4gDW/wAAAP//NTLMZQAAAAZJREFUAwDtKIpBZJ7kFAAAAABJRU5ErkJggg==" data-faa="1"><script>window.__FA_UX_NO_WELCOME=1;</script><style id="faa-css">/* FiledAwayCo app design system v1 (2026-11-27). Tokens follow the Seller Dashboard look. */
+:root{--faa-navy:#1B2A40;--faa-paper:#FBF8F2;--faa-cream:#E8E0D2;--faa-amber:#E39A2D;--faa-green:#1F5C45;--faa-mint:#7FB89E;--faa-mintbg:#E3F1EA;--faa-slate:#4A5563;--faa-line:#E6DECF;--faa-warn:#FFF4D6;--faa-ui:-apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;--faa-r:18px;--faa-nav:68px}
+html.faa-on.faa-home body>*:not(#faa):not(.faux-ov):not(.faux-toast):not(.faux-drop){display:none!important}
+html.faa-on.faa-home,html.faa-on.faa-home body{background:var(--faa-paper)!important;overflow-x:hidden}
+html.faa-on.faa-home body{margin:0!important;padding:0!important;min-height:0!important}
+html.faa-on.faa-det body{padding-bottom:calc(var(--faa-nav) + 14px + env(safe-area-inset-bottom))!important}
+html.faa-test #faa{display:none!important}
+html.faa-on .faux-help{display:none!important}
+#faa,#faa *{box-sizing:border-box}
+#faa [hidden]{display:none!important}
+#faa{font-family:var(--faa-ui);color:var(--faa-navy);-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+#faa button{font-family:inherit;cursor:pointer}
+#faa .faa-mk{width:34px;height:34px;flex:none;display:block}
+#faa .faa-mk svg{width:100%;height:100%;display:block}
+/* home */
+#faa .faa-homev{display:none;flex-direction:column;gap:10px;max-width:480px;margin:0 auto;min-height:100vh;min-height:100dvh;padding:10px 16px calc(var(--faa-nav) + 12px + env(safe-area-inset-bottom))}
+html.faa-home #faa .faa-homev{display:flex}
+#faa .faa-hd{display:flex;align-items:center;gap:10px}
+#faa .faa-hd .t{min-width:0;flex:1}
+#faa .faa-hd h1{margin:0;font-family:var(--faa-ui);font-size:20px;line-height:1.15;font-weight:800;letter-spacing:-.3px;color:var(--faa-navy)}
+#faa .faa-hd small{display:block;font-size:12px;color:var(--faa-slate);font-weight:600}
+#faa .faa-hd small b{color:var(--faa-green)}
+#faa .faa-one{margin:-2px 0 0;font-size:14.5px;line-height:1.35;color:var(--faa-slate)}
+#faa .faa-samp{display:flex;align-items:center;gap:8px;justify-content:space-between;background:var(--faa-warn);border:1px solid #EBD9A6;border-radius:12px;padding:6px 6px 6px 12px;font-size:14px;color:#5A4712}
+#faa .faa-samp button{min-height:40px;padding:0 12px;border:0;border-radius:10px;background:transparent;color:var(--faa-green);font-weight:800;font-size:14px}
+#faa .faa-hero{position:relative;background:var(--faa-navy);color:#fff;border-radius:var(--faa-r);padding:18px 18px 0;box-shadow:0 10px 30px rgba(27,42,64,.18);overflow:hidden;text-align:left;border:0;width:100%;display:block}
+#faa .faa-hero .k{font-size:12.5px;font-weight:800;letter-spacing:.9px;text-transform:uppercase;color:var(--faa-mint)}
+#faa .faa-hero .big{display:block;font-size:46px;line-height:1.05;font-weight:800;letter-spacing:-1.2px;margin:6px 0 4px;word-break:break-word;font-variant-numeric:tabular-nums}
+#faa .faa-hero .big.md{font-size:36px}#faa .faa-hero .big.sm{font-size:28px}
+#faa .faa-hero .sub{font-size:15px;line-height:1.4;color:#E4E9F0;margin:0 0 14px}
+#faa .faa-hero .st{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(255,255,255,.14);margin:0 -18px}
+#faa .faa-hero .st div{padding:11px 10px 12px 18px;min-width:0}
+#faa .faa-hero .st div+div{border-left:1px solid rgba(255,255,255,.14);padding-left:12px}
+#faa .faa-hero .st b{display:block;font-size:17px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#faa .faa-hero .st span{display:block;font-size:12px;color:#C8D1DC;margin-top:2px;line-height:1.25}
+#faa .faa-hero .more{display:flex;align-items:center;justify-content:center;gap:6px;min-height:46px;border-top:1px solid rgba(255,255,255,.14);margin:0 -18px;font-weight:700;font-size:15px;color:#fff;background:transparent;width:calc(100% + 36px);border-left:0;border-right:0;border-bottom:0}
+#faa .faa-hero.pulse{animation:faaPulse .5s ease}
+@keyframes faaPulse{0%{transform:scale(.97);opacity:.6}100%{transform:none;opacity:1}}
+#faa .faa-hero .vis{display:flex;justify-content:center;margin:8px 0 12px}
+#faa .faa-hero .vis img{width:150px;height:150px;border-radius:12px;background:#fff;padding:8px;image-rendering:pixelated}
+#faa .faa-hero .clock{font-size:76px;letter-spacing:-2px}
+#faa .faa-chips{display:flex;gap:8px;margin:0 0 14px;flex-wrap:wrap}
+#faa .faa-chips button{min-height:44px;padding:0 14px;border-radius:999px;border:1.5px solid rgba(255,255,255,.35);background:transparent;color:#fff;font-weight:700;font-size:14px}
+#faa .faa-chips button[aria-pressed="true"]{background:#fff;color:var(--faa-navy);border-color:#fff}
+#faa .faa-auto{display:flex;align-items:center;gap:10px;background:var(--faa-mintbg);border:1px solid #BFDCCD;border-radius:14px;padding:8px 8px 8px 12px;font-size:14px;line-height:1.3}
+#faa .faa-auto span{flex:1;min-width:0}
+#faa .faa-cta{display:grid;gap:8px}
+#faa .faa-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:54px;padding:0 16px;border-radius:14px;border:0;background:var(--faa-green);color:#fff;font-weight:800;font-size:16.5px;letter-spacing:-.1px;text-align:center;line-height:1.2;transition:transform .12s ease}
+#faa .faa-btn:active{transform:scale(.98)}
+#faa .faa-btn.sec{background:#fff;color:var(--faa-navy);border:1.5px solid var(--faa-navy)}
+#faa .faa-btn.ghost{background:transparent;color:var(--faa-navy);border:1.5px solid var(--faa-line)}
+#faa .faa-btn.sm{min-height:44px;font-size:14.5px;width:auto;flex:none;padding:0 14px;border-radius:12px}
+#faa .faa-trust{margin:auto 0 0;font-size:12.5px;color:var(--faa-slate);text-align:center;line-height:1.35}
+/* nav */
+#faa .faa-nav{position:fixed;left:0;right:0;bottom:0;z-index:2147483000;background:#fff;border-top:1px solid var(--faa-line);padding:0 8px env(safe-area-inset-bottom)}
+#faa .faa-nav .in{max-width:480px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);height:var(--faa-nav)}
+#faa .faa-nav button{border:0;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:12.5px;font-weight:700;color:var(--faa-slate);min-height:48px}
+#faa .faa-nav button svg{width:24px;height:24px}
+#faa .faa-nav button[aria-current="page"]{color:var(--faa-green)}
+#faa .faa-nav .plus span.o{width:46px;height:46px;border-radius:50%;background:var(--faa-green);color:#fff;display:grid;place-items:center;box-shadow:0 6px 16px rgba(31,92,69,.35);margin-top:-14px}
+/* details bar */
+#faa .faa-bar{display:none;position:sticky;top:0;z-index:2147482999;background:var(--faa-navy);color:#fff}
+html.faa-det #faa .faa-bar{display:block}
+#faa .faa-bar .in{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:10px;min-height:52px;padding:0 10px}
+#faa .faa-bar button{min-height:44px;border:0;background:rgba(255,255,255,.12);color:#fff;border-radius:10px;padding:0 12px;font-weight:800;font-size:14.5px}
+#faa .faa-bar b{font-size:15px;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#faa .faa-bar .faa-mk{width:28px;height:28px}
+/* sheets */
+#faa .faa-sh{position:fixed;inset:0;z-index:2147483001;display:flex;align-items:flex-end;justify-content:center;background:rgba(17,26,40,.45);animation:faaFade .18s ease}
+#faa .faa-sh[hidden]{display:none}
+#faa .faa-pan{width:100%;max-width:520px;max-height:94vh;max-height:94dvh;overflow:auto;background:var(--faa-paper);border-radius:22px 22px 0 0;padding:14px 18px calc(18px + env(safe-area-inset-bottom));animation:faaUp .26s cubic-bezier(.2,.8,.2,1)}
+@media (min-width:700px){#faa .faa-sh{align-items:center}#faa .faa-pan{border-radius:22px}}
+@keyframes faaUp{from{transform:translateY(40px);opacity:.4}to{transform:none;opacity:1}}
+@keyframes faaFade{from{opacity:0}to{opacity:1}}
+#faa .faa-pan h2{margin:4px 0 6px;font-size:22px;line-height:1.2;letter-spacing:-.3px}
+#faa .faa-pan p{margin:0 0 12px;font-size:15px;line-height:1.45;color:var(--faa-slate)}
+#faa .faa-pan .grab{width:40px;height:5px;border-radius:3px;background:#D8D0C1;margin:0 auto 10px}
+#faa .faa-list{display:grid;gap:8px;margin:0 0 12px}
+#faa .faa-item{display:flex;align-items:center;gap:12px;width:100%;min-height:60px;padding:10px 14px;border-radius:14px;border:1.5px solid var(--faa-line);background:#fff;color:var(--faa-navy);text-align:left;font-size:15.5px;font-weight:700;line-height:1.25}
+#faa .faa-item small{display:block;font-weight:500;font-size:13px;color:var(--faa-slate);margin-top:2px}
+#faa .faa-item .ic{width:38px;height:38px;border-radius:10px;background:var(--faa-mintbg);display:grid;place-items:center;flex:none;font-size:18px}
+#faa ol.faa-steps{margin:0 0 12px;padding-left:20px;font-size:15px;line-height:1.5;color:var(--faa-navy)}
+/* wizard */
+#faa .faa-wz .dots{display:flex;gap:6px;margin:2px 0 14px}
+#faa .faa-wz .dots i{height:6px;flex:1;border-radius:3px;background:#DED6C7}
+#faa .faa-wz .dots i.on{background:var(--faa-green)}
+#faa .faa-wz .qn{font-size:13px;font-weight:800;color:var(--faa-green);letter-spacing:.6px;text-transform:uppercase}
+#faa .faa-wz label.q{display:block;font-size:24px;font-weight:800;line-height:1.2;letter-spacing:-.3px;margin:6px 0 6px}
+#faa .faa-wz .help{font-size:14.5px;color:var(--faa-slate);margin:0 0 12px;line-height:1.4}
+#faa .faa-wz .fld{display:flex;align-items:center;gap:6px;border:2px solid var(--faa-navy);border-radius:14px;background:#fff;padding:0 14px;min-height:62px}
+#faa .faa-wz .fld span{font-size:24px;font-weight:800;color:var(--faa-slate)}
+#faa .faa-wz .fld input{flex:1;min-width:0;border:0;outline:0;background:transparent;font:800 26px var(--faa-ui);color:var(--faa-navy);padding:10px 0}
+#faa .faa-wz .opts{display:grid;gap:8px}
+#faa .faa-wz .opts button{min-height:56px;border-radius:14px;border:1.5px solid var(--faa-line);background:#fff;font-size:16.5px;font-weight:700;color:var(--faa-navy);text-align:left;padding:8px 16px}
+#faa .faa-wz .opts button[aria-pressed="true"]{border:2px solid var(--faa-green);background:var(--faa-mintbg)}
+#faa .faa-wz .nav2{display:grid;grid-template-columns:1fr 2fr;gap:8px;margin-top:16px}
+#faa .faa-toast{position:fixed;left:50%;bottom:calc(var(--faa-nav) + 16px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:2147483002;background:var(--faa-navy);color:#fff;border-radius:14px;padding:10px 10px 10px 16px;display:flex;gap:10px;align-items:center;font-size:14.5px;max-width:92vw;box-shadow:0 8px 24px rgba(0,0,0,.25);animation:faaUp .22s ease}
+#faa .faa-toast button{min-height:40px;border:0;border-radius:10px;background:rgba(255,255,255,.15);color:#fff;font-weight:800;padding:0 12px}
+/* in-app logo swap: the products' "fa" tile becomes the F mark used on the live Seller Dashboard */
+html.faa-on .mark,html.faa-on .faux-mk{font-size:0!important;color:transparent!important;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240' width='240' height='240'%3E%3Crect x='6' y='6' width='228' height='228' rx='48' fill='%2316283C'/%3E%3Cg transform='translate%2863,40%29 scale%281.14%29'%3E%3Crect x='0' y='0' width='28' height='140' rx='3.2' fill='%23F5F0E4'/%3E%3Crect x='0' y='0' width='100' height='26' rx='3.2' fill='%23F5F0E4'/%3E%3Crect x='0' y='54' width='72' height='24' rx='3.2' fill='%23F5F0E4'/%3E%3C/g%3E%3Crect x='148' y='148' width='74' height='74' rx='16' fill='%23E79A28' stroke='%23F5F0E4' stroke-width='5'/%3E%3Cpath d='M167.24,186.48 L180.56,199.80 L204.24,170.20' fill='none' stroke='%2316283C' stroke-width='13.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat!important;border:0!important}
+ /* Seller Dashboard keeps its own header: swap its in-app mark for the Option B tile by CSS only */
+html.faa-on .homebrand>svg,html.faa-on .wm>svg,html.faa-on .brand>svg,html.faa-on .fp-brand>svg{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240' width='240' height='240'%3E%3Crect x='6' y='6' width='228' height='228' rx='48' fill='%2316283C'/%3E%3Cg transform='translate%2863,40%29 scale%281.14%29'%3E%3Crect x='0' y='0' width='28' height='140' rx='3.2' fill='%23F5F0E4'/%3E%3Crect x='0' y='0' width='100' height='26' rx='3.2' fill='%23F5F0E4'/%3E%3Crect x='0' y='54' width='72' height='24' rx='3.2' fill='%23F5F0E4'/%3E%3C/g%3E%3Crect x='148' y='148' width='74' height='74' rx='16' fill='%23E79A28' stroke='%23F5F0E4' stroke-width='5'/%3E%3Cpath d='M167.24,186.48 L180.56,199.80 L204.24,170.20' fill='none' stroke='%2316283C' stroke-width='13.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
+html.faa-on .homebrand>svg>*,html.faa-on .wm>svg>*,html.faa-on .brand>svg>*,html.faa-on .fp-brand>svg>*{display:none}
+html.faa-on #tabs [data-v="settings"]{display:none!important}
+.faa-gear{margin-left:auto;width:44px;height:44px;border:0;border-radius:12px;background:transparent;color:var(--faa-slate);display:grid;place-items:center;cursor:pointer}.faa-gear svg{width:22px;height:22px}
+.faa-sdline{margin:-4px 0 6px;font:500 13.5px/1.35 var(--faa-ui);color:var(--faa-slate)}
+@media (prefers-reduced-motion:reduce){#faa *{animation:none!important;transition:none!important}}
+@media print{#faa{display:none!important}html.faa-on.faa-home body>*{display:revert!important}}
+@media (max-height:700px){#faa .faa-hero .big{font-size:38px}#faa .faa-btn{min-height:50px}#faa .faa-homev{gap:8px}}
+</style>
+<style id="faa2-css">/* FiledAwayCo app data kit v2 (2026-11-27) */
+html.faa-on.faa-home body>#faa2#faa2{display:block!important}
+#faa2,#faa2 *{box-sizing:border-box}#faa2 [hidden]{display:none!important}
+#faa2{font-family:var(--faa-ui,system-ui,sans-serif);color:var(--faa-navy,#1B2A40);-webkit-tap-highlight-color:transparent}
+#faa2 .a2-sh{position:fixed;inset:0;z-index:2147483005;display:flex;align-items:flex-end;justify-content:center;background:rgba(17,26,40,.45)}
+#faa2 .a2-pan{width:100%;max-width:520px;max-height:94vh;max-height:94dvh;overflow:auto;background:var(--faa-paper,#FBF8F2);border-radius:22px 22px 0 0;padding:14px 18px calc(18px + env(safe-area-inset-bottom));box-shadow:0 -8px 30px rgba(0,0,0,.18)}
+#faa2 .grab{width:40px;height:5px;border-radius:3px;background:#D8D0C1;margin:0 auto 10px}
+#faa2 h2{margin:4px 0 6px;font-size:22px;line-height:1.2;letter-spacing:-.3px}
+#faa2 h3{margin:16px 0 4px;font-size:13px;letter-spacing:.8px;text-transform:uppercase;color:var(--faa-green,#1F5C45)}
+#faa2 p{margin:0 0 10px;font-size:15px;line-height:1.45;color:var(--faa-slate,#4A5563)}
+#faa2 p b{color:var(--faa-navy,#1B2A40)}
+#faa2 .a2-meta{font-size:14px}
+#faa2 .a2-err{color:#8A2A20}
+#faa2 .a2-btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:52px;margin:8px 0 0;padding:0 16px;border-radius:14px;border:0;background:var(--faa-green,#1F5C45);color:#fff;font:800 16px/1.2 inherit;font-family:inherit;cursor:pointer}
+#faa2 .a2-btn.sec{background:#fff;color:var(--faa-green,#1F5C45);border:2px solid var(--faa-green,#1F5C45)}
+#faa2 .a2-btn.ghost{background:transparent;color:var(--faa-slate,#4A5563);border:1.5px solid var(--faa-line,#E6DECF)}
+#faa2 .a2-btn.a2-red{color:#8A2A20}
+#faa2 .a2-card{display:flex;flex-direction:column;gap:2px;background:#fff;border:1.5px solid var(--faa-line,#E6DECF);border-radius:14px;padding:12px 14px;margin:6px 0 12px;font-size:14.5px}
+#faa2 .a2-card span{color:var(--faa-slate,#4A5563);font-size:13.5px}#faa2 .a2-card ul{margin:6px 0 0;padding-left:18px}
+#faa2 .a2-links{display:grid;gap:8px}
+#faa2 .a2-link{display:flex;align-items:center;min-height:48px;padding:8px 14px;border-radius:12px;border:1.5px solid var(--faa-line,#E6DECF);background:#fff;color:var(--faa-navy,#1B2A40);font-weight:700;font-size:15px;text-decoration:none}
+#faa2 .a2-link::after{content:'↓';margin-left:auto;color:var(--faa-green,#1F5C45)}
+#faa2 .a2-toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:2147483006;background:var(--faa-navy,#1B2A40);color:#fff;border-radius:14px;padding:10px 10px 10px 16px;display:flex;gap:10px;align-items:center;font-size:14.5px;width:max-content;max-width:92vw;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+#faa2 .a2-toast button{min-height:40px;border:0;border-radius:10px;background:rgba(255,255,255,.15);color:#fff;font-weight:800;padding:0 12px;font-family:inherit}
+#faa2 .a2-toast{pointer-events:none}#faa2 .a2-toast button{pointer-events:auto;min-height:44px}
+.a2-tl{display:inline;border:0;background:none;padding:2px 2px;margin:0;font:inherit;font-weight:800;color:var(--faa-green,#1F5C45);text-decoration:underline;text-underline-offset:2px;cursor:pointer;min-height:0}
+.a2-tl.a2-due{color:#9A5A00}
+.a2-pill{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 12px;border-radius:999px;border:1.5px solid var(--faa-line,#E6DECF);background:#fff;color:var(--faa-navy,#1B2A40);font:800 13.5px/1 var(--faa-ui,system-ui);cursor:pointer;white-space:nowrap}
+.a2-pill.a2-due{border-color:#E39A2D;background:#FFF4D6}
+@media print{#faa2{display:none!important}}
+/* 44px tap targets (accessibility sweep) */
+#faa .faa-samp button{min-height:44px}
+.a2-tl{display:inline-flex!important;align-items:center;min-height:44px!important;padding:0 4px!important;vertical-align:middle}
+.a2-pill{min-height:44px}
+.faa-gear{min-width:44px!important;min-height:44px!important}
+@media (prefers-reduced-motion: reduce){#faa2 *,#faa2 *::before,#faa2 *::after{animation:none!important;transition:none!important}}
+
+/* v-app3: backup links stay together on their own line */
+.a2-tls{display:inline-block;white-space:nowrap}
+</style>
+<!-- /FiledAwayCo app shell -->
+<style id="fa4-css">/* FiledAwayCo design layer v-app4 (2026-11-27): responsive dashboard, side panel, charts, accents. Tokens: see DESIGN-SYSTEM.md */
+:root{--fa4-acc:#1F5C45;--fa4-acc2:#7FB89E;--fa4-acc3:#E39A2D;--fa4-card:#fff;--fa4-line:#E6DECF;--fa4-r:16px;--fa4-shadow:0 1px 2px rgba(27,42,64,.06),0 8px 24px rgba(27,42,64,.07)}
+#faa .faa-hero{border-top:4px solid var(--fa4-acc2)}
+#faa .faa-hero:before{content:"";position:absolute;right:-60px;top:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.09),rgba(255,255,255,0) 70%);pointer-events:none}
+#faa .fa4-grid{display:flex;flex-direction:column;gap:10px}
+#faa .fa4-main{display:contents}
+#faa .fa4-main .faa-heroW{order:1}#faa .fa4-main .faa-auto{order:2}#faa .fa4-main .faa-cta{order:3}#faa .fa4-side{order:4}#faa .fa4-main .fa4-ph{order:5}#faa .fa4-main .fa4-strip{order:6}#faa .fa4-main .faa-trust{order:7}
+#faa .fa4-side{display:flex;flex-direction:column;gap:10px}
+#faa .fa4-card{background:var(--fa4-card);border:1px solid var(--fa4-line);border-radius:var(--fa4-r);padding:14px 16px;box-shadow:var(--fa4-shadow);color:var(--faa-navy);font-family:var(--faa-ui);margin:0}
+#faa .fa4-card h2,#faa .fa4-card h2 span,#faa .fa4-card button{font-family:var(--faa-ui)}
+#faa .fa4-card h2{margin:0 0 10px;font-size:13px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--faa-slate);display:flex;justify-content:space-between;gap:8px}
+#faa .fa4-card h2 span{letter-spacing:0;text-transform:none;font-weight:700;color:var(--faa-navy)}
+#faa .fa4-bar{display:flex;height:14px;border-radius:8px;overflow:hidden;background:#EFEAE0;margin:2px 0 12px}
+#faa .fa4-bar i{display:block;height:100%;min-width:3px}
+#faa .fa4-bar i+i{border-left:2px solid #fff}
+#faa .fa4-leg{display:grid;gap:7px;margin:0;padding:0;list-style:none}
+#faa .fa4-leg li{display:grid;grid-template-columns:12px 1fr auto auto;align-items:center;gap:8px;font-size:14.5px;line-height:1.25}
+#faa .fa4-leg li .d{width:12px;height:12px;border-radius:4px}
+#faa .fa4-leg li b{font-variant-numeric:tabular-nums;font-weight:800}
+#faa .fa4-leg li em{font-style:normal;color:var(--faa-slate);font-size:13px;min-width:38px;text-align:right;font-variant-numeric:tabular-nums}
+#faa .fa4-bars{display:grid;gap:10px}
+#faa .fa4-bars .r{display:grid;gap:4px;font-size:14.5px}
+#faa .fa4-bars .r div:first-child{display:flex;justify-content:space-between;gap:8px}
+#faa .fa4-bars .r b{font-variant-numeric:tabular-nums}
+#faa .fa4-bars .t{height:10px;border-radius:6px;background:#EFEAE0;overflow:hidden}
+#faa .fa4-bars .t i{display:block;height:100%;border-radius:6px}
+#faa .fa4-prog{display:flex;align-items:center;gap:14px}
+#faa .fa4-prog svg{width:84px;height:84px;flex:none}
+#faa .fa4-prog p{margin:0;font-size:14.5px;line-height:1.35;color:var(--faa-slate)}
+#faa .fa4-prog p b{display:block;font-size:22px;color:var(--faa-navy);font-variant-numeric:tabular-nums}
+#faa .fa4-list{list-style:none;margin:0;padding:0;display:grid}
+#faa .fa4-list li{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:9px 0;border-top:1px solid #F0EBE1;font-size:14.5px}
+#faa .fa4-list li:first-child{border-top:0}
+#faa .fa4-list li .q{width:34px;height:34px;border-radius:10px;background:#F3EFE6;display:grid;place-items:center;font-weight:800;font-size:13px;color:var(--faa-navy)}
+#faa .fa4-list li.nx .q{background:var(--fa4-acc);color:#fff}
+#faa .fa4-list li small{display:block;color:var(--faa-slate);font-size:12.5px}
+#faa .fa4-list li b{font-variant-numeric:tabular-nums}
+#faa .fa4-tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+#faa .fa4-tiles button{display:flex;align-items:center;gap:10px;min-height:56px;padding:10px 12px;border-radius:12px;border:1px solid var(--fa4-line);background:#FDFBF7;color:var(--faa-navy);font-weight:700;font-size:14px;line-height:1.2;text-align:left;cursor:pointer}
+#faa .fa4-tiles button:hover{border-color:var(--fa4-acc);background:#fff}
+#faa .fa4-tiles button .ic{flex:none;width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:#F0ECE3;font-size:16px}
+#faa .fa4-empty{border:1.5px dashed #D9D0BE;border-radius:12px;padding:14px;text-align:center;color:var(--faa-slate);font-size:14.5px;line-height:1.4}
+#faa .fa4-empty .sk{display:flex;height:14px;border-radius:8px;overflow:hidden;margin:0 0 10px;opacity:.55}
+#faa .fa4-empty button{margin-top:10px;min-height:44px;padding:0 16px;border-radius:12px;border:1.5px solid var(--faa-navy);background:#fff;color:var(--faa-navy);font-weight:800;font-size:14.5px;cursor:pointer}
+#faa .fa4-photo{padding:0;overflow:hidden}
+#faa .fa4-photo img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+#faa .fa4-photo figcaption{display:flex;justify-content:space-between;gap:8px;padding:10px 14px;font-size:14px;line-height:1.3}
+#faa .fa4-photo figcaption small{color:var(--faa-slate);font-size:11.5px;white-space:nowrap}
+#faa .fa4-strip{display:flex;flex-wrap:wrap;gap:6px 14px;justify-content:center;font-size:12.5px;color:var(--faa-slate);font-weight:600;margin:2px 0 0}
+#faa .fa4-strip span:before{content:"✓ ";color:var(--faa-green);font-weight:800}
+@media (min-width:980px){
+  body.faa-home{background:radial-gradient(1200px 500px at 85% -10%,rgba(127,184,158,.16),transparent 60%),var(--faa-paper)}
+  #faa .faa-homev{max-width:1120px;padding:28px 32px calc(var(--faa-nav) + 40px);gap:12px}
+  #faa .faa-hd h1{font-size:28px}
+  #faa .faa-one{font-size:16.5px;max-width:760px}
+  #faa .faa-samp{max-width:none}
+  #faa .fa4-main{display:grid;gap:12px;align-content:start}
+  #faa .fa4-main .fa4-ph{order:9}
+  #faa .fa4-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:20px;align-items:start}
+  #faa .faa-hero{padding:24px 24px 0}
+  #faa .faa-hero .st,#faa .faa-hero .more{margin-left:-24px;margin-right:-24px}
+  #faa .faa-hero .more{width:calc(100% + 48px)}
+  #faa .faa-hero .st div{padding-left:24px}
+  #faa .faa-hero .big{font-size:64px}
+  #faa .faa-hero .big.md{font-size:48px}
+  #faa .faa-hero .big.sm{font-size:34px}
+  #faa .faa-hero .sub{font-size:16px;max-width:560px}
+  #faa .faa-hero .st b{font-size:20px}
+  #faa .faa-cta{grid-template-columns:1fr 1fr}
+  #faa .faa-cta .faa-btn:only-child{grid-column:1/-1}
+  #faa .faa-nav{left:50%;right:auto;bottom:16px;transform:translateX(-50%);width:520px;border:1px solid var(--faa-line);border-radius:22px;box-shadow:0 10px 30px rgba(27,42,64,.14);padding:0 8px}
+  #faa .faa-nav .in{max-width:none}
+}
+@media (min-width:980px) and (max-height:700px){#faa .faa-homev{padding-top:16px}}
+@media (prefers-reduced-motion:reduce){#faa .faa-hero.pulse{animation:none}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="topbar no-print">
+    <div class="wm">
+      <div class="mark" aria-hidden="true">fa</div>
+      <div class="wm-t"><b>Tips &amp; Overtime Deduction Tracker</b><span>2025–2028 Tips &amp; Overtime Rules · Schedule 1-A Estimate</span></div>
+    </div>
+    <button type="button" class="btn sec" id="topSampleBtn" style="min-height:44px;padding:0 14px;font-size:13.5px;flex:none;white-space:nowrap">Try sample</button>
+  </div>
+
+  <div class="banner no-print" id="sampleBanner" data-sample-banner="1" style="display:none">
+    <span><b>Sample shifts</b> — made-up example numbers, not your pay stubs</span>
+    <button type="button" id="clearSampleBtn">Clear sample</button>
+  </div>
+
+  <nav class="tabbar no-print" aria-label="Main navigation">
+    <button type="button" data-tab="capture" aria-current="page"><span>Estimate &amp; Log</span></button>
+    <button type="button" data-tab="flsa"><span>Overtime Check</span></button>
+    <button type="button" data-tab="records"><span>Records &amp; Export</span></button>
+  </nav>
+
+  <!-- TAB 1: ESTIMATE & CAPTURE -->
+  <section class="pane active" id="pane-capture" aria-label="Tips and Overtime Deduction Estimate and Log">
+    <h1><span class="h-num">2026</span> Tips &amp; Overtime Estimate</h1>
+    <p class="cap" style="margin:0 0 12px">Track your tips and overtime premium right on this device. Nothing is uploaded. Rules checked Nov 27, 2026 (26 U.S.C. §224 &amp; §225, IRS Notice 2025-69, Schedule 1-A). General info only, not tax advice.</p>
+
+    <div class="empty-cta" id="emptyHeroCta" style="display:none">
+      <div><b>See how it works in one tap:</b> load sample Harbor Table shifts &amp; an overtime stub, or paste your own pay-stub text / log a shift below.</div>
+      <button type="button" class="btn full" id="primarySampleBtn">Try sample shifts</button>
+    </div>
+
+    <div class="card hero">
+      <div class="lbl">Estimated total deduction (Schedule 1-A)</div>
+      <div class="big num" id="outTotalDed">$0.00</div>
+      <div class="sub num" id="outStatusNote">Single / Head of Household · Caps: $25,000 tips · $12,500 OT premium</div>
+      <div class="hero-grid">
+        <div class="hbox">
+          <div class="lbl">Qualified tips deduction</div>
+          <div style="font-size:22px;font-weight:800" class="num" id="outTipsDed">$0.00</div>
+          <div class="cap num" style="color:#DCE6F2" id="outTipsSub">$0.00 logged · $25,000 cap</div>
+          <div class="bar-t"><div class="bar-f" id="bTips" style="width:0%"></div></div>
+        </div>
+        <div class="hbox">
+          <div class="lbl">Qualified OT premium deduction</div>
+          <div style="font-size:22px;font-weight:800" class="num" id="outOtDed">$0.00</div>
+          <div class="cap num" style="color:#DCE6F2" id="outOtSub">$0.00 logged · $12,500 cap</div>
+          <div class="bar-t"><div class="bar-f" id="bOt" style="width:0%"></div></div>
+        </div>
+      </div>
+      <div id="mfsWarnBox"></div>
+    </div>
+
+    <div class="card">
+      <h2>Filing status &amp; yearly income limit</h2>
+      <div class="grid2">
+        <label class="field"><span class="l">Filing status</span><span class="inp-wrap"><select id="fStatus">
+          <option value="single">Single / Head of Household</option>
+          <option value="mfj">Married Filing Jointly</option>
+          <option value="mfs">Married Filing Separately (not eligible)</option>
+        </select></span></label>
+        <label class="field"><span class="l">Estimated yearly income (optional)</span><span class="inp-wrap" id="fMagiWrap"><span class="pre">$</span><input id="fMagi" inputmode="decimal" placeholder="Leave blank if under $150k ($300k joint)"></span></label>
+      </div>
+      <p class="cap num" id="phaseOutLine" style="margin:6px 0 0"></p>
+    </div>
+
+    <div class="card">
+      <h2><span class="h-num">1.</span> Capture a pay stub or shift (<span class="h-num">100%</span> offline)</h2>
+      <p class="cap" style="margin:0 0 8px">Copy-paste text from ADP, Gusto, Workday, Toast, or Square right here — read and filled in right on your phone with no internet. Or tap manual entry / attach a photo.</p>
+      <textarea class="stub-in" id="stubText" aria-label="Paste pay stub text" placeholder="Paste pay-stub text here (e.g. Pay Date: 11/13/2026 | Total Hours: 43.5 | Card Tips: $671.00 | Overtime Hours: 3.5 | OT Premium: $21.88 | Gross Pay: $812.40)"></textarea>
+      <div class="btn-row">
+        <button type="button" class="btn" id="parseTextBtn">Draft from pasted text</button>
+        <button type="button" class="btn sec" id="manualBtn">Type entry manually</button>
+      </div>
+      <div class="btn-row">
+        <label class="btn sec" for="photoPick" style="cursor:pointer">Attach pay-stub photo</label>
+        <button type="button" class="btn sec" id="loadOcrBtn">Read photo text (needs internet once)</button>
+      </div>
+      <input type="file" id="photoPick" accept="image/*" style="display:none">
+      <p class="cap" id="ocrStatus" style="margin:8px 0 0">The photo text reader only loads if you tap the button above. Typing, pasting, and saving photos all work offline.</p>
+    </div>
+
+    <div class="card" id="draftCard" style="display:none">
+      <h2><span class="h-num">2.</span> Confirm draft before saving</h2>
+      <p class="cap" id="draftHint" style="margin:0 0 8px">Check every number against your pay stub. Highlighted boxes were not found in the text — type them or leave blank if $0. Nothing saves until you tap Confirm.</p>
+      <img id="draftPhotoImg" class="stub-thumb" style="display:none" alt="Attached pay stub preview">
+      <form id="draftForm" style="margin-top:10px">
+        <div class="grid2">
+          <label class="field"><span class="l">Pay / shift date</span><span class="inp-wrap"><input type="date" id="dDate" required></span></label>
+          <label class="field"><span class="l">Employer / job</span><span class="inp-wrap"><input id="dEmp" placeholder="e.g. Harbor Table"></span></label>
+          <label class="field"><span class="l">Total hours worked</span><span class="inp-wrap"><input id="dHours" inputmode="decimal" placeholder="0"></span></label>
+          <label class="field"><span class="l">Cash tips ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="dCash" inputmode="decimal" placeholder="0"></span></label>
+          <label class="field"><span class="l">Card / reported tips ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="dCard" inputmode="decimal" placeholder="0"></span></label>
+          <label class="field"><span class="l">Tip-out paid ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="dOut" inputmode="decimal" placeholder="0"></span></label>
+          <label class="field"><span class="l">Overtime hours</span><span class="inp-wrap"><input id="dOtH" inputmode="decimal" placeholder="0"></span></label>
+          <label class="field"><span class="l">Overtime premium $ (extra half-time only)</span><span class="inp-wrap"><span class="pre">$</span><input id="dOtP" inputmode="decimal" placeholder="0"></span></label>
+          <label class="field"><span class="l">Gross pay ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="dGross" inputmode="decimal" placeholder="0"></span></label>
+        </div>
+        <div class="btn-row">
+          <button type="submit" class="btn">Confirm &amp; save record</button>
+          <button type="button" class="btn sec" id="cancelDraftBtn">Discard draft</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- TAB 2: FLSA OVERTIME HALF-TIME VERIFIER -->
+  <section class="pane" id="pane-flsa" aria-label="Overtime Half-Time Check">
+    <h1>Overtime Half-Time Check</h1>
+    <p class="cap" style="margin:0 0 12px">Under IRS rules (Notice 2025-69), only the extra half-time pay (the 0.5× part) counts — not your whole 1.5× or 2.0× overtime check. Pick how your pay stub shows overtime to find that amount.</p>
+
+    <div class="card">
+      <label class="field"><span class="l">How does your pay stub show overtime?</span><span class="inp-wrap"><select id="flsaMode">
+        <option value="hrs">Overtime hours + regular hourly rate (× 0.5)</option>
+        <option value="gross15">1.5× overtime pay total (÷ 3)</option>
+        <option value="gross20">2.0× double-time pay total (÷ 4)</option>
+        <option value="prem20">1.0× double-time extra pay (÷ 2)</option>
+      </select></span></label>
+      <div class="grid2" id="flsaHrsRow">
+        <label class="field"><span class="l">Overtime hours</span><span class="inp-wrap"><input id="flsaHrs" inputmode="decimal" value="3.5"></span></label>
+        <label class="field"><span class="l">Regular hourly base rate ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="flsaBase" inputmode="decimal" value="12.50"></span></label>
+      </div>
+      <div id="flsaAmtRow" style="display:none">
+        <label class="field"><span class="l">Dollar amount printed on your pay stub ($)</span><span class="inp-wrap"><span class="pre">$</span><input id="flsaAmt" inputmode="decimal" value="300.00"></span></label>
+      </div>
+      <div class="note-box num">
+        <div>Qualifying overtime half-time pay: <b id="flsaOut" style="font-size:20px;color:var(--brand)">$21.88</b></div>
+        <div class="cap" id="flsaExplain" style="margin-top:4px"></div>
+      </div>
+      <button type="button" class="btn full" id="sendFlsaToDraftBtn" style="margin-top:10px">Copy into new pay-stub draft</button>
+    </div>
+  </section>
+
+  <!-- TAB 3: RECORDS & EXPORT -->
+  <section class="pane" id="pane-records" aria-label="Saved Records and Export">
+    <h1>Your Records &amp; Tax-Pro Export</h1>
+    <p class="cap" style="margin:0 0 12px">Download a spreadsheet file (CSV), bring in shifts from the free True Hourly tool, or print a 1-page summary for your tax preparer.</p>
+
+    <div class="card">
+      <h2>Saved pay-stub &amp; shift records</h2>
+      <div id="recList"></div>
+    </div>
+
+    <div class="card">
+      <h2>Export, import &amp; print</h2>
+      <div class="btn-row">
+        <button type="button" class="btn" id="exportCsvBtn">Download shifts spreadsheet (.csv)</button>
+        <button type="button" class="btn sec" id="printProBtn">Print 1-page Tax-Pro summary</button>
+      </div>
+      <div class="btn-row">
+        <label class="btn sec" for="thBridgeFile" style="cursor:pointer">Import shifts from True Hourly (.json)</label>
+        <button type="button" class="btn sec" id="backupBtn">Save a backup file</button>
+      </div>
+      <input type="file" id="thBridgeFile" accept=".json,application/json" style="display:none">
+      <div id="thBridgeDraft" style="display:none;margin-top:10px"></div>
+      <label class="btn sec full" for="restoreFile" style="margin-top:10px;cursor:pointer">Restore from backup</label>
+      <input type="file" id="restoreFile" accept=".json,application/json" style="display:none">
+      <p class="cap" style="margin:10px 0 0">Sample shifts are left out of CSV downloads automatically. To back up or move your records to another phone, tap Save a backup file or Restore from backup above, or Save backup / Restore at the bottom of Home.</p>
+    </div>
+  </section>
+
+  <footer class="shell-foot no-print">Record-keeping &amp; planning tool only — not tax, legal, or accounting advice. Verify eligibility with a qualified tax professional. Rules checked Nov 27, 2026 (26 U.S.C. §224/§225, IRS Notice 2025-69, Schedule 1-A). Support: filedawayco@gmail.com</footer>
+
+  <!-- 1-PAGE PRINTABLE TAX-PRO SUMMARY -->
+  <section id="taxProPrint" class="print-only"></section>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><span id="toastMsg"></span><button type="button" id="toastUndo" style="display:none">Undo</button></div>
+
+<script>
+(function(){
+"use strict";
+var STORE_KEY = "fac_tips_overtime_v2";
+var pendingPhoto = null, pendingBridge = null, ocrLoaded = false;
+var undoFn = null, toastT = null;
+
+function clone(o){ return JSON.parse(JSON.stringify(o)); }
+function esc(s){ return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+function localISO(d){ return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
+function todayISO(){ return localISO(new Date()); }
+function fmt$(n){ var v = Math.round((Number(n) || 0) * 100) / 100; return (v < 0 ? "−" : "") + "$" + Math.abs(v).toLocaleString("en-US", { minimumFractionDigits:2, maximumFractionDigits:2 }); }
+function csvCell(v){ v = String(v == null ? "" : v); return /[",\n\r]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }
+function csvText(v){ v = String(v == null ? "" : v); if (/^\s*[=+\-@]/.test(v) || /^[\t\r]/.test(v)) v = "'" + v; return csvCell(v); }
+function parseNumStrict(raw){
+  if (raw == null) return null;
+  var s = String(raw).trim().replace(/^\$/, "").trim();
+  if (!s) return null;
+  if (!/^(?:(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d{1,4})?|\.\d{1,4})$/.test(s)) return null;
+  var v = parseFloat(s.replace(/,/g, ""));
+  if (!isFinite(v) || v > 1e9) return null;
+  return v;
+}
+function parsePos(raw){ var v = parseNumStrict(raw); return (v == null || v < 0) ? 0 : v; }
+function safePhotoUrl(u){ return (typeof u === "string" && /^data:image\/(png|jpe?g|webp|gif);base64,[A-Za-z0-9+/=\s]+$/i.test(u)) ? u : null; }
+
+/* ---------- Exact 26 U.S.C. §224 & §225 + IRS Schedule 1-A Math Engine ---------- */
+function computeOBBBA(netTips, otPrem, status, magi){
+  var rawTips = Math.max(0, Math.round((Number(netTips) || 0) * 100) / 100);
+  var rawOt = Math.max(0, Math.round((Number(otPrem) || 0) * 100) / 100);
+  var m = Math.max(0, Number(magi) || 0);
+  if (status === "mfs") {
+    return { status:"mfs", tipsCap:0, otCap:0, threshold:0, reduction:0, tipsDed:0, otDed:0, totalDed:0, rawTips:rawTips, rawOt:rawOt, ineligible:true };
+  }
+  var isMfj = status === "mfj";
+  // §224: $25,000 PER RETURN (even MFJ is $25,000!). §225: $12,500 Single/HoH, $25,000 MFJ.
+  var tipsCap = 25000;
+  var otCap = isMfj ? 25000 : 12500;
+  var threshold = isMfj ? 300000 : 150000;
+  // Statutory ROUND-DOWN phase-out: $100 per FULL $1,000 over threshold (Math.floor, NOT ceil!)
+  var excess = Math.max(0, m - threshold);
+  var reduction = Math.floor(excess / 1000) * 100;
+  // Reduction subtracts from CAPPED ALLOWABLE DEDUCTION, not just from the cap!
+  var tipsDed = Math.round(Math.max(0, Math.min(rawTips, tipsCap) - reduction) * 100) / 100;
+  var otDed = Math.round(Math.max(0, Math.min(rawOt, otCap) - reduction) * 100) / 100;
+  var totalDed = Math.round((tipsDed + otDed) * 100) / 100;
+  return { status:status, tipsCap:tipsCap, otCap:otCap, threshold:threshold, reduction:reduction, tipsDed:tipsDed, otDed:otDed, totalDed:totalDed, rawTips:rawTips, rawOt:rawOt, ineligible:false };
+}
+
+/* ---------- Exact FLSA Half-Time Premium Verifier (IRS Notice 2025-69) ---------- */
+function computeFLSA(mode, hrs, base, amt){
+  var h = Math.max(0, Number(hrs) || 0), b = Math.max(0, Number(base) || 0), a = Math.max(0, Number(amt) || 0);
+  if (mode === "hrs") return { prem:Math.round(h * b * 0.5 * 100) / 100, note:h + " OT hrs × $" + b.toFixed(2) + " × 0.5 (extra half-time pay)" };
+  if (mode === "gross15") return { prem:Math.round((a / 3) * 100) / 100, note:"$" + a.toFixed(2) + " total 1.5× overtime pay ÷ 3 = 0.5× extra half-time pay" };
+  if (mode === "gross20") return { prem:Math.round((a / 4) * 100) / 100, note:"$" + a.toFixed(2) + " total 2.0× double-time pay ÷ 4 = 0.5× extra half-time pay" };
+  return { prem:Math.round((a / 2) * 100) / 100, note:"$" + a.toFixed(2) + " extra 1.0× double-time pay ÷ 2 = 0.5× extra half-time pay" };
+}
+
+/* ---------- 100% Offline Deterministic Pay-Stub Text Parser (ADP/Gusto/Workday/Toast) ---------- */
+function pickLabelNum(text, rules){
+  var lines = String(text || "").split(/[\r\n|]+/);
+  // Outer loop = rules (most specific first) so specific labels ALWAYS win across the whole stub!
+  for (var j = 0; j < rules.length; j++){
+    var rule = typeof rules[j] === "string" ? { k:rules[j], ex:[] } : rules[j];
+    var key = rule.k, ex = rule.ex || [];
+    for (var i = 0; i < lines.length; i++){
+      var low = lines[i].toLowerCase();
+      var blocked = false;
+      for (var e = 0; e < ex.length; e++){ if (low.indexOf(ex[e]) >= 0) { blocked = true; break; } }
+      if (blocked) continue;
+      var idx = low.indexOf(key);
+      if (idx >= 0){
+        var after = lines[i].slice(idx + key.length);
+        var m = after.match(/^(?:\s*\([^)]*\))?[:\s\-=]*\$?\s*(\d{1,3}(?:,\d{3})+(?:\.\d{1,4})?|\d+(?:\.\d{1,4})?|\.\d{1,4})(?!\d)/);
+        if (m) return parseFloat(m[1].replace(/,/g, ""));
+      }
+    }
+  }
+  return null;
+}
+function pickStubDate(text){
+  var s = String(text || "");
+  var mIso = s.match(/\b(20\d{2})-(\d{2})-(\d{2})\b/);
+  if (mIso) return mIso[1] + "-" + mIso[2] + "-" + mIso[3];
+  var mUs = s.match(/\b(\d{1,2})[\/\-](\d{1,2})[\/\-](20\d{2})\b/);
+  if (mUs) return mUs[3] + "-" + String(mUs[1]).padStart(2, "0") + "-" + String(mUs[2]).padStart(2, "0");
+  return null;
+}
+function parsePayStubText(text){
+  var otPrem = pickLabelNum(text, ["overtime premium","ot premium","flsa premium","half-time premium"]);
+  var otGross15 = pickLabelNum(text, ["overtime pay","ot pay","overtime earnings","1.5x overtime","overtime gross"]);
+  if (otPrem == null && otGross15 != null) otPrem = Math.round((otGross15 / 3) * 100) / 100;
+  return {
+    date: pickStubDate(text),
+    hours: pickLabelNum(text, ["regular hours","total hours","hours worked","hrs worked",{ k:"hours", ex:["overtime","ot ","ot:","ot-"] }]),
+    cash: pickLabelNum(text, ["cash tips"]),
+    card: pickLabelNum(text, ["card tips","charged tips","credit card tips","reported tips","tips reported",{ k:"tips", ex:["cash","tip-out","tip out","tipout"] }]),
+    out: pickLabelNum(text, ["tip-out","tip out","tipout"]),
+    otH: pickLabelNum(text, ["overtime hours","ot hours","ot hrs"]),
+    otP: otPrem,
+    gross: pickLabelNum(text, ["gross pay","gross earnings","total gross",{ k:"gross", ex:["overtime","ot ","ot:","ot-"] }])
+  };
+}
+
+function defaultState(){ return { sample:false, status:"single", magi:0, prevSettings:null, entries:[] }; }
+function sampleState(){
+  // Matches Riley's Harbor Table workbook EXAMPLE totals: $280 cash + $671 card - $53 tip-out = $898.00 net tips; $34.38 OT prem ($932.38 total)!
+  return {
+    sample:true, status:"single", magi:48000, prevSettings:null,
+    entries:[
+      { id:"s1", date:"2026-11-06", emp:"Harbor Table (Week 1 sample)", hours:35, cash:125, card:336, out:26, otH:3.5, otP:21.88, gross:812.40, photo:null, sample:true },
+      { id:"s2", date:"2026-11-13", emp:"Harbor Table (Week 2 sample)", hours:37, cash:155, card:335, out:27, otH:2.0, otP:12.50, gross:860.00, photo:null, sample:true }
+    ]
+  };
+}
+function sanitizeEntry(en, idx){
+  var num = function(v){ var n = Number(v); return (isFinite(n) && n > 0 && n <= 1e9) ? n : 0; };
+  return {
+    id: String((en && en.id) || ("r-" + Date.now() + "-" + idx)),
+    date: String((en && en.date) || ""),
+    emp: String((en && en.emp) || ""),
+    hours: num(en && en.hours),
+    cash: num(en && en.cash),
+    card: num(en && en.card),
+    out: num(en && en.out),
+    otH: num(en && en.otH),
+    otP: num(en && en.otP),
+    gross: num(en && en.gross),
+    photo: safePhotoUrl(en && en.photo),
+    sample: Boolean(en && en.sample)
+  };
+}
+function sanitizeState(raw){
+  var st = defaultState();
+  if (!raw || typeof raw !== "object") return st;
+  var okStatus = (raw.status === "single" || raw.status === "mfj" || raw.status === "mfs") ? raw.status : "single";
+  var m = Number(raw.magi);
+  st.sample = Boolean(raw.sample);
+  st.status = okStatus;
+  st.magi = (isFinite(m) && m > 0 && m <= 1e9) ? m : 0;
+  st.prevSettings = (raw.prevSettings && typeof raw.prevSettings === "object")
+    ? { status:(raw.prevSettings.status === "mfj" || raw.prevSettings.status === "mfs") ? raw.prevSettings.status : "single", magi:Math.max(0, Number(raw.prevSettings.magi) || 0) }
+    : null;
+  st.entries = Array.isArray(raw.entries) ? raw.entries.map(sanitizeEntry) : [];
+  return st;
+}
+function loadState(){
+  try {
+    var raw = localStorage.getItem(STORE_KEY);
+    if (raw) { var o = JSON.parse(raw); if (o && Array.isArray(o.entries)) return sanitizeState(o); }
+  } catch(e){}
+  return defaultState();
+}
+var state = loadState();
+function persist(){
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); return true; }
+  catch(e){
+    // QuotaExceededError safe fallback: drop oldest photo blobs before losing records!
+    var stripped = clone(state);
+    stripped.entries.forEach(function(en){ en.photo = null; });
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(stripped)); showToast("Storage full — saved record numbers without image copy."); return true; }
+    catch(e2){ showToast("Browser storage is full — download a CSV or save a backup file now."); return false; }
+  }
+}
+
+function download(name, text, mime){
+  var b = new Blob([text], { type:mime }), u = URL.createObjectURL(b), a = document.createElement("a");
+  a.href = u; a.download = name; document.body.appendChild(a); a.click();
+  setTimeout(function(){ URL.revokeObjectURL(u); a.remove(); }, 500);
+}
+function showToast(msg, fn){
+  var el = document.getElementById("toast");
+  document.getElementById("toastMsg").textContent = msg;
+  var ub = document.getElementById("toastUndo");
+  undoFn = fn || null;
+  ub.style.display = fn ? "inline-flex" : "none";
+  el.classList.add("on");
+  clearTimeout(toastT);
+  toastT = setTimeout(function(){ el.classList.remove("on"); undoFn = null; }, fn ? 7000 : 2800);
+}
+
+/* ---------- Renders ---------- */
+function renderBanner(){
+  var hasS = state.sample || state.entries.some(function(e){ return e.sample; });
+  document.getElementById("sampleBanner").style.display = hasS ? "flex" : "none";
+  document.getElementById("topSampleBtn").style.display = hasS ? "none" : "inline-flex";
+  document.getElementById("emptyHeroCta").style.display = !state.entries.length ? "flex" : "none";
+}
+
+function renderSummary(){
+  var netTips = 0, otPrem = 0;
+  state.entries.forEach(function(e){
+    netTips += Math.max(0, (Number(e.cash) || 0) + (Number(e.card) || 0) - (Number(e.out) || 0));
+    otPrem += Math.max(0, Number(e.otP) || 0);
+  });
+  var res = computeOBBBA(netTips, otPrem, state.status, state.magi);
+  document.getElementById("outTotalDed").textContent = fmt$(res.totalDed);
+  document.getElementById("outTipsDed").textContent = fmt$(res.tipsDed);
+  document.getElementById("outOtDed").textContent = fmt$(res.otDed);
+  document.getElementById("outTipsSub").textContent = fmt$(res.rawTips) + " net tips logged · " + (res.ineligible ? "Not eligible (filing separately)" : "$25,000 per-return cap");
+  document.getElementById("outOtSub").textContent = fmt$(res.rawOt) + " OT premium logged · " + (res.ineligible ? "Not eligible (filing separately)" : ("$" + res.otCap.toLocaleString("en-US") + " cap"));
+  document.getElementById("bTips").style.width = res.tipsCap > 0 ? Math.min(100, (res.tipsDed / res.tipsCap) * 100).toFixed(1) + "%" : "0%";
+  document.getElementById("bOt").style.width = res.otCap > 0 ? Math.min(100, (res.otDed / res.otCap) * 100).toFixed(1) + "%" : "0%";
+
+  var statusLbl = state.status === "mfj" ? "Married Filing Jointly · Caps: $25,000 tips · $25,000 OT" : (state.status === "mfs" ? "Married Filing Separately — Not eligible for these deductions" : "Single / Head of Household · Caps: $25,000 tips · $12,500 OT");
+  document.getElementById("outStatusNote").textContent = statusLbl;
+  document.getElementById("mfsWarnBox").innerHTML = res.ineligible
+    ? '<div class="warn-box">Married Filing Separately returns are NOT eligible for the 2025–2028 tips or overtime deductions (26 U.S.C. §224 &amp; §225).</div>' : '';
+  document.getElementById("phaseOutLine").textContent = res.ineligible
+    ? "Married Filing Separately: $0 allowable deduction."
+    : (res.reduction > 0
+      ? ("Income limit applies: $" + Math.round(state.magi).toLocaleString("en-US") + " is over $" + res.threshold.toLocaleString("en-US") + " → −" + fmt$(res.reduction) + " off each deduction ($100 per full $1,000 over).")
+      : ("Yearly income is at or under $" + res.threshold.toLocaleString("en-US") + " → no income-limit reduction."));
+
+  // Records list & Print summary
+  var box = document.getElementById("recList");
+  if (!state.entries.length) {
+    box.innerHTML = '<p class="cap" style="margin:0">No records saved yet. Paste a pay stub, log a shift, or tap Try sample on Estimate &amp; Log.</p>';
+  } else {
+    box.innerHTML = state.entries.slice().reverse().map(function(e){
+      var idx = state.entries.indexOf(e);
+      var nt = Math.max(0, (Number(e.cash) || 0) + (Number(e.card) || 0) - (Number(e.out) || 0));
+      var repHref = "mailto:filedawayco@gmail.com?subject=" + encodeURIComponent("Tips Companion — bad read report") + "&body=" + encodeURIComponent("Date: " + (e.date || "") + "\nWhat stub said vs drafted: ");
+      return '<div class="row-card"><div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;flex-wrap:wrap">' +
+        '<div><b class="num">' + esc(e.date || "No date") + '</b> · ' + esc(e.emp || "Shift / Stub") + (e.sample ? ' <span class="tag warn">SAMPLE</span>' : '') +
+        '<div class="cap num">Net tips <b>' + fmt$(nt) + '</b> (cash ' + fmt$(e.cash || 0) + ' + card ' + fmt$(e.card || 0) + ' − tip-out ' + fmt$(e.out || 0) + ') · OT prem <b>' + fmt$(e.otP || 0) + '</b> (' + (Number(e.otH) || 0) + 'h) · Hrs ' + (Number(e.hours) || 0) + '</div></div>' +
+        '<div style="display:flex;gap:8px;align-items:center"><button type="button" class="btn sec" data-delrec="' + idx + '" style="min-height:44px;padding:0 12px;font-size:13.5px">Delete</button>' +
+        '<a class="badread" href="' + repHref + '">Bad read?</a></div></div>' +
+        (safePhotoUrl(e.photo) ? '<img class="stub-thumb" src="' + esc(safePhotoUrl(e.photo)) + '" alt="Attached stub">' : '') + '</div>';
+    }).join("");
+  }
+
+  var realE = state.entries.filter(function(e){ return !e.sample; });
+  var isSPr = !realE.length && state.entries.length > 0;
+  var pList = isSPr ? state.entries : realE;
+  var pTips = 0, pOt = 0;
+  pList.forEach(function(e){ pTips += Math.max(0, (Number(e.cash) || 0) + (Number(e.card) || 0) - (Number(e.out) || 0)); pOt += Math.max(0, Number(e.otP) || 0); });
+  var pr = computeOBBBA(pTips, pOt, state.status, state.magi);
+  document.getElementById("taxProPrint").innerHTML =
+    (isSPr ? '<div style="padding:8px 12px;border:1.5px solid #D9C79A;background:#FFF4D6;margin-bottom:10px;font-weight:700">SAMPLE DATA — made-up example, not your pay stubs</div>' : '') +
+    '<h1>Tips &amp; Overtime Schedule <span class="h-num">1</span>-A Worksheet (<span class="h-num">' + todayISO() + '</span>)</h1>' +
+    '<p class="num">Filing Status: <b>' + esc(state.status.toUpperCase()) + '</b> · Est. Yearly Income: <b>' + fmt$(state.magi) + '</b> · Income-Limit Reduction: <b>' + fmt$(pr.reduction) + '</b></p>' +
+    '<p class="num">Qualified Tips Deductible: <b>' + fmt$(pr.tipsDed) + '</b> · Qualified OT Premium Deductible: <b>' + fmt$(pr.otDed) + '</b> · Total Est. Deduction: <b>' + fmt$(pr.totalDed) + '</b></p>' +
+    '<table><thead><tr><th>Date</th><th>Employer</th><th class="r">Hours</th><th class="r">Net Tips</th><th class="r">OT Hrs</th><th class="r">OT Half-Time</th><th class="r">Gross</th></tr></thead><tbody>' +
+    pList.map(function(e){
+      var nt = Math.max(0, (Number(e.cash) || 0) + (Number(e.card) || 0) - (Number(e.out) || 0));
+      return '<tr><td class="num">' + esc(e.date || "") + '</td><td>' + esc(e.emp || "") + '</td><td class="r num">' + (Number(e.hours) || 0) + '</td><td class="r num">' + fmt$(nt) + '</td><td class="r num">' + (Number(e.otH) || 0) + '</td><td class="r num">' + fmt$(e.otP || 0) + '</td><td class="r num">' + fmt$(e.gross || 0) + '</td></tr>';
+    }).join("") + '</tbody></table>' +
+    '<p style="margin-top:12px;font-size:9pt">Estimate only — not tax advice. Keep original pay stubs and W-2/1099 forms. Rules checked Nov 27, 2026 (26 U.S.C. §224/§225, IRS Notice 2025-69).</p>';
+}
+
+function renderFLSA(){
+  var mode = document.getElementById("flsaMode").value;
+  document.getElementById("flsaHrsRow").style.display = mode === "hrs" ? "grid" : "none";
+  document.getElementById("flsaAmtRow").style.display = mode === "hrs" ? "none" : "block";
+  var checkId = function(id){
+    var el = document.getElementById(id), wrap = el.closest(".inp-wrap"), raw = el.value.trim();
+    if (!raw) { if (wrap) wrap.classList.remove("low"); return { ok:true, v:0 }; }
+    var p = parseNumStrict(raw);
+    if (wrap) wrap.classList.toggle("low", p === null);
+    return { ok:p !== null, v:p || 0 };
+  };
+  var rH = mode === "hrs" ? checkId("flsaHrs") : { ok:true, v:0 };
+  var rB = mode === "hrs" ? checkId("flsaBase") : { ok:true, v:0 };
+  var rA = mode !== "hrs" ? checkId("flsaAmt") : { ok:true, v:0 };
+  if (!rH.ok || !rB.ok || !rA.ok) {
+    document.getElementById("flsaOut").textContent = "—";
+    document.getElementById("flsaExplain").textContent = "Enter plain positive numbers (e.g. 3.5 or 300.00) — letters or spaces cannot be calculated.";
+    return;
+  }
+  var res = computeFLSA(mode, rH.v, rB.v, rA.v);
+  document.getElementById("flsaOut").textContent = fmt$(res.prem);
+  document.getElementById("flsaExplain").textContent = res.note;
+}
+
+function openDraft(vals, photo, highlightMissing){
+  var hl = highlightMissing === true;
+  pendingPhoto = safePhotoUrl(photo);
+  var img = document.getElementById("draftPhotoImg");
+  if (pendingPhoto) { img.src = pendingPhoto; img.style.display = "block"; } else { img.removeAttribute("src"); img.style.display = "none"; }
+  var hint = document.getElementById("draftHint");
+  if (hint) {
+    hint.textContent = hl
+      ? "Check every number against your pay stub. Highlighted boxes were not found in the text — type them or leave blank if $0. Nothing saves until you tap Confirm."
+      : "Enter the figures from your pay stub or shift, then tap Confirm & save record.";
+  }
+  // Clean reset of ALL fields including dEmp & old hints!
+  document.getElementById("dEmp").value = vals.emp || "";
+  var map = { dDate:vals.date || todayISO(), dHours:vals.hours, dCash:vals.cash, dCard:vals.card, dOut:vals.out, dOtH:vals.otH, dOtP:vals.otP, dGross:vals.gross };
+  Object.keys(map).forEach(function(id){
+    var el = document.getElementById(id), wrap = el.closest(".inp-wrap");
+    var v = map[id];
+    el.value = (v === null || v === undefined) ? "" : String(v);
+    var missing = (id === "dDate") ? !vals.date : (v === null || v === undefined);
+    if (wrap) wrap.classList.toggle("low", hl && missing);
+  });
+  var card = document.getElementById("draftCard");
+  card.style.display = "block";
+  card.scrollIntoView({ behavior:"smooth", block:"nearest" });
+}
+
+function downscalePhoto(file, cb){
+  var rd = new FileReader();
+  rd.onload = function(){
+    var img = new Image();
+    img.onload = function(){
+      var maxW = 900, w = img.width, h = img.height;
+      if (w > maxW) { h = Math.round(h * (maxW / w)); w = maxW; }
+      var c = document.createElement("canvas"); c.width = w; c.height = h;
+      c.getContext("2d").drawImage(img, 0, 0, w, h);
+      cb(c.toDataURL("image/jpeg", 0.65));
+    };
+    img.onerror = function(){ cb(null); };
+    img.src = rd.result;
+  };
+  rd.readAsDataURL(file);
+}
+
+function syncInputs(){
+  document.getElementById("fStatus").value = state.status || "single";
+  document.getElementById("fMagi").value = state.magi ? String(state.magi) : "";
+  var w = document.getElementById("fMagiWrap");
+  if (w) w.classList.remove("low");
+}
+function renderAll(){ renderBanner(); syncInputs(); renderSummary(); renderFLSA(); }
+function switchTab(t){
+  document.querySelectorAll(".pane").forEach(function(p){ p.classList.toggle("active", p.id === "pane-" + t); });
+  document.querySelectorAll(".tabbar button").forEach(function(b){ b.setAttribute("aria-current", b.dataset.tab === t ? "page" : "false"); });
+}
+
+/* ---------- Events ---------- */
+document.getElementById("fStatus").addEventListener("change", function(e){ state.status = e.target.value; persist(); renderSummary(); });
+document.getElementById("fMagi").addEventListener("input", function(e){
+  var raw = e.target.value.trim();
+  var wrap = document.getElementById("fMagiWrap");
+  if (!raw) {
+    if (wrap) wrap.classList.remove("low");
+    state.magi = 0; persist(); renderSummary(); return;
+  }
+  var parsed = parseNumStrict(raw);
+  if (parsed === null) {
+    if (wrap) wrap.classList.add("low");
+    document.getElementById("phaseOutLine").textContent = "Enter a plain dollar number for yearly income (for example, 165000) — no letters, spaces, or minus signs.";
+    return;
+  }
+  if (wrap) wrap.classList.remove("low");
+  state.magi = parsed; persist(); renderSummary();
+});
+["flsaMode","flsaHrs","flsaBase","flsaAmt"].forEach(function(id){
+  var el = document.getElementById(id); el.addEventListener("input", renderFLSA); el.addEventListener("change", renderFLSA);
+});
+
+document.getElementById("photoPick").addEventListener("change", function(ev){
+  var f = ev.target.files && ev.target.files[0]; if (!f) return;
+  downscalePhoto(f, function(dataUrl){
+    if (window.Tesseract && dataUrl) {
+      document.getElementById("ocrStatus").textContent = "Reading photo text on this device...";
+      window.Tesseract.recognize(dataUrl, "eng").then(function(r){
+        document.getElementById("ocrStatus").textContent = "Photo read complete — verify every number in step 2.";
+        openDraft(parsePayStubText(r.data.text || ""), dataUrl, true);
+      }).catch(function(){
+        document.getElementById("ocrStatus").textContent = "Could not read photo text — photo attached; enter numbers manually.";
+        openDraft({}, dataUrl, false);
+      });
+    } else {
+      openDraft({}, dataUrl, false);
+      showToast("Pay-stub photo attached.");
+    }
+  });
+  ev.target.value = "";
+});
+
+document.getElementById("draftForm").addEventListener("submit", function(ev){
+  ev.preventDefault();
+  var numIds = ["dHours","dCash","dCard","dOut","dOtH","dOtP","dGross"];
+  var vals = {}, bad = 0;
+  numIds.forEach(function(id){
+    var el = document.getElementById(id), wrap = el.closest(".inp-wrap"), raw = el.value.trim();
+    if (!raw) { vals[id] = 0; if (wrap) wrap.classList.remove("low"); return; }
+    var p = parseNumStrict(raw);
+    if (p === null) { bad++; if (wrap) wrap.classList.add("low"); }
+    else { vals[id] = p; if (wrap) wrap.classList.remove("low"); }
+  });
+  if (bad > 0) { showToast("Check highlighted number(s) — enter plain figures like 125.50."); return; }
+  var rec = {
+    id:"r-" + Date.now(), date:document.getElementById("dDate").value || todayISO(),
+    emp:document.getElementById("dEmp").value.trim(),
+    hours:vals.dHours, cash:vals.dCash, card:vals.dCard, out:vals.dOut,
+    otH:vals.dOtH, otP:vals.dOtP, gross:vals.dGross,
+    photo:pendingPhoto, sample:false
+  };
+  state.entries.push(rec);
+  pendingPhoto = null;
+  document.getElementById("draftCard").style.display = "none";
+  persist(); renderAll(); showToast("Record saved.");
+});
+
+document.addEventListener("click", function(e){
+  var t = e.target.closest("button");
+  if (!t) return;
+  if (t.dataset.tab) { switchTab(t.dataset.tab); }
+  else if (t.id === "topSampleBtn" || t.id === "primarySampleBtn") {
+    var s = sampleState();
+    var userE = state.entries.filter(function(x){ return !x.sample; });
+    if (!state.sample) state.prevSettings = { status:state.status, magi:state.magi };
+    state.sample = true; state.status = s.status; state.magi = s.magi; state.entries = s.entries.concat(userE);
+    persist(); renderAll();
+  } else if (t.id === "clearSampleBtn") {
+    var snap = clone(state);
+    state.sample = false;
+    state.entries = state.entries.filter(function(x){ return !x.sample; });
+    if (state.prevSettings) {
+      state.status = state.prevSettings.status || "single";
+      state.magi = Number(state.prevSettings.magi) || 0;
+      state.prevSettings = null;
+    } else if (!state.entries.length) {
+      state.magi = 0;
+    }
+    persist(); renderAll();
+    showToast("Sample records cleared.", function(){ state = snap; persist(); renderAll(); showToast("Sample restored."); });
+  } else if (t.id === "toastUndo") {
+    if (undoFn) { var f = undoFn; undoFn = null; document.getElementById("toast").classList.remove("on"); f(); }
+  } else if (t.id === "parseTextBtn") {
+    var txt = document.getElementById("stubText").value;
+    if (!txt.trim()) { showToast("Paste pay-stub text first, or tap Type entry manually."); return; }
+    openDraft(parsePayStubText(txt), null, true);
+  } else if (t.id === "manualBtn") {
+    openDraft({}, null, false);
+  } else if (t.id === "cancelDraftBtn") {
+    pendingPhoto = null; document.getElementById("draftCard").style.display = "none";
+  } else if (t.id === "loadOcrBtn") {
+    if (ocrLoaded || window.Tesseract) { showToast("On-device photo reader is already ready."); return; }
+    document.getElementById("ocrStatus").textContent = "Loading photo text reader...";
+    var sc = document.createElement("script");
+    sc.src = "https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js";
+    sc.onload = function(){ ocrLoaded = true; document.getElementById("ocrStatus").textContent = "Photo text reader is ready. Now choose a pay-stub photo."; showToast("Photo text reader ready."); };
+    sc.onerror = function(){ document.getElementById("ocrStatus").textContent = "You are offline — the photo text reader needs internet once. Typing and pasting still work offline."; };
+    document.head.appendChild(sc);
+  } else if (t.id === "sendFlsaToDraftBtn") {
+    var mode = document.getElementById("flsaMode").value;
+    var hrs = mode === "hrs" ? parsePos(document.getElementById("flsaHrs").value) : null;
+    var res = computeFLSA(mode, parsePos(document.getElementById("flsaHrs").value), parsePos(document.getElementById("flsaBase").value), parsePos(document.getElementById("flsaAmt").value));
+    switchTab("capture");
+    openDraft({ date:todayISO(), otH:hrs, otP:res.prem }, null, false);
+    showToast("Overtime half-time pay (" + fmt$(res.prem) + ") copied into draft.");
+  } else if (t.dataset.delrec != null) {
+    var di = +t.dataset.delrec, snapR = clone(state);
+    state.entries.splice(di, 1);
+    if (state.sample && !state.entries.some(function(x){ return x.sample; })) {
+      state.sample = false;
+      if (state.prevSettings) {
+        state.status = state.prevSettings.status || "single";
+        state.magi = Number(state.prevSettings.magi) || 0;
+        state.prevSettings = null;
+      } else if (!state.entries.length) { state.magi = 0; }
+    }
+    persist(); renderAll();
+    showToast("Record deleted.", function(){ state = snapR; persist(); renderAll(); });
+  } else if (t.id === "exportCsvBtn") {
+    var realR = state.entries.filter(function(x){ return !x.sample; });
+    if (!realR.length) { showToast("Save your own records first — sample rows are excluded from exports."); return; }
+    var head = ["Date","Employer / job","Hours worked","Cash tips $","Card tips $","Tip-out paid $","Net tips $","Overtime hours","Overtime premium $","Gross pay $","Stub photo attached"];
+    var lines = [head.join(",")].concat(realR.map(function(e){
+      var nt = Math.max(0, (Number(e.cash) || 0) + (Number(e.card) || 0) - (Number(e.out) || 0));
+      return [csvText(e.date || ""), csvText(e.emp || ""), (Number(e.hours) || 0), (Number(e.cash) || 0).toFixed(2), (Number(e.card) || 0).toFixed(2), (Number(e.out) || 0).toFixed(2), nt.toFixed(2), (Number(e.otH) || 0), (Number(e.otP) || 0).toFixed(2), (Number(e.gross) || 0).toFixed(2), safePhotoUrl(e.photo) ? "YES" : "NO"].join(",");
+    }));
+    download("tips-overtime-records-" + todayISO() + ".csv", lines.join("\r\n") + "\r\n", "text/csv;charset=utf-8");
+    showToast("Shifts spreadsheet (.csv) downloaded.");
+  } else if (t.id === "printProBtn") { window.print(); }
+  else if (t.id === "backupBtn") {
+    download("tips-overtime-backup-" + todayISO() + ".json", JSON.stringify({ app:"fac-tips-overtime", exported:todayISO(), state:state }, null, 2), "application/json");
+    showToast("Backup JSON saved.");
+  } else if (t.id === "confirmThBtn") {
+    if (!pendingBridge || !Array.isArray(pendingBridge.shifts)) return;
+    var snapB = clone(state.entries);
+    pendingBridge.shifts.forEach(function(sh, idx){
+      state.entries.push({
+        id:"th-" + Date.now() + "-" + idx, date:sh.date || todayISO(), emp:sh.emp || "True Hourly shift",
+        hours:Number(sh.hours) || 0, cash:Number(sh.cash) || 0, card:Number(sh.card) || 0,
+        out:Number(sh.tipOut) || 0, otH:0, otP:0, gross:Number(sh.total) || 0, photo:null, sample:false
+      });
+    });
+    var cnt = pendingBridge.shifts.length;
+    pendingBridge = null; document.getElementById("thBridgeDraft").style.display = "none";
+    persist(); renderAll();
+    showToast("Imported " + cnt + " shift(s) from True Hourly.", function(){ state.entries = snapB; persist(); renderAll(); });
+  } else if (t.id === "discardThBtn") {
+    pendingBridge = null; document.getElementById("thBridgeDraft").style.display = "none";
+  }
+});
+
+document.getElementById("thBridgeFile").addEventListener("change", function(ev){
+  var f = ev.target.files && ev.target.files[0]; if (!f) return;
+  var rd = new FileReader();
+  rd.onload = function(){
+    try {
+      var o = JSON.parse(String(rd.result || ""));
+      if (!o || o.bridge !== "fac-bridge-v1" || !Array.isArray(o.shifts)) throw new Error("Invalid");
+      pendingBridge = o;
+      var box = document.getElementById("thBridgeDraft");
+      var totShTips = o.shifts.reduce(function(a, sh){ return a + Math.max(0, (Number(sh.cash) || 0) + (Number(sh.card) || 0) - (Number(sh.tipOut) || 0)); }, 0);
+      var dates = o.shifts.map(function(sh){ return String(sh.date || ""); }).filter(Boolean).sort();
+      var rngLbl = dates.length ? (" (" + esc(dates[0]) + (dates.length > 1 ? (" → " + esc(dates[dates.length - 1])) : "") + ")") : "";
+      box.innerHTML = '<div class="note-box num"><b>Draft True Hourly import (' + o.shifts.length + ' shift(s)' + rngLbl + ' · ' + fmt$(totShTips) + ' net tips):</b> Review before saving to your tax records.' +
+        '<div class="btn-row"><button type="button" class="btn" id="confirmThBtn">Confirm &amp; import shifts</button><button type="button" class="btn sec" id="discardThBtn">Discard</button></div></div>';
+      box.style.display = "block";
+    } catch(e){ showToast("That file is not a True Hourly shift export. Save a shift file from True Hourly and try again."); }
+  };
+  rd.readAsText(f); ev.target.value = "";
+});
+
+document.getElementById("restoreFile").addEventListener("change", function(ev){
+  var f = ev.target.files && ev.target.files[0]; if (!f) return;
+  var rd = new FileReader();
+  rd.onload = function(){
+    try {
+      var o = JSON.parse(String(rd.result || ""));
+      var s = o && o.state ? o.state : o;
+      if (!s || !Array.isArray(s.entries)) throw new Error("Invalid");
+      var snapRestore = clone(state);
+      state = sanitizeState(s); persist(); renderAll();
+      showToast("Backup restored.", function(){ state = snapRestore; persist(); renderAll(); showToast("Restore undone."); });
+    } catch(e){ showToast("That file is not a valid Tips & Overtime backup."); }
+  };
+  rd.readAsText(f); ev.target.value = "";
+});
+
+window.__TIPS = { computeOBBBA:computeOBBBA, computeFLSA:computeFLSA, parsePayStubText:parsePayStubText, parseNumStrict:parseNumStrict, safePhotoUrl:safePhotoUrl, sanitizeState:sanitizeState, csvText:csvText };
+renderAll();
+})();
+</script>
+<script id="faux-cfg">window.FAUX_CFG={"slug": "tips-overtime-deduction-tracker", "name": "Tips & Overtime Deduction Tracker", "key": "fac_tips_overtime_v2", "blank": {"sample": false, "status": "single", "magi": 0, "prevSettings": null, "entries": []}, "oneLine": "Estimate your federal deduction for tips and overtime (Schedule 1-A) one shift at a time.", "steps": ["Pick your <b>filing status<\/b> and enter your yearly income.", "<b>Log shifts<\/b>, or import them from a file or from True Hourly.", "See your <b>deduction estimate<\/b> and print the worksheet."], "sample": "#primarySampleBtn", "helpIn": ".topbar", "imports": [{"label": "Shifts file or pasted rows", "kind": "adapter", "adapter": "shifts", "tab": "records", "drop": true, "formats": "A CSV or pasted rows with Date, Hours, Cash tips, Card tips and Tip-out columns (Overtime hours and Overtime premium — extra half-time pay only — optional). Common scheduling-app column names such as \"Declared cash tips\" and \"Non-cash tips\" are matched; check the preview.", "pastePlaceholder": "Date, Employer, Hours, Cash tips, Card tips, Tip-out\n2026-11-13, Harbor Table, 42, 135, 340.25, 28"}], "cannot": "your W-2 until your employer issues it. Pay stubs can be read with the photo button (that reader needs internet).", "consume": {"sources": ["true-hourly"], "input": "#thBridgeFile", "tab": "records", "draft": "#thBridgeDraft", "before": "#pane-capture .card", "hint": "Shifts you saved in the free True Hourly tool on this device. You confirm before they are added."}};</script>
+<script id="faux-js">/* FiledAwayCo UX layer v1 (2026-11-27). Runs on top of the product app; it never edits the app's calculations.
+   Adds: first-open welcome (one line, 3 steps, sample / import / blank), a help button, an "Import or paste" sheet,
+   drag-and-drop, platform pre-formatters (PayPal, Stripe, Wells Fargo), list importers, and on-device auto-fill
+   between FiledAwayCo tools. Everything runs in this browser; nothing is uploaded. */
+(function(){
+'use strict';
+var C = window.FAUX_CFG || {}; var D = document;
+var SLUG = C.slug || 'app';
+var inSuite = false; try { inSuite = window.parent !== window && !!window.parent.__FAUX_SUITE; } catch(e){}
+var AUTO_KEY = 'fac_bridge_auto_v1';
+function $(s, r){ return (r || D).querySelector(s); }
+function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function lsGet(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
+function lsSet(k, v){ try { localStorage.setItem(k, v); return true; } catch(e){ return false; } }
+function fmt$(n){ n = Number(n) || 0; return (n < 0 ? '-$' : '$') + Math.abs(n).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2}); }
+
+/* ---------- CSV / paste parsing ---------- */
+function parseCSV(text){
+  text = String(text || '').replace(/^\uFEFF/, '');
+  var first = (text.split(/\r?\n/).filter(function(l){ return l.trim(); })[0]) || '';
+  var cnt = function(ch){ var n = 0, q = false; for (var i = 0; i < first.length; i++){ var c = first[i]; if (c === '"') q = !q; else if (!q && c === ch) n++; } return n; };
+  var dl = ',', t = cnt('\t'), c = cnt(','), s = cnt(';');
+  if (t > 0 && t >= c) dl = '\t'; else if (s > c) dl = ';';
+  var rows = [], row = [], f = '', q = false;
+  for (var i = 0; i < text.length; i++){
+    var ch = text[i];
+    if (q){ if (ch === '"'){ if (text[i+1] === '"'){ f += '"'; i++; } else q = false; } else f += ch; continue; }
+    if (ch === '"' && f === '') { q = true; continue; }
+    if (ch === dl){ row.push(f); f = ''; continue; }
+    if (ch === '\r') continue;
+    if (ch === '\n'){ row.push(f); rows.push(row); row = []; f = ''; continue; }
+    f += ch;
+  }
+  if (f !== '' || row.length) { row.push(f); rows.push(row); }
+  return rows.map(function(r){ return r.map(function(x){ return String(x).trim(); }); }).filter(function(r){ return r.some(function(x){ return x !== ''; }); });
+}
+function csvCell(v){ v = String(v == null ? '' : v); return /[",\n\r]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }
+function toCSV(rows){ return rows.map(function(r){ return r.map(csvCell).join(','); }).join('\r\n') + '\r\n'; }
+function money(v){
+  if (v == null) return NaN; var s = String(v).trim(); if (!s || s === '--') return NaN;
+  var neg = false;
+  if (/^\(.*\)$/.test(s)){ neg = true; s = s.slice(1, -1); }
+  if (/-$/.test(s)){ neg = true; s = s.slice(0, -1); }
+  if (/^-/.test(s)){ neg = !neg; s = s.slice(1); }
+  s = s.replace(/^-/, '').replace(/[$£€\s,]|USD/gi, '');
+  if (s.charAt(0) === '-'){ neg = !neg; s = s.slice(1); }
+  if (!/^\d*\.?\d+$/.test(s)) return NaN;
+  var n = parseFloat(s); return neg ? -n : n;
+}
+var MON = {jan:1,feb:2,mar:3,apr:4,may:5,jun:6,jul:7,aug:8,sep:9,sept:9,oct:10,nov:11,dec:12};
+function pad(n){ return (n < 10 ? '0' : '') + n; }
+function isoDate(v){
+  var s = String(v || '').trim(); var m;
+  if ((m = s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/))) return m[1] + '-' + pad(+m[2]) + '-' + pad(+m[3]);
+  if ((m = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})/))) { var y = +m[3]; if (y < 100) y += 2000; return y + '-' + pad(+m[1]) + '-' + pad(+m[2]); }
+  if ((m = s.match(/^([A-Za-z]{3,9})\.? (\d{1,2}),? (\d{4})/)) && MON[m[1].slice(0,3).toLowerCase()]) return m[3] + '-' + pad(MON[m[1].slice(0,3).toLowerCase()]) + '-' + pad(+m[2]);
+  if ((m = s.match(/^(\d{1,2}) ([A-Za-z]{3,9}) (\d{4})/)) && MON[m[2].slice(0,3).toLowerCase()]) return m[3] + '-' + pad(MON[m[2].slice(0,3).toLowerCase()]) + '-' + pad(+m[1]);
+  return '';
+}
+function norm(h){ return String(h || '').toLowerCase().replace(/[_]/g, ' ').replace(/\s+/g, ' ').trim(); }
+function findCol(H, aliases){
+  var h = H.map(norm), i, j;
+  for (j = 0; j < aliases.length; j++){ i = h.indexOf(aliases[j]); if (i >= 0) return i; }
+  for (j = 0; j < aliases.length; j++){ for (i = 0; i < h.length; i++) if (h[i].indexOf(aliases[j]) >= 0) return i; }
+  return -1;
+}
+function looksHeader(r){ return r.some(function(x){ return /[A-Za-z]{3,}/.test(x) && isNaN(money(x)) && !isoDate(x); }); }
+
+/* ---------- Platform pre-formatters: turn real exports into Date,Description,Amount rows ---------- */
+var NORMALIZERS = {
+  paypal: function(rows){ // PayPal Activity Download (developer.paypal.com/reports/activity-download): Date, Time, TimeZone, Name, Type, Status, Currency, Gross, Fee, Net ...
+    var H = rows[0].map(norm); if (!(H.indexOf('gross') >= 0 && H.indexOf('fee') >= 0 && H.indexOf('net') >= 0 && H.indexOf('status') >= 0)) return null;
+    var c = function(n){ return H.indexOf(n); }, out = [['Date','Description','Amount']], skip = 0, fx = 0;
+    var bankMoves = /withdrawal|bank deposit|transfer to bank|transfer from bank|general card deposit|hold|reversal of general account hold|currency conversion/i;
+    rows.slice(1).forEach(function(r){
+      var st = r[c('status')] || '', ty = r[c('type')] || '', cur = (r[c('currency')] || 'USD').toUpperCase();
+      if (!/^completed$/i.test(st) || bankMoves.test(ty)) { skip++; return; }
+      if (cur !== 'USD') { fx++; return; }
+      var d = isoDate(r[c('date')]), g = money(r[c('gross')]), f = money(r[c('fee')]);
+      if (!d || isNaN(g)) { skip++; return; }
+      out.push([d, 'PAYPAL ' + (r[c('name')] || '') + ' (' + ty + ')', g.toFixed(2)]);
+      if (!isNaN(f) && f !== 0) out.push([d, 'PAYPAL FEE ' + (r[c('name')] || ''), (f > 0 ? -f : f).toFixed(2)]);
+    });
+    return { rows: out, note: 'PayPal Activity file: used Gross as income and added each PayPal fee as its own expense line. Skipped ' + skip + ' row(s) that were pending, transfers to or from your bank, or holds' + (fx ? ', and ' + fx + ' non-USD row(s)' : '') + '.' };
+  },
+  stripe: function(rows){ // Stripe "All activity" / balance transactions: id, Type, Source, Amount, Fee, Net, Currency, Created (UTC) ...; itemized report: created_utc, gross, fee, net, reporting_category
+    var H = rows[0].map(norm), c = function(a){ return findCol(rows[0], a); };
+    var isBal = H.indexOf('type') >= 0 && H.indexOf('amount') >= 0 && H.indexOf('fee') >= 0 && H.indexOf('net') >= 0;
+    var isItem = H.indexOf('reporting category') >= 0 && H.indexOf('gross') >= 0;
+    var isPay = !isBal && (H.indexOf('created date (utc)') >= 0 || (H.indexOf('created (utc)') >= 0 && H.indexOf('status') >= 0)) && H.indexOf('amount') >= 0;
+    if (!isBal && !isItem && !isPay) return null;
+    var di = c(['created (utc)','created date (utc)','created utc','created']), ty = isItem ? c(['reporting category']) : c(['type']),
+        am = isItem ? c(['gross']) : c(['amount']), fe = c(['fee']), de = c(['description']), ce = c(['customer email','customer description']), sti = c(['status']), cu = c(['currency']);
+    var out = [['Date','Description','Amount']], skip = 0;
+    rows.slice(1).forEach(function(r){
+      var t = (ty >= 0 ? r[ty] : 'charge').toLowerCase(), d = isoDate(r[di]), a = money(r[am]), f = fe >= 0 ? money(r[fe]) : 0;
+      if (cu >= 0 && r[cu] && r[cu].toLowerCase() !== 'usd') { skip++; return; }
+      if (isPay && sti >= 0 && !/paid|succeeded/i.test(r[sti])) { skip++; return; }
+      if (/payout|transfer/.test(t) || !d || isNaN(a) || a === 0) { skip++; return; }
+      var desc = 'STRIPE ' + (/refund/.test(t) ? 'REFUND ' : (/fee/.test(t) ? 'FEE ' : '')) + ((de >= 0 && r[de]) || (ce >= 0 && r[ce]) || t);
+      out.push([d, desc, a.toFixed(2)]);
+      if (!isNaN(f) && f !== 0 && !/fee/.test(t)) out.push([d, 'STRIPE FEE ' + ((de >= 0 && r[de]) || ''), (-f).toFixed(2)]);
+    });
+    return { rows: out, note: 'Stripe export: used the gross Amount as income and added Stripe fees as separate expense lines. Skipped ' + skip + ' payout, failed or non-USD row(s), because payouts already show up in your bank file.' };
+  },
+  wellsfargo: function(rows){ // Wells Fargo CSV has no header row: "date","amount","*","","description"
+    var r = rows[0]; if (!(r.length === 5 && isoDate(r[0]) && !isNaN(money(r[1])) && r[2] === '*')) return null;
+    var out = [['Date','Description','Amount']];
+    rows.forEach(function(x){ var d = isoDate(x[0]), a = money(x[1]); if (d && !isNaN(a)) out.push([d, x[4] || x[3] || '', a.toFixed(2)]); });
+    return { rows: out, note: 'Wells Fargo file (it has no header row): read as Date, Amount, Description.' };
+  }
+};
+function normalizeText(text, list){
+  var rows = parseCSV(text); if (!rows.length) return { error: 'That file or paste looks empty.' };
+  var names = list || [];
+  for (var i = 0; i < names.length; i++){ var fn = NORMALIZERS[names[i]]; if (!fn) continue; var res = fn(rows); if (res) { if (res.rows.length < 2) return { error: res.note + ' No usable rows were left.' }; return { csv: toCSV(res.rows), note: res.note, n: res.rows.length - 1 }; } }
+  return { csv: toCSV(rows), note: '', n: rows.length - 1 };
+}
+
+/* ---------- Overlay + toast ---------- */
+var ov = null, lastFocus = null;
+function closeOv(){ if (!ov) return; ov.hidden = true; ov.innerHTML = ''; if (lastFocus && lastFocus.focus) try { lastFocus.focus(); } catch(e){} }
+function openOv(html, label){
+  if (!ov){ ov = D.createElement('div'); ov.className = 'faux-ov'; ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-modal', 'true'); D.body.appendChild(ov);
+    ov.addEventListener('click', function(e){ if (e.target === ov) { markSeen(); closeOv(); } });
+    D.addEventListener('keydown', function(e){ if (e.key === 'Escape' && ov && !ov.hidden) { markSeen(); closeOv(); } }); }
+  lastFocus = D.activeElement; ov.setAttribute('aria-label', label || C.name || 'Help');
+  ov.innerHTML = '<div class="faux-card">' + html + '</div>'; ov.hidden = false;
+  var b = ov.querySelector('button.faux-btn, button'); if (b) try { b.focus({preventScroll:true}); } catch(e){}
+  return ov;
+}
+function head(){ return '<div class="faux-hd"><div class="faux-mk" aria-hidden="true">fa</div><div class="faux-nm">' + esc(C.name) + '</div><button type="button" class="faux-x" data-faux="close" aria-label="Close">×</button></div>'; }
+var tEl = null, tT = null;
+function toast(msg, undo){
+  if (!tEl){ tEl = D.createElement('div'); tEl.className = 'faux-toast'; tEl.setAttribute('role', 'status'); D.body.appendChild(tEl); }
+  tEl.innerHTML = '<span>' + esc(msg) + '</span>' + (undo ? '<button type="button">Undo</button>' : ''); tEl.hidden = false;
+  if (undo) tEl.querySelector('button').onclick = function(){ tEl.hidden = true; undo(); };
+  clearTimeout(tT); tT = setTimeout(function(){ tEl.hidden = true; }, undo ? 9000 : 4000);
+}
+function markSeen(){ lsSet('faux_seen_' + SLUG, '1'); }
+function clickSel(sel){ var e = sel && $(sel); if (e) { e.click(); return true; } return false; }
+function goTab(tab){
+  if (!tab) return;
+  if (tab.charAt(0) === '#' || tab.charAt(0) === '[' || tab.charAt(0) === '.') { clickSel(tab); return; }
+  var b = $('.tabbar button[data-tab="' + tab + '"]') || $('[data-tab="' + tab + '"]'); if (b) b.click();
+}
+
+/* ---------- Welcome ---------- */
+function welcome(){
+  var steps = (C.steps || []).map(function(s, i){ return '<li><b class="n">' + (i + 1) + '</b><span>' + s + '</span></li>'; }).join('');
+  var hasImp = (C.imports || []).length > 0;
+  openOv(head() +
+    '<p class="faux-one">' + esc(C.oneLine) + '</p><ol class="faux-steps">' + steps + '</ol>' +
+    (C.sample ? '<button type="button" class="faux-btn" data-faux="sample">' + esc(C.sampleLabel || 'Try it with sample data') + '</button>' : '') +
+    '<div class="faux-row">' + (hasImp ? '<button type="button" class="faux-btn sec" data-faux="import">' + esc(C.importLabel || 'Import my data') + '</button>' : '') +
+    '<button type="button" class="faux-btn sec" data-faux="blank"' + (hasImp ? '' : ' style="grid-column:1/-1"') + '>' + esc(C.blankLabel || 'Start with my own') + '</button></div>' +
+    '<p class="faux-trust"><span aria-hidden="true">🔒</span><span>' + esc(C.trust || 'Private by design: it works offline and your data stays in this browser on this device. No account, no upload.') + '</span></p>', C.name + ': how it works');
+  bind();
+}
+function bind(){
+  ov.querySelectorAll('[data-faux]').forEach(function(b){ b.addEventListener('click', function(){
+    var a = b.getAttribute('data-faux');
+    if (a === 'close') { markSeen(); closeOv(); }
+    else if (a === 'sample') { markSeen(); closeOv(); if (C.sampleTab) goTab(C.sampleTab); clickSel(C.sample); }
+    else if (a === 'blank') { markSeen(); closeOv(); if (C.blankTab) goTab(C.blankTab); var f = $(C.blankFocus || '.pane.active input:not([type=file]):not([type=checkbox]):not([type=radio]), .pane.active select, main input:not([type=file])'); if (f) { try { f.scrollIntoView({block:'center'}); f.focus({preventScroll:true}); } catch(e){} } }
+    else if (a === 'import') { markSeen(); importSheet(); }
+    else if (a === 'help') welcome();
+  }); });
+}
+
+/* ---------- Import sheet ---------- */
+function importSheet(){
+  var opts = (C.imports || []).map(function(o, i){
+    return '<div class="faux-opt"><b>' + esc(o.label) + '</b><small>' + o.formats + '</small><div class="faux-row">' +
+      '<button type="button" class="faux-btn" data-imp="' + i + '" data-how="file">Choose file</button>' +
+      '<button type="button" class="faux-btn sec" data-imp="' + i + '" data-how="paste">Paste rows</button></div></div>';
+  }).join('');
+  openOv(head() + '<p class="faux-h2">Bring your data in</p><p class="faux-sub">Pick what you have. You will see a preview before anything is saved. Tip: you can also drag a file onto this page.</p>' + opts +
+    (C.cannot ? '<p class="faux-sub" style="margin-top:6px"><b>Not possible to auto-import:</b> ' + C.cannot + '</p>' : '') +
+    '<button type="button" class="faux-btn ghost" data-faux="help">← Back</button>', 'Import data');
+  bind();
+  ov.querySelectorAll('[data-imp]').forEach(function(b){ b.addEventListener('click', function(){
+    var o = C.imports[+b.getAttribute('data-imp')];
+    if (b.getAttribute('data-how') === 'file') pickFile(o); else pasteSheet(o);
+  }); });
+}
+function pickFile(o){
+  var inp = D.createElement('input'); inp.type = 'file'; inp.accept = o.accept || '.csv,.tsv,.txt,text/csv,text/plain'; inp.className = 'faux-sr';
+  D.body.appendChild(inp);
+  inp.addEventListener('change', function(){ var f = inp.files && inp.files[0]; inp.remove(); if (f) readFile(f, o); });
+  inp.click();
+}
+function readFile(f, o){ var rd = new FileReader(); rd.onload = function(){ handleText(String(rd.result || ''), o, f.name); }; rd.onerror = function(){ errSheet('Could not read that file. Try choosing it again. Nothing was changed.'); }; rd.readAsText(f); }
+function pasteSheet(o){
+  openOv(head() + '<p class="faux-h2">' + esc(o.label) + ': paste rows</p><p class="faux-sub">' + esc(o.pasteHint || 'Copy the rows from Excel, Google Sheets or a CSV (include the header row if there is one) and paste here.') + '</p>' +
+    '<textarea class="faux-ta" id="fauxPaste" aria-label="Paste rows here" placeholder="' + esc(o.pastePlaceholder || '') + '"></textarea>' +
+    '<div class="faux-row"><button type="button" class="faux-btn" id="fauxPasteGo">Preview</button><button type="button" class="faux-btn sec" data-faux="import">Back</button></div>', 'Paste rows');
+  bind();
+  $('#fauxPaste').focus();
+  $('#fauxPasteGo').addEventListener('click', function(){ var t = $('#fauxPaste').value; if (!t.trim()) { $('#fauxPaste').focus(); return; } handleText(t, o, 'pasted-rows.csv'); });
+}
+function errSheet(msg){ openOv(head() + '<div class="faux-err">' + esc(msg) + '</div><button type="button" class="faux-btn sec" data-faux="import">Back</button>', 'Problem'); bind(); }
+function handleText(text, o, name){
+  if (o.kind === 'feed') {
+    var res = o.raw ? { csv: text, note: '' } : normalizeText(text, o.normalize);
+    if (res.error) return errSheet(res.error);
+    closeOv(); if (o.tab) goTab(o.tab); if (o.open) { var od = $(o.open); if (od && 'open' in od) od.open = true; }
+    var inp = $(o.target); if (!inp) return errSheet('This app has no import box here.');
+    setTimeout(function(){
+      feed(inp, o.raw ? (name || 'import.json').replace(/\.csv$/i, '.json') : (name || 'import').replace(/\.(tsv|txt)$/i, '.csv'), res.csv, o.raw ? 'application/json' : 'text/csv');
+      if (res.note) toast(res.note);
+      var card = inp.closest('.card, section'); if (card && card.scrollIntoView) try { card.scrollIntoView({block:'start', behavior:'smooth'}); } catch(e){}
+    }, 60);
+    return;
+  }
+  if (o.kind === 'adapter') { var A = ADAPTERS[o.adapter]; if (A) preview(A, text, o); }
+}
+function feed(inp, name, text, type){
+  try { var dt = new DataTransfer(); dt.items.add(new File([text], name, { type: type })); inp.files = dt.files; }
+  catch(e){ errSheet('This browser blocked the hand-off. Use the app\u2019s own Choose file button instead.'); return; }
+  inp.dispatchEvent(new Event('change', { bubbles: true }));
+}
+
+/* ---------- List importers (preview, then save to this device) ---------- */
+var ADAPTERS = {
+  shifts: { what: 'shifts', cols: ['Date','Where','Hours','Cash','Card','Tip-out'],
+    parse: function(rows){
+      var H = rows[0]; if (!looksHeader(H)) return { error: 'Add a header row, e.g. Date, Employer, Hours, Cash tips, Card tips, Tip-out.' };
+      var c = function(a){ return findCol(H, a); };
+      var di = c(['date','shift date','business date','work date']), ei = c(['employer','restaurant','location','job','role','venue']), hi = c(['total hours','hours worked','regular hours','hours']),
+          ca = c(['declared cash tips','cash tips','cash']), cd = c(['non-cash tips','credit card tips','card tips','charged tips','cc tips','card']), to = c(['tip-out','tip out','tipout','tips paid out','tip share']),
+          oh = c(['overtime hours','ot hours']), op = c(['overtime premium','ot premium']), gr = c(['gross pay','gross wages','gross']);
+      if (di < 0 || (ca < 0 && cd < 0)) return { error: 'Need at least a Date column and a Cash tips or Card tips column.' };
+      var g = function(r, i){ var v = i >= 0 ? money(r[i]) : 0; return isNaN(v) ? 0 : Math.abs(v); };
+      return { rows: rows.slice(1).map(function(r){ return { date: isoDate(r[di]), emp: ei >= 0 ? r[ei] : '', hours: g(r, hi), cash: g(r, ca), card: g(r, cd), out: g(r, to), otH: g(r, oh), otP: g(r, op), gross: g(r, gr) }; }).filter(function(x){ return x.date && (x.cash || x.card || x.hours); }) };
+    },
+    show: function(d){ return [d.date, d.emp, d.hours, fmt$(d.cash), fmt$(d.card), fmt$(d.out)]; },
+    commit: function(st, rows){ st.entries = (st.entries || []).filter(function(x){ return !x.sample; }); st.sample = false;
+      rows.forEach(function(d, i){ d.id = 'r-imp-' + Date.now() + '-' + i; d.photo = null; d.sample = false; st.entries.push(d); }); }
+  }
+};
+function bankRows(rows){
+  var r0 = rows[0];
+  if (r0.length === 5 && isoDate(r0[0]) && r0[2] === '*') { rows = [['Date','Amount','x','y','Description']].concat(rows); }
+  var H = rows[0]; if (!looksHeader(H)) return { error: 'Include the header row from your bank file (Date, Description, Amount).' };
+  var di = findCol(H, ['posting date','transaction date','date','posted']), de = findCol(H, ['description','details','memo','payee','name']),
+      am = findCol(H, ['amount','net']), cr = findCol(H, ['credit','deposit','deposits','inflow','money in']), db = findCol(H, ['debit','withdrawal','withdrawals','outflow','money out']);
+  if (di < 0 || (am < 0 && cr < 0)) return { error: 'Could not find Date and Amount (or Credit) columns in that file.' };
+  var out = rows.slice(1).map(function(r){
+    var a = am >= 0 ? money(r[am]) : NaN;
+    if (isNaN(a) && cr >= 0) { var c = money(r[cr]), d = db >= 0 ? money(r[db]) : NaN; a = !isNaN(c) && c !== 0 ? Math.abs(c) : (!isNaN(d) ? -Math.abs(d) : NaN); }
+    return { date: isoDate(r[di]), desc: de >= 0 ? r[de] : '', amt: a };
+  }).filter(function(x){ return x.date && !isNaN(x.amt); });
+  return { rows: out };
+}
+var pend = null;
+function preview(A, text, o){
+  var rows = parseCSV(text); var res = rows.length ? A.parse(rows, text) : { error: 'That looks empty.' };
+  if (res.error || !res.rows || !res.rows.length) return errSheet(res.error || 'No usable rows found. Nothing was changed.');
+  pend = { A: A, rows: res.rows, o: o };
+  var tb = '<div class="faux-tblw"><table class="faux-tbl"><thead><tr>' + (A.summary ? '' : '<th scope="col"><span class="faux-sr">Keep</span></th>') + A.cols.map(function(c){ return '<th scope="col">' + esc(c) + '</th>'; }).join('') + '</tr></thead><tbody>' +
+    res.rows.map(function(r, i){ return '<tr>' + (A.summary ? '' : '<td><input type="checkbox" checked data-keep="' + i + '" aria-label="Keep row ' + (i + 1) + '"></td>') + A.show(r).map(function(v){ return '<td>' + esc(v) + '</td>'; }).join('') + '</tr>'; }).join('') + '</tbody></table></div>';
+  openOv(head() + '<p class="faux-h2">Check before saving</p><p class="faux-sub">' + esc(res.note || ('Found ' + res.rows.length + ' ' + A.what + '. Uncheck any you don\u2019t want.')) + '</p>' + tb +
+    '<div class="faux-row"><button type="button" class="faux-btn" id="fauxCommit">' + (A.summary ? 'Use these numbers' : 'Add ' + A.what) + '</button><button type="button" class="faux-btn sec" data-faux="import">Cancel</button></div>' +
+    '<p class="faux-trust">Saved only in this browser. You can undo right after.</p>', 'Preview import');
+  bind();
+  $('#fauxCommit').addEventListener('click', commit);
+}
+function commit(){
+  if (!pend) return; var keep = [];
+  if (pend.A.summary) keep = pend.rows; else ov.querySelectorAll('[data-keep]').forEach(function(cb){ if (cb.checked) keep.push(pend.rows[+cb.getAttribute('data-keep')]); });
+  if (!keep.length) return;
+  var before = lsGet(C.key), st; try { st = JSON.parse(before || 'null'); } catch(e){ st = null; }
+  if (!st || typeof st !== 'object') st = JSON.parse(JSON.stringify(C.blank || {}));
+  pend.A.commit(st, keep);
+  if (!lsSet(C.key, JSON.stringify(st))) return errSheet('This browser\u2019s storage is full or blocked, so nothing was saved.');
+  try { sessionStorage.setItem('faux_done_' + SLUG, JSON.stringify({ before: before, msg: (pend.A.summary ? 'Guest count updated from your list.' : 'Added ' + keep.length + ' ' + pend.A.what + '.'), tab: pend.o.tab || '' })); } catch(e){}
+  location.reload();
+}
+function afterReload(){
+  var s; try { s = JSON.parse(sessionStorage.getItem('faux_done_' + SLUG) || 'null'); sessionStorage.removeItem('faux_done_' + SLUG); } catch(e){ s = null; }
+  if (!s) return; markSeen(); if (s.tab) goTab(s.tab);
+  toast(s.msg, function(){ if (s.before == null) { try { localStorage.removeItem(C.key); } catch(e){} } else lsSet(C.key, s.before); location.reload(); });
+}
+
+/* ---------- Drag and drop anywhere ---------- */
+function dnd(){
+  var tgt = (C.imports || []).filter(function(o){ return o.drop; })[0]; if (!tgt) return;
+  var veil = D.createElement('div'); veil.className = 'faux-drop'; veil.hidden = true; veil.textContent = 'Drop your file to import: ' + tgt.label; D.body.appendChild(veil);
+  var n = 0, isFile = function(e){ return e.dataTransfer && Array.prototype.indexOf.call(e.dataTransfer.types || [], 'Files') >= 0; };
+  D.addEventListener('dragenter', function(e){ if (!isFile(e)) return; n++; veil.hidden = false; });
+  D.addEventListener('dragleave', function(e){ if (!isFile(e)) return; n = Math.max(0, n - 1); if (!n) veil.hidden = true; });
+  D.addEventListener('dragover', function(e){ if (isFile(e)) e.preventDefault(); });
+  D.addEventListener('drop', function(e){ if (!isFile(e)) return; e.preventDefault(); n = 0; veil.hidden = true; var f = e.dataTransfer.files[0]; if (!f) return;
+    if (/\.json$/i.test(f.name) && C.jsonDrop) { var rd = new FileReader(); rd.onload = function(){ goTab(C.jsonTab); feed($(C.jsonDrop), f.name, String(rd.result), 'application/json'); }; rd.readAsText(f); return; }
+    readFile(f, tgt); });
+}
+
+/* ---------- On-device auto-fill between FiledAwayCo tools ---------- */
+function readAuto(){ try { return JSON.parse(lsGet(AUTO_KEY) || '{}') || {}; } catch(e){ return {}; } }
+function capture(fn){
+  return new Promise(function(res){
+    var got = null, last = null, oc = URL.createObjectURL, ac = HTMLAnchorElement.prototype.click;
+    var tEls = D.querySelectorAll(C.toastSel || '#toast'), snap = Array.prototype.map.call(tEls, function(t){ return [t, t.className, t.innerHTML, t.style.cssText]; });
+    D.documentElement.classList.add('faux-quiet');
+    URL.createObjectURL = function(b){ last = b; return oc.call(URL, b); };
+    HTMLAnchorElement.prototype.click = function(){ if (this.download && last) { got = last; return; } return ac.call(this); };
+    try { fn(); } catch(e){} finally { URL.createObjectURL = oc; HTMLAnchorElement.prototype.click = ac; snap.forEach(function(s){ s[0].className = s[1]; s[0].innerHTML = s[2]; s[0].style.cssText = s[3]; }); }
+    setTimeout(function(){ D.documentElement.classList.remove('faux-quiet'); }, 0);
+    if (got && got.text) got.text().then(res, function(){ res(null); }); else res(null);
+  });
+}
+var lastPub = null, pubT = null;
+function publish(){
+  var P = C.publish; if (!P) return; var cur = lsGet(C.key) || ''; if (cur === lastPub) return; lastPub = cur;
+  capture(function(){
+    if (P.click) { var b = $(P.click); if (b) b.click(); }
+    else if (P.act) { var t = D.createElement('button'); t.type = 'button'; t.setAttribute('data-act', P.act); t.style.display = 'none'; (P.host ? $(P.host) : D.body).appendChild(t); t.click(); t.remove(); }
+  }).then(function(txt){
+    var all = readAuto(), o = null; try { o = txt ? JSON.parse(txt) : null; } catch(e){}
+    var empty = o && ((o.salesCount === 0) || (o.trueNet === 0 && !o.grossSales && !(o.shifts && o.shifts.length) && !(o.deals && o.deals.length)));
+    if (o && o.bridge === 'fac-bridge-v1' && !o.sample && !empty) all[P.source] = { name: C.name, at: new Date().toISOString(), payload: txt };
+    else delete all[P.source];
+    lsSet(AUTO_KEY, JSON.stringify(all));
+  });
+}
+function schedulePub(){ clearTimeout(pubT); pubT = setTimeout(publish, 1200); }
+function summary(o){
+  if (typeof o.trueNet === 'number') return 'Net profit ' + fmt$(o.trueNet) + (o.taxYear ? ' (' + o.taxYear + ')' : '');
+  if (typeof o.freedMonthly === 'number') return 'Freed monthly ' + fmt$(o.freedMonthly);
+  if (Array.isArray(o.shifts)) return o.shifts.length + ' shift(s)';
+  if (Array.isArray(o.deals)) return o.deals.length + ' deal(s)';
+  return 'Summary ready';
+}
+function consume(){
+  var K = C.consume; if (!K) return; var host = K.into ? $(K.into) : null, bef = K.before ? $(K.before) : null; if (!host && !bef) return;
+  var all = readAuto(), keys = Object.keys(all).filter(function(k){ return K.sources.indexOf(k) >= 0; });
+  var box = $('#fauxAuto'); if (box) box.remove();
+  if (!keys.length) return;
+  box = D.createElement('div'); box.id = 'fauxAuto'; box.className = 'faux-auto no-print';
+  box.innerHTML = '<b>Auto-fill from your other FiledAwayCo tools on this device</b><div>' + esc(K.hint || 'Tap Use to load the numbers. You will confirm before anything changes.') + '</div>' +
+    keys.map(function(k){ var e = all[k], o = {}; try { o = JSON.parse(e.payload); } catch(x){}
+      return '<div class="faux-src"><span><b>' + esc(e.name || k) + '</b> · ' + esc(summary(o)) + ' · updated ' + esc(String(e.at || '').slice(0, 10)) + '</span><button type="button" class="faux-btn" data-auto="' + esc(k) + '">Use</button></div>'; }).join('');
+  if (bef) bef.parentNode.insertBefore(box, bef); else host.insertBefore(box, host.firstChild);
+  box.querySelectorAll('[data-auto]').forEach(function(b){ b.addEventListener('click', function(){
+    var e = readAuto()[b.getAttribute('data-auto')]; if (!e) return;
+    if (K.tab) goTab(K.tab); if (K.open) { var d = $(K.open); if (d && 'open' in d) d.open = true; }
+    feed($(K.input), 'fac-bridge-' + b.getAttribute('data-auto') + '.json', e.payload, 'application/json');
+    var dr = K.draft && $(K.draft); setTimeout(function(){ var t = dr || $(K.input).closest('.card, details, section'); if (t) try { t.scrollIntoView({ block: 'center', behavior: 'smooth' }); } catch(x){} }, 120);
+  }); });
+}
+
+/* ---------- Help button ---------- */
+function helpBtn(){
+  if (C.help === false) return;
+  var b = D.createElement('button'); b.type = 'button'; b.className = 'faux-help no-print'; b.textContent = '?'; b.title = 'How it works and import'; b.setAttribute('aria-label', 'How ' + (C.name || 'this tool') + ' works, and import options');
+  b.addEventListener('click', welcome);
+  var host = C.helpIn && $(C.helpIn);
+  if (host) { var last = host.lastElementChild; if (last && last.tagName === 'BUTTON') { var w = D.createElement('div'); w.style.cssText = 'display:flex;gap:8px;align-items:center;flex:none'; host.insertBefore(w, last); w.appendChild(b); w.appendChild(last); } else host.appendChild(b); }
+  else { b.classList.add('faux-fab'); D.body.appendChild(b); }
+}
+/* Seller Dashboard style apps: add "Paste rows" next to the app's own Choose file button when its import sheet opens */
+function pasteHook(){
+  var H = C.pasteHook; if (!H) return; var o = (C.imports || [])[0]; if (!o) return;
+  new MutationObserver(function(){ var b = $(H.after); if (b && !$('#fauxPasteHook')) { var p = D.createElement('button'); p.type = 'button'; p.id = 'fauxPasteHook'; p.className = H.cls || b.className; p.textContent = 'Paste rows from a spreadsheet instead'; p.style.marginTop = '8px'; p.addEventListener('click', function(){ pasteSheet(o); }); b.parentNode.insertBefore(p, b.nextSibling); } })
+    .observe(D.body, { childList: true, subtree: true });
+}
+
+function init(){
+  if (!inSuite) helpBtn(); else if (C.help !== false) helpBtn();
+  dnd(); pasteHook(); afterReload();
+  consume(); D.addEventListener('visibilitychange', function(){ if (!D.hidden) consume(); }); window.addEventListener('focus', consume);
+  if (C.publish) { ['click','change','submit','input'].forEach(function(ev){ D.addEventListener(ev, function(e){ if (e.isTrusted) schedulePub(); }, true); }); setTimeout(publish, 1500); }
+  var seen = lsGet('faux_seen_' + SLUG);
+  if (!seen && !inSuite && !window.__FA_UX_NO_WELCOME && C.welcome !== false && !sessionStorage.getItem('faux_done_' + SLUG)) welcome();
+}
+window.FAUX = { parseCSV: parseCSV, money: money, isoDate: isoDate, normalizeText: normalizeText, adapters: ADAPTERS, bankRows: bankRows, welcome: welcome, importSheet: importSheet, publish: publish, consume: consume, readAuto: readAuto };
+if (D.readyState === 'loading') D.addEventListener('DOMContentLoaded', init); else init();
+})();
+</script>
+<!-- FiledAwayCo app shell v1 2026-11-27 -->
+<script id="faa-logo">window.FAA_SLUG="tips-overtime-deduction-tracker";window.FAA_LOGO={"light": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 240 240\" width=\"240\" height=\"240\"><rect x=\"6\" y=\"6\" width=\"228\" height=\"228\" rx=\"48\" fill=\"#16283C\"/><g transform=\"translate(63,40) scale(1.14)\"><rect x=\"0\" y=\"0\" width=\"28\" height=\"140\" rx=\"3.2\" fill=\"#F5F0E4\"/><rect x=\"0\" y=\"0\" width=\"100\" height=\"26\" rx=\"3.2\" fill=\"#F5F0E4\"/><rect x=\"0\" y=\"54\" width=\"72\" height=\"24\" rx=\"3.2\" fill=\"#F5F0E4\"/><\/g><rect x=\"148\" y=\"148\" width=\"74\" height=\"74\" rx=\"16\" fill=\"#E79A28\" stroke=\"#F5F0E4\" stroke-width=\"5\"/><path d=\"M167.24,186.48 L180.56,199.80 L204.24,170.20\" fill=\"none\" stroke=\"#16283C\" stroke-width=\"13.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><\/svg>", "dark": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 240 240\" width=\"240\" height=\"240\"><rect x=\"6\" y=\"6\" width=\"228\" height=\"228\" rx=\"48\" fill=\"#F5F0E4\"/><g transform=\"translate(63,40) scale(1.14)\"><rect x=\"0\" y=\"0\" width=\"28\" height=\"140\" rx=\"3.2\" fill=\"#16283C\"/><rect x=\"0\" y=\"0\" width=\"100\" height=\"26\" rx=\"3.2\" fill=\"#16283C\"/><rect x=\"0\" y=\"54\" width=\"72\" height=\"24\" rx=\"3.2\" fill=\"#16283C\"/><\/g><rect x=\"148\" y=\"148\" width=\"74\" height=\"74\" rx=\"16\" fill=\"#E79A28\" stroke=\"#16283C\" stroke-width=\"5\"/><path d=\"M167.24,186.48 L180.56,199.80 L204.24,170.20\" fill=\"none\" stroke=\"#16283C\" stroke-width=\"13.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><\/svg>"};</script>
+<script id="faa-products">/* Per-product answer screens. Every number is read from the tool's own result fields, so the math is the tool's own. */
+(function(){
+var FAA_P = window.FAA_P = {};
+var IMP = function(label, note, i){ return { label: label, imp: i || 0, icon: '⬆︎', note: note }; };
+var WIZ = function(label){ return { label: label, wizard: true, icon: '✎' }; };
+FAA_P['tips-overtime-deduction-tracker'] = function(){ return {
+  one: 'Estimate your federal deduction for tips and overtime (Schedule 1-A) one shift at a time.',
+  kicker: 'Your estimated deduction',
+  isEmpty: function(q){ return !q.all('#recList .row-card').length; },
+  big: function(q){ return q.t('#outTotalDed'); },
+  sub: function(q){
+    if (q.v('#fStatus') === 'mfs') return 'Married Filing Separately is not eligible for the 2025–2028 tips or overtime deductions, so this estimate is $0. Estimate for Schedule 1-A, not tax advice.';
+    var ph = q.t('#phaseOutLine');
+    if (q.n(q.t('#outTotalDed')) === 0 && ph.indexOf('Income limit applies:') === 0 && (q.n(q.t('#outTipsSub')) > 0 || q.n(q.t('#outOtSub')) > 0)) return 'Reduced to $0 by the yearly income limit: ' + ph.replace(/^Income limit applies:\s*/, '') + ' Estimate for Schedule 1-A, not tax advice.';
+    if (q.n(q.t('#outTotalDed')) === 0 && q.n(q.t('#outTipsSub')) === 0 && q.n(q.t('#outOtSub')) === 0) return 'Your saved shifts show $0 in net tips and overtime half-time pay so far. Estimate for Schedule 1-A, not tax advice.';
+    return 'Tips ' + q.t('#outTipsDed') + ' + overtime premium ' + q.t('#outOtDed') + '. An estimate for Schedule 1-A, not tax advice.';
+  },
+  stats: [['Tips deduction', function(q){ return q.t('#outTipsDed'); }], ['Overtime deduction', function(q){ return q.t('#outOtDed'); }], ['Filing status', function(q){ return q.t('#outStatusNote').split('·')[0].split('—')[0].split('/')[0].trim(); }]],
+  actions: [IMP('Import my shifts', 'From a scheduling app, a CSV file, or True Hourly'), WIZ('Log a tipped shift (3 questions)')],
+  more: [{ label: 'Check my overtime pay', tab: 'flsa', icon: '⏱' }, { label: 'Records and the tax-pro summary', tab: 'records', icon: '🖨' }],
+  detailsGo: 'records', moreLabel: 'See every shift',
+  wizard: { tab: 'capture', submit: '#dHours', finish: 'Save and show my deduction', again: true, againLabel: 'Log another',
+    pre: { '#dDate': function(q, d){ return d; } },
+    fields: [
+    { sel: '#dHours', q: 'How many hours did you work?', help: 'Quick log for tips. For overtime pay or tip-out, tap Add → Check my overtime pay, or open All features.', kind: 'num', ph: '8', keep: false },
+    { sel: '#dCash', q: 'Cash tips you kept?', kind: 'money', ph: '60', keep: false, req: false },
+    { sel: '#dCard', q: 'Card tips on your pay stub?', kind: 'money', ph: '140', keep: false, req: false } ] }
+}; };
+})();
+</script>
+<script id="faa-js">/* FiledAwayCo app shell v2 (2026-11-27; v1 + backup/restore, sample kept apart, free extras). Home = one big answer read from the app's own results (the app's calculations are unchanged).
+   Adds: answer-first home, 3-question wizard, import-first actions, bottom nav, details view (the full original tool), PWA install + offline. */
+(function(){
+'use strict';
+var D = document, H = D.documentElement, X = window.FAUX_CFG || {}, SLUG = X.slug || window.FAA_SLUG;
+var P = (window.FAA_P && window.FAA_P[SLUG]) ? window.FAA_P[SLUG]() : null;
+if (!P) return;
+var TEST = !!window.__FA_APP_TEST;
+var LOGO = window.FAA_LOGO || {}, LS = 'faa_started_' + SLUG;
+function $(s, r){ return (r || D).querySelector(s); }
+function $$(s, r){ return Array.prototype.slice.call((r || D).querySelectorAll(s)); }
+function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function lsGet(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
+function lsSet(k, v){ try { localStorage.setItem(k, v); } catch(e){} }
+/* read helpers handed to product configs */
+var Q = {
+  t: function(s){ var e = $(s); return e ? (e.textContent || '').replace(/\s+/g, ' ').trim() : ''; },
+  v: function(s){ var e = $(s); return e ? e.value : ''; },
+  n: function(x){ var m = String(x || '').replace(/,/g, '').match(/-?\d+(\.\d+)?/); return m ? parseFloat(m[0]) : 0; },
+  el: $, all: $$,
+  whole: function(x){ return String(x || '').replace(/\.00(?=\D|$)/, ''); },
+  date: function(iso){ var m = String(iso || '').match(/(\d{4})-(\d{2})-(\d{2})/); if (!m) return ''; var M = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']; return M[+m[2] - 1] + ' ' + (+m[3]) + ', ' + m[1]; }
+};
+var ICON = {
+  home: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>',
+  list: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></svg>',
+  plus: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>',
+  help: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7M12 17h.01"/></svg>'
+};
+/* ---------- sample state ---------- */
+function isSample(){
+  if (P.isSample) return !!P.isSample(Q);
+  var b = $('#sampleBanner'); if (b) return b.style.display !== 'none' && !b.hidden;
+  try { var st = JSON.parse(lsGet(X.key) || 'null'); return !!(st && st.sample); } catch(e){ return false; }
+}
+function withConfirm(fn){ var c = window.confirm; window.confirm = function(){ return true; }; try { fn(); } finally { window.confirm = c; } }
+function loadSample(){ if (window.FAA2) window.FAA2.stash(); withConfirm(function(){ var b = P.sampleSel ? $(P.sampleSel) : $(X.sample); if (P.loadSample) P.loadSample(Q); else if (b) b.click(); }); }
+function clearSample(){ if (!isSample()) return; withConfirm(function(){ if (P.clearSample) P.clearSample(Q); else { var b = $('#clearSampleBtn'); if (b) b.click(); } }); }
+function goTab(tab){ if (!tab) return; if (/^[#.\[]/.test(tab)) { var e = $(tab); if (e) e.click(); return; } var b = $('.tabbar button[data-tab="' + tab + '"]') || $('[data-tab="' + tab + '"]'); if (b) b.click(); }
+/* ---------- build DOM ---------- */
+var root, homeV, heroEl, sampEl, autoEl, ctaEl, sheet, toastT;
+function logo(kind){ return '<span class="faa-mk" aria-hidden="true">' + (kind === 'dark' ? (LOGO.dark || '') : (LOGO.light || '')) + '</span>'; }
+function build(){
+  root = D.createElement('div'); root.id = 'faa'; root.className = 'no-print';
+  root.innerHTML =
+    '<div class="faa-bar"><div class="in"><button type="button" data-a="home" aria-label="Back to my answer">‹ My answer</button>' + logo('dark') + '<b>' + esc(X.name) + '</b></div></div>' +
+    '<div class="faa-homev" role="main">' +
+      '<header class="faa-hd">' + logo('light') + '<div class="t"><h1>' + esc(X.name) + '</h1><small>by FiledAway<b>Co</b></small></div></header>' +
+      '<p class="faa-one">' + esc(P.one || X.oneLine) + '</p>' +
+      '<div class="faa-samp" hidden><span>' + esc(P.sampleText || 'These are made-up sample numbers.') + '</span><button type="button" data-a="mine">Clear sample data</button></div>' +
+      '<div class="faa-heroW"></div>' +
+      '<div class="faa-auto" hidden></div>' +
+      '<div class="faa-cta"></div>' +
+      '<p class="faa-trust">' + (window.FAA2 && !(window.FAA2_CFG || {}).nodata ? '🔒 Saved only on this device.<br><span class="a2-tls"><button type="button" class="a2-tl" data-a="a2save">Save a backup file</button> · <button type="button" class="a2-tl" data-a="a2data">Restore</button></span>' : '🔒 ' + esc(P.trust || 'Works offline. Your numbers stay on this device. No account.')) + '</p>' +
+    '</div>' +
+    '<nav class="faa-nav" aria-label="App"><div class="in">' +
+      '<button type="button" data-a="home" data-nav="home">' + ICON.home + '<span>Home</span></button>' +
+      '<button type="button" data-a="details" data-nav="details">' + ICON.list + '<span>' + esc(P.detailsTab || 'All features') + '</span></button>' +
+      '<button type="button" data-a="add" class="plus" aria-label="More ways to add or import"><span class="o">' + ICON.plus + '</span><span>Add</span></button>' +
+      '<button type="button" data-a="help">' + ICON.help + '<span>Help</span></button>' +
+    '</div></nav>' +
+    '<div class="faa-sh" hidden></div>';
+  D.body.insertBefore(root, D.body.firstChild);
+  if (window.FAA2) { var tl = $('.a2-tl', root); if (tl) window.FAA2.nudge(tl); }
+  homeV = $('.faa-homev', root); heroEl = $('.faa-heroW', root); sampEl = $('.faa-samp', root); autoEl = $('.faa-auto', root); ctaEl = $('.faa-cta', root); sheet = $('.faa-sh', root);
+  root.addEventListener('click', onClick);
+  sheet.addEventListener('click', function(e){ if (e.target === sheet) closeSheet(); });
+  D.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !sheet.hidden) closeSheet(); });
+}
+/* ---------- views ---------- */
+var view = 'home';
+function show(v, tab){
+  view = v; H.classList.toggle('faa-home', v === 'home'); H.classList.toggle('faa-det', v !== 'home');
+  $$('[data-nav]', root).forEach(function(b){ if (b.getAttribute('data-nav') === v) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
+  if (v === 'home') { refresh(true); try { window.scrollTo(0, 0); } catch(e){} }
+  else { if (tab) goTab(tab); try { window.scrollTo(0, 0); } catch(e){} }
+  if (P.onView) P.onView(v, Q);
+}
+/* ---------- answer ---------- */
+var lastSig = '';
+function call(f, d){ try { return typeof f === 'function' ? f(Q) : (f == null ? d : f); } catch(e){ return d; } }
+function answer(){
+  var a = { k: call(P.kicker, ''), big: call(P.big, ''), sub: call(P.sub, ''), stats: (P.stats || []).map(function(s){ return [call(s[0], ''), call(s[1], '')]; }) };
+  a.empty = P.isEmpty ? !!call(P.isEmpty, false) : (!a.big || Q.n(a.big) === 0);
+  return a;
+}
+function refresh(force){
+  if (!root) return;
+  var s = isSample(); sampEl.hidden = !s;
+  var a = answer(), vis = P.visual ? call(P.visual, '') : '';
+  var sig = JSON.stringify([a, s, vis ? vis.length : 0]);
+  if (!force && sig === lastSig) return; var changed = lastSig && sig !== lastSig; lastSig = sig;
+  var h;
+  if (a.empty && !s) {
+    h = '<div class="faa-hero" data-faa="hero"><div class="k">' + esc(P.emptyKicker || 'Your answer goes here') + '</div><span class="big sm" data-faa="big">' + esc(P.emptyBig || 'Two minutes to your number') + '</span><p class="sub" data-faa="sub">' + esc(P.emptySub || 'Import your file or answer a few quick questions. Nothing leaves this device.') + '</p></div>';
+  } else {
+    var len = String(a.big).length, cls = len > 14 ? ' sm' : (len > 9 ? ' md' : '');
+    h = '<div class="faa-hero" data-faa="hero"><div class="k" data-faa="kicker">' + esc(a.k) + '</div>' +
+      (vis ? '<div class="vis">' + vis + '</div>' : '<span class="big' + cls + (P.clock ? ' clock' : '') + '" data-faa="big">' + esc(a.big) + '</span>') +
+      (a.sub ? '<p class="sub" data-faa="sub">' + esc(a.sub) + '</p>' : '') +
+      (P.chips ? '<div class="faa-chips">' + P.chips.map(function(c, i){ return '<button type="button" data-chip="' + i + '" aria-pressed="' + (call(c.on, false) ? 'true' : 'false') + '">' + esc(c.label) + '</button>'; }).join('') + '</div>' : '') +
+      (a.stats.length ? '<div class="st">' + a.stats.map(function(x){ return '<div><b>' + esc(x[1] || '–') + '</b><span>' + esc(x[0]) + '</span></div>'; }).join('') + '</div>' : '') +
+      '<button type="button" class="more" data-a="details">' + esc(P.moreLabel || 'See how it adds up') + ' ›</button></div>';
+  }
+  heroEl.innerHTML = h;
+  if (changed) { var he = $('.faa-hero', heroEl); if (he) { he.classList.remove('pulse'); void he.offsetWidth; he.classList.add('pulse'); } }
+  renderCTA(s, a.empty); renderAuto();
+}
+function imports(){ return (X.imports || []); }
+function renderCTA(s, empty){
+  var b = [];
+  (P.actions || []).forEach(function(ac, i){ b.push('<button type="button" class="faa-btn' + (i ? ' sec' : '') + '" data-act="' + i + '" data-kind="' + (ac.wizard ? 'wizard' : (ac.imp != null ? 'imp' : 'other')) + '">' + esc(call(ac.label, '')) + '</button>'); });
+  ctaEl.innerHTML = b.join('');
+}
+function renderAuto(){
+  var K = X.consume; autoEl.hidden = true; if (!K || !window.FAUX) return;
+  var all = window.FAUX.readAuto(), keys = Object.keys(all).filter(function(k){ return K.sources.indexOf(k) >= 0; });
+  if (!keys.length) return; var k = keys[0], e = all[k];
+  autoEl.innerHTML = '<span><b>Fill in from ' + esc(e.name || k) + '</b><br>Your numbers from that tool on this device.</span><button type="button" class="faa-btn sm" data-auto="' + esc(k) + '">Use</button>';
+  autoEl.hidden = false;
+}
+/* ---------- actions ---------- */
+function needsReal(ac){ return !!(window.FAA2 && window.FAA2.needsReal() && ac && (ac.wizard || ac.imp != null || ac.clear)); }
+function act(ac, res){
+  if (!ac) return;
+  if (res && needsReal(ac)) { window.FAA2.backToReal(res); return; }
+  if (ac.sample) { loadSample(); show('home'); return; }
+  if (ac.wizard) { wizard(); return; }
+  if (ac.imp != null) { startImport(ac.imp); return; }
+  if (ac.run) { ac.run(Q, api); refresh(true); return; }
+  if (ac.tab || ac.details) { if (ac.clear) clearSample(); show('details', ac.tab); return; }
+}
+var api = { show: show, toast: toast, refresh: refresh, clearSample: clearSample, loadSample: loadSample, goTab: goTab };
+function startImport(i){
+  var o = imports()[i]; if (!o || !window.FAUX) return;
+  clearSample(); lsSet(LS, '1');
+  window.FAUX.importSheet();
+}
+/* feed-type imports land in the tool's own review screen: switch to it so the customer can confirm */
+function watchFeeds(){
+  var targets = imports().filter(function(o){ return o.kind === 'feed'; }).map(function(o){ return o.target; });
+  if (X.consume && X.consume.input) targets.push(X.consume.input);
+  if (!targets.length) return;
+  D.addEventListener('change', function(e){
+    var t = e.target; if (!t || t.type !== 'file') return;
+    if (targets.some(function(s){ try { return t.matches(s); } catch(x){ return false; } })) {
+      var o = imports().filter(function(o){ return o.target && t.matches(o.target); })[0];
+      setTimeout(function(){ show('details', o && o.tab); toast(P.reviewMsg || 'Check the rows, then tap Save. Your answer updates on Home.'); }, 60);
+    }
+  }, true);
+}
+function onClick(e){
+  var b = e.target.closest('button'); if (!b || !root.contains(b)) return;
+  var a = b.getAttribute('data-a');
+  if (a === 'home') { closeSheet(); show('home'); }
+  else if (a === 'details') { closeSheet(); show('details', P.detailsGo); }
+  else if (a === 'add') addSheet();
+  else if (a === 'help') helpSheet();
+  else if (a === 'a2save') { closeSheet(); if (window.FAA2) window.FAA2.save(); }
+  else if (a === 'a2data') { closeSheet(); if (window.FAA2) window.FAA2.open(); }
+  else if (a === 'a2try') { closeSheet(); if (window.FAA2) window.FAA2.trySample(); }
+  else if (a === 'mine' && window.FAA2 && window.FAA2.needsReal()) { closeSheet(); window.FAA2.backToReal(null); }
+  else if (a === 'mine') { closeSheet(); clearSample(); lsSet(LS, '1'); refresh(true); toast('Sample cleared. Add your own numbers below.', function(){ loadSample(); refresh(true); }); }
+  else if (a === 'close') closeSheet();
+  else if (a === 'install') { if (deferred) { deferred.prompt(); deferred = null; } closeSheet(); }
+  else if (b.hasAttribute('data-act')) { closeSheet(); act((P.actions || [])[+b.getAttribute('data-act')], { act: +b.getAttribute('data-act') }); }
+  else if (b.hasAttribute('data-more')) { if (+b.getAttribute('data-more') < 0) return; closeSheet(); act((P.more || [])[+b.getAttribute('data-more')], { more: +b.getAttribute('data-more') }); }
+  else if (b.hasAttribute('data-chip')) { var c = P.chips[+b.getAttribute('data-chip')]; if (c && c.run) c.run(Q, api); setTimeout(function(){ refresh(true); }, 80); }
+  else if (b.hasAttribute('data-auto')) {
+    var k = b.getAttribute('data-auto'); if (window.FAA2 && window.FAA2.needsReal()) { window.FAA2.backToReal({ auto: k }); return; } clearSample(); lsSet(LS, '1'); show('details');
+    setTimeout(function(){ if (window.FAUX) window.FAUX.consume(); var u = $('#fauxAuto [data-auto="' + k + '"]'); if (u) u.click(); }, 60);
+  }
+}
+/* ---------- sheets ---------- */
+function openSheet(html, label){ sheet.innerHTML = '<div class="faa-pan" role="dialog" aria-modal="true" aria-label="' + esc(label) + '"><div class="grab"></div>' + html + '</div>'; sheet.hidden = false; var f = $('button, input', sheet); if (f) try { f.focus({preventScroll:true}); } catch(e){} }
+function closeSheet(){ sheet.hidden = true; sheet.innerHTML = ''; }
+function addSheet(){
+  var items = [];
+  (P.actions || []).forEach(function(ac, i){ items.push('<button type="button" class="faa-item" data-act="' + i + '" data-kind="' + (ac.wizard ? 'wizard' : (ac.imp != null ? 'imp' : 'other')) + '"><span class="ic">' + (ac.icon || '＋') + '</span><span>' + esc(call(ac.label, '')) + (ac.note ? '<small>' + esc(ac.note) + '</small>' : '') + '</span></button>'); });
+  (P.more || []).forEach(function(ac, i){ items.push('<button type="button" class="faa-item" data-more="' + i + '" data-kind="' + (ac.imp != null ? 'imp' : 'other') + '"><span class="ic">' + (ac.icon || '›') + '</span><span>' + esc(ac.label) + (ac.note ? '<small>' + esc(ac.note) + '</small>' : '') + '</span></button>'); });
+  if (X.sample || P.sampleSel || P.loadSample) items.push(isSample() ? '<button type="button" class="faa-item" data-a="mine"><span class="ic">🧹</span><span>Clear sample data<small>Removes the made-up numbers.' + (window.FAA2 && window.FAA2.needsReal() ? ' Your own data comes back.' : '') + '</small></span></button>' : '<button type="button" class="faa-item" data-a="a2try"><span class="ic">👀</span><span>Try with sample data<small>Made-up numbers, clearly labeled. Your own data is set aside and comes back when you clear it.</small></span></button>');
+  if (window.FAA2 && !(window.FAA2_CFG || {}).nodata) items.push('<button type="button" class="faa-item" data-a="a2save"><span class="ic">💾</span><span>Save a backup file<small>Your data lives only on this device. Keep a copy.</small></span></button>', '<button type="button" class="faa-item" data-a="a2data"><span class="ic">↩️</span><span>Restore from backup<small>Shows what is in the file before anything changes.</small></span></button>');
+  openSheet('<h2>Add your info</h2><p>Every way to add your own info. Importing a file is fastest, and you see a preview before anything is saved.</p><div class="faa-list">' + items.join('') + '</div><button type="button" class="faa-btn ghost" data-a="close">Close</button>', 'Add or import');
+}
+function helpSheet(){
+  var steps = (X.steps || []).map(function(s){ return '<li>' + s + '</li>'; }).join('');
+  var ios = /iPhone|iPad|iPod/.test(navigator.userAgent);
+  openSheet('<h2>' + esc(X.name) + '</h2><p>' + esc(P.one || X.oneLine) + '</p>' + (steps ? '<ol class="faa-steps">' + steps + '</ol>' : '') +
+    (X.cannot ? '<p><b>What it can’t pull in automatically:</b> ' + X.cannot + '</p>' : '') +
+    '<p><b>Put it on your home screen:</b> ' + (ios ? 'in Safari tap Share, then <b>Add to Home Screen</b>.' : 'in Chrome tap ⋮, then <b>Install app</b> or <b>Add to Home screen</b>. On iPhone: Safari, Share, Add to Home Screen.') + ' It then opens like an app and works offline.</p>' +
+    (deferred ? '<button type="button" class="faa-btn" data-a="install">Install this app</button>' : '') +
+    '<p>🔒 Private by design: no account, nothing uploaded. Your numbers stay in this browser on this device.</p>' +
+    '<div class="faa-list"><button type="button" class="faa-item" data-a="details"><span class="ic">☰</span><span>All features<small>Every screen, setting, print and export</small></span></button>' + (window.FAA2 ? '<button type="button" class="faa-item" data-a="a2data"><span class="ic">💾</span><span>Your data, backups and free extras<small>Save a backup file, restore, sample data, start guide, printables</small></span></button>' : '') + '</div>' +
+    '<button type="button" class="faa-btn ghost" data-a="close">Close</button>', 'Help');
+}
+function toast(msg, undo){
+  var old = $('.faa-toast', root); if (old) old.remove(); clearTimeout(toastT);
+  var t = D.createElement('div'); t.className = 'faa-toast'; t.setAttribute('role', 'status'); t.innerHTML = '<span>' + esc(msg) + '</span>' + (undo ? '<button type="button">Undo</button>' : '');
+  root.appendChild(t); if (undo) $('button', t).addEventListener('click', function(){ t.remove(); undo(); });
+  toastT = setTimeout(function(){ t.remove(); }, undo ? 7000 : 4000);
+}
+/* ---------- wizard: plain questions, one at a time; answers go into the tool's own fields ---------- */
+function setField(f, v){
+  var el = $(f.sel); if (!el) return;
+  if (f.tab) goTab(f.tab);
+  el.value = v; el.dispatchEvent(new Event('input', {bubbles:true})); el.dispatchEvent(new Event('change', {bubbles:true}));
+}
+function today(){ var d = new Date(); return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
+function wizard(round){
+  var W = P.wizard; if (!W) return; var fs = W.fields.filter(function(f){ return !(round && f.once); });
+  var wasS = isSample(), vals = {}, i = 0;
+  fs.forEach(function(f){ var el = $(f.sel); vals[f.sel] = (!wasS && el && f.keep !== false) ? el.value : (f.def != null ? String(f.def) : ''); if (f.kind === 'select' && !vals[f.sel] && el) vals[f.sel] = el.value; });
+  function step(){
+    var f = fs[i], el = $(f.sel), dots = fs.map(function(_, j){ return '<i class="' + (j <= i ? 'on' : '') + '"></i>'; }).join(''), inner;
+    if (f.kind === 'select') {
+      var opts = f.options || (el ? Array.prototype.map.call(el.options, function(o){ return [o.value, o.textContent]; }) : []);
+      inner = '<div class="opts" role="radiogroup">' + opts.map(function(o){ return '<button type="button" role="radio" data-v="' + esc(o[0]) + '" aria-pressed="' + (String(vals[f.sel]) === String(o[0]) ? 'true' : 'false') + '">' + esc(o[1]) + '</button>'; }).join('') + '</div>';
+    } else {
+      var pre = f.kind === 'money' ? '$' : '', post = f.kind === 'pct' ? '%' : '';
+      var it = f.kind === 'date' ? 'date' : 'text', im = (f.kind === 'money' || f.kind === 'pct' || f.kind === 'num') ? ' inputmode="decimal"' : '';
+      inner = '<div class="fld">' + (pre ? '<span>' + pre + '</span>' : '') + '<input id="faaWzIn" type="' + it + '"' + im + ' autocomplete="off" value="' + esc(vals[f.sel] || '') + '" placeholder="' + esc(f.ph || '') + '" aria-labelledby="faaWzQ">' + (post ? '<span>' + post + '</span>' : '') + '</div>';
+    }
+    openSheet('<div class="faa-wz"><div class="dots">' + dots + '</div><div class="qn">Question ' + (i + 1) + ' of ' + fs.length + '</div><label class="q" id="faaWzQ" for="faaWzIn">' + esc(f.q) + '</label>' + (f.help ? '<p class="help">' + esc(f.help) + '</p>' : '') + inner +
+      '<div class="nav2"><button type="button" class="faa-btn ghost" id="faaWzBack">' + (i ? 'Back' : 'Cancel') + '</button><button type="button" class="faa-btn" id="faaWzNext">' + (i === fs.length - 1 ? esc(W.finish || 'Show my answer') : 'Next') + '</button></div></div>', 'Question ' + (i + 1));
+    var inp = $('#faaWzIn', sheet); if (inp) { try { inp.focus(); inp.select(); } catch(e){} inp.addEventListener('keydown', function(e){ if (e.key === 'Enter') { e.preventDefault(); next(); } }); }
+    $$('.opts button', sheet).forEach(function(b){ b.addEventListener('click', function(){ vals[f.sel] = b.getAttribute('data-v'); $$('.opts button', sheet).forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); }); setTimeout(next, 140); }); });
+    $('#faaWzBack', sheet).addEventListener('click', function(){ if (!i) closeSheet(); else { save(); i--; step(); } });
+    $('#faaWzNext', sheet).addEventListener('click', next);
+  }
+  function save(){ var inp = $('#faaWzIn', sheet); if (inp) vals[fs[i].sel] = inp.value.replace(/^\s*\$\s*/, '').replace(/,(?=\d{3}\b)/g, '').trim(); }
+  function next(){
+    save(); var f = fs[i];
+    if (f.req !== false && f.kind !== 'select' && !String(vals[f.sel] || '').trim()) { var fl = $('.fld', sheet); if (fl) { fl.style.borderColor = '#B23A2E'; } return; }
+    if (i < fs.length - 1) { i++; step(); return; }
+    finish();
+  }
+  function finish(){
+    closeSheet(); clearSample(); lsSet(LS, '1');
+    if (W.before) W.before(Q, vals);
+    if (W.tab) goTab(W.tab);
+    Object.keys(W.pre || {}).forEach(function(sel){ var el = $(sel); if (el && !String(el.value || '').trim()) setField({sel: sel}, typeof W.pre[sel] === 'function' ? W.pre[sel](Q, today()) : W.pre[sel]); });
+    fs.forEach(function(f){ setField(f, vals[f.sel]); });
+    if (W.submit) { var s = $(W.submit); var form = s && (s.tagName === 'FORM' ? s : s.closest('form')); if (form) { if (form.requestSubmit) form.requestSubmit(); else form.dispatchEvent(new Event('submit', {cancelable:true, bubbles:true})); } else if (s) s.click(); }
+    if (W.after) W.after(Q, vals);
+    if (W.remember) lsSet('faa_wz_' + SLUG, JSON.stringify(vals));
+    show('home');
+    setTimeout(function(){ refresh(true); if (W.again) toast(W.againMsg || 'Saved. Add another?', null); }, 120);
+    if (W.again) setTimeout(function(){ var t = $('.faa-toast', root); if (t) { var b = D.createElement('button'); b.type = 'button'; b.textContent = W.againLabel || 'Add another'; b.addEventListener('click', function(){ t.remove(); wizard(true); }); t.appendChild(b); } }, 160);
+  }
+  step();
+}
+function restoreWizard(){
+  var W = P.wizard; if (!W || !W.remember || isSample()) return; var v; try { v = JSON.parse(lsGet('faa_wz_' + SLUG) || 'null'); } catch(e){ v = null; } if (!v) return;
+  if (W.tab) goTab(W.tab); W.fields.forEach(function(f){ if (v[f.sel] != null) setField(f, v[f.sel]); });
+}
+/* ---------- PWA: manifest + service worker only on http(s); the same HTML still works as a single file ---------- */
+var deferred = null;
+function pwa(){
+  window.addEventListener('beforeinstallprompt', function(e){ e.preventDefault(); deferred = e; });
+  if (!/^https?:$/.test(location.protocol)) return;
+  var put = function(){ var l = $('link[rel="manifest"]'); if (!l) { l = D.createElement('link'); l.rel = 'manifest'; D.head.appendChild(l); } l.href = 'manifest.webmanifest'; };
+  var reg = function(){ put(); if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(function(){}); };
+  put(); if (D.readyState === 'complete') reg(); else window.addEventListener('load', reg);
+}
+/* ---------- boot ---------- */
+function boot(){
+  pwa();
+  if (TEST) { H.classList.add('faa-test'); return; }
+  H.classList.add('faa-on');
+  if (P.native) { if (P.native(Q, api) !== false) return; }
+  build(); watchFeeds();
+  window.FAA2_HOOKS = window.FAA2_HOOKS || {};
+  var HK = window.FAA2_HOOKS;
+  HK.isSample = function(){ return isSample(); };
+  HK.trySample = function(){ loadSample(); lsSet(LS, '1'); show('home'); setTimeout(function(){ refresh(true); toast('Sample data loaded. It is made up and kept apart from your own data.'); }, 150); };
+  HK.clearSample = function(){ clearSample(); lsSet(LS, '1'); refresh(true); toast('Sample data cleared.'); };
+  HK.resume = function(r){ if (r.act != null) act((P.actions || [])[r.act]); else if (r.more != null) act((P.more || [])[r.more]); else if (r.auto) { show('details'); setTimeout(function(){ if (window.FAUX) window.FAUX.consume(); var u = $('#fauxAuto [data-auto="' + r.auto + '"]'); if (u) u.click(); }, 60); } };
+  if (!lsGet(LS) && !lsGet(X.key) && (X.sample || P.sampleSel || P.loadSample)) { loadSample(); lsSet(LS, '1'); }
+  else lsSet(LS, '1');
+  restoreWizard();
+  show('home');
+  var t = null; new MutationObserver(function(m){ if (view !== 'home') return; if (m.every(function(r){ return root.contains(r.target); })) return; clearTimeout(t); t = setTimeout(function(){ refresh(false); }, 120); }).observe(D.body, { subtree: true, childList: true, characterData: true, attributes: true, attributeFilter: ['style', 'class', 'value'] });
+  if (P.tick) setInterval(function(){ if (view === 'home') refresh(false); }, P.tick);
+  window.addEventListener('storage', function(){ refresh(true); });
+  window.FAA = { show: show, refresh: refresh, answer: answer, isSample: isSample, wizard: wizard, api: api };
+}
+if (D.readyState === 'loading') D.addEventListener('DOMContentLoaded', function(){ setTimeout(boot, 0); }); else setTimeout(boot, 0);
+})();
+</script>
+<script id="faa2-cfg">window.FAA2_CFG={"slug": "tips-overtime-deduction-tracker", "name": "Tips & Overtime Deduction Tracker", "main": "fac_tips_overtime_v2", "keys": ["fac_tips_overtime_v2", "faa_started_tips-overtime-deduction-tracker", "faa_wz_tips-overtime-deduction-tracker", "faux_seen_tips-overtime-deduction-tracker", "faux_done_tips-overtime-deduction-tracker"], "bridge": [], "bonusBase": "https://ukuleletodd.github.io/filedawayco-apps/review/app4/tips-overtime-deduction-tracker/bonus/", "extras": [["Start here (1-page PDF)", "Tips-and-Overtime-Deduction-Tracker-Start-Here.pdf"], ["Printable shift log (PDF)", "Tips-and-Overtime-Deduction-Tracker-Printable-Sheet.pdf"], ["First 10 minutes checklist (PDF)", "Tips-and-Overtime-Deduction-Tracker-First-10-Minutes.pdf"], ["Year-end tips and overtime summary (2026) (PDF)", "Tips-and-Overtime-Deduction-Tracker-Year-End-Tips-and-Overtime-Summary.pdf"], ["Import template: shifts (CSV)", "Tips-and-Overtime-Deduction-Tracker-Import-Template-shifts.csv"]], "nodata": false};</script>
+<script id="faa2-js">/* FiledAwayCo app data kit v3 (v-app3, 2026-11-27): backup file, restore with preview + undo, sample data kept apart from your own data.
+   Works on this device only. Nothing is uploaded. The app's own calculations are not touched. */
+(function(){
+'use strict';
+var W = window, D = document, C = W.FAA2_CFG; if (!C || W.__FA_APP_TEST) return;
+var LS = W.localStorage, SL = C.slug, BR = 'fac_bridge_auto_v1';
+var K = { real: 'faa2_real_', undo: 'faa2_undo_' + SL, msg: 'faa2_msg_' + SL, bk: 'faa2_lastbk_' + SL, res: 'faa2_resume_' + SL };
+var _set = Storage.prototype.setItem, _rem = Storage.prototype.removeItem, lock = false;
+var PARTS = C.parts || [{ slug: SL, name: C.name, main: C.main, keys: C.keys, bridge: C.bridge || [] }];
+function owned(k){ if (k === BR) return true; return PARTS.some(function(p){ return p.keys.indexOf(k) >= 0; }); }
+Storage.prototype.setItem = function(k, v){ if (lock && this === LS && owned(k)) return; return _set.call(this, k, v); };
+Storage.prototype.removeItem = function(k){ if (lock && this === LS && owned(k)) return; return _rem.call(this, k); };
+function g(k){ try { return LS.getItem(k); } catch(e){ return null; } }
+function s(k, v){ try { _set.call(LS, k, String(v)); } catch(e){} }
+function r(k){ try { _rem.call(LS, k); } catch(e){} }
+function J(x, d){ try { var v = JSON.parse(x); return v == null ? d : v; } catch(e){ return d; } }
+function esc(x){ return String(x == null ? '' : x).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function ymd(d){ d = d || new Date(); return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
+function when(t){ var d = new Date(t); if (isNaN(d)) return 'an unknown date'; return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) + ' at ' + d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }); }
+var H = W.FAA2_HOOKS = W.FAA2_HOOKS || {};   /* filled by the app shell / adapters: isSample(part), trySample(), clearSample(), resume(obj) */
+/* ---------- read / write one app's (or the bundle's) data ---------- */
+function readPart(p){ var o = {}; p.keys.forEach(function(k){ var v = g(k); if (v != null) o[k] = v; });
+  if (p.bridge.length) { var m = J(g(BR), {}), b = {}, n = 0; p.bridge.forEach(function(x){ if (m[x]) { b[x] = m[x]; n++; } }); if (n) o[BR] = JSON.stringify(b); }
+  return o; }
+function writePart(p, o){ o = o || {};
+  p.keys.forEach(function(k){ if (o[k] != null) s(k, o[k]); else r(k); });
+  if (p.bridge.length) { var m = J(g(BR), {}), b = J(o[BR], {}); p.bridge.forEach(function(x){ if (b[x]) m[x] = b[x]; else delete m[x]; }); s(BR, JSON.stringify(m)); } }
+function hasData(p, o){ return o[p.main] != null && o[p.main] !== ''; }
+function isS(p){ try { return !!(H.isSample && H.isSample(p.slug)); } catch(e){ return false; } }
+function snap(p){ return J(g(K.real + p.slug), null); }
+/* your own data, even while the sample is on screen (it is set aside, not mixed) */
+function realOf(p){ if (isS(p)) { var x = snap(p); return x ? x.data : null; } var o = readPart(p); return hasData(p, o) ? o : null; }
+function stash(slug){ PARTS.forEach(function(p){ if (slug && p.slug !== slug) return; if (isS(p) || snap(p)) return; var o = readPart(p); if (hasData(p, o)) s(K.real + p.slug, JSON.stringify({ at: Date.now(), data: o })); }); }
+function anySnap(){ return PARTS.some(function(p){ return !!snap(p); }); }
+function reload(msg){ if (msg) s(K.msg, msg); lock = true; setTimeout(function(){ try { (C.top ? W.top : W).location.reload(); } catch(e){ W.location.reload(); } }, 40); }
+function backToReal(resume, slug){ var hit = false; PARTS.forEach(function(p){ if (slug && p.slug !== slug) return; var x = snap(p); if (!x) return; writePart(p, x.data); r(K.real + p.slug); hit = true; });
+  if (!hit) return false; if (resume) s(K.res, JSON.stringify(resume)); reload('real'); return true; }
+/* ---------- backup ---------- */
+function backupObj(){ var data = {}, parts = [], any = false;
+  PARTS.forEach(function(p){ var o = realOf(p); if (o) { any = true; parts.push(p.slug); Object.keys(o).forEach(function(k){ if (k === BR && data[BR]) { var a = J(data[BR], {}), b = J(o[BR], {}); Object.keys(b).forEach(function(x){ a[x] = b[x]; }); data[BR] = JSON.stringify(a); } else data[k] = o[k]; }); } });
+  if (!any) return null;
+  return { format: 'filedawayco-backup', version: 1, app: SL, appName: C.name, parts: parts, savedAt: new Date().toISOString(),
+    howToUse: 'Keep this file somewhere safe (email it to yourself or save it to your cloud drive). To bring your data back: open ' + C.name + ', tap Save backup or Restore at the bottom of Home, then Restore from backup and pick this file.', data: data }; }
+function saveBackup(){
+  var f = backupObj();
+  if (!f) { toast(isAnyS() ? 'Nothing to back up yet: sample numbers are never saved in a backup. Add your own info first.' : 'Nothing to back up yet. Add your own info first.'); return null; }
+  var txt = JSON.stringify(f, null, 1), name = 'FiledAwayCo-' + SL + '-backup-' + ymd() + '.json';
+  try { var a = D.createElement('a'); a.href = URL.createObjectURL(new Blob([txt], { type: 'application/json' })); a.download = name; a.rel = 'noopener'; D.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 1500); } catch(e){}
+  s(K.bk, Date.now()); W.__FAA2_LAST = txt; renderNudge();
+  toast('Backup saved: ' + name + '. Keep it somewhere safe.'); closeSheet(); return txt; }
+function isAnyS(){ return PARTS.some(isS); }
+/* ---------- restore: check the file, show what is in it, then replace (with undo) ---------- */
+var pending = null;
+function summary(o){ var out = []; PARTS.forEach(function(p){ var m = J(o[p.main], null); if (!m) return; var bits = [];
+    var walk = function(obj, depth){ Object.keys(obj).forEach(function(k){ var v = obj[k]; if (Array.isArray(v) && v.length && !/^(sample|settings|ui|_)/i.test(k)) bits.push(v.length + ' ' + k.replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase()); else if (v && typeof v === 'object' && !Array.isArray(v) && depth < 1) walk(v, depth + 1); }); };
+    if (typeof m === 'object') walk(m, 0);
+    out.push((PARTS.length > 1 ? p.name + ': ' : '') + (bits.length ? bits.slice(0, 5).join(', ') : 'your saved settings and entries')); });
+  return out; }
+function readFile(file){ if (!file) return; var fr = new FileReader(); fr.onload = function(){ preview(String(fr.result || ''), file.name); }; fr.onerror = function(){ showErr('That file could not be read. Try again.'); }; fr.readAsText(file); }
+function preview(txt, fname){
+  var f = J(txt, null);
+  /* one backup system (v-app3): older files saved inside All features still restore, through the app's own reader */
+  if (f && typeof f === 'object' && f.format !== 'filedawayco-backup') {
+    var cv = null; try { cv = H.legacy ? H.legacy(f) : null; } catch(e){}
+    if (cv) f = { format: 'filedawayco-backup', app: SL, appName: C.name, savedAt: f.exported || f.savedAt || '', data: cv };
+    else if (D.getElementById('restoreFile') && ownLegacy(f)) return legacyPreview(txt, fname, f);
+    else if (C.suite && typeof f.app === 'string' && /^fac-(bookkeeping|freelancer|1099)/.test(f.app)) return showErr('This is an older backup from one part of ' + esc(C.name) + '. Nothing was changed. Open that part (Bookkeeping, Invoices or Tax) and tap Restore from backup there.');
+    else if (typeof f.app === 'string' && /^fac-/.test(f.app)) return showErr('This looks like a backup from a different FiledAwayCo app, not ' + esc(C.name) + '. Nothing was changed. Open the app that saved it and restore it there.');
+  }
+  if (!f || f.format !== 'filedawayco-backup' || !f.data || typeof f.data !== 'object') return showErr('That file is not a ' + esc(C.name) + ' backup, so nothing was changed. Pick the backup file this app saved. Its name starts with FiledAwayCo-.');
+  if (f.app !== SL && C.top && W.parent !== W) { try { if (W.parent.FAA2 && W.parent.FAA2.cfg.slug === f.app) return W.parent.FAA2.preview(txt, fname); } catch(e){} }
+  var ok = (f.app === SL) || (C.accept || []).indexOf(f.app) >= 0;
+  if (!ok) return showErr('This backup is from ' + esc(f.appName || f.app) + ', not ' + esc(C.name) + '. Nothing was changed. Open ' + esc(f.appName || 'that app') + ' and restore it there.');
+  var clean = {}; Object.keys(f.data).forEach(function(k){ if (owned(k) && typeof f.data[k] === 'string') clean[k] = f.data[k]; });
+  if (!PARTS.some(function(p){ return clean[p.main] != null; })) return showErr('This backup has no ' + esc(C.name) + ' data in it.');
+  pending = clean; var cur = PARTS.some(function(p){ return !!realOf(p); });
+  openSheet('<h2>Restore this backup?</h2>' +
+    '<div class="a2-card"><b>' + esc(f.appName || C.name) + '</b><span>Saved ' + esc(when(f.savedAt)) + '</span><span>' + esc(fname || '') + ' · ' + Math.max(1, Math.round(txt.length / 1024)) + ' KB</span>' +
+    '<ul>' + summary(clean).map(function(x){ return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></div>' +
+    '<p>' + (cur ? 'This <b>replaces</b> what is in ' + esc(C.name) + ' on this device now. You can undo it right after.' : 'This puts the backup into ' + esc(C.name) + ' on this device. You can undo it right after.') + '</p>' +
+    '<button type="button" class="a2-btn" data-a2="commit">Restore this backup</button><button type="button" class="a2-btn ghost" data-a2="close">Cancel</button>', 'Restore preview'); }
+function commit(){
+  if (!pending) return; var undo = { at: Date.now(), parts: {} };
+  PARTS.forEach(function(p){ undo.parts[p.slug] = { data: readPart(p), real: g(K.real + p.slug) }; });
+  s(K.undo, JSON.stringify(undo));
+  PARTS.forEach(function(p){ var o = {}; Object.keys(pending).forEach(function(k){ if (k === BR || p.keys.indexOf(k) >= 0) o[k] = pending[k]; }); if (o[p.main] == null) return; writePart(p, o); r(K.real + p.slug); });
+  pending = null; reload('restored'); }
+var lpend = null;
+/* an older file counts as this app's own only when this app's code names its 'app' value (an fac- name) */
+function ownLegacy(f){ if (!f || typeof f.app !== 'string' || !/^fac-[a-z0-9-]+$/.test(f.app)) return false;
+  var q1 = "'" + f.app + "'", q2 = '"' + f.app + '"';
+  return Array.prototype.some.call(D.scripts, function(sc){ if (/^(faa|faux)/.test(sc.id || '')) return false; var t = sc.text || ''; return t.indexOf(q1) >= 0 || t.indexOf(q2) >= 0; }); }
+function legacyPreview(txt, fname, f){ lpend = { txt: txt, name: fname || 'backup.json' };
+  openSheet('<h2>Restore this backup?</h2><div class="a2-card"><b>' + esc(C.name) + '</b><span>An older backup file' + (f.exported || f.savedAt ? ', saved ' + esc(String(f.exported || f.savedAt).slice(0, 10)) : '') + '</span><span>' + esc(fname || '') + ' · ' + Math.max(1, Math.round(txt.length / 1024)) + ' KB</span></div>' +
+    '<p>This replaces what is in ' + esc(C.name) + ' on this device now. You can undo it right after.</p>' +
+    '<button type="button" class="a2-btn" data-a2="lcommit">Restore this backup</button><button type="button" class="a2-btn ghost" data-a2="close">Cancel</button>', 'Restore preview'); }
+function legacyCommit(){ if (!lpend) return; var inp = D.getElementById('restoreFile'); if (!inp) return;
+  var undo = { at: Date.now(), parts: {} }; PARTS.forEach(function(p){ undo.parts[p.slug] = { data: readPart(p), real: g(K.real + p.slug) }; });
+  s(K.undo, JSON.stringify(undo)); var before = JSON.stringify(readPart(PARTS[0]));
+  try { var dt = new DataTransfer(); dt.items.add(new File([lpend.txt], lpend.name, { type: 'application/json' })); inp.files = dt.files; inp.dispatchEvent(new Event('change', { bubbles: true })); } catch(e){ lpend = null; return showErr('This browser could not read that file. Try another browser.'); }
+  lpend = null; closeSheet();
+  setTimeout(function(){ if (JSON.stringify(readPart(PARTS[0])) !== before) toast('Backup restored.', undoRestore); else { r(K.undo); toast('Done. That backup file matched what is already here, so nothing changed.'); } }, 1500); }
+function pick(){ ui(); var i = D.getElementById('faa2File'); i.value = ''; i.click(); }
+/* the app's older backup buttons (inside All features) now use this same backup file and restore */
+function legacyButtons(){
+  D.addEventListener('click', function(e){ var t = e.target; if (!t || !t.closest || t.closest('#faa2')) return;
+    if (t.closest('#backupBtn')) { e.preventDefault(); e.stopImmediatePropagation(); var P = null; try { if (C.top && W.parent !== W && W.parent.FAA2) P = W.parent.FAA2; } catch(x){} (P ? P.save : saveBackup)(); }
+    else if (t.closest('#restorePickBtn, label[for="restoreFile"]')) { e.preventDefault(); e.stopImmediatePropagation(); pick(); } }, true);
+  var fix = function(){ var b = D.getElementById('backupBtn'); if (b && b.textContent !== 'Save a backup file') b.textContent = 'Save a backup file';
+    var rb = D.getElementById('restorePickBtn') || D.querySelector('label[for="restoreFile"]'); if (rb && rb.textContent !== 'Restore from backup') rb.textContent = 'Restore from backup'; };
+  fix(); try { new MutationObserver(fix).observe(D.body, { childList: true, subtree: true }); } catch(e){} }
+function undoRestore(){ var u = J(g(K.undo), null); if (!u) return;
+  PARTS.forEach(function(p){ var x = u.parts && u.parts[p.slug]; if (!x) return; writePart(p, x.data); if (x.real) s(K.real + p.slug, x.real); else r(K.real + p.slug); });
+  r(K.undo); reload('undone'); }
+/* ---------- UI ---------- */
+var root, sh, tT;
+function ui(){ if (root) return; root = D.createElement('div'); root.id = 'faa2'; root.className = 'no-print';
+  root.innerHTML = '<div class="a2-sh" hidden></div><input type="file" id="faa2File" accept=".json,application/json" hidden>';
+  D.body.appendChild(root); sh = root.querySelector('.a2-sh');
+  sh.addEventListener('click', function(e){ if (e.target === sh) closeSheet(); });
+  root.addEventListener('click', function(e){ var b = e.target.closest('[data-a2]'); if (!b) return; var a = b.getAttribute('data-a2');
+    if (a === 'close') closeSheet(); else if (a === 'save') saveBackup(); else if (a === 'pick') pick(); else if (a === 'lcommit') legacyCommit();
+    else if (a === 'commit') commit(); else if (a === 'undo') undoRestore();
+    else if (a === 'try') { closeSheet(); trySample(); } else if (a === 'clear') { closeSheet(); clearSample(); }
+    else if (a === 'bring') { closeSheet(); backToReal(null); } else if (a === 'drop') dropSnap(b); else if (a === 'data') openData(); });
+  D.getElementById('faa2File').addEventListener('change', function(e){ readFile(e.target.files && e.target.files[0]); try { e.target.value = ''; } catch(x){} });
+  D.addEventListener('keydown', function(e){ if (e.key === 'Escape' && sh && !sh.hidden) closeSheet(); }); }
+function openSheet(html, label){ ui(); sh.innerHTML = '<div class="a2-pan" role="dialog" aria-modal="true" aria-label="' + esc(label) + '"><div class="grab"></div>' + html + '</div>'; sh.hidden = false; var f = sh.querySelector('button'); if (f) try { f.focus({ preventScroll: true }); } catch(e){} }
+function closeSheet(){ if (sh) { sh.hidden = true; sh.innerHTML = ''; } }
+function showErr(m){ openSheet('<h2>Can’t restore that file</h2><p class="a2-err">' + m + '</p><button type="button" class="a2-btn" data-a2="pick">Pick another file</button><button type="button" class="a2-btn ghost" data-a2="close">Close</button>', 'Restore'); }
+function toast(m, undo){ ui(); var o = root.querySelector('.a2-toast'); if (o) o.remove(); clearTimeout(tT);
+  var t = D.createElement('div'); t.className = 'a2-toast'; t.setAttribute('role', 'status'); t.innerHTML = '<span>' + esc(m) + '</span>' + (undo ? '<button type="button">Undo</button>' : '');
+  root.appendChild(t); if (undo) t.querySelector('button').addEventListener('click', function(){ t.remove(); undo(); }); tT = setTimeout(function(){ t.remove(); }, undo ? 12000 : 5000); }
+function lastBk(){ var t = +g(K.bk); return t ? when(t) : 'never'; }
+function openData(){
+  var sm = isAnyS(), u = J(g(K.undo), null), sn = anySnap(), B = C.bonusBase || '';
+  var ex = (C.extras || []).map(function(x){ return '<a class="a2-link" href="' + esc(B + x[1]) + '" target="_blank" rel="noopener" download>' + esc(x[0]) + '</a>'; }).join('');
+  openSheet('<h2>Your data</h2>' +
+    '<p>Everything you enter is saved <b>only in this browser on this device</b>. Nothing is uploaded and there is no account. If you clear your browser, switch phones or open the app in a different browser, your data will not be there, so save a backup file now and then.</p>' +
+    '<p class="a2-meta">Last backup: <b>' + esc(lastBk()) + '</b></p>' +
+    '<button type="button" class="a2-btn" data-a2="save">Save a backup file</button>' +
+    '<button type="button" class="a2-btn sec" data-a2="pick">Restore from backup</button>' +
+    (u ? '<button type="button" class="a2-btn ghost" data-a2="undo">Undo the last restore (' + esc(when(u.at)) + ')</button>' : '') +
+    '<h3>Sample data</h3>' +
+    (sm ? '<p>You are looking at made-up sample numbers. They are never mixed into your own data or saved in a backup.' + (sn ? ' Your own data is set aside and comes back when you clear the sample.' : '') + '</p><button type="button" class="a2-btn sec" data-a2="clear">Clear sample data</button>'
+        : '<p>See how it works with made-up numbers first. ' + (PARTS.some(function(p){ return !!realOf(p); }) ? 'Your own data is set aside, untouched, and comes back when you clear the sample.' : 'Clear it whenever you are ready to add your own.') + '</p><button type="button" class="a2-btn sec" data-a2="try">Try with sample data</button>') +
+    (ex ? '<h3>Free extras</h3><div class="a2-links">' + ex + '</div>' : '') +
+    '<button type="button" class="a2-btn ghost" data-a2="close">Close</button>', 'Your data'); }
+function trySample(){ stash(); if (H.trySample) H.trySample(); setTimeout(renderNudge, 400); }
+function clearSample(){ if (anySnap() && isAnyS()) { if (H.clearSampleOnly) H.clearSampleOnly(); backToReal(null); return; } if (H.clearSample) H.clearSample(); setTimeout(renderNudge, 400); }
+function dropSnap(b){ if (b.getAttribute('data-sure') !== '1') { b.setAttribute('data-sure', '1'); b.textContent = 'Tap again to delete it for good'; return; } PARTS.forEach(function(p){ r(K.real + p.slug); }); closeSheet(); toast('Deleted the set-aside copy.'); }
+/* backup nudge for the trust line: shell / adapters call FAA2.nudge(el) */
+var nudgeEls = [];
+function renderNudge(){ nudgeEls.forEach(function(el){ var t = +g(K.bk), real = PARTS.some(function(p){ return !!realOf(p); }); el.classList.toggle('a2-due', real && (!t || Date.now() - t > 30 * 864e5)); }); }
+/* ---------- boot messages ---------- */
+function boot(){
+  ui(); legacyButtons(); var m = g(K.msg); r(K.msg);
+  if (m === 'restored') toast('Backup restored.', undoRestore);
+  else if (m === 'undone') toast('Restore undone. Your earlier data is back.');
+  else if (m === 'real') toast('Sample cleared. Your own data is back.');
+  var res = J(g(K.res), null); r(K.res); if (res && H.resume) setTimeout(function(){ H.resume(res); }, 500);
+  /* a set-aside copy while no sample is showing (e.g. the sample was cleared inside All features): never drop it silently */
+  if (!C.noPrompt) setTimeout(function(){ if (m || !anySnap() || isAnyS()) return; var at = 0; PARTS.forEach(function(p){ var x = snap(p); if (x && x.at > at) at = x.at; });
+    openSheet('<h2>Bring back your own data?</h2><p>While you looked at the sample, your own ' + esc(C.name) + ' data from ' + esc(when(at)) + ' was set aside. It is still here.</p><button type="button" class="a2-btn" data-a2="bring">Bring it back</button><button type="button" class="a2-btn ghost" data-a2="close">Not now</button><button type="button" class="a2-btn ghost a2-red" data-a2="drop">Delete the set-aside copy</button>', 'Your data'); }, C.promptDelay || 1500);
+  setTimeout(renderNudge, 1200); }
+W.FAA2 = { save: saveBackup, pick: pick, open: openData, preview: preview, readFile: readFile, commit: commit, undo: undoRestore, trySample: trySample, clearSample: clearSample,
+  stash: stash, backToReal: backToReal, needsReal: function(){ return anySnap() && isAnyS(); }, snap: snap, realOf: realOf, backupObj: backupObj, parts: PARTS, toast: toast,
+  nudge: function(el){ nudgeEls.push(el); renderNudge(); }, cfg: C };
+if (D.readyState === 'loading') D.addEventListener('DOMContentLoaded', function(){ setTimeout(boot, 30); }); else setTimeout(boot, 30);
+})();
+</script>
+<!-- /FiledAwayCo app shell -->
+<script id="fa4-cfg">window.FA4_CFG={"slug": "tips-overtime-deduction-tracker", "acc": "#6B4A8F", "acc2": "#B9A3D6", "acc3": "#E39A2D"};</script>
+<script id="fa4-js">/* FiledAwayCo design layer v-app4: home dashboard side panel (breakdown chart, next-up list, shortcuts). Reads the tool's own numbers; changes nothing. */
+(function(){
+var D = document, C = window.FA4_CFG || {}, P0 = window.FAA_P || {}, slug = (window.FAA2_CFG || {}).slug || C.slug || '';
+var P = P0[slug] ? P0[slug]() : {};
+var $ = function(s, r){ try { return (r || D).querySelector(s); } catch(e){ return null; } };
+var esc = function(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+var t = function(s){ var e = $(s); return e ? (e.value != null && /INPUT|SELECT|TEXTAREA/.test(e.tagName) ? e.value : e.textContent).trim() : ''; };
+var n = function(s){ s = String(s == null ? '' : s); var m = s.replace(/,/g, '').match(/-?\d+(\.\d+)?/); var v = m ? parseFloat(m[0]) : 0; return /\(\s*\$|−\$|-\$/.test(s) ? -Math.abs(v) : v; };
+var money = function(v){ return (v < 0 ? '−$' : '$') + Math.round(Math.abs(v)).toLocaleString('en-US'); };
+var COL = ['var(--fa4-acc)', 'var(--fa4-acc3)', 'var(--fa4-acc2)', '#8A94A3', '#C9B99A'];
+function split(title, parts, note){
+  parts = parts.filter(function(p){ return p[1] > 0; }); var tot = parts.reduce(function(a, p){ return a + p[1]; }, 0); if (!tot) return '';
+  return '<section class="fa4-card" aria-label="' + esc(title) + '"><h2>' + esc(title) + '<span>' + money(tot) + '</span></h2>' +
+    '<div class="fa4-bar" role="img" aria-label="' + esc(parts.map(function(p){ return p[0] + ' ' + money(p[1]); }).join(', ')) + '">' + parts.map(function(p, i){ return '<i style="width:' + (p[1] / tot * 100).toFixed(2) + '%;background:' + COL[i % COL.length] + '"></i>'; }).join('') + '</div>' +
+    '<ul class="fa4-leg">' + parts.map(function(p, i){ return '<li><span class="d" style="background:' + COL[i % COL.length] + '"></span><span>' + esc(p[0]) + '</span><b>' + money(p[1]) + '</b><em>' + Math.round(p[1] / tot * 100) + '%</em></li>'; }).join('') + '</ul>' + (note ? '<p class="fa4-strip" style="justify-content:flex-start;margin-top:10px">' + esc(note) + '</p>' : '') + '</section>';
+}
+function bars(title, rows){
+  rows = rows.filter(function(r){ return r[1] > 0; }); var mx = Math.max.apply(null, rows.map(function(r){ return r[1]; }).concat([0])); if (!mx) return '';
+  return '<section class="fa4-card" aria-label="' + esc(title) + '"><h2>' + esc(title) + '</h2><div class="fa4-bars">' + rows.map(function(r, i){ return '<div class="r"><div><span>' + esc(r[0]) + '</span><b>' + (r[2] || money(r[1])) + '</b></div><div class="t" aria-hidden="true"><i style="width:' + Math.max(2, r[1] / mx * 100).toFixed(1) + '%;background:' + COL[i % COL.length] + '"></i></div></div>'; }).join('') + '</div></section>';
+}
+function prog(title, done, total, big, line){
+  if (!total) return ''; var f = Math.max(0, Math.min(1, done / total)), r = 36, c = 2 * Math.PI * r;
+  return '<section class="fa4-card" aria-label="' + esc(title) + '"><h2>' + esc(title) + '</h2><div class="fa4-prog"><svg viewBox="0 0 84 84" role="img" aria-label="' + Math.round(f * 100) + ' percent"><circle cx="42" cy="42" r="' + r + '" fill="none" stroke="#EFEAE0" stroke-width="10"/><circle cx="42" cy="42" r="' + r + '" fill="none" stroke="var(--fa4-acc)" stroke-width="10" stroke-linecap="round" stroke-dasharray="' + (c * f).toFixed(1) + ' ' + c.toFixed(1) + '" transform="rotate(-90 42 42)"/><text x="42" y="47" text-anchor="middle" font-size="17" font-weight="800" fill="#1B2A40">' + Math.round(f * 100) + '%</text></svg><p><b>' + esc(big) + '</b>' + esc(line) + '</p></div></section>';
+}
+function list(title, items){
+  if (!items.length) return '';
+  return '<section class="fa4-card" aria-label="' + esc(title) + '"><h2>' + esc(title) + '</h2><ul class="fa4-list">' + items.map(function(it){ return '<li' + (it.nx ? ' class="nx"' : '') + '><span class="q">' + esc(it.q) + '</span><span>' + esc(it.a) + (it.s ? '<small>' + esc(it.s) + '</small>' : '') + '</span><b>' + esc(it.v) + '</b></li>'; }).join('') + '</ul></section>';
+}
+var BLOCK = {
+  '1099-quarterly-tax-planner': function(){
+    var MO = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var rows = Array.prototype.slice.call(D.querySelectorAll('.due-row')).slice(0, 4).map(function(r, i){ var x = r.textContent.replace(/\s+/g, ' '), m = x.match(/\$[\d,]+(\.\d\d)?/), d = x.match(/(\d{4})-(\d\d)-(\d\d)/), cov = x.match(/\(([^)]+)\)/), l = x.match(/(\d+)d left/), nx = r.classList.contains('next');
+      return { q: 'Q' + (i + 1), a: d ? 'Due ' + MO[+d[2] - 1] + ' ' + (+d[3]) + ', ' + d[1] : 'Payment ' + (i + 1), s: (cov ? 'Covers ' + cov[1] : '') + (nx ? ' · next' + (l ? ', ' + l[1] + ' days left' : '') : (/Date passed/.test(x) ? ' · date passed' : '')), v: m ? m[0].replace(/\.\d\d$/, '') : '–', nx: nx }; });
+    return list('Your four payments', rows);
+  },
+  'clear-wedding-planner': function(){
+    var base = n(t('#vBase')), all = n(t('#outAllIn')), bud = n(t('#gBudget'));
+    var fx = n(t('#gFixed')), vr = n(t('#gVar')), pl = n(t('#gPlanned')), mx = n(t('#gMaxTag')), w = fx + vr;
+    return split('Your venue, all in', [['Quoted price', base], ['Service charge and tax', Math.max(0, all - base)]], all > base ? 'The quote leaves out ' + money(all - base) + ' of service charge and tax' : '') +
+      (w ? split('Whole wedding at ' + pl + ' guests', [['Fixed costs', fx], ['Per-guest costs', vr]], bud ? (w > bud ? 'Over your ' + money(bud) + ' budget by ' + money(w - bud) : money(bud - w) + ' under your budget') : '') : '') +
+      (pl && mx ? bars('Guests', [['Planned', pl, String(pl)], ['Your budget fits', mx, String(mx)]]) : '');
+  },
+  'debt-payoff-planner': function(){
+    var d = n(t('#kDebt')), i = n(t('#kInt')), s = n(t('#kSave'));
+    return split('What you will pay in total', [['What you owe now', d], ['Interest on this plan', i]], s ? 'This plan saves ' + money(s) + ' in interest vs paying minimums' : '');
+  },
+  'well-kept-host-kit': function(){
+    var MO = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'], L = $('#dlList'), dl = [];
+    if (L) Array.prototype.slice.call(L.children).forEach(function(r){ var x = r.textContent.replace(/\s+/g, ' '), d = x.match(/Due (\d{4})-(\d\d)-(\d\d)/), nm = x.split(/Due in|Due \d|Overdue|SAMPLE/)[0].trim(), l = x.match(/Due in (\d+)d/); if (d && nm && dl.length < 3) dl.push({ q: MO[+d[2] - 1], a: nm, s: l ? 'in ' + l[1] + ' days' : '', v: (+d[3]) + '', nx: !dl.length }); });
+    return split('Where the booking money went', [['You kept', n(t('#dNet'))], ['Platform fees', n(t('#dFees'))], ['Cleaning and supplies', n(t('#dCosts'))]]) + list('Permits and tax dates coming up', dl);
+  },
+  'small-business-bookkeeping': function(){
+    var inc = n(t('#kInc')), ex = n(t('#kExp')); return split('Money in, split', [['Profit', Math.max(0, inc - ex)], ['Costs', ex]]);
+  },
+  'tips-overtime-deduction-tracker': function(){ return split('Your deduction, split', [['Tips', n(t('#outTipsDed'))], ['Overtime premium', n(t('#outOtDed'))]]); },
+  'freelancer-money-system': function(){ return bars('Money at a glance', [['Profit so far', n(t('#tProf'))], ['Set aside for tax', n(t('#tSet'))], ['Unpaid invoices', n(t('#outUnpaid'))]]); },
+  'first-100k-banked-planner': function(){ var b = n(t('#outBanked')); return prog('Progress to $100k', b, 100000, money(b) + ' banked', ' · ' + money(Math.max(0, 100000 - b)) + ' to go') + bars('Recent saving', [['This week', n(t('#outWeek'))], ['This month', n(t('#outMonth'))]]); },
+  'true-hourly': function(){ return bars('What made up your pay', [['Base wages', n(t('#kWage'))], ['Tips you kept', n(t('#kNetTips'))], ['Tip-out you paid', n(t('#kTipOut'))]]); },
+  'ugc-creator-kit': function(){ return bars('This deal', [['Quote', n(t('#outTotal'))], ['If they renew usage', n(t('#outRenewal'))]]); },
+  'load-in': function(){ var m = t('#chkProg').match(/(\d+)\s*\/\s*(\d+)/); return m ? prog('Your checklist', +m[1], +m[2], m[1] + ' of ' + m[2] + ' ready', ' · tick items as you pack') : ''; }
+};
+var EMPTY = { '1099-quarterly-tax-planner': 'Your four payment dates and amounts', 'clear-wedding-planner': 'Your venue all-in, whole-wedding cost and guest count', 'debt-payoff-planner': 'Debt vs interest, and what you save', 'well-kept-host-kit': 'Where each booking dollar went', 'small-business-bookkeeping': 'Profit vs costs', 'freelancer-money-system': 'Profit, tax set-aside and unpaid invoices', 'tips-overtime-deduction-tracker': 'Tips vs overtime deduction', 'first-100k-banked-planner': 'Your progress ring to $100k', 'true-hourly': 'What made up your pay', 'ugc-creator-kit': 'Your quote vs renewal value' };
+function tiles(){
+  var b = [];
+  (P.more || []).forEach(function(m, i){ b.push('<button type="button" data-more="' + i + '"><span class="ic" aria-hidden="true">' + (m.icon || '›') + '</span><span>' + esc(m.label) + '</span></button>'); });
+  b.push('<button type="button" data-a="details"><span class="ic" aria-hidden="true">☰</span><span>All features</span></button>');
+  if (window.FAA2 && !(window.FAA2_CFG || {}).nodata) b.push('<button type="button" data-a="a2save"><span class="ic" aria-hidden="true">💾</span><span>Save a backup file</span></button>');
+  if (b.length % 2) b.push('<button type="button" data-a="help"><span class="ic" aria-hidden="true">?</span><span>How it works</span></button>');
+  return '<section class="fa4-card" aria-label="Shortcuts"><h2>Jump to</h2><div class="fa4-tiles">' + b.join('') + '</div></section>';
+}
+function photo(){ return C.photo ? '<figure class="fa4-card fa4-photo"><img src="' + C.photo + '" alt="' + esc(C.photoAlt || '') + '" width="720" height="405" decoding="async"><figcaption><span>' + esc(C.photoLine || '') + '</span><small>AI-generated photo</small></figcaption></figure>' : ''; }
+var side, lastH = '';
+function render(){
+  if (!side) return; var hero = $('#faa .faa-hero'); if (!hero) return;
+  var empty = !$('[data-faa="kicker"]', hero), f = BLOCK[slug], blk = '';
+  if (empty && EMPTY[slug]) blk = '<section class="fa4-card" aria-label="What you will see"><h2>What you will see</h2><div class="fa4-empty"><div class="sk" aria-hidden="true"><i style="flex:5;background:var(--fa4-acc)"></i><i style="flex:3;background:var(--fa4-acc3)"></i><i style="flex:2;background:var(--fa4-acc2)"></i></div>' + esc(EMPTY[slug]) + ', worked out from your own numbers.<br><button type="button" data-a="a2try">See it with sample data</button></div></section>';
+  else if (f) { try { blk = f() || ''; } catch(e){ blk = ''; } }
+  var h = blk + tiles();
+  if (h !== lastH) { side.innerHTML = h; lastH = h; }
+}
+function mount(){
+  var hv = $('#faa .faa-homev'), hw = $('#faa .faa-heroW'); if (!hv || !hw || $('#faa .fa4-grid')) return !!hv;
+  var g = D.createElement('div'); g.className = 'fa4-grid'; var m = D.createElement('div'); m.className = 'fa4-main'; side = D.createElement('div'); side.className = 'fa4-side';
+  hv.insertBefore(g, hw); ['.faa-heroW', '.faa-auto', '.faa-cta'].forEach(function(s){ var e = $('#faa ' + s); if (e) m.appendChild(e); });
+  g.appendChild(m); g.appendChild(side);
+  var tr = $('#faa .faa-trust'); if (tr && !$('#faa .fa4-strip')) { var s = D.createElement('p'); s.className = 'fa4-strip'; s.innerHTML = '<span>Works offline</span><span>No account</span><span>No subscription</span>'; m.appendChild(s); m.appendChild(tr); }
+  if (C.photo && !$('#faa .fa4-ph')) { var ph = D.createElement('div'); ph.className = 'fa4-ph'; ph.innerHTML = photo(); m.appendChild(ph); }
+  if (C.acc) D.documentElement.style.setProperty('--fa4-acc', C.acc); if (C.acc2) D.documentElement.style.setProperty('--fa4-acc2', C.acc2); if (C.acc3) D.documentElement.style.setProperty('--fa4-acc3', C.acc3);
+  render(); var tm; new MutationObserver(function(){ clearTimeout(tm); tm = setTimeout(render, 30); }).observe(hw, { childList: true, subtree: true, characterData: true });
+  return true;
+}
+var k = 0; (function go(){ if (!mount() && ++k < 100) setTimeout(go, 50); })();
+})();
+</script>
+</body>
+</html>
