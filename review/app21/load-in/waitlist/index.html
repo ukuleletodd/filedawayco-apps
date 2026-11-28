@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" data-temp="editorial">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LOAD-IN — Free Chapter 1 &amp; Early Access Waitlist</title>
+<style>
+:root,[data-temp="editorial"]{
+  --brand:#355245; --accent:#1F5C45; --paper:#FBF8F2; --card:#FFFFFF; --cream:#E8E0D2;
+  --ink:#1F2A24; --muted:#4A5952; --line:#D9D1C3; --hairline:#EDE6DA;
+  --input-bg:#FFF4D6; --input-border:#D9C79A; --input-ink:#1A1A1A;
+  --good-ink:#16533C; --good-bg:#E6F3EC;
+  --font-display:Georgia,"Times New Roman",serif;
+  --font-body:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--cream);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.55;-webkit-text-size-adjust:100%}
+.h-num{font-family:var(--font-body);font-variant-numeric:tabular-nums}
+.shell{max-width:740px;margin:0 auto;min-height:100vh;background:var(--paper);padding:24px 18px 56px}
+@media(min-width:768px){.shell{margin:20px auto;border-radius:18px;border:1px solid var(--line);padding:34px 36px 56px;box-shadow:0 6px 24px rgba(31,42,36,.09)}}
+.kicker{font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--accent);margin:0 0 8px}
+h1{font-family:var(--font-display);font-size:30px;line-height:1.18;color:var(--brand);margin:0 0 10px}
+h2{font-family:var(--font-display);font-size:21px;color:var(--brand);margin:0 0 10px}
+.cap{font-size:13.5px;color:var(--muted)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin:16px 0}
+.field{display:block;margin-bottom:12px}
+.field .l{display:block;font-size:14px;font-weight:700;color:var(--brand);margin-bottom:4px}
+.inp-wrap{display:flex;align-items:center;background:var(--input-bg);border:1.5px solid var(--input-border);border-radius:10px;padding:0 12px;min-height:46px}
+.inp-wrap input,.inp-wrap select{width:100%;border:0;background:transparent;font:inherit;color:var(--input-ink);outline:none;padding:10px 0;min-height:44px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:10px 18px;border-radius:10px;border:1.5px solid var(--accent);background:var(--accent);color:#fff;font:inherit;font-weight:700;font-size:15.5px;cursor:pointer;width:100%}
+.btn.sec{background:#fff;color:var(--brand);border-color:var(--line)}
+.preview{background:var(--paper);border-left:4px solid var(--accent);padding:14px 16px;border-radius:0 10px 10px 0;margin-top:12px;font-family:Georgia,"Times New Roman",serif;font-size:16px;line-height:1.65}
+.toc-list{margin:8px 0 0;padding-left:20px}
+.toc-list li{margin:5px 0}
+.ok-box{background:var(--good-bg);border:1px solid var(--accent);color:var(--good-ink);border-radius:10px;padding:12px 14px;font-weight:600;margin-top:12px}
+.shell-foot{margin-top:20px;padding-top:12px;border-top:1px solid var(--hairline);font-size:12.5px;color:var(--muted)}
+</style>
+<style id="fa6-kit-css">/* FA6 shared kit styles */
+.fa6-chart{width:100%;height:auto;display:block}.fa6-leg{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:4px;font-size:13px}.fa6-leg li{display:flex;align-items:center;gap:8px}.fa6-leg i{width:12px;height:12px;border-radius:3px;flex:none}.fa6-leg b{margin-left:auto}.fa6-leg em{font-style:normal;color:#5B6576;min-width:38px;text-align:right}
+.fa6-leg-row{display:flex;flex-wrap:wrap;gap:14px}.fa6-dwrap{display:flex;gap:16px;align-items:center;flex-wrap:wrap}.fa6-donut{width:150px;height:150px;flex:none}.fa6-dwrap .fa6-leg{flex:1;min-width:180px}
+.fa6-vt{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 10px}.fa6-vt button{border:1px solid #D8CFBF;background:#fff;border-radius:999px;padding:8px 14px;font:inherit;font-size:14px;font-weight:600;color:#1B2A40;cursor:pointer}.fa6-vt button[aria-selected="true"]{background:#1B2A40;color:#fff;border-color:#1B2A40}.fa6-empty{color:#5B6576}
+</style><script id="fa6-kit">/* FiledAwayCo shared kit v-app6 (window.FA6). Offline, no libraries. Used by every app for: charts, editable/reorderable lists,
+   printable sheets, CSV export, dated history logs. All functions return HTML strings or act on elements you pass. */
+(function(){
+var esc = function(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+var money = function(v){ v = +v || 0; return (v < 0 ? '−$' : '$') + Math.abs(v).toLocaleString('en-US', { maximumFractionDigits: 0 }); };
+var PAL = ['#1F5C45', '#E39A2D', '#2F5D8A', '#9A4F62', '#7FB89E', '#8A94A3'];
+function cssv(n, d){ try { var v = getComputedStyle(document.documentElement).getPropertyValue(n).trim(); return v || d; } catch(e){ return d; } }
+function pal(i){ return [cssv('--fa4-acc', PAL[0]), cssv('--fa4-acc3', PAL[1]), PAL[2], PAL[3], cssv('--fa4-acc2', PAL[4]), PAL[5]][i % 6]; }
+/* bar chart: labels[], series [{name, values[]}], opts {title, fmt(v), height} */
+function barChart(labels, series, o){
+  o = o || {}; var W = 640, H = o.height || 220, pl = 52, pb = 34, pt = 14, iw = W - pl - 10, ih = H - pb - pt, fmt = o.fmt || money;
+  var mx = 0; series.forEach(function(s){ s.values.forEach(function(v){ mx = Math.max(mx, +v || 0); }); }); if (!mx) mx = 1;
+  var g = labels.length || 1, gw = iw / g, bw = Math.max(4, Math.min(28, gw / (series.length + 1)));
+  var h = '<svg class="fa6-chart" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(o.title || 'Chart') + ': ' + esc(labels.map(function(l, i){ return l + ' ' + series.map(function(s){ return s.name + ' ' + fmt(s.values[i]); }).join(' '); }).join('; ')) + '">';
+  for (var k = 0; k <= 4; k++){ var y = pt + ih - ih * k / 4; h += '<line x1="' + pl + '" x2="' + (W - 10) + '" y1="' + y + '" y2="' + y + '" stroke="#E6DFD2"/><text x="' + (pl - 6) + '" y="' + (y + 4) + '" font-size="11" text-anchor="end" fill="#5B6576">' + esc(fmt(mx * k / 4)) + '<\/text>'; }
+  labels.forEach(function(l, i){ series.forEach(function(s, j){ var v = +s.values[i] || 0, bh = ih * v / mx, x = pl + i * gw + (gw - bw * series.length) / 2 + j * bw; h += '<rect x="' + x.toFixed(1) + '" y="' + (pt + ih - bh).toFixed(1) + '" width="' + (bw - 2).toFixed(1) + '" height="' + bh.toFixed(1) + '" rx="3" fill="' + pal(j) + '"/>'; });
+    h += '<text x="' + (pl + i * gw + gw / 2).toFixed(1) + '" y="' + (H - 12) + '" font-size="11" text-anchor="middle" fill="#5B6576">' + esc(l) + '<\/text>'; });
+  h += '<\/svg>'; return h + legend(series.map(function(s){ return s.name; }));
+}
+/* line chart: labels[], series [{name, values[]}] */
+function lineChart(labels, series, o){
+  o = o || {}; var W = 640, H = o.height || 220, pl = 56, pb = 34, pt = 14, iw = W - pl - 14, ih = H - pb - pt, fmt = o.fmt || money;
+  var mx = 0; series.forEach(function(s){ s.values.forEach(function(v){ mx = Math.max(mx, +v || 0); }); }); if (!mx) mx = 1;
+  var n = Math.max(1, labels.length - 1), X = function(i){ return pl + iw * i / n; }, Y = function(v){ return pt + ih - ih * (+v || 0) / mx; };
+  var h = '<svg class="fa6-chart" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(o.title || 'Chart') + '">';
+  for (var k = 0; k <= 4; k++){ var y = pt + ih - ih * k / 4; h += '<line x1="' + pl + '" x2="' + (W - 14) + '" y1="' + y + '" y2="' + y + '" stroke="#E6DFD2"/><text x="' + (pl - 6) + '" y="' + (y + 4) + '" font-size="11" text-anchor="end" fill="#5B6576">' + esc(fmt(mx * k / 4)) + '<\/text>'; }
+  var step = Math.ceil(labels.length / 8); labels.forEach(function(l, i){ if (i % step === 0 || i === labels.length - 1) h += '<text x="' + X(i).toFixed(1) + '" y="' + (H - 12) + '" font-size="11" text-anchor="middle" fill="#5B6576">' + esc(l) + '<\/text>'; });
+  series.forEach(function(s, j){ h += '<polyline fill="none" stroke="' + pal(j) + '" stroke-width="3" stroke-linejoin="round" ' + (j ? 'stroke-dasharray="' + (j === 1 ? '7 5' : '2 4') + '" ' : '') + 'points="' + s.values.map(function(v, i){ return X(i).toFixed(1) + ',' + Y(v).toFixed(1); }).join(' ') + '"/>'; });
+  return h + '<\/svg>' + legend(series.map(function(s){ return s.name; }));
+}
+function donut(parts, o){
+  o = o || {}; parts = parts.filter(function(p){ return +p[1] > 0; }); var t = parts.reduce(function(a, p){ return a + +p[1]; }, 0); if (!t) return '';
+  var r = 60, c = 2 * Math.PI * r, off = 0, h = '<svg class="fa6-donut" viewBox="0 0 160 160" role="img" aria-label="' + esc((o.title || 'Breakdown') + ': ' + parts.map(function(p){ return p[0] + ' ' + Math.round(p[1] / t * 100) + '%'; }).join(', ')) + '">';
+  parts.forEach(function(p, i){ var f = p[1] / t; h += '<circle cx="80" cy="80" r="' + r + '" fill="none" stroke="' + pal(i) + '" stroke-width="26" stroke-dasharray="' + (c * f).toFixed(2) + ' ' + c.toFixed(2) + '" stroke-dashoffset="' + (-off).toFixed(2) + '" transform="rotate(-90 80 80)"/>'; off += c * f; });
+  h += '<text x="80" y="86" text-anchor="middle" font-size="18" font-weight="800" fill="#1B2A40">' + esc(o.center || (o.fmt || money)(t)) + '<\/text><\/svg>';
+  return '<div class="fa6-dwrap">' + h + '<ul class="fa6-leg">' + parts.map(function(p, i){ return '<li><i style="background:' + pal(i) + '"><\/i><span>' + esc(p[0]) + '<\/span><b>' + esc((o.fmt || money)(p[1])) + '<\/b><em>' + Math.round(p[1] / t * 100) + '%<\/em><\/li>'; }).join('') + '<\/ul><\/div>';
+}
+function legend(names){ return names.length > 1 ? '<ul class="fa6-leg fa6-leg-row">' + names.map(function(n, i){ return '<li><i style="background:' + pal(i) + '"><\/i><span>' + esc(n) + '<\/span><\/li>'; }).join('') + '<\/ul>' : ''; }
+/* chart switcher: views [{label, html()}] -> tabs + body inside el */
+function views(el, list, key){
+  if (!el) return; var cur = +(sessionStorage.getItem('fa6v-' + key) || 0); if (cur >= list.length) cur = 0;
+  function draw(){ el.innerHTML = '<div class="fa6-vt" role="tablist">' + list.map(function(v, i){ return '<button type="button" role="tab" aria-selected="' + (i === cur) + '" data-fa6v="' + i + '">' + esc(v.label) + '<\/button>'; }).join('') + '<\/div><div class="fa6-vb">' + (list[cur].html() || '<p class="fa6-empty">Nothing to show yet.<\/p>') + '<\/div>'; }
+  el.onclick = function(e){ var b = e.target.closest('[data-fa6v]'); if (b){ cur = +b.getAttribute('data-fa6v'); try { sessionStorage.setItem('fa6v-' + key, cur); } catch(x){} draw(); } };
+  draw();
+}
+/* move item i up/down in array (returns true if moved) */
+function move(arr, i, d){ var j = i + d; if (j < 0 || j >= arr.length) return false; var t = arr[i]; arr[i] = arr[j]; arr[j] = t; return true; }
+/* printable sheet in a new window (falls back to in-page print frame) */
+function printSheet(title, bodyHtml){
+  var doc = '<!doctype html><html><head><meta charset="utf-8"><title>' + esc(title) + '<\/title><style>body{font:14px/1.45 system-ui,"Segoe UI",sans-serif;color:#1B2A40;margin:28px}h1{font-size:22px;margin:0 0 4px}p.s{color:#5B6576;margin:0 0 16px}table{border-collapse:collapse;width:100%;margin:10px 0}th,td{border:1px solid #CFC6B6;padding:7px 8px;text-align:left;vertical-align:top}th{background:#F3EEE4}td.n{text-align:right}.line td{height:26px}@page{margin:14mm}<\/style><\/head><body><h1>' + esc(title) + '<\/h1><p class="s">FiledAwayCo · printed ' + new Date().toLocaleDateString('en-US') + '<\/p>' + bodyHtml + '<\/body><\/html>';
+  var f = document.createElement('iframe'); f.setAttribute('aria-hidden', 'true'); f.style.cssText = 'position:fixed;right:0;bottom:0;width:0;height:0;border:0'; document.body.appendChild(f);
+  f.contentDocument.open(); f.contentDocument.write(doc); f.contentDocument.close();
+  setTimeout(function(){ try { f.contentWindow.focus(); f.contentWindow.print(); } catch(e){} setTimeout(function(){ f.remove(); }, 60000); }, 150);
+  return doc;
+}
+function table(head, rows, blank){ var h = '<table><thead><tr>' + head.map(function(c){ return '<th>' + esc(c) + '<\/th>'; }).join('') + '<\/tr><\/thead><tbody>' + rows.map(function(r){ return '<tr>' + r.map(function(c){ return '<td' + (typeof c === 'number' ? ' class="n"' : '') + '>' + esc(typeof c === 'number' ? c.toLocaleString('en-US', { maximumFractionDigits: 2 }) : c) + '<\/td>'; }).join('') + '<\/tr>'; }).join('');
+  for (var i = 0; i < (blank || 0); i++) h += '<tr class="line">' + head.map(function(){ return '<td><\/td>'; }).join('') + '<\/tr>'; return h + '<\/tbody><\/table>'; }
+/* CSV download */
+function csv(name, head, rows){
+  var q = function(v){ v = String(v == null ? '' : v); return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; };
+  var s = [head].concat(rows).map(function(r){ return r.map(q).join(','); }).join('\r\n') + '\r\n';
+  var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([s], { type: 'text/csv' })); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 500); return s;
+}
+function ym(d){ return String(d || '').slice(0, 7); }
+var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function monLabel(k){ var m = String(k).match(/(\d{4})-(\d\d)/); return m ? MON[+m[2] - 1] + (m[1] !== String(new Date().getFullYear()) ? " '" + m[1].slice(2) : '') : k; }
+/* group rows by month: rows, dateKey, valueFn -> {labels, values, keys} */
+function byMonth(rows, dk, vf){ var M = {}; rows.forEach(function(r){ var k = ym(r[dk]); if (k.length === 7){ M[k] = (M[k] || 0) + (+vf(r) || 0); } }); var ks = Object.keys(M).sort(); return { keys: ks, labels: ks.map(monLabel), values: ks.map(function(k){ return M[k]; }) }; }
+window.FA6 = { esc: esc, money: money, barChart: barChart, lineChart: lineChart, donut: donut, views: views, move: move, printSheet: printSheet, table: table, csv: csv, byMonth: byMonth, monLabel: monLabel, pal: pal };
+})();
+</script>
+<style id="fa10-mobile">/* v10 phone fit (360-414px): names never cut off, button labels stay on one line inside their pill. Layout-only; no colours, so v11 themes are unaffected. */
+@media (max-width:560px){
+html body .faa-samp{flex-wrap:nowrap}
+html body .faa-samp>span{flex:1 1 auto;min-width:0}
+html body #faa .faa-samp>button,html body .faa-samp>button{flex:none;white-space:nowrap;padding:0 14px}
+html body .faa-hd{min-width:0}
+html body .faa-hd .t{min-width:0}
+html body #faa .faa-hd h1,html body .faa-hd h1{white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:anywhere}
+html body #faa .faa-bar .in,html body .faa-bar .in{min-width:0}
+html body #faa .faa-bar b,html body .faa-bar b{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.15;min-width:0}
+html body #faa .faa-bar button,html body .faa-bar button,html body .a2-pill,html body .ins-btn{white-space:nowrap;flex:none}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+  <p class="kicker">Book One · Live Events &amp; Corporate AV</p>
+  <h1>LOAD-IN: A Beginner's Guide to Working Live Events &amp; Corporate AV</h1>
+  <p>You love music, stages, and events. People get paid to build them. <b>LOAD-IN</b> explains the whole trade in plain language — how a show arrives on a truck, how audio, video, and lighting connect, what every job on the crew actually does, and how a beginner gets in without experience assumed.</p>
+
+  <div class="card">
+    <h2>Read Chapter <span class="h-num">1</span> right now (free preview)</h2>
+    <p class="cap" style="margin:0 0 10px">No email required to read Chapter 1 — open it below and judge the book on its own pages.</p>
+    <button type="button" class="btn sec" id="toggleCh1Btn" aria-expanded="false">Open Chapter 1: Why AV, Why Now</button>
+    <div id="ch1Preview" class="preview" style="display:none">
+      <p><b>Chapter 1 — Why AV, Why Now</b></p>
+      <p>Every day, in every city in the country, somebody is paying to put on a show. A sales conference in a hotel ballroom. A wedding with a band. A product launch, a graduation, a church service with a full band and three cameras, a festival stage in a field. Behind every one of those events is a crew of people in black clothes who arrived before anyone else, built the whole thing out of cases and cable, ran it, tore it down, and left the room empty — and got paid a day rate for doing it.</p>
+      <p>That crew is the AV industry: audio, video, lighting. And it has a problem that is your opportunity — it is short of techs. Production companies and staffing agencies book more shows than they have reliable people for, which means the door for beginners is more open in this trade than in almost any other that pays this well without a degree.</p>
+      <p>What the work actually pays and how: most corporate AV work pays by the day or the call, not the hour — a set rate for showing up and doing your part of the show. And let's be honest about where a beginner actually starts, because it is not running anything. A beginner stagehand starts at the truck: unloading cases, pushing boxes, learning to wrap a cable properly, learning to build a screen, learning where things plug in. That is the real first rung, and it lasts longer than a day — it is your first month, and everybody senior to you did it too. The running comes later, in order: first you're trusted with pieces of a room, then with a room, then with a department, then with a board — and each step pays more, because each step is a skill somebody watched you prove. Nobody asks how long you've been around; they ask what you can do on the day. Chapter 9 lays out the whole ladder, rung by honest rung. Chapter 10 explains the shortcut that didn't exist five years ago — and why it only works standing on top of the slow rungs, not instead of them.</p>
+      <p>What the life is actually like, honestly: early calls — load-ins start when the room is free, and the room is often free at 6 a.m. Black clothes, head to toe; you are furniture that thinks. Long days on show days, quiet gaps between calls. And in exchange: backstage everywhere, music for a living, rooms most people only see from a seat, and the deep satisfaction of watching a bare ballroom become a show because your crew built it.</p>
+      <p>You do not need to be an engineer to start. You need to be reliable, teachable, and willing to push cases. The rest of this book is the teachable part.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Join the early-access waitlist</h2>
+    <!-- TODO(Todd, at go-live): wire action URL to the approved Gumroad / Whop / capture form under the separate AV author profile. Nothing submits externally yet. -->
+    <form id="waitForm">
+      <label class="field"><span class="l">Email address</span><span class="inp-wrap"><input type="email" id="wEmail" required placeholder="you@example.com"></span></label>
+      <label class="field"><span class="l">Where are you starting from?</span><span class="inp-wrap"><select id="wExp">
+        <option value="zero">Brand new — zero shows yet</option>
+        <option value="few">1–10 calls (getting my footing)</option>
+        <option value="u1">Under a year in AV</option>
+        <option value="1-3">1–3 years</option>
+        <option value="3+">3+ years</option>
+      </select></span></label>
+      <label class="field"><span class="l">Which department interests you most?</span><span class="inp-wrap"><select id="wDept">
+        <option>Not sure yet — show me all</option>
+        <option>Lighting (L1 / L2)</option>
+        <option>Audio (A1 / A2)</option>
+        <option>Video / Cameras (V1 / V2)</option>
+        <option>Stagehand / Breakout Tech</option>
+      </select></span></label>
+      <button type="submit" class="btn">Notify me when LOAD-IN launches</button>
+      <p class="cap" style="margin:8px 0 0">One note when Book One opens — no spam, no inflated promises, unsubscribe any time.</p>
+      <div id="waitResp" style="display:none"></div>
+    </form>
+  </div>
+
+  <div class="card">
+    <h2>What is inside Book One (<span class="h-num">12</span> chapters + <span class="h-num">3</span> appendices + offline Field Companion)</h2>
+    <ol class="toc-list">
+      <li><b>Why AV, Why Now</b> — what the work is actually like, honestly</li>
+      <li><b>A Show, Start to Finish</b> — advance, truck, load-in, set/focus, show call, strike, load-out</li>
+      <li><b>The Truck &amp; Load-In</b> — case etiquette, over-under cable wrap, screen building</li>
+      <li><b>Audio, Distilled</b> — signal chain, mics, line check, killing feedback</li>
+      <li><b>Video, Distilled</b> — Preview vs Program, throw/lumens, confidence monitors, cameras</li>
+      <li><b>Lighting, Distilled</b> — fixtures, DMX addressing, patching, power &amp; overhead safety</li>
+      <li><b>The Breakout Room</b> — the standard package, setup order, presenter-proofing</li>
+      <li><b>Running the Show</b> — cues, comms etiquette, calm backup troubleshooting</li>
+      <li><b>The Roles &amp; the Ladder</b> — all 12 crew positions from Stagehand to PM</li>
+      <li><b>AI on the Spot</b> — the 5-Move Board Loop for unfamiliar consoles + the 4 Honesty Rules</li>
+      <li><b>Getting Your First Calls</b> — agencies, direct shops, honest profiles, first-show etiquette</li>
+      <li><b>The Gear Field Guide</b> — plain-English pages on the gear you will name on sight</li>
+    </ol>
+    <p class="cap" style="margin:10px 0 0"><b>Includes:</b> Appendix A (Call-Day Checklist), Appendix B (Comms Phrases), Appendix C (26-Term Glossary), and the offline <b>LOAD-IN Field Companion</b> phone guide.</p>
+  </div>
+
+  <footer class="shell-foot">Draft preview page prepared for validation — nothing is on sale yet and no launch date or income outcome is promised.</footer>
+</div>
+<script>
+(function(){
+"use strict";
+document.getElementById("toggleCh1Btn").addEventListener("click", function(){
+  var p = document.getElementById("ch1Preview");
+  var open = p.style.display === "none";
+  p.style.display = open ? "block" : "none";
+  this.setAttribute("aria-expanded", String(open));
+  this.textContent = open ? "Hide Chapter 1 preview" : "Open Chapter 1: Why AV, Why Now";
+});
+document.getElementById("waitForm").addEventListener("submit", function(ev){
+  ev.preventDefault();
+  var em = document.getElementById("wEmail").value.trim();
+  if (!em || em.indexOf("@") < 1) return;
+  var box = document.getElementById("waitResp");
+  box.className = "ok-box";
+  box.textContent = "Preview mode — this page is not connected to a live signup form yet. No email was transmitted over the network.";
+  box.style.display = "block";
+});
+})();
+</script>
+</body>
+</html>
